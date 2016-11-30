@@ -1,5 +1,5 @@
 <template>
-    <el-autocomplete v-model="state" :fetch-suggestions="querySearchAsync" placeholder="Mot clé" @select="handleSelect"></el-autocomplete>
+    <el-autocomplete v-model="state" :fetch-suggestions="debouncedQuery" placeholder="Mot clé" @select="handleSelect"></el-autocomplete>
 </template>
 
 <script>
@@ -16,12 +16,11 @@ export default {
     }
   },
   methods: {
-    debouncedQuery (queryString, callBack) {
-      console.log(_.debounce)
-      _.debounce(function () {
-        this.querySearchAsync(queryString, callBack)
-      }, 10)
-    },
+    debouncedQuery: _.debounce(
+      function (q, c) {
+        this.querySearchAsync(q, c)
+      }, 300),
+
     querySearchAsync (queryString, cb) {
       if (queryString.length === 0) {
         this.links.splice(0)
@@ -35,21 +34,11 @@ export default {
       })
       .then(function (response) {
         const rep = response.data.map(item => ({value: item.label, file: item.file, molId: item.molId}))
-        console.log(rep)
         cb(rep)
       })
       .catch(function (error) {
         console.log(error)
       })
-          // this.results.push(this.query);
-
-    /* var links = this.links
-    var results = queryString ? links.filter(this.createFilter(queryString)) : links
-
-    clearTimeout(this.timeout)
-    this.timeout = setTimeout(() => {
-        cb(results)
-    }, 3000 * Math.random()) */
     },
     handleSelect (item) {
       console.log(item)

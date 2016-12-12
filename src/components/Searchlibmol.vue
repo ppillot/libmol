@@ -33,7 +33,7 @@ export default {
         }
       })
       .then(function (response) {
-        const rep = response.data.map(item => ({value: item.label, file: item.file, molId: item.molId}))
+        const rep = response.data.map(item => ({ value: item.label, file: 'static/mol/pdb/' + item.file + '.pdb', molId: item.molId }))
         cb(rep)
       })
       .catch(function (error) {
@@ -41,7 +41,7 @@ export default {
       })
     },
     handleSelect (item) {
-      console.log(item)
+      this.$store.dispatch('loadNewFile', item)
     }
   }
 }

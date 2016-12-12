@@ -19,9 +19,14 @@ export default {
   components: {
     SearchLibmol
   },
-  data () {
+  /* data () {
     return {
       msg: 'Librairie de molécules'
+    }
+  } */
+  computed: {
+    msg () {
+      return this.$store.state.name
     }
   }
 }

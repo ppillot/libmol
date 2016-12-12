@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import * as NGL from 'ngl'
+// import * as NGL from 'ngl'
 
 export default {
   name: 'ngl',
@@ -14,9 +14,17 @@ export default {
       msg: 'Librairie de molécules'
     }
   },
+  computed () {
+    return {
+      fileName () {
+        return this.$store.state.fileName
+      }
+    }
+  },
   mounted () {
-    let stage = new NGL.Stage('viewport', { backgroundColor: 'white' })
-    stage.loadFile('rcsb://1crn', { defaultRepresentation: true })
+    this.$store.dispatch('createNewStage', {id: 'viewport'})
+    // let stage = new NGL.Stage('viewport', { backgroundColor: 'white' })
+    // stage.loadFile('rcsb://1crn', { defaultRepresentation: true })
   }
 }
 </script>

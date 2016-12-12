@@ -11,7 +11,7 @@ Vue.use(Vuex)
  */
 var stage = {}
 
-// const debug = process.env.NODE_ENV !== 'production'
+const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   state: {
@@ -28,9 +28,13 @@ export default new Vuex.Store({
     createNewStage (context, options) {
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
       context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: '1crn' })
+
+      if (debug) { window.stage = stage }
     },
     loadNewFile (context, newFile) {
+      stage.removeAllComponents()
       stage.loadFile(newFile.file, { defaultRepresentation: true })
+
       context.commit('loadNewFile', newFile)
     }
   }

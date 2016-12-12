@@ -1,6 +1,6 @@
 <template>
     <div class="ngl full-height" id="viewport">
-        <div></div>
+        <div>{{ molName }}</div>
     </div>
 </template>
 
@@ -16,8 +16,8 @@ export default {
   },
   computed () {
     return {
-      fileName () {
-        return this.$store.state.fileName
+      molName () {
+        return this.$store.state.name
       }
     }
   },

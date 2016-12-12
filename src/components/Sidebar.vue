@@ -2,8 +2,10 @@
     <div class="side-bar full-height">
         <h1>{{ msg }}</h1>
         <el-tabs type="border-card" class="tab-card">
-            <el-tab-pane label="Fichier">Fichier
-                <search-libmol></search-libmol>
+            <el-tab-pane label="Fichier">
+                <el-form label-position="top">
+                    <search-libmol></search-libmol>
+                </el-form>
             </el-tab-pane>
             <el-tab-pane label="Commande">Commande</el-tab-pane>
             <el-tab-pane label="Séquence">Séquence</el-tab-pane>

@@ -1,5 +1,7 @@
 <template>
+  <el-form-item label="Rechercher dans la librairie de molécules">
     <el-autocomplete v-model="state" :fetch-suggestions="debouncedQuery" placeholder="Mot clé" @select="handleSelect"></el-autocomplete>
+  </el-form-item>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
     <div class="side-bar full-height">
-        <h1>{{ msg }}</h1>
+        <h1>Librairie de Molécules</h1>
         <el-tabs type="border-card" class="tab-card">
             <el-tab-pane label="Fichier">
                 <el-form label-position="top">
@@ -26,16 +26,6 @@ export default {
     SearchLibmol,
     SearchPdb,
     LoadFile
-  },
-  /* data () {
-    return {
-      msg: 'Librairie de molécules'
-    }
-  } */
-  computed: {
-    msg () {
-      return this.$store.state.name
-    }
   }
 }
 </script>

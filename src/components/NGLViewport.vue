@@ -23,8 +23,6 @@ export default {
   },
   mounted () {
     this.$store.dispatch('createNewStage', {id: 'viewport'})
-    // let stage = new NGL.Stage('viewport', { backgroundColor: 'white' })
-    // stage.loadFile('rcsb://1crn', { defaultRepresentation: true })
   }
 }
 </script>

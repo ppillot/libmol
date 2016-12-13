@@ -56,7 +56,7 @@ export default {
             for (var item of recordNodelist) {
               rep.push({
                 value: item.children[1].textContent,
-                file: `rcsb://${item.children[0].textContent}`
+                file: 'rcsb://' + item.children[0].textContent
               })
             }
             cb(rep)

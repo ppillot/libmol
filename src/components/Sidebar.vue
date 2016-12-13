@@ -6,6 +6,7 @@
                 <el-form label-position="top">
                     <search-libmol></search-libmol>
                     <search-pdb></search-pdb>
+                    <load-file></load-file>
                 </el-form>
             </el-tab-pane>
             <el-tab-pane label="Commande">Commande</el-tab-pane>
@@ -17,12 +18,14 @@
 <script>
 import SearchLibmol from './Searchlibmol'
 import SearchPdb from './SearchPdb'
+import LoadFile from './Loadfile'
 
 export default {
   name: 'sidebar',
   components: {
     SearchLibmol,
-    SearchPdb
+    SearchPdb,
+    LoadFile
   },
   /* data () {
     return {

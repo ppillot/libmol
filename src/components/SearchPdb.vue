@@ -40,7 +40,6 @@ export default {
       }
       )
       .then(function (response) {
-        console.log(response)
         if (response.data.length > 0) {
           let listPdbId = response.data.split('\n').join(',')
           axios.get('http://www.rcsb.org/pdb/rest/customReport', {
@@ -50,10 +49,9 @@ export default {
             }
           })
           .then(function (response) {
-            console.log(response)
             const xmlDocument = response.request.responseXML
-            window.xmlDocument = xmlDocument
             const recordNodelist = xmlDocument.getElementsByTagName('record')
+
             let rep = []
             for (var item of recordNodelist) {
               rep.push({
@@ -68,10 +66,6 @@ export default {
           })
         }
       })
-      /* .then(function (response) {
-        const rep = response.data.map(item => ({ value: item.label, file: 'static/mol/pdb/' + item.file + '.pdb', molId: item.molId }))
-        cb(rep)
-      }) */
       .catch(function (error) {
         console.log(error)
       })

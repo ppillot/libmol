@@ -33,3 +33,9 @@
     }
   }
 </script>
+
+<style>
+  .el-upload, .el-dragger {
+    width: 100%
+  } 
+</style>

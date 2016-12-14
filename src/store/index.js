@@ -16,7 +16,17 @@ const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
   state: {
     fileName: '',
-    name: 'LibMol'
+    name: 'LibMol',
+    mol: {
+      chains: [],
+      molTypes: {
+        protein: 0,
+        nucleic: 0,
+        water: 0,
+        saccharide: 0,
+        hetero: 0
+      }
+    }
   },
   mutations: {
     loadNewFile (state, newFile) {

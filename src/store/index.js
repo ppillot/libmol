@@ -20,11 +20,11 @@ export default new Vuex.Store({
     mol: {
       chains: [],
       molTypes: {
-        protein: 0,
-        nucleic: 0,
-        water: 0,
-        saccharide: 0,
-        hetero: 0
+        protein: true,
+        nucleic: false,
+        water: false,
+        saccharide: false,
+        hetero: false
       }
     }
   },
@@ -44,6 +44,10 @@ export default new Vuex.Store({
     loadNewFile (context, newFile) {
       stage.removeAllComponents()
       stage.loadFile(newFile.file, { defaultRepresentation: true })
+      .then(({structure}) => { // let's get the structure property from the structureComponent object returned by NGL's promise
+        console.log(structure)
+        window.structure = structure
+      })
 
       context.commit('loadNewFile', newFile)
     }

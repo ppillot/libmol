@@ -42,29 +42,25 @@ export default {
       .then(function (response) {
         if (response.data.length > 0) {
           let listPdbId = response.data.split('\n').join(',')
-          axios.get('http://www.rcsb.org/pdb/rest/customReport', {
+          return axios.get('http://www.rcsb.org/pdb/rest/customReport', {
             params: {
               pdbids: listPdbId,
               customReportColumns: 'structureId,structureTitle'
             }
           })
-          .then(function (response) {
-            const xmlDocument = response.request.responseXML
-            const recordNodelist = xmlDocument.getElementsByTagName('record')
+        } else throw new Error('no record found')
+      }).then(function (response) {
+        const xmlDocument = response.request.responseXML
+        const recordNodelist = xmlDocument.getElementsByTagName('record')
 
-            let rep = []
-            for (var item of recordNodelist) {
-              rep.push({
-                value: item.children[1].textContent,
-                file: 'rcsb://' + item.children[0].textContent
-              })
-            }
-            cb(rep)
-          })
-          .catch(function (error) {
-            console.log(error)
+        let rep = []
+        for (var item of recordNodelist) {
+          rep.push({
+            value: item.children[1].textContent,
+            file: 'rcsb://' + item.children[0].textContent
           })
         }
+        cb(rep)
       })
       .catch(function (error) {
         console.log(error)

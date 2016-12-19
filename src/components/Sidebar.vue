@@ -9,7 +9,9 @@
                     <load-file></load-file>
                 </el-form>
             </el-tab-pane>
-            <el-tab-pane label="Commande">Commande</el-tab-pane>
+            <el-tab-pane label="Commandes">
+                <select-mol></select-mol>
+            </el-tab-pane>
             <el-tab-pane label="Séquence">Séquence</el-tab-pane>
         </el-tabs>
     </div>
@@ -19,13 +21,15 @@
 import SearchLibmol from './Searchlibmol'
 import SearchPdb from './SearchPdb'
 import LoadFile from './Loadfile'
+import SelectMol from './SelectMol'
 
 export default {
   name: 'sidebar',
   components: {
     SearchLibmol,
     SearchPdb,
-    LoadFile
+    LoadFile,
+    SelectMol
   }
 }
 </script>

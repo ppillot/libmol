@@ -32,6 +32,15 @@ export default new Vuex.Store({
     loadNewFile (state, newFile) {
       state.fileName = newFile.file
       state.name = newFile.value
+    },
+    setMolTypes (state, {molTypes, chains}) {
+      state.mol.molTypes.protein = molTypes.has(3)
+      state.mol.molTypes.nucleic = molTypes.has(4) || molTypes.has(5) // 4: RNA; 5:DNA
+      state.mol.molTypes.water = molTypes.has(1)
+      state.mol.molTypes.saccharide = molTypes.has(6)
+      state.mol.molTypes.hetero = molTypes.has(0) || molTypes.has(2) // 0: Unknown; 2: Ions
+
+      state.mol.chains = chains
     }
   },
   actions: {
@@ -45,8 +54,26 @@ export default new Vuex.Store({
       stage.removeAllComponents()
       stage.loadFile(newFile.file, { defaultRepresentation: true })
       .then(({structure}) => { // let's get the structure property from the structureComponent object returned by NGL's promise
-        console.log(structure)
+        // console.log(structure)
         window.structure = structure
+        let molTypes = new Set()
+        let chainMap = new Map()
+        let chains = []
+        structure.eachResidue(item => {
+          if (!chainMap.has(item.chainname)) {
+            chainMap.set(item.chainname, chainMap.size)
+            chains.push({id: item.chainname, sequence: []})
+          }
+          let chainId = chainMap.get(item.chainname)
+          chains[chainId].sequence.push({
+            resname: item.resname,
+            resno: item.resno,
+            hetero: item.hetero
+          })
+          molTypes.add(item.moleculeType)
+        })
+
+        context.commit('setMolTypes', {molTypes, chains})
       })
 
       context.commit('loadNewFile', newFile)

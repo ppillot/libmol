@@ -26,7 +26,8 @@ export default new Vuex.Store({
         saccharide: false,
         hetero: false
       }
-    }
+    },
+    selection: '*'
   },
   mutations: {
     loadNewFile (state, newFile) {
@@ -41,6 +42,9 @@ export default new Vuex.Store({
       state.mol.molTypes.hetero = molTypes.has(0) || molTypes.has(2) // 0: Unknown; 2: Ions
 
       state.mol.chains = chains
+    },
+    selection (state, selector) {
+      state.selection = selector
     }
   },
   actions: {
@@ -77,6 +81,9 @@ export default new Vuex.Store({
       })
 
       context.commit('loadNewFile', newFile)
+    },
+    selection (context, selector) {
+      context.commit('selection', selector)
     }
   }
 })

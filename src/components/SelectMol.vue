@@ -2,15 +2,15 @@
   <div>
     Sélectionner
    <el-button-group>
-        <el-button size="large" v-on:click="sel('*')">Tout</el-button>
-        <el-button size="large" :disabled="unselectables.protein" v-on:click="sel('protein')">Protéines</i></el-button>
-        <el-button size="large" :disabled="unselectables.nucleic" v-on:click="sel('nucleic')">ADN/ARN</i></el-button>
+        <el-button v-on:click="sel('*')">Tout</el-button>
+        <el-button :disabled="unselectables.protein" v-on:click="sel('protein')">Protéines</i></el-button>
+        <el-button :disabled="unselectables.nucleic" v-on:click="sel('nucleic')">ADN/ARN</i></el-button>
     </el-button-group>
 
     <el-button-group>
-        <el-button size="large" :disabled="unselectables.saccharide" v-on:click="sel('saccharide')">Glucides</i></el-button>
-        <el-button size="large" :disabled="unselectables.water" v-on:click="sel('water')">Eau</i></el-button>
-        <el-button size="large" :disabled="unselectables.hetero" v-on:click="sel('hetero')">Autres</i></el-button>
+        <el-button :disabled="unselectables.saccharide" v-on:click="sel('saccharide')">Glucides</i></el-button>
+        <el-button :disabled="unselectables.water" v-on:click="sel('water')">Eau</i></el-button>
+        <el-button :disabled="unselectables.hetero" v-on:click="sel('hetero')">Autres</i></el-button>
     </el-button-group>
   </div>
 </template>
@@ -31,8 +31,7 @@
     },
     methods: {
       sel (selector) {
-        console.log(selector)
-        this.$store.dispatch('selection', 'coucou')
+        this.$store.dispatch('selection', selector)
       }
     }
   }

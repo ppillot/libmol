@@ -27,7 +27,8 @@ export default new Vuex.Store({
         hetero: false
       }
     },
-    selection: '*'
+    selection: '*',
+    display: 'licorice'
   },
   mutations: {
     loadNewFile (state, newFile) {
@@ -45,6 +46,9 @@ export default new Vuex.Store({
     },
     selection (state, selector) {
       state.selection = selector
+    },
+    display (state, displayType) {
+      state.display = displayType
     }
   },
   actions: {
@@ -84,6 +88,9 @@ export default new Vuex.Store({
     },
     selection (context, selector) {
       context.commit('selection', selector)
+    },
+    display (context, displayType) {
+      context.commit('display', displayType)
     }
   }
 })

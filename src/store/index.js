@@ -60,14 +60,14 @@ export default new Vuex.Store({
     },
     loadNewFile (context, newFile) {
       stage.removeAllComponents()
-      stage.loadFile(newFile.file, { defaultRepresentation: true })
-      .then(({structure}) => { // let's get the structure property from the structureComponent object returned by NGL's promise
+      stage.loadFile(newFile.file)
+      .then((component) => { // let's get the structure property from the structureComponent object returned by NGL's promise
         // console.log(structure)
-        window.structure = structure
+        window.structure = component.structure
         let molTypes = new Set()
         let chainMap = new Map()
         let chains = []
-        structure.eachResidue(item => {
+        component.structure.eachResidue(item => {
           if (!chainMap.has(item.chainname)) {
             chainMap.set(item.chainname, chainMap.size)
             chains.push({id: item.chainname, sequence: []})
@@ -82,6 +82,9 @@ export default new Vuex.Store({
         })
 
         context.commit('setMolTypes', {molTypes, chains})
+
+        component.addRepresentation('licorice')
+        component.centerView()
       })
 
       context.commit('loadNewFile', newFile)
@@ -90,6 +93,7 @@ export default new Vuex.Store({
       context.commit('selection', selector)
     },
     display (context, displayType) {
+      stage.compList[0].addRepresentation(displayType, {sele: context.state.selection})
       context.commit('display', displayType)
     }
   }

@@ -12,6 +12,7 @@
             <el-tab-pane label="Commandes">
                 <select-mol></select-mol>
                 <display-mol></display-mol>
+                <color-mol></color-mol>
             </el-tab-pane>
             <el-tab-pane label="Séquence">Séquence</el-tab-pane>
         </el-tabs>
@@ -24,6 +25,7 @@ import SearchPdb from './SearchPdb'
 import LoadFile from './Loadfile'
 import SelectMol from './SelectMol'
 import DisplayMol from './DisplayMol'
+import ColorMol from './ColorMol'
 
 export default {
   name: 'sidebar',
@@ -32,7 +34,8 @@ export default {
     SearchPdb,
     LoadFile,
     SelectMol,
-    DisplayMol
+    DisplayMol,
+    ColorMol
   }
 }
 </script>

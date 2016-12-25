@@ -12,6 +12,9 @@ Vue.use(Vuex)
 var stage = {}
 
 const debug = process.env.NODE_ENV !== 'production'
+if (debug) {
+  window.NGL = NGL
+}
 
 export default new Vuex.Store({
   state: {
@@ -28,7 +31,8 @@ export default new Vuex.Store({
       }
     },
     selection: '*',
-    display: 'licorice'
+    display: 'licorice',
+    color: 'element'
   },
   mutations: {
     loadNewFile (state, newFile) {
@@ -49,6 +53,9 @@ export default new Vuex.Store({
     },
     display (state, displayType) {
       state.display = displayType
+    },
+    color (state, colorScheme) {
+      state.color = colorScheme
     }
   },
   actions: {
@@ -95,6 +102,10 @@ export default new Vuex.Store({
     display (context, displayType) {
       stage.compList[0].addRepresentation(displayType, {sele: context.state.selection})
       context.commit('display', displayType)
+    },
+    color (context, colorScheme) {
+      stage.compList[0].addRepresentation(context.state.display, {sele: context.state.selection, color: colorScheme})
+      context.commit('color', colorScheme)
     }
   }
 })

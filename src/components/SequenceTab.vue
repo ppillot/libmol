@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         Sélectionner à partir des séquences des différentes chaînes
-        <div class="sequence-widget"></div>
+        <sequence-widget class="sequence-widget"></sequence-widget>
         <display-mol v-bind:complete="false"></display-mol>
         <compact-picker v-model="colors" @change-color="pickColor"></compact-picker>
     </div>
@@ -12,6 +12,7 @@
     Compact
   } from 'vue-color'
   import DisplayMol from './DisplayMol'
+  import SequenceWidget from './SequenceWidget'
 
   export default {
     name: 'SequenceTab',
@@ -24,7 +25,8 @@
     },
     components: {
       'compact-picker': Compact,
-      'display-mol': DisplayMol
+      'display-mol': DisplayMol,
+      'sequence-widget': SequenceWidget
     },
     methods: {
       pickColor (val) {

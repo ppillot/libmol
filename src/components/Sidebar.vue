@@ -14,7 +14,9 @@
                 <display-mol></display-mol>
                 <color-mol></color-mol>
             </el-tab-pane>
-            <el-tab-pane label="Séquence">Séquence</el-tab-pane>
+            <el-tab-pane label="Séquence">
+                <sequence-tab></sequence-tab>
+            </el-tab-pane>
         </el-tabs>
     </div>
 </template>
@@ -26,6 +28,7 @@ import LoadFile from './Loadfile'
 import SelectMol from './SelectMol'
 import DisplayMol from './DisplayMol'
 import ColorMol from './ColorMol'
+import SequenceTab from './SequenceTab'
 
 export default {
   name: 'sidebar',
@@ -35,7 +38,8 @@ export default {
     LoadFile,
     SelectMol,
     DisplayMol,
-    ColorMol
+    ColorMol,
+    SequenceTab
   }
 }
 </script>
@@ -54,16 +58,14 @@ export default {
         flex-direction: column;
     }
 
-    .el-tabs__content {
-        flex: 1;
-    }
-
     .side-bar {
-        margin: 5px
+        margin: 0 5px 5px 5px
     }
 </style>
 <style>
-    .el-tabs__content {
+    .el-tabs__content, .el-tab-pane {
         flex: 1;
+        display: flex;
+        flex-direction: column;
     }
 </style>

@@ -9,7 +9,7 @@
         </div>
         <div class="tab-body">
           <ul v-for="chain in chains">
-            <li v-for="residu in chain.sequence">
+            <li v-for="residu in chain.sequence" v-bind:class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }">
               {{ residu.resname }}
             </li>
           </ul>
@@ -46,6 +46,8 @@
     margin: 0;
     padding: 0;
     white-space: nowrap;
+    box-shadow: 0 0 6px #aaa;
+    background: #eee;
   }
 
   .header ul li {
@@ -54,9 +56,15 @@
     padding: 0;
     width: 3em;
     text-align: center;
-    background: #AAA;
+    font-weight: 500;
+    cursor: pointer;
+    color: #546e7a
   }
   
+  .header ul li:hover {
+    background: #90caf9;
+  }
+
   .tab-body {
     flex: 1;
     overflow: auto;
@@ -79,7 +87,15 @@
     background: none;
   }
 
-  li:hover {
-    background: green;
+  .tab-body ul li:hover {
+    background: #bbdefb;
+  }
+
+  .hetero {
+    color: #bf360c
+  }
+
+  .hoh {
+    color: #0277bd
   }
 </style>

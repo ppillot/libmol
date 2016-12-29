@@ -15,4 +15,21 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+ToDo
+- I18n
+- Fichiers : legacy PDB files (ngl)
+- Commandes : 
+    -- icons
+    -- labels
+- Séquences : 
+    -- Etiquette
+    -- 2 way binding
+    -- select from sequence
+- display :
+    -- hover
+    -- legendes couleurs, selection
+    -- settings
+        -- background
+        -- lighting, etc...
+        -- fullscreen
+    -- screen capture (export)

@@ -83,7 +83,8 @@ export default new Vuex.Store({
           chains[chainId].sequence.push({
             resname: item.resname,
             resno: item.resno,
-            hetero: item.hetero
+            hetero: item.hetero,
+            index: item.index
           })
           molTypes.add(item.moleculeType)
         })

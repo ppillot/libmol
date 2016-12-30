@@ -10,13 +10,31 @@ Vue.use(Vuex)
  * @typedef {NGL.stage}
  */
 var stage = {}
+var structure = {}
+
+function onHover (response) {
+  // console.log(response)
+  let atomHovered = (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
+  // console.log(response, atomHovered)
+  if (atomHovered !== undefined) {
+    let atom = {
+      symbol: atomHovered.element,
+      atomname: atomHovered.atomname,
+      resname: atomHovered.resname,
+      resno: atomHovered.resno,
+      chainname: atomHovered.chainname,
+      entity: atomHovered.entity.description
+    }
+    vuex.dispatch('atomHovered', atom)
+  }
+}
 
 const debug = process.env.NODE_ENV !== 'production'
 if (debug) {
   window.NGL = NGL
 }
 
-export default new Vuex.Store({
+var vuex = new Vuex.Store({
   state: {
     fileName: '',
     name: 'LibMol',
@@ -32,7 +50,8 @@ export default new Vuex.Store({
     },
     selection: '*',
     display: 'licorice',
-    color: 'element'
+    color: 'element',
+    atomHovered: {}
   },
   mutations: {
     loadNewFile (state, newFile) {
@@ -56,11 +75,15 @@ export default new Vuex.Store({
     },
     color (state, colorScheme) {
       state.color = colorScheme
+    },
+    atomHovered (state, atom) {
+      state.atomHovered = atom
     }
   },
   actions: {
     createNewStage (context, options) {
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
+      stage.signals.hovered.add(onHover)
       context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: '1crn' })
 
       if (debug) { window.stage = stage }
@@ -70,7 +93,7 @@ export default new Vuex.Store({
       stage.loadFile(newFile.file)
       .then((component) => { // let's get the structure property from the structureComponent object returned by NGL's promise
         // console.log(structure)
-        window.structure = component.structure
+        structure = window.structure = component.structure
         let molTypes = new Set()
         let chainMap = new Map()
         let chains = []
@@ -84,7 +107,8 @@ export default new Vuex.Store({
             resname: item.resname,
             resno: item.resno,
             hetero: item.hetero,
-            index: item.index
+            index: item.index,
+            selected: true
           })
           molTypes.add(item.moleculeType)
         })
@@ -107,6 +131,16 @@ export default new Vuex.Store({
     color (context, colorScheme) {
       stage.compList[0].addRepresentation(context.state.display, {sele: context.state.selection, color: colorScheme})
       context.commit('color', colorScheme)
+    },
+    atomHovered (context, atom) {
+      context.commit('atomHovered', atom)
+    }
+  },
+  getters: {
+    getResidue: state => {
+      return { name: state.name, structure }
     }
   }
 })
+
+export default vuex

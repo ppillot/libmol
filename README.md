@@ -21,15 +21,21 @@ ToDo
 - Commandes : 
     -- icons
     -- labels
+    -- surface
 - Séquences : 
     -- Etiquette
     -- 2 way binding
     -- select from sequence
+    -- molecular entity
+    -- clear selection
 - display :
-    -- hover
-    -- legendes couleurs, selection
-    -- settings
-        -- background
-        -- lighting, etc...
-        -- fullscreen
-    -- screen capture (export)
+    -- status bar
+        -- legendes couleurs, selection
+        -- filename
+        -- hovered atom
+    -- toolbar
+        --- settings
+            -- background
+            -- lighting, etc...
+            -- fullscreen
+        --- screen capture (export)

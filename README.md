@@ -23,11 +23,12 @@ ToDo
     -- labels
     -- surface
 - Séquences : 
-    -- Etiquette
+    -- Etiquette: amino acids and nucleotide names !
     -- 2 way binding
     -- select from sequence
-    -- molecular entity
     -- clear selection
+    -- horizontal scrolling for chains
+    -- virtual scrolling for large datasets
 - display :
     -- status bar
         -- legendes couleurs, selection

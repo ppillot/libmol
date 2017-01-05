@@ -1,28 +1,29 @@
 <template>
     <div class="container">
-        <div class="header" @mouseover.stop="getHoveredChain" @mouseout.stop="hideTooltip">
+        <div class="header" @mouseover.stop="getHoveredItem('chain', $event)" @mouseout.stop="hideTooltip">
           <ul>
             <li v-for="chain in chains" :data-index="chain.id">
-              {{ chain.id }}
+              {{ chain.name }}
             </li>
           </ul>
         </div>
-        <div class="tab-body" @mouseover.stop="getHoveredResidue" @mouseout.stop="hideTooltip">
+        <div class="tab-body" @mouseover.stop="getHoveredItem('res', $event)" @mouseout.stop="hideTooltip">
           <ul v-for="chain in chains">
             <li v-for="residu in chain.sequence" :data-index="residu.index" :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }">
               {{ residu.resname }}
             </li>
           </ul>
         </div>
-        <div class="tooltip" v-bind:style="tooltipStyles">{{ tooltipText }}</div>
+        <div class="tooltip" v-bind:style="tooltipStyles" v-html="tooltipText"></div>
     </div>
 </template>
 
 <script>
   function getTooltipStyles (target) {
+    let rect = target.getBoundingClientRect()
     return {
-      top: target.offsetTop - target.parentElement.parentElement.scrollTop - 5 + 'px',
-      left: target.offsetLeft + target.offsetWidth + 5 - target.parentElement.parentElement.scrollLeft + 'px',
+      top: rect.top - 5 + 'px',
+      left: rect.right + 5 + 'px',
       visibility: 'visible'
     }
   }
@@ -42,25 +43,27 @@
     computed: {
       chains: function () {
         return this.$store.state.mol.chains
+      },
+      tooltipText: function () {
+        let item = this.$store.state.itemHovered
+        let respHTML = ''
+        if (item.num !== -1) {
+          respHTML = item.name + ' ' + item.num + ' '
+        }
+        respHTML += 'Chaîne ' + item.chain + '<br>' + item.description
+        return respHTML
       }
     },
     methods: {
-      getHoveredResidue (event) {
+      getHoveredItem (itemType, event) {
         const target = event.target
         if (target.tagName === 'LI') {
           this.tooltipStyles = getTooltipStyles(target)
-          this.tooltipText = target.dataset.index
-          // this.$store.getters.getResidue(target.dataset.index)
+          this.$store.dispatch('sequenceHovered', {
+            type: itemType,
+            index: target.dataset.index})
         } else {
-          this.tooltipStyles.visibility = 'hidden'
-        }
-      },
-      getHoveredChain (event) {
-        const target = event.target
-        if (target.tagName === 'LI') {
-          this.tooltipStyles = getTooltipStyles(target)
-          this.tooltipText = 'Chaîne ' + target.dataset.index
-          // window.console.log(target.dataset.index)
+          this.hideTooltip()
         }
       },
       hideTooltip () {
@@ -140,7 +143,7 @@
   }
   
   .tooltip {
-    position: absolute;
+    position: fixed;
     background: #444;
     padding: 0.2em 0.4em;
     color: #fff;
@@ -154,7 +157,7 @@
   
   .tooltip:after {
     right: 100%;
-    top: 50%;
+    top: 1em;
     border: solid transparent;
     content: " ";
     height: 0;

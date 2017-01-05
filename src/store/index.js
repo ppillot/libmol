@@ -14,7 +14,7 @@ var structure = {}
 
 function onHover (response) {
   // console.log(response)
-  let atomHovered = (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
+  let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
   // console.log(response, atomHovered)
   if (atomHovered !== undefined) {
     let atom = {
@@ -29,6 +29,32 @@ function onHover (response) {
   }
 }
 
+function getDescriptionFromRes (res) {
+  var description = ''
+  switch (res.moleculeType) {
+    case 3:
+      description = 'Ac-aminé'
+      break
+    case 4:
+      description = 'Nucléotide'
+      break
+    case 5:
+      description = 'Nucléotide'
+      break
+    default:
+      description = res.entity.description
+      break
+  }
+  return description
+}
+/*
+function highlightRes (res) {
+  let reprHighlight = stage.addRepresentation('spacefill', {sele: res})
+  return function (sel) {
+    reprHighlight.selection(sel)
+  }
+}
+*/
 const debug = process.env.NODE_ENV !== 'production'
 if (debug) {
   window.NGL = NGL
@@ -51,7 +77,13 @@ var vuex = new Vuex.Store({
     selection: '*',
     display: 'licorice',
     color: 'element',
-    atomHovered: {}
+    atomHovered: {},
+    itemHovered: {
+      name: '',
+      num: -1,
+      chain: '',
+      description: ''
+    }
   },
   mutations: {
     loadNewFile (state, newFile) {
@@ -78,6 +110,9 @@ var vuex = new Vuex.Store({
     },
     atomHovered (state, atom) {
       state.atomHovered = atom
+    },
+    itemHovered (state, res) {
+      state.itemHovered = res
     }
   },
   actions: {
@@ -100,7 +135,12 @@ var vuex = new Vuex.Store({
         component.structure.eachResidue(item => {
           if (!chainMap.has(item.chainname)) {
             chainMap.set(item.chainname, chainMap.size)
-            chains.push({id: item.chainname, sequence: []})
+            chains[item.chainIndex] = {
+              id: item.chainIndex,
+              name: item.chainname,
+              entity: item.entity.description,
+              sequence: []
+            }
           }
           let chainId = chainMap.get(item.chainname)
           chains[chainId].sequence.push({
@@ -134,6 +174,31 @@ var vuex = new Vuex.Store({
     },
     atomHovered (context, atom) {
       context.commit('atomHovered', atom)
+    },
+    sequenceHovered (context, item) {
+      let itemHovered = {}
+      switch (item.type) {
+        case 'chain':
+          let chain = context.state.mol.chains[item.index]
+          itemHovered = {
+            name: '',
+            num: -1,
+            chain: chain.name,
+            description: chain.entity
+          }
+          break
+        default:
+          let res = structure.getResidueProxy(item.index) // call to NGL structure object
+          itemHovered = {
+            name: res.resname,
+            num: res.resno,
+            chain: res.chainname,
+            description: getDescriptionFromRes(res)
+          }
+      }
+
+      context.commit('itemHovered', itemHovered)
+      // highlightRes(item)
     }
   },
   getters: {

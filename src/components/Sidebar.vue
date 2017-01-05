@@ -2,7 +2,7 @@
     <div class="side-bar full-height">
         <h1>Librairie de Molécules</h1>
         <el-tabs type="border-card" class="tab-card">
-            <el-tab-pane label="Fichier">
+            <el-tab-pane :label="$t('message.file')">
                 <el-form label-position="top">
                     <search-libmol></search-libmol>
                     <search-pdb></search-pdb>

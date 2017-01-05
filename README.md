@@ -16,7 +16,7 @@ npm run build
 ```
 
 ToDo
-- I18n
+- i18n
 - Fichiers : legacy PDB files (ngl)
 - Commandes : 
     -- icons

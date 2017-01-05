@@ -63,9 +63,23 @@ export default {
     }
 </style>
 <style>
-    .el-tabs__content, .el-tab-pane {
+    .el-tabs__content {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .el-tab-pane {
         flex: 1;
         display: flex;
         flex-direction: column;
+    }
+
+    .el-tab-pane__content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .el-autocomplete {
+        width: 100%
     }
 </style>

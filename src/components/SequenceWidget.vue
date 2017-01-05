@@ -36,8 +36,7 @@
           top: '0px',
           left: '0px',
           visibility: 'hidden'
-        },
-        tooltipText: 'coucou'
+        }
       }
     },
     computed: {
@@ -89,8 +88,8 @@
     margin: 0;
     padding: 0;
     white-space: nowrap;
-    box-shadow: 0 0 6px #aaa;
-    background: #eee;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12);
+    background: #f9fafc;
   }
   
   .header ul li {

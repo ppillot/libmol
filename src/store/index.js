@@ -134,13 +134,14 @@ var vuex = new Vuex.Store({
         let chains = []
         component.structure.eachResidue(item => {
           if (!chainMap.has(item.chainname)) {
+            // let's keep track of the different chains by their order
             chainMap.set(item.chainname, chainMap.size)
-            chains[item.chainIndex] = {
+            chains.push({
               id: item.chainIndex,
               name: item.chainname,
               entity: item.entity.description,
               sequence: []
-            }
+            })
           }
           let chainId = chainMap.get(item.chainname)
           chains[chainId].sequence.push({
@@ -179,7 +180,7 @@ var vuex = new Vuex.Store({
       let itemHovered = {}
       switch (item.type) {
         case 'chain':
-          let chain = context.state.mol.chains[item.index]
+          let chain = context.state.mol.chains.find(ch => ch.id === parseInt(item.index))
           itemHovered = {
             name: '',
             num: -1,

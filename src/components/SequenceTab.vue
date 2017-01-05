@@ -50,7 +50,7 @@
 
   .sequence-widget {
     flex: 1;
-    border: solid 1px #eee;
+    border: 1px solid #d3dce6;
   }
 
 </style>

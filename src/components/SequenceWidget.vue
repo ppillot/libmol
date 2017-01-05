@@ -153,6 +153,7 @@
     min-height: 1.5em;
     font-weight: 600;
     line-height: 1.5em;
+    z-index: 2;
   }
   
   .tooltip:after {

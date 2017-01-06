@@ -83,6 +83,9 @@ var vuex = new Vuex.Store({
       num: -1,
       chain: '',
       description: ''
+    },
+    stage: {
+      clipNear: 30
     }
   },
   mutations: {
@@ -113,13 +116,16 @@ var vuex = new Vuex.Store({
     },
     itemHovered (state, res) {
       state.itemHovered = res
+    },
+    setClipNear (state, percentage) {
+      state.stage.clipNear = percentage
     }
   },
   actions: {
     createNewStage (context, options) {
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
       stage.signals.hovered.add(onHover)
-      context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: '1crn' })
+      context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: 'Crambin - 1CRN' })
 
       if (debug) { window.stage = stage }
     },
@@ -200,6 +206,13 @@ var vuex = new Vuex.Store({
 
       context.commit('itemHovered', itemHovered)
       // highlightRes(item)
+    },
+    setClipNear ({commit}, percentage) {
+      stage.setParameters({clipNear: percentage})
+      // commit('setClipNear', percentage)
+    },
+    setStageParameters ({commit}, params) {
+      stage.setParameters(params)
     }
   },
   getters: {

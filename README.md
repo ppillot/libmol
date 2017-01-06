@@ -16,27 +16,27 @@ npm run build
 ```
 
 ToDo
-- i18n
+- i18n (csv to json locales ?)
 - Fichiers : legacy PDB files (ngl)
 - Commandes : 
-    -- icons
-    -- labels
-    -- surface
+    ..- icons
+    ..- labels
+    ..- surface
 - Séquences : 
-    -- Etiquette: amino acids and nucleotide names !
-    -- 2 way binding
-    -- select from sequence
-    -- clear selection
-    -- horizontal scrolling for chains
-    -- virtual scrolling for large datasets
+    ..- Etiquette: amino acids and nucleotide names !
+    ..- 2 way binding
+    ..- select from sequence
+    ..- clear selection
+    ..- horizontal scrolling for chains
+    ..- virtual scrolling for large datasets
 - display :
-    -- status bar
-        -- legendes couleurs, selection
-        -- filename
-        -- hovered atom
-    -- toolbar
-        --- settings
-            -- background
-            -- lighting, etc...
-            -- fullscreen
-        --- screen capture (export)
+    ..- status bar
+        ....- legendes couleurs, selection
+        ....- filename
+        ....- hovered atom
+    ..- toolbar
+        ....- settings
+        ....- background
+        ....- lighting, etc...
+        ....- fullscreen
+        ....- screen capture (export)

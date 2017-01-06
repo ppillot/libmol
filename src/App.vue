@@ -6,9 +6,8 @@
       </div>
     </el-col>
     <el-col :span="16" class="full-height">
-      <div class="grid-content bg-purple full-height">
+        <toolbar></toolbar>
         <ngl></ngl>
-      </div>
     </el-col>
   </el-row>
 </template>
@@ -17,13 +16,15 @@
 import Sidebar from './components/Sidebar'
 import ngl from './components/NGLViewport'
 import SearchLibmol from './components/Searchlibmol'
+import Toolbar from './components/Toolbar'
 
 export default {
   name: 'app',
   components: {
     Sidebar,
     ngl,
-    SearchLibmol
+    SearchLibmol,
+    Toolbar
   }
 }
 </script>

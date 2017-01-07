@@ -1,20 +1,20 @@
 <template>
     <div class="side-bar full-height">
-        <h1>Librairie de Molécules</h1>
+        <h1>LibMol</h1>
         <el-tabs type="border-card" class="tab-card">
-            <el-tab-pane :label="$t('message.file')">
+            <el-tab-pane :label="$t('ui.files_tab_label')">
                 <el-form label-position="top">
                     <search-libmol></search-libmol>
                     <search-pdb></search-pdb>
                     <load-file></load-file>
                 </el-form>
             </el-tab-pane>
-            <el-tab-pane label="Commandes">
+            <el-tab-pane :label="$t('ui.commands_tab_label')">
                 <select-mol></select-mol>
                 <display-mol></display-mol>
                 <color-mol></color-mol>
             </el-tab-pane>
-            <el-tab-pane label="Séquence">
+            <el-tab-pane :label="$t('ui.sequences_tab_label')">
                 <sequence-tab></sequence-tab>
             </el-tab-pane>
         </el-tabs>

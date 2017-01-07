@@ -1,16 +1,16 @@
 <template>
   <div>
-    Sélectionner
+    {{ $t('ui.commands.select.label') }}
    <el-button-group>
-        <el-button v-on:click="sel('*')">Tout</el-button>
-        <el-button :disabled="unselectables.protein" v-on:click="sel('protein')">Protéines</el-button>
-        <el-button :disabled="unselectables.nucleic" v-on:click="sel('nucleic')">ADN/ARN</el-button>
+        <el-button v-on:click="sel('*')">{{ $t('ui.commands.select.all') }}</el-button>
+        <el-button :disabled="unselectables.protein" v-on:click="sel('protein')">{{ $t('ui.commands.select.protein') }}</el-button>
+        <el-button :disabled="unselectables.nucleic" v-on:click="sel('nucleic')">{{ $t('ui.commands.select.nucleic') }}</el-button>
     </el-button-group>
 
     <el-button-group>
-        <el-button :disabled="unselectables.saccharide" v-on:click="sel('saccharide')">Glucides</el-button>
-        <el-button :disabled="unselectables.water" v-on:click="sel('water')">Eau</el-button>
-        <el-button :disabled="unselectables.hetero" v-on:click="sel('hetero')">Autres</el-button>
+        <el-button :disabled="unselectables.saccharide" v-on:click="sel('saccharide')">{{ $t('ui.commands.select.carbohydrate') }}</el-button>
+        <el-button :disabled="unselectables.water" v-on:click="sel('water')">{{ $t('ui.commands.select.water') }}</el-button>
+        <el-button :disabled="unselectables.hetero" v-on:click="sel('hetero')">{{ $t('ui.commands.select.hetero') }}</el-button>
     </el-button-group>
   </div>
 </template>

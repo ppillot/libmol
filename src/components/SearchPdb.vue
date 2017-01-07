@@ -1,5 +1,5 @@
 <template>
-  <el-form-item label="Rechercher dans la Protein Data Bank">
+  <el-form-item :label="$t('ui.search_pdb_label')">
     <el-autocomplete v-model="state" :fetch-suggestions="debouncedQuery" placeholder="Keyword" @select="handleSelect"></el-autocomplete>
   </el-form-item>
 </template>
@@ -33,6 +33,7 @@ export default {
         <description>Text Search</description>
         <keywords>${queryString}</keywords>
       </orgPdbQuery>`
+      var self = this
       axios.post('http://www.rcsb.org/pdb/rest/search',
         xml
       , {
@@ -48,7 +49,10 @@ export default {
               customReportColumns: 'structureId,structureTitle'
             }
           })
-        } else throw new Error('no record found')
+        } else {
+          self.$message.error(self.$t('messages.no_record_found'))
+          throw new Error(self.$t('messages.no_record_found'))
+        }
       }).then(function (response) {
         const xmlDocument = response.request.responseXML
         const recordNodelist = xmlDocument.getElementsByTagName('record')

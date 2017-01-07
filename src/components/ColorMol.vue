@@ -1,10 +1,10 @@
 <template>
   <div>
-    Colorer
+    {{ $t('ui.commands.color.label') }}
    <el-button-group>
-        <el-button v-on:click="color('element')">Atomes</el-button>
-        <el-button :disabled="nonPolymer" v-on:click="color('chainname')">Chaînes</el-button>
-        <el-button :disabled="nonPolymer" v-on:click="color('resname')">Résidu</el-button>
+        <el-button v-on:click="color('element')">{{ $t('ui.commands.color.cpk') }}</el-button>
+        <el-button :disabled="nonPolymer" v-on:click="color('chainname')">{{ $t('ui.commands.color.by_chain') }}</el-button>
+        <el-button :disabled="nonPolymer" v-on:click="color('resname')">{{ $t('ui.commands.color.by_res') }}</el-button>
     </el-button-group>
     <el-popover
       ref="palette"
@@ -13,9 +13,9 @@
       <compact-picker v-model="colors" @change-color="pickColor"></compact-picker>
     </el-popover>
     <el-button-group>
-        <el-button :disabled="noSStruc" v-on:click="color('sstruc')">Structure</el-button>
-        <el-button :disabled="notAll" v-on:click="color('moleculetype')">Nature</el-button>
-        <el-button v-popover:palette>Palette</el-button>
+        <el-button :disabled="noSStruc" v-on:click="color('sstruc')">{{ $t('ui.commands.color.by_secondary_structure') }}</el-button>
+        <el-button :disabled="notAll" v-on:click="color('moleculetype')">{{ $t('ui.commands.color.by_biochemical_nature') }}</el-button>
+        <el-button v-popover:palette>{{ $t('ui.commands.color.pick_color') }}</el-button>
     </el-button-group>
   </div>
 </template>

@@ -14,11 +14,11 @@
             v-model="color"
             on-color="#ddd"
             off-color="black"
-            on-text="blanc"
-            off-text="noir"
+            :on-text="$t('ui.settings.white')"
+            :off-text="$t('ui.settings.black')"
             @change="switchBackgroundColor">
           </el-switch>
-          <el-button @click="reset">Réinitialiser</el-button>
+          <el-button @click="reset">{{ $t('ui.settings.reset') }}</el-button>
         </el-popover>
 
         <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>

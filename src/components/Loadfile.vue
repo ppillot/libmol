@@ -1,13 +1,12 @@
 <template>
-  <el-form-item label="Charger un fichier local">
+  <el-form-item :label="$t('ui.load_local_file_label')">
     <el-upload
       action=""
       type="drag"
       :multiple="false"
-      :before-upload="getFile"
-    >
+      :before-upload="getFile">
       <i class="el-icon-upload"></i>
-      <div class="el-dragger__text">Déposer un fichier ici ou <em>cliquer pour charger</em></div>
+      <div class="el-dragger__text" v-html="$t('ui.load_local_file_instructions_HTML')"></div>
     </el-upload>
   </el-form-item>
 </template>

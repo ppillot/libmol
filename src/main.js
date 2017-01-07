@@ -11,8 +11,16 @@ Vue.use(ElementUI)
 // ready translated locales
 var locales = {
   en: {
+    biochem: {
+      amino_acid: 'amino acid',
+      amino_acid_short: 'amino ac.',
+      nucleotide: 'nucleotide'
+    },
     messages: {
       no_record_found: 'No record found'
+    },
+    tooltips: {
+      chain: 'Chain'
     },
     ui: {
       files_tab_label: 'Files',
@@ -21,8 +29,13 @@ var locales = {
       search_libmol_label: 'Search in "Librairie de molécules" (fr)',
       search_pdb_label: 'Query the Protein Data Bank',
       load_local_file_label: 'Load local file',
-      load_local_file_instructions_part1: 'Drag and drop file here or',
-      load_local_file_instructions_part2: 'click to load',
+      load_local_file_instructions_HTML: 'Drag and drop file here or <em>click to load</em>',
+      sequence_select_instructions: 'Select from the different chains sequences',
+      settings: {
+        reset: 'Reset',
+        white: 'white',
+        black: 'black'
+      },
       commands: {
         select: {
           label: 'Select',
@@ -55,8 +68,16 @@ var locales = {
     }
   },
   fr: {
+    biochem: {
+      amino_acid: 'acide aminé',
+      amino_acid_short: 'ac-aminé',
+      nucleotide: 'nucléotide'
+    },
     messages: {
       no_record_found: 'Aucun enregistrement trouvé'
+    },
+    tooltips: {
+      chain: 'Chaîne'
     },
     ui: {
       files_tab_label: 'Fichiers',
@@ -65,8 +86,13 @@ var locales = {
       search_libmol_label: 'Rechercher dans la librairie de molécules',
       search_pdb_label: 'Rechercher dans la Protein Data Bank',
       load_local_file_label: 'Charger un fichier local',
-      load_local_file_instructions_part1: 'Déposer un fichier ici ou',
-      load_local_file_instructions_part2: 'cliquer ici pour charger',
+      load_local_file_instructions_HTML: 'Déposer un fichier ici ou <em>cliquer pour charger</em>',
+      sequence_select_instructions: 'Sélectionner à partir des séquences des différentes chaînes',
+      settings: {
+        reset: 'Réinitialiser',
+        white: 'white',
+        black: 'black'
+      },
       commands: {
         select: {
           label: 'Sélectionner',
@@ -101,7 +127,7 @@ var locales = {
 }
 
 // set lang
-Vue.config.lang = 'fr'
+Vue.config.lang = 'en'
 
 // set locales
 Object.keys(locales).forEach(function (lang) {

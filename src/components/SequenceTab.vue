@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        Sélectionner à partir des séquences des différentes chaînes
+        {{ $t('ui.sequence_select_instructions') }}
         <sequence-widget class="sequence-widget"></sequence-widget>
         <display-mol v-bind:complete="false"></display-mol>
         <compact-picker v-model="colors" @change-color="pickColor"></compact-picker>

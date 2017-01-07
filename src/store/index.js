@@ -33,13 +33,13 @@ function getDescriptionFromRes (res) {
   var description = ''
   switch (res.moleculeType) {
     case 3:
-      description = 'Ac-aminé'
+      description = 'biochem.amino_acid_short'
       break
     case 4:
-      description = 'Nucléotide'
+      description = 'biochem.nucleotide'
       break
     case 5:
-      description = 'Nucléotide'
+      description = 'biochem.nucleotide'
       break
     default:
       description = res.entity.description
@@ -200,7 +200,7 @@ var vuex = new Vuex.Store({
             name: res.resname,
             num: res.resno,
             chain: res.chainname,
-            description: getDescriptionFromRes(res)
+            description: getDescriptionFromRes.call(this, res)
           }
       }
 

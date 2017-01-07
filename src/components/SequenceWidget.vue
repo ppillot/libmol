@@ -49,7 +49,7 @@
         if (item.num !== -1) {
           respHTML = item.name + ' ' + item.num + ' '
         }
-        respHTML += 'Chaîne ' + item.chain + '<br>' + item.description
+        respHTML += this.$t('tooltips.chain') + ' ' + item.chain + '<br>' + item.description
         return respHTML
       }
     },

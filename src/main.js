@@ -127,7 +127,7 @@ var locales = {
 }
 
 // set lang
-Vue.config.lang = 'en'
+Vue.config.lang = 'fr'
 
 // set locales
 Object.keys(locales).forEach(function (lang) {

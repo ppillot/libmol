@@ -22,6 +22,7 @@ ToDo
     ..- icons
     ..- labels
     ..- surface
+    ..- on hover select, highlight selection
 - Séquences : 
     ..- Etiquette: amino acids and nucleotide names !
     ..- 2 way binding
@@ -36,7 +37,6 @@ ToDo
         ....- hovered atom
     ..- toolbar
         ....- settings
-        ....- background
         ....- lighting, etc...
         ....- fullscreen
         ....- screen capture (export)

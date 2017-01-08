@@ -66,17 +66,20 @@ export default {
     .el-tabs__content {
         display: flex;
         flex-direction: column;
+        max-height: 100%;
     }
     
     .el-tab-pane {
         flex: 1;
         display: flex;
         flex-direction: column;
+        max-height: 100%;
     }
 
     .el-tab-pane__content {
         display: flex;
         flex-direction: column;
+        max-height: 100%;
     }
 
     .el-autocomplete {

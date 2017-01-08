@@ -36,7 +36,5 @@ ToDo
         ....- filename
         ....- hovered atom
     ..- toolbar
-        ....- settings
-        ....- lighting, etc...
         ....- fullscreen
         ....- screen capture (export)

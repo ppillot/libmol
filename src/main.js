@@ -32,6 +32,10 @@ var locales = {
       load_local_file_instructions_HTML: 'Drag and drop file here or <em>click to load</em>',
       sequence_select_instructions: 'Select from the different chains sequences',
       settings: {
+        clip_near_label: 'Near clip plane position',
+        fog_near_label: 'Fog effect starting position',
+        fog_far_label: 'Fog effect completed position',
+        background_label: 'Background color',
         reset: 'Reset',
         white: 'white',
         black: 'black'
@@ -89,9 +93,13 @@ var locales = {
       load_local_file_instructions_HTML: 'Déposer un fichier ici ou <em>cliquer pour charger</em>',
       sequence_select_instructions: 'Sélectionner à partir des séquences des différentes chaînes',
       settings: {
+        clip_near_label: 'Position du plan de coupe avant',
+        fog_near_label: 'Début effet de brouillard',
+        fog_far_label: 'Fin effet de brouillard',
+        background_label: 'Couleur de fond',
         reset: 'Réinitialiser',
-        white: 'white',
-        black: 'black'
+        white: 'blanc',
+        black: 'noir'
       },
       commands: {
         select: {

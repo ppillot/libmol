@@ -6,19 +6,7 @@
           placement="bottom-end"
           width="400"
           trigger="click">
-          <div>
-            <!-- <span class="demonstration">Position du plan de coupe avant</span> -->
-            <el-slider v-model="clipNear" @change="setClipNear"></el-slider>  
-          </div>
-          <el-switch
-            v-model="color"
-            on-color="#ddd"
-            off-color="black"
-            :on-text="$t('ui.settings.white')"
-            :off-text="$t('ui.settings.black')"
-            @change="switchBackgroundColor">
-          </el-switch>
-          <el-button @click="reset">{{ $t('ui.settings.reset') }}</el-button>
+          <settings></settings>
         </el-popover>
 
         <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>
@@ -26,55 +14,16 @@
 </template>
 
 <script>
-  // import * as NGL from 'ngl'
-  var defaultParameters = {
-    clipNear: 0,
-    clipFar: 100,
-    fogNear: 50,
-    fogFar: 100,
-    backgroundColor: 'white',
-    ambientIntensity: 0.2,
-    lightIntensity: 1,
-    cameraType: 'perspective'
-  }
+  import settings from './Settings'
 
   export default {
     name: 'toolbar',
-    data () {
-      return {
-        clipNear: 0,
-        clipFar: 100,
-        fogNear: 50,
-        fogFar: 100,
-        backgroundColor: 'white',
-        ambientIntensity: 0.2,
-        lightIntensity: 1,
-        cameraType: 'perspective',
-        color: true
-      }
+    components: {
+      settings
     },
     computed: {
       molName: function () {
         return this.$store.state.name
-      } /* ,
-      clipNear: function () {
-        return this.$store.state.stage.clipNear
-      } */
-    },
-    methods: {
-      reset () {
-        Object.assign(this.$data, defaultParameters, {color: true})
-        this.setStageParameters(defaultParameters)
-      },
-      setClipNear (percentage) {
-        this.setStageParameters({clipNear: percentage})
-      },
-      setStageParameters (params) {
-        this.$store.dispatch('setStageParameters', params)
-      },
-      switchBackgroundColor (isWhite) {
-        let color = (isWhite) ? 'white' : 'black'
-        this.setStageParameters({backgroundColor: color})
       }
     }
   }

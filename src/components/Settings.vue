@@ -12,7 +12,7 @@
     <el-form-item :label="$t('ui.settings.background_label')">
       <el-switch
         v-model="color"
-        width=80
+        :width="80"
         on-color="#ddd"
         off-color="black"
         :on-text="$t('ui.settings.white')"

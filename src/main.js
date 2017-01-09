@@ -135,7 +135,13 @@ var locales = {
 }
 
 // set lang
-Vue.config.lang = 'fr'
+
+let lang = navigator.languages.find(navPreferedLanguage => {
+  return Object.keys(locales).find(locale => {
+    return navPreferedLanguage.substr(0, 2) === locale
+  })
+})
+Vue.config.lang = (lang === undefined) ? 'en' : lang.substr(0, 2).toLowerCase()
 
 // set locales
 Object.keys(locales).forEach(function (lang) {

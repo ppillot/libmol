@@ -80,6 +80,7 @@ export default {
         display: flex;
         flex-direction: column;
         max-height: 100%;
+        flex: 1;
     }
 
     .el-autocomplete {

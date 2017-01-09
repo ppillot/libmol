@@ -11,6 +11,8 @@ Vue.use(Vuex)
  */
 var stage = {}
 var structure = {}
+var resRepresentations
+var representationsList = []
 
 function onHover (response) {
   // console.log(response)
@@ -133,15 +135,25 @@ var vuex = new Vuex.Store({
       stage.removeAllComponents()
       stage.loadFile(newFile.file)
       .then((component) => { // let's get the structure property from the structureComponent object returned by NGL's promise
-        // console.log(structure)
-        structure = window.structure = component.structure
+        // structure is a global to this module
+        structure = component.structure
+        if (debug) window.structure = structure
+
+        // resRepresentations is a global to this module
+        resRepresentations = new Uint8Array(33333)
+
         let molTypes = new Set()
         let chainMap = new Map()
         let chains = []
+
+        // let's enumerate each residue from this structure
         component.structure.eachResidue(item => {
+          // Have we encountered a yet unknown chain.
           if (!chainMap.has(item.chainname)) {
-            // let's keep track of the different chains by their order
+            // let's keep track of the different chains by their given order
             chainMap.set(item.chainname, chainMap.size)
+
+            // let's set new chain properties based upon first item
             chains.push({
               id: item.chainIndex,
               name: item.chainname,
@@ -149,6 +161,8 @@ var vuex = new Vuex.Store({
               sequence: []
             })
           }
+
+          // add a residue corresponding to the item in the chain sequence
           let chainId = chainMap.get(item.chainname)
           chains[chainId].sequence.push({
             resname: item.resname,
@@ -159,11 +173,13 @@ var vuex = new Vuex.Store({
           })
           molTypes.add(item.moleculeType)
         })
+        resRepresentations.fill(0)
 
         context.commit('setMolTypes', {molTypes, chains})
 
         component.addRepresentation('licorice')
         component.centerView()
+        representationsList[0] = {display: 'licorice', color: 'cpk', sele: []}
       })
 
       context.commit('loadNewFile', newFile)
@@ -172,6 +188,7 @@ var vuex = new Vuex.Store({
       context.commit('selection', selector)
     },
     display (context, displayType) {
+      console.log(representationsList)
       stage.compList[0].addRepresentation(displayType, {sele: context.state.selection})
       context.commit('display', displayType)
     },

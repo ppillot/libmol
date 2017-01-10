@@ -33,8 +33,7 @@ ToDo
 - display :
     ..- status bar
         ....- legendes couleurs, selection
-        ....- filename
         ....- hovered atom
     ..- toolbar
         ....- fullscreen
-        ....- screen capture (export)
+        ....- screen capture (export) see ngl/src/utils.js for download and ngl/examples/js/gui.js for screenshot

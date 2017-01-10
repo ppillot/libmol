@@ -135,18 +135,21 @@ var vuex = new Vuex.Store({
       stage.removeAllComponents()
       stage.loadFile(newFile.file)
       .then((component) => { // let's get the structure property from the structureComponent object returned by NGL's promise
-        // structure is a global to this module
+        // structure is a private var of this module
         structure = component.structure
         if (debug) window.structure = structure
 
-        // resRepresentations is a global to this module
-        resRepresentations = new Uint8Array(33333)
+        // resRepresentations is a private var of this module
+        resRepresentations = new Uint16Array(structure.residueStore.length)
+
+        // representationsList is a private var of this module
+        representationsList = []
 
         let molTypes = new Set()
         let chainMap = new Map()
         let chains = []
 
-        // let's enumerate each residue from this structure
+        // let's iterate through each residue from this structure
         component.structure.eachResidue(item => {
           // Have we encountered a yet unknown chain.
           if (!chainMap.has(item.chainname)) {
@@ -162,7 +165,7 @@ var vuex = new Vuex.Store({
             })
           }
 
-          // add a residue corresponding to the item in the chain sequence
+          // add a residue corresponding to the item in the chains' respective sequence
           let chainId = chainMap.get(item.chainname)
           chains[chainId].sequence.push({
             resname: item.resname,

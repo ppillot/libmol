@@ -49,7 +49,8 @@
         if (item.num !== -1) {
           respHTML = item.name + ' ' + item.num + ' '
         }
-        respHTML += this.$t('tooltips.chain') + ' ' + item.chain + '<br>' + item.description
+        respHTML += this.$t('tooltips.chain') + ' ' + item.chain + '<br>'
+        respHTML += (this.$te('biochem.pdb_res_name.' + item.name)) ? this.$t('biochem.pdb_res_name.' + item.name) : item.description
         return respHTML
       }
     },
@@ -148,11 +149,13 @@
     color: #fff;
     border-radius: 5px;
     min-width: 4em;
+    max-width: 50em;
     text-align: center;
     min-height: 1.5em;
     font-weight: 600;
     line-height: 1.5em;
     z-index: 2;
+    word-wrap: break-word;
   }
   
   .tooltip:after {

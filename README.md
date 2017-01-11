@@ -19,21 +19,21 @@ ToDo
 - i18n (csv to json locales ?)
 - Fichiers : legacy PDB files (ngl)
 - Commandes : 
-    ..- icons
-    ..- labels
-    ..- surface
-    ..- on hover select, highlight selection
+  - icons
+  - labels
+  - surface
+  - on hover select, highlight selection
+  - remake the color component for event delegation !
 - Séquences : 
-    ..- Etiquette: amino acids and nucleotide names !
-    ..- 2 way binding
-    ..- select from sequence
-    ..- clear selection
-    ..- horizontal scrolling for chains
-    ..- virtual scrolling for large datasets
+  - 2 way binding
+  - select from sequence
+  - clear selection
+  - horizontal scrolling for chains
+  - virtual scrolling for large datasets
 - display :
-    ..- status bar
-        ....- legendes couleurs, selection
-        ....- hovered atom
-    ..- toolbar
-        ....- fullscreen
-        ....- screen capture (export) see ngl/src/utils.js for download and ngl/examples/js/gui.js for screenshot
+  - status bar
+    - legendes couleurs, selection
+    - hovered atom
+  - toolbar
+    - fullscreen
+    - screen capture (export) see ngl/src/utils.js for download and ngl/examples/js/gui.js for screenshot

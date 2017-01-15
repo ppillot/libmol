@@ -8,6 +8,7 @@
     <el-col :span="16" class="full-height">
         <toolbar></toolbar>
         <ngl></ngl>
+        <statusbar></statusbar>
     </el-col>
   </el-row>
 </template>
@@ -17,6 +18,7 @@ import Sidebar from './components/Sidebar'
 import ngl from './components/NGLViewport'
 import SearchLibmol from './components/Searchlibmol'
 import Toolbar from './components/Toolbar'
+import Statusbar from './components/Statusbar'
 
 export default {
   name: 'app',
@@ -24,7 +26,8 @@ export default {
     Sidebar,
     ngl,
     SearchLibmol,
-    Toolbar
+    Toolbar,
+    Statusbar
   }
 }
 </script>

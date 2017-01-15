@@ -31,6 +31,7 @@ ToDo
   - horizontal scrolling for chains
   - virtual scrolling for large datasets
 - display :
+  - resize (ngl)
   - status bar
     - legendes couleurs, selection
     - hovered atom

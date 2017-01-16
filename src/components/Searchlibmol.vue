@@ -6,7 +6,7 @@
 
 <script>
 import axios from 'axios'
-import _ from 'lodash'
+import _debounce from 'lodash.debounce'
 
 export default {
   name: 'SearchLibmol',
@@ -18,7 +18,7 @@ export default {
     }
   },
   methods: {
-    debouncedQuery: _.debounce(
+    debouncedQuery: _debounce(
       function (q, c) {
         this.querySearchAsync(q, c)
       }, 300),

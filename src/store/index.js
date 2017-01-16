@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 // import * as actions from './actions'
 // import * as getters from './getters'
 import * as NGL from 'ngl'
+import _debounce from 'lodash.debounce'
 
 Vue.use(Vuex)
 
@@ -28,6 +29,12 @@ function onHover (response) {
       entity: atomHovered.entity.description
     }
     vuex.dispatch('atomHovered', atom)
+  }
+}
+
+function resizeStage (stage) {
+  return function () {
+    stage.handleResize()
   }
 }
 
@@ -68,6 +75,8 @@ var vuex = new Vuex.Store({
     name: 'LibMol',
     mol: {
       chains: [],
+      elements: new Set(),
+      residues: new Set(),
       molTypes: {
         protein: true,
         nucleic: false,
@@ -95,7 +104,7 @@ var vuex = new Vuex.Store({
       state.fileName = newFile.file
       state.name = newFile.value
     },
-    setMolTypes (state, {molTypes, chains}) {
+    setMolTypes (state, {molTypes, chains, elements, residues}) {
       state.mol.molTypes.protein = molTypes.has(3)
       state.mol.molTypes.nucleic = molTypes.has(4) || molTypes.has(5) // 4: RNA; 5:DNA
       state.mol.molTypes.water = molTypes.has(1)
@@ -103,6 +112,8 @@ var vuex = new Vuex.Store({
       state.mol.molTypes.hetero = molTypes.has(0) || molTypes.has(2) // 0: Unknown; 2: Ions
 
       state.mol.chains = chains
+      state.mol.elements = elements
+      state.mol.residues = residues
     },
     selection (state, selector) {
       state.selection = selector
@@ -129,6 +140,8 @@ var vuex = new Vuex.Store({
       stage.signals.hovered.add(onHover)
       context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: 'Crambin - 1CRN' })
 
+      let resize = resizeStage(stage)
+      window.onresize = _debounce(resize, 100)
       if (debug) { window.stage = stage }
     },
     loadNewFile (context, newFile) {
@@ -148,6 +161,16 @@ var vuex = new Vuex.Store({
         let molTypes = new Set()
         let chainMap = new Map()
         let chains = []
+        let elements = new Set(Object.keys(structure.atomMap.dict)
+                                      .map(atomIdentifier =>
+                                        atomIdentifier.substr(atomIdentifier.indexOf('|') + 1)
+                                      )
+        )
+        let residues = new Set(Object.keys(structure.residueMap.dict)
+                                      .map(residueIdentifier =>
+                                        residueIdentifier.substr(0, residueIdentifier.indexOf('|'))
+                                      )
+        )
 
         // let's iterate through each residue from this structure
         component.structure.eachResidue(item => {
@@ -178,7 +201,7 @@ var vuex = new Vuex.Store({
         })
         resRepresentations.fill(0)
 
-        context.commit('setMolTypes', {molTypes, chains})
+        context.commit('setMolTypes', {molTypes, chains, elements, residues})
 
         component.addRepresentation('licorice')
         component.centerView()

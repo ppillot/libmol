@@ -18,13 +18,16 @@ npm run build
 ToDo
 - i18n (csv to json locales ?)
 - Fichiers : legacy PDB files (ngl)
+- Errors : send messages
+  - when file could not be uploaded
+  - when network is not available
 - Commandes : 
   - icons
   - labels
   - surface
   - on hover select, highlight selection
   - remake the color component for event delegation !
-- Séquences : 
+- Sequences : 
   - 2 way binding
   - select from sequence
   - clear selection
@@ -32,8 +35,10 @@ ToDo
   - virtual scrolling for large datasets
 - display :
   - status bar
-    - legendes couleurs, selection
-    - hovered atom
+    - legendes couleurs
+      - add moltypes, deal with secondary structures
+      - how to get chain colors ?
+    - hovered atom : display a tooltip ?
   - toolbar
     - fullscreen
     - screen capture (export) see ngl/src/utils.js for download and ngl/examples/js/gui.js for screenshot

@@ -209,6 +209,12 @@ var vuex = new Vuex.Store({
       })
 
       context.commit('loadNewFile', newFile)
+      context.dispatch('init')
+    },
+    init (context) {
+      context.commit('selection', '*')
+      context.commit('display', 'licorice')
+      context.commit('color', 'element')
     },
     selection (context, selector) {
       context.commit('selection', selector)

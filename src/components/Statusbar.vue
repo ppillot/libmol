@@ -1,11 +1,17 @@
 <template>
     <div class="statusbar">
+        <ul>
+          <li v-for="token in colorScheme" :style="token.css">
+            {{ token.text }}
+          </li>
+        </ul>
         <span>{{ atomHovered.symbol }}</span>
-        <span>{{ colorScheme }}</span>
     </div>
 </template>
 
 <script>
+  import {getColor} from '../utils/colors'
+
   export default {
     name: 'statusbar',
     computed: {
@@ -13,7 +19,35 @@
         return this.$store.state.atomHovered
       },
       colorScheme: function () {
-        return this.$store.state.color
+        var cs = []
+        switch (this.$store.state.color) {
+          case 'element':
+            this.$store.state.mol.elements.forEach(
+              item => {
+                cs.push({
+                  text: item,
+                  css: 'color: #' + getColor('element', item).toString(16)
+                })
+              }
+            )
+            break
+          case 'resname':
+            this.$store.state.mol.residues.forEach(
+              item => {
+                cs.push({
+                  text: item,
+                  css: 'color: #' + getColor('resname', item).toString(16)
+                })
+              }
+            )
+            break
+          default :
+            cs = {
+              text: 'coucou',
+              css: 'color: #00ff00'
+            }
+        }
+        return cs
       }
     }
   }
@@ -34,4 +68,13 @@
     font-size: 1.5em
   }
 
+  .statusbar ul {
+    margin:0;
+    padding: 0;
+    display: inline;
+  }
+
+  .statusbar ul li {
+    display: inline;
+  }
 </style>

@@ -69,12 +69,17 @@
   }
 
   .statusbar ul {
-    margin:0;
+    margin:0 0.5em;
     padding: 0;
     display: inline;
+    font-weight: bold;
+    -webkit-text-stroke: 1px #888;
+    -moz-text-stroke: 1px #888;
+    -ms-text-stroke: 1px #888;
   }
 
   .statusbar ul li {
     display: inline;
+    cursor: help;
   }
 </style>

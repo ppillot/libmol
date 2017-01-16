@@ -38,7 +38,8 @@ ToDo
     - legendes couleurs
       - add moltypes, deal with secondary structures
       - how to get chain colors ?
-    - hovered atom : display a tooltip ?
+      - add tooltips on hovering
+  - hovered atom : display a tooltip ?
   - toolbar
     - fullscreen
     - screen capture (export) see ngl/src/utils.js for download and ngl/examples/js/gui.js for screenshot

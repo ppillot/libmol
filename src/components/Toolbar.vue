@@ -9,6 +9,7 @@
           <settings></settings>
         </el-popover>
 
+        <el-button icon="picture" class="button" type="text" size="large" @click="screenCapture"></el-button>>
         <el-button icon="d-caret" class="button" type="text" size="large" @click="toggleFullscreen"></el-button>>
         <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>
     </div>
@@ -30,6 +31,9 @@
     methods: {
       toggleFullscreen () {
         this.$store.dispatch('toggleFullscreen')
+      },
+      screenCapture () {
+        this.$store.dispatch('screenCapture')
       }
     }
   }

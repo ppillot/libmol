@@ -41,7 +41,7 @@ ToDo
       - replace element-ui tooltips on hovering
   - hovered atom : display a tooltip ?
   - toolbar
-    - screen capture (export) see ngl/src/utils.js for download and ngl/examples/js/gui.js for screenshot
+    - title (crop)
 - build :
   - move to webpack 2
   - remove unnecessary libraries components

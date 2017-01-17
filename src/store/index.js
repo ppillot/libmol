@@ -143,6 +143,16 @@ var vuex = new Vuex.Store({
     toggleFullscreen (context) {
       context.commit('setFullscreen', !Screenfull.isFullscreen)
     },
+    screenCapture (context) {
+      stage.makeImage({
+        factor: 1,
+        antialias: true,
+        trim: false,
+        transparent: false
+      }).then(function (blob) {
+        NGL.download(blob, 'screenshot.png')
+      })
+    },
     createNewStage (context, options) {
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
       stage.signals.hovered.add(onHover)

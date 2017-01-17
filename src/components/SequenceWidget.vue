@@ -144,7 +144,7 @@
   
   .tooltip {
     position: fixed;
-    background: #444;
+    background: #1f2d3d;
     padding: 0.2em 0.4em;
     color: #fff;
     border-radius: 5px;
@@ -168,7 +168,7 @@
     position: absolute;
     pointer-events: none;
     border-color: rgba(47, 64, 74, 0);
-    border-right-color: #444;
+    border-right-color: #1f2d3d;
     border-width: 5px;
     margin-top: -5px;
   }

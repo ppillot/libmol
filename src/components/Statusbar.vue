@@ -1,9 +1,11 @@
 <template>
     <div class="statusbar">
         <ul>
-          <li v-for="token in colorScheme" :style="token.css">
-            {{ token.text }}
-          </li>
+          <el-tooltip v-for="token in colorScheme" class="item" effect="dark" :content="token.tooltip" placement="top">
+            <li :style="token.css">
+              {{ token.text }}
+            </li>
+          </el-tooltip>
         </ul>
         <span>{{ atomHovered.symbol }}</span>
     </div>
@@ -26,7 +28,8 @@
               item => {
                 cs.push({
                   text: item,
-                  css: 'color: #' + getColor('element', item).toString(16)
+                  css: 'color: #' + getColor('element', item).toString(16),
+                  tooltip: this.$t('biochem.el_name.' + item)
                 })
               }
             )
@@ -36,7 +39,8 @@
               item => {
                 cs.push({
                   text: item,
-                  css: 'color: #' + getColor('resname', item).toString(16)
+                  css: 'color: #' + getColor('resname', item).toString(16),
+                  tooltip: this.$t('biochem.pdb_res_name.' + item)
                 })
               }
             )

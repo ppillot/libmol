@@ -48,6 +48,9 @@ var locales = {
         DT: 'Thymine',
         DC: 'Cytosine',
         DG: 'Guanine'
+      },
+      el_name: {
+        'H': 'hydrogen', 'HE': 'helium', 'LI': 'lithium', 'BE': 'berylium', 'B': 'bore', 'C': 'carbon', 'N': 'nitrogen', 'O': 'oxygen', 'F': 'fluorine', 'NE': 'neon', 'NA': 'sodium', 'MG': 'magnesium', 'AL': 'aluminium', 'SI': 'silicon', 'P': 'phosphorus', 'S': 'sulfur', 'CL': 'chlorine', 'AR': 'argon', 'K': 'potassium', 'CA': 'calcium', 'SC': 'scandium', 'TI': 'titanium', 'V': 'vanadium', 'CR': 'chromium', 'MN': 'manganese', 'FE': 'iron', 'CO': 'cobalt', 'NI': 'nickel', 'CU': 'copper', 'ZN': 'zinc', 'GA': 'gallium', 'GE': 'germanium', 'AS': 'arsenic', 'SE': 'selenium', 'BR': 'bromine', 'KR': 'krypton', 'RB': 'rubidium', 'SR': 'strontium', 'Y': 'yttrium', 'ZR': 'zirconium', 'NB': 'niobium', 'MO': 'molybdenum', 'TC': 'technetium', 'RU': 'ruthenium', 'RH': 'rhodium', 'PD': 'palladium', 'AG': 'silver', 'CD': 'cadnium', 'IN': 'indium', 'SN': 'tin', 'SB': 'antimony', 'TE': 'tellurium', 'I': 'iodine', 'XE': 'xenon', 'CS': 'caesium', 'BA': 'barium', 'HF': 'hafnium', 'TA': 'tantalum', 'W': 'tungsten', 'RE': 'rhenium', 'OS': 'osmium', 'IR': 'iridium', 'PT': 'platinum', 'AU': 'gold', 'HG': 'mercury', 'TL': 'thallium', 'PB': 'lead', 'BI': 'bismuth', 'PO': 'polonium', 'AT': 'astatine', 'RN': 'radon', 'FR': 'francium', 'RA': 'radium', 'RF': 'rutherfordium', 'DB': 'dubnium', 'SG': 'seaborgium', 'BH': 'bohrium', 'HS': 'hassium', 'MT': 'meitnerium', 'DS': 'darmstadtium', 'RG': 'roentgenium', 'LA': 'lanthanum', 'CE': 'cerium', 'PR': 'praseodymium', 'ND': 'neodymium', 'PM': 'promethium', 'SM': 'samarium', 'EU': 'europium', 'GD': 'gadolinium', 'TB': 'terbium', 'DY': 'dysprosium', 'HO': 'holmium', 'ER': 'erbium', 'TM': 'thulium', 'YB': 'ytterbium', 'LU': 'lutetium', 'AC': 'actinium', 'TH': 'thorium', 'PA': 'protactinium', 'U': 'uranium', 'NP': 'neptunium', 'PU': 'plutonium', 'AM': 'americium', 'CM': 'curium', 'BK': 'berkelium', 'CF': 'californium', 'ES': 'einsteinium', 'FM': 'fermium', 'MD': 'mendelevium', 'NO': 'nobelium', 'LR': 'lawrencium'
       }
     },
     messages: {
@@ -152,7 +155,17 @@ var locales = {
         SAL: 'Ac. acétyl-salicylique',
         NI: 'Nickel',
         O2: 'Dioxygène'
-      }
+      }, /* eslint-disable object-property-newline */
+      el_name: {
+        'H': 'hydrogène', 'HE': 'hélium',
+        'LI': 'lithium', 'BE': 'béryllium', 'B': 'bore', 'C': 'carbone', 'N': 'azote', 'O': 'oxygène', 'F': 'fluor', 'NE': 'néon',
+        'NA': 'sodium', 'MG': 'magnésium', 'AL': 'aluminium', 'SI': 'silicium', 'P': 'phosphore', 'S': 'soufre', 'CL': 'chlore', 'AR': 'argon',
+        'K': 'potassium', 'CA': 'calcium', 'SC': 'scandium', 'TI': 'titane', 'V': 'vanadium', 'CR': 'chrome', 'MN': 'manganèse', 'FE': 'fer', 'CO': 'cobalt', 'NI': 'nickel', 'CU': 'cuivre', 'ZN': 'zinc', 'GA': 'gallium', 'GE': 'germanium', 'AS': 'arsenic', 'SE': 'sélénium', 'BR': 'brome', 'KR': 'krypton',
+        'RB': 'rubidium', 'SR': 'strontium', 'Y': 'yttrium', 'ZR': 'zirconium', 'NB': 'niobium', 'MO': 'molybdène', 'TC': 'technétium', 'RU': 'ruthénium', 'RH': 'rhodium', 'PD': 'palladium', 'AG': 'argent', 'CD': 'cadnium', 'IN': 'indium', 'SN': 'étain', 'SB': 'antimoine', 'TE': 'tellurium', 'I': 'iode', 'XE': 'xénon',
+        'CS': 'césium', 'BA': 'barium', 'HF': 'hafnium', 'TA': 'tantalum', 'W': 'tungstène', 'RE': 'rhénium', 'OS': 'osmium', 'IR': 'iridium', 'PT': 'platine', 'AU': 'or', 'HG': 'mercure', 'TL': 'thallium', 'PB': 'plomb', 'BI': 'bismuth', 'PO': 'polonium', 'AT': 'astate', 'RN': 'radon',
+        'FR': 'francium', 'RA': 'radium', 'RF': 'rutherfordium', 'DB': 'dubnium', 'SG': 'seaborgium', 'BH': 'bohrium', 'HS': 'hassium', 'MT': 'meitnérium', 'DS': 'darmstadtium', 'RG': 'roentgenium',
+        'LA': 'lanthanum', 'CE': 'cérium', 'PR': 'praséodyme', 'ND': 'néodyme', 'PM': 'prométhium', 'SM': 'samarium', 'EU': 'europium', 'GD': 'gadolinium', 'TB': 'terbium', 'DY': 'dysprosium', 'HO': 'holmium', 'ER': 'erbium', 'TM': 'thulium', 'YB': 'ytterbium', 'LU': 'lutetium', 'AC': 'actinium', 'TH': 'thorium', 'PA': 'protactinium', 'U': 'uranium', 'NP': 'neptunium', 'PU': 'plutonium', 'AM': 'américium', 'CM': 'curium', 'BK': 'berkélium', 'CF': 'californium', 'ES': 'einsteinium', 'FM': 'fermium', 'MD': 'mendélévium', 'NO': 'nobélium', 'LR': 'lawrencium'
+      } /* eslint-enable */
     },
     messages: {
       no_record_found: 'Aucun enregistrement trouvé'

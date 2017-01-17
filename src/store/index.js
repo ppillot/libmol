@@ -16,7 +16,7 @@ var resRepresentations
 var representationsList = []
 
 function onHover (response) {
-  // console.log(response)
+  // window.console.log(response)
   let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
   // console.log(response, atomHovered)
   if (atomHovered !== undefined) {
@@ -161,12 +161,12 @@ var vuex = new Vuex.Store({
         let molTypes = new Set()
         let chainMap = new Map()
         let chains = []
-        let elements = new Set(Object.keys(structure.atomMap.dict)
+        let elements = new Set(Object.keys(structure.atomMap.dict).sort()
                                       .map(atomIdentifier =>
                                         atomIdentifier.substr(atomIdentifier.indexOf('|') + 1)
                                       )
         )
-        let residues = new Set(Object.keys(structure.residueMap.dict)
+        let residues = new Set(Object.keys(structure.residueMap.dict).sort()
                                       .map(residueIdentifier =>
                                         residueIdentifier.substr(0, residueIdentifier.indexOf('|'))
                                       )

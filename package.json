@@ -15,6 +15,7 @@
     "lodash": "^4.16.6",
     "lodash.debounce": "^4.0.8",
     "ngl": "^0.10.0-dev.3",
+    "screenfull": "^3.0.2",
     "tether": "^1.3.7",
     "vue": "^2.0.1",
     "vuex": "^2.0.0"

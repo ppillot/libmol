@@ -9,6 +9,7 @@
           <settings></settings>
         </el-popover>
 
+        <el-button icon="d-caret" class="button" type="text" size="large" @click="toggleFullscreen"></el-button>>
         <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>
     </div>
 </template>
@@ -24,6 +25,11 @@
     computed: {
       molName: function () {
         return this.$store.state.name
+      }
+    },
+    methods: {
+      toggleFullscreen () {
+        this.$store.dispatch('toggleFullscreen')
       }
     }
   }

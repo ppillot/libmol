@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 // import * as getters from './getters'
 import * as NGL from 'ngl'
 import _debounce from 'lodash.debounce'
+import Screenfull from 'screenfull'
 
 Vue.use(Vuex)
 
@@ -73,6 +74,7 @@ var vuex = new Vuex.Store({
   state: {
     fileName: '',
     name: 'LibMol',
+    fullscreen: false,
     mol: {
       chains: [],
       elements: new Set(),
@@ -132,9 +134,15 @@ var vuex = new Vuex.Store({
     },
     setClipNear (state, percentage) {
       state.stage.clipNear = percentage
+    },
+    setFullscreen (state, isFullscreenOn) {
+      state.fullscreen = isFullscreenOn
     }
   },
   actions: {
+    toggleFullscreen (context) {
+      context.commit('setFullscreen', !Screenfull.isFullscreen)
+    },
     createNewStage (context, options) {
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
       stage.signals.hovered.add(onHover)

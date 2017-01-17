@@ -26,9 +26,9 @@ ToDo
   - labels
   - surface
   - on hover select, highlight selection
-  - remake the color component for event delegation !
+  - remake the vue-color component for event delegation !
 - Sequences : 
-  - 2 way binding
+  - 2 way binding ?
   - select from sequence
   - clear selection
   - horizontal scrolling for chains
@@ -38,10 +38,9 @@ ToDo
     - legendes couleurs
       - add moltypes, deal with secondary structures
       - how to get chain colors ?
-      - add tooltips on hovering
+      - replace element-ui tooltips on hovering
   - hovered atom : display a tooltip ?
   - toolbar
-    - fullscreen
     - screen capture (export) see ngl/src/utils.js for download and ngl/examples/js/gui.js for screenshot
 - build :
   - move to webpack 2

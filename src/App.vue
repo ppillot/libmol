@@ -5,7 +5,7 @@
         <sidebar></sidebar>
       </div>
     </el-col>
-    <el-col :span="16" class="full-height">
+    <el-col :span="16" class="full-height" id="view" :style="fullscreen">
         <toolbar></toolbar>
         <ngl></ngl>
         <statusbar></statusbar>
@@ -19,6 +19,7 @@ import ngl from './components/NGLViewport'
 import SearchLibmol from './components/Searchlibmol'
 import Toolbar from './components/Toolbar'
 import Statusbar from './components/Statusbar'
+import Screenfull from 'screenfull'
 
 export default {
   name: 'app',
@@ -28,6 +29,18 @@ export default {
     SearchLibmol,
     Toolbar,
     Statusbar
+  },
+  computed: {
+    fullscreen: function () {
+      if (this.$store.state.fullscreen) {
+        let view = document.getElementById('view')
+        Screenfull.request(view)
+        return { width: '100%' }
+      } else {
+        Screenfull.exit()
+        return {}
+      }
+    }
   }
 }
 </script>

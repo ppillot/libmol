@@ -144,6 +144,7 @@ var vuex = new Vuex.Store({
       context.commit('setFullscreen', !Screenfull.isFullscreen)
     },
     screenCapture (context) {
+      // from NGL example gui
       stage.makeImage({
         factor: 1,
         antialias: true,

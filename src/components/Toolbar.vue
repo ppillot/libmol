@@ -1,17 +1,19 @@
 <template>
     <div class="toolbar">
-        <span>{{ molName }}</span>
-        <el-popover
-          ref="settings"
-          placement="bottom-end"
-          width="400"
-          trigger="click">
-          <settings></settings>
-        </el-popover>
+        <div class="molname">{{ molName }}</div>
+        <div class="commands">
+          <el-popover
+            ref="settings"
+            placement="bottom-end"
+            width="400"
+            trigger="click">
+            <settings></settings>
+          </el-popover>
 
-        <el-button icon="picture" class="button" type="text" size="large" @click="screenCapture"></el-button>>
-        <el-button icon="d-caret" class="button" type="text" size="large" @click="toggleFullscreen"></el-button>>
-        <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>
+          <el-button icon="picture" class="button" type="text" size="large" @click="screenCapture"></el-button>
+          <el-button icon="d-caret" class="button" type="text" size="large" @click="toggleFullscreen"></el-button>
+          <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>
+        </div>
     </div>
 </template>
 
@@ -48,14 +50,33 @@
     z-index: 2;
     background: rgba(249, 250, 252, 0.95);
     vertical-align: middle;
+    display: flex;
+    flex-direction: row;
+    max-height: 2em;
+    padding: 0.2em;
+    transition: max-height 0.6s;
+  } 
+
+  .molname {
+    flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+        overflow: hidden;
   }
 
-  .toolbar span {
-    font-size: 1.5em
+  .molname:hover {
+    white-space: normal;
+  }
+
+  .toolbar:hover {
+    max-height: none;
+    transition: max-height 0.6s;
   }
 
   .button {
-    float: right;
-    margin: 4px;
+    margin: 0 0.2em;
+    font-size: 1.2em;
+    padding: 0;
+    color: #88a9d4;
   }
 </style>

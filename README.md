@@ -20,11 +20,11 @@ ToDo
 - Fichiers : legacy PDB files (ngl)
 - Errors : send messages
   - when file could not be uploaded
-  - when network is not available
+  - when network is not available --> online/offline api
 - Commandes : 
   - icons
-  - labels
-  - surface
+  - add/remove labels
+  - create/remove surface
   - on hover select, highlight selection
   - remake the vue-color component for event delegation !
 - Sequences : 
@@ -40,8 +40,6 @@ ToDo
       - how to get chain colors ?
       - replace element-ui tooltips on hovering
   - hovered atom : display a tooltip ?
-  - toolbar
-    - title (crop)
 - build :
   - move to webpack 2
   - remove unnecessary libraries components

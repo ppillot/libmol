@@ -57,6 +57,23 @@ function getDescriptionFromRes (res) {
   }
   return description
 }
+
+function getChainColors (chains, structure) {
+  console.log(structure)
+  var chainColors = []
+  var chainNameScheme = NGL.ColorMakerRegistry.getScheme({scheme: 'chainname', structure: structure})
+
+  chains.forEach(chain => {
+    chainColors.push(
+      chainNameScheme.atomColor(
+        structure.getAtomProxy(
+          structure.getChainProxy(chain.id).atomOffset
+        )
+      ).toString(16)
+    )
+  })
+  return chainColors
+}
 /*
 function highlightRes (res) {
   let reprHighlight = stage.addRepresentation('spacefill', {sele: res})
@@ -201,7 +218,7 @@ var vuex = new Vuex.Store({
         let sstruc = new Set()
 
         // let's iterate through each residue from this structure
-        component.structure.eachResidue(item => {
+        structure.eachResidue(item => {
           // Have we encountered a yet unknown chain.
           if (!chainMap.has(item.chainname)) {
             // let's keep track of the different chains by their given order
@@ -212,7 +229,8 @@ var vuex = new Vuex.Store({
               id: item.chainIndex,
               name: item.chainname,
               entity: item.entity.description,
-              sequence: []
+              sequence: [],
+              color: undefined
             })
           }
 
@@ -230,13 +248,18 @@ var vuex = new Vuex.Store({
         })
         resRepresentations.fill(0)
 
+        getChainColors(chains, structure).forEach(
+          (color, index) => {
+            chains[index].color = color
+          }
+        )
+
         context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc})
 
         component.addRepresentation('licorice')
         component.centerView()
         representationsList[0] = {display: 'licorice', color: 'cpk', sele: []}
       })
-
       context.commit('loadNewFile', newFile)
       context.dispatch('init')
     },

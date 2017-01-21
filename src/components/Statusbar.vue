@@ -1,11 +1,11 @@
 <template>
     <div class="statusbar">
+      {{ colorDescription }} :
         <ul @mouseover.stop="getHoveredItem($event)" @mouseout.stop="hideTooltip">
           <li v-for="token in colorScheme" :style="token.css" :data-tooltip="token.tooltip">
-              {{ token.text }}
+              {{ token.text | capitalize }}
           </li>
         </ul>
-        <span>{{ atomHovered.symbol }}</span>
         <div class="tooltip" v-bind:style="tooltipStyles" v-html="tooltipText"></div>
     </div>
 </template>
@@ -48,13 +48,11 @@
           left: '0px',
           visibility: 'hidden'
         },
-        tooltipText: ''
+        tooltipText: '',
+        colorDescription: this.$t('ui.commands.color.cpk')
       }
     },
     computed: {
-      atomHovered: function () {
-        return this.$store.state.atomHovered
-      },
       colorScheme: function () {
         var cs = []
         switch (this.$store.state.color) {
@@ -64,10 +62,23 @@
                 cs.push({
                   text: item,
                   css: 'color: #' + getColor('element', item).toString(16),
-                  tooltip: this.$t('biochem.el_name.' + item)
+                  tooltip: (this.$te('biochem.el_name.' + item)) ? this.$t('biochem.el_name.' + item) : undefined
                 })
               }
             )
+            this.colorDescription = this.$t('ui.commands.color.cpk')
+            break
+          case 'chainname':
+            this.$store.state.mol.chains.forEach(
+              item => {
+                cs.push({
+                  text: item.name,
+                  css: 'color: #' + item.color,
+                  tooltip: item.entity
+                })
+              }
+            )
+            this.colorDescription = this.$t('ui.commands.color.by_chain')
             break
           case 'resname':
             this.$store.state.mol.residues.forEach(
@@ -75,10 +86,11 @@
                 cs.push({
                   text: item,
                   css: 'color: #' + getColor('resname', item).toString(16),
-                  tooltip: this.$t('biochem.pdb_res_name.' + item)
+                  tooltip: (this.$te('biochem.pdb_res_name.' + item)) ? this.$t('biochem.pdb_res_name.' + item) : undefined
                 })
               }
             )
+            this.colorDescription = this.$t('ui.commands.color.by_res')
             break
           case 'sstruc':
             let sstruc = removeRedundancyFromSet(this.$store.state.mol.sstruc, {'s': 'l', 'e': 'b'})
@@ -93,6 +105,7 @@
                 }
               }
             )
+            this.colorDescription = this.$t('ui.commands.color.by_secondary_structure')
             break
           case 'moleculetype':
             Object.keys(this.$store.state.mol.molTypes).forEach(
@@ -105,6 +118,7 @@
                 }
               }
             )
+            this.colorDescription = this.$t('ui.commands.color.by_biochemical_nature')
             break
           default :
             cs = {
@@ -128,6 +142,13 @@
       hideTooltip () {
         this.tooltipStyles.visibility = 'hidden'
       }
+    },
+    filters: {
+      capitalize: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
+      }
     }
   }
 </script>
@@ -143,8 +164,8 @@
     vertical-align: middle;
   }
 
-  .statusbar span {
-    font-size: 1.5em
+  .statusbar {
+    font-size: 1.3em
   }
 
   .statusbar ul {
@@ -159,7 +180,7 @@
 
   .statusbar ul li {
     display: inline;
-    cursor: help;
+    cursor: default;
   }
 
   .statusbar .tooltip {
@@ -169,13 +190,17 @@
     color: #fff;
     border-radius: 5px;
     min-width: 4em;
-    max-width: 50em;
+    max-width: 30em;
     text-align: center;
-    min-height: 1.5em;
+    min-height: 1.2em;
     font-weight: 600;
-    line-height: 1.5em;
+    line-height: 1.2em;
     z-index: 2;
     word-wrap: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: none;
+    font-size: 0.8em;
   }
   
   .statusbar .tooltip:after {

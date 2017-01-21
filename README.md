@@ -37,7 +37,6 @@ ToDo
   - status bar
     - legendes couleurs
       - how to get chain colors ?
-      - replace element-ui tooltips on hovering
   - hovered atom : display a tooltip ?
 - build :
   - move to webpack 2

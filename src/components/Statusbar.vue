@@ -1,13 +1,12 @@
 <template>
     <div class="statusbar">
-        <ul>
-          <el-tooltip v-for="token in colorScheme" class="item" effect="dark" :content="token.tooltip" placement="top">
-            <li :style="token.css">
+        <ul @mouseover.stop="getHoveredItem($event)" @mouseout.stop="hideTooltip">
+          <li v-for="token in colorScheme" :style="token.css" :data-tooltip="token.tooltip">
               {{ token.text }}
-            </li>
-          </el-tooltip>
+          </li>
         </ul>
         <span>{{ atomHovered.symbol }}</span>
+        <div class="tooltip" v-bind:style="tooltipStyles" v-html="tooltipText"></div>
     </div>
 </template>
 
@@ -31,8 +30,27 @@
     return s
   }
 
+  function getTooltipStyles (target) {
+    let rect = target.getBoundingClientRect()
+    return {
+      top: rect.top - 35 + 'px',
+      left: rect.left - 5 + 'px',
+      visibility: 'visible'
+    }
+  }
+
   export default {
     name: 'statusbar',
+    data () {
+      return {
+        tooltipStyles: {
+          top: '0px',
+          left: '0px',
+          visibility: 'hidden'
+        },
+        tooltipText: ''
+      }
+    },
     computed: {
       atomHovered: function () {
         return this.$store.state.atomHovered
@@ -96,6 +114,20 @@
         }
         return cs
       }
+    },
+    methods: {
+      getHoveredItem (event) {
+        const target = event.target
+        if (target.tagName === 'LI' && target.dataset.tooltip !== undefined) {
+          this.tooltipStyles = getTooltipStyles(target)
+          this.tooltipText = target.dataset.tooltip
+        } else {
+          this.hideTooltip()
+        }
+      },
+      hideTooltip () {
+        this.tooltipStyles.visibility = 'hidden'
+      }
     }
   }
 </script>
@@ -128,5 +160,36 @@
   .statusbar ul li {
     display: inline;
     cursor: help;
+  }
+
+  .statusbar .tooltip {
+    position: fixed;
+    background: #1f2d3d;
+    padding: 0.2em 0.4em;
+    color: #fff;
+    border-radius: 5px;
+    min-width: 4em;
+    max-width: 50em;
+    text-align: center;
+    min-height: 1.5em;
+    font-weight: 600;
+    line-height: 1.5em;
+    z-index: 2;
+    word-wrap: break-word;
+  }
+  
+  .statusbar .tooltip:after {
+    left: 0.5em;
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(47, 64, 74, 0);
+    border-top-color: #1f2d3d;
+    border-width: 5px;
+    margin-top: 0;
   }
 </style>

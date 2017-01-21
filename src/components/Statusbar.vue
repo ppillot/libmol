@@ -13,6 +13,23 @@
 
 <script>
   import {getColor} from '../utils/colors'
+  import {getSStrucName} from '../utils/sstruc'
+/**
+ * remove values from the set when they are redundant with alias values
+ * @param {set} setObject - the set we want to remove redundant aliases from
+ * @param {array} aliasValues - an array containing aliases as properties
+ */
+  function removeRedundancyFromSet (setObject, aliasValues) {
+    var s = new Set()
+    setObject.forEach(item => {
+      if (aliasValues[item] !== undefined) {
+        s.add(aliasValues[item])
+      } else {
+        s.add(item)
+      }
+    })
+    return s
+  }
 
   export default {
     name: 'statusbar',
@@ -42,6 +59,20 @@
                   css: 'color: #' + getColor('resname', item).toString(16),
                   tooltip: this.$t('biochem.pdb_res_name.' + item)
                 })
+              }
+            )
+            break
+          case 'sstruc':
+            let sstruc = removeRedundancyFromSet(this.$store.state.mol.sstruc, {'s': 'l', 'e': 'b'})
+            sstruc.forEach(
+              item => {
+                let sstruc = getSStrucName(item)
+                if (sstruc !== '') {
+                  cs.push({
+                    text: this.$t('biochem.sstruc.' + sstruc),
+                    css: 'color: #' + getColor('sstruc', sstruc).toString(16)
+                  })
+                }
               }
             )
             break

@@ -198,11 +198,6 @@ function getColor (scheme, token) {
   return color
 }
 
-function coucou () {
-  return 'coucou'
-}
-
 export {
-  getColor,
-  coucou
+  getColor
 }

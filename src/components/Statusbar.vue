@@ -76,6 +76,18 @@
               }
             )
             break
+          case 'moleculetype':
+            Object.keys(this.$store.state.mol.molTypes).forEach(
+              item => {
+                if (this.$store.state.mol.molTypes[item] && item !== 'nucleic') {
+                  cs.push({
+                    text: this.$t('biochem.molecule_type.' + item),
+                    css: 'color: #' + getColor('moleculetype', item).toString(16)
+                  })
+                }
+              }
+            )
+            break
           default :
             cs = {
               text: 'coucou',

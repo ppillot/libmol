@@ -84,7 +84,10 @@ var vuex = new Vuex.Store({
         nucleic: false,
         water: false,
         saccharide: false,
-        hetero: false
+        hetero: false,
+        dna: false,
+        rna: false,
+        ion: false
       },
       sstruc: new Set()
     },
@@ -109,10 +112,13 @@ var vuex = new Vuex.Store({
     },
     setMolTypes (state, {molTypes, chains, elements, residues, sstruc}) {
       state.mol.molTypes.protein = molTypes.has(3)
-      state.mol.molTypes.nucleic = molTypes.has(4) || molTypes.has(5) // 4: RNA; 5:DNA
+      state.mol.molTypes.dna = molTypes.has(5)
+      state.mol.molTypes.rna = molTypes.has(4)
+      state.mol.molTypes.nucleic = state.mol.molTypes.dna || state.mol.molTypes.rna
       state.mol.molTypes.water = molTypes.has(1)
       state.mol.molTypes.saccharide = molTypes.has(6)
       state.mol.molTypes.hetero = molTypes.has(0) || molTypes.has(2) // 0: Unknown; 2: Ions
+      state.mol.molTypes.ion = molTypes.has(2)
 
       state.mol.chains = chains
       state.mol.elements = elements

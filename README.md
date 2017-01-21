@@ -36,7 +36,6 @@ ToDo
 - display :
   - status bar
     - legendes couleurs
-      - add moltypes, deal with secondary structures
       - how to get chain colors ?
       - replace element-ui tooltips on hovering
   - hovered atom : display a tooltip ?

@@ -59,6 +59,16 @@ var locales = {
         'betaStrand': 'Strand',
         'betaTurn': 'Turn',
         'coil': 'Coil'
+      },
+      moleculeType: {
+        protein: 'Protein',
+        nucleic: 'DNA/RNA',
+        dna: 'DNA',
+        rna: 'RNA',
+        saccharide: 'Carbohydrates',
+        water: 'Water',
+        hetero: 'Other',
+        ion: 'Ion'
       }
     },
     messages: {
@@ -181,6 +191,16 @@ var locales = {
         'betaStrand': 'Feuillet',
         'betaTurn': 'Coude',
         'coil': 'Non définie'
+      },
+      molecule_type: {
+        protein: 'Protéine',
+        nucleic: 'DNA/RNA',
+        dna: 'ADN',
+        rna: 'ARN',
+        saccharide: 'Glucide',
+        water: 'Eau',
+        hetero: 'Hétéro',
+        ion: 'Ion'
       }
     },
     messages: {

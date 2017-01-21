@@ -182,6 +182,17 @@ var StructureColors = {
 }
 var DefaultStructureColor = 0x808080
 
+var MolecuteTypeColor = {
+  'water': 0x386cb0,
+  'ion': 0xf0027f,
+  'protein': 0xbeaed4,
+  'rna': 0xfdc086,
+  'dna': 0xbf5b17,
+  'saccharide': 0x7fc97f,
+  'hetero': 0xffff99
+}
+var DefaultMoleculeTypeColor = 0xffff99
+
 function getColor (scheme, token) {
   var color = 0
   switch (scheme) {
@@ -194,6 +205,8 @@ function getColor (scheme, token) {
     case 'sstruc':
       color = StructureColors[token] || DefaultStructureColor
       break
+    case 'moleculetype':
+      color = MolecuteTypeColor[token] || DefaultMoleculeTypeColor
   }
   return color
 }

@@ -1,6 +1,6 @@
 # libmol
 
-> Molecular viewer intended at undergraduate level
+> Molecular visualization made easy for beginners
 
 ## Build Setup
 
@@ -33,12 +33,10 @@ ToDo
   - clear selection
   - horizontal scrolling for chains
   - virtual scrolling for large datasets
-- display :
-  - status bar
-    - legendes couleurs
-      - how to get chain colors ?
-  - hovered atom : display a tooltip ?
 - build :
-  - move to webpack 2
-  - remove unnecessary libraries components
+  - move to webpack 2 ?
+  - remove unnecessary libraries components (elements ui ?)
   - build bundle from es6 dependencies (e.g. ngl)
+- bugs :
+  - safari : not displaying tab contents
+  - firefox : not going fullscreen

@@ -75,7 +75,9 @@ var locales = {
       no_record_found: 'No record found'
     },
     tooltips: {
-      chain: 'Chain'
+      chain: 'Chain',
+      atom: 'Atom',
+      res: 'Residue'
     },
     ui: {
       files_tab_label: 'Files',
@@ -207,7 +209,9 @@ var locales = {
       no_record_found: 'Aucun enregistrement trouvé'
     },
     tooltips: {
-      chain: 'Chaîne'
+      chain: 'Chaîne',
+      atom: 'Atome',
+      res: 'Résidu'
     },
     ui: {
       files_tab_label: 'Fichiers',

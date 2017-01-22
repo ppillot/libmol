@@ -19,7 +19,6 @@ var representationsList = []
 function onHover (response) {
   // window.console.log(response)
   let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
-  // console.log(response, atomHovered)
   if (atomHovered !== undefined) {
     let atom = {
       symbol: atomHovered.element,
@@ -27,9 +26,12 @@ function onHover (response) {
       resname: atomHovered.resname,
       resno: atomHovered.resno,
       chainname: atomHovered.chainname,
-      entity: atomHovered.entity.description
+      entity: atomHovered.entity.description,
+      pos: {x: response.canvasPosition.x, y: response.canvasPosition.y}
     }
     vuex.dispatch('atomHovered', atom)
+  } else {
+    vuex.dispatch('displayAtomTooltip', false)
   }
 }
 
@@ -111,7 +113,19 @@ var vuex = new Vuex.Store({
     selection: '*',
     display: 'licorice',
     color: 'element',
-    atomHovered: {},
+    atomHovered: {
+      symbol: '',
+      atomname: '',
+      resname: '',
+      resno: '',
+      chainname: '',
+      entity: '',
+      pos: {
+        x: 0,
+        y: 0
+      }
+    },
+    isAtomHovered: false,
     itemHovered: {
       name: '',
       num: -1,
@@ -162,6 +176,9 @@ var vuex = new Vuex.Store({
     },
     setFullscreen (state, isFullscreenOn) {
       state.fullscreen = isFullscreenOn
+    },
+    isAtomHovered (state, isDisplayed) {
+      state.isAtomHovered = isDisplayed
     }
   },
   actions: {
@@ -256,16 +273,16 @@ var vuex = new Vuex.Store({
 
         context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc})
 
-        component.addRepresentation('licorice')
+        component.addRepresentation('ball+stick')
         component.centerView()
-        representationsList[0] = {display: 'licorice', color: 'cpk', sele: []}
+        representationsList[0] = {display: 'ball+stick', color: 'cpk', sele: []}
       })
       context.commit('loadNewFile', newFile)
       context.dispatch('init')
     },
     init (context) {
       context.commit('selection', '*')
-      context.commit('display', 'licorice')
+      context.commit('display', 'ball+stick')
       context.commit('color', 'element')
     },
     selection (context, selector) {
@@ -282,6 +299,10 @@ var vuex = new Vuex.Store({
     },
     atomHovered (context, atom) {
       context.commit('atomHovered', atom)
+      context.commit('isAtomHovered', true)
+    },
+    displayAtomTooltip (context, isDisplayed) {
+      context.commit('isAtomHovered', isDisplayed)
     },
     sequenceHovered (context, item) {
       let itemHovered = {}

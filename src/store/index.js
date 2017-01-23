@@ -15,9 +15,9 @@ var stage = {}
 var structure = {}
 var resRepresentations
 var representationsList = []
+var highlight
 
 function onHover (response) {
-  // window.console.log(response)
   let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
   if (atomHovered !== undefined) {
     let atom = {
@@ -76,14 +76,14 @@ function getChainColors (chains, structure) {
   })
   return chainColors
 }
-/*
-function highlightRes (res) {
-  let reprHighlight = stage.addRepresentation('spacefill', {sele: res})
+
+function highlightRes (component) {
+  let reprHighlight = component.addRepresentation('spacefill', {sele: 'none', color: 'limegreen', opacity: 0.2})
   return function (sel) {
-    reprHighlight.selection(sel)
+    reprHighlight.setSelection(sel)
   }
 }
-*/
+
 const debug = process.env.NODE_ENV !== 'production'
 if (debug) {
   window.NGL = NGL
@@ -276,6 +276,8 @@ var vuex = new Vuex.Store({
         component.addRepresentation('ball+stick')
         component.centerView()
         representationsList[0] = {display: 'ball+stick', color: 'cpk', sele: []}
+
+        highlight = highlightRes(component)
       })
       context.commit('loadNewFile', newFile)
       context.dispatch('init')
@@ -307,6 +309,9 @@ var vuex = new Vuex.Store({
     sequenceHovered (context, item) {
       let itemHovered = {}
       switch (item.type) {
+        case 'none':
+          highlight('none')
+          break
         case 'chain':
           let chain = context.state.mol.chains.find(ch => ch.id === parseInt(item.index))
           itemHovered = {
@@ -315,6 +320,7 @@ var vuex = new Vuex.Store({
             chain: chain.name,
             description: chain.entity
           }
+          highlight(':' + chain.name)
           break
         default:
           let res = structure.getResidueProxy(item.index) // call to NGL structure object
@@ -324,6 +330,7 @@ var vuex = new Vuex.Store({
             chain: res.chainname,
             description: getDescriptionFromRes.call(this, res)
           }
+          highlight(res.resno + ':' + res.chainname)
       }
 
       context.commit('itemHovered', itemHovered)

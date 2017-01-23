@@ -16,7 +16,7 @@ npm run build
 ```
 
 ToDo
-- i18n (csv to json locales ?)
+- i18n (csv to json locales ?) https://github.com/kinogam/i18n-transfer
 - Fichiers : legacy PDB files (ngl)
 - Errors : send messages
   - when file could not be uploaded

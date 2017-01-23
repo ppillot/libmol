@@ -68,6 +68,9 @@
       },
       hideTooltip () {
         this.tooltipStyles.visibility = 'hidden'
+        this.$store.dispatch('sequenceHovered', {
+          type: 'none',
+          index: 0})
       },
       pickColor (val) {
         this.$store.dispatch('color', val.hex)

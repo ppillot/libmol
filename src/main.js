@@ -77,7 +77,15 @@ var locales = {
     tooltips: {
       chain: 'Chain',
       atom: 'Atom',
-      res: 'Residue'
+      res: {
+        hetero: 'Hetero',
+        water: 'Water',
+        ion: 'Ion',
+        protein: 'Amino acid',
+        rna: 'Nucleotide (RNA)',
+        dna: 'Nucleotide (DNA)',
+        saccharide: 'Saccharide'
+      }
     },
     ui: {
       files_tab_label: 'Files',
@@ -211,7 +219,15 @@ var locales = {
     tooltips: {
       chain: 'Chaîne',
       atom: 'Atome',
-      res: 'Résidu'
+      res: {
+        hetero: 'Résidu',
+        water: 'Eau',
+        ion: 'Ion',
+        protein: 'Acide aminé',
+        rna: 'Nucléotide (ARN)',
+        dna: 'Nucléotide (ADN)',
+        saccharide: 'Résidu glucidique'
+      }
     },
     ui: {
       files_tab_label: 'Fichiers',

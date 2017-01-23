@@ -20,6 +20,7 @@ var highlight
 function onHover (response) {
   let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
   if (atomHovered !== undefined) {
+    console.log(atom)
     let atom = {
       symbol: atomHovered.element,
       atomname: atomHovered.atomname,
@@ -27,6 +28,7 @@ function onHover (response) {
       resno: atomHovered.resno,
       chainname: atomHovered.chainname,
       entity: atomHovered.entity.description,
+      resType: atomHovered.residue.moleculeType,
       pos: {x: response.canvasPosition.x, y: response.canvasPosition.y}
     }
     vuex.dispatch('atomHovered', atom)
@@ -258,6 +260,7 @@ var vuex = new Vuex.Store({
             resno: item.resno,
             hetero: item.hetero,
             index: item.index,
+            // moleculeType: item.moleculeType,
             selected: true
           })
           molTypes.add(item.moleculeType)

@@ -6,7 +6,7 @@
       {{ this.$t('tooltips.atom') }}: {{ this.$t('biochem.el_name.' + atomDescription.symbol) }}
       {{ atomDescription.atomname }}
       <br>
-      {{ this.$t('tooltips.res') }}: {{ (this.$te('biochem.pdb_res_name.' + atomDescription.resname)) ? this.$t('biochem.pdb_res_name.' + atomDescription.resname) : atomDescription.resname }}
+      {{ this.$t('tooltips.res.' + atomDescription.residueTypeName) }}: {{ (this.$te('biochem.pdb_res_name.' + atomDescription.resname)) ? this.$t('biochem.pdb_res_name.' + atomDescription.resname) : atomDescription.resname }}
       {{ atomDescription.resname }} {{ atomDescription.resno }}
       <br>
       {{ this.$t('tooltips.chain') }}: {{ atomDescription.chainname }}
@@ -16,6 +16,18 @@
 </template>
 
 <script>
+function residueKey (moleculeType) {
+  let residueTypeMap = new Map([
+    [0, 'hetero'],
+    [1, 'water'],
+    [2, 'ion'],
+    [3, 'protein'],
+    [4, 'rna'],
+    [5, 'dna'],
+    [6, 'saccharide']
+  ])
+  return residueTypeMap.get(moleculeType)
+}
 function getTooltipStyles ({x, y}) {
   var left = document.getElementById('viewport').getBoundingClientRect().left
   return {
@@ -38,23 +50,19 @@ export default {
         resname: 'VAL',
         resno: '120',
         chainname: 'A',
-        entity: 'HEMOGLOBIN ALPHA'
+        entity: 'HEMOGLOBIN ALPHA',
+        moleculeType: 3,
+        restype: 'protein'
       }
     }
   },
   computed: {
-    tooltipText: function () {
-      let atomHovered = this.$store.state.atomHovered
-      this.tooltipStyles = getTooltipStyles(atomHovered.pos)
-      return atomHovered
-    },
     isTooltipVisible: function () {
       if (this.$store.state.isAtomHovered) {
         let atomHovered = this.$store.state.atomHovered
-        this.atomDescription = atomHovered
+        Object.assign(this.atomDescription, atomHovered)
+        this.atomDescription.residueTypeName = residueKey(atomHovered.resType)
         this.tooltipStyles = getTooltipStyles(atomHovered.pos)
-      } else {
-
       }
       return this.$store.state.isAtomHovered
     }

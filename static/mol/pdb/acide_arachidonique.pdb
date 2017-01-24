@@ -1,0 +1,123 @@
+
+
+REMARK Release Notice
+
+
+REMARK This file, and all files referenced herein that are not contributed by
+REMARK someone else, are unequivocably placed in the public domain.  Be mindful
+REMARK that we use code, libraries, and information contributed by others, and
+REMARK they may not have released their work into the public domain.  Our
+REMARK goal is to release our own work, not inadvertantly place someone else's
+REMARK in the public domain.
+
+
+REMARK If you use, modify, redistribute, or publish anything in this file or based
+REMARK on this work, we ask that you follow good scholarly practice and:
+
+
+REMARK    1. cite the software system and file, or database and accession number,
+REMARK    as relevant, in all files or data you redistribute;
+
+
+REMARK    2. reference the most current URL and archival publication for this work, 
+REMARK    which will always be found at 
+REMARK    http://www.biocheminfo.org/repository/current_references.html, 
+REMARK    in your package, database, redistribution, or publication;
+
+
+REMARK    3. record all your modifications to this file in a new file that
+REMARK    preserves this message and authorship information, contains your
+REMARK    authorship information and code or data, and is named with a name
+REMARK    different from this file's name.
+
+
+REMARK The suitability of this work for any purpose is neither expressed nor implied.  Use
+REMARK it at your own risk!
+
+
+REMARK Why we release knowledge this way is explained at 
+REMARK          http://www.biocheminfo.org/release_notes.html
+
+
+REMARK Toni Kazic, February 28, 2002
+
+
+
+COMPNDStr1
+REMARK [C](=[O])([O-])[CH2][CH2][CH2]/[CH]=[CH]\[CH2]/[CH]=[CH]\[CH2]/[CH]=[CH]\[CH2]/[CH]=[CH]\[CH2][CH2][CH2][CH2][CH3] 
+ATOM      1  C           1       0.334   3.583  -3.409
+ATOM      2  O           1      -0.854   3.782  -3.599
+ATOM      3  O           1       1.201   4.255  -4.048
+ATOM      4  C           1       0.775   2.536  -2.413
+ATOM      5  C           1       2.301   2.488  -2.367
+ATOM      6  C           1       2.747   1.429  -1.360
+ATOM      7  C           1       4.255   1.381  -1.314
+ATOM      8  C           1       4.874   0.520  -0.495
+ATOM      9  C           1       4.062  -0.403   0.383
+ATOM     10  C           1       4.992  -1.265   1.203
+ATOM     11  C           1       4.490  -2.165   2.060
+ATOM     12  C           1       2.995  -2.317   2.205
+ATOM     13  C           1       2.695  -3.390   3.225
+ATOM     14  C           1       1.425  -3.698   3.519
+ATOM     15  C           1       0.293  -2.974   2.829
+ATOM     16  C           1      -1.027  -3.506   3.335
+ATOM     17  C           1      -2.176  -3.007   2.860
+ATOM     18  C           1      -2.152  -1.913   1.820
+ATOM     19  C           1      -3.584  -1.527   1.453
+ATOM     20  C           1      -3.559  -0.420   0.400
+ATOM     21  C           1      -4.991  -0.034   0.033
+ATOM     22  C           1      -4.966   1.071  -1.019
+ATOM     23  H           1       0.390   1.564  -2.715
+ATOM     24  H           1       0.390   2.789  -1.427
+ATOM     25  H           1       2.686   3.460  -2.066
+ATOM     26  H           1       2.686   2.235  -3.353
+ATOM     27  H           1       2.362   0.457  -1.661
+ATOM     28  H           1       2.362   1.682  -0.374
+ATOM     29  H           1       4.836   2.041  -1.942
+ATOM     30  H           1       5.953   0.485  -0.462
+ATOM     31  H           1       3.435   0.188   1.048
+ATOM     32  H           1       3.435  -1.037  -0.240
+ATOM     33  H           1       6.062  -1.156   1.099
+ATOM     34  H           1       5.156  -2.781   2.646
+ATOM     35  H           1       2.565  -1.374   2.533
+ATOM     36  H           1       2.565  -2.598   1.246
+ATOM     37  H           1       3.505  -3.908   3.718
+ATOM     38  H           1       1.210  -4.465   4.248
+ATOM     39  H           1       0.361  -1.909   3.043
+ATOM     40  H           1       0.361  -3.134   1.755
+ATOM     41  H           1      -1.044  -4.288   4.080
+ATOM     42  H           1      -3.120  -3.387   3.222
+ATOM     43  H           1      -1.633  -1.044   2.219
+ATOM     44  H           1      -1.633  -2.268   0.932
+ATOM     45  H           1      -4.102  -2.396   1.053
+ATOM     46  H           1      -4.102  -1.171   2.341
+ATOM     47  H           1      -3.040   0.449   0.799
+ATOM     48  H           1      -3.040  -0.776  -0.488
+ATOM     49  H           1      -5.510  -0.903  -0.367
+ATOM     50  H           1      -5.510   0.321   0.920
+ATOM     51  H           1      -5.986   1.346  -1.281
+ATOM     52  H           1      -4.448   1.940  -0.620
+ATOM     53  H           1      -4.448   0.716  -1.907
+TER   
+CONECT    1    2    3    4    0
+CONECT    2    1    0    0    0
+CONECT    3    1    0    0    0
+CONECT    4    1    5   23   24
+CONECT    5    4    6   25   26
+CONECT    6    5    7   27   28
+CONECT    7    6    8   29    0
+CONECT    8    7    9   30    0
+CONECT    9    8   10   31   32
+CONECT   10    9   11   33    0
+CONECT   11   10   12   34    0
+CONECT   12   11   13   35   36
+CONECT   13   12   14   37    0
+CONECT   14   13   15   38    0
+CONECT   15   14   16   39   40
+CONECT   16   15   17   41    0
+CONECT   17   16   18   42    0
+CONECT   18   17   19   43   44
+CONECT   19   18   20   45   46
+CONECT   20   19   21   47   48
+CONECT   21   20   22   49   50
+CONECT   22   21   51   52   53

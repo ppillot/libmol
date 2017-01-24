@@ -1,0 +1,1858 @@
+HEADER    HORMONE                                 15-AUG-94   1HRP      1HRP   2
+COMPND    HUMAN CHORIONIC GONADOTROPIN (HCG)                            1HRP   3
+SOURCE    HUMAN (HOMO SAPIENS) PLACENTAL ORIGIN, URINARY EXTRACTED      1HRP   4
+AUTHOR    A.J.LAPTHORN,D.C.HARRIS,N.W.ISAACS                            1HRP   5
+REVDAT   1   01-NOV-94 1HRP    0                                        1HRP   6
+JRNL        AUTH   A.J.LAPTHORN,D.C.HARRIS,A.LITTLEJOHN,                1HRP   7
+JRNL        AUTH 2 J.W.LUSTBADER,R.E.CANFIELD,K.J.MACHIN,               1HRP   8
+JRNL        AUTH 3 F.J.MORGAN,N.W.ISAACS                                1HRP   9
+JRNL        TITL   CRYSTAL STRUCTURE OF HUMAN CHORIONIC GONADOTROPIN    1HRP  10
+JRNL        REF    NATURE                        V. 369   455 1994      1HRP  11
+JRNL        REFN   ASTM NATUAS  UK ISSN 0028-0836                 0006  1HRP  12
+REMARK   1                                                              1HRP  13
+REMARK   1 REFERENCE 1                                                  1HRP  14
+REMARK   1  AUTH   D.C.HARRIS,K.J.MACHIN,G.M.EVIN,F.J.MORGAN,           1HRP  15
+REMARK   1  AUTH 2 N.W.ISAACS                                           1HRP  16
+REMARK   1  TITL   PRELIMINARY X-RAY DIFFRACTION ANALYSIS OF HUMAN      1HRP  17
+REMARK   1  TITL 2 CHORIONIC GONADOTROPIN                               1HRP  18
+REMARK   1  REF    J.BIOL.CHEM.                  V. 264  6705 1989      1HRP  19
+REMARK   1  REFN   ASTM JBCHA3  US ISSN 0021-9258                 0071  1HRP  20
+REMARK   2                                                              1HRP  21
+REMARK   2 RESOLUTION. 3.0  ANGSTROMS.                                  1HRP  22
+REMARK   3                                                              1HRP  23
+REMARK   3 REFINEMENT.                                                  1HRP  24
+REMARK   3   PROGRAM                    X-PLOR                          1HRP  25
+REMARK   3   AUTHORS                    BRUNGER                         1HRP  26
+REMARK   3   R VALUE                    0.218                           1HRP  27
+REMARK   3   FREE R VALUE               0.314                           1HRP  28
+REMARK   3   MEAN B VALUE               26.5   ANGSTROMS**2             1HRP  29
+REMARK   3   RMSD BOND DISTANCES        0.018  ANGSTROMS                1HRP  30
+REMARK   3   RMSD BOND ANGLES           2.28   DEGREES                  1HRP  31
+REMARK   3   ESD FROM LUZZATI PLOT      0.5    ANGSTROMS                1HRP  32
+REMARK   3                                                              1HRP  33
+REMARK   3   NUMBER OF REFLECTIONS      7877                            1HRP  34
+REMARK   3   RESOLUTION RANGE       10. - 3.0  ANGSTROMS                1HRP  35
+REMARK   3   DATA CUTOFF                2.     SIGMA(F)                 1HRP  36
+REMARK   3   COMPLETENESS FOR RANGE     92.4   %                        1HRP  37
+REMARK   3                                                              1HRP  38
+REMARK   3  DATA COLLECTION.                                            1HRP  39
+REMARK   3   NUMBER OF UNIQUE REFLECTIONS      8365                     1HRP  40
+REMARK   3   COMPLETENESS OF DATA              94.9   %                 1HRP  41
+REMARK   3   REJECTION CRITERIA                2.     SIGMA(I)          1HRP  42
+REMARK   3                                                              1HRP  43
+REMARK   3  SOLVENT CONTENT (VS)               62.    %                 1HRP  44
+REMARK   3                                                              1HRP  45
+REMARK   3  NUMBER OF ATOMS USED IN REFINEMENT.                         1HRP  46
+REMARK   3   NUMBER OF PROTEIN ATOMS                       1468         1HRP  47
+REMARK   3   NUMBER OF SOLVENT ATOMS                          0         1HRP  48
+REMARK   3   NUMBER OF HETEROGEN ATOMS                       84         1HRP  49
+REMARK   3                                                              1HRP  50
+REMARK   3  RMS DEVIATIONS FROM IDEAL VALUES (THE VALUES OF             1HRP  51
+REMARK   3      SIGMA, IN PARENTHESES, ARE THE INPUT ESTIMATED          1HRP  52
+REMARK   3      STANDARD DEVIATIONS THAT DETERMINE THE RELATIVE         1HRP  53
+REMARK   3      WEIGHTS OF THE CORRESPONDING RESTRAINTS).               1HRP  54
+REMARK   3    DISTANCE RESTRAINTS (ANGSTROMS).                          1HRP  55
+REMARK   3      BOND DISTANCE                            0.018(0.020)   1HRP  56
+REMARK   3      ANGLE DISTANCE                           0.048(0.040)   1HRP  57
+REMARK   3      PLANAR 1-4 DISTANCE                      0.068(0.060)   1HRP  58
+REMARK   3    PLANE RESTRAINT (ANGSTROMS)                0.020(0.020)   1HRP  59
+REMARK   3    CHIRAL-CENTER RESTRAINT (ANGSTROMS**3)     0.153(0.120)   1HRP  60
+REMARK   3    NON-BONDED CONTACT RESTRAINTS (ANGSTROMS).                1HRP  61
+REMARK   3      SINGLE TORSION CONTACT                   0.205(0.500)   1HRP  62
+REMARK   3      MULTIPLE TORSION CONTACT                 0.279(0.500)   1HRP  63
+REMARK   3      POSSIBLE HYDROGEN BOND                   0.152(0.500)   1HRP  64
+REMARK   3    CONFORMATIONAL TORSION ANGLE RESTRAINT (DEGREES).         1HRP  65
+REMARK   3      PLANAR                                     1.6(3.000)   1HRP  66
+REMARK   3      STAGGERED                                 21.1(15.00)   1HRP  67
+REMARK   3      ORTHONORMAL                               37.4(20.00)   1HRP  68
+REMARK   4                                                              1HRP  69
+REMARK   4 SOURCE: HF TREATED TO REMOVE BULK OF CARBOHYDRATE.           1HRP  70
+REMARK   5                                                              1HRP  71
+REMARK   5 IN FINAL CYCLES OF REFINEMENT, 1/2 THE STANDARD X-PLOR       1HRP  72
+REMARK   5 WEIGHT WAS APPLIED.                                          1HRP  73
+REMARK   6                                                              1HRP  74
+REMARK   6 SIDE CHAIN ATOMS FOR RESIDUES VAL A 4, GLN A 5, TYR A 89,    1HRP  75
+REMARK   6 AND LYS B 2 ARE NOT VISIBLE IN THE ELECTRON DENSITY MAP.     1HRP  76
+REMARK   7                                                              1HRP  77
+REMARK   7 CROSS REFERENCE TO SEQUENCE DATABASE                         1HRP  78
+REMARK   7 SWISS-PROT ENTRY NAME       PDB ENTRY CHAIN NAME             1HRP  79
+REMARK   7    GLHA_HUMAN                       A                        1HRP  80
+REMARK   7                                                              1HRP  81
+REMARK   7 THE FOLLOWING RESIDUES ARE MISSING FROM THE N-TERMINUS OF    1HRP  82
+REMARK   7 CHAIN A.  THE SEQUENCE NUMBER IS THAT FROM THE SWISS-PROT    1HRP  83
+REMARK   7 ENTRY.  RESIDUES 1 - 24 COMPRISE THE SIGNAL PEPTIDE.         1HRP  84
+REMARK   7        ALA       25                                          1HRP  85
+REMARK   7        PRO       26                                          1HRP  86
+REMARK   7        ASP       27                                          1HRP  87
+REMARK   7                                                              1HRP  88
+REMARK   7 THE FOLLOWING RESIDUES ARE MISSING FROM THE C-TERMINUS OF    1HRP  89
+REMARK   7 CHAIN A.  THE SEQUENCE NUMBER IS THAT FROM THE SWISS-PROT    1HRP  90
+REMARK   7 ENTRY.                                                       1HRP  91
+REMARK   7        HIS      114                                          1HRP  92
+REMARK   7        LYS      115                                          1HRP  93
+REMARK   7        SER      116                                          1HRP  94
+REMARK   7                                                              1HRP  95
+REMARK   7      SWISS-PROT ENTRY NAME: GLHA_HUMAN                       1HRP  96
+REMARK   7                                                              1HRP  97
+REMARK   7      SWISS-PROT RESIDUE      PDB SEQRES                      1HRP  98
+REMARK   7                                                              1HRP  99
+REMARK   7        NAME   NUMBER         NAME   CHAIN  SEQ/INSERT CODE   1HRP 100
+REMARK   7        VAL       28          THR     A        4              1HRP 101
+REMARK   8                                                              1HRP 102
+REMARK   8 CROSS REFERENCE TO SEQUENCE DATABASE                         1HRP 103
+REMARK   8 SWISS-PROT ENTRY NAME       PDB ENTRY CHAIN NAME             1HRP 104
+REMARK   8    CGHB_HUMAN                       B                        1HRP 105
+REMARK   8                                                              1HRP 106
+REMARK   8 THE FOLLOWING RESIDUES ARE MISSING FROM THE N-TERMINUS OF    1HRP 107
+REMARK   8 CHAIN B.  THE SEQUENCE NUMBER IS THAT FROM THE SWISS-PROT    1HRP 108
+REMARK   8 ENTRY.  RESIDUES 1 - 20 COMPRISE THE SIGNAL PEPTIDE.         1HRP 109
+REMARK   8        SER       21                                          1HRP 110
+REMARK   8                                                              1HRP 111
+REMARK   8 THE FOLLOWING RESIDUES ARE MISSING FROM THE C-TERMINUS OF    1HRP 112
+REMARK   8 CHAIN B.  THE SEQUENCE NUMBER IS THAT FROM THE SWISS-PROT    1HRP 113
+REMARK   8 ENTRY.                                                       1HRP 114
+REMARK   8        ASP      132                                          1HRP 115
+REMARK   8        PRO      133                                          1HRP 116
+REMARK   8        ARG      134                                          1HRP 117
+REMARK   8        PHE      135                                          1HRP 118
+REMARK   8        GLN      136                                          1HRP 119
+REMARK   8        ASP      137                                          1HRP 120
+REMARK   8        SER      138                                          1HRP 121
+REMARK   8        SER      139                                          1HRP 122
+REMARK   8        SER      140                                          1HRP 123
+REMARK   8        SER      141                                          1HRP 124
+REMARK   8        LYS      142                                          1HRP 125
+REMARK   8        ALA      143                                          1HRP 126
+REMARK   8        PRO      144                                          1HRP 127
+REMARK   8        PRO      145                                          1HRP 128
+REMARK   8        PRO      146                                          1HRP 129
+REMARK   8        SER      147                                          1HRP 130
+REMARK   8        LEU      148                                          1HRP 131
+REMARK   8        PRO      149                                          1HRP 132
+REMARK   8        SER      150                                          1HRP 133
+REMARK   8        PRO      151                                          1HRP 134
+REMARK   8        SER      152                                          1HRP 135
+REMARK   8        ARG      153                                          1HRP 136
+REMARK   8        LEU      154                                          1HRP 137
+REMARK   8        PRO      155                                          1HRP 138
+REMARK   8        GLY      156                                          1HRP 139
+REMARK   8        PRO      157                                          1HRP 140
+REMARK   8        SER      158                                          1HRP 141
+REMARK   8        ASP      159                                          1HRP 142
+REMARK   8        THR      160                                          1HRP 143
+REMARK   8        PRO      161                                          1HRP 144
+REMARK   8        ILE      162                                          1HRP 145
+REMARK   8        LEU      163                                          1HRP 146
+REMARK   8        PRO      164                                          1HRP 147
+REMARK   8        GLN      165                                          1HRP 148
+SEQRES   1 A   92  ALA PRO ASP THR GLN ASP CYS PRO GLU CYS THR LEU GLN  1HRP 149
+SEQRES   2 A   92  GLU ASN PRO PHE PHE SER GLN PRO GLY ALA PRO ILE LEU  1HRP 150
+SEQRES   3 A   92  GLN CYS MET GLY CYS CYS PHE SER ARG ALA TYR PRO THR  1HRP 151
+SEQRES   4 A   92  PRO LEU ARG SER LYS LYS THR MET LEU VAL GLN LYS ASN  1HRP 152
+SEQRES   5 A   92  VAL THR SER GLU SER THR CYS CYS VAL ALA LYS SER TYR  1HRP 153
+SEQRES   6 A   92  ASN ARG VAL THR VAL MET GLY GLY PHE LYS VAL GLU ASN  1HRP 154
+SEQRES   7 A   92  HIS THR ALA CYS HIS CYS SER THR CYS TYR TYR HIS LYS  1HRP 155
+SEQRES   8 A   92  SER                                                  1HRP 156
+SEQRES   1 B  145  SER LYS GLU PRO LEU ARG PRO ARG CYS ARG PRO ILE ASN  1HRP 157
+SEQRES   2 B  145  ALA THR LEU ALA VAL GLU LYS GLU GLY CYS PRO VAL CYS  1HRP 158
+SEQRES   3 B  145  ILE THR VAL ASN THR THR ILE CYS ALA GLY TYR CYS PRO  1HRP 159
+SEQRES   4 B  145  THR MET THR ARG VAL LEU GLN GLY VAL LEU PRO ALA LEU  1HRP 160
+SEQRES   5 B  145  PRO GLN VAL VAL CYS ASN TYR ARG ASP VAL ARG PHE GLU  1HRP 161
+SEQRES   6 B  145  SER ILE ARG LEU PRO GLY CYS PRO ARG GLY VAL ASN PRO  1HRP 162
+SEQRES   7 B  145  VAL VAL SER TYR ALA VAL ALA LEU SER CYS GLN CYS ALA  1HRP 163
+SEQRES   8 B  145  LEU CYS ARG ARG SER THR THR ASP CYS GLY GLY PRO LYS  1HRP 164
+SEQRES   9 B  145  ASP HIS PRO LEU THR CYS ASP ASP PRO ARG PHE GLN ASP  1HRP 165
+SEQRES  10 B  145  SER SER SER SER LYS ALA PRO PRO PRO SER LEU PRO SER  1HRP 166
+SEQRES  11 B  145  PRO SER ARG LEU PRO GLY PRO SER ASP THR PRO ILE LEU  1HRP 167
+SEQRES  12 B  145  PRO GLN                                              1HRP 168
+HET    NAG  A   1      14     N-ACETYL-D-GLUCOSAMINE                    1HRP 169
+HET    NAG  A   2      14     N-ACETYL-D-GLUCOSAMINE                    1HRP 170
+HET    NAG  A  11      14     N-ACETYL-D-GLUCOSAMINE                    1HRP 171
+HET    NAG  A  12      14     N-ACETYL-D-GLUCOSAMINE                    1HRP 172
+HET    NAG  B   1      14     N-ACETYL-D-GLUCOSAMINE                    1HRP 173
+HET    NAG  B  11      14     N-ACETYL-D-GLUCOSAMINE                    1HRP 174
+FORMUL   3  NAG    6(C8 H15 N1 O6)                                      1HRP 175
+SSBOND   1 CYS A    7    CYS A   31                                     1HRP 176
+SSBOND   2 CYS A   10    CYS A   60                                     1HRP 177
+SSBOND   3 CYS A   28    CYS A   82                                     1HRP 178
+SSBOND   4 CYS A   32    CYS A   84                                     1HRP 179
+SSBOND   5 CYS A   59    CYS A   87                                     1HRP 180
+SSBOND   6 CYS B    9    CYS B   57                                     1HRP 181
+SSBOND   7 CYS B   23    CYS B   72                                     1HRP 182
+SSBOND   8 CYS B   26    CYS B  110                                     1HRP 183
+SSBOND   9 CYS B   34    CYS B   88                                     1HRP 184
+SSBOND  10 CYS B   38    CYS B   90                                     1HRP 185
+SSBOND  11 CYS B   93    CYS B  100                                     1HRP 186
+CRYST1   88.680   88.680  177.240  90.00  90.00 120.00 P 65 2 2     12  1HRP 187
+ORIGX1      1.000000  0.000000  0.000000        0.00000                 1HRP 188
+ORIGX2      0.000000  1.000000  0.000000        0.00000                 1HRP 189
+ORIGX3      0.000000  0.000000  1.000000        0.00000                 1HRP 190
+SCALE1      0.011276  0.006510  0.000000        0.00000                 1HRP 191
+SCALE2      0.000000  0.013021  0.000000        0.00000                 1HRP 192
+SCALE3      0.000000  0.000000  0.005642        0.00000                 1HRP 193
+ATOM      1  N   THR A   4      28.406  26.983  -6.360  1.00 50.00      1HRP 194
+ATOM      2  CA  THR A   4      27.495  25.978  -5.705  1.00 50.00      1HRP 195
+ATOM      3  C   THR A   4      27.547  26.363  -4.227  1.00 50.00      1HRP 196
+ATOM      4  O   THR A   4      28.620  26.308  -3.624  1.00 50.00      1HRP 197
+ATOM      5  CB  THR A   4      28.041  24.570  -5.917  1.00 66.30      1HRP 198
+ATOM      6  N   GLN A   5      26.424  26.770  -3.636  1.00 48.40      1HRP 199
+ATOM      7  CA  GLN A   5      26.481  27.228  -2.242  1.00 48.40      1HRP 200
+ATOM      8  C   GLN A   5      25.776  26.461  -1.119  1.00 48.40      1HRP 201
+ATOM      9  O   GLN A   5      24.746  25.829  -1.340  1.00 48.40      1HRP 202
+ATOM     10  CB  GLN A   5      26.101  28.700  -2.190  1.00 53.00      1HRP 203
+ATOM     11  N   ASP A   6      26.335  26.540   0.090  1.00 31.50      1HRP 204
+ATOM     12  CA  ASP A   6      25.762  25.884   1.267  1.00 31.50      1HRP 205
+ATOM     13  C   ASP A   6      24.921  26.883   2.076  1.00 31.50      1HRP 206
+ATOM     14  O   ASP A   6      25.047  28.100   1.909  1.00 31.50      1HRP 207
+ATOM     15  CB  ASP A   6      26.874  25.290   2.144  1.00 34.60      1HRP 208
+ATOM     16  CG  ASP A   6      26.407  24.074   2.952  1.00 34.60      1HRP 209
+ATOM     17  OD1 ASP A   6      25.223  23.981   3.337  1.00 34.60      1HRP 210
+ATOM     18  OD2 ASP A   6      27.240  23.178   3.191  1.00 34.60      1HRP 211
+ATOM     19  N   CYS A   7      24.071  26.365   2.948  1.00 18.70      1HRP 212
+ATOM     20  CA  CYS A   7      23.186  27.173   3.772  1.00 18.70      1HRP 213
+ATOM     21  C   CYS A   7      23.303  26.591   5.183  1.00 18.70      1HRP 214
+ATOM     22  O   CYS A   7      23.377  25.374   5.334  1.00 18.70      1HRP 215
+ATOM     23  CB  CYS A   7      21.765  26.991   3.254  1.00 10.10      1HRP 216
+ATOM     24  SG  CYS A   7      20.787  28.512   3.143  1.00 10.10      1HRP 217
+ATOM     25  N   PRO A   8      23.307  27.443   6.231  1.00 12.60      1HRP 218
+ATOM     26  CA  PRO A   8      23.422  27.023   7.634  1.00 12.60      1HRP 219
+ATOM     27  C   PRO A   8      22.265  26.196   8.147  1.00 12.60      1HRP 220
+ATOM     28  O   PRO A   8      21.102  26.556   7.961  1.00 12.60      1HRP 221
+ATOM     29  CB  PRO A   8      23.469  28.351   8.389  1.00 10.60      1HRP 222
+ATOM     30  CG  PRO A   8      24.037  29.281   7.428  1.00 10.60      1HRP 223
+ATOM     31  CD  PRO A   8      23.311  28.909   6.153  1.00 10.60      1HRP 224
+ATOM     32  N   GLU A   9      22.585  25.126   8.866  1.00 12.80      1HRP 225
+ATOM     33  CA  GLU A   9      21.560  24.261   9.423  1.00 12.80      1HRP 226
+ATOM     34  C   GLU A   9      20.672  25.124  10.278  1.00 12.80      1HRP 227
+ATOM     35  O   GLU A   9      21.113  26.132  10.833  1.00 12.80      1HRP 228
+ATOM     36  CB  GLU A   9      22.175  23.173  10.299  1.00 23.20      1HRP 229
+ATOM     37  CG  GLU A   9      21.140  22.279  10.955  1.00 23.20      1HRP 230
+ATOM     38  CD  GLU A   9      21.727  21.169  11.819  1.00 23.20      1HRP 231
+ATOM     39  OE1 GLU A   9      22.931  21.192  12.120  1.00 23.20      1HRP 232
+ATOM     40  OE2 GLU A   9      20.958  20.269  12.214  1.00 23.20      1HRP 233
+ATOM     41  N   CYS A  10      19.400  24.779  10.339  1.00 14.90      1HRP 234
+ATOM     42  CA  CYS A  10      18.487  25.550  11.175  1.00 14.90      1HRP 235
+ATOM     43  C   CYS A  10      18.712  25.100  12.624  1.00 14.90      1HRP 236
+ATOM     44  O   CYS A  10      18.304  23.987  12.990  1.00 14.90      1HRP 237
+ATOM     45  CB  CYS A  10      17.047  25.289  10.721  1.00 12.30      1HRP 238
+ATOM     46  SG  CYS A  10      15.701  25.777  11.850  1.00 12.30      1HRP 239
+ATOM     47  N   THR A  11      19.431  25.898  13.418  1.00 18.50      1HRP 240
+ATOM     48  CA  THR A  11      19.698  25.546  14.819  1.00 18.50      1HRP 241
+ATOM     49  C   THR A  11      19.570  26.701  15.797  1.00 18.50      1HRP 242
+ATOM     50  O   THR A  11      19.155  27.807  15.431  1.00 18.50      1HRP 243
+ATOM     51  CB  THR A  11      21.099  25.012  15.027  1.00 27.00      1HRP 244
+ATOM     52  OG1 THR A  11      21.796  24.988  13.783  1.00 27.00      1HRP 245
+ATOM     53  CG2 THR A  11      21.043  23.633  15.655  1.00 27.00      1HRP 246
+ATOM     54  N   LEU A  12      19.930  26.446  17.052  1.00 10.00      1HRP 247
+ATOM     55  CA  LEU A  12      19.841  27.491  18.048  1.00 10.00      1HRP 248
+ATOM     56  C   LEU A  12      21.118  28.244  18.111  1.00 10.00      1HRP 249
+ATOM     57  O   LEU A  12      22.172  27.688  18.370  1.00 10.00      1HRP 250
+ATOM     58  CB  LEU A  12      19.543  26.957  19.440  1.00 13.90      1HRP 251
+ATOM     59  CG  LEU A  12      18.246  26.197  19.564  1.00 13.90      1HRP 252
+ATOM     60  CD1 LEU A  12      18.538  24.738  19.255  1.00 13.90      1HRP 253
+ATOM     61  CD2 LEU A  12      17.717  26.343  20.962  1.00 13.90      1HRP 254
+ATOM     62  N   GLN A  13      21.022  29.519  17.800  1.00 18.90      1HRP 255
+ATOM     63  CA  GLN A  13      22.164  30.396  17.893  1.00 18.90      1HRP 256
+ATOM     64  C   GLN A  13      21.929  31.220  19.134  1.00 18.90      1HRP 257
+ATOM     65  O   GLN A  13      20.915  31.078  19.827  1.00 18.90      1HRP 258
+ATOM     66  CB  GLN A  13      22.293  31.296  16.669  1.00 33.50      1HRP 259
+ATOM     67  CG  GLN A  13      22.992  30.612  15.515  1.00 33.50      1HRP 260
+ATOM     68  CD  GLN A  13      24.194  29.807  15.972  1.00 33.50      1HRP 261
+ATOM     69  OE1 GLN A  13      24.426  28.693  15.491  1.00 33.50      1HRP 262
+ATOM     70  NE2 GLN A  13      24.977  30.369  16.896  1.00 33.50      1HRP 263
+ATOM     71  N   GLU A  14      22.852  32.094  19.436  1.00 12.90      1HRP 264
+ATOM     72  CA  GLU A  14      22.651  32.859  20.619  1.00 12.90      1HRP 265
+ATOM     73  C   GLU A  14      22.417  34.297  20.236  1.00 12.90      1HRP 266
+ATOM     74  O   GLU A  14      23.204  34.854  19.473  1.00 12.90      1HRP 267
+ATOM     75  CB  GLU A  14      23.877  32.723  21.467  1.00 18.80      1HRP 268
+ATOM     76  CG  GLU A  14      23.677  33.223  22.823  1.00 18.80      1HRP 269
+ATOM     77  CD  GLU A  14      24.969  33.383  23.499  1.00 18.80      1HRP 270
+ATOM     78  OE1 GLU A  14      25.670  32.371  23.637  1.00 18.80      1HRP 271
+ATOM     79  OE2 GLU A  14      25.298  34.526  23.864  1.00 18.80      1HRP 272
+ATOM     80  N   ASN A  15      21.304  34.871  20.677  1.00 16.00      1HRP 273
+ATOM     81  CA  ASN A  15      21.025  36.262  20.354  1.00 16.00      1HRP 274
+ATOM     82  C   ASN A  15      21.924  37.059  21.271  1.00 16.00      1HRP 275
+ATOM     83  O   ASN A  15      21.838  36.935  22.489  1.00 16.00      1HRP 276
+ATOM     84  CB  ASN A  15      19.568  36.598  20.632  1.00 18.80      1HRP 277
+ATOM     85  CG  ASN A  15      19.251  38.034  20.318  1.00 18.80      1HRP 278
+ATOM     86  OD1 ASN A  15      19.961  38.941  20.741  1.00 18.80      1HRP 279
+ATOM     87  ND2 ASN A  15      18.193  38.254  19.558  1.00 18.80      1HRP 280
+ATOM     88  N   PRO A  16      22.803  37.896  20.711  1.00 22.80      1HRP 281
+ATOM     89  CA  PRO A  16      23.712  38.682  21.554  1.00 22.80      1HRP 282
+ATOM     90  C   PRO A  16      23.361  40.129  21.943  1.00 22.80      1HRP 283
+ATOM     91  O   PRO A  16      24.265  40.924  22.191  1.00 22.80      1HRP 284
+ATOM     92  CB  PRO A  16      25.023  38.600  20.784  1.00 23.70      1HRP 285
+ATOM     93  CG  PRO A  16      24.557  38.700  19.359  1.00 23.70      1HRP 286
+ATOM     94  CD  PRO A  16      23.211  37.947  19.299  1.00 23.70      1HRP 287
+ATOM     95  N   PHE A  17      22.079  40.491  21.912  1.00 23.90      1HRP 288
+ATOM     96  CA  PHE A  17      21.674  41.824  22.347  1.00 23.90      1HRP 289
+ATOM     97  C   PHE A  17      20.896  41.609  23.631  1.00 23.90      1HRP 290
+ATOM     98  O   PHE A  17      20.892  42.468  24.512  1.00 23.90      1HRP 291
+ATOM     99  CB  PHE A  17      20.795  42.550  21.319  1.00 14.50      1HRP 292
+ATOM    100  CG  PHE A  17      20.215  43.853  21.838  1.00 14.50      1HRP 293
+ATOM    101  CD1 PHE A  17      21.007  44.987  21.974  1.00 14.50      1HRP 294
+ATOM    102  CD2 PHE A  17      18.873  43.945  22.182  1.00 14.50      1HRP 295
+ATOM    103  CE1 PHE A  17      20.470  46.194  22.460  1.00 14.50      1HRP 296
+ATOM    104  CE2 PHE A  17      18.326  45.150  22.670  1.00 14.50      1HRP 297
+ATOM    105  CZ  PHE A  17      19.126  46.276  22.802  1.00 14.50      1HRP 298
+ATOM    106  N   PHE A  18      20.243  40.448  23.721  1.00 22.50      1HRP 299
+ATOM    107  CA  PHE A  18      19.456  40.069  24.887  1.00 22.50      1HRP 300
+ATOM    108  C   PHE A  18      20.191  39.117  25.825  1.00 22.50      1HRP 301
+ATOM    109  O   PHE A  18      19.820  38.962  26.987  1.00 22.50      1HRP 302
+ATOM    110  CB  PHE A  18      18.154  39.421  24.444  1.00 14.60      1HRP 303
+ATOM    111  CG  PHE A  18      17.281  40.321  23.637  1.00 14.60      1HRP 304
+ATOM    112  CD1 PHE A  18      16.728  41.462  24.204  1.00 14.60      1HRP 305
+ATOM    113  CD2 PHE A  18      17.003  40.032  22.315  1.00 14.60      1HRP 306
+ATOM    114  CE1 PHE A  18      15.902  42.304  23.472  1.00 14.60      1HRP 307
+ATOM    115  CE2 PHE A  18      16.175  40.865  21.567  1.00 14.60      1HRP 308
+ATOM    116  CZ  PHE A  18      15.622  42.009  22.146  1.00 14.60      1HRP 309
+ATOM    117  N   SER A  19      21.231  38.464  25.344  1.00 33.20      1HRP 310
+ATOM    118  CA  SER A  19      21.930  37.548  26.213  1.00 33.20      1HRP 311
+ATOM    119  C   SER A  19      22.738  38.217  27.302  1.00 33.20      1HRP 312
+ATOM    120  O   SER A  19      23.677  38.985  27.036  1.00 33.20      1HRP 313
+ATOM    121  CB  SER A  19      22.818  36.609  25.422  1.00 28.10      1HRP 314
+ATOM    122  OG  SER A  19      22.032  35.596  24.847  1.00 28.10      1HRP 315
+ATOM    123  N   GLN A  20      22.311  37.988  28.536  1.00 40.50      1HRP 316
+ATOM    124  CA  GLN A  20      23.029  38.499  29.685  1.00 40.50      1HRP 317
+ATOM    125  C   GLN A  20      23.876  37.284  30.084  1.00 40.50      1HRP 318
+ATOM    126  O   GLN A  20      23.436  36.147  29.942  1.00 40.50      1HRP 319
+ATOM    127  CB  GLN A  20      22.053  38.921  30.790  1.00 51.90      1HRP 320
+ATOM    128  CG  GLN A  20      21.162  40.110  30.407  1.00 51.90      1HRP 321
+ATOM    129  CD  GLN A  20      20.778  40.995  31.601  1.00 51.90      1HRP 322
+ATOM    130  OE1 GLN A  20      19.591  41.145  31.942  1.00 51.90      1HRP 323
+ATOM    131  NE2 GLN A  20      21.784  41.585  32.243  1.00 51.90      1HRP 324
+ATOM    132  N   PRO A  21      25.134  37.499  30.499  1.00 40.50      1HRP 325
+ATOM    133  CA  PRO A  21      25.983  36.367  30.884  1.00 40.50      1HRP 326
+ATOM    134  C   PRO A  21      25.316  35.478  31.928  1.00 40.50      1HRP 327
+ATOM    135  O   PRO A  21      24.805  35.958  32.942  1.00 40.50      1HRP 328
+ATOM    136  CB  PRO A  21      27.231  37.053  31.443  1.00 41.70      1HRP 329
+ATOM    137  CG  PRO A  21      27.313  38.297  30.637  1.00 41.70      1HRP 330
+ATOM    138  CD  PRO A  21      25.862  38.765  30.666  1.00 41.70      1HRP 331
+ATOM    139  N   GLY A  22      25.313  34.178  31.668  1.00 41.20      1HRP 332
+ATOM    140  CA  GLY A  22      24.682  33.269  32.597  1.00 41.20      1HRP 333
+ATOM    141  C   GLY A  22      23.177  33.449  32.516  1.00 41.20      1HRP 334
+ATOM    142  O   GLY A  22      22.458  33.238  33.499  1.00 41.20      1HRP 335
+ATOM    143  N   ALA A  23      22.714  33.878  31.350  1.00 35.20      1HRP 336
+ATOM    144  CA  ALA A  23      21.300  34.090  31.072  1.00 35.20      1HRP 337
+ATOM    145  C   ALA A  23      21.214  34.365  29.581  1.00 35.20      1HRP 338
+ATOM    146  O   ALA A  23      20.865  35.473  29.168  1.00 35.20      1HRP 339
+ATOM    147  CB  ALA A  23      20.774  35.286  31.853  1.00 37.40      1HRP 340
+ATOM    148  N   PRO A  24      21.604  33.377  28.753  1.00 21.60      1HRP 341
+ATOM    149  CA  PRO A  24      21.554  33.583  27.310  1.00 21.60      1HRP 342
+ATOM    150  C   PRO A  24      20.129  33.415  26.757  1.00 21.60      1HRP 343
+ATOM    151  O   PRO A  24      19.263  32.795  27.406  1.00 21.60      1HRP 344
+ATOM    152  CB  PRO A  24      22.521  32.512  26.795  1.00 21.60      1HRP 345
+ATOM    153  CG  PRO A  24      22.255  31.378  27.715  1.00 21.60      1HRP 346
+ATOM    154  CD  PRO A  24      22.146  32.047  29.079  1.00 21.60      1HRP 347
+ATOM    155  N   ILE A  25      19.864  34.068  25.630  1.00 11.50      1HRP 348
+ATOM    156  CA  ILE A  25      18.577  33.970  24.990  1.00 11.50      1HRP 349
+ATOM    157  C   ILE A  25      18.856  33.349  23.652  1.00 11.50      1HRP 350
+ATOM    158  O   ILE A  25      19.649  33.860  22.874  1.00 11.50      1HRP 351
+ATOM    159  CB  ILE A  25      17.920  35.325  24.812  1.00 10.10      1HRP 352
+ATOM    160  CG1 ILE A  25      17.486  35.851  26.174  1.00 10.10      1HRP 353
+ATOM    161  CG2 ILE A  25      16.717  35.205  23.866  1.00 10.10      1HRP 354
+ATOM    162  CD1 ILE A  25      16.393  35.064  26.783  1.00 10.10      1HRP 355
+ATOM    163  N   LEU A  26      18.201  32.239  23.388  1.00 10.60      1HRP 356
+ATOM    164  CA  LEU A  26      18.426  31.511  22.164  1.00 10.60      1HRP 357
+ATOM    165  C   LEU A  26      17.418  31.784  21.058  1.00 10.60      1HRP 358
+ATOM    166  O   LEU A  26      16.200  31.880  21.274  1.00 10.60      1HRP 359
+ATOM    167  CB  LEU A  26      18.488  30.025  22.492  1.00 10.00      1HRP 360
+ATOM    168  CG  LEU A  26      19.357  29.701  23.703  1.00 10.00      1HRP 361
+ATOM    169  CD1 LEU A  26      19.423  28.194  23.863  1.00 10.00      1HRP 362
+ATOM    170  CD2 LEU A  26      20.758  30.293  23.537  1.00 10.00      1HRP 363
+ATOM    171  N   GLN A  27      17.932  31.836  19.844  1.00 10.00      1HRP 364
+ATOM    172  CA  GLN A  27      17.099  32.117  18.707  1.00 10.00      1HRP 365
+ATOM    173  C   GLN A  27      17.286  31.038  17.669  1.00 10.00      1HRP 366
+ATOM    174  O   GLN A  27      18.390  30.516  17.507  1.00 10.00      1HRP 367
+ATOM    175  CB  GLN A  27      17.495  33.466  18.118  1.00 11.50      1HRP 368
+ATOM    176  CG  GLN A  27      16.352  34.187  17.479  1.00 11.50      1HRP 369
+ATOM    177  CD  GLN A  27      16.683  35.613  17.164  1.00 11.50      1HRP 370
+ATOM    178  OE1 GLN A  27      17.766  36.090  17.465  1.00 11.50      1HRP 371
+ATOM    179  NE2 GLN A  27      15.751  36.307  16.559  1.00 11.50      1HRP 372
+ATOM    180  N   CYS A  28      16.190  30.665  17.011  1.00 10.00      1HRP 373
+ATOM    181  CA  CYS A  28      16.243  29.666  15.967  1.00 10.00      1HRP 374
+ATOM    182  C   CYS A  28      16.518  30.434  14.698  1.00 10.00      1HRP 375
+ATOM    183  O   CYS A  28      15.712  31.264  14.273  1.00 10.00      1HRP 376
+ATOM    184  CB  CYS A  28      14.919  28.933  15.829  1.00 10.00      1HRP 377
+ATOM    185  SG  CYS A  28      14.568  27.703  17.111  1.00 10.00      1HRP 378
+ATOM    186  N   MET A  29      17.711  30.222  14.174  1.00 10.40      1HRP 379
+ATOM    187  CA  MET A  29      18.172  30.834  12.952  1.00 10.40      1HRP 380
+ATOM    188  C   MET A  29      18.592  29.645  12.097  1.00 10.40      1HRP 381
+ATOM    189  O   MET A  29      18.883  28.560  12.619  1.00 10.40      1HRP 382
+ATOM    190  CB  MET A  29      19.399  31.704  13.224  1.00 25.00      1HRP 383
+ATOM    191  CG  MET A  29      19.152  33.047  13.889  1.00 25.00      1HRP 384
+ATOM    192  SD  MET A  29      20.710  33.753  14.559  1.00 25.00      1HRP 385
+ATOM    193  CE  MET A  29      21.652  34.161  13.053  1.00 25.00      1HRP 386
+ATOM    194  N   GLY A  30      18.609  29.825  10.785  1.00 16.20      1HRP 387
+ATOM    195  CA  GLY A  30      19.022  28.728   9.933  1.00 16.20      1HRP 388
+ATOM    196  C   GLY A  30      18.342  28.697   8.587  1.00 16.20      1HRP 389
+ATOM    197  O   GLY A  30      17.528  29.571   8.276  1.00 16.20      1HRP 390
+ATOM    198  N   CYS A  31      18.675  27.683   7.792  1.00 17.50      1HRP 391
+ATOM    199  CA  CYS A  31      18.113  27.504   6.461  1.00 17.50      1HRP 392
+ATOM    200  C   CYS A  31      17.182  26.298   6.376  1.00 17.50      1HRP 393
+ATOM    201  O   CYS A  31      17.421  25.277   7.023  1.00 17.50      1HRP 394
+ATOM    202  CB  CYS A  31      19.238  27.323   5.446  1.00 14.70      1HRP 395
+ATOM    203  SG  CYS A  31      20.243  28.797   5.071  1.00 14.70      1HRP 396
+ATOM    204  N   CYS A  32      16.142  26.413   5.553  1.00 17.20      1HRP 397
+ATOM    205  CA  CYS A  32      15.174  25.333   5.345  1.00 17.20      1HRP 398
+ATOM    206  C   CYS A  32      14.820  25.194   3.852  1.00 17.20      1HRP 399
+ATOM    207  O   CYS A  32      14.817  26.187   3.105  1.00 17.20      1HRP 400
+ATOM    208  CB  CYS A  32      13.917  25.588   6.168  1.00 11.70      1HRP 401
+ATOM    209  SG  CYS A  32      14.157  25.482   7.962  1.00 11.70      1HRP 402
+ATOM    210  N   PHE A  33      14.518  23.976   3.417  1.00 13.20      1HRP 403
+ATOM    211  CA  PHE A  33      14.220  23.744   2.010  1.00 13.20      1HRP 404
+ATOM    212  C   PHE A  33      12.927  24.339   1.508  1.00 13.20      1HRP 405
+ATOM    213  O   PHE A  33      11.877  24.115   2.104  1.00 13.20      1HRP 406
+ATOM    214  CB  PHE A  33      14.218  22.252   1.681  1.00 12.60      1HRP 407
+ATOM    215  CG  PHE A  33      13.834  21.962   0.266  1.00 12.60      1HRP 408
+ATOM    216  CD1 PHE A  33      14.782  21.987  -0.735  1.00 12.60      1HRP 409
+ATOM    217  CD2 PHE A  33      12.516  21.761  -0.078  1.00 12.60      1HRP 410
+ATOM    218  CE1 PHE A  33      14.415  21.820  -2.060  1.00 12.60      1HRP 411
+ATOM    219  CE2 PHE A  33      12.143  21.594  -1.398  1.00 12.60      1HRP 412
+ATOM    220  CZ  PHE A  33      13.092  21.629  -2.388  1.00 12.60      1HRP 413
+ATOM    221  N   SER A  34      12.990  24.971   0.339  1.00 13.30      1HRP 414
+ATOM    222  CA  SER A  34      11.819  25.586  -0.279  1.00 13.30      1HRP 415
+ATOM    223  C   SER A  34      11.962  25.457  -1.774  1.00 13.30      1HRP 416
+ATOM    224  O   SER A  34      13.072  25.235  -2.252  1.00 13.30      1HRP 417
+ATOM    225  CB  SER A  34      11.784  27.062   0.057  1.00 10.00      1HRP 418
+ATOM    226  OG  SER A  34      12.902  27.723  -0.502  1.00 10.00      1HRP 419
+ATOM    227  N   ARG A  35      10.874  25.636  -2.518  1.00 11.30      1HRP 420
+ATOM    228  CA  ARG A  35      10.945  25.554  -3.977  1.00 11.30      1HRP 421
+ATOM    229  C   ARG A  35       9.762  26.214  -4.642  1.00 11.30      1HRP 422
+ATOM    230  O   ARG A  35       8.666  26.223  -4.087  1.00 11.30      1HRP 423
+ATOM    231  CB  ARG A  35      11.006  24.113  -4.447  1.00 11.50      1HRP 424
+ATOM    232  CG  ARG A  35       9.703  23.414  -4.325  1.00 11.50      1HRP 425
+ATOM    233  CD  ARG A  35       9.778  22.095  -5.014  1.00 11.50      1HRP 426
+ATOM    234  NE  ARG A  35       8.692  21.205  -4.626  1.00 11.50      1HRP 427
+ATOM    235  CZ  ARG A  35       8.640  19.933  -4.978  1.00 11.50      1HRP 428
+ATOM    236  NH1 ARG A  35       9.620  19.442  -5.739  1.00 11.50      1HRP 429
+ATOM    237  NH2 ARG A  35       7.659  19.155  -4.523  1.00 11.50      1HRP 430
+ATOM    238  N   ALA A  36       9.981  26.695  -5.858  1.00 13.30      1HRP 431
+ATOM    239  CA  ALA A  36       8.946  27.370  -6.617  1.00 13.30      1HRP 432
+ATOM    240  C   ALA A  36       8.952  27.003  -8.111  1.00 13.30      1HRP 433
+ATOM    241  O   ALA A  36       9.944  27.187  -8.808  1.00 13.30      1HRP 434
+ATOM    242  CB  ALA A  36       9.089  28.861  -6.442  1.00 12.50      1HRP 435
+ATOM    243  N   TYR A  37       7.845  26.470  -8.595  1.00 10.10      1HRP 436
+ATOM    244  CA  TYR A  37       7.732  26.085  -9.983  1.00 10.10      1HRP 437
+ATOM    245  C   TYR A  37       6.425  26.744 -10.402  1.00 10.10      1HRP 438
+ATOM    246  O   TYR A  37       5.658  27.179  -9.545  1.00 10.10      1HRP 439
+ATOM    247  CB  TYR A  37       7.631  24.575 -10.073  1.00 12.90      1HRP 440
+ATOM    248  CG  TYR A  37       6.561  24.057  -9.182  1.00 12.90      1HRP 441
+ATOM    249  CD1 TYR A  37       5.228  24.134  -9.552  1.00 12.90      1HRP 442
+ATOM    250  CD2 TYR A  37       6.858  23.557  -7.917  1.00 12.90      1HRP 443
+ATOM    251  CE1 TYR A  37       4.208  23.730  -8.678  1.00 12.90      1HRP 444
+ATOM    252  CE2 TYR A  37       5.835  23.145  -7.031  1.00 12.90      1HRP 445
+ATOM    253  CZ  TYR A  37       4.521  23.240  -7.421  1.00 12.90      1HRP 446
+ATOM    254  OH  TYR A  37       3.499  22.892  -6.570  1.00 12.90      1HRP 447
+ATOM    255  N   PRO A  38       6.137  26.801 -11.708  1.00 10.00      1HRP 448
+ATOM    256  CA  PRO A  38       4.907  27.422 -12.208  1.00 10.00      1HRP 449
+ATOM    257  C   PRO A  38       3.661  26.649 -11.830  1.00 10.00      1HRP 450
+ATOM    258  O   PRO A  38       3.620  25.430 -11.928  1.00 10.00      1HRP 451
+ATOM    259  CB  PRO A  38       5.131  27.407 -13.709  1.00 10.00      1HRP 452
+ATOM    260  CG  PRO A  38       5.868  26.132 -13.911  1.00 10.00      1HRP 453
+ATOM    261  CD  PRO A  38       6.889  26.171 -12.801  1.00 10.00      1HRP 454
+ATOM    262  N   THR A  39       2.624  27.362 -11.444  1.00 10.00      1HRP 455
+ATOM    263  CA  THR A  39       1.388  26.729 -11.022  1.00 10.00      1HRP 456
+ATOM    264  C   THR A  39       0.885  25.782 -12.086  1.00 10.00      1HRP 457
+ATOM    265  O   THR A  39       0.899  26.116 -13.264  1.00 10.00      1HRP 458
+ATOM    266  CB  THR A  39       0.285  27.776 -10.794  1.00 10.00      1HRP 459
+ATOM    267  OG1 THR A  39       0.825  28.933 -10.151  1.00 10.00      1HRP 460
+ATOM    268  CG2 THR A  39      -0.817  27.204  -9.944  1.00 10.00      1HRP 461
+ATOM    269  N   PRO A  40       0.465  24.567 -11.694  1.00 11.30      1HRP 462
+ATOM    270  CA  PRO A  40      -0.065  23.536 -12.597  1.00 11.30      1HRP 463
+ATOM    271  C   PRO A  40      -1.475  23.938 -13.075  1.00 11.30      1HRP 464
+ATOM    272  O   PRO A  40      -2.175  24.703 -12.396  1.00 11.30      1HRP 465
+ATOM    273  CB  PRO A  40      -0.155  22.309 -11.680  1.00 10.00      1HRP 466
+ATOM    274  CG  PRO A  40       0.924  22.534 -10.698  1.00 10.00      1HRP 467
+ATOM    275  CD  PRO A  40       0.763  23.988 -10.377  1.00 10.00      1HRP 468
+ATOM    276  N   LEU A  41      -1.911  23.382 -14.206  1.00 17.80      1HRP 469
+ATOM    277  CA  LEU A  41      -3.238  23.675 -14.747  1.00 17.80      1HRP 470
+ATOM    278  C   LEU A  41      -4.334  23.356 -13.745  1.00 17.80      1HRP 471
+ATOM    279  O   LEU A  41      -5.269  24.135 -13.567  1.00 17.80      1HRP 472
+ATOM    280  CB  LEU A  41      -3.503  22.857 -16.002  1.00 13.20      1HRP 473
+ATOM    281  CG  LEU A  41      -4.903  23.102 -16.575  1.00 13.20      1HRP 474
+ATOM    282  CD1 LEU A  41      -4.899  24.402 -17.379  1.00 13.20      1HRP 475
+ATOM    283  CD2 LEU A  41      -5.343  21.935 -17.457  1.00 13.20      1HRP 476
+ATOM    284  N   ARG A  42      -4.232  22.173 -13.146  1.00 24.00      1HRP 477
+ATOM    285  CA  ARG A  42      -5.188  21.706 -12.150  1.00 24.00      1HRP 478
+ATOM    286  C   ARG A  42      -5.483  22.873 -11.211  1.00 24.00      1HRP 479
+ATOM    287  O   ARG A  42      -6.579  23.440 -11.217  1.00 24.00      1HRP 480
+ATOM    288  CB  ARG A  42      -4.592  20.547 -11.327  1.00 50.50      1HRP 481
+ATOM    289  CG  ARG A  42      -4.216  19.269 -12.093  1.00 50.50      1HRP 482
+ATOM    290  CD  ARG A  42      -3.010  19.469 -13.008  1.00 50.50      1HRP 483
+ATOM    291  NE  ARG A  42      -2.438  18.226 -13.531  1.00 50.50      1HRP 484
+ATOM    292  CZ  ARG A  42      -3.115  17.270 -14.172  1.00 50.50      1HRP 485
+ATOM    293  NH1 ARG A  42      -4.434  17.375 -14.383  1.00 50.50      1HRP 486
+ATOM    294  NH2 ARG A  42      -2.456  16.214 -14.639  1.00 50.50      1HRP 487
+ATOM    295  N   SER A  43      -4.438  23.314 -10.520  1.00 20.80      1HRP 488
+ATOM    296  CA  SER A  43      -4.540  24.389  -9.547  1.00 20.80      1HRP 489
+ATOM    297  C   SER A  43      -5.170  25.688 -10.063  1.00 20.80      1HRP 490
+ATOM    298  O   SER A  43      -5.994  26.293  -9.383  1.00 20.80      1HRP 491
+ATOM    299  CB  SER A  43      -3.156  24.645  -8.933  1.00 31.40      1HRP 492
+ATOM    300  OG  SER A  43      -2.509  23.420  -8.596  1.00 31.40      1HRP 493
+ATOM    301  N   LYS A  44      -4.818  26.091 -11.276  1.00 12.10      1HRP 494
+ATOM    302  CA  LYS A  44      -5.357  27.312 -11.838  1.00 12.10      1HRP 495
+ATOM    303  C   LYS A  44      -6.881  27.255 -11.868  1.00 12.10      1HRP 496
+ATOM    304  O   LYS A  44      -7.560  28.235 -11.545  1.00 12.10      1HRP 497
+ATOM    305  CB  LYS A  44      -4.781  27.534 -13.224  1.00 15.30      1HRP 498
+ATOM    306  CG  LYS A  44      -3.327  27.898 -13.177  1.00 15.30      1HRP 499
+ATOM    307  CD  LYS A  44      -3.065  29.153 -13.984  1.00 15.30      1HRP 500
+ATOM    308  CE  LYS A  44      -2.690  28.823 -15.423  1.00 15.30      1HRP 501
+ATOM    309  NZ  LYS A  44      -1.317  28.253 -15.486  1.00 15.30      1HRP 502
+ATOM    310  N   LYS A  45      -7.416  26.070 -12.134  1.00 16.70      1HRP 503
+ATOM    311  CA  LYS A  45      -8.856  25.891 -12.177  1.00 16.70      1HRP 504
+ATOM    312  C   LYS A  45      -9.449  25.849 -10.766  1.00 16.70      1HRP 505
+ATOM    313  O   LYS A  45     -10.536  25.302 -10.548  1.00 16.70      1HRP 506
+ATOM    314  CB  LYS A  45      -9.188  24.601 -12.912  1.00 16.80      1HRP 507
+ATOM    315  CG  LYS A  45      -9.450  24.794 -14.392  1.00 16.80      1HRP 508
+ATOM    316  CD  LYS A  45      -8.281  25.435 -15.130  1.00 16.80      1HRP 509
+ATOM    317  CE  LYS A  45      -8.564  25.534 -16.629  1.00 16.80      1HRP 510
+ATOM    318  NZ  LYS A  45      -9.626  26.511 -16.915  1.00 16.80      1HRP 511
+ATOM    319  N   THR A  46      -8.719  26.419  -9.817  1.00 21.50      1HRP 512
+ATOM    320  CA  THR A  46      -9.106  26.481  -8.418  1.00 21.50      1HRP 513
+ATOM    321  C   THR A  46      -9.052  27.955  -7.975  1.00 21.50      1HRP 514
+ATOM    322  O   THR A  46      -9.684  28.357  -6.984  1.00 21.50      1HRP 515
+ATOM    323  CB  THR A  46      -8.076  25.679  -7.552  1.00 10.00      1HRP 516
+ATOM    324  OG1 THR A  46      -8.434  24.296  -7.509  1.00 10.00      1HRP 517
+ATOM    325  CG2 THR A  46      -7.965  26.222  -6.139  1.00 10.00      1HRP 518
+ATOM    326  N   MET A  47      -8.378  28.776  -8.770  1.00 14.40      1HRP 519
+ATOM    327  CA  MET A  47      -8.166  30.153  -8.405  1.00 14.40      1HRP 520
+ATOM    328  C   MET A  47      -9.059  31.251  -8.968  1.00 14.40      1HRP 521
+ATOM    329  O   MET A  47      -9.260  31.360 -10.165  1.00 14.40      1HRP 522
+ATOM    330  CB  MET A  47      -6.690  30.466  -8.654  1.00 14.30      1HRP 523
+ATOM    331  CG  MET A  47      -5.771  29.303  -8.242  1.00 14.30      1HRP 524
+ATOM    332  SD  MET A  47      -3.958  29.579  -8.282  1.00 14.30      1HRP 525
+ATOM    333  CE  MET A  47      -3.636  29.357  -9.984  1.00 14.30      1HRP 526
+ATOM    334  N   LEU A  48      -9.582  32.085  -8.078  1.00 11.30      1HRP 527
+ATOM    335  CA  LEU A  48     -10.395  33.223  -8.472  1.00 11.30      1HRP 528
+ATOM    336  C   LEU A  48      -9.398  34.150  -9.136  1.00 11.30      1HRP 529
+ATOM    337  O   LEU A  48      -9.692  34.775 -10.144  1.00 11.30      1HRP 530
+ATOM    338  CB  LEU A  48     -10.980  33.920  -7.249  1.00 16.50      1HRP 531
+ATOM    339  CG  LEU A  48     -12.171  34.869  -7.448  1.00 16.50      1HRP 532
+ATOM    340  CD1 LEU A  48     -12.352  35.646  -6.159  1.00 16.50      1HRP 533
+ATOM    341  CD2 LEU A  48     -12.001  35.844  -8.625  1.00 16.50      1HRP 534
+ATOM    342  N   VAL A  49      -8.257  34.323  -8.490  1.00 13.60      1HRP 535
+ATOM    343  CA  VAL A  49      -7.189  35.140  -9.039  1.00 13.60      1HRP 536
+ATOM    344  C   VAL A  49      -6.074  34.152  -9.363  1.00 13.60      1HRP 537
+ATOM    345  O   VAL A  49      -5.507  33.527  -8.476  1.00 13.60      1HRP 538
+ATOM    346  CB  VAL A  49      -6.700  36.237  -8.055  1.00 17.40      1HRP 539
+ATOM    347  CG1 VAL A  49      -6.348  35.653  -6.713  1.00 17.40      1HRP 540
+ATOM    348  CG2 VAL A  49      -5.485  36.927  -8.617  1.00 17.40      1HRP 541
+ATOM    349  N   GLN A  50      -5.828  33.943 -10.646  1.00 19.40      1HRP 542
+ATOM    350  CA  GLN A  50      -4.817  33.001 -11.066  1.00 19.40      1HRP 543
+ATOM    351  C   GLN A  50      -3.490  33.421 -10.545  1.00 19.40      1HRP 544
+ATOM    352  O   GLN A  50      -3.155  34.591 -10.557  1.00 19.40      1HRP 545
+ATOM    353  CB  GLN A  50      -4.742  32.959 -12.579  1.00 36.70      1HRP 546
+ATOM    354  CG  GLN A  50      -6.023  32.537 -13.233  1.00 36.70      1HRP 547
+ATOM    355  CD  GLN A  50      -6.296  31.077 -13.038  1.00 36.70      1HRP 548
+ATOM    356  OE1 GLN A  50      -6.596  30.630 -11.932  1.00 36.70      1HRP 549
+ATOM    357  NE2 GLN A  50      -6.150  30.308 -14.105  1.00 36.70      1HRP 550
+ATOM    358  N   LYS A  51      -2.759  32.465 -10.020  1.00 14.40      1HRP 551
+ATOM    359  CA  LYS A  51      -1.424  32.731  -9.536  1.00 14.40      1HRP 552
+ATOM    360  C   LYS A  51      -0.591  31.918 -10.505  1.00 14.40      1HRP 553
+ATOM    361  O   LYS A  51      -0.805  30.713 -10.668  1.00 14.40      1HRP 554
+ATOM    362  CB  LYS A  51      -1.252  32.214  -8.106  1.00 35.50      1HRP 555
+ATOM    363  CG  LYS A  51      -1.341  33.283  -7.018  1.00 35.50      1HRP 556
+ATOM    364  CD  LYS A  51      -2.648  34.043  -7.036  1.00 35.50      1HRP 557
+ATOM    365  CE  LYS A  51      -2.939  34.672  -5.684  1.00 35.50      1HRP 558
+ATOM    366  NZ  LYS A  51      -3.164  33.610  -4.660  1.00 35.50      1HRP 559
+ATOM    367  N   ASN A  52       0.318  32.575 -11.199  1.00 12.80      1HRP 560
+ATOM    368  CA  ASN A  52       1.119  31.852 -12.158  1.00 12.80      1HRP 561
+ATOM    369  C   ASN A  52       2.263  31.077 -11.547  1.00 12.80      1HRP 562
+ATOM    370  O   ASN A  52       2.901  30.291 -12.241  1.00 12.80      1HRP 563
+ATOM    371  CB  ASN A  52       1.645  32.766 -13.250  1.00 24.40      1HRP 564
+ATOM    372  CG  ASN A  52       2.691  33.717 -12.748  1.00 24.40      1HRP 565
+ATOM    373  OD1 ASN A  52       2.595  34.228 -11.637  1.00 24.40      1HRP 566
+ATOM    374  ND2 ASN A  52       3.700  33.959 -13.573  1.00 24.40      1HRP 567
+ATOM    375  N   VAL A  53       2.547  31.283 -10.269  1.00 12.70      1HRP 568
+ATOM    376  CA  VAL A  53       3.632  30.540  -9.641  1.00 12.70      1HRP 569
+ATOM    377  C   VAL A  53       3.201  29.980  -8.289  1.00 12.70      1HRP 570
+ATOM    378  O   VAL A  53       2.404  30.598  -7.580  1.00 12.70      1HRP 571
+ATOM    379  CB  VAL A  53       4.905  31.404  -9.490  1.00 10.00      1HRP 572
+ATOM    380  CG1 VAL A  53       6.001  30.591  -8.862  1.00 10.00      1HRP 573
+ATOM    381  CG2 VAL A  53       5.348  31.932 -10.845  1.00 10.00      1HRP 574
+ATOM    382  N   THR A  54       3.679  28.787  -7.964  1.00 10.50      1HRP 575
+ATOM    383  CA  THR A  54       3.344  28.143  -6.706  1.00 10.50      1HRP 576
+ATOM    384  C   THR A  54       4.648  28.049  -5.910  1.00 10.50      1HRP 577
+ATOM    385  O   THR A  54       5.698  27.725  -6.482  1.00 10.50      1HRP 578
+ATOM    386  CB  THR A  54       2.749  26.730  -6.979  1.00 10.00      1HRP 579
+ATOM    387  OG1 THR A  54       1.450  26.869  -7.564  1.00 10.00      1HRP 580
+ATOM    388  CG2 THR A  54       2.602  25.927  -5.728  1.00 10.00      1HRP 581
+ATOM    389  N   SER A  55       4.621  28.458  -4.640  1.00 10.00      1HRP 582
+ATOM    390  CA  SER A  55       5.807  28.373  -3.794  1.00 10.00      1HRP 583
+ATOM    391  C   SER A  55       5.471  27.393  -2.691  1.00 10.00      1HRP 584
+ATOM    392  O   SER A  55       4.372  27.430  -2.131  1.00 10.00      1HRP 585
+ATOM    393  CB  SER A  55       6.191  29.731  -3.186  1.00 10.50      1HRP 586
+ATOM    394  OG  SER A  55       7.349  29.628  -2.352  1.00 10.50      1HRP 587
+ATOM    395  N   GLU A  56       6.366  26.436  -2.486  1.00 17.80      1HRP 588
+ATOM    396  CA  GLU A  56       6.208  25.430  -1.455  1.00 17.80      1HRP 589
+ATOM    397  C   GLU A  56       7.349  25.770  -0.559  1.00 17.80      1HRP 590
+ATOM    398  O   GLU A  56       8.484  25.845  -1.049  1.00 17.80      1HRP 591
+ATOM    399  CB  GLU A  56       6.433  24.047  -2.029  1.00 21.60      1HRP 592
+ATOM    400  CG  GLU A  56       5.237  23.466  -2.712  1.00 21.60      1HRP 593
+ATOM    401  CD  GLU A  56       5.557  22.132  -3.286  1.00 21.60      1HRP 594
+ATOM    402  OE1 GLU A  56       6.273  21.358  -2.626  1.00 21.60      1HRP 595
+ATOM    403  OE2 GLU A  56       5.127  21.850  -4.415  1.00 21.60      1HRP 596
+ATOM    404  N   SER A  57       7.073  25.973   0.733  1.00 22.10      1HRP 597
+ATOM    405  CA  SER A  57       8.120  26.355   1.681  1.00 22.10      1HRP 598
+ATOM    406  C   SER A  57       7.954  25.966   3.146  1.00 22.10      1HRP 599
+ATOM    407  O   SER A  57       6.841  25.928   3.677  1.00 22.10      1HRP 600
+ATOM    408  CB  SER A  57       8.350  27.872   1.600  1.00 24.90      1HRP 601
+ATOM    409  OG  SER A  57       7.122  28.602   1.576  1.00 24.90      1HRP 602
+ATOM    410  N   THR A  58       9.091  25.688   3.780  1.00 19.50      1HRP 603
+ATOM    411  CA  THR A  58       9.183  25.344   5.192  1.00 19.50      1HRP 604
+ATOM    412  C   THR A  58      10.055  26.467   5.756  1.00 19.50      1HRP 605
+ATOM    413  O   THR A  58      10.713  27.160   4.984  1.00 19.50      1HRP 606
+ATOM    414  CB  THR A  58       9.893  23.994   5.386  1.00 22.30      1HRP 607
+ATOM    415  OG1 THR A  58      11.301  24.140   5.203  1.00 22.30      1HRP 608
+ATOM    416  CG2 THR A  58       9.411  23.013   4.364  1.00 22.30      1HRP 609
+ATOM    417  N   CYS A  59      10.090  26.656   7.074  1.00 15.60      1HRP 610
+ATOM    418  CA  CYS A  59      10.911  27.726   7.639  1.00 15.60      1HRP 611
+ATOM    419  C   CYS A  59      11.453  27.463   9.005  1.00 15.60      1HRP 612
+ATOM    420  O   CYS A  59      10.812  26.816   9.815  1.00 15.60      1HRP 613
+ATOM    421  CB  CYS A  59      10.167  29.047   7.610  1.00 24.60      1HRP 614
+ATOM    422  SG  CYS A  59       9.858  29.506   5.888  1.00 24.60      1HRP 615
+ATOM    423  N   CYS A  60      12.652  27.970   9.254  1.00 11.70      1HRP 616
+ATOM    424  CA  CYS A  60      13.326  27.767  10.525  1.00 11.70      1HRP 617
+ATOM    425  C   CYS A  60      12.576  28.462  11.641  1.00 11.70      1HRP 618
+ATOM    426  O   CYS A  60      12.607  29.690  11.764  1.00 11.70      1HRP 619
+ATOM    427  CB  CYS A  60      14.748  28.283  10.440  1.00 10.00      1HRP 620
+ATOM    428  SG  CYS A  60      15.747  27.801  11.868  1.00 10.00      1HRP 621
+ATOM    429  N   VAL A  61      11.846  27.671  12.418  1.00 17.20      1HRP 622
+ATOM    430  CA  VAL A  61      11.054  28.198  13.523  1.00 17.20      1HRP 623
+ATOM    431  C   VAL A  61      11.238  27.468  14.878  1.00 17.20      1HRP 624
+ATOM    432  O   VAL A  61      11.945  26.455  14.967  1.00 17.20      1HRP 625
+ATOM    433  CB  VAL A  61       9.558  28.287  13.118  1.00 18.90      1HRP 626
+ATOM    434  CG1 VAL A  61       9.415  29.196  11.908  1.00 18.90      1HRP 627
+ATOM    435  CG2 VAL A  61       8.986  26.916  12.812  1.00 18.90      1HRP 628
+ATOM    436  N   ALA A  62      10.632  27.997  15.937  1.00 16.50      1HRP 629
+ATOM    437  CA  ALA A  62      10.775  27.384  17.251  1.00 16.50      1HRP 630
+ATOM    438  C   ALA A  62       9.816  26.240  17.488  1.00 16.50      1HRP 631
+ATOM    439  O   ALA A  62       8.613  26.381  17.303  1.00 16.50      1HRP 632
+ATOM    440  CB  ALA A  62      10.610  28.421  18.329  1.00 17.00      1HRP 633
+ATOM    441  N   LYS A  63      10.358  25.086  17.844  1.00 24.20      1HRP 634
+ATOM    442  CA  LYS A  63       9.537  23.920  18.147  1.00 24.20      1HRP 635
+ATOM    443  C   LYS A  63       8.961  24.167  19.552  1.00 24.20      1HRP 636
+ATOM    444  O   LYS A  63       7.778  23.955  19.787  1.00 24.20      1HRP 637
+ATOM    445  CB  LYS A  63      10.383  22.626  18.116  1.00 38.10      1HRP 638
+ATOM    446  CG  LYS A  63       9.570  21.318  18.130  1.00 38.10      1HRP 639
+ATOM    447  CD  LYS A  63      10.433  20.050  18.315  1.00 38.10      1HRP 640
+ATOM    448  CE  LYS A  63      11.115  19.546  17.024  1.00 38.10      1HRP 641
+ATOM    449  NZ  LYS A  63      10.234  18.705  16.111  1.00 38.10      1HRP 642
+ATOM    450  N   SER A  64       9.793  24.695  20.449  1.00 23.40      1HRP 643
+ATOM    451  CA  SER A  64       9.399  24.984  21.823  1.00 23.40      1HRP 644
+ATOM    452  C   SER A  64      10.148  26.210  22.296  1.00 23.40      1HRP 645
+ATOM    453  O   SER A  64      11.248  26.467  21.826  1.00 23.40      1HRP 646
+ATOM    454  CB  SER A  64       9.792  23.813  22.706  1.00 31.10      1HRP 647
+ATOM    455  OG  SER A  64      11.149  23.443  22.457  1.00 31.10      1HRP 648
+ATOM    456  N   TYR A  65       9.608  26.915  23.277  1.00 30.60      1HRP 649
+ATOM    457  CA  TYR A  65      10.262  28.108  23.783  1.00 30.60      1HRP 650
+ATOM    458  C   TYR A  65       9.497  28.565  25.007  1.00 30.60      1HRP 651
+ATOM    459  O   TYR A  65       8.329  28.208  25.164  1.00 30.60      1HRP 652
+ATOM    460  CB  TYR A  65      10.154  29.207  22.750  1.00 38.40      1HRP 653
+ATOM    461  CG  TYR A  65       8.729  29.622  22.535  1.00 38.40      1HRP 654
+ATOM    462  CD1 TYR A  65       7.887  28.887  21.717  1.00 38.40      1HRP 655
+ATOM    463  CD2 TYR A  65       8.196  30.717  23.201  1.00 38.40      1HRP 656
+ATOM    464  CE1 TYR A  65       6.536  29.234  21.564  1.00 38.40      1HRP 657
+ATOM    465  CE2 TYR A  65       6.851  31.070  23.058  1.00 38.40      1HRP 658
+ATOM    466  CZ  TYR A  65       6.032  30.322  22.242  1.00 38.40      1HRP 659
+ATOM    467  OH  TYR A  65       4.708  30.671  22.114  1.00 38.40      1HRP 660
+ATOM    468  N   ASN A  66      10.104  29.447  25.799  1.00 31.00      1HRP 661
+ATOM    469  CA  ASN A  66       9.465  29.995  27.000  1.00 31.00      1HRP 662
+ATOM    470  C   ASN A  66       9.539  31.510  26.948  1.00 31.00      1HRP 663
+ATOM    471  O   ASN A  66      10.604  32.061  26.718  1.00 31.00      1HRP 664
+ATOM    472  CB  ASN A  66      10.190  29.568  28.283  1.00 41.70      1HRP 665
+ATOM    473  CG  ASN A  66      10.879  28.214  28.172  1.00 41.70      1HRP 666
+ATOM    474  OD1 ASN A  66      10.252  27.193  27.860  1.00 41.70      1HRP 667
+ATOM    475  ND2 ASN A  66      12.179  28.195  28.485  1.00 41.70      1HRP 668
+ATOM    476  N   ARG A  67       8.427  32.196  27.164  1.00 27.40      1HRP 669
+ATOM    477  CA  ARG A  67       8.483  33.645  27.157  1.00 27.40      1HRP 670
+ATOM    478  C   ARG A  67       8.958  34.152  28.516  1.00 27.40      1HRP 671
+ATOM    479  O   ARG A  67       8.325  33.906  29.541  1.00 27.40      1HRP 672
+ATOM    480  CB  ARG A  67       7.142  34.285  26.760  1.00 55.20      1HRP 673
+ATOM    481  CG  ARG A  67       5.908  33.399  26.886  1.00 55.20      1HRP 674
+ATOM    482  CD  ARG A  67       4.768  33.916  25.978  1.00 55.20      1HRP 675
+ATOM    483  NE  ARG A  67       3.645  32.972  25.900  1.00 55.20      1HRP 676
+ATOM    484  CZ  ARG A  67       2.895  32.757  24.814  1.00 55.20      1HRP 677
+ATOM    485  NH1 ARG A  67       3.129  33.429  23.685  1.00 55.20      1HRP 678
+ATOM    486  NH2 ARG A  67       1.928  31.835  24.848  1.00 55.20      1HRP 679
+ATOM    487  N   VAL A  68      10.151  34.735  28.527  1.00 28.10      1HRP 680
+ATOM    488  CA  VAL A  68      10.715  35.299  29.739  1.00 28.10      1HRP 681
+ATOM    489  C   VAL A  68      10.781  36.809  29.572  1.00 28.10      1HRP 682
+ATOM    490  O   VAL A  68      10.233  37.374  28.619  1.00 28.10      1HRP 683
+ATOM    491  CB  VAL A  68      12.141  34.778  30.046  1.00 22.70      1HRP 684
+ATOM    492  CG1 VAL A  68      12.121  33.297  30.288  1.00 22.70      1HRP 685
+ATOM    493  CG2 VAL A  68      13.101  35.140  28.935  1.00 22.70      1HRP 686
+ATOM    494  N   THR A  69      11.413  37.458  30.542  1.00 27.90      1HRP 687
+ATOM    495  CA  THR A  69      11.591  38.904  30.544  1.00 27.90      1HRP 688
+ATOM    496  C   THR A  69      13.017  39.191  30.957  1.00 27.90      1HRP 689
+ATOM    497  O   THR A  69      13.548  38.576  31.887  1.00 27.90      1HRP 690
+ATOM    498  CB  THR A  69      10.653  39.595  31.515  1.00 34.00      1HRP 691
+ATOM    499  OG1 THR A  69       9.301  39.400  31.077  1.00 34.00      1HRP 692
+ATOM    500  CG2 THR A  69      10.964  41.094  31.585  1.00 34.00      1HRP 693
+ATOM    501  N   VAL A  70      13.627  40.157  30.291  1.00 21.20      1HRP 694
+ATOM    502  CA  VAL A  70      15.006  40.453  30.566  1.00 21.20      1HRP 695
+ATOM    503  C   VAL A  70      15.378  41.906  30.482  1.00 21.20      1HRP 696
+ATOM    504  O   VAL A  70      14.605  42.740  30.036  1.00 21.20      1HRP 697
+ATOM    505  CB  VAL A  70      15.881  39.699  29.560  1.00 16.50      1HRP 698
+ATOM    506  CG1 VAL A  70      15.802  38.181  29.807  1.00 16.50      1HRP 699
+ATOM    507  CG2 VAL A  70      15.414  40.036  28.140  1.00 16.50      1HRP 700
+ATOM    508  N   MET A  71      16.589  42.182  30.937  1.00 27.90      1HRP 701
+ATOM    509  CA  MET A  71      17.163  43.506  30.890  1.00 27.90      1HRP 702
+ATOM    510  C   MET A  71      16.192  44.619  31.238  1.00 27.90      1HRP 703
+ATOM    511  O   MET A  71      16.084  45.617  30.536  1.00 27.90      1HRP 704
+ATOM    512  CB  MET A  71      17.742  43.720  29.501  1.00 35.40      1HRP 705
+ATOM    513  CG  MET A  71      18.545  42.540  29.017  1.00 35.40      1HRP 706
+ATOM    514  SD  MET A  71      19.500  42.981  27.565  1.00 35.40      1HRP 707
+ATOM    515  CE  MET A  71      21.250  42.994  28.245  1.00 35.40      1HRP 708
+ATOM    516  N   GLY A  72      15.518  44.483  32.361  1.00 32.60      1HRP 709
+ATOM    517  CA  GLY A  72      14.572  45.512  32.725  1.00 32.60      1HRP 710
+ATOM    518  C   GLY A  72      13.164  45.103  32.345  1.00 32.60      1HRP 711
+ATOM    519  O   GLY A  72      12.484  44.458  33.147  1.00 32.60      1HRP 712
+ATOM    520  N   GLY A  73      12.743  45.406  31.117  1.00 27.80      1HRP 713
+ATOM    521  CA  GLY A  73      11.396  45.052  30.703  1.00 27.80      1HRP 714
+ATOM    522  C   GLY A  73      11.176  44.438  29.332  1.00 27.80      1HRP 715
+ATOM    523  O   GLY A  73      10.078  44.543  28.789  1.00 27.80      1HRP 716
+ATOM    524  N   PHE A  74      12.195  43.843  28.734  1.00 30.00      1HRP 717
+ATOM    525  CA  PHE A  74      11.999  43.213  27.435  1.00 30.00      1HRP 718
+ATOM    526  C   PHE A  74      11.269  41.925  27.711  1.00 30.00      1HRP 719
+ATOM    527  O   PHE A  74      11.570  41.241  28.686  1.00 30.00      1HRP 720
+ATOM    528  CB  PHE A  74      13.324  42.887  26.775  1.00 18.80      1HRP 721
+ATOM    529  CG  PHE A  74      13.981  44.067  26.149  1.00 18.80      1HRP 722
+ATOM    530  CD1 PHE A  74      13.231  45.025  25.483  1.00 18.80      1HRP 723
+ATOM    531  CD2 PHE A  74      15.351  44.219  26.208  1.00 18.80      1HRP 724
+ATOM    532  CE1 PHE A  74      13.835  46.124  24.883  1.00 18.80      1HRP 725
+ATOM    533  CE2 PHE A  74      15.959  45.312  25.612  1.00 18.80      1HRP 726
+ATOM    534  CZ  PHE A  74      15.192  46.267  24.950  1.00 18.80      1HRP 727
+ATOM    535  N   LYS A  75      10.267  41.615  26.907  1.00 34.70      1HRP 728
+ATOM    536  CA  LYS A  75       9.526  40.382  27.107  1.00 34.70      1HRP 729
+ATOM    537  C   LYS A  75       9.827  39.496  25.921  1.00 34.70      1HRP 730
+ATOM    538  O   LYS A  75       9.046  39.417  24.982  1.00 34.70      1HRP 731
+ATOM    539  CB  LYS A  75       8.035  40.678  27.232  1.00 65.30      1HRP 732
+ATOM    540  CG  LYS A  75       7.534  41.681  26.219  1.00 65.30      1HRP 733
+ATOM    541  CD  LYS A  75       6.488  42.609  26.813  1.00 65.30      1HRP 734
+ATOM    542  CE  LYS A  75       5.233  41.868  27.286  1.00 65.30      1HRP 735
+ATOM    543  NZ  LYS A  75       5.393  41.074  28.550  1.00 65.30      1HRP 736
+ATOM    544  N   VAL A  76      10.998  38.879  25.949  1.00 27.60      1HRP 737
+ATOM    545  CA  VAL A  76      11.445  38.007  24.878  1.00 27.60      1HRP 738
+ATOM    546  C   VAL A  76      11.038  36.541  24.990  1.00 27.60      1HRP 739
+ATOM    547  O   VAL A  76      10.849  36.005  26.085  1.00 27.60      1HRP 740
+ATOM    548  CB  VAL A  76      12.981  38.033  24.775  1.00 25.50      1HRP 741
+ATOM    549  CG1 VAL A  76      13.479  39.457  24.628  1.00 25.50      1HRP 742
+ATOM    550  CG2 VAL A  76      13.616  37.360  25.989  1.00 25.50      1HRP 743
+ATOM    551  N   GLU A  77      10.902  35.888  23.846  1.00 24.30      1HRP 744
+ATOM    552  CA  GLU A  77      10.595  34.479  23.873  1.00 24.30      1HRP 745
+ATOM    553  C   GLU A  77      11.925  33.804  23.552  1.00 24.30      1HRP 746
+ATOM    554  O   GLU A  77      12.584  34.106  22.562  1.00 24.30      1HRP 747
+ATOM    555  CB  GLU A  77       9.489  34.112  22.900  1.00 35.60      1HRP 748
+ATOM    556  CG  GLU A  77       9.928  33.897  21.498  1.00 35.60      1HRP 749
+ATOM    557  CD  GLU A  77       8.792  33.437  20.605  1.00 35.60      1HRP 750
+ATOM    558  OE1 GLU A  77       7.617  33.617  21.005  1.00 35.60      1HRP 751
+ATOM    559  OE2 GLU A  77       9.078  32.889  19.510  1.00 35.60      1HRP 752
+ATOM    560  N   ASN A  78      12.370  33.011  24.512  1.00 23.90      1HRP 753
+ATOM    561  CA  ASN A  78      13.627  32.288  24.474  1.00 23.90      1HRP 754
+ATOM    562  C   ASN A  78      13.387  30.869  23.940  1.00 23.90      1HRP 755
+ATOM    563  O   ASN A  78      12.796  30.033  24.629  1.00 23.90      1HRP 756
+ATOM    564  CB  ASN A  78      14.136  32.269  25.908  1.00 17.90      1HRP 757
+ATOM    565  CG  ASN A  78      15.384  31.474  26.093  1.00 17.90      1HRP 758
+ATOM    566  OD1 ASN A  78      16.158  31.268  25.171  1.00 17.90      1HRP 759
+ATOM    567  ND2 ASN A  78      15.600  31.082  27.342  1.00 17.90      1HRP 760
+ATOM    568  N   HIS A  79      13.808  30.596  22.708  1.00 15.90      1HRP 761
+ATOM    569  CA  HIS A  79      13.605  29.273  22.103  1.00 15.90      1HRP 762
+ATOM    570  C   HIS A  79      14.408  28.151  22.734  1.00 15.90      1HRP 763
+ATOM    571  O   HIS A  79      15.434  28.393  23.347  1.00 15.90      1HRP 764
+ATOM    572  CB  HIS A  79      13.926  29.346  20.620  1.00 14.30      1HRP 765
+ATOM    573  CG  HIS A  79      13.113  30.368  19.897  1.00 14.30      1HRP 766
+ATOM    574  ND1 HIS A  79      13.561  31.014  18.774  1.00 14.30      1HRP 767
+ATOM    575  CD2 HIS A  79      11.879  30.862  20.158  1.00 14.30      1HRP 768
+ATOM    576  CE1 HIS A  79      12.640  31.876  18.367  1.00 14.30      1HRP 769
+ATOM    577  NE2 HIS A  79      11.614  31.797  19.192  1.00 14.30      1HRP 770
+ATOM    578  N   THR A  80      13.938  26.919  22.590  1.00 14.90      1HRP 771
+ATOM    579  CA  THR A  80      14.651  25.772  23.142  1.00 14.90      1HRP 772
+ATOM    580  C   THR A  80      14.595  24.527  22.290  1.00 14.90      1HRP 773
+ATOM    581  O   THR A  80      14.655  23.428  22.838  1.00 14.90      1HRP 774
+ATOM    582  CB  THR A  80      14.105  25.351  24.512  1.00 23.40      1HRP 775
+ATOM    583  OG1 THR A  80      12.692  25.128  24.420  1.00 23.40      1HRP 776
+ATOM    584  CG2 THR A  80      14.408  26.404  25.553  1.00 23.40      1HRP 777
+ATOM    585  N   ALA A  81      14.419  24.692  20.981  1.00 15.70      1HRP 778
+ATOM    586  CA  ALA A  81      14.361  23.580  20.026  1.00 15.70      1HRP 779
+ATOM    587  C   ALA A  81      13.893  24.124  18.696  1.00 15.70      1HRP 780
+ATOM    588  O   ALA A  81      12.875  24.806  18.620  1.00 15.70      1HRP 781
+ATOM    589  CB  ALA A  81      13.400  22.526  20.496  1.00 13.20      1HRP 782
+ATOM    590  N   CYS A  82      14.593  23.786  17.634  1.00 10.70      1HRP 783
+ATOM    591  CA  CYS A  82      14.213  24.302  16.341  1.00 10.70      1HRP 784
+ATOM    592  C   CYS A  82      13.806  23.214  15.373  1.00 10.70      1HRP 785
+ATOM    593  O   CYS A  82      13.954  22.029  15.666  1.00 10.70      1HRP 786
+ATOM    594  CB  CYS A  82      15.370  25.108  15.772  1.00 10.00      1HRP 787
+ATOM    595  SG  CYS A  82      16.044  26.314  16.948  1.00 10.00      1HRP 788
+ATOM    596  N   HIS A  83      13.238  23.628  14.244  1.00 12.70      1HRP 789
+ATOM    597  CA  HIS A  83      12.811  22.723  13.185  1.00 12.70      1HRP 790
+ATOM    598  C   HIS A  83      12.238  23.537  12.045  1.00 12.70      1HRP 791
+ATOM    599  O   HIS A  83      11.862  24.680  12.258  1.00 12.70      1HRP 792
+ATOM    600  CB  HIS A  83      11.779  21.707  13.691  1.00 14.50      1HRP 793
+ATOM    601  CG  HIS A  83      10.438  22.292  14.016  1.00 14.50      1HRP 794
+ATOM    602  ND1 HIS A  83      10.262  23.603  14.404  1.00 14.50      1HRP 795
+ATOM    603  CD2 HIS A  83       9.200  21.736  14.004  1.00 14.50      1HRP 796
+ATOM    604  CE1 HIS A  83       8.975  23.832  14.617  1.00 14.50      1HRP 797
+ATOM    605  NE2 HIS A  83       8.312  22.715  14.377  1.00 14.50      1HRP 798
+ATOM    606  N   CYS A  84      12.226  22.981  10.835  1.00 14.10      1HRP 799
+ATOM    607  CA  CYS A  84      11.666  23.669   9.665  1.00 14.10      1HRP 800
+ATOM    608  C   CYS A  84      10.177  23.392   9.652  1.00 14.10      1HRP 801
+ATOM    609  O   CYS A  84       9.769  22.241   9.661  1.00 14.10      1HRP 802
+ATOM    610  CB  CYS A  84      12.294  23.145   8.384  1.00 11.40      1HRP 803
+ATOM    611  SG  CYS A  84      14.060  23.491   8.362  1.00 11.40      1HRP 804
+ATOM    612  N   SER A  85       9.357  24.427   9.592  1.00 15.60      1HRP 805
+ATOM    613  CA  SER A  85       7.942  24.191   9.640  1.00 15.60      1HRP 806
+ATOM    614  C   SER A  85       7.211  25.170   8.795  1.00 15.60      1HRP 807
+ATOM    615  O   SER A  85       7.812  25.976   8.102  1.00 15.60      1HRP 808
+ATOM    616  CB  SER A  85       7.468  24.324  11.084  1.00 19.50      1HRP 809
+ATOM    617  OG  SER A  85       6.149  23.847  11.239  1.00 19.50      1HRP 810
+ATOM    618  N   THR A  86       5.895  25.029   8.815  1.00 30.00      1HRP 811
+ATOM    619  CA  THR A  86       5.000  25.909   8.101  1.00 30.00      1HRP 812
+ATOM    620  C   THR A  86       5.553  27.298   8.236  1.00 30.00      1HRP 813
+ATOM    621  O   THR A  86       5.923  27.739   9.324  1.00 30.00      1HRP 814
+ATOM    622  CB  THR A  86       3.594  25.921   8.726  1.00 36.50      1HRP 815
+ATOM    623  OG1 THR A  86       2.885  27.090   8.287  1.00 36.50      1HRP 816
+ATOM    624  CG2 THR A  86       3.694  25.940  10.244  1.00 36.50      1HRP 817
+ATOM    625  N   CYS A  87       5.620  27.977   7.111  1.00 39.70      1HRP 818
+ATOM    626  CA  CYS A  87       6.146  29.308   7.100  1.00 39.70      1HRP 819
+ATOM    627  C   CYS A  87       5.100  30.411   7.365  1.00 39.70      1HRP 820
+ATOM    628  O   CYS A  87       5.369  31.379   8.082  1.00 39.70      1HRP 821
+ATOM    629  CB  CYS A  87       6.876  29.521   5.787  1.00 30.40      1HRP 822
+ATOM    630  SG  CYS A  87       8.232  30.677   6.005  1.00 30.40      1HRP 823
+ATOM    631  N   TYR A  88       3.909  30.275   6.792  1.00 50.00      1HRP 824
+ATOM    632  CA  TYR A  88       2.866  31.278   6.988  1.00 50.00      1HRP 825
+ATOM    633  C   TYR A  88       1.961  30.796   8.113  1.00 50.00      1HRP 826
+ATOM    634  O   TYR A  88       0.902  30.191   7.872  1.00 50.00      1HRP 827
+ATOM    635  CB  TYR A  88       2.109  31.533   5.668  1.00 49.90      1HRP 828
+ATOM    636  CG  TYR A  88       3.003  32.193   4.635  1.00 49.90      1HRP 829
+ATOM    637  CD1 TYR A  88       3.284  33.556   4.713  1.00 49.90      1HRP 830
+ATOM    638  CD2 TYR A  88       3.691  31.443   3.684  1.00 49.90      1HRP 831
+ATOM    639  CE1 TYR A  88       4.235  34.148   3.895  1.00 49.90      1HRP 832
+ATOM    640  CE2 TYR A  88       4.648  32.034   2.862  1.00 49.90      1HRP 833
+ATOM    641  CZ  TYR A  88       4.918  33.384   2.981  1.00 49.90      1HRP 834
+ATOM    642  OH  TYR A  88       5.912  33.979   2.239  1.00 49.90      1HRP 835
+ATOM    643  N   TYR A  89       2.464  30.967   9.337  1.00 50.00      1HRP 836
+ATOM    644  CA  TYR A  89       1.760  30.553  10.556  1.00 50.00      1HRP 837
+ATOM    645  C   TYR A  89       0.891  31.685  11.162  1.00 50.00      1HRP 838
+ATOM    646  O   TYR A  89       0.943  31.906  12.405  1.00 50.00      1HRP 839
+ATOM    647  CB  TYR A  89       2.773  30.023  11.594  1.00 67.90      1HRP 840
+ATOM    648  OXT TYR A  89       0.146  32.336  10.380  1.00 67.90      1HRP 841
+TER     649      TYR A  89                                              1HRP 842
+HETATM  650  C1  NAG A   1      16.841  30.445  27.732  1.00 31.90      1HRP 843
+HETATM  651  C2  NAG A   1      17.082  30.632  29.225  1.00 31.90      1HRP 844
+HETATM  652  C3  NAG A   1      18.424  30.024  29.582  1.00 31.90      1HRP 845
+HETATM  653  C4  NAG A   1      18.543  28.570  29.099  1.00 31.90      1HRP 846
+HETATM  654  C5  NAG A   1      18.075  28.413  27.653  1.00 31.90      1HRP 847
+HETATM  655  C6  NAG A   1      17.956  26.970  27.193  1.00 31.90      1HRP 848
+HETATM  656  C7  NAG A   1      16.319  32.462  30.603  1.00 31.90      1HRP 849
+HETATM  657  C8  NAG A   1      16.400  33.943  30.936  1.00 31.90      1HRP 850
+HETATM  658  N2  NAG A   1      17.083  32.036  29.597  1.00 31.90      1HRP 851
+HETATM  659  O3  NAG A   1      18.610  30.080  30.992  1.00 31.90      1HRP 852
+HETATM  660  O4  NAG A   1      19.928  28.215  29.154  1.00 31.90      1HRP 853
+HETATM  661  O5  NAG A   1      16.791  29.045  27.454  1.00 31.90      1HRP 854
+HETATM  662  O6  NAG A   1      17.609  26.089  28.258  1.00 31.90      1HRP 855
+HETATM  663  O7  NAG A   1      15.549  31.716  31.215  1.00 31.90      1HRP 856
+HETATM  664  C1  NAG A   2      20.289  26.895  29.318  1.00 53.60      1HRP 857
+HETATM  665  C2  NAG A   2      21.066  26.433  28.054  1.00 53.60      1HRP 858
+HETATM  666  C3  NAG A   2      22.563  26.284  28.386  1.00 53.60      1HRP 859
+HETATM  667  C4  NAG A   2      22.761  25.302  29.561  1.00 53.60      1HRP 860
+HETATM  668  C5  NAG A   2      21.779  25.596  30.706  1.00 53.60      1HRP 861
+HETATM  669  C6  NAG A   2      22.500  25.704  32.037  1.00 53.60      1HRP 862
+HETATM  670  C7  NAG A   2      21.018  24.564  26.459  1.00 53.60      1HRP 863
+HETATM  671  C8  NAG A   2      20.319  23.282  26.039  1.00 53.60      1HRP 864
+HETATM  672  N2  NAG A   2      20.509  25.183  27.534  1.00 53.60      1HRP 865
+HETATM  673  O3  NAG A   2      23.122  27.553  28.713  1.00 53.60      1HRP 866
+HETATM  674  O4  NAG A   2      22.575  23.960  29.116  1.00 53.60      1HRP 867
+HETATM  675  O5  NAG A   2      21.118  26.859  30.495  1.00 53.60      1HRP 868
+HETATM  676  O6  NAG A   2      23.428  26.785  32.037  1.00 53.60      1HRP 869
+HETATM  677  O7  NAG A   2      22.015  24.966  25.842  1.00 53.60      1HRP 870
+HETATM  678  C1  NAG A  11       4.476  35.164 -13.410  1.00 34.10      1HRP 871
+HETATM  679  C2  NAG A  11       5.721  35.102 -14.290  1.00 34.10      1HRP 872
+HETATM  680  C3  NAG A  11       6.501  36.405 -14.223  1.00 34.10      1HRP 873
+HETATM  681  C4  NAG A  11       5.581  37.606 -14.354  1.00 34.10      1HRP 874
+HETATM  682  C5  NAG A  11       4.387  37.509 -13.435  1.00 34.10      1HRP 875
+HETATM  683  C6  NAG A  11       3.424  38.670 -13.638  1.00 34.10      1HRP 876
+HETATM  684  C7  NAG A  11       6.504  32.807 -14.295  1.00 34.10      1HRP 877
+HETATM  685  C8  NAG A  11       7.459  31.807 -13.676  1.00 34.10      1HRP 878
+HETATM  686  N2  NAG A  11       6.580  34.040 -13.806  1.00 34.10      1HRP 879
+HETATM  687  O3  NAG A  11       7.454  36.424 -15.279  1.00 34.10      1HRP 880
+HETATM  688  O4  NAG A  11       6.297  38.807 -14.047  1.00 34.10      1HRP 881
+HETATM  689  O5  NAG A  11       3.680  36.299 -13.713  1.00 34.10      1HRP 882
+HETATM  690  O6  NAG A  11       3.247  38.966 -15.022  1.00 34.10      1HRP 883
+HETATM  691  O7  NAG A  11       5.731  32.477 -15.180  1.00 34.10      1HRP 884
+HETATM  692  C1  NAG A  12       6.488  39.609 -15.149  1.00 68.70      1HRP 885
+HETATM  693  C2  NAG A  12       7.179  40.917 -14.761  1.00 68.70      1HRP 886
+HETATM  694  C3  NAG A  12       7.502  41.720 -16.025  1.00 68.70      1HRP 887
+HETATM  695  C4  NAG A  12       8.228  40.846 -17.082  1.00 68.70      1HRP 888
+HETATM  696  C5  NAG A  12       7.451  39.536 -17.306  1.00 68.70      1HRP 889
+HETATM  697  C6  NAG A  12       8.088  38.538 -18.260  1.00 68.70      1HRP 890
+HETATM  698  C7  NAG A  12       6.191  41.456 -12.618  1.00 68.70      1HRP 891
+HETATM  699  C8  NAG A  12       5.240  42.359 -11.844  1.00 68.70      1HRP 892
+HETATM  700  N2  NAG A  12       6.306  41.714 -13.916  1.00 68.70      1HRP 893
+HETATM  701  O3  NAG A  12       8.298  42.852 -15.681  1.00 68.70      1HRP 894
+HETATM  702  O4  NAG A  12       8.335  41.562 -18.313  1.00 68.70      1HRP 895
+HETATM  703  O5  NAG A  12       7.292  38.858 -16.055  1.00 68.70      1HRP 896
+HETATM  704  O6  NAG A  12       7.333  37.335 -18.308  1.00 68.70      1HRP 897
+HETATM  705  O7  NAG A  12       6.817  40.559 -12.056  1.00 68.70      1HRP 898
+ATOM    706  N   LYS B   2      27.136  16.393  -4.606  1.00 50.00      1HRP 899
+ATOM    707  CA  LYS B   2      28.154  17.485  -4.528  1.00 50.00      1HRP 900
+ATOM    708  C   LYS B   2      28.420  17.901  -3.076  1.00 50.00      1HRP 901
+ATOM    709  O   LYS B   2      27.786  17.402  -2.139  1.00 50.00      1HRP 902
+ATOM    710  CB  LYS B   2      27.725  18.688  -5.356  1.00 59.90      1HRP 903
+ATOM    711  N   GLU B   3      29.314  18.860  -2.911  1.00 50.00      1HRP 904
+ATOM    712  CA  GLU B   3      29.698  19.327  -1.591  1.00 50.00      1HRP 905
+ATOM    713  C   GLU B   3      28.675  19.994  -0.650  1.00 50.00      1HRP 906
+ATOM    714  O   GLU B   3      28.751  19.794   0.564  1.00 50.00      1HRP 907
+ATOM    715  CB  GLU B   3      30.972  20.178  -1.702  1.00 61.90      1HRP 908
+ATOM    716  CG  GLU B   3      31.072  21.067  -2.966  1.00 61.90      1HRP 909
+ATOM    717  CD  GLU B   3      30.466  22.467  -2.804  1.00 61.90      1HRP 910
+ATOM    718  OE1 GLU B   3      30.462  23.004  -1.670  1.00 61.90      1HRP 911
+ATOM    719  OE2 GLU B   3      30.005  23.029  -3.826  1.00 61.90      1HRP 912
+ATOM    720  N   PRO B   4      27.688  20.740  -1.177  1.00 33.30      1HRP 913
+ATOM    721  CA  PRO B   4      26.779  21.334  -0.194  1.00 33.30      1HRP 914
+ATOM    722  C   PRO B   4      25.832  20.321   0.428  1.00 33.30      1HRP 915
+ATOM    723  O   PRO B   4      25.386  19.385  -0.238  1.00 33.30      1HRP 916
+ATOM    724  CB  PRO B   4      26.022  22.388  -1.008  1.00 35.80      1HRP 917
+ATOM    725  CG  PRO B   4      26.909  22.652  -2.185  1.00 35.80      1HRP 918
+ATOM    726  CD  PRO B   4      27.407  21.268  -2.519  1.00 35.80      1HRP 919
+ATOM    727  N   LEU B   5      25.552  20.500   1.717  1.00 23.30      1HRP 920
+ATOM    728  CA  LEU B   5      24.649  19.620   2.453  1.00 23.30      1HRP 921
+ATOM    729  C   LEU B   5      23.235  20.178   2.356  1.00 23.30      1HRP 922
+ATOM    730  O   LEU B   5      22.249  19.423   2.331  1.00 23.30      1HRP 923
+ATOM    731  CB  LEU B   5      25.047  19.542   3.931  1.00 27.70      1HRP 924
+ATOM    732  CG  LEU B   5      25.986  18.457   4.480  1.00 27.70      1HRP 925
+ATOM    733  CD1 LEU B   5      25.431  17.068   4.168  1.00 27.70      1HRP 926
+ATOM    734  CD2 LEU B   5      27.391  18.620   3.922  1.00 27.70      1HRP 927
+ATOM    735  N   ARG B   6      23.149  21.501   2.381  1.00 13.20      1HRP 928
+ATOM    736  CA  ARG B   6      21.896  22.226   2.307  1.00 13.20      1HRP 929
+ATOM    737  C   ARG B   6      22.209  23.355   1.338  1.00 13.20      1HRP 930
+ATOM    738  O   ARG B   6      22.567  24.447   1.768  1.00 13.20      1HRP 931
+ATOM    739  CB  ARG B   6      21.575  22.787   3.699  1.00 20.40      1HRP 932
+ATOM    740  CG  ARG B   6      21.520  21.715   4.772  1.00 20.40      1HRP 933
+ATOM    741  CD  ARG B   6      21.899  22.217   6.162  1.00 20.40      1HRP 934
+ATOM    742  NE  ARG B   6      21.899  21.105   7.109  1.00 20.40      1HRP 935
+ATOM    743  CZ  ARG B   6      20.790  20.510   7.568  1.00 20.40      1HRP 936
+ATOM    744  NH1 ARG B   6      19.586  20.985   7.238  1.00 20.40      1HRP 937
+ATOM    745  NH2 ARG B   6      20.868  19.484   8.420  1.00 20.40      1HRP 938
+ATOM    746  N   PRO B   7      22.043  23.098   0.022  1.00 10.00      1HRP 939
+ATOM    747  CA  PRO B   7      22.283  23.989  -1.120  1.00 10.00      1HRP 940
+ATOM    748  C   PRO B   7      21.466  25.254  -1.142  1.00 10.00      1HRP 941
+ATOM    749  O   PRO B   7      20.257  25.205  -0.999  1.00 10.00      1HRP 942
+ATOM    750  CB  PRO B   7      21.892  23.125  -2.315  1.00 10.00      1HRP 943
+ATOM    751  CG  PRO B   7      21.926  21.748  -1.814  1.00 10.00      1HRP 944
+ATOM    752  CD  PRO B   7      21.398  21.866  -0.433  1.00 10.00      1HRP 945
+ATOM    753  N   ARG B   8      22.112  26.389  -1.355  1.00 10.00      1HRP 946
+ATOM    754  CA  ARG B   8      21.391  27.646  -1.435  1.00 10.00      1HRP 947
+ATOM    755  C   ARG B   8      20.620  27.674  -2.751  1.00 10.00      1HRP 948
+ATOM    756  O   ARG B   8      21.066  27.123  -3.763  1.00 10.00      1HRP 949
+ATOM    757  CB  ARG B   8      22.332  28.847  -1.372  1.00 30.70      1HRP 950
+ATOM    758  CG  ARG B   8      22.728  29.295   0.032  1.00 30.70      1HRP 951
+ATOM    759  CD  ARG B   8      23.171  30.761   0.029  1.00 30.70      1HRP 952
+ATOM    760  NE  ARG B   8      22.129  31.622  -0.529  1.00 30.70      1HRP 953
+ATOM    761  CZ  ARG B   8      21.468  32.546   0.168  1.00 30.70      1HRP 954
+ATOM    762  NH1 ARG B   8      21.762  32.743   1.459  1.00 30.70      1HRP 955
+ATOM    763  NH2 ARG B   8      20.440  33.193  -0.395  1.00 30.70      1HRP 956
+ATOM    764  N   CYS B   9      19.468  28.337  -2.710  1.00 10.00      1HRP 957
+ATOM    765  CA  CYS B   9      18.516  28.521  -3.819  1.00 10.00      1HRP 958
+ATOM    766  C   CYS B   9      19.198  28.683  -5.161  1.00 10.00      1HRP 959
+ATOM    767  O   CYS B   9      19.981  29.601  -5.343  1.00 10.00      1HRP 960
+ATOM    768  CB  CYS B   9      17.655  29.761  -3.508  1.00 10.00      1HRP 961
+ATOM    769  SG  CYS B   9      16.191  30.117  -4.523  1.00 10.00      1HRP 962
+ATOM    770  N   ARG B  10      18.956  27.753  -6.070  1.00 10.00      1HRP 963
+ATOM    771  CA  ARG B  10      19.521  27.835  -7.403  1.00 10.00      1HRP 964
+ATOM    772  C   ARG B  10      18.630  26.995  -8.257  1.00 10.00      1HRP 965
+ATOM    773  O   ARG B  10      17.995  26.077  -7.758  1.00 10.00      1HRP 966
+ATOM    774  CB  ARG B  10      20.940  27.287  -7.431  1.00 11.70      1HRP 967
+ATOM    775  CG  ARG B  10      21.149  26.098  -6.531  1.00 11.70      1HRP 968
+ATOM    776  CD  ARG B  10      20.544  24.837  -7.071  1.00 11.70      1HRP 969
+ATOM    777  NE  ARG B  10      19.808  24.117  -6.040  1.00 11.70      1HRP 970
+ATOM    778  CZ  ARG B  10      20.178  22.947  -5.532  1.00 11.70      1HRP 971
+ATOM    779  NH1 ARG B  10      21.292  22.361  -5.957  1.00 11.70      1HRP 972
+ATOM    780  NH2 ARG B  10      19.412  22.345  -4.630  1.00 11.70      1HRP 973
+ATOM    781  N   PRO B  11      18.531  27.327  -9.549  1.00 10.00      1HRP 974
+ATOM    782  CA  PRO B  11      17.691  26.567 -10.472  1.00 10.00      1HRP 975
+ATOM    783  C   PRO B  11      18.228  25.152 -10.599  1.00 10.00      1HRP 976
+ATOM    784  O   PRO B  11      19.440  24.930 -10.585  1.00 10.00      1HRP 977
+ATOM    785  CB  PRO B  11      17.874  27.322 -11.771  1.00 10.00      1HRP 978
+ATOM    786  CG  PRO B  11      19.300  27.769 -11.669  1.00 10.00      1HRP 979
+ATOM    787  CD  PRO B  11      19.356  28.300 -10.264  1.00 10.00      1HRP 980
+ATOM    788  N   ILE B  12      17.315  24.196 -10.684  1.00 15.20      1HRP 981
+ATOM    789  CA  ILE B  12      17.640  22.786 -10.804  1.00 15.20      1HRP 982
+ATOM    790  C   ILE B  12      16.688  22.288 -11.861  1.00 15.20      1HRP 983
+ATOM    791  O   ILE B  12      15.493  22.596 -11.812  1.00 15.20      1HRP 984
+ATOM    792  CB  ILE B  12      17.325  22.024  -9.505  1.00 12.10      1HRP 985
+ATOM    793  CG1 ILE B  12      15.895  22.329  -9.061  1.00 12.10      1HRP 986
+ATOM    794  CG2 ILE B  12      18.295  22.428  -8.418  1.00 12.10      1HRP 987
+ATOM    795  CD1 ILE B  12      15.104  21.126  -8.636  1.00 12.10      1HRP 988
+ATOM    796  N   ASN B  13      17.181  21.552 -12.842  1.00 21.50      1HRP 989
+ATOM    797  CA  ASN B  13      16.230  21.128 -13.835  1.00 21.50      1HRP 990
+ATOM    798  C   ASN B  13      15.418  19.936 -13.396  1.00 21.50      1HRP 991
+ATOM    799  O   ASN B  13      15.832  19.169 -12.534  1.00 21.50      1HRP 992
+ATOM    800  CB  ASN B  13      16.820  21.010 -15.253  1.00 37.90      1HRP 993
+ATOM    801  CG  ASN B  13      18.101  20.263 -15.297  1.00 37.90      1HRP 994
+ATOM    802  OD1 ASN B  13      18.088  19.047 -15.278  1.00 37.90      1HRP 995
+ATOM    803  ND2 ASN B  13      19.215  20.978 -15.436  1.00 37.90      1HRP 996
+ATOM    804  N   ALA B  14      14.171  19.947 -13.847  1.00 16.50      1HRP 997
+ATOM    805  CA  ALA B  14      13.197  18.911 -13.558  1.00 16.50      1HRP 998
+ATOM    806  C   ALA B  14      12.234  18.829 -14.749  1.00 16.50      1HRP 999
+ATOM    807  O   ALA B  14      12.305  19.637 -15.674  1.00 16.50      1HRP1000
+ATOM    808  CB  ALA B  14      12.451  19.255 -12.294  1.00 13.90      1HRP1001
+ATOM    809  N   THR B  15      11.332  17.862 -14.716  1.00 16.10      1HRP1002
+ATOM    810  CA  THR B  15      10.386  17.686 -15.800  1.00 16.10      1HRP1003
+ATOM    811  C   THR B  15       9.031  18.120 -15.305  1.00 16.10      1HRP1004
+ATOM    812  O   THR B  15       8.623  17.715 -14.221  1.00 16.10      1HRP1005
+ATOM    813  CB  THR B  15      10.276  16.185 -16.264  1.00 20.60      1HRP1006
+ATOM    814  OG1 THR B  15       9.116  15.565 -15.694  1.00 20.60      1HRP1007
+ATOM    815  CG2 THR B  15      11.519  15.375 -15.862  1.00 20.60      1HRP1008
+ATOM    816  N   LEU B  16       8.322  18.932 -16.074  1.00 11.90      1HRP1009
+ATOM    817  CA  LEU B  16       7.017  19.334 -15.626  1.00 11.90      1HRP1010
+ATOM    818  C   LEU B  16       5.961  18.933 -16.635  1.00 11.90      1HRP1011
+ATOM    819  O   LEU B  16       6.240  18.833 -17.831  1.00 11.90      1HRP1012
+ATOM    820  CB  LEU B  16       7.004  20.824 -15.301  1.00 18.40      1HRP1013
+ATOM    821  CG  LEU B  16       6.846  21.892 -16.366  1.00 18.40      1HRP1014
+ATOM    822  CD1 LEU B  16       5.351  22.161 -16.530  1.00 18.40      1HRP1015
+ATOM    823  CD2 LEU B  16       7.556  23.176 -15.917  1.00 18.40      1HRP1016
+ATOM    824  N   ALA B  17       4.772  18.631 -16.126  1.00 13.10      1HRP1017
+ATOM    825  CA  ALA B  17       3.627  18.202 -16.930  1.00 13.10      1HRP1018
+ATOM    826  C   ALA B  17       3.011  19.359 -17.701  1.00 13.10      1HRP1019
+ATOM    827  O   ALA B  17       2.562  20.336 -17.100  1.00 13.10      1HRP1020
+ATOM    828  CB  ALA B  17       2.596  17.608 -16.035  1.00 10.00      1HRP1021
+ATOM    829  N   VAL B  18       2.965  19.256 -19.020  1.00 10.00      1HRP1022
+ATOM    830  CA  VAL B  18       2.402  20.311 -19.835  1.00 10.00      1HRP1023
+ATOM    831  C   VAL B  18       1.207  19.755 -20.552  1.00 10.00      1HRP1024
+ATOM    832  O   VAL B  18       1.306  18.704 -21.168  1.00 10.00      1HRP1025
+ATOM    833  CB  VAL B  18       3.411  20.780 -20.850  1.00 10.00      1HRP1026
+ATOM    834  CG1 VAL B  18       2.734  21.546 -21.967  1.00 10.00      1HRP1027
+ATOM    835  CG2 VAL B  18       4.452  21.626 -20.147  1.00 10.00      1HRP1028
+ATOM    836  N   GLU B  19       0.091  20.468 -20.502  1.00 12.00      1HRP1029
+ATOM    837  CA  GLU B  19      -1.120  20.006 -21.149  1.00 12.00      1HRP1030
+ATOM    838  C   GLU B  19      -2.086  21.168 -21.340  1.00 12.00      1HRP1031
+ATOM    839  O   GLU B  19      -2.008  22.174 -20.633  1.00 12.00      1HRP1032
+ATOM    840  CB  GLU B  19      -1.781  18.930 -20.295  1.00 24.80      1HRP1033
+ATOM    841  CG  GLU B  19      -2.614  19.482 -19.153  1.00 24.80      1HRP1034
+ATOM    842  CD  GLU B  19      -2.310  18.824 -17.828  1.00 24.80      1HRP1035
+ATOM    843  OE1 GLU B  19      -2.945  17.790 -17.510  1.00 24.80      1HRP1036
+ATOM    844  OE2 GLU B  19      -1.451  19.351 -17.083  1.00 24.80      1HRP1037
+ATOM    845  N   LYS B  20      -2.974  21.056 -22.321  1.00 15.40      1HRP1038
+ATOM    846  CA  LYS B  20      -3.933  22.118 -22.564  1.00 15.40      1HRP1039
+ATOM    847  C   LYS B  20      -5.263  21.449 -22.492  1.00 15.40      1HRP1040
+ATOM    848  O   LYS B  20      -5.406  20.306 -22.909  1.00 15.40      1HRP1041
+ATOM    849  CB  LYS B  20      -3.747  22.724 -23.948  1.00 17.40      1HRP1042
+ATOM    850  CG  LYS B  20      -4.489  24.025 -24.134  1.00 17.40      1HRP1043
+ATOM    851  CD  LYS B  20      -4.276  24.596 -25.519  1.00 17.40      1HRP1044
+ATOM    852  CE  LYS B  20      -4.692  26.053 -25.528  1.00 17.40      1HRP1045
+ATOM    853  NZ  LYS B  20      -4.760  26.620 -26.887  1.00 17.40      1HRP1046
+ATOM    854  N   GLU B  21      -6.245  22.153 -21.970  1.00 23.00      1HRP1047
+ATOM    855  CA  GLU B  21      -7.566  21.576 -21.830  1.00 23.00      1HRP1048
+ATOM    856  C   GLU B  21      -8.140  21.340 -23.241  1.00 23.00      1HRP1049
+ATOM    857  O   GLU B  21      -8.560  22.278 -23.921  1.00 23.00      1HRP1050
+ATOM    858  CB  GLU B  21      -8.445  22.503 -20.935  1.00 10.00      1HRP1051
+ATOM    859  CG  GLU B  21      -8.604  24.005 -21.404  1.00 10.00      1HRP1052
+ATOM    860  CD  GLU B  21      -7.608  25.020 -20.840  1.00 10.00      1HRP1053
+ATOM    861  OE1 GLU B  21      -6.481  25.155 -21.348  1.00 10.00      1HRP1054
+ATOM    862  OE2 GLU B  21      -8.015  25.797 -19.966  1.00 10.00      1HRP1055
+ATOM    863  N   GLY B  22      -8.098  20.104 -23.724  1.00 26.10      1HRP1056
+ATOM    864  CA  GLY B  22      -8.619  19.857 -25.066  1.00 26.10      1HRP1057
+ATOM    865  C   GLY B  22      -7.854  18.889 -25.982  1.00 26.10      1HRP1058
+ATOM    866  O   GLY B  22      -8.400  18.426 -26.995  1.00 26.10      1HRP1059
+ATOM    867  N   CYS B  23      -6.580  18.643 -25.691  1.00 26.10      1HRP1060
+ATOM    868  CA  CYS B  23      -5.815  17.699 -26.484  1.00 26.10      1HRP1061
+ATOM    869  C   CYS B  23      -5.787  16.447 -25.649  1.00 26.10      1HRP1062
+ATOM    870  O   CYS B  23      -5.814  16.504 -24.430  1.00 26.10      1HRP1063
+ATOM    871  CB  CYS B  23      -4.438  18.226 -26.782  1.00 22.00      1HRP1064
+ATOM    872  SG  CYS B  23      -4.634  19.881 -27.473  1.00 22.00      1HRP1065
+ATOM    873  N   PRO B  24      -5.794  15.297 -26.310  1.00 26.90      1HRP1066
+ATOM    874  CA  PRO B  24      -5.797  13.971 -25.708  1.00 26.90      1HRP1067
+ATOM    875  C   PRO B  24      -4.658  13.692 -24.742  1.00 26.90      1HRP1068
+ATOM    876  O   PRO B  24      -4.859  13.101 -23.688  1.00 26.90      1HRP1069
+ATOM    877  CB  PRO B  24      -5.722  13.055 -26.935  1.00 28.20      1HRP1070
+ATOM    878  CG  PRO B  24      -6.327  13.889 -28.043  1.00 28.20      1HRP1071
+ATOM    879  CD  PRO B  24      -5.660  15.194 -27.769  1.00 28.20      1HRP1072
+ATOM    880  N   VAL B  25      -3.461  14.124 -25.098  1.00 28.20      1HRP1073
+ATOM    881  CA  VAL B  25      -2.313  13.832 -24.272  1.00 28.20      1HRP1074
+ATOM    882  C   VAL B  25      -1.841  14.978 -23.416  1.00 28.20      1HRP1075
+ATOM    883  O   VAL B  25      -2.215  16.138 -23.625  1.00 28.20      1HRP1076
+ATOM    884  CB  VAL B  25      -1.121  13.390 -25.139  1.00 35.70      1HRP1077
+ATOM    885  CG1 VAL B  25      -1.526  12.251 -26.069  1.00 35.70      1HRP1078
+ATOM    886  CG2 VAL B  25      -0.591  14.581 -25.952  1.00 35.70      1HRP1079
+ATOM    887  N   CYS B  26      -0.967  14.618 -22.481  1.00 28.20      1HRP1080
+ATOM    888  CA  CYS B  26      -0.320  15.535 -21.558  1.00 28.20      1HRP1081
+ATOM    889  C   CYS B  26       1.123  15.133 -21.679  1.00 28.20      1HRP1082
+ATOM    890  O   CYS B  26       1.421  13.939 -21.651  1.00 28.20      1HRP1083
+ATOM    891  CB  CYS B  26      -0.740  15.269 -20.120  1.00 32.50      1HRP1084
+ATOM    892  SG  CYS B  26       0.210  16.267 -18.931  1.00 32.50      1HRP1085
+ATOM    893  N   ILE B  27       2.017  16.090 -21.863  1.00 22.10      1HRP1086
+ATOM    894  CA  ILE B  27       3.414  15.731 -21.983  1.00 22.10      1HRP1087
+ATOM    895  C   ILE B  27       4.217  16.340 -20.851  1.00 22.10      1HRP1088
+ATOM    896  O   ILE B  27       3.654  16.875 -19.899  1.00 22.10      1HRP1089
+ATOM    897  CB  ILE B  27       3.993  16.081 -23.389  1.00 19.40      1HRP1090
+ATOM    898  CG1 ILE B  27       4.404  17.548 -23.488  1.00 19.40      1HRP1091
+ATOM    899  CG2 ILE B  27       2.981  15.731 -24.462  1.00 19.40      1HRP1092
+ATOM    900  CD1 ILE B  27       3.291  18.527 -23.289  1.00 19.40      1HRP1093
+ATOM    901  N   THR B  28       5.527  16.161 -20.914  1.00 21.20      1HRP1094
+ATOM    902  CA  THR B  28       6.446  16.678 -19.914  1.00 21.20      1HRP1095
+ATOM    903  C   THR B  28       7.607  17.327 -20.653  1.00 21.20      1HRP1096
+ATOM    904  O   THR B  28       8.051  16.824 -21.700  1.00 21.20      1HRP1097
+ATOM    905  CB  THR B  28       7.028  15.528 -19.078  1.00 21.30      1HRP1098
+ATOM    906  OG1 THR B  28       7.673  14.594 -19.951  1.00 21.30      1HRP1099
+ATOM    907  CG2 THR B  28       5.930  14.811 -18.310  1.00 21.30      1HRP1100
+ATOM    908  N   VAL B  29       8.105  18.432 -20.121  1.00 21.80      1HRP1101
+ATOM    909  CA  VAL B  29       9.230  19.079 -20.756  1.00 21.80      1HRP1102
+ATOM    910  C   VAL B  29      10.338  19.307 -19.746  1.00 21.80      1HRP1103
+ATOM    911  O   VAL B  29      10.082  19.325 -18.546  1.00 21.80      1HRP1104
+ATOM    912  CB  VAL B  29       8.846  20.415 -21.439  1.00 21.60      1HRP1105
+ATOM    913  CG1 VAL B  29       7.749  20.177 -22.455  1.00 21.60      1HRP1106
+ATOM    914  CG2 VAL B  29       8.427  21.442 -20.414  1.00 21.60      1HRP1107
+ATOM    915  N   ASN B  30      11.576  19.366 -20.230  1.00 24.20      1HRP1108
+ATOM    916  CA  ASN B  30      12.695  19.611 -19.349  1.00 24.20      1HRP1109
+ATOM    917  C   ASN B  30      12.804  21.097 -19.155  1.00 24.20      1HRP1110
+ATOM    918  O   ASN B  30      12.830  21.856 -20.134  1.00 24.20      1HRP1111
+ATOM    919  CB  ASN B  30      14.022  19.150 -19.949  1.00 48.50      1HRP1112
+ATOM    920  CG  ASN B  30      15.244  19.689 -19.155  1.00 48.50      1HRP1113
+ATOM    921  OD1 ASN B  30      15.289  19.566 -17.917  1.00 48.50      1HRP1114
+ATOM    922  ND2 ASN B  30      16.219  20.298 -19.844  1.00 48.50      1HRP1115
+ATOM    923  N   THR B  31      12.879  21.515 -17.901  1.00 13.40      1HRP1116
+ATOM    924  CA  THR B  31      13.059  22.916 -17.592  1.00 13.40      1HRP1117
+ATOM    925  C   THR B  31      13.822  23.009 -16.327  1.00 13.40      1HRP1118
+ATOM    926  O   THR B  31      14.207  22.015 -15.734  1.00 13.40      1HRP1119
+ATOM    927  CB  THR B  31      11.771  23.645 -17.338  1.00 10.00      1HRP1120
+ATOM    928  OG1 THR B  31      10.844  22.766 -16.707  1.00 10.00      1HRP1121
+ATOM    929  CG2 THR B  31      11.222  24.159 -18.605  1.00 10.00      1HRP1122
+ATOM    930  N   THR B  32      14.011  24.236 -15.905  1.00 14.40      1HRP1123
+ATOM    931  CA  THR B  32      14.704  24.498 -14.680  1.00 14.40      1HRP1124
+ATOM    932  C   THR B  32      13.727  25.231 -13.773  1.00 14.40      1HRP1125
+ATOM    933  O   THR B  32      12.984  26.110 -14.224  1.00 14.40      1HRP1126
+ATOM    934  CB  THR B  32      15.918  25.381 -14.947  1.00 19.00      1HRP1127
+ATOM    935  OG1 THR B  32      15.528  26.478 -15.781  1.00 19.00      1HRP1128
+ATOM    936  CG2 THR B  32      16.992  24.574 -15.651  1.00 19.00      1HRP1129
+ATOM    937  N   ILE B  33      13.627  24.774 -12.536  1.00 11.40      1HRP1130
+ATOM    938  CA  ILE B  33      12.774  25.432 -11.571  1.00 11.40      1HRP1131
+ATOM    939  C   ILE B  33      13.735  25.939 -10.493  1.00 11.40      1HRP1132
+ATOM    940  O   ILE B  33      14.953  25.860 -10.658  1.00 11.40      1HRP1133
+ATOM    941  CB  ILE B  33      11.731  24.468 -10.980  1.00 10.00      1HRP1134
+ATOM    942  CG1 ILE B  33      12.409  23.230 -10.406  1.00 10.00      1HRP1135
+ATOM    943  CG2 ILE B  33      10.727  24.073 -12.040  1.00 10.00      1HRP1136
+ATOM    944  CD1 ILE B  33      11.428  22.281  -9.767  1.00 10.00      1HRP1137
+ATOM    945  N   CYS B  34      13.210  26.552  -9.442  1.00 13.80      1HRP1138
+ATOM    946  CA  CYS B  34      14.056  27.021  -8.353  1.00 13.80      1HRP1139
+ATOM    947  C   CYS B  34      13.783  26.167  -7.102  1.00 13.80      1HRP1140
+ATOM    948  O   CYS B  34      12.630  25.910  -6.733  1.00 13.80      1HRP1141
+ATOM    949  CB  CYS B  34      13.785  28.487  -8.052  1.00 11.40      1HRP1142
+ATOM    950  SG  CYS B  34      14.208  29.597  -9.402  1.00 11.40      1HRP1143
+ATOM    951  N   ALA B  35      14.838  25.660  -6.497  1.00 17.60      1HRP1144
+ATOM    952  CA  ALA B  35      14.689  24.859  -5.303  1.00 17.60      1HRP1145
+ATOM    953  C   ALA B  35      16.023  24.945  -4.595  1.00 17.60      1HRP1146
+ATOM    954  O   ALA B  35      17.083  25.014  -5.228  1.00 17.60      1HRP1147
+ATOM    955  CB  ALA B  35      14.346  23.429  -5.645  1.00 11.20      1HRP1148
+ATOM    956  N   GLY B  36      15.975  25.026  -3.281  1.00 14.90      1HRP1149
+ATOM    957  CA  GLY B  36      17.196  25.133  -2.534  1.00 14.90      1HRP1150
+ATOM    958  C   GLY B  36      16.828  25.547  -1.140  1.00 14.90      1HRP1151
+ATOM    959  O   GLY B  36      15.639  25.520  -0.766  1.00 14.90      1HRP1152
+ATOM    960  N   TYR B  37      17.844  25.931  -0.377  1.00 10.00      1HRP1153
+ATOM    961  CA  TYR B  37      17.649  26.341   0.990  1.00 10.00      1HRP1154
+ATOM    962  C   TYR B  37      17.803  27.832   1.035  1.00 10.00      1HRP1155
+ATOM    963  O   TYR B  37      18.448  28.430   0.174  1.00 10.00      1HRP1156
+ATOM    964  CB  TYR B  37      18.647  25.656   1.921  1.00 10.00      1HRP1157
+ATOM    965  CG  TYR B  37      18.363  24.189   2.117  1.00 10.00      1HRP1158
+ATOM    966  CD1 TYR B  37      18.747  23.252   1.170  1.00 10.00      1HRP1159
+ATOM    967  CD2 TYR B  37      17.717  23.727   3.260  1.00 10.00      1HRP1160
+ATOM    968  CE1 TYR B  37      18.497  21.895   1.355  1.00 10.00      1HRP1161
+ATOM    969  CE2 TYR B  37      17.466  22.370   3.447  1.00 10.00      1HRP1162
+ATOM    970  CZ  TYR B  37      17.861  21.469   2.484  1.00 10.00      1HRP1163
+ATOM    971  OH  TYR B  37      17.622  20.136   2.637  1.00 10.00      1HRP1164
+ATOM    972  N   CYS B  38      17.172  28.424   2.032  1.00 13.00      1HRP1165
+ATOM    973  CA  CYS B  38      17.208  29.849   2.213  1.00 13.00      1HRP1166
+ATOM    974  C   CYS B  38      17.166  30.181   3.687  1.00 13.00      1HRP1167
+ATOM    975  O   CYS B  38      16.485  29.507   4.456  1.00 13.00      1HRP1168
+ATOM    976  CB  CYS B  38      16.045  30.435   1.466  1.00 11.30      1HRP1169
+ATOM    977  SG  CYS B  38      16.656  31.024  -0.115  1.00 11.30      1HRP1170
+ATOM    978  N   PRO B  39      17.935  31.190   4.109  1.00 12.60      1HRP1171
+ATOM    979  CA  PRO B  39      17.998  31.603   5.504  1.00 12.60      1HRP1172
+ATOM    980  C   PRO B  39      16.792  32.355   6.001  1.00 12.60      1HRP1173
+ATOM    981  O   PRO B  39      16.420  33.387   5.432  1.00 12.60      1HRP1174
+ATOM    982  CB  PRO B  39      19.209  32.520   5.514  1.00 10.00      1HRP1175
+ATOM    983  CG  PRO B  39      19.058  33.229   4.239  1.00 10.00      1HRP1176
+ATOM    984  CD  PRO B  39      18.749  32.084   3.278  1.00 10.00      1HRP1177
+ATOM    985  N   THR B  40      16.168  31.833   7.051  1.00 15.70      1HRP1178
+ATOM    986  CA  THR B  40      15.031  32.498   7.689  1.00 15.70      1HRP1179
+ATOM    987  C   THR B  40      15.292  32.598   9.202  1.00 15.70      1HRP1180
+ATOM    988  O   THR B  40      16.316  32.109   9.699  1.00 15.70      1HRP1181
+ATOM    989  CB  THR B  40      13.709  31.756   7.453  1.00 19.10      1HRP1182
+ATOM    990  OG1 THR B  40      13.900  30.342   7.625  1.00 19.10      1HRP1183
+ATOM    991  CG2 THR B  40      13.166  32.066   6.077  1.00 19.10      1HRP1184
+ATOM    992  N   MET B  41      14.387  33.256   9.921  1.00 25.80      1HRP1185
+ATOM    993  CA  MET B  41      14.509  33.409  11.366  1.00 25.80      1HRP1186
+ATOM    994  C   MET B  41      13.329  34.183  11.888  1.00 25.80      1HRP1187
+ATOM    995  O   MET B  41      12.773  35.025  11.192  1.00 25.80      1HRP1188
+ATOM    996  CB  MET B  41      15.782  34.169  11.733  1.00 38.30      1HRP1189
+ATOM    997  CG  MET B  41      15.965  35.465  10.963  1.00 38.30      1HRP1190
+ATOM    998  SD  MET B  41      17.276  36.494  11.614  1.00 38.30      1HRP1191
+ATOM    999  CE  MET B  41      16.334  37.609  12.543  1.00 38.30      1HRP1192
+ATOM   1000  N   THR B  42      12.962  33.921  13.126  1.00 33.70      1HRP1193
+ATOM   1001  CA  THR B  42      11.848  34.619  13.727  1.00 33.70      1HRP1194
+ATOM   1002  C   THR B  42      12.410  35.510  14.828  1.00 33.70      1HRP1195
+ATOM   1003  O   THR B  42      13.498  35.239  15.335  1.00 33.70      1HRP1196
+ATOM   1004  CB  THR B  42      10.833  33.608  14.274  1.00 35.30      1HRP1197
+ATOM   1005  OG1 THR B  42      11.510  32.632  15.076  1.00 35.30      1HRP1198
+ATOM   1006  CG2 THR B  42      10.147  32.895  13.117  1.00 35.30      1HRP1199
+ATOM   1007  N   ARG B  43      11.725  36.603  15.157  1.00 27.50      1HRP1200
+ATOM   1008  CA  ARG B  43      12.217  37.496  16.208  1.00 27.50      1HRP1201
+ATOM   1009  C   ARG B  43      11.981  36.884  17.594  1.00 27.50      1HRP1202
+ATOM   1010  O   ARG B  43      11.072  36.070  17.770  1.00 27.50      1HRP1203
+ATOM   1011  CB  ARG B  43      11.506  38.855  16.155  1.00 42.90      1HRP1204
+ATOM   1012  CG  ARG B  43      11.357  39.498  14.782  1.00 42.90      1HRP1205
+ATOM   1013  CD  ARG B  43      10.740  40.900  14.906  1.00 42.90      1HRP1206
+ATOM   1014  NE  ARG B  43       9.938  41.260  13.735  1.00 42.90      1HRP1207
+ATOM   1015  CZ  ARG B  43      10.126  42.349  12.990  1.00 42.90      1HRP1208
+ATOM   1016  NH1 ARG B  43      11.089  43.200  13.301  1.00 42.90      1HRP1209
+ATOM   1017  NH2 ARG B  43       9.349  42.594  11.938  1.00 42.90      1HRP1210
+ATOM   1018  N   VAL B  44      12.828  37.229  18.561  1.00 20.20      1HRP1211
+ATOM   1019  CA  VAL B  44      12.643  36.732  19.922  1.00 20.20      1HRP1212
+ATOM   1020  C   VAL B  44      11.818  37.762  20.676  1.00 20.20      1HRP1213
+ATOM   1021  O   VAL B  44      10.945  37.415  21.468  1.00 20.20      1HRP1214
+ATOM   1022  CB  VAL B  44      13.965  36.546  20.695  1.00 10.00      1HRP1215
+ATOM   1023  CG1 VAL B  44      14.626  35.256  20.326  1.00 10.00      1HRP1216
+ATOM   1024  CG2 VAL B  44      14.880  37.714  20.446  1.00 10.00      1HRP1217
+ATOM   1025  N   LEU B  45      12.109  39.035  20.434  1.00 25.80      1HRP1218
+ATOM   1026  CA  LEU B  45      11.422  40.140  21.092  1.00 25.80      1HRP1219
+ATOM   1027  C   LEU B  45       9.946  40.119  20.727  1.00 25.80      1HRP1220
+ATOM   1028  O   LEU B  45       9.600  39.952  19.559  1.00 25.80      1HRP1221
+ATOM   1029  CB  LEU B  45      12.071  41.449  20.636  1.00 17.10      1HRP1222
+ATOM   1030  CG  LEU B  45      11.959  42.779  21.385  1.00 17.10      1HRP1223
+ATOM   1031  CD1 LEU B  45      10.665  43.488  21.063  1.00 17.10      1HRP1224
+ATOM   1032  CD2 LEU B  45      12.128  42.562  22.880  1.00 17.10      1HRP1225
+ATOM   1033  N   GLN B  46       9.087  40.182  21.743  1.00 47.90      1HRP1226
+ATOM   1034  CA  GLN B  46       7.648  40.201  21.536  1.00 47.90      1HRP1227
+ATOM   1035  C   GLN B  46       7.233  41.642  21.272  1.00 47.90      1HRP1228
+ATOM   1036  O   GLN B  46       8.024  42.415  20.726  1.00 47.90      1HRP1229
+ATOM   1037  CB  GLN B  46       6.891  39.608  22.732  1.00 52.90      1HRP1230
+ATOM   1038  CG  GLN B  46       7.020  38.097  22.864  1.00 52.90      1HRP1231
+ATOM   1039  CD  GLN B  46       6.930  37.380  21.516  1.00 52.90      1HRP1232
+ATOM   1040  OE1 GLN B  46       5.905  37.435  20.834  1.00 52.90      1HRP1233
+ATOM   1041  NE2 GLN B  46       8.016  36.735  21.116  1.00 52.90      1HRP1234
+ATOM   1042  N   GLY B  47       6.018  42.025  21.664  1.00 50.00      1HRP1235
+ATOM   1043  CA  GLY B  47       5.558  43.379  21.377  1.00 50.00      1HRP1236
+ATOM   1044  C   GLY B  47       5.696  43.474  19.873  1.00 50.00      1HRP1237
+ATOM   1045  O   GLY B  47       5.984  44.536  19.312  1.00 50.00      1HRP1238
+ATOM   1046  N   VAL B  48       5.445  42.309  19.265  1.00 50.00      1HRP1239
+ATOM   1047  CA  VAL B  48       5.572  42.016  17.844  1.00 50.00      1HRP1240
+ATOM   1048  C   VAL B  48       5.295  43.146  16.866  1.00 50.00      1HRP1241
+ATOM   1049  O   VAL B  48       4.237  43.256  16.233  1.00 50.00      1HRP1242
+ATOM   1050  CB  VAL B  48       4.806  40.705  17.420  1.00 59.00      1HRP1243
+ATOM   1051  CG1 VAL B  48       5.339  40.197  16.066  1.00 59.00      1HRP1244
+ATOM   1052  CG2 VAL B  48       4.955  39.609  18.486  1.00 59.00      1HRP1245
+ATOM   1053  N   LEU B  49       6.286  44.010  16.792  1.00 50.00      1HRP1246
+ATOM   1054  CA  LEU B  49       6.303  45.139  15.889  1.00 50.00      1HRP1247
+ATOM   1055  C   LEU B  49       6.232  44.475  14.503  1.00 50.00      1HRP1248
+ATOM   1056  O   LEU B  49       6.880  43.448  14.287  1.00 50.00      1HRP1249
+ATOM   1057  CB  LEU B  49       7.647  45.849  16.117  1.00 51.30      1HRP1250
+ATOM   1058  CG  LEU B  49       8.590  45.016  17.026  1.00 51.30      1HRP1251
+ATOM   1059  CD1 LEU B  49       9.432  44.031  16.229  1.00 51.30      1HRP1252
+ATOM   1060  CD2 LEU B  49       9.469  45.881  17.905  1.00 51.30      1HRP1253
+ATOM   1061  N   PRO B  50       5.445  45.038  13.552  1.00 46.90      1HRP1254
+ATOM   1062  CA  PRO B  50       5.224  44.555  12.175  1.00 46.90      1HRP1255
+ATOM   1063  C   PRO B  50       5.939  43.264  11.757  1.00 46.90      1HRP1256
+ATOM   1064  O   PRO B  50       6.792  43.254  10.867  1.00 46.90      1HRP1257
+ATOM   1065  CB  PRO B  50       5.666  45.757  11.348  1.00 51.00      1HRP1258
+ATOM   1066  CG  PRO B  50       5.089  46.913  12.173  1.00 51.00      1HRP1259
+ATOM   1067  CD  PRO B  50       5.026  46.438  13.652  1.00 51.00      1HRP1260
+ATOM   1068  N   ALA B  51       5.563  42.183  12.450  1.00 44.60      1HRP1261
+ATOM   1069  CA  ALA B  51       6.089  40.831  12.273  1.00 44.60      1HRP1262
+ATOM   1070  C   ALA B  51       6.873  40.582  11.013  1.00 44.60      1HRP1263
+ATOM   1071  O   ALA B  51       6.401  40.783   9.889  1.00 44.60      1HRP1264
+ATOM   1072  CB  ALA B  51       4.989  39.807  12.415  1.00 44.00      1HRP1265
+ATOM   1073  N   LEU B  52       8.087  40.107  11.245  1.00 40.60      1HRP1266
+ATOM   1074  CA  LEU B  52       9.046  39.824  10.194  1.00 40.60      1HRP1267
+ATOM   1075  C   LEU B  52       8.594  38.772   9.181  1.00 40.60      1HRP1268
+ATOM   1076  O   LEU B  52       8.418  37.602   9.523  1.00 40.60      1HRP1269
+ATOM   1077  CB  LEU B  52      10.379  39.423  10.839  1.00 42.90      1HRP1270
+ATOM   1078  CG  LEU B  52      11.675  39.415  10.028  1.00 42.90      1HRP1271
+ATOM   1079  CD1 LEU B  52      12.105  37.982   9.750  1.00 42.90      1HRP1272
+ATOM   1080  CD2 LEU B  52      11.522  40.224   8.740  1.00 42.90      1HRP1273
+ATOM   1081  N   PRO B  53       8.346  39.203   7.940  1.00 30.70      1HRP1274
+ATOM   1082  CA  PRO B  53       7.922  38.311   6.864  1.00 30.70      1HRP1275
+ATOM   1083  C   PRO B  53       9.106  37.473   6.390  1.00 30.70      1HRP1276
+ATOM   1084  O   PRO B  53      10.236  37.961   6.279  1.00 30.70      1HRP1277
+ATOM   1085  CB  PRO B  53       7.442  39.289   5.792  1.00 35.40      1HRP1278
+ATOM   1086  CG  PRO B  53       8.293  40.486   6.020  1.00 35.40      1HRP1279
+ATOM   1087  CD  PRO B  53       8.267  40.607   7.514  1.00 35.40      1HRP1280
+ATOM   1088  N   GLN B  54       8.849  36.204   6.099  1.00 24.00      1HRP1281
+ATOM   1089  CA  GLN B  54       9.919  35.327   5.669  1.00 24.00      1HRP1282
+ATOM   1090  C   GLN B  54      10.044  35.118   4.177  1.00 24.00      1HRP1283
+ATOM   1091  O   GLN B  54       9.081  35.271   3.414  1.00 24.00      1HRP1284
+ATOM   1092  CB  GLN B  54       9.827  33.993   6.391  1.00 41.30      1HRP1285
+ATOM   1093  CG  GLN B  54       9.809  34.152   7.895  1.00 41.30      1HRP1286
+ATOM   1094  CD  GLN B  54       9.952  32.831   8.614  1.00 41.30      1HRP1287
+ATOM   1095  OE1 GLN B  54      11.010  32.543   9.191  1.00 41.30      1HRP1288
+ATOM   1096  NE2 GLN B  54       8.900  32.005   8.575  1.00 41.30      1HRP1289
+ATOM   1097  N   VAL B  55      11.255  34.732   3.797  1.00 11.70      1HRP1290
+ATOM   1098  CA  VAL B  55      11.643  34.479   2.428  1.00 11.70      1HRP1291
+ATOM   1099  C   VAL B  55      11.492  33.020   1.937  1.00 11.70      1HRP1292
+ATOM   1100  O   VAL B  55      11.582  32.061   2.713  1.00 11.70      1HRP1293
+ATOM   1101  CB  VAL B  55      13.096  34.885   2.251  1.00 10.00      1HRP1294
+ATOM   1102  CG1 VAL B  55      13.247  36.351   2.545  1.00 10.00      1HRP1295
+ATOM   1103  CG2 VAL B  55      13.981  34.084   3.187  1.00 10.00      1HRP1296
+ATOM   1104  N   VAL B  56      11.288  32.865   0.633  1.00 10.00      1HRP1297
+ATOM   1105  CA  VAL B  56      11.169  31.558   0.009  1.00 10.00      1HRP1298
+ATOM   1106  C   VAL B  56      12.149  31.522  -1.170  1.00 10.00      1HRP1299
+ATOM   1107  O   VAL B  56      12.576  32.573  -1.637  1.00 10.00      1HRP1300
+ATOM   1108  CB  VAL B  56       9.732  31.320  -0.492  1.00 10.00      1HRP1301
+ATOM   1109  CG1 VAL B  56       8.759  31.421   0.662  1.00 10.00      1HRP1302
+ATOM   1110  CG2 VAL B  56       9.375  32.331  -1.535  1.00 10.00      1HRP1303
+ATOM   1111  N   CYS B  57      12.582  30.334  -1.593  1.00 10.00      1HRP1304
+ATOM   1112  CA  CYS B  57      13.489  30.233  -2.747  1.00 10.00      1HRP1305
+ATOM   1113  C   CYS B  57      12.572  30.632  -3.890  1.00 10.00      1HRP1306
+ATOM   1114  O   CYS B  57      11.486  30.062  -4.014  1.00 10.00      1HRP1307
+ATOM   1115  CB  CYS B  57      13.964  28.803  -2.911  1.00 10.00      1HRP1308
+ATOM   1116  SG  CYS B  57      15.020  28.489  -4.344  1.00 10.00      1HRP1309
+ATOM   1117  N   ASN B  58      12.969  31.592  -4.719  1.00 10.00      1HRP1310
+ATOM   1118  CA  ASN B  58      12.059  32.063  -5.762  1.00 10.00      1HRP1311
+ATOM   1119  C   ASN B  58      12.676  32.468  -7.109  1.00 10.00      1HRP1312
+ATOM   1120  O   ASN B  58      13.840  32.816  -7.188  1.00 10.00      1HRP1313
+ATOM   1121  CB  ASN B  58      11.277  33.232  -5.177  1.00 22.20      1HRP1314
+ATOM   1122  CG  ASN B  58       9.956  33.435  -5.842  1.00 22.20      1HRP1315
+ATOM   1123  OD1 ASN B  58       9.661  32.822  -6.863  1.00 22.20      1HRP1316
+ATOM   1124  ND2 ASN B  58       9.128  34.296  -5.259  1.00 22.20      1HRP1317
+ATOM   1125  N   TYR B  59      11.886  32.440  -8.169  1.00 12.90      1HRP1318
+ATOM   1126  CA  TYR B  59      12.359  32.810  -9.496  1.00 12.90      1HRP1319
+ATOM   1127  C   TYR B  59      12.971  34.207  -9.513  1.00 12.90      1HRP1320
+ATOM   1128  O   TYR B  59      12.476  35.122  -8.843  1.00 12.90      1HRP1321
+ATOM   1129  CB  TYR B  59      11.183  32.845 -10.472  1.00 10.00      1HRP1322
+ATOM   1130  CG  TYR B  59      10.662  31.525 -10.940  1.00 10.00      1HRP1323
+ATOM   1131  CD1 TYR B  59      11.270  30.863 -11.984  1.00 10.00      1HRP1324
+ATOM   1132  CD2 TYR B  59       9.548  30.951 -10.365  1.00 10.00      1HRP1325
+ATOM   1133  CE1 TYR B  59      10.786  29.669 -12.452  1.00 10.00      1HRP1326
+ATOM   1134  CE2 TYR B  59       9.053  29.747 -10.838  1.00 10.00      1HRP1327
+ATOM   1135  CZ  TYR B  59       9.689  29.115 -11.880  1.00 10.00      1HRP1328
+ATOM   1136  OH  TYR B  59       9.253  27.908 -12.344  1.00 10.00      1HRP1329
+ATOM   1137  N   ARG B  60      13.995  34.394 -10.337  1.00 21.60      1HRP1330
+ATOM   1138  CA  ARG B  60      14.634  35.700 -10.487  1.00 21.60      1HRP1331
+ATOM   1139  C   ARG B  60      14.467  36.081 -11.959  1.00 21.60      1HRP1332
+ATOM   1140  O   ARG B  60      13.535  36.806 -12.305  1.00 21.60      1HRP1333
+ATOM   1141  CB  ARG B  60      16.099  35.621 -10.104  1.00 45.20      1HRP1334
+ATOM   1142  CG  ARG B  60      16.846  36.893 -10.263  1.00 45.20      1HRP1335
+ATOM   1143  CD  ARG B  60      18.124  36.805  -9.464  1.00 45.20      1HRP1336
+ATOM   1144  NE  ARG B  60      19.269  37.370 -10.162  1.00 45.20      1HRP1337
+ATOM   1145  CZ  ARG B  60      19.484  38.675 -10.338  1.00 45.20      1HRP1338
+ATOM   1146  NH1 ARG B  60      18.617  39.584  -9.867  1.00 45.20      1HRP1339
+ATOM   1147  NH2 ARG B  60      20.595  39.079 -10.955  1.00 45.20      1HRP1340
+ATOM   1148  N   ASP B  61      15.315  35.546 -12.832  1.00 28.60      1HRP1341
+ATOM   1149  CA  ASP B  61      15.200  35.820 -14.267  1.00 28.60      1HRP1342
+ATOM   1150  C   ASP B  61      14.532  34.624 -14.924  1.00 28.60      1HRP1343
+ATOM   1151  O   ASP B  61      15.039  33.503 -14.824  1.00 28.60      1HRP1344
+ATOM   1152  CB  ASP B  61      16.569  36.026 -14.900  1.00 38.40      1HRP1345
+ATOM   1153  CG  ASP B  61      17.151  37.376 -14.581  1.00 38.40      1HRP1346
+ATOM   1154  OD1 ASP B  61      16.533  38.382 -14.994  1.00 38.40      1HRP1347
+ATOM   1155  OD2 ASP B  61      18.214  37.436 -13.915  1.00 38.40      1HRP1348
+ATOM   1156  N   VAL B  62      13.428  34.861 -15.631  1.00 36.10      1HRP1349
+ATOM   1157  CA  VAL B  62      12.670  33.798 -16.299  1.00 36.10      1HRP1350
+ATOM   1158  C   VAL B  62      12.739  33.850 -17.820  1.00 36.10      1HRP1351
+ATOM   1159  O   VAL B  62      12.894  34.918 -18.421  1.00 36.10      1HRP1352
+ATOM   1160  CB  VAL B  62      11.166  33.869 -15.933  1.00 32.20      1HRP1353
+ATOM   1161  CG1 VAL B  62      10.502  35.095 -16.585  1.00 32.20      1HRP1354
+ATOM   1162  CG2 VAL B  62      10.455  32.600 -16.373  1.00 32.20      1HRP1355
+ATOM   1163  N   ARG B  63      12.584  32.697 -18.448  1.00 27.90      1HRP1356
+ATOM   1164  CA  ARG B  63      12.566  32.643 -19.895  1.00 27.90      1HRP1357
+ATOM   1165  C   ARG B  63      11.410  31.741 -20.218  1.00 27.90      1HRP1358
+ATOM   1166  O   ARG B  63      10.982  30.964 -19.365  1.00 27.90      1HRP1359
+ATOM   1167  CB  ARG B  63      13.847  32.041 -20.462  1.00 51.50      1HRP1360
+ATOM   1168  CG  ARG B  63      13.846  32.024 -21.983  1.00 51.50      1HRP1361
+ATOM   1169  CD  ARG B  63      15.229  31.843 -22.559  1.00 51.50      1HRP1362
+ATOM   1170  NE  ARG B  63      15.696  30.475 -22.404  1.00 51.50      1HRP1363
+ATOM   1171  CZ  ARG B  63      15.433  29.502 -23.272  1.00 51.50      1HRP1364
+ATOM   1172  NH1 ARG B  63      14.708  29.757 -24.362  1.00 51.50      1HRP1365
+ATOM   1173  NH2 ARG B  63      15.910  28.279 -23.062  1.00 51.50      1HRP1366
+ATOM   1174  N   PHE B  64      10.860  31.875 -21.416  1.00 25.90      1HRP1367
+ATOM   1175  CA  PHE B  64       9.754  31.017 -21.804  1.00 25.90      1HRP1368
+ATOM   1176  C   PHE B  64      10.076  30.238 -23.051  1.00 25.90      1HRP1369
+ATOM   1177  O   PHE B  64      10.819  30.712 -23.901  1.00 25.90      1HRP1370
+ATOM   1178  CB  PHE B  64       8.497  31.840 -22.006  1.00 29.40      1HRP1371
+ATOM   1179  CG  PHE B  64       7.973  32.423 -20.744  1.00 29.40      1HRP1372
+ATOM   1180  CD1 PHE B  64       8.449  33.639 -20.282  1.00 29.40      1HRP1373
+ATOM   1181  CD2 PHE B  64       7.031  31.737 -19.994  1.00 29.40      1HRP1374
+ATOM   1182  CE1 PHE B  64       7.997  34.177 -19.086  1.00 29.40      1HRP1375
+ATOM   1183  CE2 PHE B  64       6.565  32.256 -18.797  1.00 29.40      1HRP1376
+ATOM   1184  CZ  PHE B  64       7.055  33.486 -18.335  1.00 29.40      1HRP1377
+ATOM   1185  N   GLU B  65       9.579  29.011 -23.108  1.00 27.40      1HRP1378
+ATOM   1186  CA  GLU B  65       9.787  28.133 -24.248  1.00 27.40      1HRP1379
+ATOM   1187  C   GLU B  65       8.466  27.480 -24.579  1.00 27.40      1HRP1380
+ATOM   1188  O   GLU B  65       7.756  26.994 -23.695  1.00 27.40      1HRP1381
+ATOM   1189  CB  GLU B  65      10.827  27.060 -23.945  1.00 34.70      1HRP1382
+ATOM   1190  CG  GLU B  65      12.230  27.591 -23.945  1.00 34.70      1HRP1383
+ATOM   1191  CD  GLU B  65      13.262  26.509 -23.761  1.00 34.70      1HRP1384
+ATOM   1192  OE1 GLU B  65      13.033  25.590 -22.943  1.00 34.70      1HRP1385
+ATOM   1193  OE2 GLU B  65      14.316  26.596 -24.432  1.00 34.70      1HRP1386
+ATOM   1194  N   SER B  66       8.116  27.488 -25.853  1.00 28.80      1HRP1387
+ATOM   1195  CA  SER B  66       6.861  26.908 -26.265  1.00 28.80      1HRP1388
+ATOM   1196  C   SER B  66       7.055  25.482 -26.737  1.00 28.80      1HRP1389
+ATOM   1197  O   SER B  66       8.183  24.992 -26.853  1.00 28.80      1HRP1390
+ATOM   1198  CB  SER B  66       6.216  27.751 -27.358  1.00 37.70      1HRP1391
+ATOM   1199  OG  SER B  66       7.146  28.081 -28.371  1.00 37.70      1HRP1392
+ATOM   1200  N   ILE B  67       5.936  24.821 -26.994  1.00 27.90      1HRP1393
+ATOM   1201  CA  ILE B  67       5.932  23.448 -27.444  1.00 27.90      1HRP1394
+ATOM   1202  C   ILE B  67       4.571  23.193 -28.092  1.00 27.90      1HRP1395
+ATOM   1203  O   ILE B  67       3.571  23.821 -27.708  1.00 27.90      1HRP1396
+ATOM   1204  CB  ILE B  67       6.153  22.532 -26.238  1.00 18.50      1HRP1397
+ATOM   1205  CG1 ILE B  67       5.849  21.088 -26.586  1.00 18.50      1HRP1398
+ATOM   1206  CG2 ILE B  67       5.285  22.961 -25.109  1.00 18.50      1HRP1399
+ATOM   1207  CD1 ILE B  67       5.951  20.162 -25.404  1.00 18.50      1HRP1400
+ATOM   1208  N   ARG B  68       4.547  22.378 -29.146  1.00 21.20      1HRP1401
+ATOM   1209  CA  ARG B  68       3.292  22.079 -29.813  1.00 21.20      1HRP1402
+ATOM   1210  C   ARG B  68       2.807  20.756 -29.276  1.00 21.20      1HRP1403
+ATOM   1211  O   ARG B  68       3.496  19.737 -29.372  1.00 21.20      1HRP1404
+ATOM   1212  CB  ARG B  68       3.470  22.005 -31.328  1.00 59.70      1HRP1405
+ATOM   1213  CG  ARG B  68       2.361  22.713 -32.132  1.00 59.70      1HRP1406
+ATOM   1214  CD  ARG B  68       2.744  22.847 -33.625  1.00 59.70      1HRP1407
+ATOM   1215  NE  ARG B  68       1.872  23.736 -34.409  1.00 59.70      1HRP1408
+ATOM   1216  CZ  ARG B  68       0.665  23.403 -34.878  1.00 59.70      1HRP1409
+ATOM   1217  NH1 ARG B  68       0.163  22.185 -34.644  1.00 59.70      1HRP1410
+ATOM   1218  NH2 ARG B  68      -0.033  24.279 -35.610  1.00 59.70      1HRP1411
+ATOM   1219  N   LEU B  69       1.626  20.799 -28.684  1.00 21.70      1HRP1412
+ATOM   1220  CA  LEU B  69       0.989  19.641 -28.093  1.00 21.70      1HRP1413
+ATOM   1221  C   LEU B  69       0.467  18.689 -29.146  1.00 21.70      1HRP1414
+ATOM   1222  O   LEU B  69      -0.247  19.101 -30.080  1.00 21.70      1HRP1415
+ATOM   1223  CB  LEU B  69      -0.196  20.092 -27.252  1.00 10.00      1HRP1416
+ATOM   1224  CG  LEU B  69       0.020  20.287 -25.761  1.00 10.00      1HRP1417
+ATOM   1225  CD1 LEU B  69      -1.192  20.958 -25.152  1.00 10.00      1HRP1418
+ATOM   1226  CD2 LEU B  69       0.251  18.940 -25.120  1.00 10.00      1HRP1419
+ATOM   1227  N   PRO B  70       0.808  17.398 -29.028  1.00 26.10      1HRP1420
+ATOM   1228  CA  PRO B  70       0.324  16.432 -30.013  1.00 26.10      1HRP1421
+ATOM   1229  C   PRO B  70      -1.097  15.993 -29.684  1.00 26.10      1HRP1422
+ATOM   1230  O   PRO B  70      -1.533  16.055 -28.540  1.00 26.10      1HRP1423
+ATOM   1231  CB  PRO B  70       1.304  15.273 -29.858  1.00 26.40      1HRP1424
+ATOM   1232  CG  PRO B  70       1.599  15.290 -28.402  1.00 26.40      1HRP1425
+ATOM   1233  CD  PRO B  70       1.805  16.783 -28.136  1.00 26.40      1HRP1426
+ATOM   1234  N   GLY B  71      -1.825  15.569 -30.702  1.00 31.00      1HRP1427
+ATOM   1235  CA  GLY B  71      -3.181  15.100 -30.489  1.00 31.00      1HRP1428
+ATOM   1236  C   GLY B  71      -4.262  16.153 -30.572  1.00 31.00      1HRP1429
+ATOM   1237  O   GLY B  71      -5.449  15.832 -30.660  1.00 31.00      1HRP1430
+ATOM   1238  N   CYS B  72      -3.864  17.411 -30.533  1.00 27.70      1HRP1431
+ATOM   1239  CA  CYS B  72      -4.831  18.492 -30.591  1.00 27.70      1HRP1432
+ATOM   1240  C   CYS B  72      -5.626  18.476 -31.888  1.00 27.70      1HRP1433
+ATOM   1241  O   CYS B  72      -5.052  18.386 -32.968  1.00 27.70      1HRP1434
+ATOM   1242  CB  CYS B  72      -4.128  19.827 -30.434  1.00 30.10      1HRP1435
+ATOM   1243  SG  CYS B  72      -3.193  19.972 -28.887  1.00 30.10      1HRP1436
+ATOM   1244  N   PRO B  73      -6.964  18.531 -31.788  1.00 22.60      1HRP1437
+ATOM   1245  CA  PRO B  73      -7.872  18.528 -32.927  1.00 22.60      1HRP1438
+ATOM   1246  C   PRO B  73      -7.761  19.840 -33.681  1.00 22.60      1HRP1439
+ATOM   1247  O   PRO B  73      -7.255  20.816 -33.157  1.00 22.60      1HRP1440
+ATOM   1248  CB  PRO B  73      -9.233  18.384 -32.260  1.00 24.00      1HRP1441
+ATOM   1249  CG  PRO B  73      -9.053  19.125 -30.994  1.00 24.00      1HRP1442
+ATOM   1250  CD  PRO B  73      -7.728  18.582 -30.532  1.00 24.00      1HRP1443
+ATOM   1251  N   ARG B  74      -8.249  19.854 -34.915  1.00 32.80      1HRP1444
+ATOM   1252  CA  ARG B  74      -8.201  21.046 -35.756  1.00 32.80      1HRP1445
+ATOM   1253  C   ARG B  74      -8.975  22.175 -35.103  1.00 32.80      1HRP1446
+ATOM   1254  O   ARG B  74     -10.092  21.970 -34.657  1.00 32.80      1HRP1447
+ATOM   1255  CB  ARG B  74      -8.790  20.745 -37.145  1.00 57.50      1HRP1448
+ATOM   1256  CG  ARG B  74      -7.858  19.958 -38.073  1.00 57.50      1HRP1449
+ATOM   1257  CD  ARG B  74      -7.958  20.454 -39.536  1.00 57.50      1HRP1450
+ATOM   1258  NE  ARG B  74      -6.849  19.987 -40.373  1.00 57.50      1HRP1451
+ATOM   1259  CZ  ARG B  74      -6.806  18.808 -40.998  1.00 57.50      1HRP1452
+ATOM   1260  NH1 ARG B  74      -7.824  17.946 -40.898  1.00 57.50      1HRP1453
+ATOM   1261  NH2 ARG B  74      -5.724  18.476 -41.699  1.00 57.50      1HRP1454
+ATOM   1262  N   GLY B  75      -8.380  23.353 -35.016  1.00 22.20      1HRP1455
+ATOM   1263  CA  GLY B  75      -9.083  24.459 -34.405  1.00 22.20      1HRP1456
+ATOM   1264  C   GLY B  75      -8.334  24.902 -33.174  1.00 22.20      1HRP1457
+ATOM   1265  O   GLY B  75      -7.847  26.029 -33.128  1.00 22.20      1HRP1458
+ATOM   1266  N   VAL B  76      -8.247  24.022 -32.183  1.00 20.10      1HRP1459
+ATOM   1267  CA  VAL B  76      -7.545  24.274 -30.925  1.00 20.10      1HRP1460
+ATOM   1268  C   VAL B  76      -6.119  24.717 -31.183  1.00 20.10      1HRP1461
+ATOM   1269  O   VAL B  76      -5.477  24.211 -32.107  1.00 20.10      1HRP1462
+ATOM   1270  CB  VAL B  76      -7.423  22.972 -30.101  1.00 10.20      1HRP1463
+ATOM   1271  CG1 VAL B  76      -6.523  23.173 -28.883  1.00 10.20      1HRP1464
+ATOM   1272  CG2 VAL B  76      -8.800  22.461 -29.709  1.00 10.20      1HRP1465
+ATOM   1273  N   ASN B  77      -5.615  25.655 -30.385  1.00 21.00      1HRP1466
+ATOM   1274  CA  ASN B  77      -4.227  26.084 -30.552  1.00 21.00      1HRP1467
+ATOM   1275  C   ASN B  77      -3.437  25.121 -29.689  1.00 21.00      1HRP1468
+ATOM   1276  O   ASN B  77      -3.758  24.958 -28.513  1.00 21.00      1HRP1469
+ATOM   1277  CB  ASN B  77      -4.027  27.513 -30.072  1.00 20.10      1HRP1470
+ATOM   1278  CG  ASN B  77      -2.666  28.021 -30.414  1.00 20.10      1HRP1471
+ATOM   1279  OD1 ASN B  77      -1.707  27.238 -30.486  1.00 20.10      1HRP1472
+ATOM   1280  ND2 ASN B  77      -2.555  29.321 -30.655  1.00 20.10      1HRP1473
+ATOM   1281  N   PRO B  78      -2.375  24.501 -30.221  1.00 12.10      1HRP1474
+ATOM   1282  CA  PRO B  78      -1.616  23.553 -29.410  1.00 12.10      1HRP1475
+ATOM   1283  C   PRO B  78      -0.251  24.002 -28.959  1.00 12.10      1HRP1476
+ATOM   1284  O   PRO B  78       0.530  23.207 -28.466  1.00 12.10      1HRP1477
+ATOM   1285  CB  PRO B  78      -1.493  22.356 -30.347  1.00 14.00      1HRP1478
+ATOM   1286  CG  PRO B  78      -1.449  23.023 -31.773  1.00 14.00      1HRP1479
+ATOM   1287  CD  PRO B  78      -1.875  24.489 -31.602  1.00 14.00      1HRP1480
+ATOM   1288  N   VAL B  79       0.092  25.245 -29.213  1.00 15.00      1HRP1481
+ATOM   1289  CA  VAL B  79       1.393  25.690 -28.787  1.00 15.00      1HRP1482
+ATOM   1290  C   VAL B  79       1.223  26.147 -27.365  1.00 15.00      1HRP1483
+ATOM   1291  O   VAL B  79       0.327  26.946 -27.096  1.00 15.00      1HRP1484
+ATOM   1292  CB  VAL B  79       1.841  26.856 -29.626  1.00 17.70      1HRP1485
+ATOM   1293  CG1 VAL B  79       3.175  27.369 -29.134  1.00 17.70      1HRP1486
+ATOM   1294  CG2 VAL B  79       1.890  26.435 -31.092  1.00 17.70      1HRP1487
+ATOM   1295  N   VAL B  80       2.033  25.623 -26.443  1.00 12.90      1HRP1488
+ATOM   1296  CA  VAL B  80       1.951  26.026 -25.031  1.00 12.90      1HRP1489
+ATOM   1297  C   VAL B  80       3.315  26.380 -24.489  1.00 12.90      1HRP1490
+ATOM   1298  O   VAL B  80       4.254  25.595 -24.547  1.00 12.90      1HRP1491
+ATOM   1299  CB  VAL B  80       1.272  24.979 -24.159  1.00 11.40      1HRP1492
+ATOM   1300  CG1 VAL B  80      -0.199  25.013 -24.413  1.00 11.40      1HRP1493
+ATOM   1301  CG2 VAL B  80       1.784  23.600 -24.475  1.00 11.40      1HRP1494
+ATOM   1302  N   SER B  81       3.425  27.607 -24.012  1.00 19.20      1HRP1495
+ATOM   1303  CA  SER B  81       4.682  28.137 -23.507  1.00 19.20      1HRP1496
+ATOM   1304  C   SER B  81       4.891  27.853 -22.036  1.00 19.20      1HRP1497
+ATOM   1305  O   SER B  81       3.956  27.909 -21.240  1.00 19.20      1HRP1498
+ATOM   1306  CB  SER B  81       4.708  29.640 -23.739  1.00 23.40      1HRP1499
+ATOM   1307  OG  SER B  81       3.479  30.222 -23.322  1.00 23.40      1HRP1500
+ATOM   1308  N   TYR B  82       6.130  27.598 -21.661  1.00 16.20      1HRP1501
+ATOM   1309  CA  TYR B  82       6.427  27.320 -20.279  1.00 16.20      1HRP1502
+ATOM   1310  C   TYR B  82       7.573  28.162 -19.772  1.00 16.20      1HRP1503
+ATOM   1311  O   TYR B  82       8.473  28.521 -20.532  1.00 16.20      1HRP1504
+ATOM   1312  CB  TYR B  82       6.713  25.841 -20.089  1.00 14.00      1HRP1505
+ATOM   1313  CG  TYR B  82       7.665  25.254 -21.073  1.00 14.00      1HRP1506
+ATOM   1314  CD1 TYR B  82       9.017  25.286 -20.839  1.00 14.00      1HRP1507
+ATOM   1315  CD2 TYR B  82       7.210  24.579 -22.197  1.00 14.00      1HRP1508
+ATOM   1316  CE1 TYR B  82       9.905  24.651 -21.686  1.00 14.00      1HRP1509
+ATOM   1317  CE2 TYR B  82       8.101  23.940 -23.054  1.00 14.00      1HRP1510
+ATOM   1318  CZ  TYR B  82       9.450  23.983 -22.778  1.00 14.00      1HRP1511
+ATOM   1319  OH  TYR B  82      10.370  23.358 -23.571  1.00 14.00      1HRP1512
+ATOM   1320  N   ALA B  83       7.517  28.509 -18.492  1.00 14.20      1HRP1513
+ATOM   1321  CA  ALA B  83       8.547  29.325 -17.881  1.00 14.20      1HRP1514
+ATOM   1322  C   ALA B  83       9.776  28.475 -17.587  1.00 14.20      1HRP1515
+ATOM   1323  O   ALA B  83       9.645  27.310 -17.254  1.00 14.20      1HRP1516
+ATOM   1324  CB  ALA B  83       8.021  29.921 -16.613  1.00 10.00      1HRP1517
+ATOM   1325  N   VAL B  84      10.965  29.040 -17.749  1.00 14.90      1HRP1518
+ATOM   1326  CA  VAL B  84      12.203  28.335 -17.459  1.00 14.90      1HRP1519
+ATOM   1327  C   VAL B  84      13.084  29.294 -16.643  1.00 14.90      1HRP1520
+ATOM   1328  O   VAL B  84      13.265  30.475 -16.996  1.00 14.90      1HRP1521
+ATOM   1329  CB  VAL B  84      12.890  27.798 -18.734  1.00 15.10      1HRP1522
+ATOM   1330  CG1 VAL B  84      12.221  28.356 -19.959  1.00 15.10      1HRP1523
+ATOM   1331  CG2 VAL B  84      14.364  28.111 -18.739  1.00 15.10      1HRP1524
+ATOM   1332  N   ALA B  85      13.544  28.797 -15.498  1.00 18.90      1HRP1525
+ATOM   1333  CA  ALA B  85      14.337  29.569 -14.558  1.00 18.90      1HRP1526
+ATOM   1334  C   ALA B  85      15.766  29.791 -14.972  1.00 18.90      1HRP1527
+ATOM   1335  O   ALA B  85      16.533  28.835 -15.134  1.00 18.90      1HRP1528
+ATOM   1336  CB  ALA B  85      14.293  28.910 -13.172  1.00 15.20      1HRP1529
+ATOM   1337  N   LEU B  86      16.112  31.061 -15.162  1.00 22.90      1HRP1530
+ATOM   1338  CA  LEU B  86      17.469  31.449 -15.508  1.00 22.90      1HRP1531
+ATOM   1339  C   LEU B  86      18.200  31.749 -14.214  1.00 22.90      1HRP1532
+ATOM   1340  O   LEU B  86      19.238  31.163 -13.913  1.00 22.90      1HRP1533
+ATOM   1341  CB  LEU B  86      17.452  32.695 -16.375  1.00 27.00      1HRP1534
+ATOM   1342  CG  LEU B  86      16.779  32.469 -17.715  1.00 27.00      1HRP1535
+ATOM   1343  CD1 LEU B  86      16.511  33.817 -18.367  1.00 27.00      1HRP1536
+ATOM   1344  CD2 LEU B  86      17.658  31.560 -18.562  1.00 27.00      1HRP1537
+ATOM   1345  N   SER B  87      17.646  32.668 -13.443  1.00 23.40      1HRP1538
+ATOM   1346  CA  SER B  87      18.238  33.036 -12.173  1.00 23.40      1HRP1539
+ATOM   1347  C   SER B  87      17.234  32.754 -11.074  1.00 23.40      1HRP1540
+ATOM   1348  O   SER B  87      16.026  32.891 -11.265  1.00 23.40      1HRP1541
+ATOM   1349  CB  SER B  87      18.580  34.520 -12.185  1.00 22.80      1HRP1542
+ATOM   1350  OG  SER B  87      19.304  34.847 -13.359  1.00 22.80      1HRP1543
+ATOM   1351  N   CYS B  88      17.720  32.272  -9.948  1.00 25.50      1HRP1544
+ATOM   1352  CA  CYS B  88      16.843  32.023  -8.819  1.00 25.50      1HRP1545
+ATOM   1353  C   CYS B  88      17.420  32.913  -7.737  1.00 25.50      1HRP1546
+ATOM   1354  O   CYS B  88      18.603  33.259  -7.781  1.00 25.50      1HRP1547
+ATOM   1355  CB  CYS B  88      16.877  30.562  -8.378  1.00 22.60      1HRP1548
+ATOM   1356  SG  CYS B  88      16.209  29.382  -9.591  1.00 22.60      1HRP1549
+ATOM   1357  N   GLN B  89      16.559  33.384  -6.848  1.00 22.80      1HRP1550
+ATOM   1358  CA  GLN B  89      16.968  34.237  -5.756  1.00 22.80      1HRP1551
+ATOM   1359  C   GLN B  89      16.104  33.938  -4.560  1.00 22.80      1HRP1552
+ATOM   1360  O   GLN B  89      15.006  33.377  -4.652  1.00 22.80      1HRP1553
+ATOM   1361  CB  GLN B  89      16.855  35.721  -6.107  1.00 36.60      1HRP1554
+ATOM   1362  CG  GLN B  89      15.463  36.302  -5.949  1.00 36.60      1HRP1555
+ATOM   1363  CD  GLN B  89      15.472  37.814  -5.871  1.00 36.60      1HRP1556
+ATOM   1364  OE1 GLN B  89      14.478  38.460  -6.210  1.00 36.60      1HRP1557
+ATOM   1365  NE2 GLN B  89      16.587  38.394  -5.396  1.00 36.60      1HRP1558
+ATOM   1366  N   CYS B  90      16.563  34.450  -3.442  1.00 12.00      1HRP1559
+ATOM   1367  CA  CYS B  90      15.919  34.205  -2.189  1.00 12.00      1HRP1560
+ATOM   1368  C   CYS B  90      15.237  35.494  -1.745  1.00 12.00      1HRP1561
+ATOM   1369  O   CYS B  90      15.890  36.441  -1.318  1.00 12.00      1HRP1562
+ATOM   1370  CB  CYS B  90      17.033  33.775  -1.265  1.00 19.40      1HRP1563
+ATOM   1371  SG  CYS B  90      16.436  32.988   0.218  1.00 19.40      1HRP1564
+ATOM   1372  N   ALA B  91      13.929  35.552  -1.919  1.00 10.00      1HRP1565
+ATOM   1373  CA  ALA B  91      13.187  36.744  -1.570  1.00 10.00      1HRP1566
+ATOM   1374  C   ALA B  91      11.833  36.352  -1.035  1.00 10.00      1HRP1567
+ATOM   1375  O   ALA B  91      11.493  35.183  -1.020  1.00 10.00      1HRP1568
+ATOM   1376  CB  ALA B  91      13.035  37.609  -2.777  1.00 10.00      1HRP1569
+ATOM   1377  N   LEU B  92      11.038  37.324  -0.619  1.00 13.30      1HRP1570
+ATOM   1378  CA  LEU B  92       9.725  37.004  -0.062  1.00 13.30      1HRP1571
+ATOM   1379  C   LEU B  92       8.733  36.547  -1.090  1.00 13.30      1HRP1572
+ATOM   1380  O   LEU B  92       8.887  36.782  -2.276  1.00 13.30      1HRP1573
+ATOM   1381  CB  LEU B  92       9.137  38.176   0.722  1.00 17.50      1HRP1574
+ATOM   1382  CG  LEU B  92       9.307  39.528   0.051  1.00 17.50      1HRP1575
+ATOM   1383  CD1 LEU B  92       8.032  39.898  -0.685  1.00 17.50      1HRP1576
+ATOM   1384  CD2 LEU B  92       9.683  40.559   1.104  1.00 17.50      1HRP1577
+ATOM   1385  N   CYS B  93       7.694  35.890  -0.617  1.00 18.60      1HRP1578
+ATOM   1386  CA  CYS B  93       6.648  35.385  -1.485  1.00 18.60      1HRP1579
+ATOM   1387  C   CYS B  93       5.575  36.470  -1.598  1.00 18.60      1HRP1580
+ATOM   1388  O   CYS B  93       4.797  36.663  -0.662  1.00 18.60      1HRP1581
+ATOM   1389  CB  CYS B  93       6.081  34.130  -0.838  1.00 10.00      1HRP1582
+ATOM   1390  SG  CYS B  93       5.180  33.019  -1.933  1.00 10.00      1HRP1583
+ATOM   1391  N   ARG B  94       5.584  37.239  -2.687  1.00 33.80      1HRP1584
+ATOM   1392  CA  ARG B  94       4.580  38.289  -2.857  1.00 33.80      1HRP1585
+ATOM   1393  C   ARG B  94       3.254  37.637  -3.228  1.00 33.80      1HRP1586
+ATOM   1394  O   ARG B  94       3.077  37.218  -4.364  1.00 33.80      1HRP1587
+ATOM   1395  CB  ARG B  94       4.998  39.316  -3.926  1.00 47.50      1HRP1588
+ATOM   1396  CG  ARG B  94       5.521  40.680  -3.378  1.00 47.50      1HRP1589
+ATOM   1397  CD  ARG B  94       4.633  41.323  -2.251  1.00 47.50      1HRP1590
+ATOM   1398  NE  ARG B  94       3.186  41.385  -2.532  1.00 47.50      1HRP1591
+ATOM   1399  CZ  ARG B  94       2.299  42.072  -1.805  1.00 47.50      1HRP1592
+ATOM   1400  NH1 ARG B  94       2.703  42.781  -0.754  1.00 47.50      1HRP1593
+ATOM   1401  NH2 ARG B  94       0.999  42.027  -2.100  1.00 47.50      1HRP1594
+ATOM   1402  N   ARG B  95       2.304  37.635  -2.292  1.00 38.30      1HRP1595
+ATOM   1403  CA  ARG B  95       0.992  36.997  -2.481  1.00 38.30      1HRP1596
+ATOM   1404  C   ARG B  95       0.083  37.481  -3.621  1.00 38.30      1HRP1597
+ATOM   1405  O   ARG B  95      -0.988  36.909  -3.855  1.00 38.30      1HRP1598
+ATOM   1406  CB  ARG B  95       0.222  36.928  -1.145  1.00 57.10      1HRP1599
+ATOM   1407  CG  ARG B  95       0.381  35.567  -0.446  1.00 57.10      1HRP1600
+ATOM   1408  CD  ARG B  95      -0.326  35.445   0.913  1.00 57.10      1HRP1601
+ATOM   1409  NE  ARG B  95      -0.345  34.051   1.380  1.00 57.10      1HRP1602
+ATOM   1410  CZ  ARG B  95      -0.363  33.658   2.663  1.00 57.10      1HRP1603
+ATOM   1411  NH1 ARG B  95      -0.365  34.551   3.658  1.00 57.10      1HRP1604
+ATOM   1412  NH2 ARG B  95      -0.367  32.353   2.955  1.00 57.10      1HRP1605
+ATOM   1413  N   SER B  96       0.544  38.474  -4.375  1.00 32.90      1HRP1606
+ATOM   1414  CA  SER B  96      -0.228  39.006  -5.490  1.00 32.90      1HRP1607
+ATOM   1415  C   SER B  96      -0.093  38.086  -6.698  1.00 32.90      1HRP1608
+ATOM   1416  O   SER B  96      -1.095  37.686  -7.276  1.00 32.90      1HRP1609
+ATOM   1417  CB  SER B  96       0.244  40.417  -5.838  1.00 40.90      1HRP1610
+ATOM   1418  OG  SER B  96       0.382  41.206  -4.661  1.00 40.90      1HRP1611
+ATOM   1419  N   THR B  97       1.139  37.736  -7.061  1.00 27.10      1HRP1612
+ATOM   1420  CA  THR B  97       1.361  36.861  -8.201  1.00 27.10      1HRP1613
+ATOM   1421  C   THR B  97       1.578  35.414  -7.787  1.00 27.10      1HRP1614
+ATOM   1422  O   THR B  97       1.114  34.503  -8.462  1.00 27.10      1HRP1615
+ATOM   1423  CB  THR B  97       2.589  37.296  -9.039  1.00 29.10      1HRP1616
+ATOM   1424  OG1 THR B  97       3.781  36.696  -8.517  1.00 29.10      1HRP1617
+ATOM   1425  CG2 THR B  97       2.752  38.802  -9.010  1.00 29.10      1HRP1618
+ATOM   1426  N   THR B  98       2.257  35.204  -6.667  1.00 17.50      1HRP1619
+ATOM   1427  CA  THR B  98       2.576  33.865  -6.197  1.00 17.50      1HRP1620
+ATOM   1428  C   THR B  98       1.624  33.207  -5.228  1.00 17.50      1HRP1621
+ATOM   1429  O   THR B  98       1.037  33.851  -4.375  1.00 17.50      1HRP1622
+ATOM   1430  CB  THR B  98       3.917  33.870  -5.519  1.00 24.00      1HRP1623
+ATOM   1431  OG1 THR B  98       4.833  34.671  -6.285  1.00 24.00      1HRP1624
+ATOM   1432  CG2 THR B  98       4.430  32.448  -5.384  1.00 24.00      1HRP1625
+ATOM   1433  N   ASP B  99       1.491  31.902  -5.350  1.00 11.40      1HRP1626
+ATOM   1434  CA  ASP B  99       0.638  31.152  -4.465  1.00 11.40      1HRP1627
+ATOM   1435  C   ASP B  99       1.527  30.674  -3.351  1.00 11.40      1HRP1628
+ATOM   1436  O   ASP B  99       2.175  29.642  -3.475  1.00 11.40      1HRP1629
+ATOM   1437  CB  ASP B  99       0.091  29.943  -5.169  1.00 14.20      1HRP1630
+ATOM   1438  CG  ASP B  99      -0.603  29.032  -4.234  1.00 14.20      1HRP1631
+ATOM   1439  OD1 ASP B  99      -1.198  29.573  -3.287  1.00 14.20      1HRP1632
+ATOM   1440  OD2 ASP B  99      -0.548  27.796  -4.425  1.00 14.20      1HRP1633
+ATOM   1441  N   CYS B 100       1.565  31.431  -2.267  1.00 14.60      1HRP1634
+ATOM   1442  CA  CYS B 100       2.410  31.120  -1.125  1.00 14.60      1HRP1635
+ATOM   1443  C   CYS B 100       1.844  30.092  -0.179  1.00 14.60      1HRP1636
+ATOM   1444  O   CYS B 100       1.038  30.414   0.703  1.00 14.60      1HRP1637
+ATOM   1445  CB  CYS B 100       2.708  32.401  -0.398  1.00 10.00      1HRP1638
+ATOM   1446  SG  CYS B 100       3.276  33.585  -1.639  1.00 10.00      1HRP1639
+ATOM   1447  N   GLY B 101       2.323  28.865  -0.338  1.00 13.30      1HRP1640
+ATOM   1448  CA  GLY B 101       1.863  27.769   0.480  1.00 13.30      1HRP1641
+ATOM   1449  C   GLY B 101       2.980  26.850   0.912  1.00 13.30      1HRP1642
+ATOM   1450  O   GLY B 101       4.156  27.173   0.794  1.00 13.30      1HRP1643
+ATOM   1451  N   GLY B 102       2.591  25.719   1.478  1.00 10.50      1HRP1644
+ATOM   1452  CA  GLY B 102       3.546  24.754   1.954  1.00 10.50      1HRP1645
+ATOM   1453  C   GLY B 102       3.713  23.647   0.943  1.00 10.50      1HRP1646
+ATOM   1454  O   GLY B 102       3.102  23.687  -0.135  1.00 10.50      1HRP1647
+ATOM   1455  N   PRO B 103       4.492  22.621   1.309  1.00 11.50      1HRP1648
+ATOM   1456  CA  PRO B 103       4.858  21.418   0.574  1.00 11.50      1HRP1649
+ATOM   1457  C   PRO B 103       3.746  20.483   0.226  1.00 11.50      1HRP1650
+ATOM   1458  O   PRO B 103       3.087  19.914   1.092  1.00 11.50      1HRP1651
+ATOM   1459  CB  PRO B 103       5.832  20.741   1.522  1.00 10.00      1HRP1652
+ATOM   1460  CG  PRO B 103       5.288  21.082   2.828  1.00 10.00      1HRP1653
+ATOM   1461  CD  PRO B 103       5.039  22.550   2.665  1.00 10.00      1HRP1654
+ATOM   1462  N   LYS B 104       3.546  20.332  -1.068  1.00 26.50      1HRP1655
+ATOM   1463  CA  LYS B 104       2.569  19.421  -1.607  1.00 26.50      1HRP1656
+ATOM   1464  C   LYS B 104       3.580  18.417  -2.117  1.00 26.50      1HRP1657
+ATOM   1465  O   LYS B 104       4.576  18.814  -2.718  1.00 26.50      1HRP1658
+ATOM   1466  CB  LYS B 104       1.870  20.060  -2.803  1.00 40.90      1HRP1659
+ATOM   1467  CG  LYS B 104       1.945  21.587  -2.874  1.00 40.90      1HRP1660
+ATOM   1468  CD  LYS B 104       0.598  22.219  -2.532  1.00 20.00      1HRP1661
+ATOM   1469  CE  LYS B 104       0.345  23.535  -3.323  1.00 20.00      1HRP1662
+ATOM   1470  NZ  LYS B 104       0.871  24.822  -2.692  1.00 20.00      1HRP1663
+ATOM   1471  N   ASP B 105       3.396  17.131  -1.874  1.00 41.20      1HRP1664
+ATOM   1472  CA  ASP B 105       4.410  16.217  -2.372  1.00 41.20      1HRP1665
+ATOM   1473  C   ASP B 105       4.391  15.879  -3.858  1.00 41.20      1HRP1666
+ATOM   1474  O   ASP B 105       3.473  15.249  -4.386  1.00 41.20      1HRP1667
+ATOM   1475  CB  ASP B 105       4.585  14.994  -1.471  1.00 55.70      1HRP1668
+ATOM   1476  CG  ASP B 105       5.683  15.209  -0.425  1.00 55.70      1HRP1669
+ATOM   1477  OD1 ASP B 105       5.649  16.257   0.269  1.00 55.70      1HRP1670
+ATOM   1478  OD2 ASP B 105       6.599  14.358  -0.326  1.00 55.70      1HRP1671
+ATOM   1479  N   HIS B 106       5.407  16.422  -4.523  1.00 49.70      1HRP1672
+ATOM   1480  CA  HIS B 106       5.649  16.271  -5.955  1.00 49.70      1HRP1673
+ATOM   1481  C   HIS B 106       4.447  16.397  -6.916  1.00 49.70      1HRP1674
+ATOM   1482  O   HIS B 106       4.006  15.428  -7.530  1.00 49.70      1HRP1675
+ATOM   1483  CB  HIS B 106       6.500  15.016  -6.218  1.00 43.10      1HRP1676
+ATOM   1484  CG  HIS B 106       7.974  15.300  -6.327  1.00 43.10      1HRP1677
+ATOM   1485  ND1 HIS B 106       8.500  16.572  -6.235  1.00 43.10      1HRP1678
+ATOM   1486  CD2 HIS B 106       9.019  14.485  -6.609  1.00 43.10      1HRP1679
+ATOM   1487  CE1 HIS B 106       9.800  16.531  -6.465  1.00 43.10      1HRP1680
+ATOM   1488  NE2 HIS B 106      10.141  15.276  -6.697  1.00 43.10      1HRP1681
+ATOM   1489  N   PRO B 107       3.983  17.645  -7.120  1.00 44.20      1HRP1682
+ATOM   1490  CA  PRO B 107       2.862  18.069  -7.970  1.00 44.20      1HRP1683
+ATOM   1491  C   PRO B 107       3.203  18.206  -9.454  1.00 44.20      1HRP1684
+ATOM   1492  O   PRO B 107       2.316  18.434 -10.279  1.00 44.20      1HRP1685
+ATOM   1493  CB  PRO B 107       2.538  19.438  -7.399  1.00 42.80      1HRP1686
+ATOM   1494  CG  PRO B 107       3.923  19.977  -7.146  1.00 42.80      1HRP1687
+ATOM   1495  CD  PRO B 107       4.599  18.813  -6.460  1.00 42.80      1HRP1688
+ATOM   1496  N   LEU B 108       4.486  18.134  -9.782  1.00 39.40      1HRP1689
+ATOM   1497  CA  LEU B 108       4.920  18.268 -11.158  1.00 39.40      1HRP1690
+ATOM   1498  C   LEU B 108       4.675  16.944 -11.861  1.00 39.40      1HRP1691
+ATOM   1499  O   LEU B 108       5.587  16.138 -11.971  1.00 39.40      1HRP1692
+ATOM   1500  CB  LEU B 108       6.405  18.577 -11.183  1.00 28.90      1HRP1693
+ATOM   1501  CG  LEU B 108       6.820  19.593 -10.133  1.00 28.90      1HRP1694
+ATOM   1502  CD1 LEU B 108       8.339  19.800 -10.145  1.00 28.90      1HRP1695
+ATOM   1503  CD2 LEU B 108       6.070  20.885 -10.392  1.00 28.90      1HRP1696
+ATOM   1504  N   THR B 109       3.454  16.697 -12.324  1.00 42.90      1HRP1697
+ATOM   1505  CA  THR B 109       3.170  15.429 -12.990  1.00 42.90      1HRP1698
+ATOM   1506  C   THR B 109       1.845  15.347 -13.791  1.00 42.90      1HRP1699
+ATOM   1507  O   THR B 109       0.824  15.956 -13.426  1.00 42.90      1HRP1700
+ATOM   1508  CB  THR B 109       3.252  14.279 -11.956  1.00 43.10      1HRP1701
+ATOM   1509  OG1 THR B 109       3.035  13.025 -12.609  1.00 43.10      1HRP1702
+ATOM   1510  CG2 THR B 109       2.226  14.486 -10.827  1.00 43.10      1HRP1703
+ATOM   1511  N   CYS B 110       1.895  14.659 -14.931  1.00 50.00      1HRP1704
+ATOM   1512  CA  CYS B 110       0.708  14.491 -15.766  1.00 50.00      1HRP1705
+ATOM   1513  C   CYS B 110      -0.179  13.471 -15.040  1.00 50.00      1HRP1706
+ATOM   1514  O   CYS B 110       0.306  12.729 -14.183  1.00 50.00      1HRP1707
+ATOM   1515  CB  CYS B 110       1.075  13.949 -17.158  1.00 37.50      1HRP1708
+ATOM   1516  SG  CYS B 110       1.786  15.117 -18.372  1.00 37.50      1HRP1709
+ATOM   1517  N   ASP B 111      -1.450  13.402 -15.435  1.00 50.00      1HRP1710
+ATOM   1518  CA  ASP B 111      -2.430  12.486 -14.841  1.00 50.00      1HRP1711
+ATOM   1519  C   ASP B 111      -2.706  12.920 -13.394  1.00 50.00      1HRP1712
+ATOM   1520  O   ASP B 111      -3.571  13.828 -13.243  1.00 50.00      1HRP1713
+ATOM   1521  CB  ASP B 111      -1.960  11.017 -14.919  1.00 63.20      1HRP1714
+ATOM   1522  CG  ASP B 111      -3.050  10.019 -14.510  1.00 63.20      1HRP1715
+ATOM   1523  OD1 ASP B 111      -4.132  10.001 -15.156  1.00 63.20      1HRP1716
+ATOM   1524  OD2 ASP B 111      -2.809   9.226 -13.564  1.00 63.20      1HRP1717
+ATOM   1525  OXT ASP B 111      -2.033  12.422 -12.452  1.00 63.20      1HRP1718
+TER    1526      ASP B 111                                              1HRP1719
+HETATM 1527  C1  NAG B   1      20.208  21.070 -14.362  1.00 55.80      1HRP1720
+HETATM 1528  C2  NAG B   1      20.328  19.769 -13.529  1.00 55.80      1HRP1721
+HETATM 1529  C3  NAG B   1      21.272  18.780 -14.232  1.00 55.80      1HRP1722
+HETATM 1530  C4  NAG B   1      21.415  19.154 -15.705  1.00 55.80      1HRP1723
+HETATM 1531  C5  NAG B   1      22.096  20.525 -15.798  1.00 55.80      1HRP1724
+HETATM 1532  C6  NAG B   1      22.009  21.125 -17.190  1.00 55.80      1HRP1725
+HETATM 1533  C7  NAG B   1      20.418  19.470 -11.125  1.00 55.80      1HRP1726
+HETATM 1534  C8  NAG B   1      21.069  19.889  -9.815  1.00 55.80      1HRP1727
+HETATM 1535  N2  NAG B   1      20.861  20.093 -12.215  1.00 55.80      1HRP1728
+HETATM 1536  O3  NAG B   1      20.780  17.456 -14.114  1.00 55.80      1HRP1729
+HETATM 1537  O4  NAG B   1      22.187  18.169 -16.384  1.00 55.80      1HRP1730
+HETATM 1538  O5  NAG B   1      21.504  21.475 -14.865  1.00 55.80      1HRP1731
+HETATM 1539  O6  NAG B   1      22.679  20.313 -18.146  1.00 55.80      1HRP1732
+HETATM 1540  O7  NAG B   1      19.522  18.625 -11.146  1.00 55.80      1HRP1733
+HETATM 1541  C1  NAG B  11      16.490  21.729 -19.655  1.00 70.00      1HRP1734
+HETATM 1542  C2  NAG B  11      18.005  21.990 -19.548  1.00 70.00      1HRP1735
+HETATM 1543  C3  NAG B  11      18.698  21.367 -20.770  1.00 70.00      1HRP1736
+HETATM 1544  C4  NAG B  11      17.786  21.469 -22.000  1.00 70.00      1HRP1737
+HETATM 1545  C5  NAG B  11      16.814  22.665 -21.875  1.00 70.00      1HRP1738
+HETATM 1546  C6  NAG B  11      15.925  22.850 -23.096  1.00 70.00      1HRP1739
+HETATM 1547  C7  NAG B  11      19.278  23.966 -18.864  1.00 70.00      1HRP1740
+HETATM 1548  C8  NAG B  11      19.424  25.488 -18.958  1.00 70.00      1HRP1741
+HETATM 1549  N2  NAG B  11      18.249  23.431 -19.531  1.00 70.00      1HRP1742
+HETATM 1550  O3  NAG B  11      19.010  20.002 -20.520  1.00 70.00      1HRP1743
+HETATM 1551  O4  NAG B  11      18.589  21.613 -23.164  1.00 70.00      1HRP1744
+HETATM 1552  O5  NAG B  11      15.924  22.508 -20.732  1.00 70.00      1HRP1745
+HETATM 1553  O6  NAG B  11      16.690  23.078 -24.272  1.00 70.00      1HRP1746
+HETATM 1554  O7  NAG B  11      20.033  23.303 -18.149  1.00 70.00      1HRP1747
+CONECT   24   23  203                                                   1HRP1748
+CONECT   46   45  428                                                   1HRP1749
+CONECT  185  184  595                                                   1HRP1750
+CONECT  203   24  202                                                   1HRP1751
+CONECT  209  208  611                                                   1HRP1752
+CONECT  374  372  678                                                   1HRP1753
+CONECT  422  421  630                                                   1HRP1754
+CONECT  428   46  427                                                   1HRP1755
+CONECT  567  565  650                                                   1HRP1756
+CONECT  595  185  594                                                   1HRP1757
+CONECT  611  209  610                                                   1HRP1758
+CONECT  630  422  629                                                   1HRP1759
+CONECT  650  567  651  661                                              1HRP1760
+CONECT  651  650  652  658                                              1HRP1761
+CONECT  652  651  653  659                                              1HRP1762
+CONECT  653  652  654  660                                              1HRP1763
+CONECT  654  653  655  661                                              1HRP1764
+CONECT  655  654  662                                                   1HRP1765
+CONECT  656  657  658  663                                              1HRP1766
+CONECT  657  656                                                        1HRP1767
+CONECT  658  651  656                                                   1HRP1768
+CONECT  659  652                                                        1HRP1769
+CONECT  660  653  664                                                   1HRP1770
+CONECT  661  650  654                                                   1HRP1771
+CONECT  662  655                                                        1HRP1772
+CONECT  663  656                                                        1HRP1773
+CONECT  664  660  665  675                                              1HRP1774
+CONECT  665  664  666  672                                              1HRP1775
+CONECT  666  665  667  673                                              1HRP1776
+CONECT  667  666  668  674                                              1HRP1777
+CONECT  668  667  669  675                                              1HRP1778
+CONECT  669  668  676                                                   1HRP1779
+CONECT  670  671  672  677                                              1HRP1780
+CONECT  671  670                                                        1HRP1781
+CONECT  672  665  670                                                   1HRP1782
+CONECT  673  666                                                        1HRP1783
+CONECT  674  667                                                        1HRP1784
+CONECT  675  664  668                                                   1HRP1785
+CONECT  676  669                                                        1HRP1786
+CONECT  677  670                                                        1HRP1787
+CONECT  678  374  679  689                                              1HRP1788
+CONECT  679  678  680  686                                              1HRP1789
+CONECT  680  679  681  687                                              1HRP1790
+CONECT  681  680  682  688                                              1HRP1791
+CONECT  682  681  683  689                                              1HRP1792
+CONECT  683  682  690                                                   1HRP1793
+CONECT  684  685  686  691                                              1HRP1794
+CONECT  685  684                                                        1HRP1795
+CONECT  686  679  684                                                   1HRP1796
+CONECT  687  680                                                        1HRP1797
+CONECT  688  681  692                                                   1HRP1798
+CONECT  689  678  682                                                   1HRP1799
+CONECT  690  683                                                        1HRP1800
+CONECT  691  684                                                        1HRP1801
+CONECT  692  688  693  703                                              1HRP1802
+CONECT  693  692  694  700                                              1HRP1803
+CONECT  694  693  695  701                                              1HRP1804
+CONECT  695  694  696  702                                              1HRP1805
+CONECT  696  695  697  703                                              1HRP1806
+CONECT  697  696  704                                                   1HRP1807
+CONECT  698  699  700  705                                              1HRP1808
+CONECT  699  698                                                        1HRP1809
+CONECT  700  693  698                                                   1HRP1810
+CONECT  701  694                                                        1HRP1811
+CONECT  702  695                                                        1HRP1812
+CONECT  703  692  696                                                   1HRP1813
+CONECT  704  697                                                        1HRP1814
+CONECT  705  698                                                        1HRP1815
+CONECT  769  768 1116                                                   1HRP1816
+CONECT  803  801 1527                                                   1HRP1817
+CONECT  872  871 1243                                                   1HRP1818
+CONECT  892  891 1516                                                   1HRP1819
+CONECT  922  920 1541                                                   1HRP1820
+CONECT  950  949 1356                                                   1HRP1821
+CONECT  977  976 1371                                                   1HRP1822
+CONECT 1116  769 1115                                                   1HRP1823
+CONECT 1243  872 1242                                                   1HRP1824
+CONECT 1356  950 1355                                                   1HRP1825
+CONECT 1371  977 1370                                                   1HRP1826
+CONECT 1390 1389 1446                                                   1HRP1827
+CONECT 1446 1390 1445                                                   1HRP1828
+CONECT 1516  892 1515                                                   1HRP1829
+CONECT 1527  803 1528 1538                                              1HRP1830
+CONECT 1528 1527 1529 1535                                              1HRP1831
+CONECT 1529 1528 1530 1536                                              1HRP1832
+CONECT 1530 1529 1531 1537                                              1HRP1833
+CONECT 1531 1530 1532 1538                                              1HRP1834
+CONECT 1532 1531 1539                                                   1HRP1835
+CONECT 1533 1534 1535 1540                                              1HRP1836
+CONECT 1534 1533                                                        1HRP1837
+CONECT 1535 1528 1533                                                   1HRP1838
+CONECT 1536 1529                                                        1HRP1839
+CONECT 1537 1530                                                        1HRP1840
+CONECT 1538 1527 1531                                                   1HRP1841
+CONECT 1539 1532                                                        1HRP1842
+CONECT 1540 1533                                                        1HRP1843
+CONECT 1541  922 1542 1552                                              1HRP1844
+CONECT 1542 1541 1543 1549                                              1HRP1845
+CONECT 1543 1542 1544 1550                                              1HRP1846
+CONECT 1544 1543 1545 1551                                              1HRP1847
+CONECT 1545 1544 1546 1552                                              1HRP1848
+CONECT 1546 1545 1553                                                   1HRP1849
+CONECT 1547 1548 1549 1554                                              1HRP1850
+CONECT 1548 1547                                                        1HRP1851
+CONECT 1549 1542 1547                                                   1HRP1852
+CONECT 1550 1543                                                        1HRP1853
+CONECT 1551 1544                                                        1HRP1854
+CONECT 1552 1541 1545                                                   1HRP1855
+CONECT 1553 1546                                                        1HRP1856
+CONECT 1554 1547                                                        1HRP1857
+MASTER      136    0    6    0    0    0    0    6 1552    2  110   20  1HRP1858
+END                                                                     1HRP1859

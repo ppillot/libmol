@@ -2,15 +2,44 @@
   <div>
     {{ $t('ui.commands.select.label') }}
    <el-button-group>
-        <el-button v-on:click="sel('*')">{{ $t('ui.commands.select.all') }}</el-button>
-        <el-button :disabled="unselectables.protein" v-on:click="sel('protein')">{{ $t('ui.commands.select.protein') }}</el-button>
-        <el-button :disabled="unselectables.nucleic" v-on:click="sel('nucleic')">{{ $t('ui.commands.select.nucleic') }}</el-button>
+        <el-button  @mouseover="highlight('*')" 
+                    @mouseout="highlight('none')" 
+                    @click="sel('*')">
+          {{ $t('ui.commands.select.all') }}
+        </el-button>
+        <el-button :disabled="unselectables.protein" 
+                    @click="sel('protein')" 
+                    @mouseenter="highlight('protein')" 
+                    @mouseleave="highlight('none')">
+          {{ $t('ui.commands.select.protein') }}
+        </el-button>
+        <el-button :disabled="unselectables.nucleic" 
+                    @click="sel('nucleic')"
+                    @mouseenter="highlight('nucleic')" 
+                    @mouseleave="highlight('none')">
+          {{ $t('ui.commands.select.nucleic') }}
+        </el-button>
     </el-button-group>
 
     <el-button-group>
-        <el-button :disabled="unselectables.saccharide" v-on:click="sel('saccharide')">{{ $t('ui.commands.select.carbohydrate') }}</el-button>
-        <el-button :disabled="unselectables.water" v-on:click="sel('water')">{{ $t('ui.commands.select.water') }}</el-button>
-        <el-button :disabled="unselectables.hetero" v-on:click="sel('hetero')">{{ $t('ui.commands.select.hetero') }}</el-button>
+        <el-button :disabled="unselectables.saccharide" 
+                    @click="sel('saccharide')"
+                    @mouseenter="highlight('saccharide')" 
+                    @mouseleave="highlight('none')">
+          {{ $t('ui.commands.select.carbohydrate') }}
+        </el-button>
+        <el-button :disabled="unselectables.water" 
+                    @click="sel('water')"
+                    @mouseenter="highlight('water')" 
+                    @mouseleave="highlight('none')">
+          {{ $t('ui.commands.select.water') }}
+        </el-button>
+        <el-button :disabled="unselectables.hetero" 
+                    @click="sel('hetero')"
+                    @mouseenter="highlight('hetero')" 
+                    @mouseleave="highlight('none')">
+          {{ $t('ui.commands.select.hetero') }}
+        </el-button>
     </el-button-group>
   </div>
 </template>
@@ -32,6 +61,10 @@
     methods: {
       sel (selector) {
         this.$store.dispatch('selection', selector)
+      },
+      highlight (selector) {
+        console.log(selector)
+        this.$store.dispatch('highlightSelectHovered', selector)
       }
     }
   }

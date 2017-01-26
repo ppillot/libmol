@@ -20,7 +20,7 @@ var highlight
 function onHover (response) {
   let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
   if (atomHovered !== undefined) {
-    console.log(atom)
+    // console.log(atom)
     let atom = {
       symbol: atomHovered.element,
       atomname: atomHovered.atomname,
@@ -63,7 +63,7 @@ function getDescriptionFromRes (res) {
 }
 
 function getChainColors (chains, structure) {
-  console.log(structure)
+  // console.log(structure)
   var chainColors = []
   var chainNameScheme = NGL.ColorMakerRegistry.getScheme({scheme: 'chainname', structure: structure})
 
@@ -294,7 +294,7 @@ var vuex = new Vuex.Store({
       context.commit('selection', selector)
     },
     display (context, displayType) {
-      console.log(representationsList)
+      // console.log(representationsList)
       stage.compList[0].addRepresentation(displayType, {sele: context.state.selection})
       context.commit('display', displayType)
     },
@@ -338,6 +338,9 @@ var vuex = new Vuex.Store({
 
       context.commit('itemHovered', itemHovered)
       // highlightRes(item)
+    },
+    highlightSelectHovered (context, selector) {
+      highlight(selector)
     },
     setClipNear ({commit}, percentage) {
       stage.setParameters({clipNear: percentage})

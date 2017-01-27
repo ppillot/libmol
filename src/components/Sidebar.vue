@@ -1,21 +1,21 @@
 <template>
     <div class="side-bar full-height">
         <h1>LibMol</h1>
-        <el-tabs type="border-card" class="tab-card">
-            <el-tab-pane :label="$t('ui.files_tab_label')">
+        <el-tabs type="border-card" class="tab-card" @tab-click="switchTab">
+            <el-tab-pane :label="$t('ui.files_tab_label')" name="files">
                 <el-form label-position="top">
                     <search-libmol></search-libmol>
                     <search-pdb></search-pdb>
                     <load-file></load-file>
                 </el-form>
             </el-tab-pane>
-            <el-tab-pane :label="$t('ui.commands_tab_label')">
+            <el-tab-pane :label="$t('ui.commands_tab_label')" name="commands">
                 <select-mol></select-mol>
                 <display-mol></display-mol>
                 <color-mol></color-mol>
             </el-tab-pane>
-            <el-tab-pane :label="$t('ui.sequences_tab_label')">
-                <sequence-tab></sequence-tab>
+            <el-tab-pane :label="$t('ui.sequences_tab_label')" name="sequences">
+                <sequence-tab :active="isSequenceTabActive"></sequence-tab>
             </el-tab-pane>
         </el-tabs>
     </div>
@@ -40,6 +40,16 @@ export default {
     DisplayMol,
     ColorMol,
     SequenceTab
+  },
+  data () {
+    return {
+      isSequenceTabActive: false
+    }
+  },
+  methods: {
+    switchTab (tabClicked) {
+      this.isSequenceTabActive = (tabClicked.name === 'sequences')
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="header" @mouseover.stop="getHoveredItem('chain', $event)" @mouseout.stop="hideTooltip">
+    <div class="header" @mouseover.stop="getHoveredItem('chain', $event)" @mouseout.stop="hideTooltip" :style="headerStyle">
       <ul>
         <li v-for="chain in chains" :data-index="chain.id">
           {{ chain.name }}
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+  let prevPos = {top: 0, left: 0}
   let optimizedResize = (function () {
     var callbacks = []
     var running = false
@@ -91,6 +92,7 @@
         listEnd: 9,
         elementHeight: 22,
         listScrollStyle: 'margin-top: 0',
+        headerStyle: 'margin-left: 0',
         nbElementsToDisplay: 20
       }
     },
@@ -154,10 +156,17 @@
         const target = event.target
         const pos = {
           top: target.scrollTop,
-          bottom: target.scrollTop + target.clienHeight
+          // bottom: target.scrollTop + target.clienHeight,
+          left: target.scrollLeft
         }
-        this.listStart = (pos.top / this.elementHeight) | 0
-        this.listScrollStyle = { paddingTop: pos.top - (pos.top % this.elementHeight) + 'px' }
+        if (prevPos.top !== pos.top) {
+          this.listStart = (pos.top / this.elementHeight) | 0
+          this.listScrollStyle = { paddingTop: pos.top - (pos.top % this.elementHeight) + 'px' }
+        } else {
+          this.headerStyle = 'margin-left: -' + pos.left + 'px'
+        }
+
+        Object.assign(prevPos, pos)
       },
       setNbElementsToDisplay () {
         const coords = this.$el.getBoundingClientRect()

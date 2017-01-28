@@ -11,8 +11,9 @@
       <div :style="listHeightStyle">
         <div :style="listScrollStyle">
           <ul v-for="chain in chains">
-            <li v-for="residu in chain.sequence" :data-index="residu.index" :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }"
-              :key="residu.index">
+            <li v-for="residu in chain.sequence" 
+            :data-index="residu.index" 
+            :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }">
               {{ residu.resname }}
             </li>
           </ul>
@@ -25,6 +26,9 @@
 
 <script>
   let prevPos = {top: 0, left: 0}
+  let actualPos = {top: 0, left: 0}
+  let isScrollInProcess = false
+
   let optimizedResize = (function () {
     var callbacks = []
     var running = false
@@ -91,6 +95,7 @@
         listStart: 0,
         listEnd: 9,
         elementHeight: 22,
+        elementWidth: 48,
         listScrollStyle: 'margin-top: 0',
         headerStyle: 'margin-left: 0',
         nbElementsToDisplay: 20
@@ -125,8 +130,9 @@
         const nbElementMax = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
           return Math.max(accumulator, currentValue.sequence.length)
         }, 0)
-        const maxSize = nbElementMax * this.elementHeight
-        return { height: maxSize + 'px' }
+        const maxHeight = nbElementMax * this.elementHeight
+        const maxWidth = this.$store.state.mol.chains.length * this.elementWidth
+        return { height: maxHeight + 'px', width: maxWidth + 'px' }
       }
     },
     methods: {
@@ -156,18 +162,34 @@
         const target = event.target
         const pos = {
           top: target.scrollTop,
-          // bottom: target.scrollTop + target.clienHeight,
           left: target.scrollLeft
         }
-        if (prevPos.top !== pos.top) {
-          this.listStart = (pos.top / this.elementHeight) | 0
-          this.listScrollStyle = { paddingTop: pos.top - (pos.top % this.elementHeight) + 'px' }
-        } else {
-          this.headerStyle = 'margin-left: -' + pos.left + 'px'
+
+        if (!isScrollInProcess) {
+          isScrollInProcess = true
+          let self = this
+          window.requestAnimationFrame(function () {
+            self.scrolling()
+          })
         }
 
-        Object.assign(prevPos, pos)
+        actualPos = pos
       },
+
+      scrolling () {
+        if (prevPos.top !== actualPos.top) {
+          this.listStart = (actualPos.top / this.elementHeight) | 0
+          let vec = actualPos.top - (actualPos.top % this.elementHeight)
+          this.listScrollStyle = { transform: 'translate3d(0,' + vec + 'px, 0px)' }
+        } else {
+          this.headerStyle = 'transform: translate3d(-' + actualPos.left + 'px, 0px, 0px)'
+        }
+        this.$forceUpdate()
+
+        prevPos.top = actualPos.top
+        isScrollInProcess = false
+      },
+
       setNbElementsToDisplay () {
         const coords = this.$el.getBoundingClientRect()
         this.nbElementsToDisplay = Math.ceil(coords.height / this.elementHeight)

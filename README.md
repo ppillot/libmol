@@ -31,6 +31,7 @@ ToDo
   - 2 way binding ?
   - select from sequence
   - clear selection
+  - low display quality
   - virtual scrolling for large datasets
     - optimize scrolling with raf
     - disable tooltip while scrolling (disable mouseover)

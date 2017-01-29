@@ -9,15 +9,19 @@
     </div>
     <div class="tab-body" @mouseover.stop="getHoveredItem('res', $event)" @mouseout.stop="hideTooltip" @scroll.stop="scroll($event)">
       <div :style="listHeightStyle">
-        <div :style="listScrollStyle">
-          <ul v-for="chain in chains">
-            <li v-for="residu in chain.sequence" 
+        <table :style="[listScrollStyle, listWidthStyle]">
+          <tr v-for="(line, index) in residuesListToDisplay" :key="index">
+            <template v-for="residu in line">
+            <td v-if="residu" 
             :data-index="residu.index" 
             :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }">
               {{ residu.resname }}
-            </li>
-          </ul>
-        </div>
+            </td>
+            <td v-else>
+            </td>
+            </template>
+          </tr>
+        </table>
       </div>
     </div>
     <div class="tooltip" v-bind:style="tooltipStyles" v-html="tooltipText"></div>
@@ -96,7 +100,7 @@
         listEnd: 9,
         elementHeight: 22,
         elementWidth: 48,
-        listScrollStyle: 'margin-top: 0',
+        listScrollStyle: { marginTop: 0 },
         headerStyle: 'margin-left: 0',
         nbElementsToDisplay: 20
       }
@@ -108,11 +112,39 @@
           chains.push({
             entity: chain.entity,
             id: chain.id,
-            name: chain.name,
-            sequence: chain.sequence.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
+            name: chain.name
           })
         })
         return chains
+      },
+
+      listWidthStyle: function () {
+        return {
+          width: this.$store.state.mol.chains.length * 3 + 'em'
+        }
+      },
+
+      residuesList: function () {
+        let rList = []
+        const maxElementNb = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
+          return Math.max(accumulator, currentValue.sequence.length)
+        }, 0)
+
+        for (let i = 0; i < maxElementNb; i++) {
+          let resPosiList = []
+          this.$store.state.mol.chains.forEach(chain => {
+            resPosiList.push(
+              (chain.sequence.length > i) ? chain.sequence[i] : null
+            )
+          })
+          rList.push(resPosiList)
+        }
+
+        return rList
+      },
+
+      residuesListToDisplay: function () {
+        return this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
       },
 
       tooltipText: function () {
@@ -180,9 +212,9 @@
         if (prevPos.top !== actualPos.top) {
           this.listStart = (actualPos.top / this.elementHeight) | 0
           let vec = actualPos.top - (actualPos.top % this.elementHeight)
-          this.listScrollStyle = { transform: 'translate3d(0,' + vec + 'px, 0px)' }
+          this.listScrollStyle = { transform: 'translate(0,' + vec + 'px)' }
         } else {
-          this.headerStyle = 'transform: translate3d(-' + actualPos.left + 'px, 0px, 0px)'
+          this.headerStyle = 'transform: translate(-' + actualPos.left + 'px, 0)'
         }
         this.$forceUpdate()
 
@@ -192,7 +224,7 @@
 
       setNbElementsToDisplay () {
         const coords = this.$el.getBoundingClientRect()
-        this.nbElementsToDisplay = Math.ceil(coords.height / this.elementHeight)
+        this.nbElementsToDisplay = Math.ceil(coords.height / this.elementHeight) + 3
         // console.log(coords)
       }
     },
@@ -247,14 +279,31 @@
     overflow: auto;
     white-space: nowrap;
   }
+
+  .tab-body div {
+    overflow: hidden;
+  }
   
-  .tab-body ul {
-    display: inline-table;
+  .tab-body table {
+    display: table;
     margin: 0;
     padding: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
     width: 3em;
   }
   
+  .tab-body table tr {
+    box-sizing: border-box;
+    height: 1em;
+    width: 100%;
+  }
+
+  .tab-body table tr td {
+    width: 3em;
+    padding: 0;
+  }
+
   .tab-body ul li {
     margin: 0;
     padding: 0;
@@ -262,6 +311,8 @@
     text-align: center;
     cursor: pointer;
     background: none;
+    display: inline-block;
+    width: 3em;
   }
   
   .tab-body ul li:hover {

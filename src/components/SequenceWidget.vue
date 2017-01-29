@@ -9,20 +9,20 @@
     </div>
     <div class="tab-body" @mouseover.stop="getHoveredItem('res', $event)" @mouseout.stop="hideTooltip" @scroll.stop="scroll($event)">
       <div :style="listHeightStyle">
-        <table :style="[listScrollStyle, listWidthStyle]">
-          <tr v-for="(line, index) in residuesListToDisplay" :key="index">
-            <template v-for="residu in line">
-            <td v-if="residu" 
-            :data-index="residu.index" 
-            :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }">
-              {{ residu.resname }}
-            </td>
-            <td v-else>
-            </td>
-            </template>
-          </tr>
-        </table>
-      </div>
+          <table :style="[listScrollStyle, listWidthStyle]">
+            <tr v-for="(line, index) in residuesListToDisplay" :key="index">
+              <template v-for="residu in line">
+              <td v-if="residu" 
+              :data-index="residu.index" 
+              :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }" :key="residu.index">
+                {{ residu.resname }}
+              </td>
+              <td v-else>
+              </td>
+              </template>
+            </tr>
+          </table>
+        </div>
     </div>
     <div class="tooltip" v-bind:style="tooltipStyles" v-html="tooltipText"></div>
   </div>
@@ -170,7 +170,7 @@
     methods: {
       getHoveredItem (itemType, event) {
         const target = event.target
-        if (target.tagName === 'LI') {
+        if ((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) {
           this.tooltipStyles = getTooltipStyles(target)
           this.$store.dispatch('sequenceHovered', {
             type: itemType,
@@ -278,6 +278,7 @@
     flex: 1;
     overflow: auto;
     white-space: nowrap;
+    position: relative;
   }
 
   .tab-body div {

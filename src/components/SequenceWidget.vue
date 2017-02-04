@@ -14,7 +14,7 @@
               <template v-for="residu in line">
               <td v-if="residu" 
               :data-index="residu.index" 
-              :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }" :key="residu.index">
+              :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }">
                 {{ residu.resname }}
               </td>
               <td v-else>
@@ -29,53 +29,12 @@
 </template>
 
 <script>
+  import optimizedResize from '../utils/resize'
+
   let prevPos = {top: 0, left: 0}
   let actualPos = {top: 0, left: 0}
   let isScrollInProcess = false
-
-  let optimizedResize = (function () {
-    var callbacks = []
-    var running = false
-
-    // fired on resize event
-    function resize () {
-      if (!running) {
-        running = true
-
-        if (window.requestAnimationFrame) {
-          window.requestAnimationFrame(runCallbacks)
-        } else {
-          setTimeout(runCallbacks, 66)
-        }
-      }
-    }
-
-    // run the actual callbacks
-    function runCallbacks () {
-      callbacks.forEach(function (callback) {
-        callback()
-      })
-
-      running = false
-    }
-
-    // adds callback to loop
-    function addCallback (callback) {
-      if (callback) {
-        callbacks.push(callback)
-      }
-    }
-
-    return {
-      // public method to add additional callback
-      add: function (callback) {
-        if (!callbacks.length) {
-          window.addEventListener('resize', resize)
-        }
-        addCallback(callback)
-      }
-    }
-  }())
+  let resize = optimizedResize()
 
   function getTooltipStyles (target) {
     let rect = target.getBoundingClientRect()
@@ -237,7 +196,8 @@
     },
     mounted: function () {
       this.$nextTick(this.setNbElementsToDisplay)
-      optimizedResize.add(this.setNbElementsToDisplay)
+      console.log(optimizedResize.add)
+      resize.add(this.setNbElementsToDisplay)
     }
   }
 </script>

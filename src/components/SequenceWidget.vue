@@ -10,7 +10,7 @@
     <div class="tab-body" @mouseover.stop="getHoveredItem('res', $event)" @mouseout.stop="hideTooltip" @scroll.stop="scroll($event)">
       <div :style="listHeightStyle">
           <table :style="[listScrollStyle, listWidthStyle]">
-            <tr v-for="(line, index) in residuesListToDisplay" :key="index">
+            <tr v-for="(line, index) in visibleResidues" :key="index">
               <template v-for="residu in line">
               <td v-if="residu" 
               :data-index="residu.index" 
@@ -61,7 +61,9 @@
         elementWidth: 48,
         listScrollStyle: { marginTop: 0 },
         headerStyle: 'margin-left: 0',
-        nbElementsToDisplay: 20
+        nbElementsToDisplay: 20,
+        residuesList: [],
+        visibleResidues: []
       }
     },
     computed: {
@@ -74,6 +76,22 @@
             name: chain.name
           })
         })
+        let rList = []
+        const maxElementNb = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
+          return Math.max(accumulator, currentValue.sequence.length)
+        }, 0)
+
+        for (let i = 0; i < maxElementNb; i++) {
+          let resPosiList = []
+          this.$store.state.mol.chains.forEach(chain => {
+            resPosiList.push(
+              (chain.sequence.length > i) ? chain.sequence[i] : null
+            )
+          })
+          rList.push(resPosiList)
+        }
+        this.residuesList = rList
+
         return chains
       },
 
@@ -83,7 +101,7 @@
         }
       },
 
-      residuesList: function () {
+      /* residuesList: function () {
         let rList = []
         const maxElementNb = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
           return Math.max(accumulator, currentValue.sequence.length)
@@ -101,7 +119,7 @@
 
         return rList
       },
-
+      */
       residuesListToDisplay: function () {
         return this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
       },
@@ -172,6 +190,7 @@
           this.listStart = (actualPos.top / this.elementHeight) | 0
           let vec = actualPos.top - (actualPos.top % this.elementHeight)
           this.listScrollStyle = { transform: 'translate(0,' + vec + 'px)' }
+          this.visibleResidues = this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
         } else {
           this.headerStyle = 'transform: translate(-' + actualPos.left + 'px, 0)'
         }
@@ -185,12 +204,17 @@
         const coords = this.$el.getBoundingClientRect()
         this.nbElementsToDisplay = Math.ceil(coords.height / this.elementHeight) + 3
         // console.log(coords)
+      },
+
+      setVisibleResidues () {
+        this.visibleResidues = this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
       }
     },
     watch: {
       active: function (val) {
         if (val) {
           this.setNbElementsToDisplay()
+          this.setVisibleResidues()
         }
       }
     },
@@ -263,6 +287,7 @@
   .tab-body table tr td {
     width: 3em;
     padding: 0;
+    text-align: center;
   }
 
   .tab-body ul li {

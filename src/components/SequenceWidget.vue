@@ -117,7 +117,7 @@
         const nbElementMax = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
           return Math.max(accumulator, currentValue.sequence.length)
         }, 0)
-        const maxHeight = nbElementMax * this.elementHeight
+        const maxHeight = (nbElementMax + 1) * this.elementHeight
         const maxWidth = this.$store.state.mol.chains.length * this.elementWidth
         return { height: maxHeight + 'px', width: maxWidth + 'px' }
       }
@@ -125,7 +125,7 @@
     methods: {
       getHoveredItem (itemType, event) {
         const target = event.target
-        if ((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) {
+        if (((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) && !isScrollInProcess) {
           this.tooltipStyles = getTooltipStyles(target)
           this.$store.dispatch('sequenceHovered', {
             type: itemType,
@@ -155,6 +155,7 @@
         if (!isScrollInProcess) {
           isScrollInProcess = true
           let self = this
+          this.hideTooltip()
           window.requestAnimationFrame(function () {
             self.scrolling()
           })

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         {{ $t('ui.sequence_select_instructions') }}
-        <sequence-widget class="sequence-widget"></sequence-widget>
+        <sequence-widget class="sequence-widget" :active="active"></sequence-widget>
         <display-mol v-bind:complete="false"></display-mol>
         <compact-picker v-model="colors" @change-color="pickColor"></compact-picker>
     </div>
@@ -16,6 +16,7 @@
 
   export default {
     name: 'SequenceTab',
+    props: ['active'],
     data () {
       return {
         colors: {

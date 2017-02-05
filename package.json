@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.15.2",
     "bootstrap": "4.0.0-alpha.5",
+    "fastbitset": "0.0.18",
     "lodash": "^4.16.6",
     "lodash.debounce": "^4.0.8",
     "ngl": "^0.10.0-dev.3",

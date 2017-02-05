@@ -27,13 +27,14 @@ ToDo
   - create/remove surface
   - on hover select, highlight selection
   - remake the vue-color component for event delegation !
+  - help
 - Sequences : 
   - 2 way binding ?
   - select from sequence
   - clear selection
-  - horizontal scrolling for chains
-  - virtual scrolling for large datasets 
-  - interaction ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
+  - virtual scrolling for large datasets
+    - disable tooltip while scrolling (disable mouseover)
+  - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
 - build :
   - move to webpack 2 ?
   - remove unnecessary libraries components (elements ui ?)

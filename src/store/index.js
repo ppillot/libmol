@@ -28,7 +28,7 @@ function onHover (response) {
       resno: atomHovered.resno,
       chainname: atomHovered.chainname,
       entity: atomHovered.entity.description,
-      resType: atomHovered.residue.moleculeType,
+      resType: atomHovered.residueType.moleculeType,
       pos: {x: response.canvasPosition.x, y: response.canvasPosition.y}
     }
     vuex.dispatch('atomHovered', atom)

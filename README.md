@@ -31,6 +31,7 @@ ToDo
 - Sequences : 
   - 2 way binding ?
   - select from sequence
+    - handle mousedown, mousemove and mouseup events on selection
   - clear selection
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
 - build :

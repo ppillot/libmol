@@ -112,6 +112,7 @@ var vuex = new Vuex.Store({
       },
       sstruc: new Set()
     },
+    selected: [],
     selection: '*',
     display: 'licorice',
     color: 'element',
@@ -143,7 +144,7 @@ var vuex = new Vuex.Store({
       state.fileName = newFile.file
       state.name = newFile.value
     },
-    setMolTypes (state, {molTypes, chains, elements, residues, sstruc}) {
+    setMolTypes (state, {molTypes, chains, elements, residues, sstruc, selected}) {
       state.mol.molTypes.protein = molTypes.has(3)
       state.mol.molTypes.dna = molTypes.has(5)
       state.mol.molTypes.rna = molTypes.has(4)
@@ -157,6 +158,8 @@ var vuex = new Vuex.Store({
       state.mol.elements = elements
       state.mol.residues = residues
       state.mol.sstruc = sstruc
+
+      state.selected = selected
     },
     selection (state, selector) {
       state.selection = selector
@@ -235,6 +238,7 @@ var vuex = new Vuex.Store({
                                       )
         )
         let sstruc = new Set()
+        let selected = []
 
         // let's iterate through each residue from this structure
         structure.eachResidue(item => {
@@ -265,6 +269,7 @@ var vuex = new Vuex.Store({
           })
           molTypes.add(item.moleculeType)
           sstruc.add(item.sstruc)
+          selected.push(true)
         })
         resRepresentations.fill(0)
 
@@ -274,7 +279,7 @@ var vuex = new Vuex.Store({
           }
         )
 
-        context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc})
+        context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected})
 
         component.addRepresentation('ball+stick')
         component.centerView()

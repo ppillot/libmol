@@ -32,8 +32,6 @@ ToDo
   - 2 way binding ?
   - select from sequence
   - clear selection
-  - virtual scrolling for large datasets
-    - disable tooltip while scrolling (disable mouseover)
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
 - build :
   - move to webpack 2 ?

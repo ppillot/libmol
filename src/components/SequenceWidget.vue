@@ -14,7 +14,7 @@
               <template v-for="residu in line.resRow">
               <td v-if="residu" 
               :data-index="residu.index" 
-              :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }"
+              :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH'), sel: isSelected(residu.index) }"
               :key="residu.index">
                 {{ residu.resname }}
               </td>
@@ -44,6 +44,20 @@
       left: rect.right + 5 + 'px',
       visibility: 'visible'
     }
+  }
+
+  function getResIndexFromNode (node) {
+    if (node.nodeType === window.Node.TEXT_NODE) {
+      node = node.parentNode
+    }
+    if (node.tagName !== 'TD') {
+      return null
+    }
+    return node.dataset.index | 0 || null
+  }
+
+  function selection (event) {
+    console.log(getResIndexFromNode(event.target))
   }
 
   export default {
@@ -123,6 +137,9 @@
       }
     },
     methods: {
+      isSelected (resIndex) {
+        return this.$store.state.selected[resIndex]
+      },
       getHoveredItem (itemType, event) {
         const target = event.target
         if (((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) && !isScrollInProcess) {
@@ -198,12 +215,14 @@
         if (val) {
           this.setNbElementsToDisplay()
           this.setVisibleResidues()
+          document.addEventListener('mousedown', selection)
+        } else {
+          document.removeEventListener('mousedown', selection)
         }
       }
     },
     mounted: function () {
       this.$nextTick(this.setNbElementsToDisplay)
-      console.log(optimizedResize.add)
       resize.add(this.setNbElementsToDisplay)
     }
   }
@@ -274,17 +293,10 @@
     cursor: pointer;
   }
 
-  .tab-body ul li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-align: center;
-    cursor: pointer;
-    background: none;
-    display: inline-block;
-    width: 3em;
+  td::selection {
+    background: #fff
   }
-  
+
   .tab-body tr td:hover {
     background: #bbdefb;
   }
@@ -295,6 +307,10 @@
   
   .hoh {
     color: #01579b
+  }
+
+  .sel {
+    background: #ffe
   }
   
   .tooltip {

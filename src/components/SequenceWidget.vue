@@ -10,11 +10,12 @@
     <div class="tab-body" @mouseover.stop="getHoveredItem('res', $event)" @mouseout.stop="hideTooltip" @scroll.stop="scroll($event)">
       <div :style="listHeightStyle">
           <table :style="[listScrollStyle, listWidthStyle]">
-            <tr v-for="(line, index) in visibleResidues" :key="index">
-              <template v-for="residu in line">
+            <tr v-for="line in visibleResidues" :key="line.index">
+              <template v-for="residu in line.resRow">
               <td v-if="residu" 
               :data-index="residu.index" 
-              :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }">
+              :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH') }"
+              :key="residu.index">
                 {{ residu.resname }}
               </td>
               <td v-else>
@@ -88,7 +89,7 @@
               (chain.sequence.length > i) ? chain.sequence[i] : null
             )
           })
-          rList.push(resPosiList)
+          rList.push({index: i, resRow: resPosiList})
         }
         this.residuesList = rList
 
@@ -99,29 +100,6 @@
         return {
           width: this.$store.state.mol.chains.length * 3 + 'em'
         }
-      },
-
-      /* residuesList: function () {
-        let rList = []
-        const maxElementNb = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
-          return Math.max(accumulator, currentValue.sequence.length)
-        }, 0)
-
-        for (let i = 0; i < maxElementNb; i++) {
-          let resPosiList = []
-          this.$store.state.mol.chains.forEach(chain => {
-            resPosiList.push(
-              (chain.sequence.length > i) ? chain.sequence[i] : null
-            )
-          })
-          rList.push(resPosiList)
-        }
-
-        return rList
-      },
-      */
-      residuesListToDisplay: function () {
-        return this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
       },
 
       tooltipText: function () {
@@ -188,6 +166,10 @@
       scrolling () {
         if (prevPos.top !== actualPos.top) {
           this.listStart = (actualPos.top / this.elementHeight) | 0
+          this.listStart --
+          if (this.listStart < 0) {
+            this.listStart = 0
+          }
           let vec = actualPos.top - (actualPos.top % this.elementHeight)
           this.listScrollStyle = { transform: 'translate(0,' + vec + 'px)' }
           this.visibleResidues = this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
@@ -288,6 +270,7 @@
     width: 3em;
     padding: 0;
     text-align: center;
+    cursor: pointer;
   }
 
   .tab-body ul li {
@@ -301,7 +284,7 @@
     width: 3em;
   }
   
-  .tab-body ul li:hover {
+  .tab-body tr td:hover {
     background: #bbdefb;
   }
   

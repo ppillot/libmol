@@ -14,7 +14,7 @@
               <template v-for="residu in line.resRow">
               <td v-if="residu" 
               :data-index="residu.index" 
-              :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH'), sel: isSelected(residu.index) }"
+              :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH'), sel: isSelected(residu.index), usersel: isBeingSelected(residu.index)}"
               :key="residu.index">
                 {{ residu.resname }}
               </td>
@@ -36,6 +36,7 @@
   let actualPos = {top: 0, left: 0}
   let isScrollInProcess = false
   let resize = optimizedResize()
+  let chainByResidueList = []
   // let isSelectionInProcess = false
 
   function getTooltipStyles (target) {
@@ -55,6 +56,33 @@
       return NaN
     }
     return ('index' in node.dataset) ? node.dataset.index | 0 : NaN
+  }
+
+  function fillArrayTo (start, end) {
+    let arr = []
+    let chainSeq = this.$store.state.mol.chains[chainByResidueList[start]].sequence
+    let isReversed = (start > end)
+
+    if (isReversed) {
+      [start, end] = [end, start]
+    }
+    let i = 0
+    let push = false
+    // console.log('start:', start, 'end:', end, 'chain:', chainByResidueList[start], 'sequence:', chainSeq)
+    while (chainSeq[i].index <= end) {
+      if (chainSeq[i].index === start) {
+        push = true
+      }
+      if (push) {
+        arr.push(chainSeq[i].index)
+      }
+      i++
+    }
+    if (isReversed) {
+      arr.reverse()
+    }
+
+    return arr
   }
 
   export default {
@@ -82,13 +110,19 @@
     computed: {
       chains: function () {
         let chains = []
+        chainByResidueList = []
+
         this.$store.state.mol.chains.forEach(chain => {
           chains.push({
             entity: chain.entity,
             id: chain.id,
             name: chain.name
           })
+          chain.sequence.forEach(res => {
+            chainByResidueList[res.index] = chain.id
+          })
         })
+        // console.log(chainByResidueList)
         let rList = []
         const maxElementNb = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
           return Math.max(accumulator, currentValue.sequence.length)
@@ -138,6 +172,9 @@
       isSelected (resIndex) {
         return this.$store.state.selected[resIndex]
       },
+      isBeingSelected (resIndex) {
+        return this.userSelection.includes(resIndex)
+      },
       getHoveredItem (itemType, event) {
         const target = event.target
         if (((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) && !isScrollInProcess) {
@@ -160,6 +197,7 @@
       pickColor (val) {
         this.$store.dispatch('color', val.hex)
       },
+// *********  Virtual scrolling
       scroll (event) {
         const target = event.target
         const pos = {
@@ -207,17 +245,17 @@
       setVisibleResidues () {
         this.visibleResidues = this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
       },
-
+// ************* Selection
       startSelection (event) {
         event.stopPropagation()
 
         let startResId = getResIndexFromNode(event.target)
-        console.log('start:', startResId)
+        console.log('start:', startResId, 'chain:', chainByResidueList[startResId])
         if (isNaN(startResId)) { // could not get the starting point
           // console.log(event.target)
           return
         }
-
+        this.userSelection = [startResId]
         // isSelectionInProcess = true
         document.getElementById('table-seq').addEventListener('mouseover', this.currentSelection)
         document.getElementById('table-seq').addEventListener('mouseleave', this.cancelSelection)
@@ -226,7 +264,7 @@
 
       cancelSelection (event) {
         // event.stopPropagation()
-
+        this.userSelection.splice(1)
         console.log('cancel selection')
         return
       },
@@ -235,6 +273,16 @@
         // event.stopPropagation()
 
         let currentResId = getResIndexFromNode(event.target)
+        if (isNaN(currentResId)) {
+          this.userSelection.splice(1)
+        } else {
+          // check if same chain
+          if (chainByResidueList[this.userSelection[0]] !== chainByResidueList[currentResId]) {
+            this.userSelection.splice(1)
+          } else {
+            this.userSelection = fillArrayTo.call(this, this.userSelection[0], currentResId)
+          }
+        }
         console.log('current:', currentResId)
         return
       },
@@ -242,8 +290,14 @@
       endSelection (event) {
         event.stopPropagation()
         let endResId = getResIndexFromNode(event.target)
-        console.log('end:', endResId)
-        // isSelectionInProcess = false
+
+        // let's commit the new selection if the event happened in the same chain
+        if (!isNaN(endResId) && (chainByResidueList[this.userSelection[0]] !== chainByResidueList[endResId])) {
+          this.$store.dispatch('sequenceSelected', this.userSelection.slice(0))
+        }
+
+        this.userSelection = []
+        // console.log('end:', endResId)
         document.getElementById('table-seq').removeEventListener('mouseover', this.currentSelection)
         document.getElementById('table-seq').removeEventListener('mouseleave', this.cancelSelection)
         document.removeEventListener('mouseup', this.endSelection)
@@ -333,6 +387,7 @@
     padding: 0;
     text-align: center;
     cursor: pointer;
+    user-select: none;
   }
 
   td::selection {
@@ -357,6 +412,10 @@
 
   .sel::selection {
     background: #ffe
+  }
+
+  .usersel {
+    background: #F00;
   }
   
   .tooltip {

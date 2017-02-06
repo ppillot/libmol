@@ -353,6 +353,9 @@ var vuex = new Vuex.Store({
     },
     setStageParameters ({commit}, params) {
       stage.setParameters(params)
+    },
+    sequenceSelected (context, params) {
+      //
     }
   },
   getters: {

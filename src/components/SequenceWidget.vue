@@ -9,7 +9,7 @@
     </div>
     <div class="tab-body" @mouseover.stop="getHoveredItem('res', $event)" @mouseout.stop="hideTooltip" @scroll.stop="scroll($event)">
       <div :style="listHeightStyle">
-          <table :style="[listScrollStyle, listWidthStyle]">
+          <table :style="[listScrollStyle, listWidthStyle]" id="table-seq">
             <tr v-for="line in visibleResidues" :key="line.index">
               <template v-for="residu in line.resRow">
               <td v-if="residu" 
@@ -36,6 +36,7 @@
   let actualPos = {top: 0, left: 0}
   let isScrollInProcess = false
   let resize = optimizedResize()
+  // let isSelectionInProcess = false
 
   function getTooltipStyles (target) {
     let rect = target.getBoundingClientRect()
@@ -51,13 +52,9 @@
       node = node.parentNode
     }
     if (node.tagName !== 'TD') {
-      return null
+      return NaN
     }
-    return node.dataset.index | 0 || null
-  }
-
-  function selection (event) {
-    console.log(getResIndexFromNode(event.target))
+    return ('index' in node.dataset) ? node.dataset.index | 0 : NaN
   }
 
   export default {
@@ -78,7 +75,8 @@
         headerStyle: 'margin-left: 0',
         nbElementsToDisplay: 20,
         residuesList: [],
-        visibleResidues: []
+        visibleResidues: [],
+        userSelection: []
       }
     },
     computed: {
@@ -208,6 +206,47 @@
 
       setVisibleResidues () {
         this.visibleResidues = this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
+      },
+
+      startSelection (event) {
+        event.stopPropagation()
+
+        let startResId = getResIndexFromNode(event.target)
+        console.log('start:', startResId)
+        if (isNaN(startResId)) { // could not get the starting point
+          // console.log(event.target)
+          return
+        }
+
+        // isSelectionInProcess = true
+        document.getElementById('table-seq').addEventListener('mouseover', this.currentSelection)
+        document.getElementById('table-seq').addEventListener('mouseleave', this.cancelSelection)
+        document.addEventListener('mouseup', this.endSelection)
+      },
+
+      cancelSelection (event) {
+        // event.stopPropagation()
+
+        console.log('cancel selection')
+        return
+      },
+
+      currentSelection (event) {
+        // event.stopPropagation()
+
+        let currentResId = getResIndexFromNode(event.target)
+        console.log('current:', currentResId)
+        return
+      },
+
+      endSelection (event) {
+        event.stopPropagation()
+        let endResId = getResIndexFromNode(event.target)
+        console.log('end:', endResId)
+        // isSelectionInProcess = false
+        document.getElementById('table-seq').removeEventListener('mouseover', this.currentSelection)
+        document.getElementById('table-seq').removeEventListener('mouseleave', this.cancelSelection)
+        document.removeEventListener('mouseup', this.endSelection)
       }
     },
     watch: {
@@ -215,9 +254,9 @@
         if (val) {
           this.setNbElementsToDisplay()
           this.setVisibleResidues()
-          document.addEventListener('mousedown', selection)
+          document.getElementById('table-seq').addEventListener('mousedown', this.startSelection)
         } else {
-          document.removeEventListener('mousedown', selection)
+          document.getElementById('table-seq').removeEventListener('mousedown', this.startSelection)
         }
       }
     },
@@ -278,6 +317,9 @@
     border-collapse: collapse;
     table-layout: fixed;
     width: 3em;
+    /* user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none; */
   }
   
   .tab-body table tr {
@@ -310,6 +352,10 @@
   }
 
   .sel {
+    background: #ffe
+  }
+
+  .sel::selection {
     background: #ffe
   }
   

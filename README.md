@@ -25,8 +25,8 @@ ToDo
   - icons
   - add/remove labels
   - create/remove surface
-  - on hover select, highlight selection
-  - remake the vue-color component for event delegation !
+  - on hover select, highlight selection (remake button element)
+  - remake the vue-color component for event delegation ! (and make it lightweight)
   - help
 - Sequences : 
   - 2 way binding ?
@@ -34,9 +34,11 @@ ToDo
   - clear selection
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
 - build :
-  - move to webpack 2 ?
-  - remove unnecessary libraries components (elements ui ?)
   - build bundle from es6 dependencies (e.g. ngl)
+- code refactor
+  - event bus : https://devblog.digimondo.io/building-a-simple-eventbus-in-vue-js-64b70fb90834#.706mbapkg
 - bugs :
   - safari : not displaying tab contents
   - firefox : not going fullscreen
+- website :
+  - brotli compression for static assets: https://www.npmjs.com/package/brotli-webpack-plugin https://lyncd.com/2015/11/brotli-support-apache/ https://kevinlocke.name/bits/2016/01/20/serving-pre-compressed-files-with-apache-multiviews/

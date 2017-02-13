@@ -65,7 +65,7 @@ function getDescriptionFromRes (res) {
 function getChainColors (chains, structure) {
   // console.log(structure)
   var chainColors = []
-  var chainNameScheme = NGL.ColorMakerRegistry.getScheme({scheme: 'chainname', structure: structure})
+  var chainNameScheme = NGL.ColormakerRegistry.getScheme({scheme: 'chainname', structure: structure})
 
   chains.forEach(chain => {
     chainColors.push(

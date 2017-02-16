@@ -3,14 +3,12 @@
         {{ $t('ui.sequence_select_instructions') }}
         <sequence-widget class="sequence-widget" :active="active"></sequence-widget>
         <display-mol v-bind:complete="false"></display-mol>
-        <compact-picker v-model="colors" @change-color="pickColor"></compact-picker>
+        <palette v-model="colors" @color="pickColor"></palette>
     </div>
 </template>
 
 <script>
-  import {
-    Compact
-  } from 'vue-color'
+  import Palette from './Palette'
   import DisplayMol from './DisplayMol'
   import SequenceWidget from './SequenceWidget'
 
@@ -25,7 +23,7 @@
       }
     },
     components: {
-      'compact-picker': Compact,
+      'palette': Palette,
       'display-mol': DisplayMol,
       'sequence-widget': SequenceWidget
     },

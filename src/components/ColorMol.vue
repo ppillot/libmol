@@ -10,7 +10,7 @@
       ref="palette"
       placement="right"
       trigger="click">
-      <compact-picker v-model="colors" @change-color="pickColor"></compact-picker>
+      <palette v-model="colors" @color="pickColor"></palette>
     </el-popover>
     <el-button-group>
         <el-button :disabled="noSStruc" v-on:click="color('sstruc')">{{ $t('ui.commands.color.by_secondary_structure') }}</el-button>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import { Compact } from 'vue-color'
+  import Palette from './Palette'
 
   export default {
     name: 'ColorMol',
@@ -31,7 +31,7 @@
       }
     },
     components: {
-      'compact-picker': Compact
+      'palette': Palette
     },
     computed: {
       nonPolymer: function () {

@@ -1,15 +1,15 @@
 <template>
   <el-form label-position="top" class="settings">
-    <el-form-item :label="$t('ui.settings.clip_near_label')">
+    <form-item :label="$t('ui.settings.clip_near_label')">
       <el-slider v-model="clipNear" @change="setClipNear"></el-slider>  
-    </el-form-item>
-    <el-form-item :label="$t('ui.settings.fog_near_label')">
+    </form-item>
+    <form-item :label="$t('ui.settings.fog_near_label')">
       <el-slider v-model="fogNear" @change="setFogNear"></el-slider>  
-    </el-form-item>
-    <el-form-item :label="$t('ui.settings.fog_far_label')">
+    </form-item>
+    <form-item :label="$t('ui.settings.fog_far_label')">
       <el-slider v-model="fogFar" @change="setFogFar"></el-slider>  
-    </el-form-item>
-    <el-form-item :label="$t('ui.settings.background_label')">
+    </form-item>
+    <form-item :label="$t('ui.settings.background_label')">
       <el-switch
         v-model="color"
         :width="80"
@@ -19,14 +19,16 @@
         :off-text="$t('ui.settings.black')"
         @change="switchBackgroundColor">
       </el-switch>
-    </el-form-item>
-    <el-form-item>
+    </form-item>
+    <form-item>
       <el-button type="primary" @click="reset">{{ $t('ui.settings.reset') }}</el-button>
-    </el-form-item>
+    </form-item>
   </el-form>
 </template>
 
 <script>
+  import FormItem from './FormItem'
+  
   var defaultParameters = {
     clipNear: 0,
     clipFar: 100,
@@ -40,6 +42,9 @@
 
   export default {
     name: 'settings',
+    components: {
+      FormItem
+    },
     data () {
       return {
         clipNear: 0,
@@ -91,7 +96,7 @@
     padding: 0;
     font-weight: 500;
   }
-  .settings .el-form-item {
+  .settings .form-item {
     margin-bottom: 1em;
   }
   .settings.el-form {

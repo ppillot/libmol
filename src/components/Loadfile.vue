@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="$t('ui.load_local_file_label')">
+  <form-item :label="$t('ui.load_local_file_label')">
     <el-upload
       action=""
       type="drag"
@@ -8,12 +8,17 @@
       <i class="el-icon-upload"></i>
       <div class="el-dragger__text" v-html="$t('ui.load_local_file_instructions_HTML')"></div>
     </el-upload>
-  </el-form-item>
+  </form-item>
 </template>
 
 <script>
+  import FormItem from './FormItem'
+
   export default {
     name: 'LoadFile',
+    components: {
+      FormItem
+    },
     data () {
       return {
         fileList: []

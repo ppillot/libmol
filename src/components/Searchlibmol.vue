@@ -1,15 +1,19 @@
 <template>
-  <el-form-item :label="$t('ui.search_libmol_label')">
+  <form-item :label="$t('ui.search_libmol_label')">
     <el-autocomplete v-model="state" :fetch-suggestions="debouncedQuery" placeholder="Mot clé" @select="handleSelect"></el-autocomplete>
-  </el-form-item>
+  </form-item>
 </template>
 
 <script>
 import axios from 'axios'
 import _debounce from 'lodash.debounce'
+import FormItem from './FormItem'
 
 export default {
   name: 'SearchLibmol',
+  components: {
+    FormItem
+  },
   data () {
     return {
       links: [],

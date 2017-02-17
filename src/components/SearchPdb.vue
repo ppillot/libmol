@@ -1,15 +1,19 @@
 <template>
-  <el-form-item :label="$t('ui.search_pdb_label')">
+  <form-item :label="$t('ui.search_pdb_label')">
     <el-autocomplete v-model="state" :fetch-suggestions="debouncedQuery" placeholder="Keyword" @select="handleSelect"></el-autocomplete>
-  </el-form-item>
+  </form-item>
 </template>
 
 <script>
 import axios from 'axios'
 import _debounce from 'lodash.debounce'
+import FormItem from './FormItem'
 
 export default {
   name: 'SearchPdb',
+  components: {
+    FormItem
+  },
   data () {
     return {
       links: [],

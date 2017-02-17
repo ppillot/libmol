@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import {Autocomplete, Button, ButtonGroup, Col, Form, FormItem, Icon, Popover, Row, Slider, Switch, Tabs, TabPane, Upload} from 'element-ui'
+import {Autocomplete, Button, ButtonGroup, Col, Form, Icon, Popover, Row, Slider, Switch, Tabs, TabPane, Upload} from 'element-ui'
 // import 'element-ui/lib/theme-default/index.css'
 import App from './App'
 import store from './store'
@@ -11,7 +11,6 @@ Vue.use(Button)
 Vue.use(ButtonGroup)
 Vue.use(Col)
 Vue.use(Form)
-Vue.use(FormItem)
 Vue.use(Icon)
 Vue.use(Popover)
 Vue.use(Row)

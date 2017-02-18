@@ -1,10 +1,11 @@
 <template>
-  <div class="vue-color__compact">
+  <div class="vue-color__compact" @click="handlerClick()">
     <ul class="vue-color__compact__colors">
       <li class="vue-color__compact__color-item" v-for="c in defaultColors"
-        @click="handlerClick(c)"
+        @click="handlerClick"
         :class="{'vue-color__compact__color-item--white': c === '#FFFFFF' }"
-        :style="{background: c}">
+        :style="{background: c}"
+        :data-color="c">
       </li>
     </ul>
   </div>
@@ -31,11 +32,13 @@ export default {
     }
   },
   methods: {
-    handlerClick (c) {
-      this.$emit('color', {
-        hex: c,
-        source: 'hex'
-      })
+    handlerClick (event) {
+      if (event.target.tagName === 'LI') {
+        this.$emit('color', {
+          hex: event.target.dataset.color,
+          source: 'hex'
+        })
+      }
     }
   }
 }

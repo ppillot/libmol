@@ -26,7 +26,6 @@ ToDo
   - add/remove labels
   - create/remove surface
   - on hover select, highlight selection (remake button element)
-  - remake the vue-color component for event delegation ! (and make it lightweight)
   - help
 - Sequences : 
   - 2 way binding ?

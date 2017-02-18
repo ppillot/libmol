@@ -1,8 +1,7 @@
 <template>
-  <div class="vue-color__compact" @click="handlerClick()">
+  <div class="vue-color__compact" @click="handlerClick">
     <ul class="vue-color__compact__colors">
       <li class="vue-color__compact__color-item" v-for="c in defaultColors"
-        @click="handlerClick"
         :class="{'vue-color__compact__color-item--white': c === '#FFFFFF' }"
         :style="{background: c}"
         :data-color="c">

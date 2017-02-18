@@ -20,9 +20,9 @@
         @change="switchBackgroundColor">
       </el-switch>
     </form-item>
-    <form-item>
+    <div style="text-align: right">
       <el-button type="primary" @click="reset">{{ $t('ui.settings.reset') }}</el-button>
-    </form-item>
+    </div>
   </el-form>
 </template>
 
@@ -92,14 +92,16 @@
 </script>
 
 <style>
-  .settings.el-form--label-top .el-form-item__label {
-    padding: 0;
-    font-weight: 500;
-  }
   .settings .form-item {
     margin-bottom: 1em;
   }
   .settings.el-form {
     padding: 1em;
+  }
+  .settings label {
+    font-weight: 500;
+  }
+  .settings .form-item-slot {
+    margin-top: 0;
   }
 </style>

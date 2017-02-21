@@ -98,10 +98,28 @@ if (config.build.productionGzip) {
   )
 }
 
+if (config.build.productionBrotli) {
+  var BrotliPlugin = require('brotli-webpack-plugin')
+
+  webpackConfig.plugins.push(
+    new BrotliPlugin({
+      asset: '[path].br[query]',
+      test: new RegExp(
+        '\\.(' +
+        config.build.productionGzipExtensions.join('|') +
+        ')$'
+      ),
+      threshold: 10240,
+      minRatio: 0.8
+    })
+  )
+}
+
 if (config.build.bundleAnalyzerReport) {
   var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin({
-    analyzerPort: 8880
+    analyzerPort: 8880,
+    generateStatsFile: true
   }))
 }
 

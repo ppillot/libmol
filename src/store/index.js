@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 // import * as actions from './actions'
 // import * as getters from './getters'
 import * as NGL from 'ngl'
+/* eslint-disable-next-line */
+// let NGL = () => import('ngl') /* eslint-disable-line */
 import _debounce from 'lodash.debounce'
 import Screenfull from 'screenfull'
 

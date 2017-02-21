@@ -39,8 +39,6 @@ ToDo
 - bugs :
   - safari : not displaying tab contents
   - firefox : not going fullscreen
-- website :
-  - brotli compression for static assets: https://www.npmjs.com/package/brotli-webpack-plugin https://lyncd.com/2015/11/brotli-support-apache/ https://kevinlocke.name/bits/2016/01/20/serving-pre-compressed-files-with-apache-multiviews/
 - components :
   - replace upload (30kB) : https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications
   - replace popover (78kB)

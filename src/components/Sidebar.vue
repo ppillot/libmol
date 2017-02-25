@@ -1,7 +1,7 @@
 <template>
     <div class="side-bar full-height">
         <h1>LibMol</h1>
-        <el-tabs type="border-card" class="tab-card" @tab-click="switchTab">
+        <el-tabs value="files" type="border-card" class="tab-card" @tab-click="switchTab">
             <el-tab-pane :label="$t('ui.files_tab_label')" name="files">
                 <el-form label-position="top">
                     <search-libmol></search-libmol>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import {Autocomplete, Button, ButtonGroup, Col, Form, Icon, Popover, Row, Slider, Switch, Tabs, TabPane, Upload} from 'element-ui'
+import {Autocomplete, Button, ButtonGroup, Col, Form, Icon, Popover, Row, Scrollbar, Slider, Switch, Tabs, TabPane, Upload} from 'element-ui'
 import App from './App'
 import store from './store'
 
@@ -13,6 +13,7 @@ Vue.use(Form)
 Vue.use(Icon)
 Vue.use(Popover)
 Vue.use(Row)
+Vue.use(Scrollbar)
 Vue.use(Slider)
 Vue.use(Switch)
 Vue.use(Tabs)
@@ -109,8 +110,7 @@ var locales = {
       sequence_select_instructions: 'Select from the different chains sequences',
       settings: {
         clip_near_label: 'Near clip plane position',
-        fog_near_label: 'Fog effect starting position',
-        fog_far_label: 'Fog effect completed position',
+        fog_label: 'Fog effect position',
         background_label: 'Background color',
         reset: 'Reset',
         white: 'white',
@@ -251,8 +251,7 @@ var locales = {
       sequence_select_instructions: 'Sélectionner à partir des séquences des différentes chaînes',
       settings: {
         clip_near_label: 'Position du plan de coupe avant',
-        fog_near_label: 'Début effet de brouillard',
-        fog_far_label: 'Fin effet de brouillard',
+        fog_label: 'Position effet de brouillard',
         background_label: 'Couleur de fond',
         reset: 'Réinitialiser',
         white: 'blanc',

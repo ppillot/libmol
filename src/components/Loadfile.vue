@@ -2,7 +2,7 @@
   <form-item :label="$t('ui.load_local_file_label')">
     <el-upload
       action=""
-      type="drag"
+      drag
       :multiple="false"
       :before-upload="getFile">
       <i class="el-icon-upload"></i>
@@ -39,7 +39,7 @@
 </script>
 
 <style>
-  .el-upload, .el-dragger {
+  .el-upload, .el-upload-dragger {
     width: 100%
   } 
 </style>

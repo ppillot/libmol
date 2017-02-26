@@ -16,7 +16,6 @@
     "axios": "^0.15.2",
     "element-ui": "^1.2.1",
     "fastbitset": "^0.2.0",
-    "lodash.debounce": "^4.0.8",
     "ngl": "^0.10.0-dev.3",
     "screenfull": "^3.0.2",
     "vue": "^2.1.10",

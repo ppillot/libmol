@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 import * as NGL from 'ngl'
 /* eslint-disable-next-line */
 // let NGL = () => import('ngl') /* eslint-disable-line */
-import _debounce from 'lodash.debounce'
+import debounce from 'throttle-debounce/debounce'
 import Screenfull from 'screenfull'
 
 Vue.use(Vuex)
@@ -209,7 +209,7 @@ var vuex = new Vuex.Store({
       context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: 'Crambin - 1CRN' })
 
       let resize = resizeStage(stage)
-      window.onresize = _debounce(resize, 100)
+      window.onresize = debounce(100, resize)
       if (debug) { window.stage = stage }
     },
     loadNewFile (context, newFile) {

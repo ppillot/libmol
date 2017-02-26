@@ -44,4 +44,3 @@ ToDo
   - replace popover (78kB)
   - replace autocomplete (33kB)
   - replace axios (35kB) with fetch polyfill (12kB)
-  - lodash debounce (10kB) with throttle-debounce (5kB) https://github.com/niksy/throttle-debounce

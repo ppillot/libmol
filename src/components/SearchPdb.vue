@@ -6,7 +6,7 @@
 
 <script>
 import axios from 'axios'
-import _debounce from 'lodash.debounce'
+import debounce from 'throttle-debounce/debounce'
 import FormItem from './FormItem'
 
 export default {
@@ -22,10 +22,11 @@ export default {
     }
   },
   methods: {
-    debouncedQuery: _debounce(
+    debouncedQuery: debounce(
+      600,
       function (q, c) {
         this.querySearchAsync(q, c)
-      }, 600),
+      }),
 
     querySearchAsync (queryString, cb) {
       if (queryString.length === 0) {

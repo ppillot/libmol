@@ -3,11 +3,9 @@
         <h1>LibMol</h1>
         <el-tabs value="files" type="border-card" class="tab-card" @tab-click="switchTab">
             <el-tab-pane :label="$t('ui.files_tab_label')" name="files">
-                <el-form label-position="top">
-                    <search-libmol></search-libmol>
-                    <search-pdb></search-pdb>
-                    <load-file></load-file>
-                </el-form>
+                <search-libmol></search-libmol>
+                <search-pdb></search-pdb>
+                <load-file></load-file>
             </el-tab-pane>
             <el-tab-pane :label="$t('ui.commands_tab_label')" name="commands">
                 <select-mol></select-mol>

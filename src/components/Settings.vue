@@ -1,5 +1,5 @@
 <template>
-  <el-form label-position="top" class="settings">
+  <div class="settings">
     <form-item :label="$t('ui.settings.clip_near_label')">
       <el-slider v-model="clipNear" @change="setClipNear"></el-slider>  
     </form-item>
@@ -20,7 +20,7 @@
     <div style="text-align: right">
       <el-button type="primary" @click="reset">{{ $t('ui.settings.reset') }}</el-button>
     </div>
-  </el-form>
+  </div>
 </template>
 
 <script>
@@ -76,6 +76,9 @@
 </script>
 
 <style>
+  .settings {
+    margin: 1em 1em 0.5em 1em
+  }
   .settings .form-item {
     margin-bottom: 1em;
   }

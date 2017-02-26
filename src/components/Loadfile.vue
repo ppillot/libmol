@@ -1,13 +1,13 @@
 <template>
   <form-item :label="$t('ui.load_local_file_label')">
-    <el-upload
-      action=""
-      drag
-      :multiple="false"
-      :before-upload="getFile">
+    <input type="file" id="fileElem" style="display:none" @change="getFiles($event)">
+    <label for="fileElem" class="loadfile" 
+      @dragenter.prevent.default 
+      @dragover.prevent.default 
+      @drop.prevent.default="dropFile($event)">
       <i class="el-icon-upload"></i>
-      <div class="el-dragger__text" v-html="$t('ui.load_local_file_instructions_HTML')"></div>
-    </el-upload>
+      {{ $t('ui.load_local_file_instructions') }}
+    </label>
   </form-item>
 </template>
 
@@ -26,20 +26,40 @@
     },
     methods: {
       getFile (file) {
-        console.log(file)
         const item = {
           file: file,
           value: file.name
         }
         this.$store.dispatch('loadNewFile', item)
         return false
+      },
+      dropFile (ev) {
+        const dt = ev.dataTransfer
+        const file = dt.files[0]
+        this.getFile(file)
+      },
+      getFiles (ev) {
+        this.getFile(ev.target.files[0])
       }
     }
   }
 </script>
 
 <style>
-  .el-upload, .el-upload-dragger {
-    width: 100%
-  } 
+  .loadfile {
+    min-height: 170px;
+    border-radius: 5px;
+    border: dashed 1px #d9d9d9;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .loadfile:hover {
+    border-color: #4db1fd;
+  }
+  .loadfile .el-icon-upload {
+    display: block;
+    font-size: 4em;
+    margin: 40px 0 10px 0;
+    color: #97a8be;
+  }
 </style>

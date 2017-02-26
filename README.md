@@ -40,7 +40,6 @@ ToDo
   - safari : not displaying tab contents
   - firefox : not going fullscreen
 - components :
-  - replace upload (30kB) : https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications
   - replace popover (78kB)
   - replace autocomplete (33kB)
   - replace axios (35kB) with fetch polyfill (12kB)

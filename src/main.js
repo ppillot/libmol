@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import {Autocomplete, Button, ButtonGroup, Col, Form, Icon, Popover, Row, Scrollbar, Slider, Switch, Tabs, TabPane, Upload} from 'element-ui'
+import {Autocomplete, Button, ButtonGroup, Col, Form, Icon, Popover, Row, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'
 import App from './App'
 import store from './store'
 
@@ -18,7 +18,6 @@ Vue.use(Slider)
 Vue.use(Switch)
 Vue.use(Tabs)
 Vue.use(TabPane)
-Vue.use(Upload)
 
 // ready translated locales
 var locales = {
@@ -106,7 +105,7 @@ var locales = {
       search_libmol_label: 'Search in "Librairie de molécules" (fr)',
       search_pdb_label: 'Query the Protein Data Bank',
       load_local_file_label: 'Load local file',
-      load_local_file_instructions_HTML: 'Drag and drop file here or <em>click to load</em>',
+      load_local_file_instructions: 'Drag and drop file here or click to load',
       sequence_select_instructions: 'Select from the different chains sequences',
       settings: {
         clip_near_label: 'Near clip plane position',
@@ -247,7 +246,7 @@ var locales = {
       search_libmol_label: 'Rechercher dans la librairie de molécules',
       search_pdb_label: 'Rechercher dans la Protein Data Bank',
       load_local_file_label: 'Charger un fichier local',
-      load_local_file_instructions_HTML: 'Déposer un fichier ici ou <em>cliquer pour charger</em>',
+      load_local_file_instructions: 'Déposer un fichier ici ou cliquer pour charger',
       sequence_select_instructions: 'Sélectionner à partir des séquences des différentes chaînes',
       settings: {
         clip_near_label: 'Position du plan de coupe avant',

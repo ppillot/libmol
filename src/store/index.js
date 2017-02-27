@@ -18,7 +18,26 @@ var structure = {}
 var resRepresentations
 var representationsList = []
 var highlight
+var currentSelectionAtomSet
 
+/**
+ * @description removes residues form their current representation so that they are set only in the latest
+ *
+ * @param {NGL atomSet} atomSet
+ * @param {number} skipReprIndex index of the latest representation : must be skipped !
+ */
+function removeSelectionFromRepresentations (atomSet, skipReprIndex) {
+  for (let i = 0; i < representationsList.length; i++) {
+    if (i === skipReprIndex) {
+      continue
+    }
+    const repr = representationsList[i]
+    if (repr.atomSet.intersects(atomSet)) {
+      let sele = repr.atomSet.difference(atomSet)
+      stage.compList[0].reprList[repr.index].setSelection(sele.toSeleString())
+    }
+  }
+}
 function onHover (response) {
   let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
   if (atomHovered !== undefined) {
@@ -285,7 +304,14 @@ var vuex = new Vuex.Store({
 
         component.addRepresentation('ball+stick')
         component.centerView()
-        representationsList[0] = {display: 'ball+stick', color: 'cpk', sele: []}
+        representationsList[0] = {
+          display: 'ball+stick',
+          color: 'cpk',
+          sele: '*',
+          atomSet: structure.getAtomSet(),
+          index: component.reprList.length - 1
+        }
+        currentSelectionAtomSet = structure.getAtomSet()
 
         highlight = highlightRes(component)
       })
@@ -299,10 +325,40 @@ var vuex = new Vuex.Store({
     },
     selection (context, selector) {
       context.commit('selection', selector)
+      const sel = new NGL.Selection(selector)
+      currentSelectionAtomSet = structure.getAtomSet(sel)
     },
+
     display (context, displayType) {
       // console.log(representationsList)
-      stage.compList[0].addRepresentation(displayType, {sele: context.state.selection})
+      const num = representationsList.findIndex(val => {
+        return val.display === displayType
+      })
+      console.log(num)
+      if (num === -1) {
+        // new representation
+        stage.compList[0].addRepresentation(displayType,
+                                            {sele: context.state.selection})
+        representationsList.push(
+          {display: displayType,
+            index: stage.compList[0].reprList.length - 1,
+            atomSet: currentSelectionAtomSet.clone(),
+            sele: context.state.selection})
+        removeSelectionFromRepresentations(currentSelectionAtomSet, representationsList.length - 1)
+      } else {
+        const repr = representationsList[num]
+        // representation already exists, is it the same selection ?
+        if (!repr.atomSet.equals(currentSelectionAtomSet)) {
+          // not the same selection, we must extend representation to the union
+          repr.atomSet.union(currentSelectionAtomSet)
+
+          // need to update the representation
+          stage.compList[0].reprList[repr.index].setSelection(repr.atomSet.toSeleString())
+
+          // and to update the remaining representations
+          removeSelectionFromRepresentations(currentSelectionAtomSet, num)
+        }
+      }
       context.commit('display', displayType)
     },
     color (context, colorScheme) {

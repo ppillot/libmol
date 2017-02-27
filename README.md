@@ -42,4 +42,4 @@ ToDo
 - components :
   - replace popover (78kB)
   - replace autocomplete (33kB)
-  - replace axios (35kB) with fetch polyfill (12kB)
+  - replace axios (35kB) with fetch polyfill (12kB) (bug in webpack proxy)

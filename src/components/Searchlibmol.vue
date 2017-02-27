@@ -46,6 +46,21 @@ export default {
       .catch(function (error) {
         console.log(error)
       })
+/* fetch('www/recherche.php', {
+        method: 'GET',
+        body: {
+          txt: queryString
+        }
+      })
+      .then(function (response) {
+        const data = response.json()
+        console.log(data)
+        const rep = data.map(item => ({ value: item.label, file: 'static/mol/pdb/' + item.file + '.pdb', molId: item.molId }))
+        cb(rep)
+      })
+      .catch(function (error) {
+        console.log(error)
+      }) */
     },
     handleSelect (item) {
       this.$store.dispatch('loadNewFile', item)

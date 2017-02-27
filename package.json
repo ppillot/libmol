@@ -19,7 +19,8 @@
     "ngl": "^0.10.0-dev.3",
     "screenfull": "^3.0.2",
     "vue": "^2.1.10",
-    "vue-i18n": "^5.0.0",
+    "vue-i18n": "git://github.com/kazupon/vue-i18n.git#5.x",
+    "vue-template-compiler": "^2.2.1",
     "vuex": "^2.0.0"
   },
   "devDependencies": {

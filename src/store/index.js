@@ -205,6 +205,13 @@ var vuex = new Vuex.Store({
     },
     isAtomHovered (state, isDisplayed) {
       state.isAtomHovered = isDisplayed
+    },
+    updateSelected (state, atomSet) {
+      let selected = []
+      for (let i = 0; i < structure.residueStore.length; i++) {
+        selected.push(atomSet.has(structure.residueStore.atomOffset[i]))
+      }
+      state.selected = selected
     }
   },
   actions: {
@@ -327,6 +334,7 @@ var vuex = new Vuex.Store({
       context.commit('selection', selector)
       const sel = new NGL.Selection(selector)
       currentSelectionAtomSet = structure.getAtomSet(sel)
+      context.commit('updateSelected', currentSelectionAtomSet)
     },
 
     display (context, displayType) {
@@ -334,7 +342,7 @@ var vuex = new Vuex.Store({
       const num = representationsList.findIndex(val => {
         return val.display === displayType
       })
-      console.log(num)
+      // console.log(num)
       if (num === -1) {
         // new representation
         stage.compList[0].addRepresentation(displayType,

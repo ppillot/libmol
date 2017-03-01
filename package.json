@@ -16,7 +16,7 @@
     "axios": "^0.15.2",
     "element-ui": "^1.2.1",
     "fastbitset": "^0.2.0",
-    "ngl": "git@github.com:arose/ngl.git",
+    "ngl": "git://github.com/arose/ngl.git",
     "screenfull": "^3.0.2",
     "vue": "^2.2.1",
     "vue-i18n": "git://github.com/kazupon/vue-i18n.git#5.x",

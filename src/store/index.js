@@ -212,6 +212,11 @@ var vuex = new Vuex.Store({
         selected.push(atomSet.has(structure.residueStore.atomOffset[i]))
       }
       state.selected = selected
+    },
+    updateSelectedFromTab (state, {tabSelectedResidues, isToBeSelected}) {
+      tabSelectedResidues.forEach(val => {
+        state.selected[val] = isToBeSelected
+      })
     }
   },
   actions: {
@@ -273,11 +278,12 @@ var vuex = new Vuex.Store({
           // Have we encountered a yet unknown chain.
           if (!chainMap.has(item.chainname)) {
             // let's keep track of the different chains by their given order
-            chainMap.set(item.chainname, chainMap.size)
+            const chainId = chainMap.size
+            chainMap.set(item.chainname, chainId)
 
             // let's set new chain properties based upon first item
             chains.push({
-              id: item.chainIndex,
+              id: chainId,
               name: item.chainname,
               entity: item.entity.description,
               sequence: [],
@@ -420,8 +426,25 @@ var vuex = new Vuex.Store({
     setStageParameters ({commit}, params) {
       stage.setParameters(params)
     },
-    sequenceSelected (context, params) {
-      //
+    sequenceSelected (context, tabSelectedResidues) {
+      // has the selection started by a selected residue ?
+      let isToBeSelected = (context.state.selected[tabSelectedResidues[0]] === false)
+      console.log(tabSelectedResidues, context.state.selected[tabSelectedResidues[0]])
+      // modify current selection atomSet
+      tabSelectedResidues.forEach(val => {
+        let atomId = structure.residueStore.atomOffset[val]
+        let nbAtoms = structure.residueStore.atomCount[val]
+        if (isToBeSelected) {
+          for (let i = atomId; i < atomId + nbAtoms; i++) {
+            currentSelectionAtomSet.add(i)
+          }
+        } else {
+          for (let i = atomId; i < atomId + nbAtoms; i++) {
+            currentSelectionAtomSet.remove(i)
+          }
+        }
+      })
+      context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
     }
   },
   getters: {

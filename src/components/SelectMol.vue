@@ -35,8 +35,8 @@
           {{ $t('ui.commands.select.water') }}
         </el-button>
         <el-button :disabled="unselectables.hetero" 
-                    @click="sel('hetero')"
-                    @mouseenter="highlight('hetero')" 
+                    @click="sel('hetero and not water')"
+                    @mouseenter="highlight('hetero and not water')" 
                     @mouseleave="highlight('none')">
           {{ $t('ui.commands.select.hetero') }}
         </el-button>

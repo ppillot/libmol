@@ -68,8 +68,7 @@
     }
     let i = 0
     let push = false
-    // console.log('start:', start, 'end:', end, 'chain:', chainByResidueList[start], 'sequence:', chainSeq)
-    while (chainSeq[i].index <= end) {
+    while ((i < chainSeq.length) && (chainSeq[i].index <= end)) {
       if (chainSeq[i].index === start) {
         push = true
       }
@@ -112,7 +111,7 @@
         let chains = []
         chainByResidueList = []
 
-        this.$store.state.mol.chains.forEach(chain => {
+        this.$store.state.mol.chains.forEach((chain, index) => {
           chains.push({
             entity: chain.entity,
             id: chain.id,
@@ -250,7 +249,7 @@
         event.stopPropagation()
 
         let startResId = getResIndexFromNode(event.target)
-        console.log('start:', startResId, 'chain:', chainByResidueList[startResId])
+        // console.log('start:', startResId, 'chain:', chainByResidueList[startResId])
         if (isNaN(startResId)) { // could not get the starting point
           // console.log(event.target)
           return
@@ -265,7 +264,7 @@
       cancelSelection (event) {
         // event.stopPropagation()
         this.userSelection.splice(1)
-        console.log('cancel selection')
+        // console.log('cancel selection')
         return
       },
 
@@ -292,7 +291,7 @@
         let endResId = getResIndexFromNode(event.target)
 
         // let's commit the new selection if the event happened in the same chain
-        if (!isNaN(endResId) && (chainByResidueList[this.userSelection[0]] !== chainByResidueList[endResId])) {
+        if (!isNaN(endResId) && (chainByResidueList[this.userSelection[0]] === chainByResidueList[endResId])) {
           this.$store.dispatch('sequenceSelected', this.userSelection.slice(0))
         }
 
@@ -395,7 +394,7 @@
   }
 
   .tab-body tr td:hover {
-    background: #bbdefb;
+    background: #eef1f6;
   }
   
   .hetero {
@@ -407,15 +406,15 @@
   }
 
   .sel {
-    background: #ffe
+    background: #b1e3f7
   }
 
   .sel::selection {
-    background: #ffe
+    background: #b1e3f7
   }
 
   .usersel {
-    background: #F00;
+    background: #dbdf00;
   }
   
   .tooltip {

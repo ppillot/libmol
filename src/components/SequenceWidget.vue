@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="header" @mouseover.stop="getHoveredItem('chain', $event)" @mouseout.stop="hideTooltip" :style="headerStyle">
-      <ul>
-        <li v-for="chain in chains" :data-index="chain.id">
+      <ul id="chains-list">
+        <li v-for="chain in chains" :data-index="chain.id" @click="selectChain(chain.id)">
           {{ chain.name }}
         </li>
       </ul>
@@ -282,7 +282,7 @@
             this.userSelection = fillArrayTo.call(this, this.userSelection[0], currentResId)
           }
         }
-        console.log('current:', currentResId)
+        // console.log('current:', currentResId)
         return
       },
 
@@ -300,6 +300,11 @@
         document.getElementById('table-seq').removeEventListener('mouseover', this.currentSelection)
         document.getElementById('table-seq').removeEventListener('mouseleave', this.cancelSelection)
         document.removeEventListener('mouseup', this.endSelection)
+      },
+
+      selectChain (chainId) {
+        this.$store.dispatch('chainSelected', chainId)
+        this.$forceUpdate()
       }
     },
     watch: {

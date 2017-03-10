@@ -445,6 +445,18 @@ var vuex = new Vuex.Store({
         }
       })
       context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
+    },
+    chainSelected (context, chainId) {
+      // if the chain is entirely selected, we then deselect it
+      let isToBeSelected = false
+      let tabSelectedResidues = []
+      context.state.mol.chains[chainId].sequence.forEach(res => {
+        if (!context.state.selected[res.index]) {
+          isToBeSelected = true
+        }
+        tabSelectedResidues.push(res.index)
+      })
+      context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
     }
   },
   getters: {

@@ -30,7 +30,7 @@ ToDo
   - create/remove surface
   - on hover select, highlight selection (remake button element)
   - make button element work like reactive radio inputs (exclusive in the same group)
-  - help
+  - on hover display help
 - Sequences : 
   - 2 way binding ?
   - clear selection

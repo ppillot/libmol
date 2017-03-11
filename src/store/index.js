@@ -23,6 +23,7 @@ var currentlyDisplayedAtomSet
 var wholeAtomSet
 var tabColorScheme = [['element', '*']]
 var tabColorAtomSet
+var globalColorScheme
 
 /**
  * @description removes residues form their current representation so that they are set only in the latest
@@ -45,7 +46,7 @@ function removeSelectionFromRepresentations (atomSet, skipReprIndex) {
 
 function removeSelectionFromColorSchemes (atomSet, skipColorSchemeIndex) {
   let clearableColorSchemes = []
-  console.log(tabColorScheme)
+
   tabColorScheme.forEach((colorScheme, i) => {
     if (i === skipColorSchemeIndex) return
     if (tabColorAtomSet[i].intersects(atomSet)) {
@@ -65,10 +66,13 @@ function removeSelectionFromColorSchemes (atomSet, skipColorSchemeIndex) {
   })
 }
 
+function updateGlobalColorScheme () {
+  globalColorScheme = NGL.ColormakerRegistry.addSelectionScheme(tabColorScheme)
+}
+
 function updateRepresentationColor () {
-  const scheme = NGL.ColormakerRegistry.addSelectionScheme(tabColorScheme)
   stage.compList[0].eachRepresentation(repr => {
-    repr.setColor(scheme)
+    repr.setColor(globalColorScheme)
   })
 }
 
@@ -354,6 +358,7 @@ var vuex = new Vuex.Store({
         context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected})
 
         tabColorScheme = [['element', '*']]
+        updateGlobalColorScheme()
         component.addRepresentation('ball+stick')
         component.centerView()
         representationsList[0] = {
@@ -394,7 +399,10 @@ var vuex = new Vuex.Store({
       if (num === -1) {
         // new representation
         stage.compList[0].addRepresentation(displayType,
-                                            {sele: context.state.selection || currentSelectionAtomSet.toSeleString()})
+          {
+            sele: context.state.selection || currentSelectionAtomSet.toSeleString(),
+            color: globalColorScheme
+          })
         representationsList.push(
           {display: displayType,
             index: stage.compList[0].reprList.length - 1,
@@ -455,6 +463,7 @@ var vuex = new Vuex.Store({
       removeSelectionFromColorSchemes(colorAtomSet, colorIndex)
 
       // update representations colors
+      updateGlobalColorScheme()
       updateRepresentationColor()
 
       context.commit('color', colorScheme)

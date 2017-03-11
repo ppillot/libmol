@@ -21,7 +21,7 @@
     computed: {
       nonPolymer: function () {
         let sel = this.$store.state.selection
-        return (sel === 'hetero' || sel === 'water' || sel === 'saccharide')
+        return (sel === 'hetero and not water' || sel === 'water' || sel === 'saccharide')
       }
     },
     methods: {

@@ -352,7 +352,7 @@ var vuex = new Vuex.Store({
       if (num === -1) {
         // new representation
         stage.compList[0].addRepresentation(displayType,
-                                            {sele: context.state.selection})
+                                            {sele: context.state.selection || currentSelectionAtomSet.toSeleString()})
         representationsList.push(
           {display: displayType,
             index: stage.compList[0].reprList.length - 1,
@@ -429,7 +429,22 @@ var vuex = new Vuex.Store({
     sequenceSelected (context, tabSelectedResidues) {
       // has the selection started by a selected residue ?
       let isToBeSelected = (context.state.selected[tabSelectedResidues[0]] === false)
-      console.log(tabSelectedResidues, context.state.selected[tabSelectedResidues[0]])
+      // console.log(tabSelectedResidues, context.state.selected[tabSelectedResidues[0]])
+      context.dispatch('residuesSelected', {tabSelectedResidues, isToBeSelected})
+    },
+    chainSelected (context, chainId) {
+      // if the chain is entirely selected, we then deselect it
+      let isToBeSelected = false
+      let tabSelectedResidues = []
+      context.state.mol.chains[chainId].sequence.forEach(res => {
+        if (!context.state.selected[res.index]) {
+          isToBeSelected = true
+        }
+        tabSelectedResidues.push(res.index)
+      })
+      context.dispatch('residuesSelected', {tabSelectedResidues, isToBeSelected})
+    },
+    residuesSelected (context, {tabSelectedResidues, isToBeSelected}) {
       // modify current selection atomSet
       tabSelectedResidues.forEach(val => {
         let atomId = structure.residueStore.atomOffset[val]
@@ -445,18 +460,7 @@ var vuex = new Vuex.Store({
         }
       })
       context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
-    },
-    chainSelected (context, chainId) {
-      // if the chain is entirely selected, we then deselect it
-      let isToBeSelected = false
-      let tabSelectedResidues = []
-      context.state.mol.chains[chainId].sequence.forEach(res => {
-        if (!context.state.selected[res.index]) {
-          isToBeSelected = true
-        }
-        tabSelectedResidues.push(res.index)
-      })
-      context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
+      context.commit('selection', undefined)
     }
   },
   getters: {

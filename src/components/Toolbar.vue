@@ -89,4 +89,8 @@
     padding: 0;
     color: #88a9d4;
   }
+
+  .warning {
+    color: orangered;
+  }
 </style>

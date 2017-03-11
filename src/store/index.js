@@ -21,6 +21,8 @@ var highlight
 var currentSelectionAtomSet
 var currentlyDisplayedAtomSet
 var wholeAtomSet
+var tabColorScheme = [['element', '*']]
+var tabColorAtomSet
 
 /**
  * @description removes residues form their current representation so that they are set only in the latest
@@ -40,6 +42,36 @@ function removeSelectionFromRepresentations (atomSet, skipReprIndex) {
     }
   }
 }
+
+function removeSelectionFromColorSchemes (atomSet, skipColorSchemeIndex) {
+  let clearableColorSchemes = []
+  console.log(tabColorScheme)
+  tabColorScheme.forEach((colorScheme, i) => {
+    if (i === skipColorSchemeIndex) return
+    if (tabColorAtomSet[i].intersects(atomSet)) {
+      let selAtomSet = tabColorAtomSet[i].difference(atomSet)
+      if (selAtomSet.count === 0) {
+        clearableColorSchemes.push(i)
+      } else {
+        colorScheme[1] = selAtomSet.toSeleString()
+      }
+    }
+  })
+
+  // this colorSchemes are empty, we can dispose them
+  clearableColorSchemes.reverse().forEach(i => {
+    tabColorAtomSet.splice(i, 1)
+    tabColorScheme.splice(i, 1)
+  })
+}
+
+function updateRepresentationColor () {
+  const scheme = NGL.ColormakerRegistry.addSelectionScheme(tabColorScheme)
+  stage.compList[0].eachRepresentation(repr => {
+    repr.setColor(scheme)
+  })
+}
+
 function onHover (response) {
   let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
   if (atomHovered !== undefined) {
@@ -321,11 +353,12 @@ var vuex = new Vuex.Store({
 
         context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected})
 
+        tabColorScheme = [['element', '*']]
         component.addRepresentation('ball+stick')
         component.centerView()
         representationsList[0] = {
           display: 'ball+stick',
-          color: 'cpk',
+          color: 'element',
           sele: '*',
           atomSet: structure.getAtomSet(),
           index: component.reprList.length - 1
@@ -333,6 +366,7 @@ var vuex = new Vuex.Store({
         currentSelectionAtomSet = structure.getAtomSet()
         currentlyDisplayedAtomSet = currentSelectionAtomSet.clone()
         wholeAtomSet = currentSelectionAtomSet.clone()
+        tabColorAtomSet = [currentSelectionAtomSet.clone()]
 
         highlight = highlightRes(component)
       })
@@ -395,11 +429,34 @@ var vuex = new Vuex.Store({
       }
 
       stage.compList[0].setSelection(currentlyDisplayedAtomSet.toSeleString())
+      // stage.compList[0].centerView()
       context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
     },
 
     color (context, colorScheme) {
-      stage.compList[0].addRepresentation(context.state.display, {sele: context.state.selection, color: colorScheme})
+      const colorAtomSet = currentSelectionAtomSet.clone()
+      // is this a new color scheme?
+      let colorIndex = tabColorScheme.findIndex(cs => {
+        return colorScheme === cs[0]
+      })
+
+      // new color scheme!
+      if (colorIndex === -1) {
+        tabColorAtomSet.push(colorAtomSet)
+        tabColorScheme.push([colorScheme, colorAtomSet.toSeleString()])
+        colorIndex = tabColorScheme.length - 1
+      } else {
+        // previous color scheme
+        tabColorAtomSet[colorIndex].union(colorAtomSet)
+        tabColorScheme[colorIndex][1] = tabColorAtomSet[colorIndex].toSeleString()
+      }
+
+      // remove color atom set from other color schemes
+      removeSelectionFromColorSchemes(colorAtomSet, colorIndex)
+
+      // update representations colors
+      updateRepresentationColor()
+
       context.commit('color', colorScheme)
     },
     atomHovered (context, atom) {

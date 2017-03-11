@@ -17,21 +17,26 @@ npm run build
 
 ToDo
 - i18n (csv to json locales ?) <https://github.com/kinogam/i18n-transfer>
-- Fichiers : legacy PDB files (ngl)
-- Errors : send messages
+- Files : handle legacy PDB files (ngl)
+- Errors/warnings : send messages
   - when file could not be uploaded
   - when network is not available --> online/offline api
+  - when current selection is empty (deactivate all commands ???)
+  - when some atoms are hidden
+  - when all atoms are hidden
 - Commandes : 
   - icons
   - add/remove labels
   - create/remove surface
   - on hover select, highlight selection (remake button element)
+  - make button element work like reactive radio inputs (exclusive in the same group)
   - help
 - Sequences : 
   - 2 way binding ?
-  - select from sequence
   - clear selection
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
+- 3D View:
+  - change cursor when rotating, zooming, panning, selecting
 - build :
   - build bundle from es6 dependencies (e.g. ngl)
 - code refactor

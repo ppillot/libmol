@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.15.2",
-    "element-ui": "^1.2.1",
+    "element-ui": "^1.2.4",
     "fastbitset": "^0.2.0",
     "ngl": "git://github.com/arose/ngl.git",
     "screenfull": "^3.0.2",

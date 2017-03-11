@@ -10,7 +10,7 @@
     <el-button-group v-if="complete">
         <el-button :disabled="nonPolymer" v-on:click="display('cartoon')">{{ $t('ui.commands.display.cartoon') }}</el-button>
         <el-button :disabled="nonPolymer" v-on:click="display('tube')">{{ $t('ui.commands.display.backbone') }}</el-button>
-        <el-button v-on:click="display('hide')">{{ $t('ui.commands.display.hide') }}</el-button>
+        <el-button v-on:click="hide">{{ $t('ui.commands.display.hide') }}</el-button>
     </el-button-group>
   </div>
 </template>
@@ -27,6 +27,9 @@
     methods: {
       display (displayType) {
         this.$store.dispatch('display', displayType)
+      },
+      hide () {
+        this.$store.dispatch('hide')
       }
     },
     props: {

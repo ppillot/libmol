@@ -9,7 +9,14 @@
             trigger="click">
             <settings></settings>
           </el-popover>
-
+          <el-popover
+            ref="warninghidden"
+            placement="bottom-end"
+            width="400"
+            trigger="click">
+            <span>Some atoms are not currently displayed</span>
+          </el-popover>
+          <el-button v-show="isHidden" v-popover:warninghidden icon="warning" class="button warning" type="text" size="large"></el-button>
           <el-button icon="picture" class="button" type="text" size="large" @click="screenCapture"></el-button>
           <el-button icon="d-caret" class="button" type="text" size="large" @click="toggleFullscreen"></el-button>
           <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>
@@ -28,6 +35,9 @@
     computed: {
       molName: function () {
         return this.$store.state.name
+      },
+      isHidden: function () {
+        return this.$store.state.isHidden
       }
     },
     methods: {

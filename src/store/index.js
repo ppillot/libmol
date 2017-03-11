@@ -19,6 +19,8 @@ var resRepresentations
 var representationsList = []
 var highlight
 var currentSelectionAtomSet
+var currentlyDisplayedAtomSet
+var wholeAtomSet
 
 /**
  * @description removes residues form their current representation so that they are set only in the latest
@@ -150,6 +152,7 @@ var vuex = new Vuex.Store({
       }
     },
     isAtomHovered: false,
+    isHidden: false,
     itemHovered: {
       name: '',
       num: -1,
@@ -217,6 +220,9 @@ var vuex = new Vuex.Store({
       tabSelectedResidues.forEach(val => {
         state.selected[val] = isToBeSelected
       })
+    },
+    hide (state, everythingIsDisplayed) {
+      state.isHidden = !everythingIsDisplayed
     }
   },
   actions: {
@@ -325,6 +331,8 @@ var vuex = new Vuex.Store({
           index: component.reprList.length - 1
         }
         currentSelectionAtomSet = structure.getAtomSet()
+        currentlyDisplayedAtomSet = currentSelectionAtomSet.clone()
+        wholeAtomSet = currentSelectionAtomSet.clone()
 
         highlight = highlightRes(component)
       })
@@ -375,6 +383,21 @@ var vuex = new Vuex.Store({
       }
       context.commit('display', displayType)
     },
+
+    hide (context) {
+      // decide if we should hide or show depending on wether selected atoms are displayed
+      let isToBeHidden = currentlyDisplayedAtomSet.intersects(currentSelectionAtomSet)
+
+      if (isToBeHidden) {
+        currentlyDisplayedAtomSet.difference(currentSelectionAtomSet)
+      } else {
+        currentlyDisplayedAtomSet.union(currentSelectionAtomSet)
+      }
+
+      stage.compList[0].setSelection(currentlyDisplayedAtomSet.toSeleString())
+      context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
+    },
+
     color (context, colorScheme) {
       stage.compList[0].addRepresentation(context.state.display, {sele: context.state.selection, color: colorScheme})
       context.commit('color', colorScheme)

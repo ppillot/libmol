@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import {Autocomplete, Button, ButtonGroup, Col, Icon, Message, Popover, Row, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'
+import {Autocomplete, Button, ButtonGroup, Col, Icon, Popover, Row, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'
 import App from './App'
 import store from './store'
 
@@ -10,7 +10,7 @@ Vue.use(Button)
 Vue.use(ButtonGroup)
 Vue.use(Col)
 Vue.use(Icon)
-Vue.use(Message)
+// Vue.use(Message)
 Vue.use(Popover)
 Vue.use(Row)
 Vue.use(Scrollbar)

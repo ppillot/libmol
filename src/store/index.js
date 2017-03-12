@@ -72,6 +72,7 @@ function updateGlobalColorScheme () {
 
 function updateRepresentationColor () {
   stage.compList[0].eachRepresentation(repr => {
+    if (repr.name === 'highlight') return
     repr.setColor(globalColorScheme)
   })
 }
@@ -139,7 +140,13 @@ function getChainColors (chains, structure) {
 }
 
 function highlightRes (component) {
-  let reprHighlight = component.addRepresentation('spacefill', {sele: 'none', color: 'limegreen', opacity: 0.2})
+  let reprHighlight = component.addRepresentation('spacefill',
+    {
+      sele: 'none',
+      color: 'limegreen',
+      opacity: 0.2,
+      name: 'highlight'
+    })
   return function (sel) {
     reprHighlight.setSelection(sel)
   }

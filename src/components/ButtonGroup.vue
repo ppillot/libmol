@@ -1,5 +1,5 @@
 <template>
-  <div class="button-group">
+  <div class="button-group" @mouseleave="handlerHover('none')">
     <slot></slot>
   </div>
 </template>
@@ -27,6 +27,9 @@ export default {
   methods: {
     handlerActive (val) {
       this.$emit('change', val)
+    },
+    handlerHover (val) {
+      this.$emit('hover', val)
     }
   }
 }

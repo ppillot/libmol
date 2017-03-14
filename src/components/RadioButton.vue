@@ -1,5 +1,8 @@
 <template>
-  <div class="radio-button" :class="{active: isActive, disabled: disabled}" @click="handlerClick">
+  <div class="radio-button" 
+    :class="{active: isActive, disabled: disabled}" 
+    @click="handlerClick"
+    @mouseenter="handlerHover">
     <slot></slot>
   </div>
 </template>
@@ -16,6 +19,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    ungroup: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -30,10 +37,18 @@ export default {
   },
   methods: {
     handlerClick (event) {
+      if (this.ungroup) {
+        this.$emit('click')
+        return
+      }
       if (!this.disabled) this.$parent.handlerActive(this.value)
       /* this.$emit('active', {
         value: this.value
       }) */
+    },
+    handlerHover (event) {
+      if (this.disabled) this.$parent.handlerHover('none')
+      else this.$parent.handlerHover(this.value)
     }
   }
 }
@@ -51,13 +66,22 @@ export default {
     text-align: center;
     cursor: pointer;
   }
+  .radio-button:hover {
+    border-color: #20a0ff;
+    z-index: 1;
+  }
   .active {
     background: #20a0ff;
     color: white;
+    border-color: #20a0ff;
+    z-index: 1;
   }
   .disabled {
     background: #eef1f6;
     color: #c0cbd9;
     cursor: not-allowed;
+  }
+  .disabled:hover {
+    border-color: #d1dbe5;
   }
 </style>

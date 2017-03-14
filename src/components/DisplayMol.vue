@@ -1,27 +1,37 @@
 <template>
   <div>
-    {{ $t('ui.commands.display.label') }}
-   <el-button-group>
-        <el-button v-on:click="display('spacefill')">{{ $t('ui.commands.display.spacefill') }}</el-button>
-        <el-button v-on:click="display('ball+stick')">{{ $t('ui.commands.display.balls_and_sticks') }}</el-button>
-        <el-button v-on:click="display('licorice')">{{ $t('ui.commands.display.sticks') }}</el-button>
-    </el-button-group>
-
-    <el-button-group v-if="complete">
-        <el-button :disabled="nonPolymer" v-on:click="display('cartoon')">{{ $t('ui.commands.display.cartoon') }}</el-button>
-        <el-button :disabled="nonPolymer" v-on:click="display('tube')">{{ $t('ui.commands.display.backbone') }}</el-button>
-        <el-button v-on:click="hide">{{ $t('ui.commands.display.hide') }}</el-button>
-    </el-button-group>
+   <form-item :label="$t('ui.commands.display.label')">
+      <button-group :active-value="displayed" @change="display">
+        <radio-button value="spacefill">{{ $t('ui.commands.display.spacefill') }}</radio-button>
+        <radio-button value="ball+stick">{{ $t('ui.commands.display.balls_and_sticks') }}</radio-button>
+        <radio-button value="licorice">{{ $t('ui.commands.display.sticks') }}</radio-button>
+        <radio-button :disabled="nonPolymer" value="cartoon">{{ $t('ui.commands.display.cartoon') }}</radio-button>
+        <radio-button :disabled="nonPolymer" value="tube">{{ $t('ui.commands.display.backbone') }}</radio-button>
+        <radio-button ungroup v-on:click="hide">{{ $t('ui.commands.display.hide') }}</radio-button>
+      </button-group>
+   </form-item>
   </div>
 </template>
 
 <script>
+  import FormItem from './FormItem'
+  import ButtonGroup from './ButtonGroup'
+  import RadioButton from './RadioButton'
+
   export default {
     name: 'DisplayMol',
+    components: {
+      FormItem,
+      ButtonGroup,
+      RadioButton
+    },
     computed: {
       nonPolymer: function () {
         let sel = this.$store.state.selection
         return (sel === 'hetero and not water' || sel === 'water' || sel === 'saccharide')
+      },
+      displayed: function () {
+        return this.$store.state.display
       }
     },
     methods: {

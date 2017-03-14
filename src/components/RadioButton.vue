@@ -1,0 +1,63 @@
+<template>
+  <div class="radio-button" :class="{active: isActive, disabled: disabled}" @click="handlerClick">
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: 'RadioButton',
+  props: {
+    value: {
+      type: String,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      active: []
+    }
+  },
+  computed: {
+    isActive () {
+      return this.$parent.active === this.value
+    }
+  },
+  methods: {
+    handlerClick (event) {
+      if (!this.disabled) this.$parent.handlerActive(this.value)
+      /* this.$emit('active', {
+        value: this.value
+      }) */
+    }
+  }
+}
+
+</script>
+
+<style>
+  .radio-button {
+    flex-basis: 9em;
+    flex-grow: 1;
+    line-height: 2em;
+    border: solid #d1dbe5 1px;
+    margin: 0 0 -1px -1px;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+  }
+  .active {
+    background: #20a0ff;
+    color: white;
+  }
+  .disabled {
+    background: #eef1f6;
+    color: #c0cbd9;
+    cursor: not-allowed;
+  }
+</style>

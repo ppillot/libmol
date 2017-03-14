@@ -21,7 +21,7 @@
     "vue": "^2.2.1",
     "vue-i18n": "git://github.com/kazupon/vue-i18n.git#5.x",
     "vue-template-compiler": "^2.2.1",
-    "vuex": "^2.0.0"
+    "vuex": "^2.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.5",

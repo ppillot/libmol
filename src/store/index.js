@@ -21,7 +21,7 @@ var highlight
 var currentSelectionAtomSet
 var currentlyDisplayedAtomSet
 var wholeAtomSet
-var tabColorScheme = [['element', '*']]
+var tabColorScheme = [['element', 'all']]
 var tabColorAtomSet
 var globalColorScheme
 
@@ -31,14 +31,16 @@ var globalColorScheme
  * @param {NGL atomSet} atomSet
  * @param {number} skipReprIndex index of the latest representation : must be skipped !
  */
-function removeSelectionFromRepresentations (atomSet, skipReprIndex) {
+function removeSelectionFromRepresentations (newAtomSet, skipReprIndex) {
   for (let i = 0; i < representationsList.length; i++) {
     if (i === skipReprIndex) {
       continue
     }
     const repr = representationsList[i]
-    if (repr.atomSet.intersects(atomSet)) {
-      let sele = repr.atomSet.difference(atomSet)
+    if (repr.atomSet.intersects(newAtomSet)) {
+      repr.atomSet.difference(newAtomSet)
+      let sele = repr.displayedAtomSet.difference(newAtomSet)
+      // console.log(i, sele)
       stage.compList[0].reprList[repr.index].setSelection(sele.toSeleString())
     }
   }
@@ -74,6 +76,14 @@ function updateRepresentationColor () {
   stage.compList[0].eachRepresentation(repr => {
     if (repr.name === 'highlight') return
     repr.setColor(globalColorScheme)
+  })
+}
+
+function updateRepresentationDisplay () {
+  representationsList.forEach(repr => {
+    repr.displayedAtomSet = repr.atomSet.clone().intersection(currentlyDisplayedAtomSet)
+    // console.log('update repr:', repr.index, repr.displayedAtomSet)
+    stage.compList[0].reprList[repr.index].setSelection(repr.displayedAtomSet.toSeleString())
   })
 }
 
@@ -179,7 +189,7 @@ var vuex = new Vuex.Store({
       sstruc: new Set()
     },
     selected: [],
-    selection: '*',
+    selection: 'all',
     display: 'licorice',
     color: 'element',
     atomHovered: {
@@ -258,6 +268,7 @@ var vuex = new Vuex.Store({
         selected.push(atomSet.has(structure.residueStore.atomOffset[i]))
       }
       state.selected = selected
+      // console.log(atomSet, selected)
     },
     updateSelectedFromTab (state, {tabSelectedResidues, isToBeSelected}) {
       tabSelectedResidues.forEach(val => {
@@ -364,17 +375,19 @@ var vuex = new Vuex.Store({
 
         context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected})
 
-        tabColorScheme = [['element', '*']]
+        tabColorScheme = [['element', 'all']]
         updateGlobalColorScheme()
         component.addRepresentation('ball+stick')
         component.centerView()
         representationsList[0] = {
           display: 'ball+stick',
           color: 'element',
-          sele: '*',
+          sele: 'all',
           atomSet: structure.getAtomSet(),
+          displayedAtomSet: structure.getAtomSet(),
           index: component.reprList.length - 1
         }
+        if (debug) window.representationsList = representationsList
         currentSelectionAtomSet = structure.getAtomSet()
         currentlyDisplayedAtomSet = currentSelectionAtomSet.clone()
         wholeAtomSet = currentSelectionAtomSet.clone()
@@ -386,7 +399,7 @@ var vuex = new Vuex.Store({
       context.dispatch('init')
     },
     init (context) {
-      context.commit('selection', '*')
+      context.commit('selection', 'all')
       context.commit('display', 'ball+stick')
       context.commit('color', 'element')
     },
@@ -398,37 +411,42 @@ var vuex = new Vuex.Store({
     },
 
     display (context, displayType) {
-      // console.log(representationsList)
+      // does this representation already exist?
       const num = representationsList.findIndex(val => {
         return val.display === displayType
       })
       // console.log(num)
+      let dAtomSet = currentSelectionAtomSet.clone().intersection(currentlyDisplayedAtomSet)
+      // console.log(dAtomSet.toSeleString(), currentSelectionAtomSet, currentlyDisplayedAtomSet, dAtomSet)
+
       if (num === -1) {
         // new representation
         stage.compList[0].addRepresentation(displayType,
           {
-            sele: context.state.selection || currentSelectionAtomSet.toSeleString(),
+            sele: dAtomSet.toSeleString(),
             color: globalColorScheme
           })
         representationsList.push(
           {display: displayType,
             index: stage.compList[0].reprList.length - 1,
             atomSet: currentSelectionAtomSet.clone(),
+            displayedAtomSet: dAtomSet,
             sele: context.state.selection})
         removeSelectionFromRepresentations(currentSelectionAtomSet, representationsList.length - 1)
       } else {
         const repr = representationsList[num]
-        // representation already exists, is it the same selection ?
-        if (!repr.atomSet.equals(currentSelectionAtomSet)) {
+        // representation already exists, is it the same displayed selection ?
+        // if (!repr.displayedAtomSet.equals(dAtomSet)) {
           // not the same selection, we must extend representation to the union
-          repr.atomSet.union(currentSelectionAtomSet)
+        repr.atomSet.union(currentSelectionAtomSet)
+        repr.displayedAtomSet = repr.atomSet.clone().intersection(currentlyDisplayedAtomSet)
 
           // need to update the representation
-          stage.compList[0].reprList[repr.index].setSelection(repr.atomSet.toSeleString())
+        stage.compList[0].reprList[repr.index].setSelection(repr.displayedAtomSet.toSeleString())
 
           // and to update the remaining representations
-          removeSelectionFromRepresentations(currentSelectionAtomSet, num)
-        }
+        removeSelectionFromRepresentations(currentSelectionAtomSet, num)
+        // }
       }
       context.commit('display', displayType)
     },
@@ -443,7 +461,8 @@ var vuex = new Vuex.Store({
         currentlyDisplayedAtomSet.union(currentSelectionAtomSet)
       }
 
-      stage.compList[0].setSelection(currentlyDisplayedAtomSet.toSeleString())
+      updateRepresentationDisplay(isToBeHidden)
+      // stage.compList[0].setSelection(currentlyDisplayedAtomSet.toSeleString())
       // stage.compList[0].centerView()
       context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
     },
@@ -538,6 +557,7 @@ var vuex = new Vuex.Store({
         }
         tabSelectedResidues.push(res.index)
       })
+      // console.log('chain:', chainId, isToBeSelected)
       context.dispatch('residuesSelected', {tabSelectedResidues, isToBeSelected})
     },
     residuesSelected (context, {tabSelectedResidues, isToBeSelected}) {
@@ -555,8 +575,9 @@ var vuex = new Vuex.Store({
           }
         }
       })
-      context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
-      context.commit('selection', undefined)
+      // context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
+      context.commit('updateSelected', currentSelectionAtomSet)
+      context.commit('selection', '')
     }
   },
   getters: {

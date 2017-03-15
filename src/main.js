@@ -119,6 +119,8 @@ var locales = {
         select: {
           label: 'Select',
           all: 'All',
+          invert: 'Invert',
+          none: 'None',
           protein: 'Protein',
           nucleic: 'DNA/RNA',
           carbohydrate: 'Carbohydrates',
@@ -260,6 +262,8 @@ var locales = {
         select: {
           label: 'Sélectionner',
           all: 'Tout',
+          invert: 'Inverser',
+          none: 'Aucun',
           protein: 'Protéines',
           nucleic: 'ADN/ARN',
           carbohydrate: 'Glucides',

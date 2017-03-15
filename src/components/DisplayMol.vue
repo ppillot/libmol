@@ -4,9 +4,9 @@
       <button-group :active-value="displayed" @change="display">
         <radio-button value="spacefill">{{ $t('ui.commands.display.spacefill') }}</radio-button>
         <radio-button value="ball+stick">{{ $t('ui.commands.display.balls_and_sticks') }}</radio-button>
-        <radio-button value="licorice">{{ $t('ui.commands.display.sticks') }}</radio-button>
-        <radio-button :disabled="nonPolymer" value="cartoon">{{ $t('ui.commands.display.cartoon') }}</radio-button>
-        <radio-button :disabled="nonPolymer" value="tube">{{ $t('ui.commands.display.backbone') }}</radio-button>
+        <radio-button value="licorice" v-if="complete">{{ $t('ui.commands.display.sticks') }}</radio-button>
+        <radio-button :disabled="nonPolymer" value="cartoon" v-if="complete">{{ $t('ui.commands.display.cartoon') }}</radio-button>
+        <radio-button :disabled="nonPolymer" value="backbone" v-if="complete">{{ $t('ui.commands.display.backbone') }}</radio-button>
         <radio-button ungroup v-on:click="hide">{{ $t('ui.commands.display.hide') }}</radio-button>
       </button-group>
    </form-item>

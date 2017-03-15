@@ -25,14 +25,11 @@ ToDo
   - when some atoms are hidden
   - when all atoms are hidden
 - Commandes : 
-  - icons
   - add/remove labels
   - create/remove surface
-  - on hover select, highlight selection (remake button element)
-  - make button element work like reactive radio inputs (exclusive in the same group)
   - on hover display help
+  - display base on nuceic acids
 - Sequences : 
-  - 2 way binding ?
   - clear selection
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
 - 3D View:
@@ -45,6 +42,5 @@ ToDo
   - safari : not displaying tab contents
   - firefox : not going fullscreen
 - components :
-  - replace popover (78kB)
   - replace autocomplete (33kB)
   - replace axios (35kB) with fetch polyfill (12kB) (bug in webpack proxy)

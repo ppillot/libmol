@@ -1,37 +1,41 @@
 <template>
-  <div>
-    {{ $t('ui.commands.color.label') }}
-   <el-button-group>
-        <el-button v-on:click="color('element')">{{ $t('ui.commands.color.cpk') }}</el-button>
-        <el-button :disabled="nonPolymer" v-on:click="color('chainname')">{{ $t('ui.commands.color.by_chain') }}</el-button>
-        <el-button :disabled="nonPolymer" v-on:click="color('resname')">{{ $t('ui.commands.color.by_res') }}</el-button>
-    </el-button-group>
+  <form-item :label="$t('ui.commands.color.label')">
+    <button-group :active-value="colored" @change="color">
+        <radio-button value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>
+        <radio-button :disabled="nonPolymer" value="chainname">{{ $t('ui.commands.color.by_chain') }}</radio-button>
+        <radio-button :disabled="nonPolymer" value="resname">{{ $t('ui.commands.color.by_res') }}</radio-button>
     <el-popover
       ref="palette"
       placement="right"
       trigger="click">
       <palette v-model="colors" @color="pickColor"></palette>
     </el-popover>
-    <el-button-group>
-        <el-button :disabled="noSStruc" v-on:click="color('sstruc')">{{ $t('ui.commands.color.by_secondary_structure') }}</el-button>
-        <el-button :disabled="notAll" v-on:click="color('moleculetype')">{{ $t('ui.commands.color.by_biochemical_nature') }}</el-button>
-        <el-button v-popover:palette>{{ $t('ui.commands.color.pick_color') }}</el-button>
-    </el-button-group>
-  </div>
+        <radio-button :disabled="noSStruc" value="sstruc">{{ $t('ui.commands.color.by_secondary_structure') }}</radio-button>
+        <radio-button :disabled="notAll" value="moleculetype">{{ $t('ui.commands.color.by_biochemical_nature') }}</radio-button>
+        <radio-button ungroup v-popover:palette>{{ $t('ui.commands.color.pick_color') }}</radio-button>
+    </button-group>
+  </form-item>
 </template>
 
 <script>
   import Palette from './Palette'
+  import FormItem from './FormItem'
+  import ButtonGroup from './ButtonGroup'
+  import RadioButton from './RadioButton'
 
   export default {
     name: 'ColorMol',
     data () {
       return {
-        colors: {hex: '#00ff00'}
+        colors: {hex: '#00ff00'},
+        colored: 'element'
       }
     },
     components: {
-      'palette': Palette
+      'palette': Palette,
+      FormItem,
+      ButtonGroup,
+      RadioButton
     },
     computed: {
       nonPolymer: function () {
@@ -39,10 +43,13 @@
         return (sel === 'hetero' || sel === 'water' || sel === 'saccharide')
       },
       noSStruc: function () {
-        return (this.$store.state.selection !== 'protein' && this.$store.state.display !== 'cartoon')
+        return (this.$store.state.selection !== 'protein' || (this.$store.state.display !== 'cartoon' && this.$store.state.display !== 'tube'))
       },
       notAll: function () {
-        return (this.$store.state.selection !== '*')
+        return (this.$store.state.selection !== 'all')
+      },
+      colored: function () {
+        return this.$store.state.color
       }
     },
     methods: {
@@ -57,10 +64,10 @@
 </script>
 
 <style scoped>
-  div.el-button-group {
+  div.radio-button-group {
     width: 100%
   }
-  .el-button {
+  .radio-button {
     width: 33%
   }
 </style>

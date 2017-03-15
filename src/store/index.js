@@ -404,9 +404,13 @@ var vuex = new Vuex.Store({
       context.commit('color', 'element')
     },
     selection (context, selector) {
-      context.commit('selection', selector)
-      const sel = new NGL.Selection(selector)
-      currentSelectionAtomSet = structure.getAtomSet(sel)
+      if (selector === 'invert') {
+        currentSelectionAtomSet.flip_all()
+      } else {
+        context.commit('selection', selector)
+        const sel = new NGL.Selection(selector)
+        currentSelectionAtomSet = structure.getAtomSet(sel)
+      }
       context.commit('updateSelected', currentSelectionAtomSet)
     },
 

@@ -80,6 +80,8 @@ export default {
     background: #eef1f6;
     color: #c0cbd9;
     cursor: not-allowed;
+    z-index: 0;
+    border-color: #d1dbe5;
   }
   .disabled:hover {
     border-color: #d1dbe5;

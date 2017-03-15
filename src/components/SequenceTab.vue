@@ -2,7 +2,8 @@
     <div class="container">
         {{ $t('ui.sequence_select_instructions') }}
         <sequence-widget class="sequence-widget" :active="active"></sequence-widget>
-        <display-mol v-bind:complete="false"></display-mol>
+        <select-utils-widget></select-utils-widget>
+        <display-mol :complete="false"></display-mol>
         <palette v-model="colors" @color="pickColor"></palette>
     </div>
 </template>
@@ -10,6 +11,7 @@
 <script>
   import Palette from './Palette'
   import DisplayMol from './DisplayMol'
+  import SelectUtilsWidget from './SelectUtilsWidget'
   import SequenceWidget from './SequenceWidget'
 
   export default {
@@ -25,6 +27,7 @@
     components: {
       'palette': Palette,
       'display-mol': DisplayMol,
+      'select-utils-widget': SelectUtilsWidget,
       'sequence-widget': SequenceWidget
     },
     methods: {

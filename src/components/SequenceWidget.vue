@@ -349,7 +349,7 @@
     width: 3em;
     text-align: center;
     font-weight: 500;
-    cursor: pointer;
+    cursor: cell;
     color: #546e7a
   }
   

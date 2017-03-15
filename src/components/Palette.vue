@@ -1,7 +1,7 @@
 <template>
   <div class="vue-color__compact" @click="handlerClick">
     <ul class="vue-color__compact__colors">
-      <li class="vue-color__compact__color-item" v-for="c in defaultColors"
+      <li class="vue-color__compact__color-item" v-for="c in colorList"
         :class="{'vue-color__compact__color-item--white': c === '#FFFFFF' }"
         :style="{background: c}"
         :data-color="c">
@@ -23,11 +23,19 @@ const defaultColors = [
 
 export default {
   name: 'Palette',
-  props: {
-  },
+  props: ['compact'],
   data () {
     return {
       defaultColors: defaultColors
+    }
+  },
+  computed: {
+    colorList: function () {
+      return (this.$props.compact === true)
+        ? defaultColors.filter((color, index) => {
+          return (index < 12)
+        })
+        : defaultColors
     }
   },
   methods: {

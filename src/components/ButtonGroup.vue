@@ -42,5 +42,6 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    font-size: 14px;
   }
 </style>

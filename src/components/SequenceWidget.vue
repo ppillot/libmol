@@ -390,7 +390,7 @@
     width: 3em;
     padding: 0;
     text-align: center;
-    cursor: pointer;
+    cursor: cell;
     user-select: none;
   }
 

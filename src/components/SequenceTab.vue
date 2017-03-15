@@ -2,9 +2,9 @@
     <div class="container">
         {{ $t('ui.sequence_select_instructions') }}
         <sequence-widget class="sequence-widget" :active="active"></sequence-widget>
-        <select-utils-widget></select-utils-widget>
-        <display-mol :complete="false"></display-mol>
-        <palette v-model="colors" @color="pickColor"></palette>
+        <select-utils-widget class="select-utils-widget"></select-utils-widget>
+        <display-mol :compact="true"></display-mol>
+        <palette v-model="colors" @color="pickColor" :compact="true"></palette>
     </div>
 </template>
 
@@ -39,11 +39,8 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  h3 {
-    font-weight: normal;
-  }
-
+<style>
+  
   .container {
     flex: 1;
     display: flex;
@@ -56,4 +53,7 @@
     border: 1px solid #d3dce6;
   }
 
+  .select-utils-widget {
+    margin: 4px 0;
+  }
 </style>

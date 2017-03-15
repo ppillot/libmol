@@ -32,5 +32,5 @@ export default {
     line-height 1
     display block
 .form-item-slot
-  margin-top 10px
+  margin-top 8px
 </style>

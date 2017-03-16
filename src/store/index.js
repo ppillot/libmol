@@ -87,6 +87,15 @@ function updateRepresentationDisplay () {
   })
 }
 
+function updateStageCenter () {
+  const sele = currentlyDisplayedAtomSet.toSeleString()
+  const center = stage.compList[0].getCenter(sele)
+  const zoom = stage.compList[0].getZoom(sele)
+
+  stage.animationControls.zoomMove(center, zoom)
+  stage.centerView(center)
+}
+
 function onHover (response) {
   let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
   if (atomHovered !== undefined) {
@@ -466,8 +475,7 @@ var vuex = new Vuex.Store({
       }
 
       updateRepresentationDisplay(isToBeHidden)
-      // stage.compList[0].setSelection(currentlyDisplayedAtomSet.toSeleString())
-      // stage.compList[0].centerView()
+      updateStageCenter()
       context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
     },
 

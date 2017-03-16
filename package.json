@@ -16,7 +16,7 @@
     "axios": "^0.15.2",
     "element-ui": "^1.2.4",
     "fastbitset": "^0.2.0",
-    "ngl": "git://github.com/ppillot/ngl.git",
+    "ngl": "git://github.com/ppillot/ngl.git#esm",
     "screenfull": "^3.0.2",
     "vue": "^2.2.4",
     "vue-i18n": "git://github.com/kazupon/vue-i18n.git#5.x",

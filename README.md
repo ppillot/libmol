@@ -30,12 +30,10 @@ ToDo
   - on hover display help
   - display base on nuceic acids
 - Sequences : 
-  - clear selection
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
+  - select from user command
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting
-- build :
-  - build bundle from es6 dependencies (e.g. ngl)
 - code refactor
   - event bus : https://devblog.digimondo.io/building-a-simple-eventbus-in-vue-js-64b70fb90834#.706mbapkg
 - bugs :

@@ -5,7 +5,7 @@
       <radio-button value="all">{{ $t('ui.commands.select.all') }}</radio-button>
       <radio-button value="protein" :disabled="unselectables.protein">{{ $t('ui.commands.select.protein') }}</radio-button>
       <radio-button value="nucleic" :disabled="unselectables.nucleic">{{ $t('ui.commands.select.nucleic') }}</radio-button>
-      <radio-button value="carbohydrate" :disabled="unselectables.saccharide">{{ $t('ui.commands.select.carbohydrate') }}</radio-button>
+      <radio-button value="saccharide" :disabled="unselectables.saccharide">{{ $t('ui.commands.select.carbohydrate') }}</radio-button>
       <radio-button value="water" :disabled="unselectables.water">{{ $t('ui.commands.select.water') }}</radio-button>
       <radio-button value="hetero and not water" :disabled="unselectables.hetero">{{ $t('ui.commands.select.hetero') }}</radio-button>
     </button-group>

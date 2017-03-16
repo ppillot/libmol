@@ -25,7 +25,7 @@ module.exports = {
       resolve('node_modules')
     ],
     alias: {
-      'vue$': 'vue/dist/vue.runtime.common.js',
+      'vue$': 'vue/dist/vue.runtime.esm.js',
       'src': resolve('src'),
       'assets': resolve('src/assets'),
       'components': resolve('src/components')

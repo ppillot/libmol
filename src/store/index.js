@@ -2,12 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // import * as actions from './actions'
 // import * as getters from './getters'
-import * as NGL from 'ngl'
+import {Stage, Selection, ColormakerRegistry, download} from 'ngl'
 /* eslint-disable-next-line */
 // let NGL = () => import('ngl') /* eslint-disable-line */
 import debounce from 'throttle-debounce/debounce'
 import Screenfull from 'screenfull'
 
+let NGL = {Stage, Selection, ColormakerRegistry, download}
 Vue.use(Vuex)
 
 /** @description local module variable to hold the NGL stage object
@@ -15,7 +16,6 @@ Vue.use(Vuex)
  */
 var stage = {}
 var structure = {}
-var resRepresentations
 var representationsList = []
 var highlight
 var currentSelectionAtomSet
@@ -320,9 +320,6 @@ var vuex = new Vuex.Store({
         structure = component.structure
         if (debug) window.structure = structure
 
-        // resRepresentations is a private var of this module
-        resRepresentations = new Uint16Array(structure.residueStore.length)
-
         // representationsList is a private var of this module
         representationsList = []
 
@@ -374,7 +371,6 @@ var vuex = new Vuex.Store({
           sstruc.add(item.sstruc)
           selected.push(true)
         })
-        resRepresentations.fill(0)
 
         getChainColors(chains, structure).forEach(
           (color, index) => {

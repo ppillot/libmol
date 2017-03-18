@@ -76,8 +76,7 @@ function getRepresentationFromSelection (as = currentSelectionAtomSet) {
   const currentSelectionRepresentation = representationsList.find(repr => {
     return (!repr.atomSet.isEmpty() && repr.atomSet.intersection_size(as) === as.size())
   })
-  console.log(representationsList, currentSelectionRepresentation)
-  return (currentSelectionRepresentation === undefined) ? 'undefined' : currentSelectionRepresentation.name
+  return (currentSelectionRepresentation === undefined) ? 'mix' : currentSelectionRepresentation.name
 }
 
 function updateGlobalColorScheme () {

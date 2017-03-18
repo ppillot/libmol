@@ -35,7 +35,6 @@ ToDo
 - Slider :
   - make them live
 - State :
-  - update color
   - update chains
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting

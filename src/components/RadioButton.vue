@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     isActive () {
-      return this.$parent.active === this.value
+      return (this.$parent.active === this.value && !this.ungroup)
     }
   },
   methods: {

@@ -69,6 +69,17 @@ function removeSelectionFromColorSchemes (atomSet, skipColorSchemeIndex) {
   })
 }
 
+function getRepresentationFromSelection (as = currentSelectionAtomSet) {
+  // edge case atom set is empty
+  if (as.isEmpty()) return ''
+
+  const currentSelectionRepresentation = representationsList.find(repr => {
+    return (!repr.atomSet.isEmpty() && repr.atomSet.intersection_size(as) === as.size())
+  })
+  console.log(representationsList, currentSelectionRepresentation)
+  return (currentSelectionRepresentation === undefined) ? 'undefined' : currentSelectionRepresentation.name
+}
+
 function updateGlobalColorScheme () {
   globalColorScheme = NGL.ColormakerRegistry.addSelectionScheme(tabColorScheme)
 }
@@ -90,11 +101,7 @@ function updateRepresentationDisplay () {
 
 function updateStageCenter () {
   const sele = currentlyDisplayedAtomSet.toSeleString()
-  const center = stage.compList[0].getCenter(sele)
-  const zoom = stage.compList[0].getZoom(sele)
-
-  stage.animationControls.zoomMove(center, zoom)
-  stage.centerView(center)
+  stage.compList[0].autoView(sele, 1000)
 }
 
 function onHover (response) {
@@ -325,7 +332,7 @@ var vuex = new Vuex.Store({
 
     },
     updateDisplay (state) {
-
+      state.display = getRepresentationFromSelection()
     },
     updateSelected (state, atomSet) {
       let selected = []
@@ -443,7 +450,7 @@ var vuex = new Vuex.Store({
         tabColorScheme = [['element', 'all']]
         updateGlobalColorScheme()
         component.addRepresentation('ball+stick')
-        component.centerView()
+        component.autoView()
         representationsList[0] = {
           display: 'ball+stick',
           color: 'element',

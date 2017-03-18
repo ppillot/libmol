@@ -17,7 +17,7 @@ npm run build
 
 ToDo
 - i18n (csv to json locales ?) <https://github.com/kinogam/i18n-transfer>
-- Files : handle legacy PDB files (ngl)
+- Files : handle legacy PDB files (ngl) or send messages if something goes wrong
 - Errors/warnings : send messages
   - when file could not be uploaded
   - when network is not available --> online/offline api

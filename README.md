@@ -32,6 +32,12 @@ ToDo
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from user command
+- Slider :
+  - make them live
+- State :
+  - update color
+  - update display
+  - update chains
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting
 - code refactor

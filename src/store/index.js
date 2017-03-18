@@ -321,6 +321,12 @@ var vuex = new Vuex.Store({
     isAtomHovered (state, isDisplayed) {
       state.isAtomHovered = isDisplayed
     },
+    updateColor (state) {
+
+    },
+    updateDisplay (state) {
+
+    },
     updateSelected (state, atomSet) {
       let selected = []
       for (let i = 0; i < structure.residueStore.length; i++) {
@@ -472,6 +478,8 @@ var vuex = new Vuex.Store({
         currentSelectionAtomSet = structure.getAtomSet(sel)
       }
       context.commit('updateSelected', currentSelectionAtomSet)
+      context.commit('updateColor')
+      context.commit('updateDisplay')
     },
 
     display (context, displayType) {
@@ -594,13 +602,15 @@ var vuex = new Vuex.Store({
       context.commit('itemHovered', itemHovered)
       // highlightRes(item)
     },
+
     highlightSelectHovered (context, selector) {
       highlight(selector)
     },
+
     setClipNear ({commit}, percentage) {
       stage.setParameters({clipNear: percentage})
-      // commit('setClipNear', percentage)
     },
+
     setStageParameters ({commit}, params) {
       stage.setParameters(params)
     },

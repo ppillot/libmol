@@ -24,6 +24,7 @@ var wholeAtomSet
 var tabColorScheme = [['element', 'all']]
 var tabColorAtomSet
 var globalColorScheme
+var predefined
 
 /**
  * @description removes residues form their current representation so that they are set only in the latest
@@ -171,6 +172,54 @@ function highlightRes (component) {
   }
 }
 
+function getPredefined (str, chains) {
+  const getAtomSet = function (sele) {
+    return str.getAtomSet(new NGL.Selection(sele))
+  }
+
+  const predefinedSets = [
+    ['all', structure.getAtomSet()],
+    ['protein', getAtomSet('protein')],
+    ['saccharide', getAtomSet('saccharide')],
+    ['nucleic', getAtomSet('nucleic')],
+    ['water', getAtomSet('water')],
+    ['hetero', getAtomSet('hetero and not water and not saccharide')]
+  ]
+
+  const chainSet = new Map()
+  chains.forEach(chain => {
+    chainSet.set(chain.name, getAtomSet(':' + chain.name))
+  })
+
+  const findSet = function (as = currentSelectionAtomSet) {
+    let ret = {
+      selection: 'none',
+      chains: []
+    }
+    // Special case : check for emty atomset
+    if (as.isEmpty()) return ret
+
+    // check if currently selected atoms are equal to any predefined atom sets
+    let preset = predefinedSets.find(pds => {
+      return (pds[1].equals(as))
+    })
+    ret.selection = (preset !== undefined) ? preset[0] : ''
+
+    // check which chains are currently entirely selected
+    chainSet.forEach((chainAtomSet, chainName) => {
+      if (chainAtomSet.intersection_size(as) === chainAtomSet.size()) {
+        ret.chains.push(chainName)
+      }
+    })
+
+    return ret
+  }
+
+  return function (as) {
+    return findSet(as)
+  }
+}
+
 const debug = process.env.NODE_ENV !== 'production'
 if (debug) {
   window.NGL = NGL
@@ -198,6 +247,7 @@ var vuex = new Vuex.Store({
       sstruc: new Set()
     },
     selected: [],
+    selectedChains: [],
     selection: 'all',
     display: 'licorice',
     color: 'element',
@@ -277,12 +327,16 @@ var vuex = new Vuex.Store({
         selected.push(atomSet.has(structure.residueStore.atomOffset[i]))
       }
       state.selected = selected
-      // console.log(atomSet, selected)
     },
     updateSelectedFromTab (state, {tabSelectedResidues, isToBeSelected}) {
       tabSelectedResidues.forEach(val => {
         state.selected[val] = isToBeSelected
       })
+    },
+    updateSelection (state) {
+      let sel = predefined()
+      state.selectedChains = sel.chains
+      state.selection = sel.selection
     },
     hide (state, everythingIsDisplayed) {
       state.isHidden = !everythingIsDisplayed
@@ -392,12 +446,12 @@ var vuex = new Vuex.Store({
           displayedAtomSet: structure.getAtomSet(),
           index: component.reprList.length - 1
         }
-        if (debug) window.representationsList = representationsList
         currentSelectionAtomSet = structure.getAtomSet()
         currentlyDisplayedAtomSet = currentSelectionAtomSet.clone()
         wholeAtomSet = currentSelectionAtomSet.clone()
         tabColorAtomSet = [currentSelectionAtomSet.clone()]
 
+        predefined = getPredefined(structure, chains)
         highlight = highlightRes(component)
       })
       context.commit('loadNewFile', newFile)
@@ -411,6 +465,7 @@ var vuex = new Vuex.Store({
     selection (context, selector) {
       if (selector === 'invert') {
         currentSelectionAtomSet.flip_all()
+        context.commit('updateSelection')
       } else {
         context.commit('selection', selector)
         const sel = new NGL.Selection(selector)
@@ -585,7 +640,7 @@ var vuex = new Vuex.Store({
       })
       // context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
       context.commit('updateSelected', currentSelectionAtomSet)
-      context.commit('selection', '')
+      context.commit('updateSelection')
     }
   },
   getters: {

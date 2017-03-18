@@ -28,7 +28,7 @@ ToDo
   - add/remove labels
   - create/remove surface
   - on hover display help
-  - display base on nuceic acids
+  - display base on nucleic acids
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from user command
@@ -36,7 +36,6 @@ ToDo
   - make them live
 - State :
   - update color
-  - update display
   - update chains
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting

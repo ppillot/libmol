@@ -27,8 +27,7 @@
     name: 'ColorMol',
     data () {
       return {
-        colors: {hex: '#00ff00'},
-        colored: 'element'
+        colors: {hex: '#00ff00'}
       }
     },
     components: {

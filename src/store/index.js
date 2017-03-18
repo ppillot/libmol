@@ -76,7 +76,19 @@ function getRepresentationFromSelection (as = currentSelectionAtomSet) {
   const currentSelectionRepresentation = representationsList.find(repr => {
     return (!repr.atomSet.isEmpty() && repr.atomSet.intersection_size(as) === as.size())
   })
-  return (currentSelectionRepresentation === undefined) ? 'mix' : currentSelectionRepresentation.name
+  return (currentSelectionRepresentation === undefined) ? 'mix' : currentSelectionRepresentation.display
+}
+
+function getColorFromSelection (as = currentSelectionAtomSet) {
+  // edge case atom set is empty
+  if (as.isEmpty()) return 'none'
+  let color = 'mix'
+  for (let i = 0; i < tabColorAtomSet.length; i++) {
+    if (!tabColorAtomSet[i].isEmpty() && tabColorAtomSet[i].intersection_size(as) === as.size()) {
+      color = tabColorScheme[i][0]
+    }
+  }
+  return color
 }
 
 function updateGlobalColorScheme () {
@@ -328,7 +340,7 @@ var vuex = new Vuex.Store({
       state.isAtomHovered = isDisplayed
     },
     updateColor (state) {
-
+      state.color = getColorFromSelection()
     },
     updateDisplay (state) {
       state.display = getRepresentationFromSelection()
@@ -484,8 +496,8 @@ var vuex = new Vuex.Store({
         currentSelectionAtomSet = structure.getAtomSet(sel)
       }
       context.commit('updateSelected', currentSelectionAtomSet)
-      context.commit('updateColor')
-      context.commit('updateDisplay')
+      context.commit('color', getColorFromSelection())
+      context.commit('display', getRepresentationFromSelection())
     },
 
     display (context, displayType) {
@@ -657,6 +669,8 @@ var vuex = new Vuex.Store({
       // context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
       context.commit('updateSelected', currentSelectionAtomSet)
       context.commit('updateSelection')
+      context.commit('color', getColorFromSelection())
+      context.commit('display', getRepresentationFromSelection())
     }
   },
   getters: {

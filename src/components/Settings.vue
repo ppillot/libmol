@@ -1,10 +1,10 @@
 <template>
   <div class="settings">
     <form-item :label="$t('ui.settings.clip_near_label')">
-      <el-slider v-model="clipNear" @change="setClipNear"></el-slider>  
+      <el-slider v-model="clipNear"></el-slider>  
     </form-item>
     <form-item :label="$t('ui.settings.fog_label')">
-      <el-slider v-model="fog" range @change="setFog"></el-slider>  
+      <el-slider v-model="fog" range></el-slider>  
     </form-item>
     <form-item :label="$t('ui.settings.background_label')">
       <el-switch
@@ -58,18 +58,20 @@
         Object.assign(this.$data, defaultParameters, {color: true})
         this.setStageParameters(defaultParameters)
       },
-      setClipNear (percentage) {
-        this.setStageParameters({clipNear: percentage})
-      },
-      setFog ([percentNear, percentFar]) {
-        this.setStageParameters({fogNear: percentNear, fogFar: percentFar})
-      },
       setStageParameters (params) {
         this.$store.dispatch('setStageParameters', params)
       },
       switchBackgroundColor (isWhite) {
         let color = (isWhite) ? 'white' : 'black'
         this.setStageParameters({backgroundColor: color})
+      }
+    },
+    watch: {
+      clipNear: function (val) {
+        this.setStageParameters({clipNear: val})
+      },
+      fog: function ([percentNear, percentFar]) {
+        this.setStageParameters({fogNear: percentNear, fogFar: percentFar})
       }
     }
   }

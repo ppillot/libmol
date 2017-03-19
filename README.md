@@ -29,11 +29,10 @@ ToDo
   - create/remove surface
   - on hover display help
   - display base on nucleic acids
+  - disable display and color when select state is 'none'
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from user command
-- Slider :
-  - make them live
 - State :
   - update chains
 - 3D View:
@@ -43,6 +42,8 @@ ToDo
 - bugs :
   - safari : not displaying tab contents
   - firefox : not going fullscreen
+  - color palette should update status bar
+  - color palette button should react to the state
 - components :
   - replace autocomplete (33kB)
   - replace axios (35kB) with fetch polyfill (12kB) (bug in webpack proxy)

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header" @mouseover.stop="getHoveredItem('chain', $event)" @mouseout.stop="hideTooltip" :style="headerStyle">
       <ul id="chains-list">
-        <li v-for="chain in chains" :data-index="chain.id" @click="selectChain(chain.id)">
+        <li v-for="chain in chains" :data-index="chain.id" @click="selectChain(chain.id)" :class="{ sel: isSelectedChain(chain.name) }">
           {{ chain.name }}
         </li>
       </ul>
@@ -168,6 +168,9 @@
       }
     },
     methods: {
+      isSelectedChain (chainName) {
+        return this.$store.state.selectedChains.includes(chainName)
+      },
       isSelected (resIndex) {
         return this.$store.state.selected[resIndex]
       },
@@ -334,11 +337,15 @@
     overflow: hidden;
   }
   
+  .header {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12);
+    z-index: 2;
+  }
+
   .header ul {
     margin: 0;
     padding: 0;
     white-space: nowrap;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12);
     background: #f9fafc;
   }
   
@@ -354,7 +361,7 @@
   }
   
   .header ul li:hover {
-    background: #90caf9;
+    background: #e6e9ef;
   }
   
   .tab-body {
@@ -416,6 +423,20 @@
 
   .sel::selection {
     background: #b1e3f7
+  }
+
+  .header ul li.sel {
+    background: #6ab6e2;
+    color: white;
+    font-weight: bold;
+  }
+
+  .header ul li.sel:sel {
+    background: #6ab6e2;
+  }
+
+  .header ul li.sel:hover {
+    background: #e6e9ef;
   }
 
   .usersel {

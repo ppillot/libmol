@@ -85,5 +85,6 @@ export default {
   }
   .disabled:hover {
     border-color: #d1dbe5;
+    z-index: 0;
   }
 </style>

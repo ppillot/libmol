@@ -330,6 +330,11 @@ var vuex = new Vuex.Store({
     itemHovered (state, res) {
       state.itemHovered = res
     },
+    selectedChains (state) {
+      state.selectedChains = state.mol.chains.reduce((acc, val) => {
+        return acc.concat([val.name])
+      }, [])
+    },
     setClipNear (state, percentage) {
       state.stage.clipNear = percentage
     },
@@ -457,6 +462,7 @@ var vuex = new Vuex.Store({
         )
 
         context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected})
+        context.commit('selectedChains')
 
         tabColorScheme = [['element', 'all']]
         updateGlobalColorScheme()
@@ -477,24 +483,24 @@ var vuex = new Vuex.Store({
 
         predefined = getPredefined(structure, chains)
         highlight = highlightRes(component)
+
+        context.commit('loadNewFile', newFile)
+        context.dispatch('init')
       })
-      context.commit('loadNewFile', newFile)
-      context.dispatch('init')
     },
-    init (context) {
-      context.commit('selection', 'all')
-      context.commit('display', 'ball+stick')
-      context.commit('color', 'element')
+    init ({commit}) {
+      commit('selection', 'all')
+      commit('display', 'ball+stick')
+      commit('color', 'element')
     },
     selection (context, selector) {
       if (selector === 'invert') {
         currentSelectionAtomSet.flip_all()
-        context.commit('updateSelection')
       } else {
-        context.commit('selection', selector)
         const sel = new NGL.Selection(selector)
         currentSelectionAtomSet = structure.getAtomSet(sel)
       }
+      context.commit('updateSelection')
       context.commit('updateSelected', currentSelectionAtomSet)
       context.commit('color', getColorFromSelection())
       context.commit('display', getRepresentationFromSelection())

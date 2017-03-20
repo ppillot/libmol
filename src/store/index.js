@@ -472,14 +472,14 @@ var vuex = new Vuex.Store({
           display: 'ball+stick',
           color: 'element',
           sele: 'all',
-          atomSet: structure.getAtomSet(),
-          displayedAtomSet: structure.getAtomSet(),
+          atomSet: structure.getAtomSet().clone(),
+          displayedAtomSet: structure.getAtomSet().clone(),
           index: component.reprList.length - 1
         }
-        currentSelectionAtomSet = structure.getAtomSet()
-        currentlyDisplayedAtomSet = currentSelectionAtomSet.clone()
-        wholeAtomSet = currentSelectionAtomSet.clone()
-        tabColorAtomSet = [currentSelectionAtomSet.clone()]
+        currentSelectionAtomSet = structure.getAtomSet().clone()
+        currentlyDisplayedAtomSet = structure.getAtomSet().clone()
+        wholeAtomSet = structure.getAtomSet().clone()
+        tabColorAtomSet = [structure.getAtomSet().clone()]
 
         predefined = getPredefined(structure, chains)
         highlight = highlightRes(component)
@@ -498,7 +498,7 @@ var vuex = new Vuex.Store({
         currentSelectionAtomSet.flip_all()
       } else {
         const sel = new NGL.Selection(selector)
-        currentSelectionAtomSet = structure.getAtomSet(sel)
+        currentSelectionAtomSet = structure.getAtomSet(sel).clone()
       }
       context.commit('updateSelection')
       context.commit('updateSelected', currentSelectionAtomSet)

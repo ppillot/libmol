@@ -32,9 +32,11 @@ ToDo
   - on hover display help
   - display base on nucleic acids
   - disable display and color when select state is 'none'
+  - measure distances
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from user command
+  - if representation backbone or cartoon --> sele "sidechainattached" for ball+stick, licorice, spacefill
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting
 - code refactor

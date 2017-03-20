@@ -437,6 +437,7 @@
 
   .header ul li.sel:hover {
     background: #e6e9ef;
+    color: #546e7a;
   }
 
   .usersel {

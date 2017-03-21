@@ -293,8 +293,8 @@ var locales = {
 }
 
 // set lang
-
-let lang = navigator.languages.find(navPreferedLanguage => {
+const language = navigator.languages || [navigator.language]
+let lang = language.find(navPreferedLanguage => {
   return Object.keys(locales).find(locale => {
     return navPreferedLanguage.substr(0, 2) === locale
   })

@@ -149,7 +149,8 @@ function measureDistance (component, context) {
         labelColor: 0x000000,
         color: 0x1D8CE0,
         opacity: 0.5,
-        scale: 0.1
+        scale: 0.1,
+        labelUnit: 'nm'
       })
     }
   }

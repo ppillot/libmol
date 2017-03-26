@@ -213,7 +213,7 @@ function getAtomProperties (atom) {
     resname: atom.resname,
     resno: atom.resno,
     chainname: atom.chainname,
-    entity: atom.entity.description,
+    entity: (atom.entity) ? atom.entity.description : 'unknown',
     resType: atom.residueType.moleculeType
   }
 }
@@ -250,7 +250,7 @@ function getDescriptionFromRes (res) {
       description = 'biochem.nucleotide'
       break
     default:
-      description = res.entity.description
+      description = (res.entity) ? res.entity.description : 'unknown'
       break
   }
   return description
@@ -544,7 +544,7 @@ var vuex = new Vuex.Store({
             chains.push({
               id: chainId,
               name: item.chainname,
-              entity: item.entity.description,
+              entity: (item.entity) ? item.entity.description : 'unknown',
               sequence: [],
               color: undefined
             })
@@ -719,7 +719,7 @@ var vuex = new Vuex.Store({
             name: '',
             num: -1,
             chain: chain.name,
-            description: chain.entity
+            description: chain.entity || 'unknown'
           }
           highlight(':' + chain.name)
           break

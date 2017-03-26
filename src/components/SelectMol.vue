@@ -7,7 +7,7 @@
       <radio-button value="nucleic" :disabled="unselectables.nucleic">{{ $t('ui.commands.select.nucleic') }}</radio-button>
       <radio-button value="saccharide" :disabled="unselectables.saccharide">{{ $t('ui.commands.select.carbohydrate') }}</radio-button>
       <radio-button value="water" :disabled="unselectables.water">{{ $t('ui.commands.select.water') }}</radio-button>
-      <radio-button value="hetero and not water" :disabled="unselectables.hetero">{{ $t('ui.commands.select.hetero') }}</radio-button>
+      <radio-button value="hetero" :disabled="unselectables.hetero">{{ $t('ui.commands.select.hetero') }}</radio-button>
     </button-group>
    </form-item>
   </div>
@@ -17,7 +17,9 @@
   import FormItem from './FormItem'
   import ButtonGroup from './ButtonGroup'
   import RadioButton from './RadioButton'
-
+  function fixHetero (val) {
+    return (val.indexOf('hetero') > -1) ? val.replace('hetero', 'hetero and not (water or saccharide)') : val
+  }
   export default {
     name: 'SelectMol',
     components: {
@@ -41,10 +43,10 @@
     },
     methods: {
       sel (selector) {
-        this.$store.dispatch('selection', selector)
+        this.$store.dispatch('selection', fixHetero(selector))
       },
       highlight (selector) {
-        this.$store.dispatch('highlightSelectHovered', selector)
+        this.$store.dispatch('highlightSelectHovered', fixHetero(selector))
       }
     }
   }

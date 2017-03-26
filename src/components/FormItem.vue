@@ -1,7 +1,7 @@
 <template>
-  <div class="form-item">
+  <div class="form-item" :style="display">
     <label> {{ label }}
-      <div class="form-item-slot">
+      <div class="form-item-slot" :style="display">
         <slot>
         </slot>
       </div>
@@ -17,6 +17,18 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    inline: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+  computed: {
+    display () {
+      return (this.inline)
+        ? {display: 'inline-block', verticalAlign: 'text-bottom'}
+        : {display: 'block'}
     }
   }
 }
@@ -31,6 +43,7 @@ export default {
     color #48576a
     line-height 1
     display block
+    padding-right 1em
 .form-item-slot
   margin-top 8px
 </style>

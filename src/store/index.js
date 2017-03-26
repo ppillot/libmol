@@ -18,6 +18,7 @@ var stage = {}
 var structure = {}
 var representationsList = []
 var highlight
+var distance
 var currentSelectionAtomSet
 var currentlyDisplayedAtomSet
 var wholeAtomSet
@@ -115,20 +116,115 @@ function updateStageCenter () {
   stage.compList[0].autoView(sele, 1000)
 }
 
+function measureDistance (component, context) {
+  let tabMeasures = []
+  let measure = {
+    atom1: {},
+    atom2: {},
+    distance: 0
+  }
+  let distRepr = {}
+  const comp = component
+
+  function dispatch () {
+    context.dispatch('setDistances', tabMeasures)
+  }
+
+  function getDistance (atom1, atom2) {
+    return atom1.distanceTo(atom2)
+  }
+
+  function distanceRepresentation () {
+    const tabAtomPairs = tabMeasures.reduce((acc, val) => {
+      return acc.concat([[val.atom1.index, val.atom2.index]])
+    }, [])
+
+    if (comp.hasRepresentation(distRepr)) {
+      distRepr.setParameters({
+        atomPair: tabAtomPairs
+      })
+    } else {
+      distRepr = comp.addRepresentation('distance', {
+        atomPair: tabAtomPairs,
+        labelColor: 0x000000,
+        color: 0x1D8CE0,
+        opacity: 0.5,
+        scale: 0.1
+      })
+    }
+  }
+
+  function clearMeasure (index) {
+    tabMeasures.splice(index, 1)
+    distanceRepresentation()
+    dispatch()
+  }
+
+  function clearAllMeasures () {
+    tabMeasures = []
+    distanceRepresentation()
+    dispatch()
+  }
+
+  function handleClick (response) {
+    const atomClicked = response.atom
+    if (atomClicked === undefined) {
+      // cancel measurement
+      measure.atom1 = {}
+      return
+    }
+    if (measure.atom1.index === undefined) {
+      // first atom to be added to the measure
+      measure.atom1 = atomClicked
+      return
+    }
+    measure.atom2 = atomClicked
+    measure.distance = getDistance(measure.atom1, measure.atom2)
+    tabMeasures.push({
+      atom1: getAtomProperties(measure.atom1),
+      atom2: getAtomProperties(measure.atom2),
+      distance: measure.distance
+    })
+    measure.atom1 = {}
+    distanceRepresentation()
+    dispatch()
+  }
+
+  return {
+    clickDistance: function (response) {
+      return handleClick(response)
+    },
+    delete: function (index) {
+      return clearMeasure(index)
+    },
+    deleteAll: function () {
+      return clearAllMeasures()
+    },
+    getMeasures: function () {
+      return tabMeasures
+    }
+  }
+}
+function getAtomProperties (atom) {
+  return {
+    index: atom.index,
+    symbol: atom.element,
+    atomname: atom.atomname,
+    resname: atom.resname,
+    resno: atom.resno,
+    chainname: atom.chainname,
+    entity: atom.entity.description,
+    resType: atom.residueType.moleculeType
+  }
+}
 function onHover (response) {
   let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
   if (atomHovered !== undefined) {
     // console.log(atom)
-    let atom = {
-      symbol: atomHovered.element,
-      atomname: atomHovered.atomname,
-      resname: atomHovered.resname,
-      resno: atomHovered.resno,
-      chainname: atomHovered.chainname,
-      entity: atomHovered.entity.description,
-      resType: atomHovered.residueType.moleculeType,
+    let atom = getAtomProperties(atomHovered)
+    Object.assign(atom, {
       pos: {x: response.canvasPosition.x, y: response.canvasPosition.y}
-    }
+    })
     vuex.dispatch('atomHovered', atom)
   } else {
     vuex.dispatch('displayAtomTooltip', false)
@@ -291,7 +387,8 @@ var vuex = new Vuex.Store({
     },
     stage: {
       clipNear: 30
-    }
+    },
+    distances: []
   },
   mutations: {
     loadNewFile (state, newFile) {
@@ -369,9 +466,22 @@ var vuex = new Vuex.Store({
     },
     hide (state, everythingIsDisplayed) {
       state.isHidden = !everythingIsDisplayed
+    },
+    distance (state, tabDistances) {
+      state.distances = tabDistances
     }
   },
   actions: {
+    setDistances ({commit}, tabDistances) {
+      commit('distance', tabDistances)
+    },
+    deleteDistance (context, val) {
+      if (typeof (val) !== 'number') {
+        distance.deleteAll()
+      } else {
+        distance.delete(val)
+      }
+    },
     toggleFullscreen (context) {
       context.commit('setFullscreen', !Screenfull.isFullscreen)
     },
@@ -483,6 +593,7 @@ var vuex = new Vuex.Store({
 
         predefined = getPredefined(structure, chains)
         highlight = highlightRes(component)
+        distance = measureDistance(component, context)
 
         context.commit('loadNewFile', newFile)
         context.dispatch('init')
@@ -677,6 +788,21 @@ var vuex = new Vuex.Store({
       context.commit('updateSelection')
       context.commit('color', getColorFromSelection())
       context.commit('display', getRepresentationFromSelection())
+    },
+    setMouseMode (context, mouseMode) {
+      switch (mouseMode) {
+        case 'distance' :
+          // set cursor style
+          stage.viewer.container.style.cursor = 'crosshair'
+          // set signal picking atom
+          stage.signals.clicked.add(distance.clickDistance)
+          break
+        default :
+          // set cursor style
+          stage.viewer.container.style.cursor = 'default'
+          // set signal picking atom
+          stage.signals.clicked.removeAll()
+      }
     }
   },
   getters: {

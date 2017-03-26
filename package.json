@@ -14,13 +14,14 @@
   },
   "dependencies": {
     "axios": "^0.15.2",
-    "element-ui": "^1.2.4",
+    "element-ui": "^1.2.5",
     "fastbitset": "^0.2.0",
     "ngl": "git://github.com/arose/ngl.git",
     "screenfull": "^3.0.2",
-    "vue": "^2.2.4",
+    "vue": "^2.2.5",
     "vue-i18n": "git://github.com/kazupon/vue-i18n.git#5.x",
-    "vue-template-compiler": "^2.2.4",
+    "vue-loader": "^11.3.3",
+    "vue-template-compiler": "^2.2.5",
     "vuex": "^2.2.1"
   },
   "devDependencies": {

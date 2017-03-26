@@ -106,13 +106,22 @@ var locales = {
       load_local_file_label: 'Load local file',
       load_local_file_instructions: 'Drag and drop file here or click to load',
       sequence_select_instructions: 'Select from the different chains sequences',
-      settings: {
-        clip_near_label: 'Near clip plane position',
-        fog_label: 'Fog effect position',
-        background_label: 'Background color',
-        reset: 'Reset',
-        white: 'white',
-        black: 'black'
+      toolbar: {
+        distance: {
+          button: 'Distance',
+          activate_label: 'Enable measuring distances',
+          activate: 'on',
+          deactivate: 'off',
+          instructions: 'Here are listed the distances that have been measured'
+        },
+        settings: {
+          clip_near_label: 'Near clip plane position',
+          fog_label: 'Fog effect position',
+          background_label: 'Background color',
+          reset: 'Reset',
+          white: 'white',
+          black: 'black'
+        }
       },
       commands: {
         select: {
@@ -249,13 +258,22 @@ var locales = {
       load_local_file_label: 'Charger un fichier local',
       load_local_file_instructions: 'Déposer un fichier ici ou cliquer pour charger',
       sequence_select_instructions: 'Sélectionner à partir des séquences des différentes chaînes',
-      settings: {
-        clip_near_label: 'Position du plan de coupe avant',
-        fog_label: 'Position effet de brouillard',
-        background_label: 'Couleur de fond',
-        reset: 'Réinitialiser',
-        white: 'blanc',
-        black: 'noir'
+      toolbar: {
+        distance: {
+          button: 'Distance',
+          activate_label: 'Activer la mesure de distances',
+          activate: 'on',
+          deactivate: 'off',
+          instructions: 'Ici s\'affichent les différentes distances mesurées'
+        },
+        settings: {
+          clip_near_label: 'Position du plan de coupe avant',
+          fog_label: 'Position effet de brouillard',
+          background_label: 'Couleur de fond',
+          reset: 'Réinitialiser',
+          white: 'blanc',
+          black: 'noir'
+        }
       },
       commands: {
         select: {

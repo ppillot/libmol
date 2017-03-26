@@ -17,6 +17,16 @@
             <span>Some atoms are not currently displayed</span>
           </el-popover>
           <el-button v-show="isHidden" v-popover:warninghidden icon="warning" class="button warning" type="text" size="large"></el-button>
+          <el-popover
+            ref="distance"
+            placement="bottom-end"
+            width="400"
+            trigger="click">
+            <distance></distance>
+          </el-popover>
+          <el-button v-popover:distance class="button" type="text" size="small">
+            {{ $t('ui.toolbar.distance.button') }}
+          </el-button>
           <el-button icon="picture" class="button" type="text" size="large" @click="screenCapture"></el-button>
           <el-button icon="d-caret" class="button" type="text" size="large" @click="toggleFullscreen"></el-button>
           <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>
@@ -26,11 +36,13 @@
 
 <script>
   import settings from './Settings'
+  import distance from './Distance'
 
   export default {
     name: 'toolbar',
     components: {
-      settings
+      settings,
+      distance
     },
     computed: {
       molName: function () {
@@ -85,7 +97,6 @@
 
   .button {
     margin: 0 0.2em;
-    font-size: 1.2em;
     padding: 0;
     color: #88a9d4;
   }
@@ -93,4 +104,5 @@
   .warning {
     color: orangered;
   }
+  
 </style>

@@ -42,7 +42,6 @@ ToDo
 - code refactor
   - event bus : https://devblog.digimondo.io/building-a-simple-eventbus-in-vue-js-64b70fb90834#.706mbapkg
 - bugs :
-  - safari : not displaying tab contents
   - firefox : not going fullscreen
   - color palette should update status bar
   - color palette button should react to the state

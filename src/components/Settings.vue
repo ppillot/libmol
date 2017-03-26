@@ -1,24 +1,24 @@
 <template>
   <div class="settings">
-    <form-item :label="$t('ui.settings.clip_near_label')">
+    <form-item :label="$t('ui.toolbar.settings.clip_near_label')">
       <el-slider v-model="clipNear"></el-slider>  
     </form-item>
-    <form-item :label="$t('ui.settings.fog_label')">
+    <form-item :label="$t('ui.toolbar.settings.fog_label')">
       <el-slider v-model="fog" range></el-slider>  
     </form-item>
-    <form-item :label="$t('ui.settings.background_label')">
+    <form-item :label="$t('ui.toolbar.settings.background_label')">
       <el-switch
         v-model="color"
         :width="80"
         on-color="#ddd"
         off-color="black"
-        :on-text="$t('ui.settings.white')"
-        :off-text="$t('ui.settings.black')"
+        :on-text="$t('ui.toolbar.settings.white')"
+        :off-text="$t('ui.toolbar.settings.black')"
         @change="switchBackgroundColor">
       </el-switch>
     </form-item>
     <div style="text-align: right">
-      <el-button type="primary" @click="reset">{{ $t('ui.settings.reset') }}</el-button>
+      <el-button type="primary" @click="reset">{{ $t('ui.toolbar.settings.reset') }}</el-button>
     </div>
   </div>
 </template>

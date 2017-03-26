@@ -1,18 +1,18 @@
 <template>
   <form-item :label="$t('ui.commands.color.label')">
     <button-group :active-value="colored" @change="color">
-        <radio-button value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>
-        <radio-button :disabled="nonPolymer" value="chainname">{{ $t('ui.commands.color.by_chain') }}</radio-button>
-        <radio-button :disabled="nonPolymer" value="resname">{{ $t('ui.commands.color.by_res') }}</radio-button>
+        <radio-button :disabled="none" value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>
+        <radio-button :disabled="nonPolymer || none" value="chainname">{{ $t('ui.commands.color.by_chain') }}</radio-button>
+        <radio-button :disabled="nonPolymer || none" value="resname">{{ $t('ui.commands.color.by_res') }}</radio-button>
     <el-popover
       ref="palette"
       placement="right"
       trigger="click">
       <palette v-model="colors" @color="pickColor"></palette>
     </el-popover>
-        <radio-button :disabled="noSStruc" value="sstruc">{{ $t('ui.commands.color.by_secondary_structure') }}</radio-button>
-        <radio-button :disabled="notAll" value="moleculetype">{{ $t('ui.commands.color.by_biochemical_nature') }}</radio-button>
-        <radio-button ungroup v-popover:palette>{{ $t('ui.commands.color.pick_color') }}</radio-button>
+        <radio-button :disabled="noSStruc || none" value="sstruc">{{ $t('ui.commands.color.by_secondary_structure') }}</radio-button>
+        <radio-button :disabled="notAll || none" value="moleculetype">{{ $t('ui.commands.color.by_biochemical_nature') }}</radio-button>
+        <radio-button :disabled="none" ungroup v-popover:palette>{{ $t('ui.commands.color.pick_color') }}</radio-button>
     </button-group>
   </form-item>
 </template>
@@ -46,6 +46,9 @@
       },
       notAll: function () {
         return (this.$store.state.selection !== 'all')
+      },
+      none: function () {
+        return (this.$store.state.selection === 'none')
       },
       colored: function () {
         return this.$store.state.color

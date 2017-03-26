@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     handlerClick (event) {
-      if (this.ungroup) {
+      if (this.ungroup && !this.disabled) {
         this.$emit('click')
         return
       }

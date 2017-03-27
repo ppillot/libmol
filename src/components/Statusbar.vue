@@ -1,5 +1,5 @@
 <template>
-    <div class="statusbar">
+    <div class="statusbar" v-show='isShown'>
       {{ colorDescription }} :
         <ul @mouseover.stop="getHoveredItem($event)" @mouseout.stop="hideTooltip">
           <li v-for="token in colorScheme" :style="token.css" :data-tooltip="token.tooltip">
@@ -53,6 +53,9 @@
       }
     },
     computed: {
+      isShown: function () {
+        return this.$store.state.selection !== 'none'
+      },
       colorScheme: function () {
         var cs = []
         switch (this.$store.state.color) {
@@ -120,11 +123,19 @@
             )
             this.colorDescription = this.$t('ui.commands.color.by_biochemical_nature')
             break
+          case 'mix':
+            cs.push({
+              text: this.$t('ui.statusbar.color.mix'),
+              css: 'color: black'
+            })
+            this.colorDescription = this.$t('ui.statusbar.color.color')
+            break
           default :
-            cs = {
-              text: 'coucou',
-              css: 'color: #00ff00'
-            }
+            cs.push({
+              text: this.$t('ui.statusbar.color.user'),
+              css: 'color: ' + this.$store.state.color
+            })
+            this.colorDescription = this.$t('ui.statusbar.color.color')
         }
         return cs
       }

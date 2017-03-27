@@ -126,6 +126,13 @@ var locales = {
           black: 'black'
         }
       },
+      statusbar: {
+        color: {
+          mix: 'Undefined (mismatched selection)',
+          user: 'User defined',
+          color: 'Colour'
+        }
+      },
       commands: {
         select: {
           label: 'Select',
@@ -279,6 +286,13 @@ var locales = {
           reset: 'Réinitialiser',
           white: 'blanc',
           black: 'noir'
+        }
+      },
+      statusbar: {
+        color: {
+          mix: 'Indéfinie (mélange dans la sélection)',
+          user: 'Définie par l\'utilisateur',
+          color: 'Coloration'
         }
       },
       commands: {

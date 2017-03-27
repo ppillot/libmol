@@ -1,6 +1,6 @@
 <template>
   <div class="vue-color__compact" @click="handlerClick">
-    <ul class="vue-color__compact__colors">
+    <ul class="vue-color__compact__colors" :class="{compact__ul: compact}">
       <li class="vue-color__compact__color-item" v-for="c in colorList"
         :class="{'vue-color__compact__color-item--white': c === '#FFFFFF' }"
         :style="{background: c}"
@@ -54,11 +54,15 @@ export default {
 
 <style lang="stylus">
 .vue-color__compact
-  width 28em
+  max-width 28em
+  min-width 100%
 .vue-color__compact__colors
   overflow hidden
   padding 0
   margin 0
+.compact__ul
+  display inline-flex
+  width 100%
 .vue-color__compact__color-item
   list-style none
   width 2em

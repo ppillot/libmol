@@ -6,7 +6,7 @@
     <form-item :label="$t('ui.toolbar.settings.fog_label')">
       <el-slider v-model="fog" range></el-slider>  
     </form-item>
-    <form-item :label="$t('ui.toolbar.settings.background_label')">
+    <form-item :label="$t('ui.toolbar.settings.background_label')" inline>
       <el-switch
         v-model="color"
         :width="80"

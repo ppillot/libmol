@@ -16,9 +16,9 @@
       <thead>
         <tr>
           <th><el-button type="text" icon="delete" @click="handleDelete" :disabled="measures.length===0"></el-button></th>
-          <th>Atome 1 </th>
-          <th>Atome 2 </th>
-          <th>Distance</th>
+          <th>{{ $t('ui.toolbar.distance.atom1') }}</th>
+          <th>{{ $t('ui.toolbar.distance.atom2') }}</th>
+          <th>{{ $t('ui.toolbar.distance.distance') }}</th>
         </tr>
       </thead>
       <tbody v-if="measures.length>0">

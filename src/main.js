@@ -112,7 +112,10 @@ var locales = {
           activate_label: 'Enable measuring distances',
           activate: 'on',
           deactivate: 'off',
-          instructions: 'Here are listed the distances that have been measured'
+          instructions: 'Here are listed the distances that have been measured',
+          atom1: 'Atom #1',
+          atom2: 'Atom #2',
+          distance: 'Distance'
         },
         settings: {
           clip_near_label: 'Near clip plane position',
@@ -264,7 +267,10 @@ var locales = {
           activate_label: 'Activer la mesure de distances',
           activate: 'on',
           deactivate: 'off',
-          instructions: 'Ici s\'affichent les différentes distances mesurées'
+          instructions: 'Ici s\'affichent les différentes distances mesurées',
+          atom1: 'Atome 1',
+          atom2: 'Atome 2',
+          distance: 'Distance'
         },
         settings: {
           clip_near_label: 'Position du plan de coupe avant',

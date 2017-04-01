@@ -55,7 +55,7 @@ export default {
             }
           })
         } else {
-          self.$message.error(self.$t('messages.no_record_found'))
+          // self.$message.error(self.$t('messages.no_record_found'))
           throw new Error(self.$t('messages.no_record_found'))
         }
       }).then(function (response) {

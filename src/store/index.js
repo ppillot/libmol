@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // import * as actions from './actions'
 // import * as getters from './getters'
-import {Stage, Selection, ColormakerRegistry, download} from 'ngl'
+import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2} from 'ngl'
 /* eslint-disable-next-line */
 // let NGL = () => import('ngl') /* eslint-disable-line */
 import debounce from 'throttle-debounce/debounce'
 import Screenfull from 'screenfull'
 
-let NGL = {Stage, Selection, ColormakerRegistry, download}
+let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3}
 Vue.use(Vuex)
 
 /** @description local module variable to hold the NGL stage object
@@ -116,6 +116,33 @@ function updateStageCenter () {
   stage.compList[0].autoView(sele, 1000)
 }
 
+function getCanvasPositionFromCoordinates (atom) {
+  const rg = stage.viewer.rotationGroup
+  const tg = stage.viewer.translationGroup
+  let v = new NGL.Vector3(atom.x, atom.y, atom.z)
+
+  v.add(tg.position)
+  v.applyMatrix4(rg.matrix)
+  v.project(stage.viewer.camera)
+
+  return {
+    x: (v.x + 1) * stage.viewer.width / 2,
+    y: (v.y + 1) * stage.viewer.height / 2
+  }
+}
+
+function getClosestAtomFromBond (bond, pointerPosition) {
+  const a1 = getCanvasPositionFromCoordinates(bond.atom1)
+  const a2 = getCanvasPositionFromCoordinates(bond.atom2)
+  const v1 = new NGL.Vector2(a1.x, a1.y)
+  const v2 = new NGL.Vector2(a2.x, a2.y)
+  const vp = new NGL.Vector2(pointerPosition.x, pointerPosition.y)
+
+  return (vp.distanceTo(v1) < vp.distanceTo(v2))
+    ? bond.atom1
+    : bond.atom2
+}
+
 function measureDistance (component, context) {
   let tabMeasures = []
   let measure = {
@@ -124,6 +151,7 @@ function measureDistance (component, context) {
     distance: 0
   }
   let distRepr = {}
+  let distHighLightRepr = {}
   const comp = component
 
   function dispatch () {
@@ -155,6 +183,26 @@ function measureDistance (component, context) {
     }
   }
 
+  function distanceHighlight (atom) {
+    const atom1Modifier = (measure.atom1.index) ? ',' + measure.atom1.index : ''
+    if (comp.hasRepresentation(distHighLightRepr)) {
+      distHighLightRepr.setSelection('@' + atom.index + atom1Modifier)
+    } else {
+      distHighLightRepr = comp.addRepresentation('spacefill', {
+        sele: '@' + atom.index,
+        color: 'red',
+        scale: 0.4,
+        opacity: 0.5
+      })
+    }
+  }
+
+  function clearDistanceHightLight () {
+    if (distHighLightRepr.name !== undefined) {
+      distHighLightRepr.setSelection('none')
+    }
+  }
+
   function clearMeasure (index) {
     tabMeasures.splice(index, 1)
     distanceRepresentation()
@@ -168,15 +216,23 @@ function measureDistance (component, context) {
   }
 
   function handleClick (response) {
-    const atomClicked = response.atom
+    let atomClicked = response.atom
     if (atomClicked === undefined) {
-      // cancel measurement
-      measure.atom1 = {}
-      return
+      const bondClicked = response.bond
+      if (bondClicked === undefined) {
+        // cancel measurement
+        // send a warning
+        measure.atom1 = {}
+        clearDistanceHightLight()
+        return
+      } else {
+        atomClicked = getClosestAtomFromBond(bondClicked, response.canvasPosition)
+      }
     }
     if (measure.atom1.index === undefined) {
       // first atom to be added to the measure
       measure.atom1 = atomClicked
+      distanceHighlight(measure.atom1)
       return
     }
     measure.atom2 = atomClicked
@@ -188,7 +244,16 @@ function measureDistance (component, context) {
     })
     measure.atom1 = {}
     distanceRepresentation()
+    clearDistanceHightLight()
     dispatch()
+  }
+
+  function handleHover (response) {
+    const atom = response.atom
+    if (atom === undefined) {
+      return
+    }
+    distanceHighlight(atom)
   }
 
   return {
@@ -203,6 +268,9 @@ function measureDistance (component, context) {
     },
     getMeasures: function () {
       return tabMeasures
+    },
+    hoverDistance: function (response) {
+      return handleHover(response)
     }
   }
 }
@@ -311,7 +379,7 @@ function getPredefined (str, chains) {
       selection: 'none',
       chains: []
     }
-    // Special case : check for emty atomset
+    // Special case : check for empty atomset
     if (as.isEmpty()) return ret
 
     // check if currently selected atoms are equal to any predefined atom sets
@@ -623,9 +691,8 @@ var vuex = new Vuex.Store({
       const num = representationsList.findIndex(val => {
         return val.display === displayType
       })
-      // console.log(num)
+
       let dAtomSet = currentSelectionAtomSet.clone().intersection(currentlyDisplayedAtomSet)
-      // console.log(dAtomSet.toSeleString(), currentSelectionAtomSet, currentlyDisplayedAtomSet, dAtomSet)
 
       if (num === -1) {
         // new representation
@@ -643,9 +710,7 @@ var vuex = new Vuex.Store({
         removeSelectionFromRepresentations(currentSelectionAtomSet, representationsList.length - 1)
       } else {
         const repr = representationsList[num]
-        // representation already exists, is it the same displayed selection ?
-        // if (!repr.displayedAtomSet.equals(dAtomSet)) {
-          // not the same selection, we must extend representation to the union
+
         repr.atomSet.union(currentSelectionAtomSet)
         repr.displayedAtomSet = repr.atomSet.clone().intersection(currentlyDisplayedAtomSet)
 
@@ -654,7 +719,6 @@ var vuex = new Vuex.Store({
 
           // and to update the remaining representations
         removeSelectionFromRepresentations(currentSelectionAtomSet, num)
-        // }
       }
       context.commit('display', displayType)
     },
@@ -797,12 +861,14 @@ var vuex = new Vuex.Store({
           stage.viewer.container.style.cursor = 'crosshair'
           // set signal picking atom
           stage.signals.clicked.add(distance.clickDistance)
+          stage.signals.hovered.add(distance.hoverDistance)
           break
         default :
           // set cursor style
           stage.viewer.container.style.cursor = 'default'
           // set signal picking atom
           stage.signals.clicked.removeAll()
+          stage.signals.hovered.remover(distance.hoverDistance)
       }
     }
   },

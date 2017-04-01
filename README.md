@@ -23,7 +23,7 @@ ToDo
 - Errors/warnings : send messages
   - when file could not be uploaded
   - when network is not available --> online/offline api
-  - when current selection is empty (deactivate all commands ???)
+  - when current selection is empty
   - when some atoms are hidden
   - when all atoms are hidden
 - Commandes : 

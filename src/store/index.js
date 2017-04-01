@@ -152,6 +152,7 @@ function measureDistance (component, context) {
   }
   let distRepr = {}
   let distHighLightRepr = {}
+  let labelColor = 0x000000
   const comp = component
 
   function dispatch () {
@@ -160,6 +161,13 @@ function measureDistance (component, context) {
 
   function getDistance (atom1, atom2) {
     return atom1.distanceTo(atom2)
+  }
+
+  function switchBackgroundColor (color) {
+    labelColor = (color === 'black') ? 0xFFFFFF : 0x000000
+    if (comp.hasRepresentation(distRepr)) {
+      distRepr.setParameters({labelColor: labelColor})
+    }
   }
 
   function distanceRepresentation () {
@@ -174,7 +182,7 @@ function measureDistance (component, context) {
     } else {
       distRepr = comp.addRepresentation('distance', {
         atomPair: tabAtomPairs,
-        labelColor: 0x000000,
+        labelColor: labelColor,
         color: 0x1D8CE0,
         opacity: 0.5,
         scale: 0.1,
@@ -286,6 +294,9 @@ function measureDistance (component, context) {
     },
     hoverDistance: function (response) {
       return handleHover(response)
+    },
+    switchColor: function (color) {
+      return switchBackgroundColor(color)
     }
   }
 }
@@ -828,6 +839,9 @@ var vuex = new Vuex.Store({
 
     setStageParameters ({commit}, params) {
       stage.setParameters(params)
+      if (params.backgroundColor) {
+        distance.switchColor(params.backgroundColor)
+      }
     },
     sequenceSelected (context, tabSelectedResidues) {
       // has the selection started by a selected residue ?

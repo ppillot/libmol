@@ -184,6 +184,16 @@ function measureDistance (component, context) {
   }
 
   function distanceHighlight (atom) {
+    if (atom === undefined) {
+      // hover a non atom/bond shape
+      if (measure.atom1.index) {
+        distHighLightRepr.setSelection('@' + measure.atom1.index)
+      } else {
+        distHighLightRepr.setSelection('none')
+      }
+      return
+    }
+
     const atom1Modifier = (measure.atom1.index) ? ',' + measure.atom1.index : ''
     if (comp.hasRepresentation(distHighLightRepr)) {
       distHighLightRepr.setSelection('@' + atom.index + atom1Modifier)
@@ -249,9 +259,14 @@ function measureDistance (component, context) {
   }
 
   function handleHover (response) {
-    const atom = response.atom
+    let atom = response.atom
     if (atom === undefined) {
-      return
+      const bond = response.bond
+      if (bond === undefined) {
+        return
+      } else {
+        atom = getClosestAtomFromBond(bond, response.canvasPosition)
+      }
     }
     distanceHighlight(atom)
   }

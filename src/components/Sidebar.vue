@@ -11,6 +11,7 @@
                 <select-mol></select-mol>
                 <display-mol></display-mol>
                 <color-mol></color-mol>
+                <!--<help></help>-->
             </el-tab-pane>
             <el-tab-pane :label="$t('ui.sequences_tab_label')" name="sequences">
                 <sequence-tab :active="isSequenceTabActive"></sequence-tab>
@@ -27,6 +28,7 @@ import SelectMol from './SelectMol'
 import DisplayMol from './DisplayMol'
 import ColorMol from './ColorMol'
 import SequenceTab from './SequenceTab'
+// import Help from './Help'
 
 export default {
   name: 'sidebar',

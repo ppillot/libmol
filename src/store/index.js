@@ -35,7 +35,7 @@ var predefined
  */
 function removeSelectionFromRepresentations (newAtomSet, skipReprIndex) {
   for (let i = 0; i < representationsList.length; i++) {
-    if (i === skipReprIndex) {
+    if (i === skipReprIndex || (i === skipReprIndex + 1 && representationsList[i].name === 'base')) {
       continue
     }
     const repr = representationsList[i]
@@ -106,7 +106,7 @@ function updateRepresentationColor () {
 function updateRepresentationDisplay () {
   representationsList.forEach(repr => {
     repr.displayedAtomSet = repr.atomSet.clone().intersection(currentlyDisplayedAtomSet)
-    // console.log('update repr:', repr.index, repr.displayedAtomSet)
+    // console.log('update repr:', repr.name, repr.index, repr.displayedAtomSet)
     stage.compList[0].reprList[repr.index].setSelection(repr.displayedAtomSet.toSeleString())
   })
 }
@@ -734,6 +734,21 @@ var vuex = new Vuex.Store({
             displayedAtomSet: dAtomSet,
             sele: context.state.selection})
         removeSelectionFromRepresentations(currentSelectionAtomSet, representationsList.length - 1)
+
+        // Add base representation if cartoon
+        if (displayType === 'cartoon') {
+          stage.compList[0].addRepresentation('base',
+            {
+              sele: dAtomSet.toSeleString(),
+              color: globalColorScheme
+            })
+          representationsList.push(
+            {display: 'base',
+              index: stage.compList[0].reprList.length - 1,
+              atomSet: currentSelectionAtomSet.clone(),
+              displayedAtomSet: dAtomSet.clone(),
+              sele: context.state.selection})
+        }
       } else {
         const repr = representationsList[num]
 
@@ -745,6 +760,11 @@ var vuex = new Vuex.Store({
 
           // and to update the remaining representations
         removeSelectionFromRepresentations(currentSelectionAtomSet, num)
+
+        // update base representation if cartoon
+        if (displayType === 'cartoon') {
+          stage.compList[0].reprList[repr.index + 1].setSelection(repr.displayedAtomSet.toSeleString())
+        }
       }
       context.commit('display', displayType)
     },

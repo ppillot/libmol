@@ -43,7 +43,6 @@ export default {
     color #48576a
     line-height 1
     display block
-    padding-right 1em
 .form-item-slot
   margin-top 8px
 </style>

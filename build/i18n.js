@@ -117,14 +117,14 @@ function buildI18N(auth) {
     } else {
       //first value is key
       const locales = rows[0].filter((item, itemNum) => {return itemNum>0} )
-      console.log(locales)
+      //console.log(locales)
       for (let localeNum=0; localeNum< locales.length; localeNum++) {
         let level = -1
         let s = '{'
         let previousToken = 'nodeOpening'
         for (let i = 1; i < rows.length; i++) {
           let row = rows[i];
-          console.log(row);
+          //console.log(row);
           
           if (row.length === 1) { //key name
             //guess level
@@ -164,7 +164,7 @@ function buildI18N(auth) {
         for (let i = 0; i <= level +1; i++) {
           s += '}'
         }
-        console.log(s)
+        //console.log(s)
         let test = JSON.parse(s)
         writeJSON(s, locales[localeNum])
       }

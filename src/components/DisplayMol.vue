@@ -1,6 +1,6 @@
 <template>
   <div>
-   <button-group :active-value="displayed" @change="display" v-if="compact">
+   <button-group :active-value="displayed" @change="overlay" v-if="compact">
         <radio-button :disabled="none" value="spacefill">{{ $t('ui.commands.display.spacefill') }}</radio-button>
         <radio-button :disabled="none" value="ball+stick">{{ $t('ui.commands.display.balls_and_sticks') }}</radio-button>
         <radio-button :disabled="none" ungroup v-on:click="hide">{{ $t('ui.commands.display.hide') }}</radio-button>
@@ -45,6 +45,9 @@
     methods: {
       display (displayType) {
         this.$store.dispatch('display', displayType)
+      },
+      overlay (displayType) {
+        this.$store.dispatch('overlay', displayType)
       },
       hide () {
         this.$store.dispatch('hide')

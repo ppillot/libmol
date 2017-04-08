@@ -30,7 +30,8 @@ ToDo
   - add/remove labels
   - create/remove surface
   - on hover display help
-  - provide choice for hetero (e.g. : in cox2 asp and hem)
+  - provide choices for hetero (e.g. : in cox2 asp and hem)
+  - allow selecting proteins/nucleic when they are synonym to 'all'
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from user command

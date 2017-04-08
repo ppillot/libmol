@@ -769,6 +769,32 @@ var vuex = new Vuex.Store({
       context.commit('display', displayType)
     },
 
+    overlay (context, displayType) {
+      // when in sequence mode, and using ribbon/backbone representations
+      // these representations should remain and sidechains be surimposed
+      // if display spacefill, the whole residue is displayed instead of
+      // its sidechain only
+
+      // is there a ribbon or a backbone representation that includes some
+      // of the residues of the current selection
+      const repr = representationsList.reduce((acc, representation, index) => {
+        if (['cartoon', 'backbone'].includes(representation.display) && representation.atomSet.intersects(currentSelectionAtomSet)) {
+          return acc.concat([representation])
+        } else {
+          return acc
+        }
+      }, [])
+
+      // if there is none, overlay is an easy display
+      if (repr.length === 0) {
+        context.dispatch('display', displayType)
+        return
+      }
+
+      // there is at least one schematic representation
+      context.dispatch('display', displayType)
+    },
+
     hide (context) {
       // decide if we should hide or show depending on wether selected atoms are displayed
       let isToBeHidden = currentlyDisplayedAtomSet.intersects(currentSelectionAtomSet)

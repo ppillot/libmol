@@ -1,12 +1,10 @@
 <template>
-  <div class="help">
-    {{ text }}
+  <div class="help" v-html="text">
   </div>
 </template>
 
 <script>
   import Marked from 'marked'
-  import help from './locales/fr/help'
   
   export default {
     name: 'Help',
@@ -17,7 +15,8 @@
     },
     computed: {
       text: function () {
-        return Marked(help.colorByChain)
+        console.log(this)
+        return Marked(this.$t('help.colorBychain'))
       }
     },
     methods: {
@@ -26,11 +25,6 @@
   }
 </script>
 
-<style scoped>
-  div.radio-button-group {
-    width: 100%
-  }
-  .radio-button {
-    width: 33%
-  }
+<style>
+  
 </style>

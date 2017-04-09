@@ -1,4 +1,5 @@
 var fs = require("fs"),
+    camelCase = require ('camelcase');
     
     writeHelpJson = function (locale, json) {
         var buffer = JSON.stringify(json);
@@ -21,11 +22,12 @@ locales.forEach(function (locale) {
         files.forEach(function (file) {
             //
             if (file.indexOf('.md')===-1) return;
-            const fileName = file.substr(file.indexOf('.'))
+            const fileName = file.substr(0, file.indexOf('.'))
             const pathFile = path + locale + "/" + file;
             const content = fs.readFileSync(pathFile, 'utf8');
+            const fileAttr = camelCase(fileName)
 
-            helpJson[file] = content;
+            helpJson[fileAttr] = content;
         });
         writeHelpJson(locale, helpJson);
     });

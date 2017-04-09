@@ -12,7 +12,7 @@ var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
 var TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json';
 
 // Load client secrets from a local file.
-fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+fs.readFile('./build/client_secret.json', function processClientSecrets(err, content) {
   if (err) {
     console.log('Error loading client secret file: ' + err);
     return;
@@ -165,21 +165,30 @@ function buildI18N(auth) {
           s += '}'
         }
         //console.log(s)
-        let test = JSON.parse(s)
-        writeJSON(s, locales[localeNum])
+        let jsonLocale = JSON.parse(s)
+        const result = JSON.stringify(addHelp(jsonLocale, locales[localeNum]))
+        writeJSON(result, locales[localeNum])
       }
     }
   });
 }
 
+function addHelp(json,locale) {
+  const content = fs.readFileSync('./src/locales/' + locale + '/help.'+locale+'.json', 'utf8');
+  const helpJson = JSON.parse(content)
+  json['help'] = helpJson
+  return json
+}
+
 function writeJSON(s,name) {
   const fileName = name + '.json'
-  const destPath = '../src/locales/' + fileName
+  const destPath = './src/locales/' + fileName
 
   fs.writeFile(destPath, s, function(err) {
     if (err) {
       throw err
+      console.log('error in locale:' +name, s)
     }
-    console.log('error in locale:' +name, s)
+    console.log('Locale ' + destPath + ' created')
   })
 }

@@ -3,7 +3,7 @@ var fs = require("fs"),
     writeHelpJson = function (locale, json) {
         var buffer = JSON.stringify(json);
         
-        fs.writeFile(path + 'help.' + locale + '.json',
+        fs.writeFile(path + locale + '/help.' + locale + '.json',
             buffer,
             function (err, data) {
                 if (err) throw err;

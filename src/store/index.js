@@ -943,7 +943,7 @@ var vuex = new Vuex.Store({
           stage.viewer.container.style.cursor = 'default'
           // set signal picking atom
           stage.signals.clicked.removeAll()
-          stage.signals.hovered.remover(distance.hoverDistance)
+          stage.signals.hovered.remove(distance.hoverDistance)
       }
     }
   },

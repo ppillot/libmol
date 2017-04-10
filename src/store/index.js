@@ -402,19 +402,33 @@ function getPredefined (str, chains) {
     chainSet.set(chain.name, getAtomSet(':' + chain.name))
   })
 
-  const findSet = function (as = currentSelectionAtomSet) {
+  const findSet = function (selector) {
     let ret = {
       selection: 'none',
       chains: []
     }
+    let as = currentSelectionAtomSet
+
     // Special case : check for empty atomset
     if (as.isEmpty()) return ret
 
+    // Special case #2 : selector has been provided
+    if (selector !== undefined) {
+      for (let i = 0; i < predefinedSets.length; i++) {
+        if (predefinedSets[i][0] === selector) {
+          ret.selection = selector
+          break
+        }
+      }
+    }
+
     // check if currently selected atoms are equal to any predefined atom sets
-    let preset = predefinedSets.find(pds => {
-      return (pds[1].equals(as))
-    })
-    ret.selection = (preset !== undefined) ? preset[0] : ''
+    if (ret.selection === 'none') {
+      let preset = predefinedSets.find(pds => {
+        return (pds[1].equals(as))
+      })
+      ret.selection = (preset !== undefined) ? preset[0] : ''
+    }
 
     // check which chains are currently entirely selected
     chainSet.forEach((chainAtomSet, chainName) => {
@@ -557,8 +571,8 @@ var vuex = new Vuex.Store({
         state.selected[val] = isToBeSelected
       })
     },
-    updateSelection (state) {
-      let sel = predefined()
+    updateSelection (state, selector) {
+      let sel = predefined(selector)
       state.selectedChains = sel.chains
       state.selection = sel.selection
     },
@@ -712,7 +726,7 @@ var vuex = new Vuex.Store({
         const sel = new NGL.Selection(selector)
         currentSelectionAtomSet = structure.getAtomSet(sel).clone()
       }
-      context.commit('updateSelection')
+      context.commit('updateSelection', selector)
       context.commit('updateSelected', currentSelectionAtomSet)
       context.commit('color', getColorFromSelection())
       context.commit('display', getRepresentationFromSelection())

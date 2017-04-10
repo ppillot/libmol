@@ -14,7 +14,6 @@
     computed: {
       text: function () {
         let helpKey = this.$store.state.help
-        console.log(helpKey)
         return (this.$te('help.' + helpKey))
           ? Marked(this.$t('help.' + helpKey))
           : ''

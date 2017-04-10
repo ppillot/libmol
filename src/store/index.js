@@ -958,7 +958,6 @@ var vuex = new Vuex.Store({
       } else if (subject.active) {
         latestHelp = subject
       }
-      console.log(subject, latestHelp)
       commit('help', help(subject.action, subject.attribute))
     }
   },

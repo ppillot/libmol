@@ -44,9 +44,19 @@
     methods: {
       sel (selector) {
         this.$store.dispatch('selection', fixHetero(selector))
+        this.help(selector, true)
       },
       highlight (selector) {
+        this.help(selector, false)
+        if (selector === undefined) selector = 'none'
         this.$store.dispatch('highlightSelectHovered', fixHetero(selector))
+      },
+      help (selector, active) {
+        this.$store.dispatch('help', {
+          action: 'select',
+          attribute: selector,
+          active: active
+        })
       }
     }
   }

@@ -6,7 +6,7 @@
         <radio-button :disabled="none" ungroup v-on:click="hide">{{ $t('ui.commands.display.hide') }}</radio-button>
    </button-group>
    <form-item :label="$t('ui.commands.display.label')" v-else>
-      <button-group :active-value="displayed" @change="display">
+      <button-group :active-value="displayed" @change="display" @hover="hover">
         <radio-button :disabled="none" value="spacefill">{{ $t('ui.commands.display.spacefill') }}</radio-button>
         <radio-button :disabled="none" value="ball+stick">{{ $t('ui.commands.display.balls_and_sticks') }}</radio-button>
         <radio-button :disabled="none" value="licorice">{{ $t('ui.commands.display.sticks') }}</radio-button>
@@ -45,12 +45,24 @@
     methods: {
       display (displayType) {
         this.$store.dispatch('display', displayType)
+        this.help(displayType, true)
       },
       overlay (displayType) {
         this.$store.dispatch('overlay', displayType)
       },
       hide () {
         this.$store.dispatch('hide')
+        this.help('hide', true)
+      },
+      hover (displayType) {
+        this.help(displayType, false)
+      },
+      help (displayType, active) {
+        this.$store.dispatch('help', {
+          action: 'display',
+          attribute: displayType,
+          active: active
+        })
       }
     },
     props: ['compact']

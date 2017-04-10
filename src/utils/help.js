@@ -2,14 +2,14 @@ const helpFiles = {
   color: {
     chainname: 'colorBychain',
     element: 'colorByelement',
-    residue: 'colorByresidue',
+    resname: 'colorByresidue',
     sstruc: 'colorBysstruc',
     moleculetype: 'colorBynature',
     palette: 'colorPalette'
   },
   display: {
     spacefill: 'displaySpacefill',
-    ball_stick: 'displayBallstick',
+    'ball+stick': 'displayBallstick',
     licorice: 'displayStick',
     cartoon: 'displayCartoon',
     backbone: 'displayBackbone',
@@ -26,7 +26,7 @@ const helpFiles = {
 }
 
 function getHelp (action, attribute) {
-  return helpFiles[action][attribute]
+  return (action !== undefined) ? helpFiles[action][attribute] : undefined
 }
 
 export default getHelp

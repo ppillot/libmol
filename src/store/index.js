@@ -27,6 +27,7 @@ var tabColorScheme = [['element', 'all']]
 var tabColorAtomSet
 var globalColorScheme
 var predefined
+var latestHelp = {}
 
 /**
  * @description removes residues form their current representation so that they are set only in the latest
@@ -952,6 +953,12 @@ var vuex = new Vuex.Store({
       }
     },
     help ({commit}, subject) {
+      if (subject === undefined || subject.attribute === undefined) {
+        subject = latestHelp
+      } else if (subject.active) {
+        latestHelp = subject
+      }
+      console.log(subject, latestHelp)
       commit('help', help(subject.action, subject.attribute))
     }
   },

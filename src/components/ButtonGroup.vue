@@ -1,5 +1,5 @@
 <template>
-  <div class="button-group" @mouseleave="handlerHover('none')">
+  <div class="button-group" @mouseleave="handlerHover()">
     <slot></slot>
   </div>
 </template>

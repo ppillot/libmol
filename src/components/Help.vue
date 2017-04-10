@@ -8,18 +8,19 @@
   
   export default {
     name: 'Help',
-    data () {
-      return {
-        colors: {hex: '#00ff00'}
-      }
-    },
     computed: {
       text: function () {
-        console.log(this)
-        return Marked(this.$t('help.colorBychain'))
+        let helpKey = this.$store.state.help
+        console.log(helpKey)
+        return (this.$te('help.' + helpKey))
+          ? Marked(this.$t('help.' + helpKey))
+          : ''
       }
     },
     methods: {
+
+    },
+    watch: {
 
     }
   }

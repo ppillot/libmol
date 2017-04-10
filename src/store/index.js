@@ -7,6 +7,7 @@ import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2} from '
 // let NGL = () => import('ngl') /* eslint-disable-line */
 import debounce from 'throttle-debounce/debounce'
 import Screenfull from 'screenfull'
+import help from 'utils/help'
 
 let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3}
 Vue.use(Vuex)
@@ -483,7 +484,8 @@ var vuex = new Vuex.Store({
     stage: {
       clipNear: 30
     },
-    distances: []
+    distances: [],
+    help: ''
   },
   mutations: {
     loadNewFile (state, newFile) {
@@ -564,6 +566,9 @@ var vuex = new Vuex.Store({
     },
     distance (state, tabDistances) {
       state.distances = tabDistances
+    },
+    help (state, subject) {
+      state.help = subject
     }
   },
   actions: {
@@ -945,6 +950,9 @@ var vuex = new Vuex.Store({
           stage.signals.clicked.removeAll()
           stage.signals.hovered.remove(distance.hoverDistance)
       }
+    },
+    help ({commit}, subject) {
+      commit('help', help(subject.action, subject.attribute))
     }
   },
   getters: {

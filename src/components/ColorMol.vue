@@ -57,6 +57,10 @@
     methods: {
       color (colorScheme) {
         this.$store.dispatch('color', colorScheme)
+        this.$store.dispatch('help', {
+          action: 'color',
+          attribute: colorScheme
+        })
       },
       pickColor (val) {
         this.$store.dispatch('color', val.hex)

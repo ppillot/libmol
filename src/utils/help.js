@@ -22,6 +22,9 @@ const helpFiles = {
     saccharide: 'selectSaccharide',
     water: 'selectWater',
     hetero: 'selectHetero'
+  },
+  lexicon: {
+    protein: 'lexiconProtein'
   }
 }
 

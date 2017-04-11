@@ -19,6 +19,8 @@ ToDo
 - Files : 
   - handle legacy PDB files (ngl) or send messages if something goes wrong
   - handle sdf, mol2 or cif files for small molecules
+- i18n:
+  - switch languages
 - Errors/warnings : send messages
   - when file could not be uploaded
   - when network is not available --> online/offline api

@@ -31,8 +31,7 @@ ToDo
   - provide choices for hetero (e.g. : in cox2 asp and hem)
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
-  - select from user command
-  - if representation backbone or cartoon --> sele "sidechainattached" for ball+stick, licorice, spacefill
+  - select from user command, using NGL selection syntax
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting
 - code refactor

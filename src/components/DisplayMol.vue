@@ -44,7 +44,7 @@
     },
     methods: {
       display (displayType) {
-        this.$store.dispatch('display', displayType)
+        this.$store.dispatch('display', {display: displayType})
         this.help(displayType, true)
       },
       overlay (displayType) {

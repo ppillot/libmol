@@ -35,9 +35,11 @@ var latestHelp = {}
  * @param {NGL atomSet} atomSet
  * @param {number} skipReprIndex index of the latest representation : must be skipped !
  */
-function removeSelectionFromRepresentations (newAtomSet, skipReprIndex) {
+function removeSelectionFromRepresentations (newAtomSet, skipReprIndex, overlay = false) {
   for (let i = 0; i < representationsList.length; i++) {
-    if (i === skipReprIndex || (i === skipReprIndex + 1 && representationsList[i].name === 'base')) {
+    if (i === skipReprIndex || (i === skipReprIndex + 1 && representationsList[i].display === 'base')) {
+      continue
+    } else if (overlay && ['cartoon', 'ribbon', 'backbone'].includes(representationsList[i].display)) {
       continue
     }
     const repr = representationsList[i]
@@ -732,28 +734,31 @@ var vuex = new Vuex.Store({
       context.commit('display', getRepresentationFromSelection())
     },
 
-    display (context, displayType) {
+    display (context, {display, atomSet = currentSelectionAtomSet, overlay = false}) {
+      const displayType = display
       // does this representation already exist?
       const num = representationsList.findIndex(val => {
-        return val.display === displayType
+        return (val.display === displayType && val.overlay === overlay)
       })
-
-      let dAtomSet = currentSelectionAtomSet.clone().intersection(currentlyDisplayedAtomSet)
+      let dAtomSet = atomSet.clone().intersection(currentlyDisplayedAtomSet)
 
       if (num === -1) {
         // new representation
+        const seleString = (overlay && displayType !== 'spacefill') ? dAtomSet.toSeleString() + ' and sidechainAttached' : dAtomSet.toSeleString()
         stage.compList[0].addRepresentation(displayType,
           {
-            sele: dAtomSet.toSeleString(),
+            sele: seleString,
             color: globalColorScheme
           })
-        representationsList.push(
-          {display: displayType,
-            index: stage.compList[0].reprList.length - 1,
-            atomSet: currentSelectionAtomSet.clone(),
-            displayedAtomSet: dAtomSet,
-            sele: context.state.selection})
-        removeSelectionFromRepresentations(currentSelectionAtomSet, representationsList.length - 1)
+        representationsList.push({
+          display: displayType,
+          index: stage.compList[0].reprList.length - 1,
+          atomSet: atomSet.clone(),
+          displayedAtomSet: dAtomSet,
+          sele: context.state.selection,
+          overlay: overlay
+        })
+        removeSelectionFromRepresentations(atomSet, representationsList.length - 1, overlay)
 
         // Add base representation if cartoon
         if (displayType === 'cartoon') {
@@ -765,21 +770,22 @@ var vuex = new Vuex.Store({
           representationsList.push(
             {display: 'base',
               index: stage.compList[0].reprList.length - 1,
-              atomSet: currentSelectionAtomSet.clone(),
+              atomSet: atomSet.clone(),
               displayedAtomSet: dAtomSet.clone(),
               sele: context.state.selection})
         }
       } else {
         const repr = representationsList[num]
 
-        repr.atomSet.union(currentSelectionAtomSet)
-        repr.displayedAtomSet = repr.atomSet.clone().intersection(currentlyDisplayedAtomSet)
+        repr.atomSet.union(atomSet)
+        repr.displayedAtomSet = repr.atomSet.clone().intersection(atomSet)
 
           // need to update the representation
-        stage.compList[0].reprList[repr.index].setSelection(repr.displayedAtomSet.toSeleString())
+        const seleString = (overlay && displayType !== 'spacefill') ? repr.displayedAtomSet.toSeleString() + ' and sidechainAttached' : repr.displayedAtomSet.toSeleString()
+        stage.compList[0].reprList[repr.index].setSelection(seleString)
 
           // and to update the remaining representations
-        removeSelectionFromRepresentations(currentSelectionAtomSet, num)
+        removeSelectionFromRepresentations(atomSet, num, overlay)
 
         // update base representation if cartoon
         if (displayType === 'cartoon') {
@@ -797,22 +803,29 @@ var vuex = new Vuex.Store({
 
       // is there a ribbon or a backbone representation that includes some
       // of the residues of the current selection
-      const repr = representationsList.reduce((acc, representation, index) => {
+      let atomsToDisplay = representationsList.reduce((acc, representation, index) => {
         if (['cartoon', 'backbone'].includes(representation.display) && representation.atomSet.intersects(currentSelectionAtomSet)) {
-          return acc.concat([representation])
+          return acc.difference(representation.atomSet)
         } else {
           return acc
         }
-      }, [])
+      }, currentSelectionAtomSet.clone())
 
       // if there is none, overlay is an easy display
-      if (repr.length === 0) {
-        context.dispatch('display', displayType)
+      if (atomsToDisplay.equals(currentSelectionAtomSet)) {
+        context.dispatch('display', {display: displayType})
         return
       }
 
-      // there is at least one schematic representation
-      context.dispatch('display', displayType)
+      // there is at least one schematic representation that includes some atoms to be displayed as overlays
+      // first let's display the atoms not belonging to the overlay if there are some
+      if (atomsToDisplay.size() > 0) {
+        context.dispatch('display', {display: displayType, atomSet: atomsToDisplay})
+      }
+
+      // then display the overlaying atoms
+      const atomsToOverlay = currentSelectionAtomSet.clone().difference(atomsToDisplay)
+      context.dispatch('display', {display: displayType, atomSet: atomsToOverlay, overlay: true})
     },
 
     hide (context) {

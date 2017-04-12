@@ -41,6 +41,8 @@ ToDo
 - bugs :
   - firefox : not going fullscreen
   - color palette button should react to the state
+  - base representation and overlays should be exclusive
+  - base representation and protein (eg p53)
 - components :
   - replace autocomplete (33kB)
   - replace axios (35kB) with fetch polyfill (12kB) (bug in webpack proxy)

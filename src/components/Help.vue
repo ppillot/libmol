@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <hr class="shadow">
+  <div class="shadow">
     <div class="help" v-html="text" @click.stop.prevent="getLink">
+    </div>
+    <div class="navigation">
+      <i class="el-icon-caret-left"></i>
+      <i class="el-icon-circle-close"></i>
     </div>
   </div>
 </template>
@@ -63,6 +66,12 @@
     border-bottom: none;
     /* box-shadow: #bbb 0px 4px 10px; */
     margin: 8px 0 0 0;
+    position: relative;
+  }
+  .navigation {
+    position: absolute;
+    top: 5px;
+    right: 5px;
   }
   .help {
     flex: 1;

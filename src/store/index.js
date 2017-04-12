@@ -778,7 +778,7 @@ var vuex = new Vuex.Store({
         const repr = representationsList[num]
 
         repr.atomSet.union(atomSet)
-        repr.displayedAtomSet = repr.atomSet.clone().intersection(atomSet)
+        repr.displayedAtomSet = repr.atomSet.clone().intersection(currentlyDisplayedAtomSet)
 
           // need to update the representation
         const seleString = (overlay && displayType !== 'spacefill') ? repr.displayedAtomSet.toSeleString() + ' and sidechainAttached' : repr.displayedAtomSet.toSeleString()

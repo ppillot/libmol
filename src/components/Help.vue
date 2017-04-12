@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr class="shadow">
-    <div class="help" v-html="text">
+    <div class="help" v-html="text" @click.stop.prevent="getLink">
     </div>
   </div>
 </template>
@@ -40,30 +40,17 @@
       }
     },
     methods: {
-      loadHelp: function (helpKey) {
-        const reg = /(\w+)-(\w+)/g
-        const results = reg.exec(helpKey)
-        const subject = {
-          action: results[1],
-          attribute: results[2],
-          active: true
-        }
-        let self = this
-        return function () {
-          self.$store.dispatch('help', subject)
-        }
-      }
-    },
-    updated () {
-      // check if there are any internal links...
-      const links = this.$el.getElementsByTagName('a')
-      const reg = /^#\w+-\w+$/
-      for (let i = 0; i < links.length; i++) {
-        let href = links[i].getAttribute('href')
+      getLink: function (event) {
+        const href = event.target.getAttribute('href')
+        const reg = /^#(\w+)-(\w+)$/ // internal links are based on the hash #action-attribute
         if (reg.test(href)) {
-          let helpHandler = this.loadHelp(href.substring(1))
-          helpHandler.bind(this)
-          links[i].addEventListener('click', helpHandler)
+          const results = reg.exec(href)
+          const subject = {
+            action: results[1],
+            attribute: results[2],
+            active: true
+          }
+          this.$store.dispatch('help', subject)
         }
       }
     }

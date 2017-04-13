@@ -1,4 +1,10 @@
 # Coloration par chaînes
-Dans ce mode de coloration, les représentations sont colorées en fonction de la chaîne à laquelle elles appartiennent.  
-Une chaîne est généralement définie comme une succession d'acides aminés dans une [protéine](lexicon-protein) ou une succession de nucléotides dans un brin d'ADN ou d'ARN.  
-Cependant, les fichiers PDB peuvent regrouper sous un même idenfiant de chaîne d'autres molécules telles que les molécules d'eau associées à une chaîne protéique et plus généralement les ligands (par exemple Hèmes, etc...)
+La coloration par chaînes identifie les différentes chaînes présentes dans le modèle moléculaire et les colore de manière distincte.
+
+Les principales chaînes identifiées sont :
+* les [protéines](lexicon-protein), constituées d'une ou plusieurs chaînes d'acides aminés,
+* les [acides nucléiques](lexicon-nucleic) (ADN et ARN), constituées de chaînes de nucléotides.
+
+Les [ligands](lexicon-ligand) (eau, ion, hème, ...) associés à une chaîne (protéine ou acide nucléiques) sont également colorés avec les autres atomes de cette chaîne.
+
+La légende du modèle moléculaire indique les différentes chaînes repérées par leurs identifiants et par leurs colorations spécifiques.

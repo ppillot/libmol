@@ -5,3 +5,4 @@ dist/
 npm-debug.log
 .vscode
 client_secret.json
+src/locales/fr.json

@@ -42,7 +42,7 @@
         return (sel === 'hetero' || sel === 'water' || sel === 'saccharide')
       },
       noSStruc: function () {
-        return (this.$store.state.selection !== 'protein' || (this.$store.state.display !== 'cartoon' && this.$store.state.display !== 'tube'))
+        return (this.$store.state.selection !== 'protein' || (this.$store.state.display !== 'cartoon' && this.$store.state.display !== 'backbone'))
       },
       notAll: function () {
         return (this.$store.state.selection !== 'all')

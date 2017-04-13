@@ -111,16 +111,20 @@
     /* box-shadow: #bbb 0px 4px 10px; */
     margin: 8px 0 0 0;
     position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
   .navigation {
     position: absolute;
     top: 5px;
     right: 5px;
+    color: #8492a6;
   }
   .help {
-    flex: 1;
     overflow-y: auto;
     font-size: 0.9em;
+    flex: 1;
   }
   .help h1 {
     font-size: 1.1em;

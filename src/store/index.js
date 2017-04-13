@@ -502,7 +502,10 @@ var vuex = new Vuex.Store({
       clipNear: 30
     },
     distances: [],
-    help: ''
+    help: {
+      token: '',
+      link: false
+    }
   },
   mutations: {
     loadNewFile (state, newFile) {
@@ -585,7 +588,7 @@ var vuex = new Vuex.Store({
       state.distances = tabDistances
     },
     help (state, subject) {
-      state.help = subject
+      if (subject) state.help = subject
     }
   },
   actions: {
@@ -980,12 +983,17 @@ var vuex = new Vuex.Store({
       }
     },
     help ({commit}, subject) {
-      if (subject === undefined || subject.attribute === undefined) {
+      if (subject === undefined || subject === null ||
+       (subject.attribute === undefined && subject.token === undefined)) {
         subject = latestHelp
       } else if (subject.active) {
         latestHelp = subject
       }
-      commit('help', help(subject.action, subject.attribute))
+      if (subject.attribute) {
+        commit('help', { token: help(subject.action, subject.attribute), link: false })
+      } else {
+        commit('help', { token: subject.token, link: true })
+      }
     }
   },
   getters: {

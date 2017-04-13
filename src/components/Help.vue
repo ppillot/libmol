@@ -3,13 +3,15 @@
     <div class="help" v-html="text" @click.stop.prevent="getLink">
     </div>
     <div class="navigation">
-      <i class="el-icon-caret-left"></i>
+      <i class="el-icon-caret-left" v-if="history.length > 0" @click="stepBackHistory"></i>
+      <i class="el-icon-caret-right" v-if="forwardHistory.length > 0" @click="stepForwardHistory"></i>
       <i class="el-icon-circle-close"></i>
     </div>
   </div>
 </template>
 
 <script>
+  import getHelp from 'utils/help'
   import Marked from 'marked'
   let renderer = new Marked.Renderer()
 
@@ -32,29 +34,71 @@
     sanitize: true
   })
 
+  function getHelpSubject (token) {
+    const reg = /^#(\w+)-(\w+)$/ // internal links are based on the hash #action-attribute
+    if (reg.test(token)) {
+      const results = reg.exec(token)
+      const subject = {
+        token: getHelp(results[1], results[2]),
+        active: true
+      }
+      return subject
+    } else {
+      return null
+    }
+  }
+
   export default {
     name: 'Help',
+    data: function () {
+      return {
+        history: [],
+        forwardHistory: []
+      }
+    },
     computed: {
       text: function () {
-        let helpKey = this.$store.state.help
-        return (this.$te('help.' + helpKey))
-          ? Marked(this.$t('help.' + helpKey))
+        return (this.$te('help.' + this.helpToken))
+          ? Marked(this.$t('help.' + this.helpToken))
           : ''
+      },
+      helpToken: function () {
+        const help = this.$store.state.help
+        // console.log(help, this.history, this.forwardHistory)
+        if (!help.link) {
+          this.history.splice(0)
+          this.forwardHistory.splice(0)
+        }
+        return help.token
       }
     },
     methods: {
       getLink: function (event) {
         const href = event.target.getAttribute('href')
-        const reg = /^#(\w+)-(\w+)$/ // internal links are based on the hash #action-attribute
-        if (reg.test(href)) {
-          const results = reg.exec(href)
-          const subject = {
-            action: results[1],
-            attribute: results[2],
-            active: true
+        if (href) {
+          const subject = getHelpSubject(href)
+          if (subject !== null) {
+            this.newHistory(this.helpToken)
+            this.$store.dispatch('help', subject)
           }
-          this.$store.dispatch('help', subject)
         }
+      },
+
+      newHistory: function (token) {
+        this.history.push(token)
+        this.forwardHistory.splice(0)
+      },
+
+      stepBackHistory: function () {
+        const token = this.history.pop()
+        this.forwardHistory.push(this.helpToken)
+        this.$store.dispatch('help', {token: token, active: true})
+      },
+
+      stepForwardHistory: function () {
+        const token = this.forwardHistory.pop()
+        this.history.push(this.$store.state.help)
+        this.$store.dispatch('help', {token: token, active: true})
       }
     }
   }

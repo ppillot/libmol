@@ -28,7 +28,7 @@
         this.$store.dispatch('selection', selector)
       },
       highlight (selector) {
-        if (selector === 'invert') return
+        if (selector === undefined) selector = 'none'
         this.$store.dispatch('highlightSelectHovered', selector)
       }
     }

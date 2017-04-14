@@ -933,6 +933,9 @@ var vuex = new Vuex.Store({
     },
 
     highlightSelectHovered (context, selector) {
+      if (selector === 'invert') {
+        selector = currentSelectionAtomSet.clone().flip_all().toSeleString()
+      }
       highlight(selector)
     },
 

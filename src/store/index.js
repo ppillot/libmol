@@ -587,7 +587,6 @@ var vuex = new Vuex.Store({
       state.distances = tabDistances
     },
     help (state, {subject, resetHistory}) {
-      console.log(resetHistory)
       if (subject) {
         state.help = subject
         if (resetHistory) {

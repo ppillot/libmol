@@ -3,9 +3,9 @@
     <div class="help" v-html="text" @click.stop.prevent="getLink">
     </div>
     <div class="navigation">
-      <i class="el-icon-caret-left" v-if="history.length > 0" @click="stepBackHistory"></i>
-      <i class="el-icon-caret-right" v-if="forwardHistory.length > 0" @click="stepForwardHistory"></i>
-      <i class="el-icon-circle-close"></i>
+      <i class="el-icon-caret-left" v-if="helpHistory" @click="stepBackHistory"></i>
+      <i class="el-icon-caret-right" v-if="helpHistoryForward" @click="stepForwardHistory"></i>
+      <i class="el-icon-circle-close" @click="toggle"></i>
     </div>
   </div>
 </template>
@@ -50,26 +50,20 @@
 
   export default {
     name: 'Help',
-    data: function () {
-      return {
-        history: [],
-        forwardHistory: []
-      }
-    },
     computed: {
       text: function () {
         return (this.$te('help.' + this.helpToken))
           ? Marked(this.$t('help.' + this.helpToken))
           : ''
       },
+      helpHistory: function () {
+        return this.$store.state.helpHistory.length > 0
+      },
+      helpHistoryForward: function () {
+        return this.$store.state.helpHistoryForward.length > 0
+      },
       helpToken: function () {
-        const help = this.$store.state.help
-        // console.log(help, this.history, this.forwardHistory)
-        if (!help.link) {
-          this.history.splice(0)
-          this.forwardHistory.splice(0)
-        }
-        return help.token
+        return this.$store.state.help
       }
     },
     methods: {
@@ -78,27 +72,21 @@
         if (href) {
           const subject = getHelpSubject(href)
           if (subject !== null) {
-            this.newHistory(this.helpToken)
             this.$store.dispatch('help', subject)
           }
         }
       },
 
-      newHistory: function (token) {
-        this.history.push(token)
-        this.forwardHistory.splice(0)
-      },
-
       stepBackHistory: function () {
-        const token = this.history.pop()
-        this.forwardHistory.push(this.helpToken)
-        this.$store.dispatch('help', {token: token, active: true})
+        this.$store.dispatch('helpNavigate', 'backward')
       },
 
       stepForwardHistory: function () {
-        const token = this.forwardHistory.pop()
-        this.history.push(this.$store.state.help)
-        this.$store.dispatch('help', {token: token, active: true})
+        this.$store.dispatch('helpNavigate', 'forward')
+      },
+
+      toggle: function () {
+
       }
     }
   }
@@ -114,6 +102,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-height: 2em;
   }
   .navigation {
     position: absolute;

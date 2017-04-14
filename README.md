@@ -29,7 +29,7 @@ ToDo
   - when all atoms are hidden
 - Commandes : 
   - add/remove labels
-  - create/remove surface
+  - create/remove surface, export as STL objects for printing (https://github.com/mrdoob/three.js/blob/master/examples/js/exporters/STLBinaryExporter.js)
   - provide choices for hetero (e.g. : in cox2 asp and hem)
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>

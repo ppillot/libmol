@@ -502,10 +502,9 @@ var vuex = new Vuex.Store({
       clipNear: 30
     },
     distances: [],
-    help: {
-      token: '',
-      link: false
-    }
+    help: '',
+    helpHistory: [],
+    helpHistoryForward: []
   },
   mutations: {
     loadNewFile (state, newFile) {
@@ -587,8 +586,31 @@ var vuex = new Vuex.Store({
     distance (state, tabDistances) {
       state.distances = tabDistances
     },
-    help (state, subject) {
-      if (subject) state.help = subject
+    help (state, {subject, resetHistory}) {
+      console.log(resetHistory)
+      if (subject) {
+        state.help = subject
+        if (resetHistory) {
+          state.helpHistory = []
+          state.helpHistoryForward = []
+        }
+      }
+    },
+    helpHistoryStart (state, {subject, resetHistory}) {
+      if (resetHistory) {
+        state.helpHistory = [state.help]
+        state.helpHistoryForward = []
+      }
+      state.help = subject
+    },
+    helpHistoryStep (state, step) {
+      if (step === -1 && state.helpHistory.length > 0) { // step back
+        state.helpHistoryForward.push(state.help)
+        state.help = state.helpHistory.pop()
+      } else if (step === 1 && state.helpHistoryForward.length > 0) { // step forward
+        state.helpHistory.push(state.help)
+        state.help = state.helpHistoryForward.pop()
+      }
     }
   },
   actions: {
@@ -983,16 +1005,33 @@ var vuex = new Vuex.Store({
       }
     },
     help ({commit}, subject) {
+      let newSubject = true
       if (subject === undefined || subject === null ||
        (subject.attribute === undefined && subject.token === undefined)) {
         subject = latestHelp
+        newSubject = false
       } else if (subject.active) {
         latestHelp = subject
+      } else { // item hovered but not clicked
+        newSubject = false
       }
       if (subject.attribute) {
-        commit('help', { token: help(subject.action, subject.attribute), link: false })
+        commit('help', {
+          subject: help(subject.action, subject.attribute),
+          resetHistory: newSubject
+        })
+      } else if (subject.token) { // help system internal link
+        commit('helpHistoryStart', {
+          subject: subject.token,
+          resetHistory: newSubject
+        })
+      }
+    },
+    helpNavigate ({commit}, step) {
+      if (step === 'backward') {
+        commit('helpHistoryStep', -1)
       } else {
-        commit('help', { token: subject.token, link: true })
+        commit('helpHistoryStep', 1)
       }
     }
   },

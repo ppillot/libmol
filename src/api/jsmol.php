@@ -197,7 +197,7 @@ ob_start();
  } 
  header('Last-Modified: '.date('r'));
  header('Accept-Ranges: bytes');
- header('Content-Length: '.strlen($output));
+ //header('Content-Length: '.strlen($output));
  print($output);
 ob_end_flush();
 ?>

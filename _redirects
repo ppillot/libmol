@@ -1,1 +1,1 @@
-/api    https://libmol.org/api
+/api/*  https://libmol.org/api:splat  200

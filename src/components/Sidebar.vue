@@ -81,7 +81,7 @@ export default {
     }
     
     .el-tab-pane {
-        flex: 1;
+        /*flex: 1;*/
         display: flex;
         flex-direction: column;
         max-height: 100%;

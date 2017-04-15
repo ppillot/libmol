@@ -41,7 +41,6 @@ ToDo
 - bugs :
   - firefox : not going fullscreen
   - color palette button should react to the state
-  - Safari: tabs not displayed
 - components :
   - replace autocomplete (33kB)
   - replace axios (35kB) with fetch polyfill (12kB) (bug in webpack proxy)

@@ -33,19 +33,32 @@ export default {
         this.links.splice(0)
         return
       }
-      var xml = `<orgPdbQuery>
+      /* var xml = `<orgPdbQuery>
         <queryType>org.pdb.query.simple.AdvancedKeywordQuery</queryType>
         <description>Text Search</description>
         <keywords>${queryString}</keywords>
-      </orgPdbQuery>`
-      var self = this
-      axios.post('http://www.rcsb.org/pdb/rest/search',
+      </orgPdbQuery>` */
+      // var self = this
+      /* axios.post('http://www.rcsb.org/pdb/rest/search',
         xml
       , {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }
+      ) */
+      axios.get('api/jsmol.php',
+        {
+          params: {
+            call: 'getInfoFromDatabase',
+            database: '=',
+            query: queryString
+          }
+        }
+      , {
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      }
       )
-      .then(function (response) {
+      /* .then(function (response) {
+        console.log(response)
         if (response.data.length > 0) {
           let listPdbId = response.data.split('\n').join(',')
           return axios.get('http://www.rcsb.org/pdb/rest/customReport', {
@@ -58,7 +71,8 @@ export default {
           // self.$message.error(self.$t('messages.no_record_found'))
           throw new Error(self.$t('messages.no_record_found'))
         }
-      }).then(function (response) {
+      }) */
+      .then(function (response) {
         const xmlDocument = response.request.responseXML
         const recordNodelist = xmlDocument.getElementsByTagName('record')
 

@@ -47,19 +47,9 @@ $db = new PDO('sqlite:libmol.sqlite');
 	while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
 		array_push($result, array('label'=>$row['TITRE'], 'molId'=>$row['ID'], 'file'=>$row['FICHIER']));
 	}
+	header('Access-Control-Allow-Origin: *');
     header('Content-Type: text/javascript; charset=utf-8');
 	echo json_encode($result) ; 
 	ob_end_flush();
-	
-	//compteur de visites
-
-/*define("_BBC_PAGE_NAME", "PLibMol_Recherche".$_REQUEST['txt']);
-
-define("_BBCLONE_DIR", "../../../statistiques/");
-
-define("COUNTER", _BBCLONE_DIR."mark_page.php");
-
-if (is_readable(COUNTER)) include_once(COUNTER);
-*/
 
 ?>

@@ -128,7 +128,7 @@ if ($call == "getInfoFromDatabase") {
 			$output = str_replace("\n",",",$output);
 			//http://www.rcsb.org/pdb/rest/customReport?pdbids=1crn,1d66,1blu,&customReportColumns=structureId,structureTitle
 			$output = $restReportUrl."?pdbids=".$output."&customReportColumns=structureId,structureTitle";
-			$output = "<result query=\"$query\" count=\"$n\">".file_get_contents($output)."</result>";
+			$output = file_get_contents($output);
 		}
 	} else {
 	  $myerror = "jsmol.php cannot use $call with $database";
@@ -173,7 +173,7 @@ ob_start();
   	header('Content-Type: '.$contentType);
   	if ($filename != "") {
   	  header('Content-Description: File Transfer');
-  		header("Content-Disposition: attachment; filename=\"$filename\"");
+  	  header("Content-Disposition: attachment; filename=\"$filename\"");
       header('Content-Transfer-Encoding: binary');
       header('Expires: 0');
       header('Cache-Control: must-revalidate');
@@ -185,6 +185,8 @@ ob_start();
   		header('Content-Type: text/plain; charset=x-user-defined');
     } else if (strpos($output, '<html') > 0) {
       header('Content-type: text/html; charset=utf-8');
+  	} else if (strpos($output, '<?xml') >= 0) {
+      header('Content-type: text/xml; charset=utf-8');
   	} else {
   		header('Content-Type: application/json');
   	}

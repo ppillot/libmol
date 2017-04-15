@@ -34,7 +34,7 @@ export default {
         return
       }
 
-      axios.get('www/recherche.php', {
+      axios.get('api/recherche.php', {
         params: {
           txt: queryString
         }
@@ -46,7 +46,7 @@ export default {
       .catch(function (error) {
         console.log(error)
       })
-/* fetch('www/recherche.php', {
+/* fetch('api/recherche.php', {
         method: 'GET',
         body: {
           txt: queryString

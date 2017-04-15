@@ -34,7 +34,7 @@ export default {
         return
       }
 
-      axios.get('api/recherche.php', {
+      axios.get('https://libmol.org/api/recherche.php', {
         params: {
           txt: queryString
         }

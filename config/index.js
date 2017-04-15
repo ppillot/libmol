@@ -36,7 +36,7 @@ module.exports = {
           '^/www': ''
         }
       },
-      '/api': {
+      'https://libmol.org/api': {
         target: 'http://localhost:8888/libmol3/src/api/',
         changeOrigin: true,
         pathRewrite: {

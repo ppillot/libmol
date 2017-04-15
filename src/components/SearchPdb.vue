@@ -45,7 +45,7 @@ export default {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }
       ) */
-      axios.get('api/jsmol.php',
+      axios.get('https://libmol.org/api/jsmol.php',
         {
           params: {
             call: 'getInfoFromDatabase',

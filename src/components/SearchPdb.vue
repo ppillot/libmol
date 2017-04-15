@@ -53,9 +53,6 @@ export default {
             query: queryString
           }
         }
-      , {
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-      }
       )
       /* .then(function (response) {
         console.log(response)

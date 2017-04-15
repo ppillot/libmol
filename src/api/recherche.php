@@ -1,0 +1,65 @@
+<?php
+ob_start();
+/*
+ *  démarrage session
+ */
+//session_start();
+
+/*
+ * connexion à la base de données
+ */
+$db = new PDO('sqlite:libmol.sqlite');
+
+/*
+ * definition des constantes
+ */
+
+
+	if (isset($_REQUEST['txt'])) {
+	
+ 		$sql = $db->prepare("SELECT titre,id,fichier FROM molecule where molecule.FTINDEX LIKE ?");
+		$sql->execute(array("%".$_REQUEST['txt']."%"));
+		
+	} else if (isset($_REQUEST['cat'])) {
+		$requete = "SELECT titre,id,fichier FROM molecule where 1=1";
+		
+		require ("inc/classification.class.php");
+		$categories = new classification("chimique.xml");
+		//$categories->selid($_GET['cat']);
+		$categories->selnoeud('//categorie[@id="'.$_REQUEST['cat'].'"]/descendant::molecule');///descendant::molecule');
+		$listeid = $categories->listeAttr('molid');
+		if (count($listeid)>0) {
+			$in = "";
+			//print_r($listeid);
+			foreach ($listeid as $id) {
+				//echo $id;
+				$in .= $id.",";
+			}
+			$in = substr($in,0,-1);
+			$requete .= " AND molecule.id IN ($in)";
+		} else $requete .= " AND 0=1";
+		$requete .= " ORDER BY molecule.titre";
+		
+		$sql = $db->prepare($requete);
+		$sql->execute(array());
+	}
+	$result = array();
+	while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+		array_push($result, array('label'=>$row['TITRE'], 'molId'=>$row['ID'], 'file'=>$row['FICHIER']));
+	}
+    header('Content-Type: text/javascript; charset=utf-8');
+	echo json_encode($result) ; 
+	ob_end_flush();
+	
+	//compteur de visites
+
+/*define("_BBC_PAGE_NAME", "PLibMol_Recherche".$_REQUEST['txt']);
+
+define("_BBCLONE_DIR", "../../../statistiques/");
+
+define("COUNTER", _BBCLONE_DIR."mark_page.php");
+
+if (is_readable(COUNTER)) include_once(COUNTER);
+*/
+
+?>

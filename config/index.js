@@ -35,7 +35,14 @@ module.exports = {
         pathRewrite: {
           '^/www': ''
         }
-      }
+      },
+      '/api': {
+        target: 'http://localhost:8888/libmol3/src/api/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

@@ -1,4 +1,5 @@
 var path = require('path')
+var glob = require('glob')
 var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
@@ -6,6 +7,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var PurifyCSSPlugin = require('purifycss-webpack')
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.build.env
@@ -13,9 +15,9 @@ var env = process.env.NODE_ENV === 'testing'
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
-      sourceMap: config.build.productionSourceMap,
-      extract: true
-    })
+          sourceMap: config.build.productionSourceMap,
+          extract: true
+        })      
   },
   devtool: config.build.productionSourceMap ? '#cheap-source-map' : false,
   output: {
@@ -37,6 +39,11 @@ var webpackConfig = merge(baseWebpackConfig, {
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
+    }),
+    // remove unused css declarations
+    new PurifyCSSPlugin({
+      // Give paths to parse for rules. These should be absolute! 
+      paths: glob.sync(path.join(__dirname, '*.html')),
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html

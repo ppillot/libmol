@@ -1,5 +1,5 @@
 var path = require('path')
-var glob = require('glob')
+// var glob = require('glob')
 var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
@@ -7,7 +7,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var PurifyCSSPlugin = require('purifycss-webpack')
+// var PurifyCSSPlugin = require('purifycss-webpack')
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.build.env
@@ -41,10 +41,10 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: utils.assetsPath('css/[name].[contenthash].css')
     }),
     // remove unused css declarations
-    new PurifyCSSPlugin({
+    /* new PurifyCSSPlugin({
       // Give paths to parse for rules. These should be absolute! 
       paths: glob.sync(path.join(__dirname, '*.html')),
-    }),
+    }), */
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin

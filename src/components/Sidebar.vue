@@ -13,7 +13,7 @@
                 <color-mol></color-mol>
                 <help></help>
             </el-tab-pane>
-            <el-tab-pane :label="$t('ui.sequences_tab_label')" name="sequences">
+            <el-tab-pane :label="$t('ui.sequences_tab_label')" name="sequences" :disabled="noSequence">
                 <sequence-tab :active="isSequenceTabActive"></sequence-tab>
             </el-tab-pane>
         </el-tabs>
@@ -45,6 +45,11 @@ export default {
   data () {
     return {
       isSequenceTabActive: false
+    }
+  },
+  computed: {
+    noSequence: function () {
+      return this.$store.state.mol.noSequence
     }
   },
   methods: {

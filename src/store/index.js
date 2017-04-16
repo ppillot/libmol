@@ -471,7 +471,8 @@ var vuex = new Vuex.Store({
         rna: false,
         ion: false
       },
-      sstruc: new Set()
+      sstruc: new Set(),
+      noSequence: false
     },
     selected: [],
     selectedChains: [],
@@ -511,7 +512,7 @@ var vuex = new Vuex.Store({
       state.fileName = newFile.file
       state.name = newFile.value
     },
-    setMolTypes (state, {molTypes, chains, elements, residues, sstruc, selected}) {
+    setMolTypes (state, {molTypes, chains, elements, residues, sstruc, selected, noSequence}) {
       state.mol.molTypes.protein = molTypes.has(3)
       state.mol.molTypes.dna = molTypes.has(5)
       state.mol.molTypes.rna = molTypes.has(4)
@@ -525,6 +526,7 @@ var vuex = new Vuex.Store({
       state.mol.elements = elements
       state.mol.residues = residues
       state.mol.sstruc = sstruc
+      state.mol.noSequence = noSequence
 
       state.selected = selected
     },
@@ -712,7 +714,9 @@ var vuex = new Vuex.Store({
           }
         )
 
-        context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected})
+        let noSequence = (structure.residueStore.count <= 1)
+
+        context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected, noSequence})
         context.commit('selectedChains')
 
         tabColorScheme = [['element', 'all']]

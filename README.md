@@ -19,6 +19,7 @@ ToDo
 - Files : 
   - handle legacy PDB files (ngl) or send messages if something goes wrong
   - handle sdf, mol2 or cif files for small molecules
+  - handle mega files (display surfaces)
 - i18n:
   - switch languages
 - Errors/warnings : send messages

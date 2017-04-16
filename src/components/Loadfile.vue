@@ -41,6 +41,18 @@
       getFiles (ev) {
         this.getFile(ev.target.files[0])
       }
+    },
+    mounted () {
+      window.addEventListener('dragenter', ev => {
+        ev.preventDefault()
+      })
+      window.addEventListener('dragover', ev => {
+        ev.preventDefault()
+      })
+      window.addEventListener('drop', function (ev) {
+        ev.preventDefault()
+        this.dropFile(ev)
+      }.bind(this))
     }
   }
 </script>

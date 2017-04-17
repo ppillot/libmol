@@ -4,7 +4,7 @@ var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 var escapeQuotes = require('escape-quotes')
 var http = require('http')
-
+var sqlite3 = require('sqlite3').verbose()
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/sheets.googleapis.com-nodejs-quickstart.json
 var SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
@@ -112,7 +112,9 @@ function buildI18N(auth) {
       console.log('The API returned an error: ' + err);
       return;
     }
+
     var rows = response.values;
+    var db = new sqlite3.Database('src/api/libmol.sqlite')
     if (rows.length == 0) {
       console.log('No data found.');
     } else {
@@ -129,7 +131,9 @@ function buildI18N(auth) {
         const source = `http://files.rcsb.org/ligands/view/${file.code}.cif`
         const dest = destPath + file.fileName
         download(source, dest, callBack.apply(file))
+        db.run(`UPDATE molecule SET FICHIER="${file.fileName}" WHERE ID=${file.id}`)
       })
+      db.close()
       
     }
   });

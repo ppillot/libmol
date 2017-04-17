@@ -33,14 +33,15 @@ export default {
         this.links.splice(0)
         return
       }
+      const path = (process.env.NODE_ENV !== 'production') ? 'api/recherche.php' : 'https://libmol.org/api/recherche.php'
 
-      axios.get('https://libmol.org/api/recherche.php', {
+      axios.get(path, {
         params: {
           txt: queryString
         }
       })
       .then(function (response) {
-        const rep = response.data.map(item => ({ value: item.label, file: 'static/mol/pdb/' + item.file + '.pdb', molId: item.molId }))
+        const rep = response.data.map(item => ({ value: item.label, file: (item.file.indexOf('.cif') > -1) ? 'static/mol/' + item.file : 'static/mol/pdb/' + item.file + '.pdb', molId: item.molId }))
         cb(rep)
       })
       .catch(function (error) {

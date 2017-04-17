@@ -2,14 +2,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // import * as actions from './actions'
 // import * as getters from './getters'
-import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2} from 'ngl'
+import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDebug} from 'ngl'
 /* eslint-disable-next-line */
 // let NGL = () => import('ngl') /* eslint-disable-line */
 import debounce from 'throttle-debounce/debounce'
 import Screenfull from 'screenfull'
 import help from 'utils/help'
 
-let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3}
+let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug}
 Vue.use(Vuex)
 
 /** @description local module variable to hold the NGL stage object
@@ -650,7 +650,7 @@ var vuex = new Vuex.Store({
     },
     loadNewFile (context, newFile) {
       stage.removeAllComponents()
-      stage.loadFile(newFile.file)
+      stage.loadFile(newFile.file, {assembly: 'AU'})
       .then((component) => { // let's get the structure property from the structureComponent object returned by NGL's promise
         // structure is a private var of this module
         structure = component.structure
@@ -677,6 +677,10 @@ var vuex = new Vuex.Store({
 
         // let's iterate through each residue from this structure
         structure.eachResidue(item => {
+          // Do we have multiple models?
+          if (item.modelIndex > 0) {
+            return
+          }
           // Have we encountered a yet unknown chain.
           if (!chainMap.has(item.chainname)) {
             // let's keep track of the different chains by their given order
@@ -721,8 +725,9 @@ var vuex = new Vuex.Store({
 
         tabColorScheme = [['element', 'all']]
         updateGlobalColorScheme()
-        component.addRepresentation('ball+stick')
-        component.autoView()
+        component.setSelection('/0')
+        component.addRepresentation('ball+stick', {assembly: 'AU'})
+        stage.autoView()
         representationsList[0] = {
           display: 'ball+stick',
           color: 'element',

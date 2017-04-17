@@ -317,6 +317,7 @@ function getAtomProperties (atom) {
   }
 }
 function onHover (response) {
+  // console.log(response)
   let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
   if (atomHovered !== undefined) {
     // console.log(atom)

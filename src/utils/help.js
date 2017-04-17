@@ -24,7 +24,17 @@ const helpFiles = {
     hetero: 'selectHetero'
   },
   lexicon: {
-    protein: 'lexiconProtein'
+    aminoacid: 'lexiconAminoacid',
+    autre: 'lexiconAutre',
+    coude: 'lexiconCoude',
+    cpk: 'lexiconCpk',
+    feuillet: 'lexiconFeuillet',
+    helice: 'lexiconHelice',
+    ligand: 'lexiconLigand',
+    nucleic: 'lexiconNucleic',
+    nucleotide: 'lexiconNucleotide',
+    protein: 'lexiconProtein',
+    technique: 'lexiconTechnique'
   }
 }
 

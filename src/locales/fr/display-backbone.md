@@ -7,4 +7,4 @@ La représentation de la molécule est limité aux atomes qui sont responsables 
 * pour les acides nucléiques, ce sont les atomes impliqués dans les liaisons entre les nucléotides d'un brin.  
 ![Squelette](static/img/sqeun.png)   
 
-Ces enchainements d'atomes sont représentés sous la forme de bâtonnets qui permettent ainsi de représenter la stucture globale de la chaîne (le squelette) autour de laquelle s'organisent les autres atomes pour donner aux molécules leurs propriétés fonctionnelles.
+Ces enchainements d'atomes sont représentés sous la forme de bâtonnets qui correspondent à la stucture de base de la chaîne (le squelette) autour de laquelle s'organisent les autres atomes pour donner aux molécules leurs propriétés fonctionnelles.

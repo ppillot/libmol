@@ -1,6 +1,6 @@
 # Affichage en rubans
-Le mode "Rubans" est un mode d'affichage simplifié qui ne s'applique qu'aux **protéines** et aux **acides nucléiques** (ADN et ARN). Seul les atomes constituant le squelette de la molécule sont représentés sous une forme symbolisée. ![Ruban](static/img/ruban2.png)   
-Cette représentation permet d'approcher la stucture globale de la chaîne (le squelette) autour de laquelle s'organisent les autres atomes pour donner aux molécules leurs propriétés fonctionnelles.      
+Le mode "Rubans" est un mode d'affichage simplifié qui ne s'applique qu'aux **protéines** et aux **acides nucléiques** (ADN et ARN). Seuls les atomes constituant le squelette de la molécule sont représentés sous une forme symbolisée. ![Ruban](static/img/ruban2.png)   
+Cette représentation permet d'approcher la stucture de base de la chaîne (le squelette) autour de laquelle s'organisent les autres atomes pour donner aux molécules leurs propriétés fonctionnelles.      
       
 Pour **les protéines** : 
 ![Protéine en ruban](static/img/rubanp.png)   

@@ -35,6 +35,7 @@ ToDo
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from user command, using NGL selection syntax
+  - select from distance (within)
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting
 - code refactor
@@ -42,6 +43,7 @@ ToDo
 - bugs :
   - firefox : not going fullscreen
   - color palette button should react to the state
+  - polymer size should exceed 3 for ribbon/backbone
 - components :
   - replace autocomplete (33kB)
   - replace axios (35kB) with fetch polyfill (12kB) (bug in webpack proxy)

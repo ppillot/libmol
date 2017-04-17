@@ -718,7 +718,7 @@ var vuex = new Vuex.Store({
           }
         )
 
-        let noSequence = (structure.residueStore.count <= 1)
+        let noSequence = (structure.residueStore.count / structure.modelStore.count <= 1)
 
         context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected, noSequence})
         context.commit('selectedChains')
@@ -726,7 +726,7 @@ var vuex = new Vuex.Store({
         tabColorScheme = [['element', 'all']]
         updateGlobalColorScheme()
         component.setSelection('/0')
-        component.addRepresentation('ball+stick', {assembly: 'AU'})
+        component.addRepresentation('ball+stick', {multipleBond: (noSequence) ? 'symmetric' : 'off'})
         stage.autoView()
         representationsList[0] = {
           display: 'ball+stick',
@@ -781,7 +781,8 @@ var vuex = new Vuex.Store({
         stage.compList[0].addRepresentation(displayType,
           {
             sele: seleString,
-            color: globalColorScheme
+            color: globalColorScheme,
+            multipleBond: (context.state.mol.noSequence) ? 'symmetric' : 'off'
           })
         representationsList.push({
           display: displayType,

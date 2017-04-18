@@ -10,4 +10,4 @@ Des résidus de différentes natures, les [ligands](lexicon-ligand), peuvent ég
 * des ligands organiques (glucides, lipides, hème, ...),
 * des ligands minéraux (eau, ions, atomes  métalliques, ...).
 
-La légende du modèle moléculaire indique pour chaque type de résidu repéré son identifiant et sa coloration spécifique.
+La légende du modèle moléculaire indique pour chaque type de résidu repéré, son identifiant et sa coloration spécifique.

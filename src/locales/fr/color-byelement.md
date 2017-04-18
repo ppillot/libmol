@@ -10,6 +10,6 @@ Symbole | Code couleur | Atome
 **S** | ![Soufre](static/img/s.png) | **Soufre** 
 **P** | ![Phosphore](static/img/p.png) | **Phosphore** 
 
-**Attention**, dans la plupart des modèles de macromolécules (Protéines et acides nucléiques) les atomes d'**hydrogène**, bien que présents, ne sont pas représentés. Certaines [techniques](lexicon-technique) ne permettent pas de déterminer la position des atomes d'hydrogène lors de l'étude de la structure tridimensionnelle des molécules.  
+**Attention**, dans la plupart des modèles de macromolécules (protéines et acides nucléiques) les atomes d'**hydrogène**, bien que présents, ne sont pas représentés. Certaines [techniques](lexicon-technique) ne permettent pas de déterminer la position des atomes d'hydrogène lors de l'étude de la structure tridimensionnelle des molécules.  
 
 La légende du modèle moléculaire indique les atomes identifiés et leurs colorations.

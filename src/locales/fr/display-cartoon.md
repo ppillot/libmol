@@ -8,4 +8,4 @@ La représentation de la molécule est limitée aux atomes responsables de la po
 
 Pour **les acides nucléiques** : 
 ![ADN en ruban](static/img/rubann.png)   
-La représentation de la molécule est limitée aux atomes impliqués dans les liaisons entre les nucléotides d'un brin sous la forme d'un ruban et aux bases azotées sous la forme d'un bâtonnet permendiculaire au ruban.
+La représentation de la molécule est limitée aux atomes impliqués dans les liaisons entre les nucléotides d'un brin sous la forme d'un ruban et aux bases azotées sous la forme d'un bâtonnet perpendiculaire au ruban.

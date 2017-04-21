@@ -16,8 +16,7 @@
 </template>
 
 <script>
-function residueKey (moleculeType) {
-  let residueTypeMap = new Map([
+let residueTypeMap = new Map([
     [0, 'hetero'],
     [1, 'water'],
     [2, 'ion'],
@@ -25,14 +24,15 @@ function residueKey (moleculeType) {
     [4, 'rna'],
     [5, 'dna'],
     [6, 'saccharide']
-  ])
+])
+function residueKey (moleculeType) {
   return residueTypeMap.get(moleculeType)
 }
 function getTooltipStyles ({x, y}) {
-  var left = document.getElementById('viewport').getBoundingClientRect().left
+  // var left = document.getElementById('viewport').getBoundingClientRect().left
   return {
     bottom: y + 10 + 'px',
-    left: x + left - 12 + 'px'
+    left: x - 12 + 'px'
   }
 }
 
@@ -75,7 +75,7 @@ export default {
 
 <style>
   .ngl .tooltip {
-    position: fixed;
+    position: absolute;
     background: #1f2d3d;
     padding: 0.2em 0.4em;
     color: #fff;

@@ -8,6 +8,8 @@ import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDeb
 import debounce from 'throttle-debounce/debounce'
 import Screenfull from 'screenfull'
 import help from 'utils/help'
+import {getAtomProperties} from 'utils/atoms'
+import {hover} from 'utils/hover'
 
 let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug}
 Vue.use(Vuex)
@@ -304,32 +306,6 @@ function measureDistance (component, context) {
     }
   }
 }
-function getAtomProperties (atom) {
-  return {
-    index: atom.index,
-    symbol: atom.element,
-    atomname: atom.atomname,
-    resname: atom.resname,
-    resno: atom.resno,
-    chainname: atom.chainname,
-    entity: (atom.entity) ? atom.entity.description : 'unknown',
-    resType: atom.residueType.moleculeType
-  }
-}
-function onHover (response) {
-  // console.log(response)
-  let atomHovered = response.atom // (response.atom !== undefined) ? response.atom : (response.bond !== undefined) ? response.bond.atom1 : undefined
-  if (atomHovered !== undefined) {
-    // console.log(atom)
-    let atom = getAtomProperties(atomHovered)
-    Object.assign(atom, {
-      pos: {x: response.canvasPosition.x, y: response.canvasPosition.y}
-    })
-    vuex.dispatch('atomHovered', atom)
-  } else {
-    vuex.dispatch('displayAtomTooltip', false)
-  }
-}
 
 function resizeStage (stage) {
   return function () {
@@ -541,7 +517,9 @@ var vuex = new Vuex.Store({
       state.color = colorScheme
     },
     atomHovered (state, atom) {
-      state.atomHovered = atom
+      let a = {}
+      Object.assign(a, atom)
+      state.atomHovered = a
     },
     itemHovered (state, res) {
       state.itemHovered = res
@@ -637,12 +615,23 @@ var vuex = new Vuex.Store({
         trim: false,
         transparent: false
       }).then(function (blob) {
-        NGL.download(blob, 'screenshot.png')
+        NGL.download(blob, context.state.name + '.png')
       })
+    },
+    hover (context, sceneObject) {
+      if (sceneObject) {
+        if (sceneObject.index) {
+          debounce(300, context.dispatch('atomHovered', sceneObject))
+        } else {
+          context.dispatch('displayAtomTooltip', false)
+        }
+      } else {
+        context.dispatch('displayAtomTooltip', false)
+      }
     },
     createNewStage (context, options) {
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
-      stage.signals.hovered.add(onHover)
+      stage.signals.hovered.add(hover(context))
       context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: 'Crambin - 1CRN' })
 
       let resize = resizeStage(stage)

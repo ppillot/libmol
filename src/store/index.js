@@ -621,7 +621,7 @@ var vuex = new Vuex.Store({
     hover (context, sceneObject) {
       if (sceneObject) {
         if (sceneObject.index) {
-          debounce(300, context.dispatch('atomHovered', sceneObject))
+          context.dispatch('atomHovered', sceneObject)
         } else {
           context.dispatch('displayAtomTooltip', false)
         }

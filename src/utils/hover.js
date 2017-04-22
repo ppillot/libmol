@@ -3,8 +3,16 @@ import {getAtomProperties} from './atoms'
 function hover (context) {
   let prevPid = NaN
   let prevAtom = {}
+  let timeout
 
+  function debouncedCallBack (token) {
+    clearTimeout(timeout)
+    timeout = setTimeout(function () {
+      context.dispatch('hover', token)
+    }, 500)
+  }
   function callback (token) {
+    clearTimeout(timeout)
     context.dispatch('hover', token)
   }
 
@@ -18,7 +26,7 @@ function hover (context) {
         if (prevAtom.index === undefined) { // no label was displayed, nothing changes
           return
         } else {
-          return callback(undefined)
+          return callback()
         }
       }
     }
@@ -34,17 +42,14 @@ function hover (context) {
     switch (pickingProxy.picker.type) {
       case 'atom':
         atom = getAtomProperties(pickingProxy.atom)
-        atom.pos = {
-          x: pickingProxy.mouse.canvasPosition.x,
-          y: pickingProxy.mouse.canvasPosition.y
-        }
+        atom.pos = pickingProxy.controls.stage.viewerControls.getPositionOnCanvas(pickingProxy.atom)
         prevAtom = atom
-        return callback(atom)
+        return debouncedCallBack(atom)
       case 'bond':
         atom = getAtomProperties(pickingProxy.closestBondAtom)
         atom.pos = pickingProxy.controls.stage.viewerControls.getPositionOnCanvas(pickingProxy.closestBondAtom)
         prevAtom = atom
-        return callback(atom)
+        return debouncedCallBack(atom)
       default:
         prevAtom = {}
         return callback()

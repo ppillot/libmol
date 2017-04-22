@@ -11,6 +11,7 @@ function measureDistance (component, context) {
   let distHighLightRepr = {}
   let labelColor = 0x000000
   const comp = component
+  let highlight = false
 
   function dispatch () {
     context.dispatch('setDistances', tabMeasures)
@@ -50,11 +51,15 @@ function measureDistance (component, context) {
 
   function distanceHighlight (atom) {
     if (atom === undefined) {
+      if (!comp.hasRepresentation(distHighLightRepr) || !highlight) {
+        return
+      }
       // hover a non atom/bond shape
       if (measure.atom1.index) {
         distHighLightRepr.setSelection('@' + measure.atom1.index)
       } else {
         distHighLightRepr.setSelection('none')
+        highlight = false
       }
       return
     }
@@ -70,11 +75,13 @@ function measureDistance (component, context) {
         opacity: 0.5
       })
     }
+    highlight = true
   }
 
   function clearDistanceHightLight () {
     if (distHighLightRepr.name !== undefined) {
       distHighLightRepr.setSelection('none')
+      highlight = false
     }
   }
 
@@ -121,15 +128,13 @@ function measureDistance (component, context) {
   }
 
   function handleHover (pickingProxy) {
-    if (pickingProxy === undefined) { // background is being hovered
-      return
+    if (pickingProxy === undefined ||
+      pickingProxy.type !== 'bond' && pickingProxy.type !== 'atom') {
+      distanceHighlight(undefined)
+    } else {
+      let atom = (pickingProxy.type === 'atom') ? pickingProxy.atom : pickingProxy.closestBondAtom
+      distanceHighlight(atom)
     }
-    if (pickingProxy.type !== 'bond' && pickingProxy.type !== 'atom') {
-      return
-    }
-
-    let atom = (pickingProxy.type === 'atom') ? pickingProxy.atom : pickingProxy.closestBondAtom
-    distanceHighlight(atom)
   }
 
   return {

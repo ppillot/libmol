@@ -1,23 +1,29 @@
 <template>
-    <div class="statusbar" v-show='isShown'>
-      {{ colorDescription }} :
-        <ul @mouseover.stop="getHoveredItem($event)" @mouseout.stop="hideTooltip">
-          <li v-for="token in colorScheme" :style="token.css" :data-tooltip="token.tooltip">
-              {{ token.text | capitalize }}
-          </li>
-        </ul>
+    <div class="statusbar">
+      <div class="coloration">
+        <div  v-show='isShown'>
+          {{ colorDescription }} :
+          <span @mouseover.stop="getHoveredItem($event)" @mouseout.stop="hideTooltip">
+            <span v-for="token in colorScheme" :style="token.css" :data-tooltip="token.tooltip">
+                {{ token.text | capitalize }}
+            </span>
+          </span>
+        </div>
+      </div>
         <div class="tooltip" v-bind:style="tooltipStyles" v-html="tooltipText"></div>
+        <counter class="counter"></counter>
     </div>
 </template>
 
 <script>
   import {getColor} from '../utils/colors'
   import {getSStrucName} from '../utils/sstruc'
-/**
- * remove values from the set when they are redundant with alias values
- * @param {set} setObject - the set we want to remove redundant aliases from
- * @param {array} aliasValues - an array containing aliases as properties
- */
+  import Counter from './Counter'
+  /**
+   * remove values from the set when they are redundant with alias values
+   * @param {set} setObject - the set we want to remove redundant aliases from
+   * @param {array} aliasValues - an array containing aliases as properties
+   */
   function removeRedundancyFromSet (setObject, aliasValues) {
     var s = new Set()
     setObject.forEach(item => {
@@ -51,6 +57,9 @@
         tooltipText: '',
         colorDescription: this.$t('ui.commands.color.cpk')
       }
+    },
+    components: {
+      Counter
     },
     computed: {
       isShown: function () {
@@ -173,24 +182,20 @@
     z-index: 2;
     background: rgba(249, 250, 252, 0.95);
     vertical-align: middle;
+    padding: 0.2em;
+    display: flex;
+    flex-direction: row;
   }
 
-  .statusbar {
-    font-size: 1.3em
-  }
 
-  .statusbar ul {
-    margin:0 0.5em;
-    padding: 0;
-    display: inline;
+  .statusbar span {
     font-weight: bold;
     -webkit-text-stroke: 1px #888;
     -moz-text-stroke: 1px #888;
     -ms-text-stroke: 1px #888;
   }
 
-  .statusbar ul li {
-    display: inline;
+  .statusbar span span {
     cursor: default;
   }
 
@@ -227,5 +232,12 @@
     border-top-color: #1f2d3d;
     border-width: 5px;
     margin-top: 0;
+  }
+  .statusbar .coloration {
+    flex: 1;
+  }
+
+  .statusbar .counter {
+    
   }
 </style>

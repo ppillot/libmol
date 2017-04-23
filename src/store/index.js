@@ -268,6 +268,7 @@ var vuex = new Vuex.Store({
     },
     selected: [],
     selectedChains: [],
+    selectedPercentage: 100,
     selection: 'all',
     display: 'licorice',
     color: 'element',
@@ -375,6 +376,9 @@ var vuex = new Vuex.Store({
       let sel = predefined(selector)
       state.selectedChains = sel.chains
       state.selection = sel.selection
+    },
+    updateSelectedPercentage (state) {
+      state.selectedPercentage = ((currentSelectionAtomSet.size() / currentSelectionAtomSet.length) * 100)
     },
     hide (state, everythingIsDisplayed) {
       state.isHidden = !everythingIsDisplayed
@@ -568,6 +572,7 @@ var vuex = new Vuex.Store({
       }
       context.commit('updateSelection', selector)
       context.commit('updateSelected', currentSelectionAtomSet)
+      context.commit('updateSelectedPercentage')
       context.commit('color', getColorFromSelection())
       context.commit('display', getRepresentationFromSelection())
     },
@@ -782,6 +787,7 @@ var vuex = new Vuex.Store({
       })
       // console.log('chain:', chainId, isToBeSelected)
       context.dispatch('residuesSelected', {tabSelectedResidues, isToBeSelected})
+      context.commit('updateSelectedPercentage')
     },
     residuesSelected (context, {tabSelectedResidues, isToBeSelected}) {
       // modify current selection atomSet
@@ -801,6 +807,7 @@ var vuex = new Vuex.Store({
       // context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
       context.commit('updateSelected', currentSelectionAtomSet)
       context.commit('updateSelection')
+      context.commit('updateSelectedPercentage')
       context.commit('color', getColorFromSelection())
       context.commit('display', getRepresentationFromSelection())
     },

@@ -164,4 +164,7 @@
     text-decoration-line: none;
     background: none;
   }
+  .help img {
+    max-width: 100%;
+  }
 </style>

@@ -9,7 +9,7 @@
             trigger="click">
             <settings></settings>
           </el-popover>
-          <el-popover
+          <!-- <el-popover
             ref="warninghidden"
             placement="bottom-end"
             width="400"
@@ -17,6 +17,7 @@
             <span>Some atoms are not currently displayed</span>
           </el-popover>
           <el-button v-show="isHidden" v-popover:warninghidden icon="warning" class="button warning" type="text" size="large"></el-button>
+          -->
           <el-popover
             ref="distance"
             placement="bottom-end"

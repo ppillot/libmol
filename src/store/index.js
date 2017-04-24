@@ -567,6 +567,8 @@ var vuex = new Vuex.Store({
       commit('selection', 'all')
       commit('display', 'ball+stick')
       commit('color', 'element')
+      commit('updateSelectedPercentage')
+      commit('updateHiddenPercentage')
     },
     selection (context, selector) {
       if (selector === 'invert') {

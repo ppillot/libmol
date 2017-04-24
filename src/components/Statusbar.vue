@@ -11,14 +11,17 @@
         </div>
       </div>
         <div class="tooltip" v-bind:style="tooltipStyles" v-html="tooltipText"></div>
-        <counter class="counter"></counter>
+        <counter-selection class="counter"></counter-selection>
+        <counter-hidden></counter-hidden>
     </div>
 </template>
 
 <script>
   import {getColor} from '../utils/colors'
   import {getSStrucName} from '../utils/sstruc'
-  import Counter from './Counter'
+  import CounterHidden from './CounterHidden'
+  import CounterSelection from './CounterSelection'
+  
   /**
    * remove values from the set when they are redundant with alias values
    * @param {set} setObject - the set we want to remove redundant aliases from
@@ -59,7 +62,8 @@
       }
     },
     components: {
-      Counter
+      CounterHidden,
+      CounterSelection
     },
     computed: {
       isShown: function () {

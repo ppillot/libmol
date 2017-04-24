@@ -1,7 +1,7 @@
 <template>
     <div class="counter" @mouseenter="highlight(true)" @mouseleave="highlight(false)">
       <template v-if="percentSelection > 0">
-        <div class="scale-label">{{ $t('ui.statusbar.counter.selection') }}</div>
+        <div class="scale-label">{{ (hover) ? Math.floor(percentSelection) + ' %' : $t('ui.statusbar.counter.selection') }}</div>
         <div v-scale:value="percentSelection" class="scale">
           <div></div>
         </div>
@@ -18,12 +18,7 @@
     name: 'counter',
     data () {
       return {
-        tooltipStyles: {
-          top: '0px',
-          left: '0px',
-          visibility: 'hidden'
-        },
-        tooltipText: ''
+        hover: false
       }
     },
     computed: {
@@ -43,7 +38,8 @@
     },
     methods: {
       highlight (val) {
-        this.$store.dispatch('highlightSelectHovered', (val) ? undefined : 'none')
+        this.hover = val
+        this.$store.dispatch('highlightSelectHovered', (val) ? 'selected' : 'none')
       }
     }
   }

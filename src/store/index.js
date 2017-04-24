@@ -269,6 +269,7 @@ var vuex = new Vuex.Store({
     selected: [],
     selectedChains: [],
     selectedPercentage: 100,
+    hiddenPercentage: 0,
     selection: 'all',
     display: 'licorice',
     color: 'element',
@@ -379,6 +380,9 @@ var vuex = new Vuex.Store({
     },
     updateSelectedPercentage (state) {
       state.selectedPercentage = ((currentSelectionAtomSet.size() / currentSelectionAtomSet.length) * 100)
+    },
+    updateHiddenPercentage (state) {
+      state.hiddenPercentage = 100 - ((currentlyDisplayedAtomSet.size() / currentlyDisplayedAtomSet.length) * 100)
     },
     hide (state, everythingIsDisplayed) {
       state.isHidden = !everythingIsDisplayed
@@ -685,6 +689,7 @@ var vuex = new Vuex.Store({
       updateRepresentationDisplay(isToBeHidden)
       updateStageCenter()
       context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
+      context.commit('updateHiddenPercentage')
     },
 
     color (context, colorScheme) {
@@ -755,8 +760,10 @@ var vuex = new Vuex.Store({
     highlightSelectHovered (context, selector) {
       if (selector === 'invert') {
         selector = currentSelectionAtomSet.clone().flip_all().toSeleString()
-      } else if (selector === undefined) {
+      } else if (selector === 'selected') {
         selector = currentSelectionAtomSet.toSeleString()
+      } else if (selector === 'hidden') {
+        selector = currentlyDisplayedAtomSet.clone().flip_all().toSeleString()
       }
       highlight(selector)
     },

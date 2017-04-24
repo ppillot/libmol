@@ -111,6 +111,7 @@ function updateRepresentationColor () {
 
 function updateRepresentationDisplay () {
   representationsList.forEach(repr => {
+    if (repr.name === 'highlight') return
     repr.displayedAtomSet = repr.atomSet.clone().intersection(currentlyDisplayedAtomSet)
     // console.log('update repr:', repr.name, repr.index, repr.displayedAtomSet)
     stage.compList[0].reprList[repr.index].setSelection(repr.displayedAtomSet.toSeleString())
@@ -687,7 +688,7 @@ var vuex = new Vuex.Store({
       }
 
       updateRepresentationDisplay(isToBeHidden)
-      updateStageCenter()
+      if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
       context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
       context.commit('updateHiddenPercentage')
     },

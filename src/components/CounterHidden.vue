@@ -1,7 +1,7 @@
 <template>
     <div class="counter" 
-      @mouseenter="highlight(true)" 
-      @mouseleave="highlight(false)"
+      @mouseenter.stop="highlight(true)" 
+      @mouseleave.stop="highlight(false)"
       v-if="percentHidden > 0">
       <template v-if="percentHidden < 100">
         <div class="scale-label">{{ (hover) ? Math.floor(percentHidden) + ' %' : $t('ui.statusbar.counter.mask') }}</div>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import { Notification } from 'element-ui'
 
   export default {
     name: 'counter',
@@ -26,7 +27,14 @@
     },
     computed: {
       percentHidden: function () {
-        return this.$store.state.hiddenPercentage
+        let percentage = this.$store.state.hiddenPercentage
+        if (percentage === 100) {
+          Notification.error({
+            title: this.$t('ui.notifications.all-hidden-title'),
+            message: this.$t('ui.notifications.all-hidden-message')
+          })
+        }
+        return percentage
       }
     },
     directives: {

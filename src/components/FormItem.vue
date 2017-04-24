@@ -1,5 +1,5 @@
 <template>
-  <div class="form-item" :style="display">
+  <div class="form-item">
     <label> {{ label }}
       <div class="form-item-slot" :style="display">
         <slot>

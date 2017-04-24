@@ -18,7 +18,7 @@
     "element-ui": "^1.2.7",
     "fastbitset": "^0.2.0",
     "marked": "^0.3.6",
-    "ngl": "git://github.com/arose/ngl.git",
+    "ngl": "git://github.com/arose/ngl.git#master",
     "screenfull": "^3.1.0",
     "vue": "^2.2.6",
     "vue-i18n": "git://github.com/kazupon/vue-i18n.git#5.x",

@@ -1,5 +1,5 @@
 <template>
-    <div class="counter">
+    <div class="counter" @mouseenter="highlight(true)" @mouseleave="highlight(false)">
       <template v-if="percentSelection > 0">
         <div class="scale-label">{{ $t('ui.statusbar.counter.selection') }}</div>
         <div v-scale:value="percentSelection" class="scale">
@@ -39,6 +39,11 @@
         update (el, binding, vnode) {
           el.children[0].style.width = binding.value + '%'
         }
+      }
+    },
+    methods: {
+      highlight (val) {
+        this.$store.dispatch('highlightSelectHovered', (val) ? undefined : 'none')
       }
     }
   }

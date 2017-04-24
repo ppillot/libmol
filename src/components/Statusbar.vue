@@ -152,7 +152,7 @@
     methods: {
       getHoveredItem (event) {
         const target = event.target
-        if (target.tagName === 'LI' && target.dataset.tooltip !== undefined) {
+        if (target.tagName === 'SPAN' && target.dataset.tooltip !== undefined) {
           this.tooltipStyles = getTooltipStyles(target)
           this.tooltipText = target.dataset.tooltip
         } else {

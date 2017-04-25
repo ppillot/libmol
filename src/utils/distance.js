@@ -136,7 +136,8 @@ function measureDistance (component, context) {
       distanceHighlight(atom)
     }
   }
-
+  // clean all measures when starting
+  dispatch()
   return {
     clickDistance: function (response) {
       return handleClick(response)

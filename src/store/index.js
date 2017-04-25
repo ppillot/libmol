@@ -250,6 +250,7 @@ var vuex = new Vuex.Store({
     fileName: '',
     name: 'LibMol',
     fullscreen: false,
+    isMeasuringDistances: false,
     mol: {
       chains: [],
       elements: new Set(),
@@ -355,6 +356,9 @@ var vuex = new Vuex.Store({
     },
     isAtomHovered (state, isDisplayed) {
       state.isAtomHovered = isDisplayed
+    },
+    isMeasuringDistances (state, isMeasuring) {
+      state.isMeasuringDistances = isMeasuring
     },
     updateColor (state) {
       state.color = getColorFromSelection()
@@ -557,6 +561,7 @@ var vuex = new Vuex.Store({
 
         predefined = getPredefined(structure, chains)
         highlight = highlightRes(component)
+        if (context.state.isMeasuringDistances) context.dispatch('setMouseMode', 'default')
         distance = measureDistance(component, context)
 
         context.commit('loadNewFile', newFile)
@@ -569,6 +574,7 @@ var vuex = new Vuex.Store({
       commit('color', 'element')
       commit('updateSelectedPercentage')
       commit('updateHiddenPercentage')
+      commit('isMeasuringDistances', false)
     },
     selection (context, selector) {
       if (selector === 'invert') {
@@ -831,6 +837,8 @@ var vuex = new Vuex.Store({
           // set signal picking atom
           stage.signals.clicked.add(distance.clickDistance)
           stage.signals.hovered.add(distance.hoverDistance)
+          // set state to measuring
+          context.commit('isMeasuringDistances', true)
           break
         default :
           // set cursor style
@@ -838,6 +846,8 @@ var vuex = new Vuex.Store({
           // set signal picking atom
           stage.signals.clicked.removeAll()
           stage.signals.hovered.remove(distance.hoverDistance)
+          // set state to not measuring
+          context.commit('isMeasuringDistances', false)
       }
     },
     help ({commit}, subject) {

@@ -54,14 +54,17 @@
     components: {
       FormItem
     },
-    data () {
-      return {
-        mouseDistance: false
-      }
-    },
     computed: {
       measures () {
         return this.$store.state.distances
+      },
+      mouseDistance: {
+        get () {
+          return this.$store.state.isMeasuringDistances
+        },
+        set (value) {
+          this.$store.commit('isMeasuringDistances', value)
+        }
       }
     },
     filters: {

@@ -17,6 +17,11 @@
         @change="switchBackgroundColor">
       </el-switch>
     </form-item>
+    <!--<form-item :label="$t('ui.toolbar.settings.language')" inline>
+      <select>
+        <option value="">en</option>
+      </select>  
+    </form-item>-->
     <div style="text-align: right">
       <el-button type="primary" @click="reset">{{ $t('ui.toolbar.settings.reset') }}</el-button>
     </div>

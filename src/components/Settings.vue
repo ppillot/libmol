@@ -120,4 +120,12 @@
   .settings .form-item-slot {
     margin-top: 0;
   }
+  .settings select {
+    font-size: 1em;
+    border: none;
+    background: #ddd;
+  }
+  .settings select:focus {
+    outline: none;
+  }
 </style>

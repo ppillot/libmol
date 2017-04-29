@@ -19,7 +19,8 @@ Vue.use(TabPane)
 
 // set lang
 const locales = ['en', 'fr']
-const language = navigator.languages || [navigator.language]
+let language = [navigator.language]
+if (navigator.languages) language = language.concat(navigator.languages)
 const lang = language.find(navPreferedLanguage => {
   return locales.find(locale => {
     return navPreferedLanguage.substr(0, 2) === locale

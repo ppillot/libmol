@@ -106,4 +106,7 @@
     color: orangered;
   }
   
+  .commands {
+    margin-right: 5px;
+  }
 </style>

@@ -763,14 +763,17 @@ CONECT  247  258
 CONECT  248  299                             
 CONECT  250  259                             
 CONECT  260  261  266  269  271              
-CONECT  261  262  267  272                   
+CONECT  261  260  262  267  272                   
 CONECT  262  263  268  273                   
 CONECT  263  264  274                        
 CONECT  264  265  269  275                   
 CONECT  265  270  276  277                   
 CONECT  266  283                             
 CONECT  267  278                             
-CONECT  268  279                             
+CONECT  268  279
+CONECT  269  260  264
+CONECT  270  105  265
+CONECT  272  261                           
 CONECT  280  281  289  300  307              
 CONECT  281  282  286  290                   
 CONECT  282  283  287  632                   

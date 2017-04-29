@@ -118,6 +118,7 @@ function buildI18N(auth) {
       //first value is key
       const locales = rows[0].filter((item, itemNum) => {return itemNum>0} )
       //console.log(locales)
+      writeLocales(locales)
       for (let localeNum=0; localeNum< locales.length; localeNum++) {
         let level = -1
         let s = '{'
@@ -190,5 +191,18 @@ function writeJSON(s,name) {
       console.log('error in locale:' +name, s)
     }
     console.log('Locale ' + destPath + ' created')
+  })
+}
+
+function writeLocales (locales) {
+  let s = `export const locales = ${JSON.stringify(locales).replace(/"/gi,"'").replace(/,/gi, ", ")}`
+  s += '\n'
+
+  fs.writeFile('./src/locales/locales.js', s, function (err) {
+    if (err) {
+      throw err
+      console.log('error in writing locales names')
+    }
+    console.log('locales.js created')
   })
 }

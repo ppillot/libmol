@@ -1,8 +1,36 @@
-# libmol
+# Libmol.org
 
 > Molecular visualization made easy for beginners
 
-## Build Setup
+## Web Application
+Libmol.org is a single page web application designed to provide students starting structural biology with simplified self explanatory tools to view and interact with biological macromolecules.  
+
+## Aknowledgements
+### Contributors
+Thank-you to [Hervé Furstoss](https://github.com/hfurstoss) for creating and contributing to the interactive documentation.  
+[Arose](https://github.com/arose) for developping and continuously improving NGL  
+Philippe, Gilles, Jacques, Thomas, Eric and other members of the Forum National de SVT for their support and insightfull inputs.
+
+### Open source libraries
+This application could not have been written nor deployed without the following open source libraries:
+- [NGL](https://github.com/arose/ngl): a Javascript molecular vizualisation library leveraging WebGL browsers capacities and tuned for performance
+- [Vue.js, Vuex](https://vuejs.org/): Progressive JS framework
+- [Vuei18n](https://github.com/kazupon/vue-i18n): a Vue plugin for internationalization
+- [ElementUI](http://element.eleme.io/#/en-US): a UI Library for desktop application using Vue
+- [screenfull](https://www.npmjs.com/package/screenfull): a wrapper to the fullscreen API for cross-browser compatibility  
+
+Special thanks to [Netlify.com](https://www.netlify.com) for hosting open source projects such as Libmol.org for free.
+
+## i18n effort
+Should you be interested in translating Libmol.org to your language, your contribution is most welcome!  
+First part of the translation process deals with the user interface. It requires completing an [online Google spreadsheet](https://docs.google.com/spreadsheets/d/1tfpNe1SwHQ51arbPlnE6y7rDB-JKImhGICQGsMzQtes/edit?usp=sharing) with your locale keywords.  
+The second part of the process is more involving and requires forking this repository, duplicating one of the folders in locales/ and translating all the markdown files in it.  
+Please do not hesitate to contact me if you are interested.
+
+## Developpement and Build Setup
+You don't need this to use LibMol.org  
+The source code is distributed from this repository and can be downloaded to your computer using Git or the complete archive.  
+Once the source code is downloaded and extracted, you'll have to install all dependencies required to build the project.  
 
 ``` bash
 # install dependencies

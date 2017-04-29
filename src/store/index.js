@@ -10,6 +10,7 @@ import Screenfull from 'screenfull'
 import help from 'utils/help'
 import {hover} from 'utils/hover'
 import {measureDistance} from 'utils/distance'
+import {loadFile} from 'utils/loadfile'
 
 let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug}
 Vue.use(Vuex)
@@ -21,6 +22,7 @@ var stage = {}
 var structure = {}
 var representationsList = []
 var highlight
+var loadNewFile
 var distance
 var currentSelectionAtomSet
 var currentlyDisplayedAtomSet
@@ -148,23 +150,6 @@ function getDescriptionFromRes (res) {
   return description
 }
 
-function getChainColors (chains, structure) {
-  // console.log(structure)
-  var chainColors = []
-  var chainNameScheme = NGL.ColormakerRegistry.getScheme({scheme: 'chainname', structure: structure})
-
-  chains.forEach(chain => {
-    chainColors.push(
-      chainNameScheme.atomColor(
-        structure.getAtomProxy(
-          structure.getChainProxy(chain.id).atomOffset
-        )
-      ).toString(16)
-    )
-  })
-  return chainColors
-}
-
 function highlightRes (component) {
   let reprHighlight = component.addRepresentation('spacefill',
     {
@@ -243,6 +228,8 @@ function getPredefined (str, chains) {
 const debug = process.env.NODE_ENV !== 'production'
 if (debug) {
   window.NGL = NGL
+  window.stage = stage
+  window.structure = structure
 }
 
 var vuex = new Vuex.Store({
@@ -459,6 +446,7 @@ var vuex = new Vuex.Store({
     },
     createNewStage (context, options) {
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
+      loadNewFile = loadFile(stage)
       stage.signals.hovered.add(hover(context))
       context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: 'Crambin - 1CRN' })
 
@@ -467,108 +455,40 @@ var vuex = new Vuex.Store({
       if (debug) { window.stage = stage }
     },
     loadNewFile (context, newFile) {
-      stage.removeAllComponents()
-      stage.loadFile(newFile.file, {assembly: 'AU'})
-      .then((component) => { // let's get the structure property from the structureComponent object returned by NGL's promise
-        // structure is a private var of this module
-        structure = component.structure
-        if (debug) window.structure = structure
+      loadNewFile(newFile).then(
+        ({molTypes, chains, elements, residues, sstruc, selected, noSequence, component}) => {
+          structure = component.structure
+          if (debug) window.structure = structure
 
-        // representationsList is a private var of this module
-        representationsList = []
+          context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected, noSequence})
 
-        let molTypes = new Set()
-        let chainMap = new Map()
-        let chains = []
-        let elements = new Set(Object.keys(structure.atomMap.dict).sort()
-                                      .map(atomIdentifier =>
-                                        atomIdentifier.substr(atomIdentifier.indexOf('|') + 1)
-                                      )
-        )
-        let residues = new Set(Object.keys(structure.residueMap.dict).sort()
-                                      .map(residueIdentifier =>
-                                        residueIdentifier.substr(0, residueIdentifier.indexOf('|'))
-                                      )
-        )
-        let sstruc = new Set()
-        let selected = []
-
-        // let's iterate through each residue from this structure
-        structure.eachResidue(item => {
-          // Do we have multiple models?
-          if (item.modelIndex > 0) {
-            return
+          tabColorScheme = [['element', 'all']]
+          updateGlobalColorScheme()
+          representationsList[0] = {
+            display: 'ball+stick',
+            color: 'element',
+            sele: 'all',
+            atomSet: structure.getAtomSet().clone(),
+            displayedAtomSet: structure.getAtomSet().clone(),
+            index: component.reprList.length - 1
           }
-          // Have we encountered a yet unknown chain.
-          if (!chainMap.has(item.chainname)) {
-            // let's keep track of the different chains by their given order
-            const chainId = chainMap.size
-            chainMap.set(item.chainname, chainId)
+          currentSelectionAtomSet = structure.getAtomSet().clone()
+          currentlyDisplayedAtomSet = structure.getAtomSet().clone()
+          wholeAtomSet = structure.getAtomSet().clone()
+          tabColorAtomSet = [structure.getAtomSet().clone()]
 
-            // let's set new chain properties based upon first item
-            chains.push({
-              id: chainId,
-              name: item.chainname,
-              entity: (item.entity) ? item.entity.description : 'unknown',
-              sequence: [],
-              color: undefined
-            })
-          }
+          predefined = getPredefined(structure, chains)
+          highlight = highlightRes(component)
+          if (context.state.isMeasuringDistances) context.dispatch('setMouseMode', 'default')
+          distance = measureDistance(component, context)
 
-          // add a residue corresponding to the item in the chains' respective sequence
-          let chainId = chainMap.get(item.chainname)
-          chains[chainId].sequence.push({
-            resname: item.resname,
-            resno: item.resno,
-            hetero: item.hetero,
-            index: item.index,
-            // moleculeType: item.moleculeType,
-            selected: true
-          })
-          molTypes.add(item.moleculeType)
-          sstruc.add(item.sstruc)
-          selected.push(true)
-        })
-
-        getChainColors(chains, structure).forEach(
-          (color, index) => {
-            chains[index].color = color
-          }
-        )
-
-        let noSequence = (structure.residueStore.count / structure.modelStore.count <= 1)
-
-        context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected, noSequence})
-        context.commit('selectedChains')
-
-        tabColorScheme = [['element', 'all']]
-        updateGlobalColorScheme()
-        component.setSelection('/0')
-        component.addRepresentation('ball+stick', {multipleBond: (noSequence) ? 'symmetric' : 'off'})
-        stage.autoView()
-        representationsList[0] = {
-          display: 'ball+stick',
-          color: 'element',
-          sele: 'all',
-          atomSet: structure.getAtomSet().clone(),
-          displayedAtomSet: structure.getAtomSet().clone(),
-          index: component.reprList.length - 1
+          context.commit('loadNewFile', newFile)
+          context.dispatch('init')
         }
-        currentSelectionAtomSet = structure.getAtomSet().clone()
-        currentlyDisplayedAtomSet = structure.getAtomSet().clone()
-        wholeAtomSet = structure.getAtomSet().clone()
-        tabColorAtomSet = [structure.getAtomSet().clone()]
-
-        predefined = getPredefined(structure, chains)
-        highlight = highlightRes(component)
-        if (context.state.isMeasuringDistances) context.dispatch('setMouseMode', 'default')
-        distance = measureDistance(component, context)
-
-        context.commit('loadNewFile', newFile)
-        context.dispatch('init')
-      })
+      )
     },
     init ({commit}) {
+      commit('selectedChains')
       commit('selection', 'all')
       commit('display', 'ball+stick')
       commit('color', 'element')

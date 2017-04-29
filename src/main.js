@@ -3,6 +3,7 @@ import VueI18n from 'vue-i18n'
 import {Autocomplete, Button, Col, Icon, Popover, Row, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'
 import App from './App'
 import store from './store'
+import { locales } from './locales/locales'
 
 Vue.use(VueI18n)
 Vue.use(Autocomplete)
@@ -18,21 +19,23 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 
 // set lang
-const locales = ['en', 'fr']
+// const locales = ['en', 'fr']
 let language = [navigator.language]
 if (navigator.languages) language = language.concat(navigator.languages)
-const lang = language.find(navPreferedLanguage => {
+let lang = language.find(navPreferedLanguage => {
   return locales.find(locale => {
     return navPreferedLanguage.substr(0, 2) === locale
   })
 }).substr(0, 2).toLowerCase()
+
+if (lang === undefined) lang = 'en'
 
 /* eslint-disable */
 import('./locales/' + lang + '.json')
 /* eslint-enable */
 .then(response => {
   Vue.locale(lang.substr(0, 2), response)
-  Vue.config.lang = (lang === undefined) ? 'en' : lang
+  Vue.config.lang = lang
   return Promise.resolve()
 }).then(function () {
   /* eslint-disable no-new */

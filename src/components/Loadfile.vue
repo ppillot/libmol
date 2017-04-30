@@ -40,6 +40,7 @@
       },
       getFiles (ev) {
         this.getFile(ev.target.files[0])
+        ev.target.value = null
       }
     },
     mounted () {

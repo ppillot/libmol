@@ -288,9 +288,17 @@ var vuex = new Vuex.Store({
     distances: [],
     help: '',
     helpHistory: [],
-    helpHistoryForward: []
+    helpHistoryForward: [],
+    alert: {
+      type: '',
+      token: {}
+    }
   },
   mutations: {
+    alert (state, {type, token}) {
+      state.alert.type = type
+      state.alert.token = token
+    },
     loadNewFile (state, newFile) {
       state.fileName = newFile.file
       state.name = newFile.value
@@ -485,7 +493,17 @@ var vuex = new Vuex.Store({
           context.commit('loadNewFile', newFile)
           context.dispatch('init')
         }
-      )
+      ).catch(error => {
+        if (error.err === 'old') {
+          context.commit('alert', {
+            type: 'old_file',
+            token: {
+              molId: error.molId
+            }
+          })
+          // console.log('old file', error.molId)
+        }
+      })
     },
     init ({commit}) {
       commit('selectedChains')

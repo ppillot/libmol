@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import {Autocomplete, Button, Col, Icon, Popover, Row, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'
+import {Autocomplete, Button, Col, Dialog, Icon, Popover, Row, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'
 import App from './App'
 import store from './store'
 import { locales } from './locales/locales'
@@ -9,6 +9,7 @@ Vue.use(VueI18n)
 Vue.use(Autocomplete)
 Vue.use(Button)
 Vue.use(Col)
+Vue.use(Dialog)
 Vue.use(Icon)
 Vue.use(Popover)
 Vue.use(Row)

@@ -24,6 +24,10 @@ function loadFile (stage) {
     .then((component) => { // let's get the structure property from the structureComponent object returned by NGL's promise
       const structure = component.structure
 
+      // check if PDB file is recent enough to be valid
+      if (structure.atomMap.list[0].element.match(/\d/gi) !== null) {
+        return Promise.reject({err: 'old', molId: structure.id})
+      }
       let molTypes = new Set()
       let chainMap = new Map()
       let chains = []

@@ -10,6 +10,7 @@
         <ngl></ngl>
         <statusbar></statusbar>
     </el-col>
+    <alert></alert>
   </el-row>
 </template>
 
@@ -19,6 +20,7 @@ import ngl from './components/NGLViewport'
 import SearchLibmol from './components/Searchlibmol'
 import Toolbar from './components/Toolbar'
 import Statusbar from './components/Statusbar'
+import Alert from './components/Alert'
 import Screenfull from 'screenfull'
 
 export default {
@@ -28,7 +30,8 @@ export default {
     ngl,
     SearchLibmol,
     Toolbar,
-    Statusbar
+    Statusbar,
+    Alert
   },
   computed: {
     fullscreen: function () {

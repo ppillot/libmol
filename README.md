@@ -11,15 +11,30 @@ Thank-you to [Hervé Furstoss](https://github.com/hfurstoss) for creating and co
 [Arose](https://github.com/arose) for developping and continuously improving NGL  
 Philippe, Gilles, Jacques, Thomas, Eric and other members of the Forum National de SVT for their support and insightfull inputs.
 
-### Open source libraries
+### Libraries and other resources
 This application could not have been written nor deployed without the following open source libraries:
-- [NGL](https://github.com/arose/ngl): a Javascript molecular vizualisation library leveraging WebGL browsers capacities and tuned for performance
+- [NGL](https://github.com/arose/ngl): Javascript molecular vizualisation library leveraging WebGL browsers capacities and tuned for performance
 - [Vue.js, Vuex](https://vuejs.org/): Progressive JS framework
-- [Vuei18n](https://github.com/kazupon/vue-i18n): a Vue plugin for internationalization
-- [ElementUI](http://element.eleme.io/#/en-US): a UI Library for desktop application using Vue
-- [screenfull](https://www.npmjs.com/package/screenfull): a wrapper to the fullscreen API for cross-browser compatibility  
+- [Vuei18n](https://github.com/kazupon/vue-i18n): Vue plugin for internationalization
+- [ElementUI](http://element.eleme.io/#/en-US): UI Library for desktop application using Vue
+- [screenfull](https://www.npmjs.com/package/screenfull): wrapper to the fullscreen API for cross-browser compatibility
+- [Fontello](http://fontello.com): icon fonts generator  
+
+#### Fonts 
+- [Font Awesome](http://fortawesome.github.com/Font-Awesome/)  
+   Copyright (C) 2016 by Dave Gandy  
+   Author:    Dave Gandy  
+   License:   [SIL](http://scripts.sil.org/OFL)  
+- [Elusive](http://aristeides.com/):  
+   Copyright (C) 2013 by Aristeides Stathopoulos  
+   Author:    Aristeides Stathopoulos  
+   License:   [SIL](http://scripts.sil.org/OFL)  
+
 
 Special thanks to [Netlify.com](https://www.netlify.com) for hosting open source projects such as Libmol.org for free.
+<a href="https://www.netlify.com">
+  <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg"/>
+</a>
 
 ## i18n effort
 Should you be interested in translating Libmol.org to your language, your contribution is most welcome!  

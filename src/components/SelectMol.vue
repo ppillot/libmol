@@ -2,12 +2,40 @@
   <div>
    <form-item :label="$t('ui.commands.select.label')">
     <button-group :active-value="selected" @change="sel" @hover="highlight">
-      <radio-button value="all">{{ $t('ui.commands.select.all') }}</radio-button>
-      <radio-button value="protein" :disabled="unselectables.protein">{{ $t('ui.commands.select.protein') }}</radio-button>
-      <radio-button value="nucleic" :disabled="unselectables.nucleic">{{ $t('ui.commands.select.nucleic') }}</radio-button>
-      <radio-button value="saccharide" :disabled="unselectables.saccharide">{{ $t('ui.commands.select.carbohydrate') }}</radio-button>
-      <radio-button value="water" :disabled="unselectables.water">{{ $t('ui.commands.select.water') }}</radio-button>
-      <radio-button value="hetero" :disabled="unselectables.hetero">{{ $t('ui.commands.select.hetero') }}</radio-button>
+      <radio-button value="all">{{ $t('ui.commands.select.all') }}
+        <i :class="[visible['all'] ? 'icon-eye' : 'icon-eye-off']" 
+        @click.stop="toggle('all')"></i>
+      </radio-button>
+      <radio-button value="protein" :disabled="unselectables.protein">
+        {{ $t('ui.commands.select.protein') }} 
+        <i :class="[visible['protein'] ? 'icon-eye' : 'icon-eye-off']" 
+        v-if="!unselectables.protein" 
+        @click.stop="toggle('protein')"></i>
+      </radio-button>
+      <radio-button value="nucleic" :disabled="unselectables.nucleic">
+        {{ $t('ui.commands.select.nucleic') }}
+        <i :class="[visible['nucleic'] ? 'icon-eye' : 'icon-eye-off']" 
+        v-if="!unselectables.nucleic"
+        @click.stop="toggle('nucleic')"></i>
+      </radio-button>
+      <radio-button value="saccharide" :disabled="unselectables.saccharide">
+        {{ $t('ui.commands.select.carbohydrate') }}
+        <i :class="[visible['saccharide'] ? 'icon-eye' : 'icon-eye-off']" 
+        v-if="!unselectables.saccharide"
+        @click.stop="toggle('saccharide')"></i>
+      </radio-button>
+      <radio-button value="water" :disabled="unselectables.water">
+        {{ $t('ui.commands.select.water') }}
+        <i :class="[visible['water'] ? 'icon-eye' : 'icon-eye-off']" 
+        v-if="!unselectables.water"
+        @click.stop="toggle('water')"></i>
+      </radio-button>
+      <radio-button value="hetero" :disabled="unselectables.hetero">
+        {{ $t('ui.commands.select.hetero') }}
+        <i :class="[visible['hetero'] ? 'icon-eye' : 'icon-eye-off']" 
+        v-if="!unselectables.hetero"
+        @click.stop="toggle('hetero')"></i>
+      </radio-button>
     </button-group>
    </form-item>
   </div>
@@ -39,6 +67,9 @@
       },
       selected: function () {
         return this.$store.state.selection
+      },
+      visible: function () {
+        return this.$store.state.visible
       }
     },
     methods: {
@@ -57,16 +88,34 @@
           attribute: selector,
           active: active
         })
+      },
+      toggle (selector) {
+        this.$store.dispatch('togglePresetVisibility', fixHetero(selector))
       }
     }
   }
 </script>
 
 <style scoped>
-  div.el-button-group {
-    width: 100%
+  .radio-button {
+    position: relative;
   }
-  .el-button {
-    width: 33%
+  .active i {
+    color: #fff;
+  }
+  .active i:hover {
+    background: white;
+    color: #20A0FF;
+  }
+  i {
+    display: inline-block;
+    border-radius: 100px;
+    position: absolute;
+    color: #99A9BF;
+    right: 0;
+    padding: 0 4px;
+  }
+  i:hover {
+    color: #20A0FF;
   }
 </style>

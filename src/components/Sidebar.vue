@@ -9,7 +9,6 @@
             </el-tab-pane>
             <el-tab-pane :label="$t('ui.commands_tab_label')" name="commands">
                 <select-mol></select-mol>
-                <display-mol></display-mol>
                 <representation-mol></representation-mol>
                 <color-mol></color-mol>
                 <help></help>
@@ -27,7 +26,7 @@ import SearchPdb from './SearchPdb'
 import LoadFile from './Loadfile'
 import SelectMol from './SelectMol'
 import RepresentationMol from './RepresentationMol'
-import DisplayMol from './DisplayMol'
+// import DisplayMol from './DisplayMol'
 import ColorMol from './ColorMol'
 import SequenceTab from './SequenceTab'
 import Help from './Help'
@@ -39,7 +38,7 @@ export default {
     SearchPdb,
     LoadFile,
     SelectMol,
-    DisplayMol,
+    // DisplayMol,
     RepresentationMol,
     ColorMol,
     SequenceTab,

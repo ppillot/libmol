@@ -4,6 +4,7 @@ import {Autocomplete, Button, Col, Dialog, Icon, Popover, Row, Scrollbar, Slider
 import App from './App'
 import store from './store'
 import { locales } from './locales/locales'
+import './assets/font/css/icons.css'
 
 Vue.use(VueI18n)
 Vue.use(Autocomplete)

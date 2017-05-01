@@ -221,8 +221,25 @@ function getPredefined (str, chains) {
     return ret
   }
 
-  return function (as) {
-    return findSet(as)
+  function findVisibleSets () {
+    let molSets = {}
+    const das = currentlyDisplayedAtomSet
+
+    predefinedSets.forEach(as => {
+      molSets[as[0]] = as[1].intersects(das)
+    })
+
+    chainSet.forEach((as, name) => {
+      molSets[name] = as.intersects(das)
+    })
+
+    return molSets
+  }
+
+  return {
+    findSelected: findSet,
+    findVisible: findVisibleSets
+
   }
 }
 
@@ -260,6 +277,7 @@ var vuex = new Vuex.Store({
     selectedChains: [],
     selectedPercentage: 100,
     hiddenPercentage: 0,
+    visible: {},
     selection: 'all',
     display: 'licorice',
     color: 'element',
@@ -375,7 +393,7 @@ var vuex = new Vuex.Store({
       })
     },
     updateSelection (state, selector) {
-      let sel = predefined(selector)
+      let sel = predefined.findSelected(selector)
       state.selectedChains = sel.chains
       state.selection = sel.selection
     },
@@ -386,6 +404,8 @@ var vuex = new Vuex.Store({
       state.hiddenPercentage = 100 - ((currentlyDisplayedAtomSet.size() / currentlyDisplayedAtomSet.length) * 100)
     },
     hide (state, everythingIsDisplayed) {
+      const sets = predefined.findVisible()
+      state.visible = sets
       state.isHidden = !everythingIsDisplayed
     },
     distance (state, tabDistances) {
@@ -513,6 +533,7 @@ var vuex = new Vuex.Store({
       commit('color', 'element')
       commit('updateSelectedPercentage')
       commit('updateHiddenPercentage')
+      commit('hide', false)
       commit('isMeasuringDistances', false)
     },
     selection (context, selector) {
@@ -635,6 +656,24 @@ var vuex = new Vuex.Store({
       }
 
       updateRepresentationDisplay(isToBeHidden)
+      if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
+      context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
+      context.commit('updateHiddenPercentage')
+    },
+
+    togglePresetVisibility (context, selector) {
+      const atomSetToHide = structure.getAtomSet(new NGL.Selection(selector))
+
+      // hetero set has been fixed for not including water or saccharide
+      if (selector.indexOf('hetero') > -1) selector = 'hetero'
+
+      if (context.state.visible[selector]) { // preset is visible
+        currentlyDisplayedAtomSet.difference(atomSetToHide)
+      } else {
+        currentlyDisplayedAtomSet.union(atomSetToHide)
+      }
+
+      updateRepresentationDisplay()
       if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
       context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
       context.commit('updateHiddenPercentage')

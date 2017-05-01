@@ -33,7 +33,7 @@
       nonPolymer: function () {
         let sel = this.$store.state.selection
         let molTypes = this.$store.state.mol.molTypes
-        return ((molTypes.nucleic === false && molTypes.protein === false) || sel === 'hetero and not water' || sel === 'water' || sel === 'saccharide' || this.$store.state.mol.noSequence)
+        return ((molTypes.nucleic === false && molTypes.protein === false) || sel === 'hetero' || sel === 'water' || sel === 'saccharide' || this.$store.state.mol.noSequence)
       },
       none: function () {
         return (this.$store.state.selection === 'none')

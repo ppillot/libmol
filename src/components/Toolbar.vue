@@ -28,8 +28,12 @@
           <el-button v-popover:distance class="button" type="text" size="small">
             {{ $t('ui.toolbar.distance.button') }}
           </el-button>
-          <el-button icon="picture" class="button" type="text" size="large" @click="screenCapture"></el-button>
-          <el-button icon="d-caret" class="button" type="text" size="large" @click="toggleFullscreen"></el-button>
+          <el-button class="button" type="text" size="large" @click="screenCapture">
+            <i class="icon-camera"></i>
+          </el-button>
+          <el-button class="button" type="text" size="large" @click="toggleFullscreen">
+            <i :class="[isFullScreen ? 'icon-resize-small' : 'icon-resize-full']"></i>
+          </el-button>
           <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>
         </div>
     </div>
@@ -51,6 +55,9 @@
       },
       isHidden: function () {
         return this.$store.state.isHidden
+      },
+      isFullScreen: function () {
+        return this.$store.state.fullscreen
       }
     },
     methods: {

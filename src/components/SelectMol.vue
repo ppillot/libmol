@@ -116,6 +116,7 @@
     padding: 0 4px;
   }
   i:hover {
-    color: #20A0FF;
+    background: #20A0FF;
+    color: #fff;
   }
 </style>

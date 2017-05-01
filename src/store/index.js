@@ -26,6 +26,7 @@ var loadNewFile
 var distance
 var currentSelectionAtomSet
 var currentlyDisplayedAtomSet
+var tempDisplayedAtomSet
 var wholeAtomSet
 var tabColorScheme = [['element', 'all']]
 var tabColorAtomSet
@@ -634,6 +635,23 @@ var vuex = new Vuex.Store({
       }
 
       updateRepresentationDisplay(isToBeHidden)
+      if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
+      context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
+      context.commit('updateHiddenPercentage')
+    },
+
+    show (context) {
+      // decide if we should extract or flatten depending on wether selected atoms are displayed
+      let isToBeFlatten = currentlyDisplayedAtomSet.equals(currentSelectionAtomSet)
+
+      if (isToBeFlatten) {
+        currentlyDisplayedAtomSet = tempDisplayedAtomSet
+      } else {
+        tempDisplayedAtomSet = currentlyDisplayedAtomSet.clone()
+        currentlyDisplayedAtomSet = currentSelectionAtomSet.clone()
+      }
+
+      updateRepresentationDisplay()
       if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
       context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
       context.commit('updateHiddenPercentage')

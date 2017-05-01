@@ -3,14 +3,14 @@
         {{ $t('ui.sequence_select_instructions') }}
         <sequence-widget class="sequence-widget" :active="active"></sequence-widget>
         <select-utils-widget class="select-utils-widget"></select-utils-widget>
-        <display-mol :compact="true"></display-mol>
+        <representation-mol :compact="true"></representation-mol>
         <palette v-model="colors" @color="pickColor" :compact="true"></palette>
     </div>
 </template>
 
 <script>
   import Palette from './Palette'
-  import DisplayMol from './DisplayMol'
+  import RepresentationMol from './RepresentationMol'
   import SelectUtilsWidget from './SelectUtilsWidget'
   import SequenceWidget from './SequenceWidget'
 
@@ -26,7 +26,7 @@
     },
     components: {
       'palette': Palette,
-      'display-mol': DisplayMol,
+      'representation-mol': RepresentationMol,
       'select-utils-widget': SelectUtilsWidget,
       'sequence-widget': SequenceWidget
     },

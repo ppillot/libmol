@@ -1,20 +1,11 @@
 <template>
   <div>
-   <button-group :active-value="displayed" @change="overlay" v-if="compact">
-        <radio-button :disabled="none" value="spacefill">{{ $t('ui.commands.display.spacefill') }}</radio-button>
-        <radio-button :disabled="none" value="ball+stick">{{ $t('ui.commands.display.balls_and_sticks') }}</radio-button>
+   <!--<form-item :label="$t('ui.commands.display.label')">-->
+      <button-group>
         <radio-button :disabled="none" ungroup v-on:click="hide">{{ $t('ui.commands.display.hide') }}</radio-button>
-   </button-group>
-   <form-item :label="$t('ui.commands.display.label')" v-else>
-      <button-group :active-value="displayed" @change="display" @hover="hover">
-        <radio-button :disabled="none" value="spacefill">{{ $t('ui.commands.display.spacefill') }}</radio-button>
-        <radio-button :disabled="none" value="ball+stick">{{ $t('ui.commands.display.balls_and_sticks') }}</radio-button>
-        <radio-button :disabled="none" value="licorice">{{ $t('ui.commands.display.sticks') }}</radio-button>
-        <radio-button :disabled="nonPolymer || none" value="cartoon">{{ $t('ui.commands.display.cartoon') }}</radio-button>
-        <radio-button :disabled="nonPolymer || none" value="backbone">{{ $t('ui.commands.display.backbone') }}</radio-button>
-        <radio-button :disabled="none" ungroup v-on:click="hide">{{ $t('ui.commands.display.hide') }}</radio-button>
+        <radio-button :disabled="none" ungroup v-on:click="show">{{ $t('ui.commands.display.show') }}</radio-button>
       </button-group>
-   </form-item>
+   <!--</form-item>-->
   </div>
 </template>
 
@@ -31,29 +22,18 @@
       RadioButton
     },
     computed: {
-      nonPolymer: function () {
-        let sel = this.$store.state.selection
-        let molTypes = this.$store.state.mol.molTypes
-        return ((molTypes.nucleic === false && molTypes.protein === false) || sel === 'hetero and not water' || sel === 'water' || sel === 'saccharide' || this.$store.state.mol.noSequence)
-      },
       none: function () {
         return (this.$store.state.selection === 'none')
-      },
-      displayed: function () {
-        return this.$store.state.display
       }
     },
     methods: {
-      display (displayType) {
-        this.$store.dispatch('display', {display: displayType})
-        this.help(displayType, true)
-      },
-      overlay (displayType) {
-        this.$store.dispatch('overlay', displayType)
-      },
       hide () {
         this.$store.dispatch('hide')
         this.help('hide', true)
+      },
+      show () {
+        this.$store.dispatch('show')
+        this.help('show', true)
       },
       hover (displayType) {
         this.help(displayType, false)
@@ -72,7 +52,8 @@
 
 <style scoped>
   div.el-button-group {
-    width: 100%
+    width: 100%;
+    margin-bottom: 1.2em;
   }
   .el-button {
     width: 33%

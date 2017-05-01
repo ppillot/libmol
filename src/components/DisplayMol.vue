@@ -1,11 +1,11 @@
 <template>
   <div>
-   <!--<form-item :label="$t('ui.commands.display.label')">-->
+   <form-item :label="$t('ui.commands.display.label')">
       <button-group>
         <radio-button :disabled="none" ungroup v-on:click="hide">{{ $t('ui.commands.display.hide') }}</radio-button>
         <radio-button :disabled="none" ungroup v-on:click="show">{{ $t('ui.commands.display.show') }}</radio-button>
       </button-group>
-   <!--</form-item>-->
+   </form-item>
   </div>
 </template>
 

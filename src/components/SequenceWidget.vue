@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" @contextmenu.prevent="displayContextMenu">
     <div class="header" @mouseover.stop="getHoveredItem('chain', $event)" @mouseout.stop="hideTooltip" :style="headerStyle">
       <ul id="chains-list">
         <li v-for="chain in chains" :data-index="chain.id" @click="selectChain(chain.id)" :class="{ sel: isSelectedChain(chain.name) }">
@@ -26,6 +26,37 @@
         </div>
     </div>
     <div class="tooltip" v-bind:style="tooltipStyles" v-html="tooltipText"></div>
+    <div v-if="showContextMenu" class="context-menu-backdrop" @click.self="hideContextMenu">
+      <div class="context-menu" :style="contextMenuStyles">
+        <template v-if="ctxMProp.type==='chain'">
+          <div>{{ $t('tooltips.chain') }} {{ ctxMProp.chain }}</div>
+          <ul>
+            <li @click="hide(':' + ctxMProp.chain, $event)"
+              :class="{disabled: !ctxMProp.isMaskable}">
+              <i class="icon-eye-off"></i>
+              {{ $t('ctxMenu.mask') }}
+            </li>
+            <li @click="show(':' + ctxMProp.chain, $event)"
+              :class="{disabled: !ctxMProp.isUnMaskable}">
+              <i class="icon-eye"></i>
+              {{ $t('ctxMenu.unmask') }}
+            </li>
+            <li @click="hide('not :' + ctxMProp.chain, $event)"
+              :class="{disabled: !ctxMProp.isRestMaskable}"
+              v-if="ctxMProp.isRestPresent">
+              <i class="icon-eye-off"></i> 
+              {{ $t('ctxMenu.mask_rest') }}
+            </li>
+            <li @click="show('not :' + ctxMProp.chain, $event)" 
+              :class="{disabled: !ctxMProp.isRestUnMaskable}"
+              v-if="ctxMProp.isRestPresent">
+              <i class="icon-eye"></i> 
+              {{ $t('ctxMenu.unmask_rest') }}
+            </li>
+          </ul>
+        </template>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -94,6 +125,12 @@
           left: '0px',
           visibility: 'hidden'
         },
+        contextMenuStyles: {
+          top: '0px',
+          left: '0px',
+          visibility: 'hidden'
+        },
+        showContextMenu: false,
         listStart: 0,
         listEnd: 9,
         elementHeight: 22,
@@ -103,10 +140,14 @@
         nbElementsToDisplay: 20,
         residuesList: [],
         visibleResidues: [],
-        userSelection: []
+        userSelection: [],
+        targetTYpe: 'res'
       }
     },
     computed: {
+      ctxMProp: function () {
+        return this.$store.state.anchor
+      },
       chains: function () {
         let chains = []
         chainByResidueList = []
@@ -185,6 +226,7 @@
             type: itemType,
             index: target.dataset.index
           })
+          // if (this.showContextMenu) this.showContextMenu = false
         } else {
           this.hideTooltip()
         }
@@ -196,8 +238,42 @@
           index: 0
         })
       },
-      pickColor (val) {
-        this.$store.dispatch('color', val.hex)
+// ******** Context menu
+      displayContextMenu (event) {
+        const target = event.target
+        this.hideTooltip()
+        if (((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) && !isScrollInProcess) {
+          this.showContextMenu = true
+          this.contextMenuStyles = getTooltipStyles(target)
+          const targetType = (target.tagName === 'LI') ? 'chain' : 'res'
+          this.$store.dispatch('contextMenuCalled', {
+            type: targetType,
+            index: target.dataset.index
+          })
+        } else {
+          this.hideContextMenu()
+        }
+      },
+      hideContextMenu () {
+        this.showContextMenu = false
+      },
+      hide (part, event) {
+        if (event.target.className === 'disabled') return
+        this.$store.dispatch('hide',
+          { sele: part,
+            action: 'hide',
+            type: this.ctxMProp.type,
+            chainName: this.ctxMProp.chain
+          })
+      },
+      show (part, event) {
+        if (event.target.className === 'disabled') return
+        this.$store.dispatch('hide',
+          { sele: part,
+            action: 'show',
+            type: this.ctxMProp.type,
+            chainName: this.ctxMProp.chain
+          })
       },
 // *********  Virtual scrolling
       scroll (event) {
@@ -250,6 +326,7 @@
 // ************* Selection
       startSelection (event) {
         event.stopPropagation()
+        if (event.button > 1) return
 
         let startResId = getResIndexFromNode(event.target)
         // console.log('start:', startResId, 'chain:', chainByResidueList[startResId])
@@ -347,6 +424,9 @@
     padding: 0;
     white-space: nowrap;
     background: #f9fafc;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
   }
   
   .header ul li {
@@ -444,7 +524,7 @@
     background: #dbdf00;
   }
   
-  .tooltip {
+  .tooltip, .context-menu {
     position: fixed;
     background: #1f2d3d;
     padding: 0.2em 0.4em;
@@ -460,7 +540,7 @@
     word-wrap: break-word;
   }
   
-  .tooltip:after {
+  .tooltip:after, .context-menu:after {
     right: 100%;
     top: 1em;
     border: solid transparent;
@@ -473,5 +553,56 @@
     border-right-color: #1f2d3d;
     border-width: 5px;
     margin-top: -5px;
+  }
+
+  .context-menu {
+    background: #EFF2F7;
+    color: #1f2d3d;
+    font-weight: 400;
+    font-size: 0.9em;
+    padding: 0;
+  }
+
+  .context-menu:after {
+    border-right-color: #1f2d3d
+  }
+
+  .context-menu ul {
+    margin: 0 0 5px 0;
+    padding: 0;
+  }
+  .context-menu li {
+    list-style: none;
+    text-align: left;
+    padding: 0 0.4em;
+  }
+  .context-menu li:hover {
+    background: #20A0FF;
+    color: #fff;
+    cursor: pointer;
+  }
+  .context-menu li.disabled {
+    color: #C0CCDA;
+  }
+  .context-menu li.disabled:hover {
+    cursor: default;
+    background: transparent;
+    color: #C0CCDA;
+  }
+  .context-menu div {
+    background: #1f2d3d;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 0.2em;
+    font-weight: 600;
+    color: #fff;
+  }
+  .context-menu-backdrop {
+    background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
   }
 </style>

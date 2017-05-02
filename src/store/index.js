@@ -301,6 +301,7 @@ var vuex = new Vuex.Store({
       chain: '',
       description: ''
     },
+    anchor: {},
     stage: {
       clipNear: 30
     },
@@ -356,6 +357,9 @@ var vuex = new Vuex.Store({
     },
     itemHovered (state, res) {
       state.itemHovered = res
+    },
+    contextMenuAnchor (state, anchor) {
+      state.anchor = anchor
     },
     selectedChains (state) {
       state.selectedChains = state.mol.chains.reduce((acc, val) => {
@@ -645,20 +649,35 @@ var vuex = new Vuex.Store({
       context.dispatch('display', {display: displayType, atomSet: atomsToOverlay, overlay: true})
     },
 
-    hide (context) {
-      // decide if we should hide or show depending on wether selected atoms are displayed
-      let isToBeHidden = currentlyDisplayedAtomSet.intersects(currentSelectionAtomSet)
+    hide (context, token) {
+      if (token === undefined) {
+        // decide if we should hide or show depending on wether selected atoms are displayed
+        const isToBeHidden = currentlyDisplayedAtomSet.intersects(currentSelectionAtomSet)
 
-      if (isToBeHidden) {
-        currentlyDisplayedAtomSet.difference(currentSelectionAtomSet)
+        if (isToBeHidden) {
+          currentlyDisplayedAtomSet.difference(currentSelectionAtomSet)
+        } else {
+          currentlyDisplayedAtomSet.union(currentSelectionAtomSet)
+        }
       } else {
-        currentlyDisplayedAtomSet.union(currentSelectionAtomSet)
+        const atomSet = structure.getAtomSet(new NGL.Selection(token.sele))
+
+        // decide if we should hide or show depending on the token received
+        if (token.action === 'hide') {
+          currentlyDisplayedAtomSet.difference(atomSet)
+        } else {
+          currentlyDisplayedAtomSet.union(atomSet)
+        }
       }
 
-      updateRepresentationDisplay(isToBeHidden)
+      updateRepresentationDisplay()
       if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
       context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
       context.commit('updateHiddenPercentage')
+      context.dispatch('contextMenuCalled', {
+        type: token.type,
+        chainName: token.chainName
+      })
     },
 
     togglePresetVisibility (context, selector) {
@@ -729,6 +748,39 @@ var vuex = new Vuex.Store({
     },
     displayAtomTooltip (context, isDisplayed) {
       context.commit('isAtomHovered', isDisplayed)
+    },
+
+    contextMenuCalled (context, item) {
+      let anchor = {}
+      switch (item.type) {
+        case 'chain':
+          const chain = (item.chainName === undefined) ? context.state.mol.chains.find(ch => ch.id === parseInt(item.index)) : { name: item.chainName }
+          const chainAtomSet = structure.getAtomSet(new NGL.Selection(':' + chain.name))
+          const restAtomSet = chainAtomSet.clone().flip_all()
+          const isRestPresent = !restAtomSet.isEmpty() // some models only include one chain
+          anchor = {
+            type: 'chain',
+            chain: chain.name,
+            isMaskable: currentlyDisplayedAtomSet.intersects(chainAtomSet),
+            isUnMaskable: currentlyDisplayedAtomSet.intersection_size(chainAtomSet) < chainAtomSet.size(),
+            isRestPresent: isRestPresent,
+            isRestMaskable: (isRestPresent) ? currentlyDisplayedAtomSet.intersects(restAtomSet) : false,
+            isRestUnMaskable: (isRestPresent) ? currentlyDisplayedAtomSet.intersection_size(restAtomSet) < restAtomSet.size() : false
+          }
+          break
+        default:
+          let res = structure.getResidueProxy(item.index) // call to NGL structure object
+          anchor = {
+            name: res.resname,
+            num: res.resno,
+            chain: res.chainname,
+            description: getDescriptionFromRes.call(this, res)
+          }
+          highlight(res.resno + ':' + res.chainname)
+      }
+
+      context.commit('contextMenuAnchor', anchor)
+      // highlightRes(item)
     },
     sequenceHovered (context, item) {
       let itemHovered = {}

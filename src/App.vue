@@ -56,6 +56,9 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     overflow: hidden;
+    user-select: none;
+    -moz-user-select: none;
+    cursor: default;
   }
   
   #app {

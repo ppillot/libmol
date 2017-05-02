@@ -146,6 +146,8 @@
     overflow-y: auto;
     font-size: 0.9em;
     flex: 1;
+    cursor: text;
+    user-select: text;
   }
   .help h1 {
     font-size: 1.1em;

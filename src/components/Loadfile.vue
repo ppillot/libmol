@@ -52,7 +52,7 @@
       })
       window.addEventListener('drop', function (ev) {
         ev.preventDefault()
-        this.dropFile(ev)
+        if (ev.target.files) this.dropFile(ev)
       }.bind(this))
     }
   }

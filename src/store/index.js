@@ -674,10 +674,14 @@ var vuex = new Vuex.Store({
       if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
       context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
       context.commit('updateHiddenPercentage')
-      context.dispatch('contextMenuCalled', {
+      let payload = {
         type: token.type,
-        chainName: token.chainName
-      })
+        chainName: token.chainName,
+        resnum: (token.type === 'chain') ? null : token.resnum,
+        resname: (token.type === 'chain') ? null : token.resname
+      }
+      console.log('payload', payload)
+      context.dispatch('contextMenuCalled', payload)
     },
 
     togglePresetVisibility (context, selector) {
@@ -768,15 +772,28 @@ var vuex = new Vuex.Store({
             isRestUnMaskable: (isRestPresent) ? currentlyDisplayedAtomSet.intersection_size(restAtomSet) < restAtomSet.size() : false
           }
           break
-        default:
-          let res = structure.getResidueProxy(item.index) // call to NGL structure object
+        case 'res':
+          const res = (item.chainName === undefined) ? structure.getResidueProxy(item.index) : {resno: item.resnum, chainname: item.chainName, resname: item.resname} // call to NGL structure object
+          const residueAtomSet = structure.getAtomSet(new NGL.Selection(res.resno + ':' + res.chainname))
+          const restResAtomSet = residueAtomSet.clone().flip_all()
+          const notSelectedAtomSet = currentSelectionAtomSet.clone().flip_all()
           anchor = {
+            type: 'res',
             name: res.resname,
             num: res.resno,
             chain: res.chainname,
-            description: getDescriptionFromRes.call(this, res)
+            isMaskable: currentlyDisplayedAtomSet.intersects(residueAtomSet),
+            isUnMaskable: currentlyDisplayedAtomSet.intersection_size(residueAtomSet) < residueAtomSet.size(),
+            // isRestPresent: isRestPresent,
+            isRestMaskable: currentlyDisplayedAtomSet.intersects(restResAtomSet),
+            isRestUnMaskable: currentlyDisplayedAtomSet.intersection_size(restResAtomSet) < restResAtomSet.size(),
+            isSelected: currentSelectionAtomSet.intersects(residueAtomSet),
+            isSelectionMaskable: currentSelectionAtomSet.intersects(currentlyDisplayedAtomSet),
+            isSelectionUnMaskable: currentlyDisplayedAtomSet.intersection_size(currentSelectionAtomSet) < currentSelectionAtomSet.size(),
+            isNotSelectedMaskable: currentlyDisplayedAtomSet.intersects(notSelectedAtomSet),
+            isNotSelectedUnMaskable: currentlyDisplayedAtomSet.intersection_size(notSelectedAtomSet) < notSelectedAtomSet.size()
           }
-          highlight(res.resno + ':' + res.chainname)
+          console.log(anchor)
       }
 
       context.commit('contextMenuAnchor', anchor)

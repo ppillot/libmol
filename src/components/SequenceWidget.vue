@@ -55,6 +55,33 @@
             </li>
           </ul>
         </template>
+        <template v-else-if="ctxMProp.type==='res'">
+          <div>{{ ctxMProp.name }} {{ ctxMProp.num }} - {{ $t('tooltips.chain') }} {{ ctxMProp.chain }}</div>
+          <ul>
+            <li @click="hide(ctxMProp.num + ':' + ctxMProp.chain, $event)"
+              :class="{disabled: !ctxMProp.isMaskable}">
+              <i class="icon-eye-off"></i>
+              {{ $t('ctxMenu.mask') }}
+            </li>
+            <li @click="show(ctxMProp.num + ':' + ctxMProp.chain, $event)"
+              :class="{disabled: !ctxMProp.isUnMaskable}">
+              <i class="icon-eye"></i>
+              {{ $t('ctxMenu.unmask') }}
+            </li>
+            <li @click="hide('not ' + ctxMProp.num + ':' + ctxMProp.chain, $event)"
+              :class="{disabled: !ctxMProp.isRestMaskable}"
+            >
+              <i class="icon-eye-off"></i> 
+              {{ $t('ctxMenu.mask_rest') }}
+            </li>
+            <li @click="show('not ' + ctxMProp.num + ':' + ctxMProp.chain, $event)" 
+              :class="{disabled: !ctxMProp.isRestUnMaskable}"
+            >
+              <i class="icon-eye"></i> 
+              {{ $t('ctxMenu.unmask_rest') }}
+            </li>
+          </ul>
+        </template>
       </div>
     </div>
   </div>
@@ -263,7 +290,9 @@
           { sele: part,
             action: 'hide',
             type: this.ctxMProp.type,
-            chainName: this.ctxMProp.chain
+            chainName: this.ctxMProp.chain,
+            resnum: (this.ctxMProp.type === 'res') ? this.ctxMProp.num : null,
+            resname: (this.ctxMProp.type === 'res') ? this.ctxMProp.name : null
           })
       },
       show (part, event) {
@@ -272,7 +301,9 @@
           { sele: part,
             action: 'show',
             type: this.ctxMProp.type,
-            chainName: this.ctxMProp.chain
+            chainName: this.ctxMProp.chain,
+            resnum: (this.ctxMProp.type === 'res') ? this.ctxMProp.num : null,
+            resname: (this.ctxMProp.type === 'res') ? this.ctxMProp.name : null
           })
       },
 // *********  Virtual scrolling
@@ -595,6 +626,7 @@
     margin-bottom: 0.2em;
     font-weight: 600;
     color: #fff;
+    padding: 0 0.5em;
   }
   .context-menu-backdrop {
     background: transparent;

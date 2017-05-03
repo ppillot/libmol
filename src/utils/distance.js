@@ -156,6 +156,9 @@ function measureDistance (component, context) {
     },
     switchColor: function (color) {
       return switchBackgroundColor(color)
+    },
+    disable: function () {
+      handleClick(undefined)
     }
   }
 }

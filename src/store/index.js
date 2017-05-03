@@ -912,6 +912,8 @@ var vuex = new Vuex.Store({
           stage.signals.hovered.remove(distance.hoverDistance)
           // set state to not measuring
           context.commit('isMeasuringDistances', false)
+          // disable distance highlights
+          distance.disable()
       }
     },
     help ({commit}, subject) {

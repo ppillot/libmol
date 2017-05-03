@@ -1,13 +1,12 @@
-# Coloration par résidus
-Un résidu est un groupe d'atomes constituant une sous-unité d'une chaîne dans un modèle moléculaire. Chaque résidu est identifié par une coloration spécifique.
+# Colour by residue
+A residue regroups atoms that make a subunit of a chain (or polymer) in a molecular model. Each residue (or group of residues chemically akin to each other) has a specific color.
 
-Il y a plusieurs types de résidus selon la nature de la chaîne.  
-Les principaux résidus sont :
-* les [acides aminés](lexicon-aminoacid) formant les protéines,
-* les [nucléotides](lexicon-nucleotide) formant les [acides nucléiques](lexicon-nucleic) (ADN et ARN).
+There are several types of residues depending on the biochemical nature of the chain.  
+Main groups are:
+* [amino acids](lexicon-aminoacid), that make proteins,
+* [nucleotides](lexicon-nucleotide), that make [nucleic acids](lexicon-nucleic) (DNA or RNA).
 
-Des résidus de différentes natures, les [ligands](lexicon-ligand), peuvent également être présents dans les modèles moléculaires :
-* des ligands organiques (glucides, lipides, hème, ...),
-* des ligands minéraux (eau, ions, atomes  métalliques, ...).
+Other kinds of residues, such as [ligands](lexicon-ligand) (saccharides, prosthetic groups, ions, etc...) and solvents (water) may also be part of molecular models.
 
-La légende du modèle moléculaire indique pour chaque type de résidu repéré, son identifiant et sa coloration spécifique.
+Labels in the status bar beneath the visualization frame, specify every residue present in the model by its ID and its corresponding color.  
+**Tip**: Hovering over a residue ID displays a tooltip with its extended name if this information is available from the model file.

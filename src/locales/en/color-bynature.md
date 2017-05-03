@@ -1,15 +1,17 @@
-# Coloration par nature
-La coloration par nature identifie la nature chimique des constituants du modèle moléculaire et les colore en fonction de leur nature chimique.
+# Colour by biochemical nature
+This color scheme colors atoms accordingly with the biochemical nature of the compound they are in.  
 
-Les principaux groupes identifiés sont :
-* les protéines,
-* les acides nucléiques (ADN et ARN),
-* les glucides,
-* l'eau,
-* les ions,
-* les [autres atomes](lexicon-autre).
-**Exemple d'un modèle de natures variées :**
-![Sélection](static/img/colonat.png)   
-Tout atome non affecté à un autre groupe est intégré aux autres atomes. Ce groupe est donc très hétérogène et regroupe toutes les molécules chimiques différentes de celles qui sont identifiées. 
+Main compounds identified are:
+* proteins,
+* nucleic acids (DNA and RNA),
+* saccharides,
+* water,
+* ions,
+* [hetero atoms](lexicon-hetero).  
 
-La légende du modèle moléculaire indique pour chaque type de nature chimique repéré son identifiant et sa coloration spécifique.
+**Example molecular model with varied biochemical compounds:**  
+![biochemical nature coloration](static/img/colonat.png)   
+
+Every atom that is not part of a defined set is classified as hetero. This group is subsequently very diverse.  
+
+Labels in the status bar beneath the visualization frame, specify every biochemical nature present in the model and its corresponding color.

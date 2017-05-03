@@ -1,15 +1,16 @@
-# Coloration par atomes
-Les atomes sont colorés selon les conventions de la chimie ([coloration CPK](lexicon-cpk)). Ce mode de coloration permet de distinguer les différents éléments chimiques d'une molécule.
+# Color CPK (by element)
+Each atom is colored accordingly with chemestry's conventional coloring scheme ([CPK Coloration](lexicon-cpk)). This scheme informs on the different chemical elements that are part of a molecule.
 
-Symbole | Code couleur | Atome
+Symbol | Color code | Element
 ------------ | ------------- | -------------
-**C** | ![Carbone](static/img/c.png)| **Carbone**
-**H** | ![Hydrogène](static/img/h.png) | **Hydrogène**
-**O** | ![Oxygène](static/img/o.png) | **Oxygène** 
-**N** | ![Azote](static/img/n.png) | **Azote**
-**S** | ![Soufre](static/img/s.png) | **Soufre** 
-**P** | ![Phosphore](static/img/p.png) | **Phosphore** 
+**C** | ![Carbon](static/img/c.png)| **Carbon**
+**H** | ![Hydrogen](static/img/h.png) | **Hydrogen**
+**O** | ![Oxygen](static/img/o.png) | **Oxygen** 
+**N** | ![Nitrogen](static/img/n.png) | **Nitrogen**
+**S** | ![Sulfur](static/img/s.png) | **Sulfur** 
+**P** | ![Phosphorus](static/img/p.png) | **Phosphorus** 
 
-**Attention**, dans la plupart des modèles de macromolécules (protéines et acides nucléiques) les atomes d'**hydrogène**, bien que présents, ne sont pas représentés. Certaines [techniques](lexicon-technique) ne permettent pas de déterminer la position des atomes d'hydrogène lors de l'étude de la structure tridimensionnelle des molécules.  
+**Beware**, most macromolecular models don't include **hydrogens**, despite those being present in reality. [Structures determination techniques](lexicon-technique) generally can't resolve hydrogen atoms coordinates.  
 
-La légende du modèle moléculaire indique les atomes identifiés et leurs colorations.
+The labels in the status bar beneath the visualization frame, list the different atomic elements by their symbols and their respective colors.  
+**Tip**: Hovering over the elements symbols reveals a tooltip with the complete atom name.

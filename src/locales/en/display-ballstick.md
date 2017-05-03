@@ -1,8 +1,10 @@
-# Affichage en boules et bâtonnets
-![Boules et bâtonnets](static/img/bs1.png)  
+# Balls and sticks representation
+![Balls and sticks](static/img/bs1.png)  
 
-L'affichage en boules et bâtonnets représente :
-* **(1)** les atomes par des sphères, **les boules**, 
-* **(2)** les liaisons covalentes par des segments de droite, **les bâtonnets**.   
+This representation displays :
+* **(1)** atoms as spheres, **the balls**, 
+* **(2)** covalent bonds as segments, **the sticks**.   
 
-Elle permet de bien visualiser les atomes constituant une molécule et les liaisons covalentes entre ces atomes.
+It is used to visualized all atoms that are part of a molecules and the covalent connexions between them.  
+Due to [hydrogen coordinates determination limitations](lexicon-techniques), water molecules usually appear as single oxygen atoms spheres with this representation. 
+Bond assignement is infered from the amino acid or nucleotide name in polymers, and should be provided in the coordinate file for every other compound. If not present, a bonding computation is performed and might lead to discrepant results.

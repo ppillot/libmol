@@ -1,7 +1,7 @@
-# Les techniques de détermination de la structure des molécules.
+# Techniques for determining the structure of molecules.
 
-Cristallographie aux rayons X
+Crystallography
 
-Spectroscopie par résonance magnétique nucléaire (RMN)
+NMR Spectroscopy  
 
-Microscopie électronique 3D (3DEM)
+3D Electron microscopy (3DEM)

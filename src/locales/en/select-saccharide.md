@@ -1,7 +1,7 @@
-# Sélectionner les glucides
-Les **glucides** présents dans le modèle moléculaire sont repérés et sélectionnés. Lorsque plusieurs types de glucides sont présents, ils sont tous sélectionnés sans distinction. Le passage de la souris sur les atomes permet d'identifier plus précisement les constituants du modèle moléculaire.   
+# Select carbohydrates
+This control selects **carbohydrates** (or **saccharides**) present in the molecular model. All saccharides are selected with this command indistinctively of their respective chemical nature.   
 
-Après la sélection il est possible d'agir (Afficher, Colorer,...) spécifiquement sur cette sélection, sans modifier les autres atomes du modèle moléculaire.   
+After selecting, it's possible to act (represent, color,...) upon these selected atoms without affecting the rest of the molecular model.   
 
-![Sélection](static/img/selectglu.png)  
-La pré-visualisation de la sélection s'affiche transitoirement au passage de la souris et permet de vérifier la qualité de la sélection réalisée.
+![Select saccharides](static/img/selectglu.png)  
+The pre-visualization of the selection is transiently displayed when the mouse hovers and makes it possible to check the quality of the selection made.

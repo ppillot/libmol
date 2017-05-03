@@ -1,10 +1,10 @@
-# Affichage du squelette
-Le mode "Squelette" est un mode d'affichage simplifié qui ne s'applique qu'aux protéines et aux acides nucléiques (ADN et ARN).  
-![Squelette](static/img/squ2.png)  
-La représentation de la molécule est limité aux atomes qui sont responsables de la polymérisation de la chaine des résidus, le **squelette carboné** :
-* pour les protéines, ce sont les atomes impliqués dans les liaisons peptidiques entre les acides aminés d'une chaine, 
-![Squelette](static/img/squ1.png)  
-* pour les acides nucléiques, ce sont les atomes impliqués dans les liaisons entre les nucléotides d'un brin.  
-![Squelette](static/img/sqeun.png)   
+# Backbone representation
+This representation is a simplified display only applying to proteins and nucleic acids (DNA or RNA).  
+![Backbone](static/img/squ2.png)  
+The backbone is a broken line passing by one representative atom in each residue of the polymer: 
+* in proteins, these are the **alpha-carbons** (α-carbons) of each amino-acid. Alpha-carbons join the pepdidic bonds with the amino-acid distinctive sidechains.
+![Peptidic backbone](static/img/squ1.png)  
+* in nucleic acids, these are the **C3'-carbons** in the nucleotides (deoxy)riboses.  
+![Nucleic backbone](static/img/sqeun.png)   
 
-Ces enchainements d'atomes sont représentés sous la forme de bâtonnets qui correspondent à la stucture de base de la chaîne (le squelette) autour de laquelle s'organisent les autres atomes pour donner aux molécules leurs propriétés fonctionnelles.
+The backbone reflects the structural basis of the polymer, around which the other functionally diverse compounds (amino acids side chains and nucleic bases) are organized and provide to the molecules their biological properties.

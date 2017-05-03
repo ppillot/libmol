@@ -1,5 +1,4 @@
-# Sélectionner les autres atomes
-La sélection s'applique aux atomes qui n'appartiennent à aucun des autres types de molécules identifiées.  
-Il s'agit donc d'une groupe hétérogène.   
-![Sélection](static/img/select.png)   
-La pré-visualisation de la sélection s'affiche transitoirement au passage de la souris et permet de vérifier la qualité de la sélection réalisée.
+# Select other atoms
+This control selects atoms that are not part of any of the other atom sets (same as not protein, not nucleic, not saccharide, not water). It's a very diverse group, including ligands, ions, membrane lipids, etc...  
+![Select](static/img/select.png)   
+The pre-visualization of the selection is transiently displayed when the mouse hovers and makes it possible to check the quality of the selection made.

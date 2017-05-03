@@ -9,4 +9,4 @@ Main groups are:
 Other kinds of residues, such as [ligands](lexicon-ligand) (saccharides, prosthetic groups, ions, etc...) and solvents (water) may also be part of molecular models.
 
 Labels in the status bar beneath the visualization frame, specify every residue present in the model by its ID and its corresponding color.  
-**Tip**: Hovering over a residue ID displays a tooltip with its extended name if this information is available from the model file.
+**Tip**: Hovering over a residue's ID triggers a tooltip with its extended name (if this information is available from the model file).

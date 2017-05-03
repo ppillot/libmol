@@ -1,1 +1,1 @@
-# Hétéro-atomes
+# Hetero atoms

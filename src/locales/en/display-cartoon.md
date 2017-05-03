@@ -1,11 +1,13 @@
-# Affichage en rubans
-Le mode "Rubans" est un mode d'affichage simplifié qui ne s'applique qu'aux **protéines** et aux **acides nucléiques** (ADN et ARN). Seuls les atomes constituant le squelette de la molécule sont représentés sous une forme symbolisée. ![Ruban](static/img/ruban2.png)   
-Cette représentation permet d'approcher la stucture de base de la chaîne (le squelette) autour de laquelle s'organisent les autres atomes pour donner aux molécules leurs propriétés fonctionnelles.      
-      
-Pour **les protéines** : 
-![Protéine en ruban](static/img/rubanp.png)   
-La représentation de la molécule est limitée aux atomes responsables de la polymérisation de la chaine des acides aminés. Ce sont les atomes impliqués dans les liaisons peptidiques entre les acides aminés d'une chaine.  La représentation du ruban est modulée pour faire mieux apparaitre les motifs particuliers dans la structure de la chaine (feuillets, coudes, hélices, ...).
+# Cartoon representation
+This representation provides a simplified view of **proteins** and **nucleic acids** (DNA or RNA). The cartoon only passes through the atoms that are part of the molecule backbone hiding the diverse side chains or nucleic bases.  
+![Ruban](static/img/ruban2.png) 
 
-Pour **les acides nucléiques** : 
-![ADN en ruban](static/img/rubann.png)   
-La représentation de la molécule est limitée aux atomes impliqués dans les liaisons entre les nucléotides d'un brin sous la forme d'un ruban et aux bases azotées sous la forme d'un bâtonnet perpendiculaire au ruban.
+In **proteins**:  
+![Protein cartoon representation](static/img/rubanp.png)  
+The cartoon passes through the peptidic bonds planes between successive amino acids. Cartoon width varies to emphasize noticeable secondary structures (beta strands, helices,...).
+
+In **nucleic acids**:  
+![DNA cartoon representation](static/img/rubann.png)  
+The cartoon trace passes through successives riboses from each nucleotide. Nucleic bases are represented as sticks emerging from the cartoon. 
+
+Due to computation limitations, this representation doesn't apply to chains shorter than 3 residues.

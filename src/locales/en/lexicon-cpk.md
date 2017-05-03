@@ -1,16 +1,14 @@
-# Coloration CPK
-Le code de couleurs CPK (Corey, Pauling et Koltun) est la convention de coloration des atomes en chimie. Il permet d'identifier les atomes dans les modèles moléculaires.  
-Ce code a été défini par les chimistes R. Corey et L. Pauling puis amélioré par W. Koltun. Actuellement les outils de visualisation moléculaire utilisent des variations de ce code initial. 
+# CPK coloring
+The CPK coloring code (Corey, Pauling and Koltun) is the conventional coloring of atoms used in chemistry. It identifies atomic elements in molecular models.
+This code was defined by the chemists R. Corey and L. Pauling and then improved by W. Koltun. Currently molecular visualization tools use variations of this initial code.
 
-Le code des principaux atomes des molécules organiques est :
+The code of the main atoms in organic molecules is:
 
-Symbole | Code couleur | Atome
+Symbol | Coloring code | Element
 ------------ | ------------- | -------------
-**C** | ![Carbone](static/img/c.png)| **Carbone**
-**H** | ![Hydrogène](static/img/h.png) | **Hydrogène**
-**O** | ![Oxygène](static/img/o.png) | **Oxygène** 
-**N** | ![Azote](static/img/n.png) | **Azote**
-**S** | ![Soufre](static/img/s.png) | **Soufre** 
-**P** | ![Phosphore](static/img/p.png) | **Phosphore** 
-
-Chaque élément chimique du tableau de Medeleev est coloré selon une teinte de ce code de couleur CPK.
+**C** | ![Carbon](static/img/c.png)| **Carbon**
+**H** | ![Hydrogen](static/img/h.png) | **Hydrogen**
+**O** | ![Oxygen](static/img/o.png) | **Oxygen** 
+**N** | ![Nitrogen](static/img/n.png) | **Nitrogen**
+**S** | ![Sulfur](static/img/s.png) | **Sulfur** 
+**P** | ![Phosphorus](static/img/p.png) | **Phosphorus** 

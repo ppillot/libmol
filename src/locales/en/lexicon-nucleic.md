@@ -1,1 +1,1 @@
-# Acides nucléiques (ADN - ARN)
+# Nucleic acids (DNA - RNA)

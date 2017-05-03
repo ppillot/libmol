@@ -1,7 +1,7 @@
-# Sélectionner les acides nucléiques (ADN - ARN)
-Les **acides nucléiques** présents dans le modèle moléculaire sont repérés et sélectionnés. Lorsque plusieurs types d'acides nucléiques ou plusieurs brins sont présents, ils sont tous sélectionnés sans distinction.   
+# Select nucleic acids (DNA or RNA)
+This control selects **nucleic acids** present in the molecular model. Every nucleic chains or individual nucleotides are selected with this command.   
  
-Après la sélection il est possible d'agir (afficher, colorer,...) spécifiquement sur cette sélection, sans modifier les autres atomes du modèle moléculaire.   
+After selecting, it's possible to act (represent, color,...) upon these selected atoms without affecting the rest of the molecular model.
 
-![Sélection](static/img/selectnuc.png)  
-La pré-visualisation de la sélection s'affiche transitoirement au passage de la souris et permet de vérifier la qualité de la sélection réalisée.
+![Select nucleic](static/img/selectnuc.png)  
+The pre-visualization of the selection is transiently displayed when the mouse hovers and makes it possible to check the quality of the selection made.

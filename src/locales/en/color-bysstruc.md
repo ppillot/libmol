@@ -1,17 +1,18 @@
-# Coloration par structure
+# Colour by secondary structure
 
-La coloration par structure identifie des motifs particuliers dans la structure d'une chaine d'acides aminés des protéines et les colore de manière spécifique. Ce mode de coloration ne s'active que lorsque la sélection porte sur les protéines et pour des modes d'affichage simplifiés ([squelette](display-backbone) ou [ruban](display-cartoon)).
+This color scheme reveals specific motifs of amino acids disposition favored in proteic chains, known as **secondary structures**. This option is only available when proteins are selected and displayed with a simplified representation ([backbone](display-backbone) or [cartoon](display-cartoon)).
 
-Les motifs identifiés sont :
-* les [feuillets bêta](lexicon-feuillet),
-#### Un feuillet bêta est un motif formé par plusieurs segments de la chaine d'acides aminés qui s'alignent pour former des zones planes dans la protéine. 
-* les [coudes](lexicon-coude),
-#### Un coude est un repli marqué, en épingle à cheveux, dans une chaine d'acides aminés d'une protéine.
-* les [hélices alpha](lexicon-helice),
-#### Une hélice alpha est un motif formé par l'enroulement de la chaine d'acides aminés pour former une hélice en général allongée. L'hélice alpha comporte 3,6 acides aminés par tour d'hélice.
-* les [hélices 3-10](lexicon-helice).
-#### Une hélice 3-10 est un motif en hélice plus court et plus compact (3 acides aminés par tour) que l'hélice alpha. 
+Secondary structures recognized are:
+* [beta strands](lexicon-strand),  
+Beta strands (β strands) are linear successions of amino acids generally combined to make planar or cylindrical associations in the protein structure.
+* [turns](lexicon-turn),  
+Turns are brutal change of direction in the orientation of an amino acids chain.
+* [alpha helices](lexicon-helix),  
+Alpha helix (α helix) appears when the amino acid chain coils along an axis. Alpha helix contains an average of 3.6 amino acids per helical turn.
+* [3-10 helices](lexicon-helix).  
+3-10 helix is a shorter motif compared to alpha helix, having only 3 amino-acids per helical turn.
 
-Les différents motifs sont stabilisés par des liaisons hydrogènes établies entre les acides aminés impliqués dans les structures.
+These motifs are stabilized through hydrogen bonding between amino acids.
 
-La légende du modèle moléculaire indique pour chaque type de motif structural repéré son identifiant et sa coloration spécifique.
+Labels in the status bar beneath the visualization frame list each secondary structure with its corresponding color.  
+Secondary structures assignment to specific portions of the amino acid chain is provided by the molecular file. If this information is not available, a computation is performed using fast Zhang & Skolnick TM-align method, which may lead to discrepant results.

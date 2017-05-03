@@ -1,4 +1,5 @@
-# Cacher / Montrer
-La commande Cacher / Montrer permet de cacher ou de réafficher alternativement la sélection en cours.
+# Hide / Display
+This control alternatively hides or displays the current selection.  
+This is convenient to focus on a portion of the molecular model while retaining the representations of the rest.
 
-**Attention**, lorsqu'une sélection est **cachée** aucune action ne sera visible sur ces atomes tant que la commande **Montrer** n'aura pas été réalisée pour cette sélection.
+**Beware** that when a selection or part of it is hidden, no action performed on it will be visible until the Display control is triggered on it.

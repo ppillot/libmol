@@ -1,4 +1,4 @@
-# Sélectionner tous les atomes
-La commande sélectionne l'**ensemble des atomes** du modèle moléculaire quelle que soit la nature chimique des atomes et quelle que soit la chaine à laquelle ils appartiennent.   
-![Sélection](static/img/select.png)   
-La pré-visualisation de la sélection s'affiche transitoirement au passage de la souris et permet de vérifier la qualité de la sélection réalisée.
+# Select all atoms
+This control selects the **whole set of atoms** present in the molecular model independently of the chemical nature of the compounds they are a part of, nor of the chain to which they belong.
+![Selection](static/img/select.png)
+The pre-visualization of the selection is transiently displayed when the mouse hovers and makes it possible to check the quality of the selection made.

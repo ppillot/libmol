@@ -1,7 +1,7 @@
 # Affichage du squelette
 Le mode "Squelette" est un mode d'affichage simplifié qui ne s'applique qu'aux protéines et aux acides nucléiques (ADN et ARN).  
 ![Squelette](static/img/squ2.png)  
-La représentation de la molécule est limité aux atomes qui sont responsables de la polymérisation de la chaine des résidus, le **squelette carboné** :
+La représentation de la molécule est limitée aux atomes qui sont responsables de la polymérisation de la chaine des résidus, le **squelette carboné** :
 * pour les protéines, ce sont les atomes impliqués dans les liaisons peptidiques entre les acides aminés d'une chaine, 
 ![Squelette](static/img/squ1.png)  
 * pour les acides nucléiques, ce sont les atomes impliqués dans les liaisons entre les nucléotides d'un brin.  

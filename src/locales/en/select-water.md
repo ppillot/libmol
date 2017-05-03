@@ -1,8 +1,8 @@
-# Sélectionner l'eau
-Les molécules d'**eau** présentes dans le modèle moléculaire sont repérées et sélectionnées. En général, il s'agit d'atomes d'oxygène isolés.    
-En effet, les techniques d'analyse de la structure tridimensionnelle des molécules ne révèlent pas la position des atomes d'hydrogène. Ils ne sont donc pas représentés dans la plupart des modèles moléculaires.    
+# Select water
+This control selects **water molecules** present in the molecular model. Generally they appear as isolated oxygen atoms because hydrogens positions can not be solved from the data gathered with most experimental structure determination [techniques](lexicon-technique). Only some of the water molecules present appear in the model as their position can vary between the different unitcells composing the crystal used for determination.   
 
-Après la sélection il est possible d'agir (Afficher, Cacher,...) spécifiquement sur cette sélection, sans modifier les autres atomes du modèle moléculaire.   
+After selecting, it's possible to act (represent, color,...) upon these selected atoms without affecting the rest of the molecular model.
+   
 
-![Sélection](static/img/selecteau.png)  
-La pré-visualisation de la sélection s'affiche transitoirement au passage de la souris et permet de vérifier la qualité de la sélection réalisée.
+![Select water](static/img/selecteau.png)  
+The pre-visualization of the selection is transiently displayed when the mouse hovers and makes it possible to check the quality of the selection made.

@@ -312,7 +312,8 @@ var vuex = new Vuex.Store({
     alert: {
       type: '',
       token: {}
-    }
+    },
+    isUserSelectionValid: false
   },
   mutations: {
     alert (state, {type, token}) {
@@ -439,6 +440,9 @@ var vuex = new Vuex.Store({
         state.helpHistory.push(state.help)
         state.help = state.helpHistoryForward.pop()
       }
+    },
+    isUserSelectionValid (state, value) {
+      state.isUserSelectionValid = value
     }
   },
   actions: {
@@ -945,6 +949,21 @@ var vuex = new Vuex.Store({
       } else {
         commit('helpHistoryStep', 1)
       }
+    },
+    userSelection (context, value) {
+      // is predicate empty
+      if (value === '') return
+      // is predicate valid?
+      const sel = new NGL.Selection(value)
+      if (sel.test === false) {
+        context.commit('isUserSelectionValid', false)
+      } else {
+        context.commit('isUserSelectionValid', true)
+        highlight(value)
+      }
+    },
+    highlightUserSelection (context, value) {
+      highlight(value)
     }
   },
   getters: {

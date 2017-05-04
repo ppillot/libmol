@@ -1,6 +1,15 @@
 <template>
-  <div>
-   <form-item :label="$t('ui.commands.select.label')">
+  <div class="button-panel">
+    <div class="header-search">
+      <span>{{$t('ui.commands.select.label')}}</span>
+      <div class="text-search" @mouseover="highlightUserSelection" @mouseout="highlightUserSelection(false)">
+        <input type="text"
+          spellcheck="false"
+          v-model="selectionText"
+          @keyup.enter="selectUserSelection"
+          :class="{ invalid: isNotValid }">
+        <i class="el-icon-search"></i></div>
+    </div>
     <button-group :active-value="selected" @change="sel" @hover="highlight">
       <radio-button value="all">{{ $t('ui.commands.select.all') }}
         <i :class="[visible['all'] ? 'icon-eye' : 'icon-eye-off']" 
@@ -55,6 +64,11 @@
       ButtonGroup,
       RadioButton
     },
+    data: function () {
+      return {
+        selectionText: ''
+      }
+    },
     computed: {
       unselectables: function () {
         let absent = {}
@@ -70,6 +84,9 @@
       },
       visible: function () {
         return this.$store.state.visible
+      },
+      isNotValid: function () {
+        return (this.$store.state.isUserSelectionValid === false && this.selectionText.length > 0)
       }
     },
     methods: {
@@ -82,6 +99,16 @@
         if (selector === undefined) selector = 'none'
         this.$store.dispatch('highlightSelectHovered', fixHetero(selector))
       },
+      highlightUserSelection (go = true) {
+        if (this.$store.state.isUserSelectionValid && this.selectionText !== '') {
+          this.$store.dispatch('highlightUserSelection', (go) ? this.selectionText : 'none')
+        }
+      },
+      selectUserSelection () {
+        if (this.$store.state.isUserSelectionValid && this.selectionText !== '') {
+          this.$store.dispatch('selection', this.selectionText)
+        }
+      },
       help (selector, active) {
         this.$store.dispatch('help', {
           action: 'select',
@@ -91,6 +118,11 @@
       },
       toggle (selector) {
         this.$store.dispatch('togglePresetVisibility', fixHetero(selector))
+      }
+    },
+    watch: {
+      selectionText: function (value) {
+        if (value !== '') this.$store.dispatch('userSelection', value)
       }
     }
   }
@@ -118,5 +150,45 @@
   i:hover {
     background: #20A0FF;
     color: #fff;
+  }
+
+  .button-panel {
+    margin-bottom: 1.2em;
+    font-size: 14px;
+  }
+  .header-search {
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+  }
+  .text-search {
+    flex: 1;
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    margin: 2px 0 2px 0.5em;
+    height: 1.8em;
+    padding: 0 2px 0 5px;
+    border: solid 1px #d1dbe5;
+    border-radius: 5px;
+  }
+  .text-search i {
+    position: initial;
+  }
+  .text-search input {
+    border: none;
+    flex: 1;
+    font-size: 1em;
+    font-weight: normal;
+    color: #2c3e50;
+  }
+  .text-search input:focus {
+    box-shadow: none;
+    outline: none;
+  }
+  .text-search input.invalid {
+    color: #FF4949;
   }
 </style>

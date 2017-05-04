@@ -153,6 +153,10 @@
     font-size: 1.1em;
     margin: 0.3em 0;
   }
+  .help h2 {
+    font-size: 1em;
+    margin: 0.3em 0;
+  }
   .help p {
     margin-top: 0.3em;
   }
@@ -168,5 +172,14 @@
   }
   .help img {
     max-width: 100%;
+  }
+  .help table {
+    border-collapse: collapse;
+    border-color: #ddd;
+  }
+  .help td {
+    border: solid 1px;
+    border-color: inherit;
+    padding: 0 0.5em;
   }
 </style>

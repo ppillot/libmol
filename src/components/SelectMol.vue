@@ -7,7 +7,9 @@
           spellcheck="false"
           v-model="selectionText"
           @keyup.enter="selectUserSelection"
+          @focus="help('command-line', true)"
           :class="{ invalid: isNotValid }">
+        <span class="counter" v-if="userSelectionSize > 0">{{ userSelectionSize }}</span>
         <i class="el-icon-search"></i></div>
     </div>
     <button-group :active-value="selected" @change="sel" @hover="highlight">
@@ -87,6 +89,9 @@
       },
       isNotValid: function () {
         return (this.$store.state.isUserSelectionValid === false && this.selectionText.length > 0)
+      },
+      userSelectionSize: function () {
+        return (this.$store.state.userSelectionSize)
       }
     },
     methods: {
@@ -102,6 +107,9 @@
       highlightUserSelection (go = true) {
         if (this.$store.state.isUserSelectionValid && this.selectionText !== '') {
           this.$store.dispatch('highlightUserSelection', (go) ? this.selectionText : 'none')
+        }
+        if (go) {
+          this.help('command-line', false)
         }
       },
       selectUserSelection () {
@@ -143,7 +151,7 @@
     display: inline-block;
     border-radius: 100px;
     position: absolute;
-    color: #99A9BF;
+    color: #8492A6;
     right: 0;
     padding: 0 4px;
   }
@@ -190,5 +198,14 @@
   }
   .text-search input.invalid {
     color: #FF4949;
+  }
+  .counter {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #fff;
+    background: #8492a6;
+    border-radius: 10px;
+    padding: 0 5px;
+    min-width: initial;
   }
 </style>

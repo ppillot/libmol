@@ -313,7 +313,8 @@ var vuex = new Vuex.Store({
       type: '',
       token: {}
     },
-    isUserSelectionValid: false
+    isUserSelectionValid: false,
+    userSelectionSize: 0
   },
   mutations: {
     alert (state, {type, token}) {
@@ -443,6 +444,9 @@ var vuex = new Vuex.Store({
     },
     isUserSelectionValid (state, value) {
       state.isUserSelectionValid = value
+    },
+    userSelectionSize (state, value) {
+      state.userSelectionSize = value
     }
   },
   actions: {
@@ -957,8 +961,10 @@ var vuex = new Vuex.Store({
       const sel = new NGL.Selection(value)
       if (sel.test === false) {
         context.commit('isUserSelectionValid', false)
+        context.commit('userSelectionSize', 0)
       } else {
         context.commit('isUserSelectionValid', true)
+        context.commit('userSelectionSize', structure.getAtomSet(sel).size())
         highlight(value)
       }
     },

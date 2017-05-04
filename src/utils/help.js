@@ -21,7 +21,8 @@ const helpFiles = {
     nucleic: 'selectNucleic',
     saccharide: 'selectSaccharide',
     water: 'selectWater',
-    hetero: 'selectHetero'
+    hetero: 'selectHetero',
+    'command-line': 'selectCommandLine'
   },
   lexicon: {
     aminoacid: 'lexiconAminoacid',

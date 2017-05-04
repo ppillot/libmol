@@ -2,15 +2,25 @@
   <div class="button-panel">
     <div class="header-search">
       <span>{{$t('ui.commands.select.label')}}</span>
-      <div class="text-search" @mouseover="highlightUserSelection" @mouseout="highlightUserSelection(false)">
+      
+      <div class="text-search" 
+        @mouseover="highlightUserSelection"
+        @mouseout="highlightUserSelection(false)"
+        v-if="!isTextSearchDisabled">
         <input type="text"
           spellcheck="false"
           v-model="selectionText"
           @keyup.enter="selectUserSelection"
           @focus="help('command-line', true)"
           :class="{ invalid: isNotValid }">
-        <span class="counter" v-if="userSelectionSize > 0">{{ userSelectionSize }}</span>
-        <i class="el-icon-search"></i></div>
+        <template v-if="userSelectionSize > 0">
+          <i class="el-icon-check"
+            @click="selectUserSelection"></i>
+          <span class="counter">{{ userSelectionSize }}</span>
+        </template>
+      </div>
+      <i :class="{'el-icon-search': isTextSearchDisabled, 'el-icon-circle-close': !isTextSearchDisabled}"
+        @click="toggleUserSelection"></i>
     </div>
     <button-group :active-value="selected" @change="sel" @hover="highlight">
       <radio-button value="all">{{ $t('ui.commands.select.all') }}
@@ -68,7 +78,8 @@
     },
     data: function () {
       return {
-        selectionText: ''
+        selectionText: '',
+        isTextSearchDisabled: true
       }
     },
     computed: {
@@ -117,6 +128,9 @@
           this.$store.dispatch('selection', this.selectionText)
         }
       },
+      toggleUserSelection () {
+        this.isTextSearchDisabled = !this.isTextSearchDisabled
+      },
       help (selector, active) {
         this.$store.dispatch('help', {
           action: 'select',
@@ -140,14 +154,19 @@
   .radio-button {
     position: relative;
   }
-  .active i {
+  .radio-button .active i {
     color: #fff;
   }
-  .active i:hover {
+  .radio-button .active i:hover {
     background: white;
     color: #20A0FF;
   }
   i {
+    color: #8492A6;
+    cursor: pointer;
+    padding: 0 0 0 4px;
+  }
+  .radio-button i {
     display: inline-block;
     border-radius: 100px;
     position: absolute;
@@ -155,7 +174,7 @@
     right: 0;
     padding: 0 4px;
   }
-  i:hover {
+  .radio-button i:hover {
     background: #20A0FF;
     color: #fff;
   }
@@ -207,5 +226,17 @@
     border-radius: 10px;
     padding: 0 5px;
     min-width: initial;
+  }
+  .el-icon-circle-close:hover {
+    color: #FF4949
+  }
+  .el-icon-search:hover {
+    color: #20A0FF
+  }
+  .el-icon-check {
+    color: #C0CCDA
+  }
+  .el-icon-check:hover {
+    color: #20A0FF;
   }
 </style>

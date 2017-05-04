@@ -182,4 +182,8 @@
     border-color: inherit;
     padding: 0 0.5em;
   }
+  code {
+    font-size: 1.2em;
+    background: #EFF2F7;
+}
 </style>

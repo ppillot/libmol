@@ -154,10 +154,10 @@
   .radio-button {
     position: relative;
   }
-  .radio-button .active i {
+  .radio-button.active i {
     color: #fff;
   }
-  .radio-button .active i:hover {
+  .radio-button.active i:hover {
     background: white;
     color: #20A0FF;
   }

@@ -60,23 +60,16 @@ npm run build
 
 ToDo
 - Files : 
-  - handle legacy PDB files (ngl) or send messages if something goes wrong
   - handle mega files (display surfaces)
-- i18n:
-  - switch languages
 - Errors/warnings : send messages
   - when file could not be uploaded
   - when network is not available --> online/offline api
-  - when current selection is empty
-  - when some atoms are hidden
-  - when all atoms are hidden
 - Commandes : 
   - add/remove labels
   - create/remove surface, export as STL objects for printing (https://github.com/mrdoob/three.js/blob/master/examples/js/exporters/STLBinaryExporter.js)
   - provide choices for hetero (e.g. : in cox2 asp and hem)
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
-  - select from user command, using NGL selection syntax
   - select from distance (within)
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting

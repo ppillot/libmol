@@ -188,6 +188,7 @@
     flex-direction: row;
     width: 100%;
     align-items: center;
+    height: 2em;
   }
   .text-search {
     flex: 1;

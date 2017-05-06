@@ -314,7 +314,8 @@ var vuex = new Vuex.Store({
       token: {}
     },
     isUserSelectionValid: false,
-    userSelectionSize: 0
+    userSelectionSize: 0,
+    userSelectionText: ''
   },
   mutations: {
     alert (state, {type, token}) {
@@ -447,6 +448,9 @@ var vuex = new Vuex.Store({
     },
     userSelectionSize (state, value) {
       state.userSelectionSize = value
+    },
+    setUserSelectionText (state, value) {
+      state.userSelectionText = value
     }
   },
   actions: {
@@ -955,18 +959,9 @@ var vuex = new Vuex.Store({
       }
     },
     userSelection (context, value) {
-      // is predicate empty
-      if (value === '') return
-      // is predicate valid?
       const sel = new NGL.Selection(value)
-      if (sel.test === false) {
-        context.commit('isUserSelectionValid', false)
-        context.commit('userSelectionSize', 0)
-      } else {
-        context.commit('isUserSelectionValid', true)
-        context.commit('userSelectionSize', structure.getAtomSet(sel).size())
-        highlight(value)
-      }
+      context.commit('userSelectionSize', structure.getAtomSet(sel).size())
+      highlight(value)
     },
     highlightUserSelection (context, value) {
       highlight(value)

@@ -1,10 +1,12 @@
 <template>
   <div class="cli-container">
+<!-- container of the input box and its controls -->
     <div class="text-search" 
       :class="{'radio-button': !isEditing, active: !isEditing}"
       @mouseover="highlightUserSelection"
       @mouseout="highlightUserSelection(false)"
       v-if="!isTextSearchDisabled">
+
       <template v-if="isEditing">
         <input type="text"
           spellcheck="false"
@@ -18,6 +20,7 @@
           <span class="counter">{{ userSelectionSize }}</span>
         </template>
       </template>
+
       <div class="button-like" 
         v-else
         @dblclick.stop="editing" 
@@ -34,13 +37,20 @@
 </template>
 
 <script>
+  import {Selection} from 'ngl'
+
+  function isNGLValid (sele) {
+    const sel = new Selection(sele)
+    return sel.test !== false
+  }
+
   export default {
     name: 'SelectCLI',
     data: function () {
       return {
-        selectionText: '',
         isTextSearchDisabled: true,
-        isEditing: true
+        isEditing: true,
+        isValid: false
       }
     },
     computed: {
@@ -51,10 +61,24 @@
         return this.$store.state.visible
       },
       isNotValid: function () {
-        return (this.$store.state.isUserSelectionValid === false && this.selectionText.length > 0)
+        return (this.isValid === false && this.selectionText.length > 0)
       },
       userSelectionSize: function () {
         return (this.$store.state.userSelectionSize)
+      },
+      selectionText: {
+        set: function (value) {
+          this.$store.commit('setUserSelectionText', value)
+          if (value !== '') {
+            this.isValid = isNGLValid(value)
+            if (this.isValid) {
+              this.$store.dispatch('userSelection', value)
+            }
+          }
+        },
+        get: function () {
+          return (this.$store.state.userSelectionText)
+        }
       }
     },
     methods: {
@@ -63,7 +87,7 @@
           this.$store.commit('userSelectionSize', 0)
           return
         }
-        if (this.$store.state.isUserSelectionValid && this.selectionText !== '') {
+        if (this.isValid && this.selectionText !== '') {
           this.$store.dispatch('highlightUserSelection', (go) ? this.selectionText : 'none')
         }
         if (go) {
@@ -71,7 +95,7 @@
         }
       },
       selectUserSelection () {
-        if (this.$store.state.isUserSelectionValid && this.selectionText !== '' && this.$store.state.userSelectionSize > 0) {
+        if (this.isValid && this.selectionText !== '' && this.$store.state.userSelectionSize > 0) {
           this.$store.dispatch('selection', this.selectionText)
           this.isEditing = false
           this.$nextTick(function () {
@@ -88,15 +112,14 @@
       },
       toggleUserSelection () {
         this.isTextSearchDisabled = !this.isTextSearchDisabled
+        this.selectionText = ''
         if (!this.isTextSearchDisabled) {
           this.$nextTick(function () {
             this.$el.getElementsByTagName('input')[0].focus()
           }.bind(this))
         } else {
-          this.selectionText = ''
           this.isEditing = true
           this.$store.commit('userSelectionSize', 0)
-          this.$store.commit('isUserSelectionValid', false)
         }
       },
       help (selector, active) {
@@ -108,11 +131,6 @@
       },
       toggleUserSelectionVisibility () {
         this.$store.dispatch('hide', {sele: this.selectionText, action: 'hide'})
-      }
-    },
-    watch: {
-      selectionText: function (value) {
-        if (value !== '') this.$store.dispatch('userSelection', value)
       }
     }
   }

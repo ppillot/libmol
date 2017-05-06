@@ -21,8 +21,11 @@
             <span class="counter">{{ userSelectionSize }}</span>
           </template>
         </template>
-        <div class="button-like" v-else
-          @dblclick.stop="editing">
+        <div class="button-like" 
+          v-else
+          @dblclick.stop="editing" 
+          @keyup.enter="editing"
+          tabindex="0">
           <span>"{{ selectionText }}"</span>
           <i class="el-icon-edit"  
           @click.stop="editing"></i>
@@ -141,6 +144,9 @@
         if (this.$store.state.isUserSelectionValid && this.selectionText !== '' && this.$store.state.userSelectionSize > 0) {
           this.$store.dispatch('selection', this.selectionText)
           this.isEditing = false
+          this.$nextTick(function () {
+            this.$el.getElementsByClassName('button-like')[0].focus()
+          }.bind(this))
         }
       },
       editing () {

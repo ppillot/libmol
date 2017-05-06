@@ -18,7 +18,7 @@ function hover (context) {
 
   return function (pickingProxy) {
     // background is being hovered
-    if (pickingProxy === undefined) {
+    if (pickingProxy === undefined || pickingProxy.mouse.pressed) {
       if (isNaN(prevPid)) { // nothing has changed
         return
       } else {
@@ -30,7 +30,6 @@ function hover (context) {
         }
       }
     }
-
     if (pickingProxy.pid === prevPid) {
       // we keep displaying the same label
       return

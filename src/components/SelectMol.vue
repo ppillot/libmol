@@ -4,20 +4,28 @@
       <span>{{$t('ui.commands.select.label')}}</span>
       
       <div class="text-search" 
+        :class="{'radio-button': !isEditing, active: !isEditing}"
         @mouseover="highlightUserSelection"
         @mouseout="highlightUserSelection(false)"
         v-if="!isTextSearchDisabled">
-        <input type="text"
-          spellcheck="false"
-          v-model="selectionText"
-          @keyup.enter="selectUserSelection"
-          @focus="help('command-line', true)"
-          :class="{ invalid: isNotValid }">
-        <template v-if="userSelectionSize > 0">
-          <i class="el-icon-check"
-            @click="selectUserSelection"></i>
-          <span class="counter">{{ userSelectionSize }}</span>
+        <template v-if="isEditing">
+          <input type="text"
+            spellcheck="false"
+            v-model="selectionText"
+            @keyup.enter="selectUserSelection"
+            @focus="help('command-line', true)"
+            :class="{ invalid: isNotValid }">
+          <template v-if="userSelectionSize > 0">
+            <i class="el-icon-check"
+              @click="selectUserSelection"></i>
+            <span class="counter">{{ userSelectionSize }}</span>
+          </template>
         </template>
+        <div class="button-like" v-else>
+          <span>"{{ selectionText }}"</span>
+          <i class="el-icon-edit"  
+          @click.stop="editing"></i>
+        </div>
       </div>
       <i :class="{'el-icon-search': isTextSearchDisabled, 'el-icon-circle-close': !isTextSearchDisabled}"
         @click="toggleUserSelection"></i>
@@ -79,7 +87,8 @@
     data: function () {
       return {
         selectionText: '',
-        isTextSearchDisabled: true
+        isTextSearchDisabled: true,
+        isEditing: true
       }
     },
     computed: {
@@ -116,6 +125,10 @@
         this.$store.dispatch('highlightSelectHovered', fixHetero(selector))
       },
       highlightUserSelection (go = true) {
+        if (this.selectionText === '') {
+          this.$store.commit('userSelectionSize', 0)
+          return
+        }
         if (this.$store.state.isUserSelectionValid && this.selectionText !== '') {
           this.$store.dispatch('highlightUserSelection', (go) ? this.selectionText : 'none')
         }
@@ -124,15 +137,29 @@
         }
       },
       selectUserSelection () {
-        if (this.$store.state.isUserSelectionValid && this.selectionText !== '') {
+        if (this.$store.state.isUserSelectionValid && this.selectionText !== '' && this.$store.state.userSelectionSize > 0) {
           this.$store.dispatch('selection', this.selectionText)
+          this.isEditing = false
         }
+      },
+      editing () {
+        this.isEditing = true
+        this.$nextTick(function () {
+          this.$el.getElementsByTagName('input')[0].focus()
+          this.$el.getElementsByTagName('input')[0].select()
+        }.bind(this))
       },
       toggleUserSelection () {
         this.isTextSearchDisabled = !this.isTextSearchDisabled
-        this.$nextTick(function () {
-          this.$el.getElementsByTagName('input')[0].focus()
-        }.bind(this))
+        if (!this.isTextSearchDisabled) {
+          this.$nextTick(function () {
+            this.$el.getElementsByTagName('input')[0].focus()
+          }.bind(this))
+        } else {
+          this.selectionText = ''
+          this.isEditing = true
+          this.$forceUpdate()
+        }
       },
       help (selector, active) {
         this.$store.dispatch('help', {
@@ -143,6 +170,9 @@
       },
       toggle (selector) {
         this.$store.dispatch('togglePresetVisibility', fixHetero(selector))
+      },
+      toggleUserSelectionVisibility () {
+        this.$store.dispatch('hide', {sele: this.selectionText, action: 'hide'})
       }
     },
     watch: {
@@ -154,6 +184,22 @@
 </script>
 
 <style scoped>
+  .button-like {
+    position: relative;
+    justify-content: center;
+    width: 100%;
+    display: inline-flex;
+  }
+  .button-like span {
+    max-width: calc(100% - 2em);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: Courier New, Courier, monospace;
+  }
+  .button-like i {
+    position: absolute;
+    right: 0;
+  }
   .radio-button {
     position: relative;
   }
@@ -204,6 +250,10 @@
     padding: 0 2px 0 5px;
     border: solid 1px #d1dbe5;
     border-radius: 5px;
+    overflow: hidden;
+  }
+  .text-search:hover {
+    border-color: #58b7ff;
   }
   .text-search i {
     position: initial;
@@ -214,6 +264,7 @@
     font-size: 1em;
     font-weight: normal;
     color: #2c3e50;
+    font-family: Courier New, Courier, monospace
   }
   .text-search input:focus {
     box-shadow: none;
@@ -221,6 +272,12 @@
   }
   .text-search input.invalid {
     color: #FF4949;
+  }
+  .text-search.radio-button {
+    border-radius: 0;
+  }
+  .text-search.radio-button.active {
+    border: #20A0FF;
   }
   .counter {
     font-size: 0.8em;
@@ -242,5 +299,8 @@
   }
   .el-icon-check:hover {
     color: #20A0FF;
+  }
+  .el-icon-edit {
+    line-height: 2em;
   }
 </style>

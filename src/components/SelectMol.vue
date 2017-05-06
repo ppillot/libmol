@@ -130,6 +130,9 @@
       },
       toggleUserSelection () {
         this.isTextSearchDisabled = !this.isTextSearchDisabled
+        this.$nextTick(function () {
+          this.$el.getElementsByTagName('input')[0].focus()
+        }.bind(this))
       },
       help (selector, active) {
         this.$store.dispatch('help', {

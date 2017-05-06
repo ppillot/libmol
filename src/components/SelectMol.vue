@@ -159,7 +159,8 @@
         } else {
           this.selectionText = ''
           this.isEditing = true
-          this.$forceUpdate()
+          this.$store.commit('userSelectionSize', 0)
+          this.$store.commit('isUserSelectionValid', false)
         }
       },
       help (selector, active) {

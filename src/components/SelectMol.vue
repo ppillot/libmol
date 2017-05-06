@@ -21,7 +21,8 @@
             <span class="counter">{{ userSelectionSize }}</span>
           </template>
         </template>
-        <div class="button-like" v-else>
+        <div class="button-like" v-else
+          @dblclick.stop="editing">
           <span>"{{ selectionText }}"</span>
           <i class="el-icon-edit"  
           @click.stop="editing"></i>

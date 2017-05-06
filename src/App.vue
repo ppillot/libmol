@@ -40,7 +40,7 @@ export default {
         Screenfull.request(view)
         return { width: '100%' }
       } else {
-        Screenfull.exit()
+        if (Screenfull.enabled) Screenfull.exit()
         return {}
       }
     }

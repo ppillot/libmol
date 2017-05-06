@@ -31,7 +31,7 @@
           <el-button class="button" type="text" size="large" @click="screenCapture">
             <i class="icon-camera"></i>
           </el-button>
-          <el-button class="button" type="text" size="large" @click="toggleFullscreen">
+          <el-button class="button" type="text" size="large" @click="toggleFullscreen" v-if="isFullscreenEnabled">
             <i :class="[isFullScreen ? 'icon-resize-small' : 'icon-resize-full']"></i>
           </el-button>
           <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>
@@ -42,6 +42,7 @@
 <script>
   import settings from './Settings'
   import distance from './Distance'
+  import Screenfull from 'screenfull'
 
   export default {
     name: 'toolbar',
@@ -50,6 +51,9 @@
       distance
     },
     computed: {
+      isFullscreenEnabled: function () {
+        return Screenfull.enabled
+      },
       molName: function () {
         return this.$store.state.name
       },

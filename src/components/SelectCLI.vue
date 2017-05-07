@@ -17,9 +17,9 @@
           @focus="help('command-line', true)"
           :class="{ invalid: isNotValid }">
         
-          <!--<div class="tooltip" v-bind:style="tooltipStyles">
+          <div class="tooltip" v-bind:style="tooltipStyles">
             Valider la sélection pour la rendre active (Touche entrée ou clic sur cette icône)
-          </div>-->
+          </div>
 
           <i class="el-icon-check"
             @click="selectUserSelection" v-if="userSelectionSize > 0"></i>
@@ -57,11 +57,12 @@
     return sel.test !== false
   }
 
-  function getTooltipStyles (target) {
+  function getTooltipStyles (target, root) {
     let rect = target.getBoundingClientRect()
+    let bigRect = root.getBoundingClientRect()
     return {
-      top: rect.top - 35 + 'px',
-      left: rect.left - 5 + 'px',
+      bottom: 'calc(' + (bigRect.height - rect.top) + 'px + 0.7em)',
+      left: 'calc(' + rect.left + 'px - 10.3em)',
       visibility: 'visible'
     }
   }
@@ -116,7 +117,7 @@
         }
         if (this.isValid && this.selectionText !== '') {
           this.$store.dispatch('highlightUserSelection', (go) ? this.selectionText : 'none')
-          // this.getHoveredItem(this.$el.getElementsByClassName('el-icon-check')[0])
+          this.getHoveredItem(this.$el.getElementsByClassName('el-icon-check')[0])
         }
         if (go) {
           this.help('command-line', false)
@@ -161,7 +162,7 @@
         this.$store.dispatch('hide', {sele: this.selectionText, action: 'hide'})
       },
       getHoveredItem (target) {
-        this.tooltipStyles = getTooltipStyles(target)
+        this.tooltipStyles = getTooltipStyles(target, this.$root.$el)
       },
       hideTooltip () {
         this.tooltipStyles.visibility = 'hidden'
@@ -297,23 +298,23 @@
 
   .tooltip {
     position: fixed;
-    background: #fff;
+    background: #2c3e50;
     padding: 0.8em;
-    color: #2c3e50;
+    color: #fff;
+    opacity: 0.8;
     border-radius: 5px;
     min-width: 4em;
-    max-width: 30em;
+    max-width: 20em;
     text-align: center;
     min-height: 1.2em;
     line-height: 1.2em;
     z-index: 2;
     word-wrap: break-word;
     font-size: 1em;
-    box-shadow: 1px 1px 1px #eee;
   }
   
   .tooltip:after {
-    left: 1em;
+    left: 50%;
     top: 100%;
     border: solid transparent;
     content: " ";
@@ -322,7 +323,7 @@
     position: absolute;
     pointer-events: none;
     border-color: rgba(47, 64, 74, 0);
-    border-top-color: #1f2d3d;
+    border-top-color: #2c3e50;
     border-width: 5px;
     margin-top: 0;
   }

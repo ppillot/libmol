@@ -12,6 +12,7 @@
           spellcheck="false"
           v-model="selectionText"
           @keyup.enter="selectUserSelection"
+          @keyup.delete="highlightUserSelection"
           @focus="help('command-line', true)"
           :class="{ invalid: isNotValid }">
         <template v-if="userSelectionSize > 0">
@@ -83,8 +84,9 @@
     },
     methods: {
       highlightUserSelection (go = true) {
-        if (this.selectionText === '') {
+        if (this.selectionText === '' || !this.isValid) {
           this.$store.commit('userSelectionSize', 0)
+          this.$store.dispatch('highlightUserSelection', 'none')
           return
         }
         if (this.isValid && this.selectionText !== '') {

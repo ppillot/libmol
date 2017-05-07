@@ -241,7 +241,4 @@
     flex: 1;
   }
 
-  .statusbar .counter {
-    
-  }
 </style>

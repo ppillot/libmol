@@ -16,11 +16,14 @@
           @keyup.delete="highlightUserSelection"
           @focus="help('command-line', true)"
           :class="{ invalid: isNotValid }">
-        <template v-if="userSelectionSize > 0">
+        
+          <!--<div class="tooltip" v-bind:style="tooltipStyles">
+            Valider la sélection pour la rendre active (Touche entrée ou clic sur cette icône)
+          </div>-->
+
           <i class="el-icon-check"
-            @click="selectUserSelection"></i>
-          <span class="counter">{{ userSelectionSize }}</span>
-        </template>
+            @click="selectUserSelection" v-if="userSelectionSize > 0"></i>
+          <span class="counter" :class="{success: userSelectionSize > 0}">{{ userSelectionSize }}</span>
       </template>
 
     <!-- button active after selection, when editing has stopped -->
@@ -36,6 +39,11 @@
       </div>
     </div>
 <!-- container end -->
+<!-- Suggestion div -->
+    <div id="cli-suggest" >
+
+    </div>
+<!-- activate/deactivate button -->
     <i :class="{'el-icon-search': isTextSearchDisabled, 'el-icon-circle-close': !isTextSearchDisabled}"
       @click="toggleUserSelection"></i>
   </div>
@@ -49,13 +57,26 @@
     return sel.test !== false
   }
 
+  function getTooltipStyles (target) {
+    let rect = target.getBoundingClientRect()
+    return {
+      top: rect.top - 35 + 'px',
+      left: rect.left - 5 + 'px',
+      visibility: 'visible'
+    }
+  }
   export default {
     name: 'SelectCLI',
     data: function () {
       return {
         isTextSearchDisabled: true,
         isEditing: true,
-        isValid: false
+        isValid: false,
+        tooltipStyles: {
+          top: '0px',
+          left: '0px',
+          visibility: 'hidden'
+        }
       }
     },
     computed: {
@@ -95,6 +116,7 @@
         }
         if (this.isValid && this.selectionText !== '') {
           this.$store.dispatch('highlightUserSelection', (go) ? this.selectionText : 'none')
+          // this.getHoveredItem(this.$el.getElementsByClassName('el-icon-check')[0])
         }
         if (go) {
           this.help('command-line', false)
@@ -137,6 +159,12 @@
       },
       toggleUserSelectionVisibility () {
         this.$store.dispatch('hide', {sele: this.selectionText, action: 'hide'})
+      },
+      getHoveredItem (target) {
+        this.tooltipStyles = getTooltipStyles(target)
+      },
+      hideTooltip () {
+        this.tooltipStyles.visibility = 'hidden'
       }
     }
   }
@@ -157,6 +185,8 @@
     max-width: calc(100% - 2em);
     text-overflow: ellipsis;
     overflow: hidden;
+    height: 2em;
+    word-break: break-all;
     font-family: Courier New, Courier, monospace;
   }
   .button-like i {
@@ -259,5 +289,40 @@
   }
   .el-icon-edit {
     line-height: 2em;
+  }
+  .success {
+    background-color: #13CE66;
+  }
+
+  .tooltip {
+    position: fixed;
+    background: #fff;
+    padding: 0.8em;
+    color: #2c3e50;
+    border-radius: 5px;
+    min-width: 4em;
+    max-width: 30em;
+    text-align: center;
+    min-height: 1.2em;
+    line-height: 1.2em;
+    z-index: 2;
+    word-wrap: break-word;
+    font-size: 1em;
+    box-shadow: 1px 1px 1px #eee;
+  }
+  
+  .tooltip:after {
+    left: 1em;
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(47, 64, 74, 0);
+    border-top-color: #1f2d3d;
+    border-width: 5px;
+    margin-top: 0;
   }
 </style>

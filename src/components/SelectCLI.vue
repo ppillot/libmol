@@ -180,6 +180,7 @@
     justify-content: center;
     width: 100%;
     display: inline-flex;
+    outline: none;
   }
   .button-like span {
     max-width: calc(100% - 2em);

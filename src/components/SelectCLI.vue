@@ -2,11 +2,12 @@
   <div class="cli-container">
 <!-- container of the input box and its controls -->
     <div class="text-search" 
-      :class="{'radio-button': !isEditing, active: !isEditing}"
+      :class="{'radio-button': !isEditing, active: selected && !isEditing}"
       @mouseover="highlightUserSelection"
       @mouseout="highlightUserSelection(false)"
       v-if="!isTextSearchDisabled">
 
+    <!-- text box active when editing -->  
       <template v-if="isEditing">
         <input type="text"
           spellcheck="false"
@@ -22,16 +23,19 @@
         </template>
       </template>
 
+    <!-- button active after selection, when editing has stopped -->
       <div class="button-like" 
         v-else
         @dblclick.stop="editing" 
         @keyup.enter="editing"
+        @click.stop="selectUserSelection"
         tabindex="0">
         <span>"{{ selectionText }}"</span>
         <i class="el-icon-edit"  
         @click.stop="editing"></i>
       </div>
     </div>
+<!-- container end -->
     <i :class="{'el-icon-search': isTextSearchDisabled, 'el-icon-circle-close': !isTextSearchDisabled}"
       @click="toggleUserSelection"></i>
   </div>
@@ -56,7 +60,7 @@
     },
     computed: {
       selected: function () {
-        return this.$store.state.selection
+        return this.$store.state.selection === 'user'
       },
       visible: function () {
         return this.$store.state.visible

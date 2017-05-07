@@ -60,13 +60,6 @@
       RadioButton,
       SelectCli
     },
-    data: function () {
-      return {
-        selectionText: '',
-        isTextSearchDisabled: true,
-        isEditing: true
-      }
-    },
     computed: {
       unselectables: function () {
         let absent = {}
@@ -82,12 +75,6 @@
       },
       visible: function () {
         return this.$store.state.visible
-      },
-      isNotValid: function () {
-        return (this.$store.state.isUserSelectionValid === false && this.selectionText.length > 0)
-      },
-      userSelectionSize: function () {
-        return (this.$store.state.userSelectionSize)
       }
     },
     methods: {

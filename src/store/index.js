@@ -169,13 +169,14 @@ function getPredefined (str, chains) {
     return str.getAtomSet(new NGL.Selection(sele))
   }
 
-  const predefinedSets = [
+  let predefinedSets = [
     ['all', structure.getAtomSet()],
     ['protein', getAtomSet('protein')],
     ['saccharide', getAtomSet('saccharide')],
     ['nucleic', getAtomSet('nucleic')],
     ['water', getAtomSet('water')],
-    ['hetero', getAtomSet('hetero and not water and not saccharide')]
+    ['hetero', getAtomSet('hetero and not water and not saccharide')],
+    ['user', getAtomSet('none')]
   ]
 
   const chainSet = new Map()
@@ -236,10 +237,15 @@ function getPredefined (str, chains) {
     return molSets
   }
 
+  function updateUserSet (as) {
+    const userSet = predefinedSets.find(val => { return val[0] === 'user' })
+    userSet[1] = as
+  }
+
   return {
     findSelected: findSet,
-    findVisible: findVisibleSets
-
+    findVisible: findVisibleSets,
+    userSelection: updateUserSet
   }
 }
 
@@ -960,8 +966,10 @@ var vuex = new Vuex.Store({
     },
     userSelection (context, value) {
       const sel = new NGL.Selection(value)
-      context.commit('userSelectionSize', structure.getAtomSet(sel).size())
+      const as = structure.getAtomSet(sel)
+      context.commit('userSelectionSize', as.size())
       highlight(value)
+      predefined.userSelection(as)
     },
     highlightUserSelection (context, value) {
       highlight(value)

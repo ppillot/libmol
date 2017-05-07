@@ -17,7 +17,7 @@
           @focus="help('command-line', true)"
           :class="{ invalid: isNotValid }">
         
-          <div class="tooltip" v-bind:style="tooltipStyles" @click="hideTooltip(true)">
+          <div class="tooltip" v-bind:style="tooltipStyles" @click="hideTooltip(true)" v-if="tooltipEnabled">
             <i class="el-icon-circle-close"></i>
             {{ $t('tooltips.validate_selection') }}
           </div>
@@ -107,7 +107,6 @@
             this.isValid = isNGLValid(value)
             if (this.isValid) {
               this.$store.dispatch('userSelection', value)
-              this.displayTooltip()
             }
           }
         },
@@ -134,6 +133,7 @@
         if (this.isValid && this.selectionText !== '' && this.$store.state.userSelectionSize > 0) {
           this.$store.dispatch('selection', this.selectionText)
           this.isEditing = false
+          this.hideTooltip(true)
           this.$nextTick(function () {
             this.$el.getElementsByClassName('button-like')[0].focus()
           }.bind(this))
@@ -156,6 +156,7 @@
         } else {
           this.isEditing = true
           this.$store.commit('userSelectionSize', 0)
+          this.tooltipStyles.visibility = 'hidden'
         }
       },
       help (selector, active) {
@@ -171,7 +172,8 @@
       hideTooltip (forever = false) {
         this.tooltipStyles.visibility = 'hidden'
         if (forever) {
-          this.tooltipEnabled = false
+          this.unwatch()
+          // this.tooltipEnabled = false
         }
       },
       displayTooltip () {
@@ -180,6 +182,15 @@
           this.tooltipStyles = getTooltipStyles(target, this.$root.$el)
         }
       }
+    },
+    mounted: function () {
+      this.unwatch = this.$watch(function () {
+        return this.userSelectionSize
+      }, function (val) {
+        if (val > 0) {
+          this.displayTooltip()
+        }
+      })
     }
   }
 </script>

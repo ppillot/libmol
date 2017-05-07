@@ -1,20 +1,20 @@
-# Sélectionner par commande de sélection
-Cette zone de texte permet d'entrer une commande de sélection afin de réaliser des sélections plus complexes ou plus rapidement que par le mode séquence.  
+# Sélectionner avec le langage de sélection
+Cette zone de texte permet de saisir une commande de sélection pour réaliser des sélections plus complexes ou plus rapidement qu'avec le mode séquence.  
 Tous les atomes dont les caractéristiques correspondent aux mots clés sont sélectionnés.
 
 Pour valider la sélection, utiliser la touche Entrée ou cliquer sur le bouton de validation.  
 
-La pré-visualisation de la sélection s'affiche transitoirement au survol de la souris et permet de vérifier la qualité de la sélection réalisée. Le nombre d'atomes correspondants est indiqué dans la barre de sélection. Si la sélection n'est pas analysable par le logiciel, le texte apparaît en rouge.
+La pré-visualisation de la sélection s'affiche transitoirement au survol de la souris et permet de vérifier la qualité de la sélection réalisée. Le nombre d'atomes correspondants est indiqué dans la barre de sélection. Si la sélection n'est pas reconnue par le logiciel, le texte apparaît en rouge.
 
 ## Exemples de commandes de sélection
 | Commande | Sélection correspondante |
 |----------|--------------------------|
 |`val`     | toutes les valines       |
 |`val and 10`| toutes les valines en position 10 dans les chaînes  
-|`:B`      | chaîne B  
+|`:B`      | chaîne B (**Attention à la majuscule**)
 |`10:B`    | l'acide aminé (ou le nucléotide) en position 10 dans la chaîne B
 |`#C`      | tous les atomes de carbone
-|`ala.ca and not 10`  | tous les carbones alpha des alanines sauf dans l'acide aminé en position 10
+|`ala and .ca and not 10`  | tous les carbones alpha des alanines sauf dans l'acide aminé en position 10
 |`protein and not (:C,:B)`| tous les atomes appartenant à des protéines mais pas aux chaînes C et B
 
 ## Mots clés

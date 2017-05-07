@@ -155,7 +155,7 @@
   }
   .help h2 {
     font-size: 1em;
-    margin: 0.3em 0;
+    margin: 1em 0 0.5em 0;
   }
   .help p {
     margin-top: 0.3em;
@@ -175,15 +175,21 @@
   }
   .help table {
     border-collapse: collapse;
-    border-color: #ddd;
+    margin: 1em 0
+  }
+  .help th {
+    border: none;
+    border-bottom: solid 1px #607d88;
+    padding: 0.4em 0.5em;
+  }
+  .help tr {
+    border-bottom: solid 1px #ddd;
   }
   .help td {
-    border: solid 1px;
-    border-color: inherit;
-    padding: 0 0.5em;
+    padding: 0.4em 0.5em;
   }
   code {
     font-size: 1.2em;
-    background: #EFF2F7;
+    color: #8492a6;
 }
 </style>

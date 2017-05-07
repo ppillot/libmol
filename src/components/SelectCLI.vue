@@ -17,8 +17,9 @@
           @focus="help('command-line', true)"
           :class="{ invalid: isNotValid }">
         
-          <div class="tooltip" v-bind:style="tooltipStyles">
-            Valider la sélection pour la rendre active (Touche entrée ou clic sur cette icône)
+          <div class="tooltip" v-bind:style="tooltipStyles" @click="hideTooltip(true)">
+            <i class="el-icon-circle-close"></i>
+            {{ $t('tooltips.validate_selection') }}
           </div>
 
           <i class="el-icon-check"
@@ -58,6 +59,11 @@
   }
 
   function getTooltipStyles (target, root) {
+    if (target === undefined) {
+      return {
+        visibility: 'hidden'
+      }
+    }
     let rect = target.getBoundingClientRect()
     let bigRect = root.getBoundingClientRect()
     return {
@@ -77,7 +83,8 @@
           top: '0px',
           left: '0px',
           visibility: 'hidden'
-        }
+        },
+        tooltipEnabled: true
       }
     },
     computed: {
@@ -100,6 +107,7 @@
             this.isValid = isNGLValid(value)
             if (this.isValid) {
               this.$store.dispatch('userSelection', value)
+              this.displayTooltip()
             }
           }
         },
@@ -117,7 +125,6 @@
         }
         if (this.isValid && this.selectionText !== '') {
           this.$store.dispatch('highlightUserSelection', (go) ? this.selectionText : 'none')
-          this.getHoveredItem(this.$el.getElementsByClassName('el-icon-check')[0])
         }
         if (go) {
           this.help('command-line', false)
@@ -161,11 +168,17 @@
       toggleUserSelectionVisibility () {
         this.$store.dispatch('hide', {sele: this.selectionText, action: 'hide'})
       },
-      getHoveredItem (target) {
-        this.tooltipStyles = getTooltipStyles(target, this.$root.$el)
-      },
-      hideTooltip () {
+      hideTooltip (forever = false) {
         this.tooltipStyles.visibility = 'hidden'
+        if (forever) {
+          this.tooltipEnabled = false
+        }
+      },
+      displayTooltip () {
+        if (this.tooltipEnabled) {
+          const target = this.$el.getElementsByClassName('el-icon-check')[0]
+          this.tooltipStyles = getTooltipStyles(target, this.$root.$el)
+        }
       }
     }
   }
@@ -326,5 +339,10 @@
     border-top-color: #2c3e50;
     border-width: 5px;
     margin-top: 0;
+  }
+  
+  .tooltip i {
+    float: right;
+    margin: -5px -5px 0 0
   }
 </style>

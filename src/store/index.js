@@ -18,7 +18,9 @@ Vue.use(Vuex)
 /** @description local module variable to hold the NGL stage object
  * @typedef {NGL.stage}
  */
-var stage = {}
+var stage = {
+  setParameters: function () {}
+}
 var structure = {}
 var representationsList = []
 var highlight

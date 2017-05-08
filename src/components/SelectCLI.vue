@@ -25,6 +25,15 @@
           <i class="el-icon-check"
             @click="selectUserSelection" v-if="userSelectionSize > 0"></i>
           <span class="counter" :class="{success: userSelectionSize > 0}">{{ userSelectionSize }}</span>
+
+          <div class="suggest">
+            <table>
+              <tr v-for="suggestion in suggestions">
+                <td class="suggest-keyword">{{ suggestion }}</td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
       </template>
 
     <!-- button active after selection, when editing has stopped -->
@@ -40,10 +49,7 @@
       </div>
     </div>
 <!-- container end -->
-<!-- Suggestion div -->
-    <div id="cli-suggest" >
 
-    </div>
 <!-- activate/deactivate button -->
     <i :class="{'el-icon-search': isTextSearchDisabled, 'el-icon-circle-close': !isTextSearchDisabled}"
       @click="toggleUserSelection"></i>
@@ -52,6 +58,53 @@
 
 <script>
   import {Selection} from 'ngl'
+  let keywords = [
+    'and',
+    'or',
+    'not',
+    'all',
+    'sidechain',
+    'sidechainAttached',
+    'backbone',
+    'protein',
+    'nucleic',
+    'rna',
+    'dna',
+    'hetero',
+    'ion',
+    'saccharide',
+    'sugar',
+    'polymer',
+    'water',
+    'hydrogen',
+    'helix',
+    'sheet',
+    'turn',
+    'small',
+    'nucleophilic',
+    'hydrophobic',
+    'aromatic',
+    'amid',
+    'acidic',
+    'basic',
+    'charged',
+    'polar',
+    'nonpolar'
+  ]
+
+  function filter (array, word) {
+    let filteredArray = []
+    let w = word.toUpperCase()
+
+    array.forEach(function (val) {
+      let u = val.toUpperCase()
+      if (u.indexOf(w) === 0) {
+        filteredArray.push(val)
+      }
+    })
+
+    return filteredArray
+  }
 
   function isNGLValid (sele) {
     const sel = new Selection(sele)
@@ -84,12 +137,26 @@
           left: '0px',
           visibility: 'hidden'
         },
-        tooltipEnabled: true
+        tooltipEnabled: true,
+        suggestions: []
       }
     },
     computed: {
       selected: function () {
         return this.$store.state.selection === 'user'
+      },
+      validSelectors: function () {
+        let tabRes = []
+        console.log(this.$store.state.mol.residues)
+        this.$store.state.mol.residues.forEach(val => { tabRes.push(val) })
+
+        let tabEl = []
+        this.$store.state.mol.elements.forEach(val => { tabEl.push(val) })
+        return {
+          chains: this.$store.state.mol.chains.reduce((acc, val) => { return acc.concat([':' + val.name]) }, []),
+          residues: tabRes,
+          elements: tabEl
+        }
       },
       visible: function () {
         return this.$store.state.visible
@@ -103,6 +170,7 @@
       selectionText: {
         set: function (value) {
           this.$store.commit('setUserSelectionText', value)
+          this.getSuggestions(value)
           if (value !== '') {
             this.isValid = isNGLValid(value)
             if (this.isValid) {
@@ -181,6 +249,40 @@
           const target = this.$el.getElementsByClassName('el-icon-check')[0]
           this.tooltipStyles = getTooltipStyles(target, this.$root.$el)
         }
+      },
+      getSuggestions (val) {
+        if (val === '') {
+          return
+        }
+        const input = this.$el.getElementsByTagName('input')[0]
+        const text = input.value
+        const carretPos = input.selectionStart
+
+        let tabSuggestions = []
+
+        if (text === '' || text.charAt(carretPos - 1) === ' ') {
+          // do nothing: empty suggestions
+        } else {
+          // get last word before carret (and after last space)
+          let word = text.substring(text.lastIndexOf(' '), carretPos)
+
+          // check last char
+          const last = word.charAt(word.length - 1)
+          switch (last) {
+            case ':': // it finishes by ':' --> suggest chain names
+              tabSuggestions = tabSuggestions.concat(this.validSelectors.chains)
+              break
+            case '#': // suggest element names
+              tabSuggestions = tabSuggestions.concat(this.validSelectors.elements)
+              break
+            default:
+              if (/^\w+$/.test(word)) {
+                tabSuggestions = tabSuggestions.concat(filter(keywords, word))
+                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.residues, word))
+              }
+          }
+        }
+        this.suggestions = tabSuggestions
       }
     },
     mounted: function () {
@@ -355,5 +457,15 @@
   .tooltip i {
     float: right;
     margin: -5px -5px 0 0
+  }
+
+  .suggest {
+    position: fixed;
+    width: 600px;
+    top: 11em;
+    left: 10em;
+    background: white;
+    border: 1px solid #aaa;
+    z-index: 3;
   }
 </style>

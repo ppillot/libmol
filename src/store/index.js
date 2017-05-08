@@ -698,7 +698,7 @@ var vuex = new Vuex.Store({
         resnum: (token.type === 'chain') ? null : token.resnum,
         resname: (token.type === 'chain') ? null : token.resname
       }
-      console.log('payload', payload)
+
       context.dispatch('contextMenuCalled', payload)
     },
 
@@ -811,7 +811,7 @@ var vuex = new Vuex.Store({
             isNotSelectedMaskable: currentlyDisplayedAtomSet.intersects(notSelectedAtomSet),
             isNotSelectedUnMaskable: currentlyDisplayedAtomSet.intersection_size(notSelectedAtomSet) < notSelectedAtomSet.size()
           }
-          console.log(anchor)
+          // console.log(anchor)
       }
 
       context.commit('contextMenuAnchor', anchor)

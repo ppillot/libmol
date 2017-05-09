@@ -514,5 +514,14 @@
     width: 100%;
     border-bottom: 1px solid #eee;
     padding: 4px;
+    cursor: pointer;
+  }
+  .suggest li:hover {
+    background: #20A0FF;
+    color: #fff;
+    cursor: pointer;
+  }
+  li:hover code {
+    color: #fff;
   }
 </style>

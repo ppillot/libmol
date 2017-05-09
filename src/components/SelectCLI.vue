@@ -14,6 +14,8 @@
           v-model="selectionText"
           @keyup.enter="selectUserSelection"
           @keyup.delete="highlightUserSelection"
+          @keyup.down="highlightSuggestion(1)"
+          @keyup.up="highlightSuggestion(-1)"
           @focus="help('command-line', true)"
           :class="{ invalid: isNotValid }">
         
@@ -25,12 +27,16 @@
           <i class="el-icon-check"
             @click="selectUserSelection" v-if="userSelectionSize > 0"></i>
           <span class="counter" :class="{success: userSelectionSize > 0}">{{ userSelectionSize }}</span>
-
+      <!-- suggestions -->
           <div class="suggest" :style="suggestStyles">
             
-              <ul v-for="suggestion in suggestions">
-                <li class="suggest-keyword" @click="replaceBySuggestion(suggestion)">
-                  <code>{{ suggestion }}</code>
+              <ul>
+                <li
+                  v-for="(suggestion, index) in suggestions" 
+                  :class="{highlight: (highlightedSuggestion === index + 1)}"
+                  @click="replaceBySuggestion(suggestion)"
+                  >
+                  {{ suggestion }}
                 </li>
               </ul>
             
@@ -139,7 +145,8 @@
           visibility: 'hidden'
         },
         tooltipEnabled: true,
-        suggestions: []
+        suggestions: [],
+        highlightedSuggestion: 0
       }
     },
     computed: {
@@ -211,6 +218,13 @@
         }
       },
       selectUserSelection () {
+        // edge case: user is selecting from the suggestions list
+        if (this.highlightedSuggestion > 0) {
+          this.replaceBySuggestion(this.suggestions[this.highlightedSuggestion - 1])
+          return
+        }
+
+        // normal case, validating a selection statement
         if (this.isValid && this.selectionText !== '' && this.$store.state.userSelectionSize > 0) {
           this.$store.dispatch('selection', this.selectionText)
           this.isEditing = false
@@ -275,9 +289,14 @@
         this.selectionText = prefix + suggestion + postfix
         input.focus()
       },
+      highlightSuggestion (delta) {
+        this.highlightedSuggestion += delta
+        if (this.highlightedSuggestion < 0) this.highlightedSuggestion = 0
+      },
       getSuggestions (val) {
         if (val === '') {
           this.suggestions = []
+          this.highlightedSuggestion = 0
           return
         }
         const input = this.$el.getElementsByTagName('input')[0]
@@ -315,6 +334,7 @@
           }
         }
         this.suggestions = tabSuggestions
+        this.highlightedSuggestion = 0
       }
     },
     mounted: function () {
@@ -515,8 +535,9 @@
     border-bottom: 1px solid #eee;
     padding: 4px;
     cursor: pointer;
+    font-family: Courier New, Courier, monospace;
   }
-  .suggest li:hover {
+  .suggest li:hover, .suggest li.highlight {
     background: #20A0FF;
     color: #fff;
     cursor: pointer;

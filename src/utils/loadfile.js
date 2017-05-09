@@ -31,6 +31,7 @@ function loadFile (stage) {
       let molTypes = new Set()
       let chainMap = new Map()
       let chains = []
+      let atoms = Object.keys(structure.atomMap.dict).map(val => { return val.substring(0, val.indexOf('|')) })
       let elements = new Set(Object.keys(structure.atomMap.dict).sort()
                                     .map(atomIdentifier =>
                                     atomIdentifier.substr(atomIdentifier.indexOf('|') + 1)
@@ -93,7 +94,7 @@ function loadFile (stage) {
       component.addRepresentation('ball+stick', {multipleBond: (noSequence) ? 'symmetric' : 'off'})
       stage.autoView()
 
-      return Promise.resolve({molTypes, chains, elements, residues, sstruc, selected, noSequence, component})
+      return Promise.resolve({molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component})
       // context.commit('setMolTypes', )
       // context.commit('selectedChains')
     })

@@ -26,13 +26,14 @@
             @click="selectUserSelection" v-if="userSelectionSize > 0"></i>
           <span class="counter" :class="{success: userSelectionSize > 0}">{{ userSelectionSize }}</span>
 
-          <div class="suggest">
-            <table>
-              <tr v-for="suggestion in suggestions">
-                <td class="suggest-keyword">{{ suggestion }}</td>
-                <td></td>
-              </tr>
-            </table>
+          <div class="suggest" :style="suggestStyles">
+            
+              <ul v-for="suggestion in suggestions">
+                <li class="suggest-keyword" @click="replaceBySuggestion(suggestion)">
+                  <code>{{ suggestion }}</code>
+                </li>
+              </ul>
+            
           </div>
       </template>
 
@@ -92,13 +93,13 @@
     'nonpolar'
   ]
 
-  function filter (array, word) {
+  function filter (array, word, startIndex = 0) {
     let filteredArray = []
     let w = word.toUpperCase()
 
     array.forEach(function (val) {
       let u = val.toUpperCase()
-      if (u.indexOf(w) === 0) {
+      if (u.indexOf(w) === startIndex) {
         filteredArray.push(val)
       }
     })
@@ -147,15 +148,18 @@
       },
       validSelectors: function () {
         let tabRes = []
-        console.log(this.$store.state.mol.residues)
         this.$store.state.mol.residues.forEach(val => { tabRes.push(val) })
 
         let tabEl = []
-        this.$store.state.mol.elements.forEach(val => { tabEl.push(val) })
+        this.$store.state.mol.elements.forEach(val => { tabEl.push('#' + val) })
+
+        let tabAt = this.$store.state.mol.atoms.map(val => { return '.' + val })
+
         return {
           chains: this.$store.state.mol.chains.reduce((acc, val) => { return acc.concat([':' + val.name]) }, []),
           residues: tabRes,
-          elements: tabEl
+          elements: tabEl,
+          atoms: tabAt
         }
       },
       visible: function () {
@@ -166,6 +170,15 @@
       },
       userSelectionSize: function () {
         return (this.$store.state.userSelectionSize)
+      },
+      suggestStyles: function () {
+        let rect = this.$el.getBoundingClientRect()
+        return {
+          top: rect.bottom + 'px',
+          left: rect.left + 'px',
+          'min-width': rect.width + 'px',
+          visibility: (this.suggestions.length === 0) ? 'hidden' : 'visible'
+        }
       },
       selectionText: {
         set: function (value) {
@@ -250,8 +263,21 @@
           this.tooltipStyles = getTooltipStyles(target, this.$root.$el)
         }
       },
+      replaceBySuggestion (suggestion) {
+        const input = this.$el.getElementsByTagName('input')[0]
+        const carretPos = input.selectionStart
+        let text = this.selectionText
+
+        const prefix = text.substring(0, text.lastIndexOf(' ', carretPos) + 1)
+        const endOfWord = text.indexOf(' ', carretPos)
+        const postfix = (endOfWord === -1) ? '' : text.substring(endOfWord)
+
+        this.selectionText = prefix + suggestion + postfix
+        input.focus()
+      },
       getSuggestions (val) {
         if (val === '') {
+          this.suggestions = []
           return
         }
         const input = this.$el.getElementsByTagName('input')[0]
@@ -264,8 +290,8 @@
           // do nothing: empty suggestions
         } else {
           // get last word before carret (and after last space)
-          let word = text.substring(text.lastIndexOf(' '), carretPos)
-
+          let word = text.substring(text.lastIndexOf(' ') + 1, carretPos)
+          // debugger
           // check last char
           const last = word.charAt(word.length - 1)
           switch (last) {
@@ -275,10 +301,16 @@
             case '#': // suggest element names
               tabSuggestions = tabSuggestions.concat(this.validSelectors.elements)
               break
+            case '.': // suggest atoms names
+              tabSuggestions = tabSuggestions.concat(this.validSelectors.atoms)
+              break
             default:
               if (/^\w+$/.test(word)) {
                 tabSuggestions = tabSuggestions.concat(filter(keywords, word))
                 tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.residues, word))
+                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.chains, word, 1))
+                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.elements, word, 1))
+                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.atoms, word, 1))
               }
           }
         }
@@ -461,11 +493,26 @@
 
   .suggest {
     position: fixed;
-    width: 600px;
-    top: 11em;
-    left: 10em;
+    width: 30em;
     background: white;
-    border: 1px solid #aaa;
+    border: 1px solid #d1dbe5;
     z-index: 3;
+    border-radius: 4px;
+    margin: -1px 0 0 6px;
+    max-height: 15em;
+    overflow: scroll;
+  }
+
+  .suggest ul {
+    width: 100%;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+  }
+  .suggest ul li {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    padding: 4px;
   }
 </style>

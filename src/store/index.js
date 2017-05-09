@@ -266,6 +266,7 @@ var vuex = new Vuex.Store({
     isMeasuringDistances: false,
     mol: {
       chains: [],
+      atoms: [],
       elements: new Set(),
       residues: new Set(),
       molTypes: {
@@ -334,7 +335,7 @@ var vuex = new Vuex.Store({
       state.fileName = newFile.file
       state.name = newFile.value
     },
-    setMolTypes (state, {molTypes, chains, elements, residues, sstruc, selected, noSequence}) {
+    setMolTypes (state, {molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence}) {
       state.mol.molTypes.protein = molTypes.has(3)
       state.mol.molTypes.dna = molTypes.has(5)
       state.mol.molTypes.rna = molTypes.has(4)
@@ -349,6 +350,7 @@ var vuex = new Vuex.Store({
       state.mol.residues = residues
       state.mol.sstruc = sstruc
       state.mol.noSequence = noSequence
+      state.mol.atoms = atoms
 
       state.selected = selected
     },
@@ -509,11 +511,11 @@ var vuex = new Vuex.Store({
     },
     loadNewFile (context, newFile) {
       loadNewFile(newFile).then(
-        ({molTypes, chains, elements, residues, sstruc, selected, noSequence, component}) => {
+        ({molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component}) => {
           structure = component.structure
           if (debug) window.structure = structure
 
-          context.commit('setMolTypes', {molTypes, chains, elements, residues, sstruc, selected, noSequence})
+          context.commit('setMolTypes', {molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence})
 
           tabColorScheme = [['element', 'all']]
           updateGlobalColorScheme()

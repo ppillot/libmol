@@ -519,14 +519,14 @@ var vuex = new Vuex.Store({
 
           tabColorScheme = [['element', 'all']]
           updateGlobalColorScheme()
-          representationsList[0] = {
+          representationsList = [{
             display: 'ball+stick',
             color: 'element',
             sele: 'all',
             atomSet: structure.getAtomSet().clone(),
             displayedAtomSet: structure.getAtomSet().clone(),
             index: component.reprList.length - 1
-          }
+          }]
           currentSelectionAtomSet = structure.getAtomSet().clone()
           currentlyDisplayedAtomSet = structure.getAtomSet().clone()
           wholeAtomSet = structure.getAtomSet().clone()

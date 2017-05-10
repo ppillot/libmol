@@ -7,11 +7,11 @@ function getChainColors (chains, structure) {
 
   chains.forEach(chain => {
     chainColors.push(
-      chainNameScheme.atomColor(
+      (chainNameScheme.atomColor(
         structure.getAtomProxy(
           structure.getChainProxy(chain.id).atomOffset
         )
-      ).toString(16)
+      ) | 0).toString(16)
     )
   })
   return chainColors

@@ -33,7 +33,7 @@
               <ul>
                 <li
                   v-for="(suggestion, index) in suggestions" 
-                  :class="{highlight: (highlightedSuggestion === index + 1)}"
+                  :class="{highlight: (highlightedSuggestion === index)}"
                   @click="replaceBySuggestion(suggestion)"
                   >
                   {{ suggestion }}
@@ -146,7 +146,7 @@
         },
         tooltipEnabled: true,
         suggestions: [],
-        highlightedSuggestion: 0
+        highlightedSuggestion: -1
       }
     },
     computed: {
@@ -218,9 +218,10 @@
         }
       },
       selectUserSelection () {
+        // debugger
         // edge case: user is selecting from the suggestions list
-        if (this.highlightedSuggestion > 0) {
-          this.replaceBySuggestion(this.suggestions[this.highlightedSuggestion - 1])
+        if (this.highlightedSuggestion >= 0) {
+          this.replaceBySuggestion(this.suggestions[this.highlightedSuggestion])
           return
         }
 
@@ -291,12 +292,12 @@
       },
       highlightSuggestion (delta) {
         this.highlightedSuggestion += delta
-        if (this.highlightedSuggestion < 0) this.highlightedSuggestion = 0
+        if (this.highlightedSuggestion < -1) this.highlightedSuggestion = -1
       },
       getSuggestions (val) {
         if (val === '') {
           this.suggestions = []
-          this.highlightedSuggestion = 0
+          this.highlightedSuggestion = -1
           return
         }
         const input = this.$el.getElementsByTagName('input')[0]
@@ -334,7 +335,7 @@
           }
         }
         this.suggestions = tabSuggestions
-        this.highlightedSuggestion = 0
+        this.highlightedSuggestion = -1
       }
     },
     mounted: function () {

@@ -158,7 +158,7 @@
         this.$store.state.mol.residues.forEach(val => { tabRes.push(val) })
 
         let tabEl = []
-        this.$store.state.mol.elements.forEach(val => { tabEl.push('#' + val) })
+        this.$store.state.mol.elements.forEach(val => { tabEl.push('_' + val) })
 
         let tabAt = this.$store.state.mol.atoms.map(val => { return '.' + val })
 
@@ -320,7 +320,7 @@
             case ':': // it finishes by ':' --> suggest chain names
               tabSuggestions = tabSuggestions.concat(this.validSelectors.chains)
               break
-            case '#': // suggest element names
+            case '_': // suggest element names
               tabSuggestions = tabSuggestions.concat(this.validSelectors.elements)
               break
             case '.': // suggest atoms names

@@ -289,6 +289,8 @@
 
         this.selectionText = prefix + suggestion + postfix
         input.focus()
+        input.setSelectionRange(prefix.length + suggestion.length, prefix.length + suggestion.length)
+        this.getSuggestions(suggestion)
       },
       highlightSuggestion (delta) {
         this.highlightedSuggestion += delta

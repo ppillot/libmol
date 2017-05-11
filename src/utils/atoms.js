@@ -1,6 +1,7 @@
 function getAtomProperties (atom) {
   return {
     index: atom.index,
+    serial: atom.serial,
     symbol: atom.element,
     atomname: atom.atomname,
     resname: atom.resname,

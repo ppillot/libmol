@@ -27,10 +27,10 @@
             <el-button type="text" icon="delete" @click="handleDelete(index)"></el-button>
           </td>
           <td>
-            {{ measure.atom1.symbol}} {{ measure.atom1.index }} | {{ measure.atom1.resname}}{{ measure.atom1.resno}}
+            {{ measure.atom1.atomname}} {{ measure.atom1.serial }} | {{ measure.atom1.resname}}{{ measure.atom1.resno}}
           </td>
           <td>
-            {{ measure.atom2.symbol}} {{ measure.atom2.index }} | {{ measure.atom2.resname}}{{ measure.atom2.resno}}
+            {{ measure.atom2.atomname}} {{ measure.atom2.serial }} | {{ measure.atom2.resname}}{{ measure.atom2.resno}}
           </td>
           <td>
             {{ measure.distance/10 | round}} nm

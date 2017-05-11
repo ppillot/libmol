@@ -155,7 +155,10 @@
       },
       validSelectors: function () {
         let tabRes = []
-        this.$store.state.mol.residues.forEach(val => { tabRes.push(val) })
+        const isNumeric = /\d+/
+        this.$store.state.mol.residues.forEach(val => {
+          tabRes.push(isNumeric.test(val) ? `[${val}]` : val)
+        })
 
         let tabEl = []
         this.$store.state.mol.elements.forEach(val => { tabEl.push('_' + val) })
@@ -326,13 +329,21 @@
             case '.': // suggest atoms names
               tabSuggestions = tabSuggestions.concat(this.validSelectors.atoms)
               break
+            case '[': // suggest res names
+              tabSuggestions = tabSuggestions.concat(this.validSelectors.residues)
+              break
             default:
-              if (/^\w+$/.test(word)) {
+              if (/^[a-zA-Z]+$/.test(word)) {
                 tabSuggestions = tabSuggestions.concat(filter(keywords, word))
                 tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.residues, word))
                 tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.chains, word, 1))
                 tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.elements, word, 1))
                 tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.atoms, word, 1))
+                // debugger
+              } else {
+                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.residues, word, 1))
+                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.atoms, word, 1))
+                // debugger
               }
           }
         }

@@ -61,6 +61,7 @@ npm run build
 ToDo
 - Files : 
   - handle mega files (display surfaces)
+  - get files from pubchem
 - Errors/warnings : send messages
   - when file could not be uploaded
   - when network is not available --> online/offline api
@@ -72,6 +73,7 @@ ToDo
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from distance (within)
 - 3D View:
+  - Hide water molecules by default
   - change cursor when rotating, zooming, panning, selecting
 - code refactor
   - event bus : https://devblog.digimondo.io/building-a-simple-eventbus-in-vue-js-64b70fb90834#.706mbapkg

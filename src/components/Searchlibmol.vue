@@ -43,7 +43,7 @@ export default {
       .then(function (response) {
         const rep = response.data.map(item => (
           { value: item.label,
-            file: ((item.file.indexOf('.cif') > -1) || (item.file.indexOf('.mmtf') > -1))
+            file: ((item.file.indexOf('.cif') > -1) || (item.file.indexOf('.mmtf') > -1) || (item.file.indexOf('.sdf') > -1))
             ? 'static/mol/' + item.file
             : `static/mol/pdb/${item.file}.pdb`,
             molId: item.molId }))

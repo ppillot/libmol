@@ -244,10 +244,15 @@ function getPredefined (str, chains) {
     userSet[1] = as
   }
 
+  function getPreset (presetName) {
+    return predefinedSets.find(val => { return val[0] === presetName })[1]
+  }
+
   return {
     findSelected: findSet,
     findVisible: findVisibleSets,
-    userSelection: updateUserSet
+    userSelection: updateUserSet,
+    getAtomSet: getPreset
   }
 }
 
@@ -576,13 +581,20 @@ var vuex = new Vuex.Store({
       context.commit('display', getRepresentationFromSelection())
     },
 
-    display (context, {display, atomSet = currentSelectionAtomSet, overlay = false}) {
+    display (context, {display, atomSet = currentSelectionAtomSet.clone(), overlay = false}) {
       const displayType = display
       // does this representation already exist?
       const num = representationsList.findIndex(val => {
         return (val.display === displayType && val.overlay === overlay)
       })
-      let dAtomSet = atomSet.clone().intersection(currentlyDisplayedAtomSet)
+
+      // if selection is of mixed type (not just polymer) and display is either
+      // cartoon or backbone, we need to limit it to the polymer selection
+      if (displayType === 'backbone' || displayType === 'cartoon') {
+        atomSet.intersection(predefined.getAtomSet('protein')) // .intersection(predefined.getAtomSet('nucleic'))
+      }
+
+      let dAtomSet = atomSet.intersection(currentlyDisplayedAtomSet)
 
       if (num === -1) {
         // new representation

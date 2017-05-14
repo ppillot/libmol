@@ -61,7 +61,6 @@ npm run build
 ToDo
 - Files : 
   - handle mega files (display surfaces)
-  - get files from pubchem
 - Errors/warnings : send messages
   - when file could not be uploaded
   - when network is not available --> online/offline api

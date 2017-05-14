@@ -240,8 +240,11 @@ function getPredefined (str, chains) {
   }
 
   function updateUserSet (as) {
-    const userSet = predefinedSets.find(val => { return val[0] === 'user' })
-    userSet[1] = as
+    predefinedSets.forEach(set => {
+      if (set[0] === 'user') {
+        set[1] = as
+      }
+    })
   }
 
   function getPreset (presetName) {
@@ -425,10 +428,10 @@ var vuex = new Vuex.Store({
     updateHiddenPercentage (state) {
       state.hiddenPercentage = 100 - ((currentlyDisplayedAtomSet.size() / currentlyDisplayedAtomSet.length) * 100)
     },
-    hide (state, everythingIsDisplayed) {
+    hide (state) {
       const sets = predefined.findVisible()
       state.visible = sets
-      state.isHidden = !everythingIsDisplayed
+      state.isHidden = currentlyDisplayedAtomSet.equals(wholeAtomSet)
     },
     distance (state, tabDistances) {
       state.distances = tabDistances

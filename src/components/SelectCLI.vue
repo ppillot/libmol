@@ -53,6 +53,8 @@
         <span>"{{ selectionText }}"</span>
         <i class="el-icon-edit"  
         @click.stop="editing"></i>
+         <i :class="[visible ? 'icon-eye' : 'icon-eye-off']" 
+        @click.stop="toggle('user')"></i>
       </div>
     </div>
 <!-- container end -->
@@ -190,7 +192,7 @@
         }
       },
       visible: function () {
-        return this.$store.state.visible
+        return this.$store.state.visible.user
       },
       isNotValid: function () {
         return (this.isValid === false && this.selectionText.length > 0)
@@ -244,10 +246,10 @@
           return
         }
 
-        // debugger
         // normal case, validating a selection statement
         if (this.isValid && this.selectionText !== '' && this.$store.state.userSelectionSize > 0) {
           this.$store.dispatch('selection', this.selectionText)
+          this.$store.commit('hide')
           this.isEditing = false
           this.hideTooltip(true)
           this.$nextTick(function () {
@@ -289,7 +291,6 @@
         this.tooltipStyles.visibility = 'hidden'
         if (forever) {
           this.unwatch()
-          // this.tooltipEnabled = false
         }
       },
       displayTooltip () {
@@ -590,5 +591,8 @@
   }
   li:hover code {
     color: #fff;
+  }
+  i.icon-eye-off, i.icon-eye {
+    position: absolute;
   }
 </style>

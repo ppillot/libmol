@@ -13,7 +13,7 @@ La pré-visualisation de la sélection s'affiche transitoirement au survol de la
 |`val and 10`| toutes les valines en position 10 dans les chaînes  
 |`:B`      | chaîne B (**Attention à la majuscule**)
 |`10:B`    | l'acide aminé (ou le nucléotide) en position 10 dans la chaîne B
-|`#C`      | tous les atomes de carbone
+|`_C`      | tous les atomes de carbone
 |`ala and .ca and not 10`  | tous les carbones alpha des alanines sauf dans l'acide aminé en position 10
 |`protein and not (:C,:B)`| tous les atomes appartenant à des protéines mais pas aux chaînes C et B
 

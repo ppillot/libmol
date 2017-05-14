@@ -13,7 +13,7 @@ The pre-visualization of the selection is transiently displayed on mouseover and
 | `val and 10` | All valines in position 10 in the chains
 | `:B` | Chain B **(case sensitive)**
 | `10:B` | The amino acid (or nucleotide) at position 10 in the B chain
-| `#C` | All carbon atoms
+| `_C` | All carbon atoms
 | `ala and .ca and not 10` | All alpha carbons of alanines except in the amino acid at position 10
 | `protein and not (:C,:B)` | All atoms belonging to proteins but not to chains C nor B
 

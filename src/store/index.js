@@ -706,16 +706,16 @@ var vuex = new Vuex.Store({
           currentlyDisplayedAtomSet.union(atomSet)
         }
       }
-
+      // debugger
       updateRepresentationDisplay()
       if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
       context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
       context.commit('updateHiddenPercentage')
       let payload = {
         type: token.type,
-        chainName: token.chainName,
-        resnum: (token.type === 'chain') ? null : token.resnum,
-        resname: (token.type === 'chain') ? null : token.resname
+        chainName: (token.chainName) ? token.chainName : null,
+        resnum: (token.resnum) ? token.resnum : null,
+        resname: (token.resname) ? token.resname : null
       }
 
       context.dispatch('contextMenuCalled', payload)
@@ -829,6 +829,18 @@ var vuex = new Vuex.Store({
             isSelectionUnMaskable: currentlyDisplayedAtomSet.intersection_size(currentSelectionAtomSet) < currentSelectionAtomSet.size(),
             isNotSelectedMaskable: currentlyDisplayedAtomSet.intersects(notSelectedAtomSet),
             isNotSelectedUnMaskable: currentlyDisplayedAtomSet.intersection_size(notSelectedAtomSet) < notSelectedAtomSet.size()
+          }
+          break
+        case 'user':
+          const userAtomSet = structure.getAtomSet(new NGL.Selection(context.state.userSelectionText))
+          const restUserAtomSet = userAtomSet.clone().flip_all()
+          anchor = {
+            type: 'user',
+            isMaskable: currentlyDisplayedAtomSet.intersects(userAtomSet),
+            isUnMaskable: currentlyDisplayedAtomSet.intersection_size(userAtomSet) < userAtomSet.size(),
+            isRestPresent: !restUserAtomSet.isEmpty(),
+            isRestMaskable: currentlyDisplayedAtomSet.intersects(restUserAtomSet),
+            isRestUnMaskable: currentlyDisplayedAtomSet.intersection_size(restUserAtomSet) < restUserAtomSet.size()
           }
           // console.log(anchor)
       }

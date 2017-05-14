@@ -54,13 +54,48 @@
         <i class="el-icon-edit"  
         @click.stop="editing"></i>
          <i :class="[visible ? 'icon-eye' : 'icon-eye-off']" 
-        @click.stop="toggle('user')"></i>
+        @click.stop="displayContextMenu"></i>
+
+        
+
       </div>
     </div>
 <!-- container end -->
 
+<!-- context menu for masking/making visible -->
+        <div v-if="showContextMenu" class="context-menu-backdrop" @click.self="hideContextMenu">
+          <div class="context-menu" :style="contextMenuStyles">
+              <div>{{ $t('ctxMenu.user_selection') }}</div>
+              <ul>
+                <li @click="setVisibility('hide', 'selected', $event)"
+                  :class="{disabled: !ctxMProp.isMaskable}">
+                  <i class="icon-eye-off"></i>
+                  {{ $t('ctxMenu.mask') }}
+                </li>
+                <li @click="setVisibility('show', 'selected', $event)"
+                  :class="{disabled: !ctxMProp.isUnMaskable}">
+                  <i class="icon-eye"></i>
+                  {{ $t('ctxMenu.unmask') }}
+                </li>
+                <li @click="setVisibility('hide', 'unselected', $event)"
+                  :class="{disabled: !ctxMProp.isRestMaskable}"
+                  v-if="ctxMProp.isRestPresent">
+                  <i class="icon-eye-off"></i> 
+                  {{ $t('ctxMenu.mask_rest') }}
+                </li>
+                <li @click="setVisibility('show', 'unselected', $event)" 
+                  :class="{disabled: !ctxMProp.isRestUnMaskable}"
+                  v-if="ctxMProp.isRestPresent">
+                  <i class="icon-eye"></i> 
+                  {{ $t('ctxMenu.unmask_rest') }}
+                </li>
+              </ul>
+          </div>
+        </div>
+
 <!-- activate/deactivate button -->
     <i :class="{'el-icon-search': isTextSearchDisabled, 'el-icon-circle-close': !isTextSearchDisabled}"
+      class="switch"
       @click="toggleUserSelection"></i>
   </div>
 </template>
@@ -151,6 +186,16 @@
       visibility: 'visible'
     }
   }
+
+  function getContextMenuStyles (target) {
+    let rect = target.getBoundingClientRect()
+    return {
+      top: rect.top - 5 + 'px',
+      left: rect.right + 5 + 'px',
+      visibility: 'visible'
+    }
+  }
+
   export default {
     name: 'SelectCLI',
     data: function () {
@@ -163,12 +208,21 @@
           left: '0px',
           visibility: 'hidden'
         },
+        contextMenuStyles: {
+          top: '0px',
+          left: '0px',
+          visibility: 'hidden'
+        },
+        showContextMenu: false,
         tooltipEnabled: true,
         suggestions: [],
         highlightedSuggestion: -1
       }
     },
     computed: {
+      ctxMProp: function () {
+        return this.$store.state.anchor
+      },
       selected: function () {
         return this.$store.state.selection === 'user'
       },
@@ -347,7 +401,6 @@
             wordStart--
           }
 
-          // debugger
           // check char at wordStart
           switch (word.charAt(0)) {
             case ':': // it begins by ':' --> suggest chain names
@@ -382,6 +435,29 @@
         }
         this.suggestions = tabSuggestions
         // this.highlightedSuggestion = -1
+      },
+// ******** Context menu
+      displayContextMenu (event) {
+        const target = event.target
+        this.showContextMenu = true
+        this.contextMenuStyles = getContextMenuStyles(target)
+        this.$store.dispatch('contextMenuCalled', {
+          type: 'user'
+        })
+      },
+      hideContextMenu () {
+        this.showContextMenu = false
+      },
+      setVisibility (action, selection, event) {
+        if (event.target.className === 'disabled') return
+        this.$store.dispatch('hide',
+          { sele: (selection === 'selected') ? this.selectionText : `not (${this.selectionText})`,
+            action: action,
+            type: 'user',
+            chainName: null,
+            resnum: null,
+            resname: null
+          })
       }
     },
     mounted: function () {
@@ -430,7 +506,7 @@
     background: white;
     color: #20A0FF;
   }
-  i {
+  .text-search i, i.switch {
     color: #8492A6;
     cursor: pointer;
     padding: 0 0 0 4px;
@@ -521,7 +597,7 @@
     background-color: #13CE66;
   }
 
-  .tooltip {
+  .tooltip, .context-menu {
     position: fixed;
     background: #2c3e50;
     padding: 0.8em;
@@ -556,6 +632,72 @@
   .tooltip i {
     float: right;
     margin: -5px -5px 0 0
+  }
+
+  .context-menu {
+    background: #EFF2F7;
+    color: #1f2d3d;
+    font-weight: 400;
+    font-size: 1em;
+    padding: 0;
+    opacity: 1;
+    line-height: 1.5em;
+    box-shadow: 0 1px 3px #aaa;
+  }
+
+  .context-menu:after {
+    right: 100%;
+    top: 1em;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(47, 64, 74, 0);
+    border-right-color: #1f2d3d;
+    border-width: 5px;
+    margin-top: -5px;
+  }
+
+  .context-menu ul {
+    margin: 0 0 5px 0;
+    padding: 0;
+  }
+  .context-menu li {
+    list-style: none;
+    text-align: left;
+    padding: 0 0.4em;
+  }
+  .context-menu li:hover {
+    background: #20A0FF;
+    color: #fff;
+    cursor: pointer;
+  }
+  .context-menu li.disabled {
+    color: #C0CCDA;
+  }
+  .context-menu li.disabled:hover {
+    cursor: default;
+    background: transparent;
+    color: #C0CCDA;
+  }
+  .context-menu div {
+    background: #1f2d3d;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 0.2em;
+    font-weight: 600;
+    color: #fff;
+    padding: 0 0.5em;
+  }
+  .context-menu-backdrop {
+    background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
   }
 
   .suggest {
@@ -594,5 +736,8 @@
   }
   i.icon-eye-off, i.icon-eye {
     position: absolute;
+  }
+  .context-menu i.icon-eye-off, .context-menu i.icon-eye {
+    position: initial;
   }
 </style>

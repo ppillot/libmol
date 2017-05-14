@@ -594,10 +594,6 @@
     padding: 0;
   }
 
-  .context-menu:after {
-    border-right-color: #1f2d3d
-  }
-
   .context-menu ul {
     margin: 0 0 5px 0;
     padding: 0;

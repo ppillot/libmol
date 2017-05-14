@@ -12,10 +12,10 @@
         <input type="text"
           spellcheck="false"
           v-model="selectionText"
-          @keyup.enter="selectUserSelection"
+          @keydown.enter="selectUserSelection"
           @keyup.delete="highlightUserSelection"
-          @keyup.down="highlightSuggestion(1)"
-          @keyup.up="highlightSuggestion(-1)"
+          @keydown.down.prevent="highlightSuggestion(1)"
+          @keydown.up.prevent="highlightSuggestion(-1)"
           @focus="help('command-line', true)"
           :class="{ invalid: isNotValid }">
         
@@ -34,7 +34,7 @@
                 <li
                   v-for="(suggestion, index) in suggestions" 
                   :class="{highlight: (highlightedSuggestion === index)}"
-                  @click="replaceBySuggestion(suggestion)"
+                  @mouseup="replaceBySuggestion(suggestion)"
                   >
                   {{ suggestion }}
                 </li>
@@ -47,7 +47,7 @@
       <div class="button-like" 
         v-else
         @dblclick.stop="editing" 
-        @keyup.enter="editing"
+        @keydown.enter="editing"
         @click.stop="selectUserSelection"
         tabindex="0">
         <span>"{{ selectionText }}"</span>
@@ -111,6 +111,23 @@
     })
 
     return filteredArray
+  }
+
+  function getWordBoundaries (text, caretPos) {
+    const wordStartDelimitors = ['(', '.', '[', ' ', ':', '_']
+    const wordEndDelimitors = [')', ' ']
+    const start = Math.max(...wordStartDelimitors.map(char => {
+      const shift = (char === ' ') ? 1 : 0
+      return text.lastIndexOf(char, caretPos - 1) + shift
+    }))
+
+    const end = Math.min(...wordEndDelimitors.map(char => {
+      const pos = text.indexOf(char, caretPos - 1)
+      return (pos === -1) ? text.length : pos // if there is no ')' don't consider -1 as a position
+    }))
+
+    return [(start > -1) ? start : 0,
+      (end > -1) ? end : text.length]
   }
 
   function isNGLValid (sele) {
@@ -221,13 +238,13 @@
         }
       },
       selectUserSelection () {
-        // debugger
         // edge case: user is selecting from the suggestions list
         if (this.highlightedSuggestion >= 0) {
           this.replaceBySuggestion(this.suggestions[this.highlightedSuggestion])
           return
         }
 
+        // debugger
         // normal case, validating a selection statement
         if (this.isValid && this.selectionText !== '' && this.$store.state.userSelectionSize > 0) {
           this.$store.dispatch('selection', this.selectionText)
@@ -283,17 +300,19 @@
       },
       replaceBySuggestion (suggestion) {
         const input = this.$el.getElementsByTagName('input')[0]
-        const carretPos = input.selectionStart
+        const caretPos = input.selectionStart
         let text = this.selectionText
+        const wordBoundaries = getWordBoundaries(text, caretPos)
 
-        const prefix = text.substring(0, text.lastIndexOf(' ', carretPos) + 1)
-        const endOfWord = text.indexOf(' ', carretPos)
-        const postfix = (endOfWord === -1) ? '' : text.substring(endOfWord)
+        const prefix = text.substring(0, wordBoundaries[0])
+        const postfix = (wordBoundaries[1] === -1) ? '' : text.substring(wordBoundaries[1])
 
         this.selectionText = prefix + suggestion + postfix
+        // debugger
         input.focus()
-        input.setSelectionRange(prefix.length + suggestion.length, prefix.length + suggestion.length)
+        input.selectionStart = (prefix.length + suggestion.length)
         this.getSuggestions(suggestion)
+        this.highlightedSuggestion = -1
       },
       highlightSuggestion (delta) {
         this.highlightedSuggestion += delta
@@ -302,37 +321,50 @@
       getSuggestions (val) {
         if (val === '') {
           this.suggestions = []
-          this.highlightedSuggestion = -1
+          // this.highlightedSuggestion = -1
           return
         }
         const input = this.$el.getElementsByTagName('input')[0]
         const text = input.value
-        const carretPos = input.selectionStart
+        const caretPos = input.selectionStart
 
         let tabSuggestions = []
 
-        if (text === '' || text.charAt(carretPos - 1) === ' ') {
+        if (text === '' || text.charAt(caretPos - 1) === ' ') {
           // do nothing: empty suggestions
         } else {
-          // get last word before carret (and after last space)
-          let word = text.substring(text.lastIndexOf(' ') + 1, carretPos)
+          // get last word before caret (and after last word delimiter)
+          const wordDelimitor = /[(.[ :_]/
+          let word = ''
+          let wordStart = caretPos - 1
+
+          while (wordStart >= 0) {
+            word = text.charAt(wordStart) + word
+            if (wordDelimitor.test(text.charAt(wordStart))) {
+              break
+            }
+            wordStart--
+          }
+
           // debugger
-          // check last char
-          const last = word.charAt(word.length - 1)
-          switch (last) {
-            case ':': // it finishes by ':' --> suggest chain names
-              tabSuggestions = tabSuggestions.concat(this.validSelectors.chains)
+          // check char at wordStart
+          switch (word.charAt(0)) {
+            case ':': // it begins by ':' --> suggest chain names
+              tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.chains, word))
               break
             case '_': // suggest element names
-              tabSuggestions = tabSuggestions.concat(this.validSelectors.elements)
+              tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.elements, word))
               break
             case '.': // suggest atoms names
-              tabSuggestions = tabSuggestions.concat(this.validSelectors.atoms)
+              tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.atoms, word))
               break
             case '[': // suggest res names
-              tabSuggestions = tabSuggestions.concat(this.validSelectors.residues)
+              tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.residues, word))
               break
             default:
+              if (/^[ ]/.test(word)) {
+                word = word.substring(1)
+              }
               if (/^[a-zA-Z]+$/.test(word)) {
                 tabSuggestions = tabSuggestions.concat(filter(keywords, word))
                 tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.residues, word))
@@ -348,7 +380,7 @@
           }
         }
         this.suggestions = tabSuggestions
-        this.highlightedSuggestion = -1
+        // this.highlightedSuggestion = -1
       }
     },
     mounted: function () {

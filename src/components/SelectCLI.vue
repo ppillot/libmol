@@ -30,16 +30,31 @@
       <!-- suggestions -->
           <div class="suggest" :style="suggestStyles">
             
-              <ul>
-                <li
-                  v-for="(suggestion, index) in suggestions" 
-                  :class="{highlight: (highlightedSuggestion === index)}"
-                  @mouseup="replaceBySuggestion(suggestion)"
-                  >
-                  {{ suggestion }}
-                </li>
-              </ul>
-            
+              <template v-for="(subject, index) in suggestions">
+                <div class="category">{{ $t(`tooltips.${subject.category}`) }}</div>
+                  <ul>
+                    <li
+                      v-for="suggestion in subject.content" 
+                      :class="{highlight: (highlightedSuggestion === suggestion.index)}"
+                      class="suggestion"
+                      @mouseup="replaceBySuggestion(suggestion.word)"
+                      >
+                        <code>{{ suggestion.word }}</code>
+                        <span v-if="subject.category==='res'">
+                          {{ $te(`biochem.pdb_res_name.${suggestion.word}`) ? $t(`biochem.pdb_res_name.${suggestion.word}`) : ''}}
+                        </span>
+                        <span v-else-if="subject.category === 'chain'">
+                          {{ getEntityFromChainName(suggestion.word) }})
+                        </span>
+                        <span v-if="subject.category==='element'">
+                          {{ $t(`biochem.el_name.${suggestion.word.substring(1)}`) }}
+                        </span>
+                        <span v-if="subject.category==='keyword'">
+                          {{ $t(`tooltips.${suggestion.word}`) }}
+                        </span>
+                    </li>
+                  </ul>
+              </template>
           </div>
       </template>
 
@@ -102,54 +117,9 @@
 
 <script>
   import {Selection} from 'ngl'
-  let keywords = [
-    'and',
-    'or',
-    'not',
-    'all',
-    'sidechain',
-    'sidechainAttached',
-    'backbone',
-    'protein',
-    'nucleic',
-    'rna',
-    'dna',
-    'hetero',
-    'ion',
-    'saccharide',
-    'sugar',
-    'polymer',
-    'water',
-    'hydrogen',
-    'helix',
-    'sheet',
-    'turn',
-    'small',
-    'nucleophilic',
-    'hydrophobic',
-    'aromatic',
-    'amid',
-    'acidic',
-    'basic',
-    'charged',
-    'polar',
-    'nonpolar'
-  ]
-
-  function filter (array, word, startIndex = 0) {
-    let filteredArray = []
-    let w = word.toUpperCase()
-
-    array.forEach(function (val) {
-      let u = val.toUpperCase()
-      if (u.indexOf(w) === startIndex) {
-        filteredArray.push(val)
-      }
-    })
-
-    return filteredArray
-  }
-
+  import Suggestions from 'utils/suggestions'
+  let suggestions = Suggestions()
+  
   function getWordBoundaries (text, caretPos) {
     const wordStartDelimitors = ['(', '.', '[', ' ', ':', '_']
     const wordEndDelimitors = [')', ' ']
@@ -296,7 +266,7 @@
       selectUserSelection () {
         // edge case: user is selecting from the suggestions list
         if (this.highlightedSuggestion >= 0) {
-          this.replaceBySuggestion(this.suggestions[this.highlightedSuggestion])
+          this.replaceBySuggestion(suggestions.getByIndex(this.highlightedSuggestion))
           return
         }
 
@@ -373,6 +343,11 @@
         this.highlightedSuggestion += delta
         if (this.highlightedSuggestion < -1) this.highlightedSuggestion = -1
       },
+      getEntityFromChainName (selector) {
+        const chainName = selector.substring(1)
+        const entity = this.$store.state.mol.chains.find(val => { return val.name === chainName }).entity
+        return `${this.$t('tooltips.chain')} ${chainName} (${entity})`
+      },
       getSuggestions (val) {
         if (val === '') {
           this.suggestions = []
@@ -383,7 +358,7 @@
         const text = input.value
         const caretPos = input.selectionStart
 
-        let tabSuggestions = []
+        suggestions.empty()
 
         if (text === '' || text.charAt(caretPos - 1) === ' ') {
           // do nothing: empty suggestions
@@ -404,36 +379,36 @@
           // check char at wordStart
           switch (word.charAt(0)) {
             case ':': // it begins by ':' --> suggest chain names
-              tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.chains, word))
+              suggestions.add('chain', this.validSelectors.chains, word)
               break
             case '_': // suggest element names
-              tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.elements, word))
+              suggestions.add('element', this.validSelectors.elements, word)
               break
             case '.': // suggest atoms names
-              tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.atoms, word))
+              suggestions.add('atom', this.validSelectors.atoms, word)
               break
             case '[': // suggest res names
-              tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.residues, word))
+              suggestions.add('res', this.validSelectors.residues, word)
               break
             default:
               if (/^[ ]/.test(word)) {
                 word = word.substring(1)
               }
               if (/^[a-zA-Z]+$/.test(word)) {
-                tabSuggestions = tabSuggestions.concat(filter(keywords, word))
-                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.residues, word))
-                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.chains, word, 1))
-                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.elements, word, 1))
-                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.atoms, word, 1))
+                suggestions.add('chain', this.validSelectors.chains, word, 1)
+                suggestions.add('res', this.validSelectors.residues, word)
+                suggestions.add('keyword', [], word)
+                suggestions.add('element', this.validSelectors.elements, word, 1)
+                suggestions.add('atom', this.validSelectors.atoms, word, 1)
                 // debugger
-              } else {
-                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.residues, word, 1))
-                tabSuggestions = tabSuggestions.concat(filter(this.validSelectors.atoms, word, 1))
+              } else { // word includes digits
+                suggestions.add('res', this.validSelectors.residues, word, 1)
+                suggestions.add('atoms', this.validSelectors.atoms, word, 1)
                 // debugger
               }
           }
         }
-        this.suggestions = tabSuggestions
+        this.suggestions = suggestions.get()
         // this.highlightedSuggestion = -1
       },
 // ******** Context menu
@@ -704,27 +679,38 @@
     position: fixed;
     width: 30em;
     background: white;
-    border: 1px solid #d1dbe5;
+    /* border: 1px solid #d1dbe5; */
     z-index: 3;
     border-radius: 4px;
     margin: -1px 0 0 6px;
     max-height: 15em;
     overflow: scroll;
+    box-shadow: 0 1px 3px #aaa;
+  }
+
+  .suggest .category {
+    background: #99A9BF;
+    font-weight: 600;
+    color: #fff;
+    padding: 0.2em 0.5em 0.2em 0.5em;
   }
 
   .suggest ul {
     width: 100%;
-    margin: 0;
+    margin: 0 0 0.5em 0;
     list-style: none;
     padding: 0;
     overflow: hidden;
   }
   .suggest ul li {
     width: 100%;
-    border-bottom: 1px solid #eee;
     padding: 4px;
     cursor: pointer;
-    font-family: Courier New, Courier, monospace;
+    color: #8492a6;
+  }
+  .suggest code {
+    font-size: 1em;
+    color: #1f2d3d;
   }
   .suggest li:hover, .suggest li.highlight {
     background: #20A0FF;

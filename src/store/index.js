@@ -490,8 +490,8 @@ var vuex = new Vuex.Store({
       stage.makeImage({
         factor: 2,
         antialias: true,
-        trim: true,
-        transparent: false
+        trim: false,
+        transparent: true
       }).then(function (blob) {
         NGL.download(blob, context.state.name + '.png')
       })

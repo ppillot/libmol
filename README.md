@@ -68,6 +68,7 @@ ToDo
   - add/remove labels
   - create/remove surface, export as STL objects for printing (https://github.com/mrdoob/three.js/blob/master/examples/js/exporters/STLBinaryExporter.js)
   - provide choices for hetero (e.g. : in cox2 asp and hem)
+  - menu for options in screen capture (transparent, trim, file name)
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from distance (within)

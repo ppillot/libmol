@@ -160,7 +160,7 @@
   function getContextMenuStyles (target) {
     let rect = target.getBoundingClientRect()
     return {
-      top: rect.top - 5 + 'px',
+      top: rect.top + 'px',
       left: rect.right + 5 + 'px',
       visibility: 'visible'
     }
@@ -622,7 +622,7 @@
 
   .context-menu:after {
     right: 100%;
-    top: 1em;
+    top: 12px;
     border: solid transparent;
     content: " ";
     height: 0;
@@ -689,7 +689,7 @@
   }
 
   .suggest .category {
-    background: #99A9BF;
+    background: #324057;
     font-weight: 600;
     color: #fff;
     padding: 0.2em 0.5em 0.2em 0.5em;
@@ -710,7 +710,11 @@
   }
   .suggest code {
     font-size: 1em;
-    color: #1f2d3d;
+    color: #324057;
+    display: inline-block;
+    min-width: 4em;
+    text-align: right;
+    padding-right: 0.5em;
   }
   .suggest li:hover, .suggest li.highlight {
     background: #20A0FF;

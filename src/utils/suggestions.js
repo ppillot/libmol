@@ -17,7 +17,7 @@ let keywords = [
   'sugar',
   'polymer',
   'water',
-  'hydrogen',
+  // 'hydrogen',
   'helix',
   'sheet',
   'turn',

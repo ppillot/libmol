@@ -44,7 +44,7 @@
                           {{ $te(`biochem.pdb_res_name.${suggestion.word}`) ? $t(`biochem.pdb_res_name.${suggestion.word}`) : ''}}
                         </span>
                         <span v-else-if="subject.category === 'chain'">
-                          {{ getEntityFromChainName(suggestion.word) }})
+                          {{ getEntityFromChainName(suggestion.word) }}
                         </span>
                         <span v-if="subject.category==='element'">
                           {{ $t(`biochem.el_name.${suggestion.word.substring(1)}`) }}

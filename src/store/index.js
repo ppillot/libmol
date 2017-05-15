@@ -488,9 +488,9 @@ var vuex = new Vuex.Store({
     screenCapture (context) {
       // from NGL example gui
       stage.makeImage({
-        factor: 1,
+        factor: 2,
         antialias: true,
-        trim: false,
+        trim: true,
         transparent: false
       }).then(function (blob) {
         NGL.download(blob, context.state.name + '.png')

@@ -1,3 +1,6 @@
+/* polyfills */
+import 'core-js/fn/array/find'
+
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import {Autocomplete, Button, Col, Dialog, Icon, Popover, Row, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'

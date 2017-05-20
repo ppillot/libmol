@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import debounce from 'throttle-debounce/debounce'
 import FormItem from './FormItem'
 
@@ -45,7 +45,20 @@ export default {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }
       ) */
-      axios.get('https://libmol.org/api/jsmol.php',
+      const path = (process.env.NODE_ENV !== 'production') ? 'api/jsmol.php' : 'https://libmol.org/api/recherche.php'
+
+      window.fetch(path, {
+        method: 'POST',
+        body: JSON.stringify({
+          call: 'getInfoFromDatabase',
+          database: '=',
+          query: queryString
+        })
+      })
+      .then(function (response) {
+        return response.text()
+      })
+      /* axios.get('https://libmol.org/api/jsmol.php',
         {
           params: {
             call: 'getInfoFromDatabase',
@@ -70,7 +83,9 @@ export default {
         }
       }) */
       .then(function (response) {
-        const xmlDocument = response.request.responseXML
+        /* global DOMParser */
+        const parser = new DOMParser()
+        const xmlDocument = parser.parseFromString(response, 'application/xml')
         const recordNodelist = xmlDocument.getElementsByTagName('record')
 
         let rep = []

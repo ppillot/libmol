@@ -22,7 +22,8 @@
     "screenfull": "^3.2.0",
     "vue": "^2.3.2",
     "vue-i18n": "git://github.com/kazupon/vue-i18n.git#5.x",
-    "vuex": "^2.3.1"
+    "vuex": "^2.3.1",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.5",

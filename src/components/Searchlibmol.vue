@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import debounce from 'throttle-debounce/debounce'
 import FormItem from './FormItem'
 
@@ -35,7 +35,7 @@ export default {
       }
       const path = (process.env.NODE_ENV !== 'production') ? 'api/recherche.php' : 'https://libmol.org/api/recherche.php'
 
-      axios.get(path, {
+      /*  axios.get(path, {
         params: {
           txt: queryString
         }
@@ -51,22 +51,27 @@ export default {
       })
       .catch(function (error) {
         console.log(error)
-      })
-/* fetch('api/recherche.php', {
-        method: 'GET',
-        body: {
+      }) */
+      window.fetch(path, {
+        method: 'POST',
+        body: JSON.stringify({
           txt: queryString
-        }
+        })
       })
       .then(function (response) {
-        const data = response.json()
-        console.log(data)
-        const rep = data.map(item => ({ value: item.label, file: 'static/mol/pdb/' + item.file + '.pdb', molId: item.molId }))
+        return response.json()
+      })
+      .then(function (data) {
+        const rep = data.map(item => ({ value: item.label,
+          file: ((item.file.indexOf('.cif') > -1) || (item.file.indexOf('.mmtf') > -1) || (item.file.indexOf('.sdf') > -1))
+            ? 'static/mol/' + item.file
+            : `static/mol/pdb/${item.file}.pdb`,
+          molId: item.molId }))
         cb(rep)
       })
       .catch(function (error) {
         console.log(error)
-      }) */
+      })
     },
     handleSelect (item) {
       this.$store.dispatch('loadNewFile', item)

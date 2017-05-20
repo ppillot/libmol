@@ -183,7 +183,7 @@ function addHelp(json,locale) {
 
 function writeJSON(s,name) {
   const fileName = name + '.json'
-  const destPath = './src/locales/' + fileName
+  const destPath = './src/locales/bundles/' + fileName
 
   fs.writeFile(destPath, s, function(err) {
     if (err) {

@@ -1,5 +1,6 @@
 /* polyfills */
-import 'core-js/fn/array/find'
+import 'utils/polyfills/array-find'
+import 'whatwg-fetch'
 
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
@@ -36,7 +37,7 @@ let lang = language.find(navPreferedLanguage => {
 if (lang === undefined) lang = 'en'
 
 /* eslint-disable */
-import('./locales/' + lang + '.json')
+import('./locales/bundles/' + lang + '.json')
 /* eslint-enable */
 .then(response => {
   Vue.locale(lang.substr(0, 2), response)

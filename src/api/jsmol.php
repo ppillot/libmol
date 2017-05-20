@@ -87,12 +87,12 @@ function getValueSimple($json, $key, $default) {
 if ($_GET['isform']=="true") {
 	$values = "";
 } else {
-	$values= file_get_contents("php://input");
+	$values= json_decode(file_get_contents("php://input"), true);
 }
-$encoding = getValueSimple($values, "encoding", "");
-$call = getValueSimple($values, "call", "getRawDataFromDatabase");
-$query = getValueSimple($values, "query", "https://cactus.nci.nih.gov/chemical/structure/ethanol/file?format=sdf&get3d=True");
-$database = getValueSimple($values, "database", "_");
+$encoding = $values["encoding"]; //, "");
+$call = $values["call"]; //, "getRawDataFromDatabase");
+$query = $values["query"]; //, "https://cactus.nci.nih.gov/chemical/structure/ethanol/file?format=sdf&get3d=True");
+$database = $values["database"]; //, "_");
 
 $imagedata = "";
 $contentType = "";

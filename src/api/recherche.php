@@ -14,11 +14,12 @@ $db = new PDO('sqlite:libmol.sqlite');
  * definition des constantes
  */
 
+ 	$data = json_decode(file_get_contents('php://input'), true);
 
-	if (isset($_REQUEST['txt'])) {
+	if (isset($data['txt'])) {
 	
  		$sql = $db->prepare("SELECT titre,id,fichier FROM molecule where molecule.FTINDEX LIKE ?");
-		$sql->execute(array("%".$_REQUEST['txt']."%"));
+		$sql->execute(array("%".$data['txt']."%"));
 		
 	} else if (isset($_REQUEST['cat'])) {
 		$requete = "SELECT titre,id,fichier FROM molecule where 1=1";

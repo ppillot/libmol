@@ -109,7 +109,7 @@ function updateGlobalColorScheme () {
 
 function updateRepresentationColor () {
   stage.compList[0].eachRepresentation(repr => {
-    if (repr.name === 'highlight') return
+    if (repr.name === 'highlight' || repr.name === 'distance') return
     repr.setColor(globalColorScheme)
   })
 }

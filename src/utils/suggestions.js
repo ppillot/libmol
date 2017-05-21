@@ -30,7 +30,9 @@ let keywords = [
   'basic',
   'charged',
   'polar',
-  'nonpolar'
+  'nonpolar',
+  'cyclic',
+  'aliphatic'
 ]
 
 function filter (array, word, startIndex = 0) {

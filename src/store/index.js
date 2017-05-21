@@ -83,20 +83,20 @@ function removeSelectionFromColorSchemes (atomSet, skipColorSchemeIndex) {
 
 function getRepresentationFromSelection (as = currentSelectionAtomSet) {
   // edge case atom set is empty
-  if (as.isEmpty()) return ''
+  if (as.isAllClear()) return ''
 
   const currentSelectionRepresentation = representationsList.find(repr => {
-    return (!repr.atomSet.isEmpty() && repr.atomSet.intersection_size(as) === as.size())
+    return (!repr.atomSet.isAllClear() && repr.atomSet.getIntersectionSize(as) === as.getSize())
   })
   return (currentSelectionRepresentation === undefined) ? 'mix' : currentSelectionRepresentation.display
 }
 
 function getColorFromSelection (as = currentSelectionAtomSet) {
   // edge case atom set is empty
-  if (as.isEmpty()) return 'none'
+  if (as.isAllClear()) return 'none'
   let color = 'mix'
   for (let i = 0; i < tabColorAtomSet.length; i++) {
-    if (!tabColorAtomSet[i].isEmpty() && tabColorAtomSet[i].intersection_size(as) === as.size()) {
+    if (!tabColorAtomSet[i].isAllClear() && tabColorAtomSet[i].getIntersectionSize(as) === as.getSize()) {
       color = tabColorScheme[i][0]
     }
   }
@@ -194,7 +194,7 @@ function getPredefined (str, chains) {
     let as = currentSelectionAtomSet
 
     // Special case : check for empty atomset
-    if (as.isEmpty()) return ret
+    if (as.isAllClear()) return ret
 
     // Special case #2 : selector has been provided
     if (selector !== undefined) {
@@ -209,14 +209,14 @@ function getPredefined (str, chains) {
     // check if currently selected atoms are equal to any predefined atom sets
     if (ret.selection === 'none') {
       let preset = predefinedSets.find(pds => {
-        return (pds[1].equals(as))
+        return (pds[1].isEqualTo(as))
       })
       ret.selection = (preset !== undefined) ? preset[0] : ''
     }
 
     // check which chains are currently entirely selected
     chainSet.forEach((chainAtomSet, chainName) => {
-      if (chainAtomSet.intersection_size(as) === chainAtomSet.size()) {
+      if (chainAtomSet.getIntersectionSize(as) === chainAtomSet.getSize()) {
         ret.chains.push(chainName)
       }
     })
@@ -408,7 +408,7 @@ var vuex = new Vuex.Store({
     updateSelected (state, atomSet) {
       let selected = []
       for (let i = 0; i < structure.residueStore.length; i++) {
-        selected.push(atomSet.has(structure.residueStore.atomOffset[i]))
+        selected.push(atomSet.isSet(structure.residueStore.atomOffset[i]))
       }
       state.selected = selected
     },
@@ -423,15 +423,15 @@ var vuex = new Vuex.Store({
       state.selection = sel.selection
     },
     updateSelectedPercentage (state) {
-      state.selectedPercentage = ((currentSelectionAtomSet.size() / currentSelectionAtomSet.length) * 100)
+      state.selectedPercentage = ((currentSelectionAtomSet.getSize() / currentSelectionAtomSet.length) * 100)
     },
     updateHiddenPercentage (state) {
-      state.hiddenPercentage = 100 - ((currentlyDisplayedAtomSet.size() / currentlyDisplayedAtomSet.length) * 100)
+      state.hiddenPercentage = 100 - ((currentlyDisplayedAtomSet.getSize() / currentlyDisplayedAtomSet.length) * 100)
     },
     hide (state) {
       const sets = predefined.findVisible()
       state.visible = sets
-      state.isHidden = currentlyDisplayedAtomSet.equals(wholeAtomSet)
+      state.isHidden = currentlyDisplayedAtomSet.isEqualTo(wholeAtomSet)
     },
     distance (state, tabDistances) {
       state.distances = tabDistances
@@ -558,6 +558,7 @@ var vuex = new Vuex.Store({
           })
           // console.log('old file', error.molId)
         }
+        console.log(error)
       })
     },
     init ({commit}) {
@@ -572,7 +573,7 @@ var vuex = new Vuex.Store({
     },
     selection (context, selector) {
       if (selector === 'invert') {
-        currentSelectionAtomSet.flip_all()
+        currentSelectionAtomSet.flipAll()
       } else {
         const sel = new NGL.Selection(selector)
         currentSelectionAtomSet = structure.getAtomSet(sel).clone()
@@ -670,14 +671,14 @@ var vuex = new Vuex.Store({
       }, currentSelectionAtomSet.clone())
 
       // if there is none, overlay is an easy display
-      if (atomsToDisplay.equals(currentSelectionAtomSet)) {
+      if (atomsToDisplay.isEqualTo(currentSelectionAtomSet)) {
         context.dispatch('display', {display: displayType})
         return
       }
 
       // there is at least one schematic representation that includes some atoms to be displayed as overlays
       // first let's display the atoms not belonging to the overlay if there are some
-      if (atomsToDisplay.size() > 0) {
+      if (atomsToDisplay.getSize() > 0) {
         context.dispatch('display', {display: displayType, atomSet: atomsToDisplay})
       }
 
@@ -708,8 +709,8 @@ var vuex = new Vuex.Store({
       }
       // debugger
       updateRepresentationDisplay()
-      if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
-      context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
+      if (!currentlyDisplayedAtomSet.isAllClear()) updateStageCenter()
+      context.commit('hide', currentlyDisplayedAtomSet.isEqualTo(wholeAtomSet))
       context.commit('updateHiddenPercentage')
       let payload = {
         type: token.type,
@@ -734,14 +735,14 @@ var vuex = new Vuex.Store({
       }
 
       updateRepresentationDisplay()
-      if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
-      context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
+      if (!currentlyDisplayedAtomSet.isAllClear()) updateStageCenter()
+      context.commit('hide', currentlyDisplayedAtomSet.isEqualTo(wholeAtomSet))
       context.commit('updateHiddenPercentage')
     },
 
     show (context) {
       // decide if we should extract or flatten depending on wether selected atoms are displayed
-      let isToBeFlatten = currentlyDisplayedAtomSet.equals(currentSelectionAtomSet)
+      let isToBeFlatten = currentlyDisplayedAtomSet.isEqualTo(currentSelectionAtomSet)
 
       if (isToBeFlatten) {
         currentlyDisplayedAtomSet = tempDisplayedAtomSet
@@ -751,8 +752,8 @@ var vuex = new Vuex.Store({
       }
 
       updateRepresentationDisplay()
-      if (!currentlyDisplayedAtomSet.isEmpty()) updateStageCenter()
-      context.commit('hide', currentlyDisplayedAtomSet.equals(wholeAtomSet))
+      if (!currentlyDisplayedAtomSet.isAllClear()) updateStageCenter()
+      context.commit('hide', currentlyDisplayedAtomSet.isEqualTo(wholeAtomSet))
       context.commit('updateHiddenPercentage')
     },
 
@@ -797,50 +798,50 @@ var vuex = new Vuex.Store({
         case 'chain':
           const chain = (item.chainName === undefined) ? context.state.mol.chains.find(ch => ch.id === parseInt(item.index)) : { name: item.chainName }
           const chainAtomSet = structure.getAtomSet(new NGL.Selection(':' + chain.name))
-          const restAtomSet = chainAtomSet.clone().flip_all()
-          const isRestPresent = !restAtomSet.isEmpty() // some models only include one chain
+          const restAtomSet = chainAtomSet.clone().flipAll()
+          const isRestPresent = !restAtomSet.isAllClear() // some models only include one chain
           anchor = {
             type: 'chain',
             chain: chain.name,
             isMaskable: currentlyDisplayedAtomSet.intersects(chainAtomSet),
-            isUnMaskable: currentlyDisplayedAtomSet.intersection_size(chainAtomSet) < chainAtomSet.size(),
+            isUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(chainAtomSet) < chainAtomSet.getSize(),
             isRestPresent: isRestPresent,
             isRestMaskable: (isRestPresent) ? currentlyDisplayedAtomSet.intersects(restAtomSet) : false,
-            isRestUnMaskable: (isRestPresent) ? currentlyDisplayedAtomSet.intersection_size(restAtomSet) < restAtomSet.size() : false
+            isRestUnMaskable: (isRestPresent) ? currentlyDisplayedAtomSet.getIntersectionSize(restAtomSet) < restAtomSet.getSize() : false
           }
           break
         case 'res':
           const res = (item.chainName === undefined) ? structure.getResidueProxy(item.index) : {resno: item.resnum, chainname: item.chainName, resname: item.resname} // call to NGL structure object
           const residueAtomSet = structure.getAtomSet(new NGL.Selection(res.resno + ':' + res.chainname))
-          const restResAtomSet = residueAtomSet.clone().flip_all()
-          const notSelectedAtomSet = currentSelectionAtomSet.clone().flip_all()
+          const restResAtomSet = residueAtomSet.clone().flipAll()
+          const notSelectedAtomSet = currentSelectionAtomSet.clone().flipAll()
           anchor = {
             type: 'res',
             name: res.resname,
             num: res.resno,
             chain: res.chainname,
             isMaskable: currentlyDisplayedAtomSet.intersects(residueAtomSet),
-            isUnMaskable: currentlyDisplayedAtomSet.intersection_size(residueAtomSet) < residueAtomSet.size(),
+            isUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(residueAtomSet) < residueAtomSet.getSize(),
             // isRestPresent: isRestPresent,
             isRestMaskable: currentlyDisplayedAtomSet.intersects(restResAtomSet),
-            isRestUnMaskable: currentlyDisplayedAtomSet.intersection_size(restResAtomSet) < restResAtomSet.size(),
+            isRestUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(restResAtomSet) < restResAtomSet.getSize(),
             isSelected: currentSelectionAtomSet.intersects(residueAtomSet),
             isSelectionMaskable: currentSelectionAtomSet.intersects(currentlyDisplayedAtomSet),
-            isSelectionUnMaskable: currentlyDisplayedAtomSet.intersection_size(currentSelectionAtomSet) < currentSelectionAtomSet.size(),
+            isSelectionUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(currentSelectionAtomSet) < currentSelectionAtomSet.getSize(),
             isNotSelectedMaskable: currentlyDisplayedAtomSet.intersects(notSelectedAtomSet),
-            isNotSelectedUnMaskable: currentlyDisplayedAtomSet.intersection_size(notSelectedAtomSet) < notSelectedAtomSet.size()
+            isNotSelectedUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(notSelectedAtomSet) < notSelectedAtomSet.getSize()
           }
           break
         case 'user':
           const userAtomSet = structure.getAtomSet(new NGL.Selection(context.state.userSelectionText))
-          const restUserAtomSet = userAtomSet.clone().flip_all()
+          const restUserAtomSet = userAtomSet.clone().flipAll()
           anchor = {
             type: 'user',
             isMaskable: currentlyDisplayedAtomSet.intersects(userAtomSet),
-            isUnMaskable: currentlyDisplayedAtomSet.intersection_size(userAtomSet) < userAtomSet.size(),
-            isRestPresent: !restUserAtomSet.isEmpty(),
+            isUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(userAtomSet) < userAtomSet.getSize(),
+            isRestPresent: !restUserAtomSet.isAllClear(),
             isRestMaskable: currentlyDisplayedAtomSet.intersects(restUserAtomSet),
-            isRestUnMaskable: currentlyDisplayedAtomSet.intersection_size(restUserAtomSet) < restUserAtomSet.size()
+            isRestUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(restUserAtomSet) < restUserAtomSet.getSize()
           }
           // console.log(anchor)
       }
@@ -881,11 +882,11 @@ var vuex = new Vuex.Store({
 
     highlightSelectHovered (context, selector) {
       if (selector === 'invert') {
-        selector = currentSelectionAtomSet.clone().flip_all().toSeleString()
+        selector = currentSelectionAtomSet.clone().flipAll().toSeleString()
       } else if (selector === 'selected') {
         selector = currentSelectionAtomSet.toSeleString()
       } else if (selector === 'hidden') {
-        selector = currentlyDisplayedAtomSet.clone().flip_all().toSeleString()
+        selector = currentlyDisplayedAtomSet.clone().flipAll().toSeleString()
       }
       highlight(selector)
     },
@@ -927,11 +928,11 @@ var vuex = new Vuex.Store({
         let nbAtoms = structure.residueStore.atomCount[val]
         if (isToBeSelected) {
           for (let i = atomId; i < atomId + nbAtoms; i++) {
-            currentSelectionAtomSet.add(i)
+            currentSelectionAtomSet.set(i)
           }
         } else {
           for (let i = atomId; i < atomId + nbAtoms; i++) {
-            currentSelectionAtomSet.remove(i)
+            currentSelectionAtomSet.clear(i)
           }
         }
       })
@@ -958,7 +959,7 @@ var vuex = new Vuex.Store({
           stage.viewer.container.style.cursor = 'default'
           // set signal picking atom
           stage.signals.clicked.removeAll()
-          stage.signals.hovered.remove(distance.hoverDistance)
+          stage.signals.hovered.clear(distance.hoverDistance)
           // set state to not measuring
           context.commit('isMeasuringDistances', false)
           // disable distance highlights
@@ -998,7 +999,7 @@ var vuex = new Vuex.Store({
     userSelection (context, value) {
       const sel = new NGL.Selection(value)
       const as = structure.getAtomSet(sel)
-      context.commit('userSelectionSize', as.size())
+      context.commit('userSelectionSize', as.getSize())
       highlight(value)
       predefined.userSelection(as)
     },

@@ -45,7 +45,7 @@ export default {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }
       ) */
-      const path = (process.env.NODE_ENV !== 'production') ? 'api/jsmol.php' : 'https://libmol.org/api/recherche.php'
+      const path = (process.env.NODE_ENV !== 'production') ? 'api/jsmol.php' : 'https://libmol.org/api/jsmol.php'
 
       window.fetch(path, {
         method: 'POST',

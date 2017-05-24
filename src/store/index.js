@@ -595,7 +595,7 @@ var vuex = new Vuex.Store({
       // if selection is of mixed type (not just polymer) and display is either
       // cartoon or backbone, we need to limit it to the polymer selection
       if (displayType === 'backbone' || displayType === 'cartoon') {
-        atomSet.intersection(predefined.getAtomSet('protein')) // .intersection(predefined.getAtomSet('nucleic'))
+        atomSet.intersection(predefined.getAtomSet('protein').clone().union(predefined.getAtomSet('nucleic')))
       }
 
       let dAtomSet = atomSet.intersection(currentlyDisplayedAtomSet)

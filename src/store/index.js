@@ -958,8 +958,8 @@ var vuex = new Vuex.Store({
           // set cursor style
           stage.viewer.container.style.cursor = 'default'
           // set signal picking atom
-          stage.signals.clicked.removeAll()
-          stage.signals.hovered.clear(distance.hoverDistance)
+          stage.signals.clicked.remove(distance.clickDistance)
+          stage.signals.hovered.remove(distance.hoverDistance)
           // set state to not measuring
           context.commit('isMeasuringDistances', false)
           // disable distance highlights

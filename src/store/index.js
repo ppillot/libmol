@@ -536,7 +536,7 @@ var vuex = new Vuex.Store({
             index: component.reprList.length - 1
           }]
           currentSelectionAtomSet = structure.getAtomSet().clone()
-          currentlyDisplayedAtomSet = structure.getAtomSet().clone()
+          currentlyDisplayedAtomSet = structure.getAtomSet(new NGL.Selection('not water')).clone()
           wholeAtomSet = structure.getAtomSet().clone()
           tabColorAtomSet = [structure.getAtomSet().clone()]
 

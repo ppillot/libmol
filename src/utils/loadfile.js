@@ -91,7 +91,10 @@ function loadFile (stage) {
       let noSequence = (structure.residueStore.count / structure.modelStore.count <= 1)
 
       component.setSelection('/0')
-      component.addRepresentation('ball+stick', {multipleBond: (noSequence) ? 'symmetric' : 'off'})
+      component.addRepresentation('ball+stick', {
+        multipleBond: (noSequence) ? 'symmetric' : 'off',
+        sele: 'not water'
+      })
       stage.autoView()
 
       return Promise.resolve({molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component})

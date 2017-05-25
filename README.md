@@ -73,7 +73,6 @@ ToDo
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from distance (within)
 - 3D View:
-  - Hide water molecules by default
   - change cursor when rotating, zooming, panning, selecting
   - increase b&s size
 - code refactor

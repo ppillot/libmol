@@ -81,7 +81,7 @@
       },
       switchLanguage (ev) {
         /* eslint-disable */
-        import(`../locales/${ev.target.value}.json`)
+        import(`../locales/bundles/${ev.target.value}.json`)
         .then(response => {
           Vue.locale([ev.target.value], response)
           Vue.config.lang = this.lang = ev.target.value

@@ -25,10 +25,17 @@
             trigger="click">
             <distance></distance>
           </el-popover>
+          <el-popover
+            ref="screencapture"
+            placement="bottom-end"
+            width="400"
+            trigger="click">
+            <screen-capture></screen-capture>
+          </el-popover>
           <el-button v-popover:distance class="button" type="text" size="small">
             {{ $t('ui.toolbar.distance.button') }}
           </el-button>
-          <el-button class="button" type="text" size="large" @click="screenCapture">
+          <el-button v-popover:screencapture class="button" type="text" size="large">
             <i class="icon-camera"></i>
           </el-button>
           <el-button class="button" type="text" size="large" @click="toggleFullscreen" v-if="isFullscreenEnabled">
@@ -42,13 +49,15 @@
 <script>
   import settings from './Settings'
   import distance from './Distance'
+  import screenCapture from './ScreenCapture'
   import Screenfull from 'screenfull'
 
   export default {
     name: 'toolbar',
     components: {
       settings,
-      distance
+      distance,
+      screenCapture
     },
     computed: {
       isFullscreenEnabled: function () {

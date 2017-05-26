@@ -485,15 +485,15 @@ var vuex = new Vuex.Store({
     toggleFullscreen (context) {
       context.commit('setFullscreen', !Screenfull.isFullscreen)
     },
-    screenCapture (context) {
+    screenCapture (context, options) {
       // from NGL example gui
       stage.makeImage({
-        factor: 2,
+        factor: options.factor,
         antialias: true,
-        trim: false,
-        transparent: true
+        trim: options.trim,
+        transparent: options.transparent
       }).then(function (blob) {
-        NGL.download(blob, context.state.name + '.png')
+        NGL.download(blob, ((options.filename === '') ? context.state.name : options.filename) + '.png')
       })
     },
     hover (context, sceneObject) {

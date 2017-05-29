@@ -9,6 +9,7 @@
         @keyup="getSuggestion"
         @focus="activate(true)"
       >
+      {{ suggestions.length }}
       <div class="suggest" :style="suggestStyles" v-if="isFocused">
         <ul>
           <li v-for="(suggestion, index) in suggestions" @click="handleSelect(index)">
@@ -124,7 +125,8 @@ export default {
 <style>
   .input-text {
     width: 100%;
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: row;
     border-radius: 3px;
     border: 1px solid #D3DCE6;
     font-size: 1em;
@@ -135,11 +137,10 @@ export default {
     color: #99A9BF;
   }
   .input-text input {
-    box-sizing: border-box;
     font-size: 1em;
     outline: none;
-    width: 100%;
     border: none;
+    flex: 1;
   }
   .suggest {
     position: fixed;

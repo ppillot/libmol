@@ -147,8 +147,7 @@ export default {
     background: white;
     /* border: 1px solid #d1dbe5; */
     z-index: 3;
-    border-radius: 4px;
-    margin: -1px 0 0 6px;
+    border-radius: 3px;
     max-height: 15em;
     overflow: scroll;
     box-shadow: 0 1px 3px #aaa;
@@ -170,9 +169,11 @@ export default {
   }
   .suggest ul li {
     width: 100%;
-    padding: 0.5em;
+    padding: 0.5em 0.5em 0.5em 1em;
     cursor: pointer;
     color: #8492a6;
+    box-sizing: border-box;
+    line-height: 1.5em;
   }
   .suggest ul li:hover {
     background: #20A0FF;

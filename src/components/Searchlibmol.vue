@@ -9,7 +9,9 @@
         @keyup="getSuggestion"
         @focus="activate(true)"
       >
-      {{ suggestions.length }}
+      <span v-if="this.suggestions.length > 0" class="suggest-counter">
+        {{ suggestions.length }}
+      </span>
       <div class="suggest" :style="suggestStyles" v-if="isFocused">
         <ul>
           <li v-for="(suggestion, index) in suggestions" @click="handleSelect(index)">
@@ -59,8 +61,27 @@ export default {
   methods: {
     activate: function (val = true) {
       this.isFocused = val
+      if (val) {
+        window.addEventListener('mouseup', this.checkClick.bind(this))
+      } else {
+        window.removeEventListener('mouseup', this.checkClick)
+      }
+    },
+    checkClick: function (event) {
+      if (!this.hasRootAsParent(event.target)) {
+        this.activate(false)
+      }
+    },
+    hasRootAsParent: function (node) {
+      do {
+        if (node === this.$el) return true
+        // debugger
+        node = node.parentNode
+      } while (node !== document.body)
+      return false
     },
     getSuggestion: function (event) {
+      this.isFocused = true
       this.state = event.target.value
       this.debouncedQuery(this.state)
     },
@@ -122,7 +143,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .input-text {
     width: 100%;
     display: inline-flex;
@@ -132,6 +153,7 @@ export default {
     font-size: 1em;
     box-sizing: border-box;
     padding: 0.5em;
+    align-items: center;
   }
   .input-text input::placeholder {
     color: #99A9BF;
@@ -142,6 +164,16 @@ export default {
     border: none;
     flex: 1;
   }
+  .suggest-counter {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #fff;
+    background: #8492a6;
+    border-radius: 10px;
+    padding: 2px 5px;
+    min-width: initial;
+  }
+  
   .suggest {
     position: fixed;
     width: 30em;

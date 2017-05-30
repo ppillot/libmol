@@ -10,7 +10,7 @@
         @focus="activate(true)"
       >
       <span v-if="this.suggestions.length > 0" class="suggest-counter">
-        {{ suggestions.length }}
+        {{ suggestions.length }}{{(suggestions.length >= 50) ? '+' : ''}}
       </span>
       <div class="suggest" :style="suggestStyles" v-if="isFocused">
         <ul>

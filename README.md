@@ -82,5 +82,3 @@ ToDo
   - no settings in fullscreen mode
   - color palette button should react to the state
   - polymer size should exceed 3 for ribbon/backbone
-- components :
-  - replace autocomplete (33kB)

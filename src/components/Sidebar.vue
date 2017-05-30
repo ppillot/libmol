@@ -22,7 +22,7 @@
 
 <script>
 import SearchLibmol from './Searchlibmol'
-import SearchPdb from './SearchPdb'
+import SearchPdb from './SearchPDB2'
 import LoadFile from './Loadfile'
 import SelectMol from './SelectMol'
 import RepresentationMol from './RepresentationMol'

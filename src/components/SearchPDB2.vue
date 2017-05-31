@@ -23,12 +23,6 @@
         </ul>
       </div>
     </div>
-    <!--<el-autocomplete
-      v-model="state"
-      :fetch-suggestions="debouncedQuery"
-      placeholder="Mot clé"
-      @select="handleSelect">
-    </el-autocomplete>-->
   </form-item>
 </template>
 
@@ -65,9 +59,9 @@ export default {
     activate: function (val = true) {
       this.isFocused = val
       if (val) {
-        window.addEventListener('mouseup', this.checkClick.bind(this))
+        window.addEventListener('mousedown', this.checkClick.bind(this))
       } else {
-        window.removeEventListener('mouseup', this.checkClick)
+        window.removeEventListener('mousedown', this.checkClick)
       }
     },
     checkClick: function (event) {

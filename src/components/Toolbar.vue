@@ -1,5 +1,8 @@
 <template>
     <div class="toolbar">
+        <div class="pdb-code" v-if="PDBCode !== ''">
+          {{ PDBCode.toUpperCase() }}
+        </div>
         <div class="molname">{{ molName }}</div>
         <div class="commands">
           <el-popover
@@ -62,6 +65,11 @@
       },
       isFullScreen: function () {
         return this.$store.state.fullscreen
+      },
+      PDBCode: function () {
+        return (this.$store.state.fileName.indexOf('rcsb://') === 0)
+        ? this.$store.state.fileName.substr(-4)
+        : ''
       }
     },
     methods: {
@@ -89,6 +97,7 @@
     max-height: 2em;
     padding: 0.2em;
     transition: max-height 0.6s;
+    align-items: center;
   } 
 
   .molname {
@@ -118,6 +127,18 @@
   }
   
   .commands {
-    margin-right: 5px;
+    margin-right: 0.5em;
+  }
+
+  .pdb-code {
+    font-size: 0.8em;
+    background: #E5E9F2;
+    color: rgb(44, 62, 80);
+    height: 1em;
+    padding: 2px;
+    border-radius: 3px;
+    font-weight: 500;
+    line-height: 1.1em;
+    margin-right: 0.5em;
   }
 </style>

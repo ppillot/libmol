@@ -511,7 +511,7 @@ var vuex = new Vuex.Store({
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
       loadNewFile = loadFile(stage)
       stage.signals.hovered.add(hover(context))
-      context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: 'Crambin - 1CRN' })
+      context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: 'Crambin' })
 
       let resize = resizeStage(stage)
       window.onresize = debounce(100, resize)

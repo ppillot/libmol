@@ -65,6 +65,7 @@ export default {
         window.addEventListener('mousedown', this.checkClick.bind(this))
       } else {
         window.removeEventListener('mousedown', this.checkClick)
+        this.$el.getElementsByTagName('input')[0].blur()
       }
     },
     checkClick: function (event) {

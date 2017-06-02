@@ -10,11 +10,17 @@
       <el-switch
         v-model="color"
         :width="80"
-        on-color="#ddd"
+        on-color="#bfcbd9"
         off-color="black"
         :on-text="$t('ui.toolbar.settings.white')"
         :off-text="$t('ui.toolbar.settings.black')"
         @change="switchBackgroundColor">
+      </el-switch>
+    </form-item>
+    <form-item :label="$t('ui.toolbar.settings.multiple_bonds')" inline>
+      <el-switch
+        v-model="multipleBond"
+        @change="switchMultipleBond">
       </el-switch>
     </form-item>
     <form-item :label="$t('ui.toolbar.settings.language')" inline>
@@ -45,7 +51,8 @@
     backgroundColor: 'white',
     ambientIntensity: 0.2,
     lightIntensity: 1,
-    cameraType: 'perspective'
+    cameraType: 'perspective',
+    multipleBond: false
   }
 
   export default {
@@ -64,7 +71,8 @@
         cameraType: 'perspective',
         color: true,
         locales: locales,
-        lang: this.$root.$lang
+        lang: this.$root.$lang,
+        multipleBond: false
       }
     },
     methods: {
@@ -78,6 +86,11 @@
       switchBackgroundColor (isWhite) {
         let color = (isWhite) ? 'white' : 'black'
         this.setStageParameters({backgroundColor: color})
+      },
+      switchMultipleBond (enableMultipleBond) {
+        this.$store.dispatch('setRepresentationParameters', {
+          multipleBond: (enableMultipleBond) ? 'symmetric' : 'off'
+        })
       },
       switchLanguage (ev) {
         /* eslint-disable */
@@ -123,7 +136,7 @@
   .settings select {
     font-size: 1em;
     border: none;
-    background: #ddd;
+    background: #bfcbd9;
   }
   .settings select:focus {
     outline: none;

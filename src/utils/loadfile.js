@@ -17,7 +17,7 @@ function getChainColors (chains, structure) {
   return chainColors
 }
 
-function loadFile (stage) {
+function loadFile (stage, context) {
   function newFile (newFile) {
     stage.removeAllComponents()
     return stage.loadFile(newFile.file, {assembly: 'AU'})
@@ -92,7 +92,7 @@ function loadFile (stage) {
 
       component.setSelection('/0')
       component.addRepresentation('ball+stick', {
-        multipleBond: (noSequence) ? 'symmetric' : 'off',
+        multipleBond: (noSequence || context.state.multipleBond) ? 'symmetric' : 'off',
         sele: 'not water'
       })
       stage.autoView()

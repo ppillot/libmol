@@ -53,10 +53,25 @@ function removeSelectionFromRepresentations (newAtomSet, skipReprIndex, overlay 
     if (repr.atomSet.intersects(newAtomSet)) {
       repr.atomSet.difference(newAtomSet)
       let sele = repr.displayedAtomSet.difference(newAtomSet)
+
       // console.log(i, sele)
       stage.compList[0].reprList[repr.index].setSelection(sele.toSeleString())
     }
   }
+}
+
+/**
+ * @description update a representation based on its name, with a parameter object
+ *
+ * @param {array} reprNames name of the representation to update (e.g. 'spacefill')
+ * @param {object} parameters object with new parameters (e.g. {multipleBond: symmetric})
+ */
+function updateRepresentationParameters (reprNames, parameters) {
+  representationsList.forEach(repr => {
+    if (reprNames.includes(repr.display)) {
+      stage.compList[0].reprList[repr.index].setParameters(parameters)
+    }
+  })
 }
 
 function removeSelectionFromColorSchemes (atomSet, skipColorSchemeIndex) {
@@ -298,6 +313,7 @@ var vuex = new Vuex.Store({
     selection: 'all',
     display: 'licorice',
     color: 'element',
+    multipleBond: false,
     atomHovered: {
       symbol: '',
       atomname: '',
@@ -392,6 +408,9 @@ var vuex = new Vuex.Store({
     },
     setFullscreen (state, isFullscreenOn) {
       state.fullscreen = isFullscreenOn
+    },
+    setMultipleBond (state, val) {
+      state.multipleBond = val
     },
     isAtomHovered (state, isDisplayed) {
       state.isAtomHovered = isDisplayed
@@ -509,7 +528,7 @@ var vuex = new Vuex.Store({
     },
     createNewStage (context, options) {
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
-      loadNewFile = loadFile(stage)
+      loadNewFile = loadFile(stage, context)
       stage.signals.hovered.add(hover(context))
       context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: 'Crambin' })
 
@@ -532,11 +551,11 @@ var vuex = new Vuex.Store({
             color: 'element',
             sele: 'all',
             atomSet: structure.getAtomSet().clone(),
-            displayedAtomSet: structure.getAtomSet().clone(),
+            displayedAtomSet: structure.getAtomSet(new NGL.Selection('not water')).clone(),
             index: component.reprList.length - 1
           }]
           currentSelectionAtomSet = structure.getAtomSet().clone()
-          currentlyDisplayedAtomSet = structure.getAtomSet(new NGL.Selection('not water')).clone()
+          currentlyDisplayedAtomSet = representationsList[0].displayedAtomSet.clone()
           wholeAtomSet = structure.getAtomSet().clone()
           tabColorAtomSet = [structure.getAtomSet().clone()]
 
@@ -598,7 +617,7 @@ var vuex = new Vuex.Store({
         atomSet.intersection(predefined.getAtomSet('protein').clone().union(predefined.getAtomSet('nucleic')))
       }
 
-      let dAtomSet = atomSet.intersection(currentlyDisplayedAtomSet)
+      let dAtomSet = atomSet.clone().intersection(currentlyDisplayedAtomSet)
 
       if (num === -1) {
         // new representation
@@ -899,6 +918,12 @@ var vuex = new Vuex.Store({
       stage.setParameters(params)
       if (params.backgroundColor) {
         distance.switchColor(params.backgroundColor)
+      }
+    },
+    setRepresentationParameters (context, params) {
+      if (params.multipleBond !== undefined) {
+        updateRepresentationParameters(['licorice', 'ball+stick'], {multipleBond: params.multipleBond})
+        context.commit('setMultipleBond', params.multipleBond === 'symmetric')
       }
     },
     sequenceSelected (context, tabSelectedResidues) {

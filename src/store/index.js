@@ -626,7 +626,7 @@ var vuex = new Vuex.Store({
           {
             sele: seleString,
             color: globalColorScheme,
-            multipleBond: (context.state.mol.noSequence) ? 'symmetric' : 'off'
+            multipleBond: (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
           })
         representationsList.push({
           display: displayType,

@@ -79,6 +79,15 @@
       screenCapture () {
         this.$store.dispatch('screenCapture')
       }
+    },
+    mounted: function () {
+      if (Screenfull.enabled) {
+        Screenfull.onchange(() => { // user can use ESC key to cancel fullscreen
+          if (this.$store.state.fullscreen && Screenfull.isFullscreen === false) {
+            this.$store.commit('setFullscreen', false)
+          }
+        })
+      }
     }
   }
 </script>

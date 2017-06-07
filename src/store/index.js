@@ -529,6 +529,7 @@ var vuex = new Vuex.Store({
     createNewStage (context, options) {
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
       loadNewFile = loadFile(stage, context)
+      stage.mouseControls.remove('hoverPick')
       stage.signals.hovered.add(hover(context))
       context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: 'Crambin' })
 

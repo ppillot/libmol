@@ -93,7 +93,9 @@ function loadFile (stage, context) {
       component.setSelection('/0')
       component.addRepresentation('ball+stick', {
         multipleBond: (noSequence || context.state.multipleBond) ? 'symmetric' : 'off',
-        sele: 'not water'
+        sele: 'not water',
+        aspectRatio: 2.1,
+        scale: 1.2
       })
       stage.autoView()
 

@@ -174,6 +174,7 @@ function highlightRes (component) {
       sele: 'none',
       color: 'limegreen',
       opacity: 0.2,
+      scale: 1.2,
       name: 'highlight'
     })
   return function (sel) {
@@ -626,6 +627,8 @@ var vuex = new Vuex.Store({
         stage.compList[0].addRepresentation(displayType,
           {
             sele: seleString,
+            aspectRatio: 2.1,
+            scale: (displayType === 'spacefill') ? 1.0 : 1.2,
             color: globalColorScheme,
             multipleBond: (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
           })

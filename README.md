@@ -7,7 +7,7 @@ Libmol.org is a single page web application designed to provide students startin
 
 ## Aknowledgements
 ### Contributors
-Thank-you to [Hervé Furstoss](https://github.com/hfurstoss) for creating and contributing to the interactive documentation.  
+Thanks to [Hervé Furstoss](https://github.com/hfurstoss) for creating and contributing to the interactive documentation.  
 [Arose](https://github.com/arose) for developping and continuously improving NGL  
 Philippe, Gilles, Jacques, Thomas, Eric and other members of the Forum National de SVT for their support and insightfull inputs.
 
@@ -68,7 +68,6 @@ ToDo
   - add/remove labels
   - create/remove surface, export as STL objects for printing (https://github.com/mrdoob/three.js/blob/master/examples/js/exporters/STLBinaryExporter.js)
   - provide choices for hetero (e.g. : in cox2 asp and hem)
-  - menu for options in screen capture (transparent, trim, file name)
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from distance (within)

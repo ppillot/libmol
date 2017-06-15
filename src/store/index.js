@@ -11,6 +11,7 @@ import help from 'utils/help'
 import {hover} from 'utils/hover'
 import {measureDistance} from 'utils/distance'
 import {loadFile} from 'utils/loadfile'
+import {byres} from 'utils/colors'
 
 let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug}
 Vue.use(Vuex)
@@ -119,7 +120,15 @@ function getColorFromSelection (as = currentSelectionAtomSet) {
 }
 
 function updateGlobalColorScheme () {
-  globalColorScheme = NGL.ColormakerRegistry.addSelectionScheme(tabColorScheme)
+  globalColorScheme = NGL.ColormakerRegistry.addSelectionScheme(tabColorScheme.map(
+    (val) => {
+      if (val[0] === 'resname') {
+        return [byres, val[1]]
+      } else {
+        return val
+      }
+    }
+  ))
 }
 
 function updateRepresentationColor () {

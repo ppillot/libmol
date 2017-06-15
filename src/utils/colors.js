@@ -1,3 +1,5 @@
+import {ColormakerRegistry} from 'ngl'
+
 var ElementColors = {
   'H': 0xFFFFFF,
   'HE': 0xD9FFFF,
@@ -123,7 +125,7 @@ var ElementColors = {
 var DefaultElementColor = 0xFFFFFF
 
 // from Jmol http://jmol.sourceforge.net/jscolors/ (protein + shapely for nucleic)
-var ResidueColors = {
+/* var ResidueColors = {
   'ALA': 0x8CFF8C,
   'ARG': 0x00007C,
   'ASN': 0xFF7C70,
@@ -164,7 +166,51 @@ var ResidueColors = {
   'DT': 0xA0FFA0,
   'DU': 0xFF8080
 }
-var DefaultResidueColor = 0xFF00FF
+var DefaultResidueColor = 0xFF00FF */
+
+// from Jmol http://jmol.sourceforge.net/jscolors/ (protein + shapely for nucleic)
+var ResidueColors2 = {
+  'ALA': 0xd9d9d9,
+  'ARG': 0x80b1d3,
+  'ASN': 0xbc80bd,
+  'ASP': 0xfb8072,
+  'CYS': 0xffed6f,
+  'GLN': 0xbc80bd,
+  'GLU': 0xfb8072,
+  'GLY': 0xd9d9d9,
+  'HIS': 0x80b1d3,
+  'ILE': 0xd9d9d9,
+  'LEU': 0xd9d9d9,
+  'LYS': 0x80b1d3,
+  'MET': 0xd9d9d9,
+  'PHE': 0xfdb462,
+  'PRO': 0xffffb3,
+  'SER': 0xb3de69,
+  'THR': 0xb3de69,
+  'TRP': 0xfdb462,
+  'TYR': 0xfdb462,
+  'VAL': 0xd9d9d9,
+
+  'ASX': 0xFF00FF,
+  'GLX': 0xFF00FF,
+  'ASH': 0xFF00FF,
+  'GLH': 0xFF00FF,
+
+  'A': 0xd95f02,
+  'G': 0x66a61e,
+  'I': 0x80FFFF,
+  'C': 0xe6ab02,
+  'T': 0x7570b3,
+  'U': 0xe7298a,
+
+  'DA': 0xd95f02,
+  'DG': 0x66a61e,
+  'DI': 0x80FFFF,
+  'DC': 0xe6ab02,
+  'DT': 0x7570b3,
+  'DU': 0xe7298a
+}
+var DefaultResidueColor2 = 0xFF00FF
 
 // from Jmol http://jmol.sourceforge.net/jscolors/ (shapely)
 var StructureColors = {
@@ -200,7 +246,7 @@ function getColor (scheme, token) {
       color = ElementColors[token] || DefaultElementColor
       break
     case 'resname':
-      color = ResidueColors[token] || DefaultResidueColor
+      color = ResidueColors2[token] || DefaultResidueColor2
       break
     case 'sstruc':
       color = StructureColors[token] || DefaultStructureColor
@@ -211,6 +257,13 @@ function getColor (scheme, token) {
   return color
 }
 
+let byres = ColormakerRegistry.addScheme(function () {
+  this.atomColor = function (atom) {
+    return ResidueColors2[atom.resname] || DefaultResidueColor2
+  }
+})
+
 export {
-  getColor
+  getColor,
+  byres
 }

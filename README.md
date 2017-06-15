@@ -73,8 +73,6 @@ ToDo
   - select from distance (within)
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting
-  - increase b&s size
-  - improve coloration by residues
 - code refactor
   - event bus : https://devblog.digimondo.io/building-a-simple-eventbus-in-vue-js-64b70fb90834#.706mbapkg
 - bugs :

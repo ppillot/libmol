@@ -693,7 +693,7 @@ var vuex = new Vuex.Store({
       // its sidechain only
 
       // is there a ribbon or a backbone representation that includes some
-      // of the residues of the current selection
+      // of the residues of the current selection ?
       let atomsToDisplay = representationsList.reduce((acc, representation, index) => {
         if (['cartoon', 'backbone'].includes(representation.display) && representation.atomSet.intersects(currentSelectionAtomSet)) {
           return acc.difference(representation.atomSet)

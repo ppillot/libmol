@@ -44,7 +44,12 @@
     },
     methods: {
       display (displayType) {
-        this.$store.dispatch('display', {display: displayType})
+        if (this.$store.state.selection !== 'user') {
+          this.$store.dispatch('display', {display: displayType})
+        } else {
+          // it could be a selection from the command line
+          this.$store.dispatch('overlay', displayType)
+        }
         this.help(displayType, true)
       },
       overlay (displayType) {

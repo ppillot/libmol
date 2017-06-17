@@ -71,8 +71,13 @@ ToDo
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from distance (within)
+  - search (user selection ?)
+  - scrolling glitch in first residues
+- Design:
+  - resizable windows
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting
+  - rotating around z-axis
 - code refactor
   - event bus : https://devblog.digimondo.io/building-a-simple-eventbus-in-vue-js-64b70fb90834#.706mbapkg
 - bugs :

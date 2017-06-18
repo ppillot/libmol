@@ -512,7 +512,7 @@ var vuex = new Vuex.Store({
       }
     },
     toggleFullscreen (context) {
-      context.commit('setFullscreen', !Screenfull.isFullscreen)
+      context.commit('setFullscreen', Screenfull.isFullscreen)
     },
     screenCapture (context) {
       // from NGL example gui

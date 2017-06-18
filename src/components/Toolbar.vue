@@ -53,6 +53,11 @@
       settings,
       distance
     },
+    data: function () {
+      return {
+        isFullScreen: false
+      }
+    },
     computed: {
       isFullscreenEnabled: function () {
         return Screenfull.enabled
@@ -63,9 +68,9 @@
       isHidden: function () {
         return this.$store.state.isHidden
       },
-      isFullScreen: function () {
+      /* isFullScreen: function () {
         return this.$store.state.fullscreen
-      },
+      }, */
       PDBCode: function () {
         return (this.$store.state.fileName.indexOf('rcsb://') === 0)
         ? this.$store.state.fileName.substr(-4)
@@ -74,6 +79,8 @@
     },
     methods: {
       toggleFullscreen () {
+        let view = document.getElementById('view')
+        Screenfull.toggle(view)
         this.$store.dispatch('toggleFullscreen')
       },
       screenCapture () {
@@ -86,6 +93,7 @@
           if (this.$store.state.fullscreen && Screenfull.isFullscreen === false) {
             this.$store.commit('setFullscreen', false)
           }
+          this.isFullScreen = Screenfull.isFullscreen
         })
       }
     }

@@ -33,7 +33,12 @@ export default {
     Statusbar,
     Alert
   },
-  computed: {
+  data: function () {
+    return {
+      fullscreen: {}
+    }
+  },
+  /* computed: {
     fullscreen: function () {
       if (this.$store.state.fullscreen) {
         let view = document.getElementById('view')
@@ -43,6 +48,13 @@ export default {
         if (Screenfull.enabled) Screenfull.exit()
         return {}
       }
+    }
+  }, */
+  mounted: function () {
+    if (Screenfull.enabled) {
+      Screenfull.onchange(() => { // user can use ESC key to cancel fullscreen
+        this.fullscreen = (Screenfull.isFullscreen === false) ? {} : { width: '100%' }
+      })
     }
   }
 }

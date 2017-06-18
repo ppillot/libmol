@@ -81,7 +81,7 @@ ToDo
 - code refactor
   - event bus : https://devblog.digimondo.io/building-a-simple-eventbus-in-vue-js-64b70fb90834#.706mbapkg
 - bugs :
-  - firefox : not going fullscreen
+  - SelectCLI should be reset after loading new model
   - no settings in fullscreen mode
   - color palette button should react to the state
   - polymer size should exceed 3 for ribbon/backbone

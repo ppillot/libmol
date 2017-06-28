@@ -1,6 +1,17 @@
 <template>
     <div class="side-bar full-height">
-        <h1>LibMol</h1>
+        <h1 @click="dialogVisible = true">LibMol<span> {{$t('ui.about.title')}}...</span></h1>
+        
+        <el-dialog
+            :title="$t('ui.about.title')"
+            :visible.sync="dialogVisible"
+            size="large">
+            <div v-html="about" class="help"></div>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false" type="primary" icon="close">{{ $t('ui.about.close') }}</el-button>
+            </span>
+        </el-dialog>
+
         <el-tabs value="files" type="border-card" class="tab-card" @tab-click="switchTab">
             <el-tab-pane :label="$t('ui.files_tab_label')" name="files">
                 <search-libmol></search-libmol>
@@ -30,6 +41,7 @@ import RepresentationMol from './RepresentationMol'
 import ColorMol from './ColorMol'
 import SequenceTab from './SequenceTab'
 import Help from './Help'
+import Marked from 'marked'
 
 export default {
   name: 'sidebar',
@@ -46,12 +58,16 @@ export default {
   },
   data () {
     return {
-      isSequenceTabActive: false
+      isSequenceTabActive: false,
+      dialogVisible: false
     }
   },
   computed: {
     noSequence: function () {
       return this.$store.state.mol.noSequence
+    },
+    about: function () {
+      return Marked(this.$t('help.about'))
     }
   },
   methods: {
@@ -68,7 +84,26 @@ export default {
     h2 {
         font-weight: normal;
     }
+
+    h1 {
+        cursor: help;
+    }
     
+    h1:hover {
+        color: #1D8CE0;
+        transition: color 0.5s ease-in-out 0.2s;
+    }
+
+    h1 span {
+        opacity: 0;
+        font-size: 0.5em;
+    }
+
+    h1:hover span {
+        opacity: 1;
+        transition: opacity 1s ease-in-out 0.2s;
+    }
+
     .tab-card {
         width: 100%;
         height: calc(100% - 6em);
@@ -79,6 +114,11 @@ export default {
     .side-bar {
         margin: 0 5px 5px 5px
     }
+
+    .help {
+        font-size: 1em;
+    }
+
 </style>
 <style>
     .el-tabs__content {
@@ -103,5 +143,11 @@ export default {
 
     .el-autocomplete {
         width: 100%
+    }
+
+    .help h3 {
+        font-size: 0.95em;
+        margin: 0 0.5em;
+        font-weight: 500;
     }
 </style>

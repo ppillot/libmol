@@ -298,6 +298,7 @@
         } else {
           this.isEditing = true
           this.$store.commit('userSelectionSize', 0)
+          this.$store.dispatch('selection', 'all')
           this.tooltipStyles.visibility = 'hidden'
         }
       },

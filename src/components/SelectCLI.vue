@@ -486,6 +486,7 @@
     cursor: pointer;
     padding: 0 0 0 4px;
     align-self: center;
+    transition: all 0.3s cubic-bezier(.645,.045,.355,1);
   }
   .radio-button i {
     display: inline-block;
@@ -494,6 +495,7 @@
     color: #8492A6;
     right: 0;
     padding: 0 4px;
+    transition: all 0.3s cubic-bezier(.645,.045,.355,1);
   }
   .radio-button i:hover {
     background: #20A0FF;
@@ -516,12 +518,14 @@
     border: solid 1px #d1dbe5;
     border-radius: 5px;
     overflow: hidden;
+    transition: border-color 0.3s cubic-bezier(.645,.045,.355,1);
   }
   .text-search:hover {
     border-color: #58b7ff;
   }
   .text-search i {
     position: initial;
+    transition: all 0.3s cubic-bezier(.645,.045,.355,1);
   }
   .text-search input {
     border: none;

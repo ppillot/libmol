@@ -65,6 +65,7 @@ export default {
     padding: 0;
     text-align: center;
     cursor: pointer;
+    transition: border-color 0.3s cubic-bezier(.645,.045,.355,1);
   }
   .radio-button:hover {
     border-color: #20a0ff;

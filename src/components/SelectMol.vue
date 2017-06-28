@@ -124,6 +124,7 @@
     color: #8492A6;
     right: 0;
     padding: 0 4px;
+    transition: all 0.3s cubic-bezier(.645,.045,.355,1);
   }
   .radio-button i:hover {
     background: #20A0FF;

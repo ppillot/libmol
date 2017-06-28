@@ -130,6 +130,7 @@
   }
   .navigation i {
     font-size: 1.1em;
+    transition: color 0.3s cubic-bezier(.645,.045,.355,1);
   }
   .navigation i:hover {
     color: #20A0FF;

@@ -2,9 +2,11 @@
   <div class="vue-color__compact" @click="handlerClick">
     <ul class="vue-color__compact__colors" :class="{compact__ul: compact}">
       <li class="vue-color__compact__color-item" v-for="c in colorList"
-        :class="{'vue-color__compact__color-item--white': c === '#FFFFFF' }"
+        :class="{'vue-color__compact__color-item--white': c === '#FFFFFF'}"
         :style="{background: c}"
-        :data-color="c">
+        :data-color="c"
+        :key="c">
+        <span class="vue-color__compact__dot" v-if="c === value.hex.toUpperCase()"></span>
       </li>
     </ul>
   </div>
@@ -23,7 +25,7 @@ const defaultColors = [
 
 export default {
   name: 'Palette',
-  props: ['compact'],
+  props: ['compact', 'value'],
   data () {
     return {
       defaultColors: defaultColors
@@ -45,6 +47,7 @@ export default {
           hex: event.target.dataset.color,
           source: 'hex'
         })
+        this.$emit('input', event.target.dataset.color)
       }
     }
   }
@@ -71,6 +74,7 @@ export default {
   margin 2px
   position relative
   cursor pointer
+  position relative
 .vue-color__compact__color-item--white
   box-shadow inset 0 0 0 1px #ddd
   .vue-color__compact__dot

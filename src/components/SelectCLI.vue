@@ -32,28 +32,29 @@
             
               <template v-for="(subject, index) in suggestions">
                 <div class="category">{{ $t(`tooltips.${subject.category}`) }}</div>
-                  <ul>
-                    <li
-                      v-for="suggestion in subject.content" 
-                      :class="{highlight: (highlightedSuggestion === suggestion.index)}"
-                      class="suggestion"
-                      @mouseup="replaceBySuggestion(suggestion.word)"
-                      >
-                        <code>{{ suggestion.word }}</code>
-                        <span v-if="subject.category==='res'">
-                          {{ $te(`biochem.pdb_res_name.${suggestion.word}`) ? $t(`biochem.pdb_res_name.${suggestion.word}`) : ''}}
-                        </span>
-                        <span v-else-if="subject.category === 'chain'">
-                          {{ getEntityFromChainName(suggestion.word) }}
-                        </span>
-                        <span v-if="subject.category==='element'">
-                          {{ $t(`biochem.el_name.${suggestion.word.substring(1)}`) }}
-                        </span>
-                        <span v-if="subject.category==='keyword'">
-                          {{ $t(`tooltips.${suggestion.word}`) }}
-                        </span>
-                    </li>
-                  </ul>
+                <ul>
+                  <li
+                    v-for="(suggestion, index) in subject.content" 
+                    :class="{highlight: (highlightedSuggestion === suggestion.index)}"
+                    :key="index"
+                    class="suggestion"
+                    @mouseup="replaceBySuggestion(suggestion.word)"
+                    >
+                      <code>{{ suggestion.word }}</code>
+                      <span v-if="subject.category==='res'">
+                        {{ $te(`biochem.pdb_res_name.${suggestion.word}`) ? $t(`biochem.pdb_res_name.${suggestion.word}`) : ''}}
+                      </span>
+                      <span v-else-if="subject.category === 'chain'">
+                        {{ getEntityFromChainName(suggestion.word) }}
+                      </span>
+                      <span v-if="subject.category==='element'">
+                        {{ $t(`biochem.el_name.${suggestion.word.substring(1)}`) }}
+                      </span>
+                      <span v-if="subject.category==='keyword'">
+                        {{ $t(`tooltips.${suggestion.word}`) }}
+                      </span>
+                  </li>
+                </ul>
               </template>
           </div>
       </template>

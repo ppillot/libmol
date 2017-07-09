@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // import * as actions from './actions'
 // import * as getters from './getters'
-import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDebug} from 'ngl'
+import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDebug, MolecularSurface, StlWriter} from 'ngl'
 /* eslint-disable-next-line */
 // let NGL = () => import('ngl') /* eslint-disable-line */
 import debounce from 'throttle-debounce/debounce'
@@ -12,8 +12,9 @@ import {hover} from 'utils/hover'
 import {measureDistance} from 'utils/distance'
 import {loadFile} from 'utils/loadfile'
 import {byres} from 'utils/colors'
+import surface from 'utils/surface'
 
-let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug}
+let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug, MolecularSurface, StlWriter}
 Vue.use(Vuex)
 
 /** @description local module variable to hold the NGL stage object
@@ -27,6 +28,7 @@ var representationsList = []
 var highlight
 var loadNewFile
 var distance
+var surf
 var currentSelectionAtomSet
 var currentlyDisplayedAtomSet
 var tempDisplayedAtomSet
@@ -349,6 +351,7 @@ var vuex = new Vuex.Store({
       clipNear: 30
     },
     distances: [],
+    surfaces: [],
     help: '',
     helpHistory: [],
     helpHistoryForward: [],
@@ -465,6 +468,9 @@ var vuex = new Vuex.Store({
     distance (state, tabDistances) {
       state.distances = tabDistances
     },
+    surface (state, tabSurfaces) {
+      state.surfaces = tabSurfaces
+    },
     help (state, {subject, resetHistory}) {
       if (subject) {
         state.help = subject
@@ -574,6 +580,7 @@ var vuex = new Vuex.Store({
           highlight = highlightRes(component)
           if (context.state.isMeasuringDistances) context.dispatch('setMouseMode', 'default')
           distance = measureDistance(component, context)
+          surf = surface(component.stage, structure, context)
 
           context.commit('loadNewFile', newFile)
           context.dispatch('init')
@@ -1043,6 +1050,19 @@ var vuex = new Vuex.Store({
     },
     highlightUserSelection (context, value) {
       highlight(value)
+    },
+    createSurface (context) {
+      surf.addSurface(currentSelectionAtomSet, context.state.selection)
+    },
+    setSurfaces ({ commit }, tabSurfaces) {
+      commit('surface', tabSurfaces)
+    },
+    deleteSurface (context, surfaceIndex) {
+      surf.delete(surfaceIndex)
+    },
+    setSurfaceProperty (context, {id, props}) {
+      console.log(id, props)
+      surf.setProperties(id, props)
     }
   },
   getters: {

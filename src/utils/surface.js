@@ -35,7 +35,7 @@ function surface (comp, context) {
 
     tabSurfaces.push({
       repr: r,
-      atomSet: params.atomSet,
+      atomSet: params.atomSet.clone(),
       sele: selectionToken,
       id: nbSurf,
       props: {
@@ -85,6 +85,15 @@ function surface (comp, context) {
     Object.assign(tabSurfaces[index].props, properties)
     dispatch()
   }
+
+  function checkSurfaceExists (atomSet) {
+    if (tabSurfaces.length === 0) return false
+    const surf = tabSurfaces.find(val => {
+      return val.atomSet.isEqualTo(atomSet)
+    })
+    return (surf !== undefined)
+  }
+
   // clean all surfaces when starting
   dispatch()
   return {
@@ -108,6 +117,9 @@ function surface (comp, context) {
     setProperties: function (id, props) {
       const index = getIndexFromId(id)
       return setProperties(index, props)
+    },
+    checkSurfaceExists: function (atomSet) {
+      return checkSurfaceExists(atomSet)
     }
   }
 }

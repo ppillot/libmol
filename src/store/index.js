@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueI18n from 'vue-i18n'
+
 // import * as actions from './actions'
 // import * as getters from './getters'
-import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDebug, MolecularSurface, StlWriter} from 'ngl'
+import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDebug} from 'ngl'
 /* eslint-disable-next-line */
 // let NGL = () => import('ngl') /* eslint-disable-line */
 import debounce from 'throttle-debounce/debounce'
@@ -13,10 +15,11 @@ import {measureDistance} from 'utils/distance'
 import {loadFile} from 'utils/loadfile'
 import {byres} from 'utils/colors'
 import surface from 'utils/surface'
+import {Notification} from 'element-ui'
 
-let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug, MolecularSurface, StlWriter}
+let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug}
 Vue.use(Vuex)
-
+Vue.use(VueI18n)
 /** @description local module variable to hold the NGL stage object
  * @typedef {NGL.stage}
  */
@@ -1052,7 +1055,16 @@ var vuex = new Vuex.Store({
       highlight(value)
     },
     createSurface (context) {
-      surf.addSurface(currentSelectionAtomSet, context.state.selection)
+      console.dir(Vue)
+      if (surf.checkSurfaceExists(currentSelectionAtomSet)) {
+        Notification.error({
+          title: Vue.t('messages.error'),
+          message: Vue.t('ui.surface.create_warning'),
+          offset: 100
+        })
+      } else {
+        surf.addSurface(currentSelectionAtomSet, context.state.selection)
+      }
     },
     setSurfaces ({ commit }, tabSurfaces) {
       commit('surface', tabSurfaces)

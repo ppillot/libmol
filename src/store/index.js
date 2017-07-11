@@ -580,7 +580,7 @@ var vuex = new Vuex.Store({
           highlight = highlightRes(component)
           if (context.state.isMeasuringDistances) context.dispatch('setMouseMode', 'default')
           distance = measureDistance(component, context)
-          surf = surface(component.stage, structure, context)
+          surf = surface(component, context)
 
           context.commit('loadNewFile', newFile)
           context.dispatch('init')
@@ -1058,11 +1058,17 @@ var vuex = new Vuex.Store({
       commit('surface', tabSurfaces)
     },
     deleteSurface (context, surfaceIndex) {
-      surf.delete(surfaceIndex)
+      if (surfaceIndex === -1) {
+        surf.deleteAll()
+      } else {
+        surf.delete(surfaceIndex)
+      }
     },
     setSurfaceProperty (context, {id, props}) {
-      console.log(id, props)
       surf.setProperties(id, props)
+    },
+    downloadSurface (context, surfaceIndex) {
+      surf.downloadSTL(surfaceIndex)
     }
   },
   getters: {

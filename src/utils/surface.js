@@ -1,9 +1,9 @@
-import { MolecularSurface, StlWriter } from 'ngl'
+import { StlWriter } from 'ngl'
 
-function surface (stage, structure, context) {
+function surface (comp, context) {
   let tabSurfaces = []
   let nbSurf = 0
-  let molsurf = new MolecularSurface(structure)
+  // let molsurf = new MolecularSurface(structure)
 
   function dispatch () {
     const tS = tabSurfaces.map(val => {
@@ -21,22 +21,22 @@ function surface (stage, structure, context) {
     // check if surface corresponding to selection is already defined
 
     // Creating the new surface object
+    let atomSet = (selectedAtomSet === undefined) ? comp.structure.getAtomSet() : selectedAtomSet
+
     let params = {
-      type: 'av',
       probeRadius: 1.4,
       name: `molsurf ${nbSurf}`,
-      atomSet: selectedAtomSet || structure.getAtomSet()
+      surfaceType: 'av',
+      atomSet,
+      sele: atomSet.toSeleString()
     }
-    let surf = molsurf.getSurface(params)
-    const o = stage.addComponentFromObject(surf)
-    const r = o.addRepresentation('surface')
+
+    const r = comp.addRepresentation('surface', params)
 
     tabSurfaces.push({
-      surf: surf,
       repr: r,
       atomSet: params.atomSet,
       sele: selectionToken,
-      comp: o,
       id: nbSurf,
       props: {
         visible: true,
@@ -58,22 +58,23 @@ function surface (stage, structure, context) {
   }
 
   function clearSurface (index) {
-    stage.removeComponent(tabSurfaces[index].comp)
+    comp.removeRepresentation(tabSurfaces[index].repr)
     tabSurfaces.splice(index, 1)
     dispatch()
   }
 
   function clearAllSurfaces () {
     tabSurfaces.forEach(s => {
-      stage.removeComponent(s.comp)
+      comp.removeRepresentation(s.repr)
     })
     tabSurfaces = []
     dispatch()
   }
 
+  // @@ Expected changes to NGL API regarding extracting vertices from representation
   function downloadSTL (index) {
-    const stl = new StlWriter(tabSurfaces[index])
-    stl.download(structure.name + index)
+    const stl = new StlWriter(tabSurfaces[index].repr.repr.dataList[0].info.surface)
+    stl.download(comp.structure.name + index)
   }
 
   function setProperties (index, properties) {

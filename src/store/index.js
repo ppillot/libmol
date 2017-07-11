@@ -1055,7 +1055,6 @@ var vuex = new Vuex.Store({
       highlight(value)
     },
     createSurface (context) {
-      console.dir(Vue)
       if (surf.checkSurfaceExists(currentSelectionAtomSet)) {
         Notification.error({
           title: Vue.t('messages.error'),
@@ -1063,6 +1062,9 @@ var vuex = new Vuex.Store({
           offset: 100
         })
       } else {
+        /* stage.compList[0].signals.representationAdded.addOnce((repr) => {
+          console.log(repr)
+        }) */
         surf.addSurface(currentSelectionAtomSet, context.state.selection)
       }
     },

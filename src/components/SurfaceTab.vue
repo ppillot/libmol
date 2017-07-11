@@ -40,7 +40,7 @@
                 $t((surface.sele === 'user' || surface.sele === '')? 
                   'ctxMenu.user_selection' 
                   :
-                  'ui.commands.select.' + surface.sele
+                  'tooltips.' + surface.sele
                 )})` }}
               </div>
               <visible :value="visibility[index]" @input="val => {handleVisibility(val, surface.id)}"></visible>

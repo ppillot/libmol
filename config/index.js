@@ -39,7 +39,6 @@ module.exports = {
       '/api': {
         target: 'http://localhost:8888/libmol3/src/api/',
         changeOrigin: true,
-        logLevel: 'debug',
         pathRewrite: {
           '^/api': ''
         }

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueI18n from 'vue-i18n'
+
 // import * as actions from './actions'
 // import * as getters from './getters'
 import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDebug} from 'ngl'
@@ -12,10 +14,12 @@ import {hover} from 'utils/hover'
 import {measureDistance} from 'utils/distance'
 import {loadFile} from 'utils/loadfile'
 import {byres} from 'utils/colors'
+import surface from 'utils/surface'
+import {Notification} from 'element-ui'
 
 let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug}
 Vue.use(Vuex)
-
+Vue.use(VueI18n)
 /** @description local module variable to hold the NGL stage object
  * @typedef {NGL.stage}
  */
@@ -27,6 +31,7 @@ var representationsList = []
 var highlight
 var loadNewFile
 var distance
+var surf
 var currentSelectionAtomSet
 var currentlyDisplayedAtomSet
 var tempDisplayedAtomSet
@@ -133,7 +138,7 @@ function updateGlobalColorScheme () {
 
 function updateRepresentationColor () {
   stage.compList[0].eachRepresentation(repr => {
-    if (repr.name === 'highlight' || repr.name === 'distance') return
+    if (repr.name === 'highlight' || repr.name === 'distance' || repr.name.indexOf('molsurf') > -1) return
     repr.setColor(globalColorScheme)
   })
 }
@@ -349,6 +354,7 @@ var vuex = new Vuex.Store({
       clipNear: 30
     },
     distances: [],
+    surfaces: [],
     help: '',
     helpHistory: [],
     helpHistoryForward: [],
@@ -465,6 +471,9 @@ var vuex = new Vuex.Store({
     distance (state, tabDistances) {
       state.distances = tabDistances
     },
+    surface (state, tabSurfaces) {
+      state.surfaces = tabSurfaces
+    },
     help (state, {subject, resetHistory}) {
       if (subject) {
         state.help = subject
@@ -574,6 +583,7 @@ var vuex = new Vuex.Store({
           highlight = highlightRes(component)
           if (context.state.isMeasuringDistances) context.dispatch('setMouseMode', 'default')
           distance = measureDistance(component, context)
+          surf = surface(component, context)
 
           context.commit('loadNewFile', newFile)
           context.dispatch('init')
@@ -1043,6 +1053,36 @@ var vuex = new Vuex.Store({
     },
     highlightUserSelection (context, value) {
       highlight(value)
+    },
+    createSurface (context) {
+      if (surf.checkSurfaceExists(currentSelectionAtomSet)) {
+        Notification.error({
+          title: Vue.t('messages.error'),
+          message: Vue.t('ui.surface.create_warning'),
+          offset: 100
+        })
+      } else {
+        /* stage.compList[0].signals.representationAdded.addOnce((repr) => {
+          console.log(repr)
+        }) */
+        surf.addSurface(currentSelectionAtomSet, context.state.selection)
+      }
+    },
+    setSurfaces ({ commit }, tabSurfaces) {
+      commit('surface', tabSurfaces)
+    },
+    deleteSurface (context, surfaceIndex) {
+      if (surfaceIndex === -1) {
+        surf.deleteAll()
+      } else {
+        surf.delete(surfaceIndex)
+      }
+    },
+    setSurfaceProperty (context, {id, props}) {
+      surf.setProperties(id, props)
+    },
+    downloadSurface (context, surfaceIndex) {
+      surf.downloadSTL(surfaceIndex)
     }
   },
   getters: {

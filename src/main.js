@@ -3,14 +3,13 @@ import 'utils/polyfills/array-find'
 import 'whatwg-fetch'
 
 import Vue from 'vue'
-import VueI18n from 'vue-i18n'
 import {Button, Col, Dialog, Icon, Popover, Row, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'
 import App from './App'
 import store from './store'
 import { locales } from './locales/locales'
 import './assets/font/css/icons.css'
 
-Vue.use(VueI18n)
+// Vue.use(VueI18n)
 Vue.use(Button)
 Vue.use(Col)
 Vue.use(Dialog)

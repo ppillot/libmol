@@ -28,7 +28,8 @@
         <option 
           :value="language" 
           :selected="language == lang"
-          v-for="language in locales">
+          v-for="language in locales"
+          :key="language">
           {{ language }}
         </option>
       </select>  

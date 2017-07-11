@@ -27,6 +27,9 @@
             <el-tab-pane :label="$t('ui.sequences_tab_label')" name="sequences" :disabled="noSequence">
                 <sequence-tab :active="isSequenceTabActive"></sequence-tab>
             </el-tab-pane>
+            <el-tab-pane :label="$t('ui.surfaces_tab_label')" name="surfaces">
+                <surface-tab></surface-tab>
+            </el-tab-pane>
         </el-tabs>
     </div>
 </template>
@@ -40,6 +43,7 @@ import RepresentationMol from './RepresentationMol'
 // import DisplayMol from './DisplayMol'
 import ColorMol from './ColorMol'
 import SequenceTab from './SequenceTab'
+import SurfaceTab from './SurfaceTab'
 import Help from './Help'
 import Marked from 'marked'
 
@@ -54,6 +58,7 @@ export default {
     RepresentationMol,
     ColorMol,
     SequenceTab,
+    SurfaceTab,
     Help
   },
   data () {

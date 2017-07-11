@@ -22,7 +22,7 @@
         </tr>
       </thead>
       <tbody v-if="measures.length>0">
-        <tr v-for="(measure, index) in measures">
+        <tr v-for="(measure, index) in measures" :key="index">
           <td>
             <el-button type="text" icon="delete" @click="handleDelete(index)"></el-button>
           </td>

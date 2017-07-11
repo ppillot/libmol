@@ -138,7 +138,7 @@ function updateGlobalColorScheme () {
 
 function updateRepresentationColor () {
   stage.compList[0].eachRepresentation(repr => {
-    if (repr.name === 'highlight' || repr.name === 'distance') return
+    if (repr.name === 'highlight' || repr.name === 'distance' || repr.name.indexOf('molsurf') > -1) return
     repr.setColor(globalColorScheme)
   })
 }

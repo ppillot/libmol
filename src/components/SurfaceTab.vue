@@ -98,6 +98,7 @@
     },
     computed: {
       surfaces: function () {
+        if (this.$store.state.surfaces.length === 0) this.edit = -1
         return this.$store.state.surfaces
       },
       opacity: {

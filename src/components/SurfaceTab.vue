@@ -1,7 +1,3 @@
-/*
-* TODO : prevent another surface with same selection
-*/
-
 <template>
     <div class="container">
         <p>{{ $t('ui.surface.instructions') }}</p>

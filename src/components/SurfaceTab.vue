@@ -5,7 +5,13 @@
 <template>
     <div class="container">
         <p>{{ $t('ui.surface.instructions') }}</p>
-        <el-button type="primary" @click="createSurface">{{ $t('ui.surface.create') }}</el-button>
+        <el-button 
+          type="primary"
+          @click="createSurface"
+          :disabled="this.$store.state.selection==='none'"
+        >
+          {{ $t('ui.surface.create') }}
+        </el-button>
 
         <table class="table-surfaces">
           <thead>
@@ -28,9 +34,14 @@
               <i 
                 class="el-icon-caret-right"
                 :class="[index === edit ? 'rotate' : 'unrotate']"
-                @click="edit = (index===edit)? -1 : index"></i>
+                @click="edit = (index === edit)? -1 : index"></i>
               <div class="surface-title">
-              {{ `${$t('ui.surface.surface')} ${surface.id} (${$t('ui.commands.select.' + surface.sele)})` }}
+              {{ `${$t('ui.surface.surface')} ${surface.id} (${
+                $t((surface.sele === 'user' || surface.sele === '')? 
+                  'ctxMenu.user_selection' 
+                  :
+                  'ui.commands.select.' + surface.sele
+                )})` }}
               </div>
               <visible :value="visibility[index]" @input="val => {handleVisibility(val, surface.id)}"></visible>
               <el-button type="text" icon="delete" @click="handleDelete(surface.id)"></el-button>

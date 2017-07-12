@@ -1,1 +1,3 @@
 # Acides aminés
+Un acide aminé est une molécule organique possédant un groupe **carboxyle** et un groupe **amine**. Ce sont les consituants élémentaires des protéines, dans lesquelles ils forment des chaînes en s'associant par des **liaisons peptidiques** (produits de la réaction entre le groupe carboxyle d'un acide aminé et le groupe amine d'un autre).  
+On distingue 20 acides aminés différents dans les protéines (glycine, alanine, etc...). Ceux-ci possèdent un autre groupement chimique, le radical ou chaîne latérale, qui confère ses propriétés à l'acide aminé (hydrophobe, acide, basique, etc...)

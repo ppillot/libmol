@@ -1,7 +1,14 @@
 # Les techniques de détermination de la structure des molécules.
 
-Cristallographie aux rayons X
+Les molécules sont inaccessibles à l'observation directe par les techniques conventionnelles. On utilise des techniques indirectes pour reconstituer des modèles de ces molécules.
 
-Spectroscopie par résonance magnétique nucléaire (RMN)
+## Cristallographie aux rayons X
+La molécule étudiée est purifiée puis placée dans des conditions de cristallisations de façon à former un empilement ordonné. Le passage d'un faisceau de rayons X dans ce cristal entraîne une diffraction des ondes qui forment des interférences sur un écran (une succession de taches). La position de ces taches dépend du nuage électronique de la molécule, qui peut être reconstitué grâce à des méthodes mathématiques.  
+Les acides aminés constituant la protéines peuvent alors être replacés dans ce nuage électronique et un modèle complet est obtenu.  
+Cette méthode est la plus utilisée pour déterminer des modèles moléculaires. La résolution est généralement trop faible pour pouvoir déterminer la position des atomes d'hydrogène qui n'apparaissent donc pas dans les modèles. On peut remarquer qu'il ne s'agit que d'un modèle et que pendant la détermination, les molécules étudiées sont des conditions assez éloignées des conditions biologiques. D'autre part, certaines protéines ne cristallisent pas et ne peuvent pas être déterminées par cette technique.  
 
-Microscopie électronique 3D (3DEM)
+## Spectroscopie par résonance magnétique nucléaire (RMN)
+L'échantillon des molécules à analyser en solution est placé dans un champ magnétique puissant. Les atomes sont soumis à des ondes radios. L'analyse des résonances observées est utilisée pour déterminer les atomes voisins ainsi que la conformation des atomes liés. À partir de ces informations un ensemble de contraintes est bâti. Il est ensuite employé pour trouver les différents modèles possibles répondant à ces contraintes. La RMN aboutit donc à un ensemble de plusieurs modèles possibles. La technique est adaptée aux petites molécules qui peuvent être étudiées en solution.
+
+## Microscopie électronique 3D (3DEM)
+C'est une technique actuellement en plein développement. Le terme recouvre des procédures très différentes. Par exemple il peut s'agir de complexes de grande dimension qui sont imagés sous différents angles d'observation. Les procédés informatiques d'analyses d'images permettent de reconstituer la structure 3D à partir de ces ensembles d'image. La diffraction des électrons est également possible si la structure est suffisament répétitive ou qu'elle peut être cristallisée. Lorsque la résolution est faible, cette technique est combinée à la cristallographie afin de replacer les structures atomiques dans l'enveloppe obtenue par 3DEM.

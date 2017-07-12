@@ -1,6 +1,6 @@
 # Coloration par structure
 
-La coloration par structure identifie des motifs particuliers dans la structure d'une chaine d'acides aminés des protéines et les colore de manière spécifique. Ce mode de coloration ne s'active que lorsque la sélection porte sur les protéines et pour des modes d'affichage simplifiés ([squelette](display-backbone) ou [ruban](display-cartoon)).
+La coloration par structure identifie des motifs particuliers dans la structure d'une chaine d'acides aminés des [protéines](lexicon-protein) et les colore de manière spécifique. Ce mode de coloration ne s'active que lorsque la sélection porte sur les protéines et pour des modes d'affichage simplifiés ([squelette](display-backbone) ou [ruban](display-cartoon)).
 
 Les motifs identifiés sont :
 * les [feuillets bêta](lexicon-feuillet),

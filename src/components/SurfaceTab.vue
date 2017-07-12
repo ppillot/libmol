@@ -1,75 +1,68 @@
 <template>
-    <div class="container">
-        <p>{{ $t('ui.surface.instructions') }}</p>
-        <el-button 
-          type="primary"
-          @click="createSurface"
-          :disabled="this.$store.state.selection==='none'"
-        >
-          {{ $t('ui.surface.create') }}
-        </el-button>
+  <div class="container">
+    <p>{{ $t('ui.surface.instructions') }}</p>
+    <el-button 
+      type="primary"
+      @click="createSurface"
+      :disabled="this.$store.state.selection==='none'"
+    >
+      {{ $t('ui.surface.create') }}
+    </el-button>
 
-        <table class="table-surfaces">
-          <thead>
-            <tr>
-              <th>
-                {{ $t('ui.surface.list_label') }}
-                <el-button
-                  type="text"
-                  icon="delete"
-                  class="button align-right"
-                  size="large"
-                  @click="handleDelete(-1)" v-if="surfaces.length > 0"></el-button>
-              </th>
-            </tr>
-          </thead>
-      <tbody v-if="surfaces.length>0">
-        <tr v-for="(surface, index) in surfaces" :key="index">
-          <td>
-            <div class="surface-header">
-              <i 
-                class="el-icon-caret-right"
-                :class="[index === edit ? 'rotate' : 'unrotate']"
-                @click="edit = (index === edit)? -1 : index"></i>
-              <div class="surface-title">
-              {{ `${$t('ui.surface.surface')} ${surface.id} (${
-                $t((surface.sele === 'user' || surface.sele === '')? 
-                  'ctxMenu.user_selection' 
-                  :
-                  'tooltips.' + surface.sele
-                )})` }}
-              </div>
-              <visible :value="visibility[index]" @input="val => {handleVisibility(val, surface.id)}"></visible>
-              <el-button type="text" icon="delete" @click="handleDelete(surface.id)"></el-button>
+    <div class="container no-scroll surface-list">
+      <div class="surface-list-header">
+        {{ $t('ui.surface.list_label') }}
+        <el-button
+          type="text"
+          icon="delete"
+          class="button align-right"
+          size="large"
+          @click="handleDelete(-1)" v-if="surfaces.length > 0">
+        </el-button>
+      </div>
+      <div class="surface-list-body" v-if="surfaces.length>0">
+        <div class="surface-list-item" v-for="(surface, index) in surfaces" :key="index">
+          <div class="surface-header">
+            <i 
+              class="el-icon-caret-right"
+              :class="[index === edit ? 'rotate' : 'unrotate']"
+              @click="edit = (index === edit)? -1 : index"></i>
+            <div class="surface-title">
+            {{ `${$t('ui.surface.surface')} ${surface.id} (${
+              $t((surface.sele === 'user' || surface.sele === '')? 
+                'ctxMenu.user_selection' 
+                :
+                'tooltips.' + surface.sele
+              )})` }}
             </div>
-            <transition appear>
-              <div v-if="edit === index" class="surface-settings">
-                <form-item :label="$t('ui.surface.opacity')">
-                  <el-slider v-model="opacity" :min="0" :max="1" :step="0.1"></el-slider>  
-                </form-item>
-                <form-item :label="$t('ui.surface.outline')" inline>
-                  <el-switch
-                    v-model="outline">
-                  </el-switch>
-                </form-item>
-                <form-item :label="$t('ui.surface.color')">
-                  <palette v-model="colors" :compact="true"></palette>
-                </form-item>
-                <div style="text-align: right">
-                  <el-button type="primary" @click="downloadSTL(surface.id)">{{ $t('ui.surface.export_as_stl') }}</el-button>
-                </div>
+            <visible :value="visibility[index]" @input="val => {handleVisibility(val, surface.id)}"></visible>
+            <el-button type="text" icon="delete" @click="handleDelete(surface.id)"></el-button>
+          </div>
+          <transition appear>
+            <div v-if="edit === index" class="surface-settings">
+              <form-item :label="$t('ui.surface.opacity')">
+                <el-slider v-model="opacity" :min="0" :max="1" :step="0.1"></el-slider>  
+              </form-item>
+              <form-item :label="$t('ui.surface.outline')" inline>
+                <el-switch
+                  v-model="outline">
+                </el-switch>
+              </form-item>
+              <form-item :label="$t('ui.surface.color')">
+                <palette v-model="colors" :compact="true"></palette>
+              </form-item>
+              <div style="text-align: right">
+                <el-button type="primary" @click="downloadSTL(surface.id)">{{ $t('ui.surface.export_as_stl') }}</el-button>
               </div>
-            </transition>
-          </td>
-        </tr>  
-      </tbody>
-      <tfoot v-else>
-        <tr>
-          <td colspan="4">{{$t('ui.surface.list_instructions')}}</td>
-        </tr>
-      </tfoot>
-    </table>
+            </div>
+          </transition>
+        </div>
+      </div>  
+      <div class="surface-list-item" v-else>
+        {{$t('ui.surface.list_instructions')}}
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -183,32 +176,47 @@
     max-height: 100%;
   }
 
-  .table-surfaces {
-    width: 100%;
-    border-collapse: collapse;
-    border: solid 1px #dfe6ec;
-    margin: 1em 0;
+  .no-scroll {
+    overflow: hidden;
+  }
+
+  .surface-list {
+    margin-top: 1em;
     font-size: 0.9em;
   }
 
-  .table-surfaces td {
-    padding: 1em;
-    border: 1px solid #dfe6ec;
-  }
-
-  .table-surfaces i {
+  .surface-list i {
     color: #88a9d4;
   }
 
-  .table-surfaces i:hover {
+  .surface-list i:hover {
     color: #20a0ff;
     cursor: pointer;
   }
 
-  .table-surfaces th {
+  .surface-list-header {
     line-height: 2.5em;
     background: #eef1f6;
     position: relative;
+    border: 1px solid #dfe6ec;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .surface-list-body {
+    flex:1;
+    overflow: auto;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+  }
+
+  .surface-list-item {
+    border: solid 1px #dfe6ec;
+    padding: 1em;
+    margin-top: -1px;
   }
 
   .rotate {

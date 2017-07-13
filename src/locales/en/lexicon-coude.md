@@ -1,1 +1,2 @@
 # Turns
+Turns are among the main patterns taken by [amino acids](lexicon-aminoacid) chains in a [protein](lexicon-protein) (also known as secondary structures). A turn is a distinguishable fold, hairpin like, in a polypeptidic chain.

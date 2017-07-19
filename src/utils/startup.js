@@ -30,7 +30,7 @@ function getSearchParameters () {
     params.file = `rcsb://${params.pdb}`
     params.value = ''
   }
-  console.dir(params)
+  // console.dir(params)
   return params
 }
 

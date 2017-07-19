@@ -45,6 +45,10 @@ function loadFile (stage, context) {
       let sstruc = new Set()
       let selected = []
 
+    // in case no value has been provided for the file name, extract it from the title property in structure
+      if (newFile.value === '') {
+        newFile.value = structure.title
+      }
     // let's iterate through each residue from this structure
       structure.eachResidue(item => {
         // Do we have multiple models?

@@ -16,6 +16,7 @@ import {loadFile} from 'utils/loadfile'
 import {byres} from 'utils/colors'
 import surface from 'utils/surface'
 import {Notification} from 'element-ui'
+import getStartingParameters from 'utils/startup'
 
 let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug}
 Vue.use(Vuex)
@@ -41,6 +42,7 @@ var tabColorAtomSet
 var globalColorScheme
 var predefined
 var latestHelp = {}
+var startParams = getStartingParameters()
 
 /**
  * @description removes residues form their current representation so that they are set only in the latest
@@ -550,7 +552,7 @@ var vuex = new Vuex.Store({
       loadNewFile = loadFile(stage, context)
       stage.mouseControls.remove('hoverPick')
       stage.signals.hovered.add(hover(context))
-      context.dispatch('loadNewFile', { file: 'rcsb://1crn', value: 'Crambin' })
+      context.dispatch('loadNewFile', { file: startParams.file, value: startParams.value })
 
       let resize = resizeStage(stage)
       window.onresize = debounce(100, resize)

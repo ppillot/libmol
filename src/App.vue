@@ -1,5 +1,16 @@
 <template>
-  <el-row class="row-bg" id="app">
+  <div id="app">
+    <div class="full-height sidebar row-bg">
+      <sidebar></sidebar>
+    </div>
+    <div class="full-height viewer" id="view" :style="fullscreen">
+      <toolbar></toolbar>
+      <ngl></ngl>
+      <statusbar></statusbar>
+    </div>
+    <alert></alert>
+  </div>
+  <!-- <el-row class="row-bg" id="app">
     <el-col :span="8" class="full-height">
       <div class="grid-content full-height">
         <sidebar></sidebar>
@@ -11,7 +22,7 @@
         <statusbar></statusbar>
     </el-col>
     <alert></alert>
-  </el-row>
+  </el-row> -->
 </template>
 
 <script>
@@ -61,6 +72,10 @@ export default {
 </script>
 
 <style>
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
   body {
     margin: 0;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -77,6 +92,13 @@ export default {
     position: absolute;
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  #view {
+    flex: 1;
+    overflow-x: hidden;
   }
   
   .el-col {
@@ -100,6 +122,12 @@ export default {
   .full-height {
     position: relative;
     height: 100%;
+  }
+
+  .sidebar {
+    max-width: 500px;
+    width: 30%;
+    flex: none;
   }
 
 </style>

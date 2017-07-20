@@ -303,6 +303,7 @@ var vuex = new Vuex.Store({
     fileName: '',
     name: 'LibMol',
     fullscreen: false,
+    embedded: startParams.embedded,
     isMeasuringDistances: false,
     mol: {
       chains: [],

@@ -4,7 +4,8 @@
 
 let defaultParameters = {
   file: 'rcsb://1crn',
-  value: 'Crambin'
+  value: 'Crambin',
+  embedded: false
 }
 /**
  * transform the search part of the URL in a JSON

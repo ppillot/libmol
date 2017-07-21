@@ -126,6 +126,7 @@ export default {
 
   .sidebar {
     max-width: 500px;
+    min-width: 300px;
     width: 30%;
     flex: none;
   }

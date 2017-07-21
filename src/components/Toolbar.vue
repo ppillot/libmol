@@ -79,8 +79,8 @@
     },
     methods: {
       toggleFullscreen () {
-        let view = document.getElementById('view')
-        Screenfull.toggle(view)
+        // let view = document.getElementById('view')
+        Screenfull.toggle()
         this.$store.dispatch('toggleFullscreen')
       },
       screenCapture () {

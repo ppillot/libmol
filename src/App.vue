@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div class="full-height sidebar row-bg">
+    <div class="full-height sidebar row-bg" v-if="isSidebarVisible">
       <sidebar></sidebar>
     </div>
-    <div class="full-height viewer" id="view" :style="fullscreen">
+    <div class="full-height viewer" id="view">
       <toolbar></toolbar>
       <ngl></ngl>
       <statusbar></statusbar>
@@ -32,7 +32,6 @@ import SearchLibmol from './components/Searchlibmol'
 import Toolbar from './components/Toolbar'
 import Statusbar from './components/Statusbar'
 import Alert from './components/Alert'
-import Screenfull from 'screenfull'
 
 export default {
   name: 'app',
@@ -44,28 +43,18 @@ export default {
     Statusbar,
     Alert
   },
-  data: function () {
-    return {
-      fullscreen: {}
-    }
-  },
-  /* computed: {
-    fullscreen: function () {
+  computed: {
+    /**
+     * The side bar is hidden when the viewer is embedded into another webpage
+     * Except if the viewer is in fullscreen mode (in the later case, the sidebar
+     * is always visible)
+     */
+    isSidebarVisible: function () {
       if (this.$store.state.fullscreen) {
-        let view = document.getElementById('view')
-        Screenfull.request(view)
-        return { width: '100%' }
+        return true
       } else {
-        if (Screenfull.enabled) Screenfull.exit()
-        return {}
+        return (!this.$store.state.embedded)
       }
-    }
-  }, */
-  mounted: function () {
-    if (Screenfull.enabled) {
-      Screenfull.onchange(() => { // user can use ESC key to cancel fullscreen
-        this.fullscreen = (Screenfull.isFullscreen === false) ? {} : { width: '100%' }
-      })
     }
   }
 }

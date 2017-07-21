@@ -23,7 +23,8 @@ function getSearchParameters () {
       params,
       tabProp[0],
       {
-        value: tabProp[1] || true
+        value: tabProp[1] || true,
+        enumerable: true
       })
   })
 
@@ -31,7 +32,7 @@ function getSearchParameters () {
     params.file = `rcsb://${params.pdb}`
     params.value = ''
   }
-  // console.dir(params)
+  console.dir(params)
   return params
 }
 

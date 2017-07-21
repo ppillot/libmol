@@ -44,6 +44,7 @@ var predefined
 var latestHelp = {}
 var startParams = getStartingParameters()
 
+console.log(startParams)
 /**
  * @description removes residues form their current representation so that they are set only in the latest
  *

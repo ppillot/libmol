@@ -462,12 +462,13 @@
     outline: none;
   }
   .button-like span {
-    max-width: calc(100% - 2em);
+    max-width: calc(100% - 5em);
     text-overflow: ellipsis;
     overflow: hidden;
     height: 2em;
     word-break: break-all;
     font-family: Courier New, Courier, monospace;
+    white-space: nowrap;
   }
   .button-like i {
     position: absolute;

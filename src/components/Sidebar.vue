@@ -17,6 +17,7 @@
                 <search-libmol></search-libmol>
                 <search-pdb></search-pdb>
                 <load-file></load-file>
+                <export></export>
             </el-tab-pane>
             <el-tab-pane :label="$t('ui.commands_tab_label')" name="commands">
                 <select-mol></select-mol>
@@ -46,6 +47,7 @@ import SequenceTab from './SequenceTab'
 import SurfaceTab from './SurfaceTab'
 import Help from './Help'
 import Marked from 'marked'
+import Export from './Export'
 
 export default {
   name: 'sidebar',
@@ -59,7 +61,8 @@ export default {
     ColorMol,
     SequenceTab,
     SurfaceTab,
-    Help
+    Help,
+    Export
   },
   data () {
     return {

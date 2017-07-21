@@ -2,9 +2,9 @@
   <form-item :label="$t('ui.load_local_file_label')">
     <input type="file" id="fileElem" style="display:none" @change="getFiles($event)">
     <label for="fileElem" class="loadfile" 
-      @dragenter.prevent.default 
-      @dragover.prevent.default 
-      @drop.prevent.default="dropFile($event)">
+      @dragenter.prevent 
+      @dragover.prevent
+      @drop.prevent="dropFile($event)">
       <i class="el-icon-upload"></i>
       {{ $t('ui.load_local_file_instructions') }}
     </label>

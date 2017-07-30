@@ -17,6 +17,7 @@ import {byres} from 'utils/colors'
 import surface from 'utils/surface'
 import {Notification} from 'element-ui'
 import getStartingParameters from 'utils/startup'
+import * as base64 from 'utils/base64'
 
 let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug}
 Vue.use(Vuex)
@@ -1087,6 +1088,38 @@ var vuex = new Vuex.Store({
     },
     downloadSurface (context, surfaceIndex) {
       surf.downloadSTL(surfaceIndex)
+    },
+    getEmbedCode (context) {
+      // informations required
+      // - file
+      // - colorations
+      // - representations (including distances and surfaces)
+      // - current selection
+      // - currently displayed atoms
+      console.dir(tabColorAtomSet)
+      let doc = {
+        state: {
+          fileName: context.state.fileName,
+          name: context.state.name,
+          fullscreen: context.state.fullscreen,
+          selection: context.state.selection,
+          display: context.state.display,
+          color: context.state.color,
+          stage: context.state.stage
+        },
+        colorations: {
+          tCAtomSet: tabColorAtomSet.map(val => {
+            console.log(val._words)
+            return base64.fromByteArray(val._words)
+          }),
+          tCScheme: tabColorScheme
+        },
+        representations: {
+          rList: representationsList
+        }
+      }
+      console.dir(doc)
+      console.log(JSON.stringify(doc))
     }
   },
   getters: {

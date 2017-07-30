@@ -14,6 +14,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "base64-js": "^1.2.1",
     "element-ui": "^1.3.6",
     "marked": "^0.3.6",
     "ngl": "git://github.com/arose/ngl.git",

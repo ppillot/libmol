@@ -573,7 +573,7 @@ var vuex = new Vuex.Store({
           updateGlobalColorScheme()
           representationsList = [{
             display: 'ball+stick',
-            color: 'element',
+            // color: 'element',
             sele: 'all',
             atomSet: structure.getAtomSet().clone(),
             displayedAtomSet: structure.getAtomSet(new NGL.Selection('not water')).clone(),
@@ -1096,7 +1096,6 @@ var vuex = new Vuex.Store({
       // - representations (including distances and surfaces)
       // - current selection
       // - currently displayed atoms
-      console.dir(tabColorAtomSet)
       let doc = {
         state: {
           fileName: context.state.fileName,
@@ -1109,14 +1108,20 @@ var vuex = new Vuex.Store({
         },
         colorations: {
           tCAtomSet: tabColorAtomSet.map(val => {
-            console.log(val._words)
             return base64.fromByteArray(val._words)
           }),
           tCScheme: tabColorScheme
         },
-        representations: {
-          rList: representationsList
-        }
+        representations: representationsList.map(val => {
+          return {
+            atomSetBase64: base64.fromByteArray(val.atomSet._words),
+            displayedAtomSetBase64: base64.fromByteArray(val.displayedAtomSet._words),
+            display: val.display,
+            index: val.index,
+            sele: val.sele,
+            overlay: val.overlay
+          }
+        })
       }
       console.dir(doc)
       console.log(JSON.stringify(doc))

@@ -8,7 +8,7 @@
       ref="palette"
       placement="right"
       trigger="click">
-      <palette v-model="colors" @color="pickColor"></palette>
+      <palette v-model="colors"></palette>
     </el-popover>
         <radio-button :disabled="noSStruc || none" value="sstruc">{{ $t('ui.commands.color.by_secondary_structure') }}</radio-button>
         <radio-button :disabled="notAll || none" value="moleculetype">{{ $t('ui.commands.color.by_biochemical_nature') }}</radio-button>
@@ -25,11 +25,6 @@
 
   export default {
     name: 'ColorMol',
-    data () {
-      return {
-        colors: {hex: '#00ff00'}
-      }
-    },
     components: {
       'palette': Palette,
       FormItem,
@@ -52,6 +47,16 @@
       },
       colored: function () {
         return this.$store.state.color
+      },
+      colors: {
+        set: function (val) {
+          this.$store.dispatch('color', val)
+        },
+        get: function () {
+          return {
+            hex: `${this.$store.state.color}`
+          }
+        }
       }
     },
     methods: {

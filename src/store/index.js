@@ -91,14 +91,13 @@ function removeSelectionFromColorSchemes (atomSet, skipColorSchemeIndex) {
     if (i === skipColorSchemeIndex) return
     if (tabColorAtomSet[i].intersects(atomSet)) {
       let selAtomSet = tabColorAtomSet[i].difference(atomSet)
-      if (selAtomSet.count === 0) {
+      if (selAtomSet.getSize() === 0) {
         clearableColorSchemes.push(i)
       } else {
         colorScheme[1] = selAtomSet.toSeleString()
       }
     }
   })
-
   // this colorSchemes are empty, we can dispose them
   clearableColorSchemes.reverse().forEach(i => {
     tabColorAtomSet.splice(i, 1)

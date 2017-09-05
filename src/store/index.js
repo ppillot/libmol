@@ -368,7 +368,8 @@ var vuex = new Vuex.Store({
     },
     isUserSelectionValid: false,
     userSelectionSize: 0,
-    userSelectionText: ''
+    userSelectionText: '',
+    stateID: -1
   },
   mutations: {
     alert (state, {type, token}) {
@@ -511,6 +512,9 @@ var vuex = new Vuex.Store({
     },
     setUserSelectionText (state, value) {
       state.userSelectionText = value
+    },
+    setStateID (state, value) {
+      state.stateID = value
     }
   },
   actions: {
@@ -1091,10 +1095,12 @@ var vuex = new Vuex.Store({
     getEmbedCode (context) {
       // informations required
       // - file
+      //   - file content if external file is loaded
       // - colorations
       // - representations (including distances and surfaces)
       // - current selection
       // - currently displayed atoms
+      // - scene orientation
       let doc = {
         state: {
           fileName: context.state.fileName,
@@ -1111,19 +1117,46 @@ var vuex = new Vuex.Store({
           }),
           tCScheme: tabColorScheme
         },
-        representations: representationsList.map(val => {
-          return {
-            atomSetBase64: base64.fromByteArray(val.atomSet._words),
-            displayedAtomSetBase64: base64.fromByteArray(val.displayedAtomSet._words),
-            display: val.display,
-            index: val.index,
-            sele: val.sele,
-            overlay: val.overlay
-          }
-        })
+        representations: {
+          repr: representationsList.map(val => {
+            return {
+              atomSetBase64: base64.fromByteArray(val.atomSet._words),
+              displayedAtomSetBase64: base64.fromByteArray(val.displayedAtomSet._words),
+              display: val.display,
+              index: val.index,
+              sele: val.sele,
+              overlay: val.overlay
+            }
+          }),
+          dist: distance.getMeasures(),
+          surf: context.state.surfaces.map(val => {
+            return {
+              atomSetBase64: base64.fromByteArray(val.atomSet._words),
+              props: val.props
+            }
+          })
+        },
+        currentSelectionAtomSetBase64: base64.fromByteArray(currentSelectionAtomSet._words),
+        currentlyDisplayedAtomSetBase64: base64.fromByteArray(currentlyDisplayedAtomSet._words)
       }
-      console.dir(doc)
-      console.log(JSON.stringify(doc))
+
+      const path = (process.env.NODE_ENV !== 'production') ? 'api/states.php' : 'https://libmol.org/api/states.php'
+
+      window.fetch(path, {
+        method: 'POST',
+        body: JSON.stringify({
+          json: doc
+        })
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        context.commit('setStateID', data.id)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
     }
   },
   getters: {

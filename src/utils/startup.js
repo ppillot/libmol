@@ -23,10 +23,30 @@ function getSearchParameters () {
       params,
       tabProp[0],
       {
-        value: tabProp[1] || true,
+        value: decodeURI(tabProp[1]) || true,
         enumerable: true
       })
   })
+
+  if (params.hasOwnProperty('state')) {
+    const path = (process.env.NODE_ENV !== 'production') ? 'api/states.php' : 'https://libmol.org/api/states.php'
+
+    window.fetch(path, {
+      method: 'POST',
+      body: JSON.stringify({
+        id: params.state
+      })
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      console.dir(data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  }
 
   if (params.hasOwnProperty('pdb')) {
     params.file = `rcsb://${params.pdb}`

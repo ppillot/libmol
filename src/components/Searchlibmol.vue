@@ -14,7 +14,7 @@
       </span>
       <div class="suggest" :style="suggestStyles" v-if="isFocused">
         <ul>
-          <li v-for="(suggestion, index) in suggestions" @click="handleSelect(index)">
+          <li v-for="(suggestion, index) in suggestions" @click="handleSelect(index)" :key="index">
             {{ suggestion.value }}
           </li>
         </ul>

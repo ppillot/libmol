@@ -72,7 +72,7 @@
         return this.$store.state.fullscreen
       }, */
       PDBCode: function () {
-        return (this.$store.state.fileName.indexOf('rcsb://') === 0)
+        return (typeof (this.$store.state.fileName) === 'string' && this.$store.state.fileName.indexOf('rcsb://') === 0)
         ? this.$store.state.fileName.substr(-4)
         : ''
       }

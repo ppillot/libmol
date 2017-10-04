@@ -20,6 +20,7 @@ function getChainColors (chains, structure) {
 function loadFile (stage, context) {
   function newFile (newFile) {
     stage.removeAllComponents()
+    // console.log(newFile)
     return stage.loadFile(newFile.file, {assembly: 'AU'})
     .then((component) => { // let's get the structure property from the structureComponent object returned by NGL's promise
       const structure = component.structure
@@ -49,6 +50,7 @@ function loadFile (stage, context) {
       if (newFile.value === '') {
         newFile.value = structure.title
       }
+      // console.log(newFile)
     // let's iterate through each residue from this structure
       structure.eachResidue(item => {
         // Do we have multiple models?

@@ -303,6 +303,8 @@ var vuex = new Vuex.Store({
   state: {
     fileName: '',
     name: 'LibMol',
+    source: 'libmol',
+    molCode: '',
     fullscreen: false,
     embedded: startParams.embedded,
     isMeasuringDistances: false,
@@ -378,6 +380,8 @@ var vuex = new Vuex.Store({
     loadNewFile (state, newFile) {
       state.fileName = newFile.file
       state.name = newFile.value
+      state.source = newFile.source
+      state.molCode = newFile.molCode
     },
     setMolTypes (state, {molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence}) {
       state.mol.molTypes.protein = molTypes.has(3)
@@ -560,7 +564,15 @@ var vuex = new Vuex.Store({
       window.onresize = debounce(100, resize)
       if (debug) { window.stage = stage }
     },
-    loadNewFile (context, newFile) {
+    loadNewFile (context, fileObject) {
+      let newFile = {
+        file: fileObject.file,
+        value: fileObject.value,
+        molId: fileObject.molId,
+        molCode: '',
+        source: fileObject.source
+      }
+
       loadNewFile(newFile).then(
         ({molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component}) => {
           structure = component.structure

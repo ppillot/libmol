@@ -1,7 +1,7 @@
 <template>
     <div class="toolbar">
-        <div class="pdb-code" v-if="PDBCode !== ''">
-          {{ PDBCode.toUpperCase() }}
+        <div class="pdb-code" v-if="molCode !== ''">
+          {{ molCode.toUpperCase() }}
         </div>
         <div class="molname">{{ molName }}</div>
         <div class="commands">
@@ -71,10 +71,8 @@
       /* isFullScreen: function () {
         return this.$store.state.fullscreen
       }, */
-      PDBCode: function () {
-        return (typeof (this.$store.state.fileName) === 'string' && this.$store.state.fileName.indexOf('rcsb://') === 0)
-        ? this.$store.state.fileName.substr(-4)
-        : ''
+      molCode: function () {
+        return this.$store.state.molCode
       }
     },
     methods: {

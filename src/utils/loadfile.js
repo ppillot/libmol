@@ -50,7 +50,10 @@ function loadFile (stage, context) {
       if (newFile.value === '') {
         newFile.value = structure.title
       }
-      // console.log(newFile)
+      if (structure.id !== '') {
+        newFile.molCode = structure.id
+      }
+
     // let's iterate through each residue from this structure
       structure.eachResidue(item => {
         // Do we have multiple models?

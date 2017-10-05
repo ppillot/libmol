@@ -14,7 +14,11 @@
       </span>
       <div class="suggest" :style="suggestStyles" v-if="isFocused">
         <ul>
-          <li :title="suggestion.value" v-for="(suggestion, index) in suggestions" @click="handleSelect(index)">
+          <li 
+            :title="suggestion.value" 
+            v-for="(suggestion, index) in suggestions" 
+            @click="handleSelect(index)"
+            :key="suggestion.molId">
             <div class="pdb-title">{{ suggestion.value }}</div>
             <div class="pdb-code">
                 {{ suggestion.molId }}
@@ -154,7 +158,8 @@ export default {
           rep.push({
             value: item.children[1].textContent,
             file: 'rcsb://' + item.children[0].textContent,
-            molId: item.children[0].textContent
+            molId: item.children[0].textContent,
+            source: 'pdb'
           })
         }
         this.suggestions = rep

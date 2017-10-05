@@ -14,7 +14,7 @@
       </span>
       <div class="suggest" :style="suggestStyles" v-if="isFocused">
         <ul>
-          <li v-for="(suggestion, index) in suggestions" @click="handleSelect(index)">
+          <li v-for="(suggestion, index) in suggestions" @click="handleSelect(index)" :key="suggestion.molId">
             {{ suggestion.value }}
           </li>
         </ul>
@@ -126,11 +126,14 @@ export default {
         return response.json()
       })
       .then(data => {
-        this.suggestions = data.map(item => ({ value: item.label,
+        this.suggestions = data.map(item => ({
+          value: item.label,
           file: ((item.file.indexOf('.cif') > -1) || (item.file.indexOf('.mmtf') > -1) || (item.file.indexOf('.sdf') > -1))
             ? 'static/mol/' + item.file
             : `static/mol/pdb/${item.file}.pdb`,
-          molId: item.molId }))
+          molId: item.molId,
+          source: 'libmol'
+        }))
         // cb(rep)
       })
       .catch(function (error) {

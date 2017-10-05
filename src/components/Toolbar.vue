@@ -1,8 +1,11 @@
 <template>
     <div class="toolbar">
-        <div class="pdb-code" v-if="molCode !== ''">
+        <a class="pdb-code" 
+          v-if="molHref !== ''" 
+          :href="molHref"
+          target="_blank">
           {{ molCode.toUpperCase() }}
-        </div>
+        </a>
         <div class="molname">{{ molName }}</div>
         <div class="commands">
           <el-popover
@@ -47,6 +50,9 @@
   import distance from './Distance'
   import Screenfull from 'screenfull'
 
+  const PDBCodeRegEx = /^\d\w{3}$/gi
+  const PDBHeteroCode = /^\w{3}$/gi
+
   export default {
     name: 'toolbar',
     components: {
@@ -73,6 +79,16 @@
       }, */
       molCode: function () {
         return this.$store.state.molCode
+      },
+      molHref: function () {
+        if (this.molCode !== '') {
+          if (PDBCodeRegEx.test(this.molCode)) {
+            return `http://www.rcsb.org/pdb/explore/explore.do?structureId=${this.molCode.toLowerCase()}`
+          } else if (PDBHeteroCode.test(this.molCode)) {
+            return `http://www4.rcsb.org/ligand/${this.molCode.toUpperCase()}`
+          }
+        }
+        return ''
       }
     },
     methods: {
@@ -155,5 +171,12 @@
     font-weight: 500;
     line-height: 1.1em;
     margin-right: 0.5em;
+    text-decoration: none;
+  }
+
+  .pdb-code:hover {
+    background: #FFF;
+    color: #03a9f4
+
   }
 </style>

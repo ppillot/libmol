@@ -99,7 +99,7 @@ function measureDistance (component, context) {
 
   function handleClick (pickingProxy) {
     if (pickingProxy === undefined ||
-      pickingProxy.type !== 'atom' && pickingProxy.type !== 'bond') {
+      (pickingProxy.type !== 'atom' && pickingProxy.type !== 'bond')) {
       // cancel measurement
       // send a warning
       measure.atom1 = {}
@@ -129,7 +129,7 @@ function measureDistance (component, context) {
 
   function handleHover (pickingProxy) {
     if (pickingProxy === undefined ||
-      pickingProxy.type !== 'bond' && pickingProxy.type !== 'atom') {
+      (pickingProxy.type !== 'bond' && pickingProxy.type !== 'atom')) {
       distanceHighlight(undefined)
     } else {
       let atom = (pickingProxy.type === 'atom') ? pickingProxy.atom : pickingProxy.closestBondAtom

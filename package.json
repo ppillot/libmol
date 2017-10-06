@@ -16,7 +16,7 @@
   "dependencies": {
     "element-ui": "^1.3.6",
     "marked": "^0.3.6",
-    "ngl": "git://github.com/arose/ngl.git",
+    "ngl": "git://github.com/ppillot/ngl.git#angles",
     "screenfull": "^3.3.1",
     "vue": "^2.4.1",
     "vue-i18n": "git://github.com/kazupon/vue-i18n.git#5.x",
@@ -90,7 +90,7 @@
     "vue-loader": "^13.0.2",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.4.1",
-    "webpack": "^3.2.0",
+    "webpack": "^2.7.0",
     "webpack-bundle-analyzer": "^2.4.0",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-hot-middleware": "^2.18.2",

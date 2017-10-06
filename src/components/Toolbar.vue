@@ -25,14 +25,14 @@
           <el-button v-show="isHidden" v-popover:warninghidden icon="warning" class="button warning" type="text" size="large"></el-button>
           -->
           <el-popover
-            ref="distance"
+            ref="measures"
             placement="bottom-end"
             width="400"
             trigger="click">
-            <distance></distance>
+            <measures-panel></measures-panel>
           </el-popover>
-          <el-button v-popover:distance class="button" type="text" size="small">
-            {{ $t('ui.toolbar.distance.button') }}
+          <el-button v-popover:measures class="button" type="text" size="small">
+            {{ $t('ui.toolbar.measures.button') }}
           </el-button>
           <el-button class="button" type="text" size="large" @click="screenCapture">
             <i class="icon-camera"></i>
@@ -47,7 +47,7 @@
 
 <script>
   import settings from './Settings'
-  import distance from './Distance'
+  import measuresPanel from './MeasuresPanel'
   import Screenfull from 'screenfull'
 
   const PDBCodeRegEx = /^\d\w{3}$/gi
@@ -57,7 +57,7 @@
     name: 'toolbar',
     components: {
       settings,
-      distance
+      measuresPanel
     },
     data: function () {
       return {

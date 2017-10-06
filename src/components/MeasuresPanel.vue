@@ -1,13 +1,15 @@
 <template>
-  <div class="settings">
-    <form-item :label="$t('ui.toolbar.distance.activate_label')" inline>
+  <!--<div class="settings">-->
+  <el-tabs type="card">
+  <el-tab-pane :label="$t('ui.toolbar.measures.distance')">
+    <form-item :label="$t('ui.toolbar.measures.activate_distance_label')" inline>
       <el-switch
         v-model="mouseDistance"
         :width="80"
         on-color="#13CE66"
         off-color="#D3DCE6"
-        :on-text="$t('ui.toolbar.distance.activate')"
-        :off-text="$t('ui.toolbar.distance.deactivate')"
+        :on-text="$t('ui.toolbar.measures.activate')"
+        :off-text="$t('ui.toolbar.measures.deactivate')"
         @change="switchDistance">
       </el-switch>
     </form-item>
@@ -15,16 +17,16 @@
     <table class="table-distances">
       <thead>
         <tr>
-          <th><el-button type="text" icon="delete" @click="handleDelete" :disabled="measures.length===0"></el-button></th>
-          <th>{{ $t('ui.toolbar.distance.atom1') }}</th>
-          <th>{{ $t('ui.toolbar.distance.atom2') }}</th>
-          <th>{{ $t('ui.toolbar.distance.distance') }}</th>
+          <th><el-button type="text" icon="delete" @click="handleDeleteDistances" :disabled="measures.length===0"></el-button></th>
+          <th>{{ $t('ui.toolbar.measures.atom1') }}</th>
+          <th>{{ $t('ui.toolbar.measures.atom2') }}</th>
+          <th>{{ $t('ui.toolbar.measures.distance') }}</th>
         </tr>
       </thead>
       <tbody v-if="measures.length>0">
         <tr v-for="(measure, index) in measures" :key="index">
           <td>
-            <el-button type="text" icon="delete" @click="handleDelete(index)"></el-button>
+            <el-button type="text" icon="delete" @click="handleDeleteDistances(index)"></el-button>
           </td>
           <td>
             {{ measure.atom1.atomname}} {{ measure.atom1.serial }} | {{ measure.atom1.resname}}{{ measure.atom1.resno}}
@@ -39,36 +41,40 @@
       </tbody>
       <tfoot v-else>
         <tr>
-          <td colspan="4">{{$t('ui.toolbar.distance.instructions')}}</td>
+          <td colspan="4">{{$t('ui.toolbar.measures.instructions_distances')}}</td>
         </tr>
       </tfoot>
     </table>
+  </el-tab-pane>
 
-    <form-item :label="$t('ui.toolbar.distance.activate_label')" inline>
+  
+  <el-tab-pane :label="$t('ui.toolbar.measures.angle')">
+    <form-item :label="$t('ui.toolbar.measures.activate_angle_label')" inline>
       <el-switch
-        v-model="mouseDistance"
+        v-model="mouseAngle"
         :width="80"
         on-color="#13CE66"
         off-color="#D3DCE6"
-        :on-text="$t('ui.toolbar.distance.activate')"
-        :off-text="$t('ui.toolbar.distance.deactivate')"
-        @change="switchDistance">
+        :on-text="$t('ui.toolbar.measures.activate')"
+        :off-text="$t('ui.toolbar.measures.deactivate')"
+        @change="switchAngle">
       </el-switch>
     </form-item>
    
     <table class="table-distances">
       <thead>
         <tr>
-          <th><el-button type="text" icon="delete" @click="handleDelete" :disabled="measures.length===0"></el-button></th>
-          <th>{{ $t('ui.toolbar.distance.atom1') }}</th>
-          <th>{{ $t('ui.toolbar.distance.atom2') }}</th>
-          <th>{{ $t('ui.toolbar.distance.distance') }}</th>
+          <th><el-button type="text" icon="delete" @click="handleDeleteAngles" :disabled="measures.length===0"></el-button></th>
+          <th>{{ $t('ui.toolbar.measures.atom1') }}</th>
+          <th>{{ $t('ui.toolbar.measures.atom2') }}</th>
+          <th>{{ $t('ui.toolbar.measures.atom3') }}</th>
+          <th>{{ $t('ui.toolbar.measures.angle') }}</th>
         </tr>
       </thead>
       <tbody v-if="measures.length>0">
         <tr v-for="(measure, index) in measures" :key="index">
           <td>
-            <el-button type="text" icon="delete" @click="handleDelete(index)"></el-button>
+            <el-button type="text" icon="delete" @click="handleDeleteAngles(index)"></el-button>
           </td>
           <td>
             {{ measure.atom1.atomname}} {{ measure.atom1.serial }} | {{ measure.atom1.resname}}{{ measure.atom1.resno}}
@@ -77,24 +83,29 @@
             {{ measure.atom2.atomname}} {{ measure.atom2.serial }} | {{ measure.atom2.resname}}{{ measure.atom2.resno}}
           </td>
           <td>
-            {{ measure.distance/10 | round}} nm
+            {{ measure.atom3.atomname}} {{ measure.atom3.serial }} | {{ measure.atom3.resname}}{{ measure.atom3.resno}}
+          </td>
+          <td>
+            {{ measure.angle | round}} °
           </td>
         </tr>  
       </tbody>
       <tfoot v-else>
         <tr>
-          <td colspan="4">{{$t('ui.toolbar.distance.instructions')}}</td>
+          <td colspan="5">{{$t('ui.toolbar.measures.instructions_angles')}}</td>
         </tr>
       </tfoot>
     </table>
-  </div>
+  </el-tab-pane>
+</el-tabs>
+  <!--</div>-->
 </template>
 
 <script>
   import FormItem from './FormItem'
 
   export default {
-    name: 'distance',
+    name: 'measuresPanel',
     components: {
       FormItem
     },
@@ -109,6 +120,14 @@
         set (value) {
           this.$store.commit('isMeasuringDistances', value)
         }
+      },
+      mouseAngle: {
+        get () {
+          return this.$store.state.isMeasuringAngles
+        },
+        set (value) {
+          this.$store.commit('isMeasuringAngles', value)
+        }
       }
     },
     filters: {
@@ -121,8 +140,15 @@
         const mouseMode = (isMeasuringDistances) ? 'distance' : 'pick'
         this.$store.dispatch('setMouseMode', mouseMode)
       },
-      handleDelete (value) {
+      handleDeleteDistances (value) {
         this.$store.dispatch('deleteDistance', value)
+      },
+      switchAngle (isMeasuringAngles) {
+        const mouseMode = (isMeasuringAngles) ? 'angle' : 'pick'
+        this.$store.dispatch('setMouseMode', mouseMode)
+      },
+      handleDeleteAngles (value) {
+        this.$store.dispatch('deleteAngle', value)
       }
     }
   }

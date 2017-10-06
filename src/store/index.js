@@ -308,6 +308,7 @@ var vuex = new Vuex.Store({
     fullscreen: false,
     embedded: startParams.embedded,
     isMeasuringDistances: false,
+    isMeasuringAngles: false,
     mol: {
       chains: [],
       atoms: [],
@@ -441,6 +442,9 @@ var vuex = new Vuex.Store({
     },
     isMeasuringDistances (state, isMeasuring) {
       state.isMeasuringDistances = isMeasuring
+    },
+    isMeasuringAngles (state, isMeasuring) {
+      state.isMeasuringAngles = isMeasuring
     },
     updateColor (state) {
       state.color = getColorFromSelection()
@@ -597,7 +601,7 @@ var vuex = new Vuex.Store({
 
           predefined = getPredefined(structure, chains)
           highlight = highlightRes(component)
-          if (context.state.isMeasuringDistances) context.dispatch('setMouseMode', 'default')
+          if (context.state.isMeasuringDistances || context.state.isMeasuringAngles) context.dispatch('setMouseMode', 'default')
           distance = measureDistance(component, context)
           surf = surface(component, context)
 
@@ -626,6 +630,7 @@ var vuex = new Vuex.Store({
       commit('updateHiddenPercentage')
       commit('hide', false)
       commit('isMeasuringDistances', false)
+      commit('isMeasuringAngles', false)
     },
     selection (context, selector) {
       if (selector === 'invert') {
@@ -1015,8 +1020,21 @@ var vuex = new Vuex.Store({
           // set signal picking atom
           stage.signals.clicked.add(distance.clickDistance)
           stage.signals.hovered.add(distance.hoverDistance)
-          // set state to measuring
+          // set state to measuring distances
           context.commit('isMeasuringDistances', true)
+          // unset state to measuring angles
+          context.commit('isMeasuringAngles', false)
+          break
+        case 'angle' :
+          // set cursor style
+          stage.viewer.container.style.cursor = 'crosshair'
+          // set signal picking atom
+          stage.signals.clicked.add(distance.clickDistance)
+          stage.signals.hovered.add(distance.hoverDistance)
+          // set state to measuring angles
+          context.commit('isMeasuringAngles', true)
+          // unset state to measuring distances
+          context.commit('isMeasuringDistances', false)
           break
         default :
           // set cursor style
@@ -1026,6 +1044,7 @@ var vuex = new Vuex.Store({
           stage.signals.hovered.remove(distance.hoverDistance)
           // set state to not measuring
           context.commit('isMeasuringDistances', false)
+          context.commit('isMeasuringAngles', false)
           // disable distance highlights
           distance.disable()
       }

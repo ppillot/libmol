@@ -17,14 +17,14 @@
     <table class="table-distances">
       <thead>
         <tr>
-          <th><el-button type="text" icon="delete" @click="handleDeleteDistances" :disabled="measures.length===0"></el-button></th>
+          <th><el-button type="text" icon="delete" @click="handleDeleteDistances" :disabled="distances.length===0"></el-button></th>
           <th>{{ $t('ui.toolbar.measures.atom1') }}</th>
           <th>{{ $t('ui.toolbar.measures.atom2') }}</th>
           <th>{{ $t('ui.toolbar.measures.distance') }}</th>
         </tr>
       </thead>
-      <tbody v-if="measures.length>0">
-        <tr v-for="(measure, index) in measures" :key="index">
+      <tbody v-if="distances.length>0">
+        <tr v-for="(measure, index) in distances" :key="index">
           <td>
             <el-button type="text" icon="delete" @click="handleDeleteDistances(index)"></el-button>
           </td>
@@ -35,7 +35,7 @@
             {{ measure.atom2.atomname}} {{ measure.atom2.serial }} | {{ measure.atom2.resname}}{{ measure.atom2.resno}}
           </td>
           <td>
-            {{ measure.distance/10 | round}} nm
+            {{ measure.distance/10 | round(2)}} nm
           </td>
         </tr>  
       </tbody>
@@ -64,15 +64,15 @@
     <table class="table-distances">
       <thead>
         <tr>
-          <th><el-button type="text" icon="delete" @click="handleDeleteAngles" :disabled="measures.length===0"></el-button></th>
+          <th><el-button type="text" icon="delete" @click="handleDeleteAngles" :disabled="angles.length===0"></el-button></th>
           <th>{{ $t('ui.toolbar.measures.atom1') }}</th>
           <th>{{ $t('ui.toolbar.measures.atom2') }}</th>
           <th>{{ $t('ui.toolbar.measures.atom3') }}</th>
           <th>{{ $t('ui.toolbar.measures.angle') }}</th>
         </tr>
       </thead>
-      <tbody v-if="measures.length>0">
-        <tr v-for="(measure, index) in measures" :key="index">
+      <tbody v-if="angles.length>0">
+        <tr v-for="(measure, index) in angles" :key="index">
           <td>
             <el-button type="text" icon="delete" @click="handleDeleteAngles(index)"></el-button>
           </td>
@@ -86,7 +86,7 @@
             {{ measure.atom3.atomname}} {{ measure.atom3.serial }} | {{ measure.atom3.resname}}{{ measure.atom3.resno}}
           </td>
           <td>
-            {{ measure.angle | round}} °
+            {{ measure.angle | round(1)}} °
           </td>
         </tr>  
       </tbody>
@@ -110,8 +110,11 @@
       FormItem
     },
     computed: {
-      measures () {
+      distances () {
         return this.$store.state.distances
+      },
+      angles () {
+        return this.$store.state.angles
       },
       mouseDistance: {
         get () {
@@ -131,8 +134,8 @@
       }
     },
     filters: {
-      round: function (value) {
-        return value.toFixed(2)
+      round: function (value, dec) {
+        return value.toFixed(dec)
       }
     },
     methods: {
@@ -141,14 +144,14 @@
         this.$store.dispatch('setMouseMode', mouseMode)
       },
       handleDeleteDistances (value) {
-        this.$store.dispatch('deleteDistance', value)
+        this.$store.dispatch('deleteMeasure', {type: 'distance', index: value})
       },
       switchAngle (isMeasuringAngles) {
         const mouseMode = (isMeasuringAngles) ? 'angle' : 'pick'
         this.$store.dispatch('setMouseMode', mouseMode)
       },
       handleDeleteAngles (value) {
-        this.$store.dispatch('deleteAngle', value)
+        this.$store.dispatch('deleteMeasure', {type: 'angle', index: value})
       }
     }
   }

@@ -11,7 +11,7 @@ import debounce from 'throttle-debounce/debounce'
 import Screenfull from 'screenfull'
 import help from 'utils/help'
 import {hover} from 'utils/hover'
-import {measureDistance} from 'utils/distance'
+import {measure} from 'utils/measures'
 import {loadFile} from 'utils/loadfile'
 import {byres} from 'utils/colors'
 import surface from 'utils/surface'
@@ -31,7 +31,7 @@ var structure = {}
 var representationsList = []
 var highlight
 var loadNewFile
-var distance
+var measurement
 var surf
 var currentSelectionAtomSet
 var currentlyDisplayedAtomSet
@@ -361,6 +361,7 @@ var vuex = new Vuex.Store({
       clipNear: 30
     },
     distances: [],
+    angles: [],
     surfaces: [],
     help: '',
     helpHistory: [],
@@ -483,6 +484,9 @@ var vuex = new Vuex.Store({
     distance (state, tabDistances) {
       state.distances = tabDistances
     },
+    angle (state, tabAngles) {
+      state.angles = tabAngles
+    },
     surface (state, tabSurfaces) {
       state.surfaces = tabSurfaces
     },
@@ -525,11 +529,14 @@ var vuex = new Vuex.Store({
     setDistances ({commit}, tabDistances) {
       commit('distance', tabDistances)
     },
-    deleteDistance (context, val) {
-      if (typeof (val) !== 'number') {
-        distance.deleteAll()
+    setAngles ({commit}, tabAngles) {
+      commit('angle', tabAngles)
+    },
+    deleteMeasure (context, {type, index}) {
+      if (typeof (index) !== 'number') {
+        measurement.delete(type)
       } else {
-        distance.delete(val)
+        measurement.delete(type, index)
       }
     },
     toggleFullscreen (context) {
@@ -602,7 +609,7 @@ var vuex = new Vuex.Store({
           predefined = getPredefined(structure, chains)
           highlight = highlightRes(component)
           if (context.state.isMeasuringDistances || context.state.isMeasuringAngles) context.dispatch('setMouseMode', 'default')
-          distance = measureDistance(component, context)
+          measurement = measure(component, context)
           surf = surface(component, context)
 
           context.commit('loadNewFile', newFile)
@@ -961,7 +968,7 @@ var vuex = new Vuex.Store({
     setStageParameters ({commit}, params) {
       stage.setParameters(params)
       if (params.backgroundColor) {
-        distance.switchColor(params.backgroundColor)
+        measurement.switchColor(params.backgroundColor)
       }
     },
     setRepresentationParameters (context, params) {
@@ -1013,40 +1020,39 @@ var vuex = new Vuex.Store({
       context.commit('display', getRepresentationFromSelection())
     },
     setMouseMode (context, mouseMode) {
+      if (context.state.isMeasuringAngles) {
+        stage.signals.clicked.remove(measurement.clickAngle)
+        context.commit('isMeasuringAngles', false)
+        measurement.disable()
+      } else if (context.state.isMeasuringDistances) {
+        stage.signals.clicked.remove(measurement.clickDistance)
+        context.commit('isMeasuringDistances', false)
+        measurement.disable()
+      }
       switch (mouseMode) {
         case 'distance' :
           // set cursor style
           stage.viewer.container.style.cursor = 'crosshair'
           // set signal picking atom
-          stage.signals.clicked.add(distance.clickDistance)
-          stage.signals.hovered.add(distance.hoverDistance)
+          stage.signals.clicked.add(measurement.clickDistance)
+          stage.signals.hovered.add(measurement.hoverMeasure)
           // set state to measuring distances
           context.commit('isMeasuringDistances', true)
-          // unset state to measuring angles
-          context.commit('isMeasuringAngles', false)
           break
         case 'angle' :
           // set cursor style
           stage.viewer.container.style.cursor = 'crosshair'
           // set signal picking atom
-          stage.signals.clicked.add(distance.clickDistance)
-          stage.signals.hovered.add(distance.hoverDistance)
+          stage.signals.clicked.add(measurement.clickAngle)
+          stage.signals.hovered.add(measurement.hoverMeasure)
           // set state to measuring angles
           context.commit('isMeasuringAngles', true)
-          // unset state to measuring distances
-          context.commit('isMeasuringDistances', false)
           break
         default :
           // set cursor style
           stage.viewer.container.style.cursor = 'default'
           // set signal picking atom
-          stage.signals.clicked.remove(distance.clickDistance)
-          stage.signals.hovered.remove(distance.hoverDistance)
-          // set state to not measuring
-          context.commit('isMeasuringDistances', false)
-          context.commit('isMeasuringAngles', false)
-          // disable distance highlights
-          distance.disable()
+          stage.signals.hovered.remove(measurement.hoverMeasure)
       }
     },
     help ({commit}, subject) {

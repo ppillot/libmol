@@ -30,7 +30,7 @@
       <!-- suggestions -->
           <div class="suggest" :style="suggestStyles">
             
-              <template v-for="(subject, index) in suggestions">
+              <template v-for="(subject, index) in suggestions" :key="index">
                 <div class="category">{{ $t(`tooltips.${subject.category}`) }}</div>
                 <ul>
                   <li
@@ -468,6 +468,7 @@
     height: 2em;
     word-break: break-all;
     font-family: Courier New, Courier, monospace;
+    white-space: nowrap;
   }
   .button-like i {
     position: absolute;

@@ -51,10 +51,10 @@
         return (this.$store.state.selection === 'none')
       },
       colored: function () {
+        this.colors = this.$store.state.color
         if (this.$store.state.color.indexOf('#') === -1) {
           return this.$store.state.color
         } else {
-          this.colors = this.$store.state.color
           return 'palette'
         }
       }

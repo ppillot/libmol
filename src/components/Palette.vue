@@ -6,7 +6,7 @@
         :style="{background: c}"
         :data-color="c"
         :key="c">
-        <span class="vue-color__compact__dot" v-if="c === value.hex.toUpperCase()"></span>
+        <span class="vue-color__compact__dot" v-if="c === value.toUpperCase()"></span>
       </li>
     </ul>
   </div>
@@ -43,10 +43,7 @@ export default {
   methods: {
     handlerClick (event) {
       if (event.target.tagName === 'LI') {
-        this.$emit('color', {
-          hex: event.target.dataset.color,
-          source: 'hex'
-        })
+        this.$emit('color', event.target.dataset.color)
         this.$emit('input', event.target.dataset.color)
       }
     }

@@ -293,7 +293,7 @@ function getPredefined (str, chains) {
 }
 
 const debug = process.env.NODE_ENV !== 'production'
-console.log(process.env.NODE_ENV)
+
 if (debug) {
   window.NGL = NGL
   window.stage = stage

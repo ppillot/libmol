@@ -1,18 +1,18 @@
 <template>
   <form-item :label="$t('ui.commands.color.label')">
-    <button-group :active-value="colored" @change="color" @hover="hover">
-        <radio-button :disabled="none" value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>
-        <radio-button :disabled="nonPolymer || none" value="chainname">{{ $t('ui.commands.color.by_chain') }}</radio-button>
-        <radio-button :disabled="nonPolymer || none" value="resname">{{ $t('ui.commands.color.by_res') }}</radio-button>
     <el-popover
       ref="palette"
       placement="right"
       trigger="click">
       <palette v-model="colors" @color="pickColor"></palette>
     </el-popover>
+    <button-group :active-value="colored" @change="changeColor" @hover="hover">
+        <radio-button :disabled="none" value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>
+        <radio-button :disabled="nonPolymer || none" value="chainname">{{ $t('ui.commands.color.by_chain') }}</radio-button>
+        <radio-button :disabled="nonPolymer || none" value="resname">{{ $t('ui.commands.color.by_res') }}</radio-button>
         <radio-button :disabled="noSStruc || none" value="sstruc">{{ $t('ui.commands.color.by_secondary_structure') }}</radio-button>
         <radio-button :disabled="notAll || none" value="moleculetype">{{ $t('ui.commands.color.by_biochemical_nature') }}</radio-button>
-        <radio-button :disabled="none" ungroup value="palette" v-popover:palette>{{ $t('ui.commands.color.pick_color') }}</radio-button>
+        <radio-button :disabled="none" value="palette" v-popover:palette>{{ $t('ui.commands.color.pick_color') }}</radio-button>
     </button-group>
   </form-item>
 </template>
@@ -27,7 +27,7 @@
     name: 'ColorMol',
     data () {
       return {
-        colors: {hex: '#00ff00'}
+        colors: '#00ff00'
       }
     },
     components: {
@@ -51,16 +51,21 @@
         return (this.$store.state.selection === 'none')
       },
       colored: function () {
-        return this.$store.state.color
+        if (this.$store.state.color.indexOf('#') === -1) {
+          return this.$store.state.color
+        } else {
+          this.color = this.$store.state.color
+          return 'palette'
+        }
       }
     },
     methods: {
-      color (colorScheme) {
-        this.$store.dispatch('color', colorScheme)
+      changeColor (colorScheme) {
+        if (colorScheme !== 'palette') this.$store.dispatch('color', colorScheme)
         this.help(colorScheme, true)
       },
       pickColor (val) {
-        this.$store.dispatch('color', val.hex)
+        if (val !== 'palette') this.$store.dispatch('color', val)
         this.help('palette', true)
       },
       hover (colorScheme) {

@@ -19,9 +19,7 @@
     props: ['active'],
     data () {
       return {
-        colors: {
-          hex: '#00ff00'
-        }
+        colors: '#00ff00'
       }
     },
     components: {
@@ -32,7 +30,7 @@
     },
     methods: {
       pickColor (val) {
-        this.$store.dispatch('color', val.hex)
+        this.$store.dispatch('color', val)
       }
     }
   }

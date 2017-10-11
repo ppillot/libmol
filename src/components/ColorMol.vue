@@ -54,7 +54,7 @@
         if (this.$store.state.color.indexOf('#') === -1) {
           return this.$store.state.color
         } else {
-          this.color = this.$store.state.color
+          this.colors = this.$store.state.color
           return 'palette'
         }
       }

@@ -4,7 +4,7 @@
         <sequence-widget class="sequence-widget" :active="active"></sequence-widget>
         <select-utils-widget class="select-utils-widget"></select-utils-widget>
         <representation-mol :compact="true"></representation-mol>
-        <palette v-model="colors" @color="pickColor" :compact="true"></palette>
+        <palette :value="colors" @color="pickColor" :compact="true"></palette>
     </div>
 </template>
 
@@ -17,16 +17,16 @@
   export default {
     name: 'SequenceTab',
     props: ['active'],
-    data () {
-      return {
-        colors: '#00ff00'
-      }
-    },
     components: {
       'palette': Palette,
       'representation-mol': RepresentationMol,
       'select-utils-widget': SelectUtilsWidget,
       'sequence-widget': SequenceWidget
+    },
+    computed: {
+      colors () {
+        return this.$store.state.color
+      }
     },
     methods: {
       pickColor (val) {

@@ -30,9 +30,9 @@
       <!-- suggestions -->
           <div class="suggest" :style="suggestStyles">
             
-              <template v-for="(subject, index) in suggestions" :key="index">
-                <div class="category">{{ $t(`tooltips.${subject.category}`) }}</div>
-                <ul>
+              <template v-for="(subject, index) in suggestions">
+                <div class="category" :key="subject.category">{{ $t(`tooltips.${subject.category}`) }}</div>
+                <ul :key="subject.category">
                   <li
                     v-for="(suggestion, index) in subject.content" 
                     :class="{highlight: (highlightedSuggestion === suggestion.index)}"

@@ -293,6 +293,7 @@ function getPredefined (str, chains) {
 }
 
 const debug = process.env.NODE_ENV !== 'production'
+console.log(process.env.NODE_ENV)
 if (debug) {
   window.NGL = NGL
   window.stage = stage
@@ -671,14 +672,27 @@ var vuex = new Vuex.Store({
       if (num === -1) {
         // new representation
         const seleString = (overlay && displayType !== 'spacefill') ? dAtomSet.toSeleString() + ' and sidechainAttached' : dAtomSet.toSeleString()
-        stage.compList[0].addRepresentation(displayType,
-          {
-            sele: seleString,
-            aspectRatio: 2.1,
-            scale: (displayType === 'spacefill') ? 1.0 : 1.2,
-            color: globalColorScheme,
-            multipleBond: (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
-          })
+
+        let reprParam = {
+          color: globalColorScheme,
+          sele: seleString
+        }
+
+        switch (displayType) {
+          case 'ball+stick':
+            reprParam.aspectRatio = 2.1
+            reprParam.multipleBond = (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
+            break
+          case 'spacefill':
+            reprParam.scale = 1.2
+            break
+          case 'licorice':
+            reprParam.multipleBond = (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
+            break
+        }
+
+        stage.compList[0].addRepresentation(displayType, reprParam)
+
         representationsList.push({
           display: displayType,
           index: stage.compList[0].reprList.length - 1,

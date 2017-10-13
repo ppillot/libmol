@@ -543,6 +543,9 @@ var vuex = new Vuex.Store({
     toggleFullscreen (context) {
       context.commit('setFullscreen', Screenfull.isFullscreen)
     },
+    resize () {
+      stage.handleResize()
+    },
     screenCapture (context) {
       // from NGL example gui
       stage.makeImage({

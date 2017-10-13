@@ -40,7 +40,7 @@ Special thanks to [Netlify.com](https://www.netlify.com) for hosting open source
 Should you be interested in translating Libmol.org to your language, your contribution is most welcome!  
 First part of the translation process deals with the user interface. It requires completing an [online Google spreadsheet](https://docs.google.com/spreadsheets/d/1tfpNe1SwHQ51arbPlnE6y7rDB-JKImhGICQGsMzQtes/edit?usp=sharing) with your locale keywords.  
 The second part of the process is more involving and requires forking this repository, duplicating one of the folders in locales/ and translating all the markdown files in it.  
-Please do not hesitate to contact me if you are interested.
+Please do not hesitate to contact me if interested.
 
 ## Developpement and Build Setup
 You don't need this to use LibMol.org  
@@ -60,7 +60,7 @@ npm run build
 
 ToDo
 - Files : 
-  - handle mega files (display surfaces)
+  - handle mega files
 - Errors/warnings : send messages
   - when file could not be uploaded
   - when network is not available --> online/offline api
@@ -82,6 +82,5 @@ ToDo
 - bugs :
   - SelectCLI should be reset after loading new model
   - no settings in fullscreen mode
-  - color palette button should react to the state
   - polymer size should exceed 3 for ribbon/backbone
-  - cartoon width scale to adjust
+  

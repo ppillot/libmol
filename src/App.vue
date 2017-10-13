@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="full-height sidebar row-bg" v-if="isSidebarVisible">
+    <div class="full-height sidebar row-bg" v-if="isSidebarVisible" id="sidebar">
       <sidebar></sidebar>
     </div>
     <div class="full-height viewer" id="view">
@@ -32,6 +32,7 @@ import SearchLibmol from './components/Searchlibmol'
 import Toolbar from './components/Toolbar'
 import Statusbar from './components/Statusbar'
 import Alert from './components/Alert'
+import Split from 'split.js'
 
 export default {
   name: 'app',
@@ -56,6 +57,26 @@ export default {
         return (!this.$store.state.embedded)
       }
     }
+  },
+  mounted: function () {
+    Split([this.$el.children[0], this.$el.children[1]], {
+      sizes: [30, 70],
+      minSize: 300,
+      gutterSize: 4,
+      elementStyle: function (dimension, size, gutterSize) {
+        return {
+          'flex-basis': 'calc(' + size + '% - ' + gutterSize + 'px)'
+        }
+      },
+      gutterStyle: function (dimension, gutterSize) {
+        return {
+          'flex-basis': gutterSize + 'px'
+        }
+      },
+      onDragEnd: function () {
+        this.$store.dispatch('resize')
+      }.bind(this)
+    })
   }
 }
 </script>
@@ -118,6 +139,17 @@ export default {
     min-width: 300px;
     width: 30%;
     flex: none;
+  }
+
+  .gutter {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: #f9fafc;
+  }
+
+  .gutter.gutter-horizontal {
+    background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+    cursor: ew-resize;
   }
 
 </style>

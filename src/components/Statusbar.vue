@@ -4,7 +4,7 @@
         <div  v-show='isShown'>
           {{ colorDescription }} :
           <span @mouseover.stop="getHoveredItem($event)" @mouseout.stop="hideTooltip">
-            <span v-for="token in colorScheme" :style="token.css" :data-tooltip="token.tooltip">
+            <span v-for="token in colorScheme" :style="token.css" :data-tooltip="token.tooltip" :key="token.text">
                 {{ token.text | capitalize }}
             </span>
           </span>
@@ -193,7 +193,7 @@
 
 
   .statusbar span {
-    font-weight: bold;
+    font-weight: bolder;
     -webkit-text-stroke: 1px #888;
     -moz-text-stroke: 1px #888;
     -ms-text-stroke: 1px #888;

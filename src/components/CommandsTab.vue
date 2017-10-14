@@ -31,7 +31,7 @@ export default {
   mounted: function () {
     Split([this.$el.children[0], this.$el.children[1]], {
       direction: 'vertical',
-      cursor: 'row-resize',
+      cursor: 'ns-resize',
       sizes: [70, 30],
       minSize: [150, 150],
       gutterSize: 6
@@ -73,11 +73,15 @@ export default {
         /*border-top: 1px solid #eee;
         border-bottom: 1px solid #eee;*/
         margin: 0 0 0 0;
-        cursor: row-resize;
+        cursor: ns-resize;
         box-shadow: #e8e8e8 0px 1px 2px 0px;
+        
     }
     .gutter.gutter-vertical:hover {
         background-color: #f8f8f8;
         transition: background-color 0.3s ease-in-out 0.1s;
+        /* background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+        transition: background-image 0.5s ease-in-out 0.3s; */
+        
     }
 </style>

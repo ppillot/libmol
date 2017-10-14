@@ -2,7 +2,11 @@
   <div class="container" @contextmenu.prevent="displayContextMenu">
     <div class="header" @mouseover.stop="getHoveredItem('chain', $event)" @mouseout.stop="hideTooltip" :style="headerStyle">
       <ul id="chains-list">
-        <li v-for="chain in chains" :data-index="chain.id" @click="selectChain(chain.id)" :class="{ sel: isSelectedChain(chain.name) }">
+        <li v-for="chain in chains" 
+          :data-index="chain.id" 
+          @click="selectChain(chain.id)" 
+          :class="{ sel: isSelectedChain(chain.name) }" 
+          :key="chain.id">
           {{ chain.name }}
         </li>
       </ul>
@@ -348,7 +352,6 @@
       setNbElementsToDisplay () {
         const coords = this.$el.getBoundingClientRect()
         this.nbElementsToDisplay = Math.ceil(coords.height / this.elementHeight) + 3
-        // console.log(coords)
       },
 
       setVisibleResidues () {
@@ -431,7 +434,7 @@
     },
     mounted: function () {
       this.$nextTick(this.setNbElementsToDisplay)
-      resize.add(this.setNbElementsToDisplay)
+      resize.add(this.setNbElementsToDisplay.bind(this))
     }
   }
 </script>

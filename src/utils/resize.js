@@ -14,8 +14,9 @@ function optimizedResize () {
   }
   // run the actual callbacks
   function runCallbacks () {
-    callbacks.forEach(function (callback) {
+    callbacks.forEach(function (callback, index) {
       callback()
+      // console.log(index, callbacks, callback())
     })
     running = false
   }
@@ -28,7 +29,7 @@ function optimizedResize () {
 
   return {
     add: function (callback) {
-      if (!callbacks.length) {
+      if (callbacks.length === 0) {
         window.addEventListener('resize', resize)
       }
       addCallback(callback)

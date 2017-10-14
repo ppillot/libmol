@@ -19,10 +19,7 @@
                 <load-file></load-file>
             </el-tab-pane>
             <el-tab-pane :label="$t('ui.commands_tab_label')" name="commands">
-                <select-mol></select-mol>
-                <representation-mol></representation-mol>
-                <color-mol></color-mol>
-                <help></help>
+                <commands-tab></commands-tab>
             </el-tab-pane>
             <el-tab-pane :label="$t('ui.sequences_tab_label')" name="sequences" :disabled="noSequence">
                 <sequence-tab :active="isSequenceTabActive"></sequence-tab>
@@ -38,13 +35,9 @@
 import SearchLibmol from './Searchlibmol'
 import SearchPdb from './SearchPDB2'
 import LoadFile from './Loadfile'
-import SelectMol from './SelectMol'
-import RepresentationMol from './RepresentationMol'
-// import DisplayMol from './DisplayMol'
-import ColorMol from './ColorMol'
 import SequenceTab from './SequenceTab'
 import SurfaceTab from './SurfaceTab'
-import Help from './Help'
+import CommandsTab from './CommandsTab'
 import Marked from 'marked'
 
 export default {
@@ -53,13 +46,9 @@ export default {
     SearchLibmol,
     SearchPdb,
     LoadFile,
-    SelectMol,
-    // DisplayMol,
-    RepresentationMol,
-    ColorMol,
     SequenceTab,
     SurfaceTab,
-    Help
+    CommandsTab
   },
   data () {
     return {
@@ -120,20 +109,17 @@ export default {
         margin: 0 5px 5px 5px
     }
 
-    .help {
-        font-size: 1em;
-    }
-
 </style>
 <style>
     .el-tabs__content {
         display: flex;
         flex-direction: column;
         max-height: 100%;
+        flex: 1;
     }
     
     .el-tab-pane {
-        /*flex: 1;*/
+        flex: 1;
         display: flex;
         flex-direction: column;
         max-height: 100%;
@@ -150,9 +136,4 @@ export default {
         width: 100%
     }
 
-    .help h3 {
-        font-size: 0.95em;
-        margin: 0 0.5em;
-        font-weight: 500;
-    }
 </style>

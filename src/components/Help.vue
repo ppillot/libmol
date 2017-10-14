@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow" :class="{'border-top': active}">
+  <div class="shadow">
     <div class="help" v-html="text" @click.stop.prevent="getLink" :style="{ display: (active) ? 'block' : 'none'}">
     </div>
     <div class="navigation" :style="navigationStyle">
@@ -111,7 +111,7 @@
 <style>
   .shadow {
     /* box-shadow: #bbb 0px 4px 10px; */
-    margin: 8px 0 0 0;
+    margin: 0;
     position: relative;
     flex: 1;
     display: flex;

@@ -246,6 +246,11 @@
           }
         },
         get: function () {
+          if (this.$store.state.userSelectionText === '') { // init is ongoing
+            this.isTextSearchDisabled = true
+            this.isEditing = true
+            this.isValid = false
+          }
           return (this.$store.state.userSelectionText)
         }
       }

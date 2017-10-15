@@ -642,6 +642,7 @@ var vuex = new Vuex.Store({
       commit('hide', false)
       commit('isMeasuringDistances', false)
       commit('isMeasuringAngles', false)
+      commit('setUserSelectionText', '')
     },
     selection (context, selector) {
       if (selector === 'invert') {

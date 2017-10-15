@@ -234,7 +234,7 @@
         const nbElementMax = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
           return Math.max(accumulator, currentValue.sequence.length)
         }, 0)
-        const maxHeight = (nbElementMax + 1) * this.elementHeight
+        const maxHeight = nbElementMax * this.elementHeight
         const maxWidth = this.$store.state.mol.chains.length * this.elementWidth
         return { height: maxHeight + 'px', width: maxWidth + 'px' }
       }
@@ -333,7 +333,6 @@
       scrolling () {
         if (prevPos.top !== actualPos.top) {
           this.listStart = (actualPos.top / this.elementHeight) | 0
-          this.listStart --
           if (this.listStart < 0) {
             this.listStart = 0
           }

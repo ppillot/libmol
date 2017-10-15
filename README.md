@@ -66,14 +66,11 @@ ToDo
   - when network is not available --> online/offline api
 - Commandes : 
   - add/remove labels
-  - provide choices for hetero (e.g. : in cox2 asp and hem)
+  - provide choices for selecting hetero (e.g. : in cox2 ara and hem)
 - Sequences : 
   - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
   - select from distance (within)
   - search (user selection ?)
-  - scrolling glitch in first residues
-- Design:
-  - resizable windows
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting
   - rotating around z-axis

@@ -144,12 +144,12 @@ export default {
   .gutter {
     background-repeat: no-repeat;
     background-position: 50%;
-    background-color: #f9fafc;
   }
 
   .gutter.gutter-horizontal {
     background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
     cursor: ew-resize;
+    background-color: #f9fafc;
   }
 
 </style>

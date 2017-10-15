@@ -246,7 +246,7 @@
           }
         },
         get: function () {
-          if (this.$store.state.userSelectionText === '') { // init is ongoing
+          if (this.$store.state.userSelectionText === null) { // init is ongoing
             this.isTextSearchDisabled = true
             this.isEditing = true
             this.isValid = false
@@ -299,7 +299,8 @@
         this.selectionText = ''
         if (!this.isTextSearchDisabled) {
           this.$nextTick(function () {
-            this.$el.getElementsByTagName('input')[0].focus()
+            const inputElement = this.$el.getElementsByTagName('input')[0]
+            if (inputElement !== undefined) inputElement.focus()
           }.bind(this))
         } else {
           this.isEditing = true

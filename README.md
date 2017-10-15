@@ -62,7 +62,7 @@ ToDo
 - Files : 
   - handle mega files
 - Errors/warnings : send messages
-  - when file could not be uploaded
+  - when file could not be loaded
   - when network is not available --> online/offline api
 - Commandes : 
   - add/remove labels
@@ -77,6 +77,5 @@ ToDo
 - code refactor
   - event bus : https://devblog.digimondo.io/building-a-simple-eventbus-in-vue-js-64b70fb90834#.706mbapkg
 - bugs :
-  - no settings in fullscreen mode
   - polymer size should exceed 3 for ribbon/backbone
   

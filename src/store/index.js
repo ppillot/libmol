@@ -61,10 +61,11 @@ function removeSelectionFromRepresentations (newAtomSet, skipReprIndex, overlay 
     const repr = representationsList[i]
     if (repr.atomSet.intersects(newAtomSet)) {
       repr.atomSet.difference(newAtomSet)
-      let sele = repr.displayedAtomSet.difference(newAtomSet)
+      const sele = repr.displayedAtomSet.difference(newAtomSet)
+      const overlay = (repr.overlay) ? ' and sidechainAttached' : ''
 
       // console.log(i, sele)
-      stage.compList[0].reprList[repr.index].setSelection(sele.toSeleString())
+      stage.compList[0].reprList[repr.index].setSelection(sele.toSeleString() + overlay)
     }
   }
 }

@@ -374,7 +374,7 @@ var vuex = new Vuex.Store({
     },
     isUserSelectionValid: false,
     userSelectionSize: 0,
-    userSelectionText: ''
+    userSelectionText: null
   },
   mutations: {
     alert (state, {type, token}) {
@@ -728,11 +728,11 @@ var vuex = new Vuex.Store({
         repr.atomSet.union(atomSet)
         repr.displayedAtomSet = repr.atomSet.clone().intersection(currentlyDisplayedAtomSet)
 
-          // need to update the representation
+        // need to update the representation
         const seleString = (overlay && displayType !== 'spacefill') ? repr.displayedAtomSet.toSeleString() + ' and sidechainAttached' : repr.displayedAtomSet.toSeleString()
         stage.compList[0].reprList[repr.index].setSelection(seleString)
 
-          // and to update the remaining representations
+        // and to update the remaining representations
         removeSelectionFromRepresentations(atomSet, num, overlay)
 
         // update base representation if cartoon

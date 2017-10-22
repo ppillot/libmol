@@ -95,7 +95,7 @@
       toggleFullscreen () {
         // let view = document.getElementById('view')
         Screenfull.toggle()
-        this.$store.dispatch('toggleFullscreen')
+        // this.$store.dispatch('toggleFullscreen')
       },
       screenCapture () {
         this.$store.dispatch('screenCapture')
@@ -103,12 +103,14 @@
     },
     mounted: function () {
       if (Screenfull.enabled) {
-        Screenfull.onchange(() => { // user can use ESC key to cancel fullscreen
+        Screenfull.onchange(function () { // user can use ESC key to cancel fullscreen
           if (this.$store.state.fullscreen && Screenfull.isFullscreen === false) {
             this.$store.commit('setFullscreen', false)
+          } else {
+            this.$store.commit('setFullscreen', Screenfull.isFullscreen)
           }
           this.isFullScreen = Screenfull.isFullscreen
-        })
+        }.bind(this))
       }
     }
   }

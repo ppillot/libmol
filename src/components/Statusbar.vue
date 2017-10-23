@@ -223,20 +223,21 @@
     color: #fff;
     border-radius: 5px;
     min-width: 4em;
-    max-width: 30em;
+    max-width: 40em;
     text-align: center;
     min-height: 1.2em;
     font-weight: 600;
     line-height: 1.2em;
     z-index: 2;
+    /* if overflow is set, the after selector is hidden...
     word-wrap: break-word;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: none;
+    overflow: hidden; */
     font-size: 0.8em;
   }
   
-  .statusbar .tooltip:after {
+  .statusbar .tooltip::after {
     left: 0.5em;
     top: 100%;
     border: solid transparent;

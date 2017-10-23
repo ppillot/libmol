@@ -82,6 +82,18 @@
                 })
               }
             )
+            // Hydrogen though present in reality can be absent in the model (cf crystallography)
+            // We check for organic molecules
+            if (!this.$store.state.mol.elements.has('H')) {
+              const molTypes = this.$store.state.mol.molTypes
+              if (molTypes.water || molTypes.nucleic || molTypes.protein || molTypes.saccharide) {
+                cs.push({
+                  text: '(H)',
+                  css: 'color: #FFFFFF',
+                  tooltip: this.$t('tooltips.missingH')
+                })
+              }
+            }
             this.colorDescription = this.$t('ui.commands.color.cpk')
             break
           case 'chainname':
@@ -171,6 +183,7 @@
       capitalize: function (value) {
         if (!value) return ''
         value = value.toString()
+        if (value.charAt(0) === '(') return value
         return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
       }
     }

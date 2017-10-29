@@ -139,8 +139,13 @@ export default {
     highlightSuggestion (delta) {
       if (this.isFocused && this.suggestions.length > 0) {
         this.highlightedSuggestion += delta
-        if (this.highlightedSuggestion <= -1) this.highlightedSuggestion = -1
-        else this.checkVisibility(delta)
+        if (this.highlightedSuggestion <= -1) {
+          this.highlightedSuggestion = -1
+        } else if (this.highlightedSuggestion >= this.suggestions.length) {
+          this.highlightedSuggestion = this.suggestions.length - 1
+        } else {
+          this.checkVisibility(delta)
+        }
       }
     },
     checkVisibility (delta) {

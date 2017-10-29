@@ -53,7 +53,6 @@ var startParams = getStartingParameters()
  * @param {number} skipReprIndex index of the latest representation : must be skipped !
  */
 function removeSelectionFromRepresentations (newAtomSet, skipReprIndex, overlay = false) {
-  console.log(representationsList)
   for (let i = 0; i < representationsList.length; i++) {
     if (i === skipReprIndex || (i === skipReprIndex + 1 && representationsList[i].display === 'base')) {
       continue
@@ -66,7 +65,6 @@ function removeSelectionFromRepresentations (newAtomSet, skipReprIndex, overlay 
       const sele = repr.displayedAtomSet.difference(newAtomSet)
       const overlay = (repr.overlay) ? ' and sidechainAttached' : ''
 
-      // console.log(i, sele)
       stage.compList[0].reprList[repr.index].setSelection(sele.toSeleString() + overlay)
     }
   }
@@ -630,7 +628,6 @@ var vuex = new Vuex.Store({
               molId: error.molId
             }
           })
-          // console.log('old file', error.molId)
         }
         console.log(error)
       })
@@ -934,7 +931,6 @@ var vuex = new Vuex.Store({
             isRestMaskable: currentlyDisplayedAtomSet.intersects(restUserAtomSet),
             isRestUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(restUserAtomSet) < restUserAtomSet.getSize()
           }
-          // console.log(anchor)
       }
 
       context.commit('contextMenuAnchor', anchor)
@@ -1001,7 +997,6 @@ var vuex = new Vuex.Store({
     sequenceSelected (context, tabSelectedResidues) {
       // has the selection started by a selected residue ?
       let isToBeSelected = (context.state.selected[tabSelectedResidues[0]] === false)
-      // console.log(tabSelectedResidues, context.state.selected[tabSelectedResidues[0]])
       context.dispatch('residuesSelected', {tabSelectedResidues, isToBeSelected})
     },
     chainSelected (context, chainId) {
@@ -1014,7 +1009,6 @@ var vuex = new Vuex.Store({
         }
         tabSelectedResidues.push(res.index)
       })
-      // console.log('chain:', chainId, isToBeSelected)
       context.dispatch('residuesSelected', {tabSelectedResidues, isToBeSelected})
       context.commit('updateSelectedPercentage')
     },
@@ -1124,9 +1118,6 @@ var vuex = new Vuex.Store({
           offset: 100
         })
       } else {
-        /* stage.compList[0].signals.representationAdded.addOnce((repr) => {
-          console.log(repr)
-        }) */
         surf.addSurface(currentSelectionAtomSet, context.state.selection)
       }
     },

@@ -1,6 +1,6 @@
 /* polyfills */
 import 'utils/polyfills/array-find'
-import 'whatwg-fetch'
+// import 'whatwg-fetch'
 
 import Vue from 'vue'
 import {Button, Dialog, Icon, Popover, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'

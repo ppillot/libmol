@@ -4,9 +4,11 @@
     <div class="input-text" >
       <input type="text"
         spellcheck="false"
-        :value="state"
         placeholder="Mot clé"
         @keyup="getSuggestion"
+        @keydown.down.prevent="highlightSuggestion(1)"
+        @keydown.up.prevent="highlightSuggestion(-1)"
+        @keydown.enter="handleSelect(highlightedSuggestion)"
         @focus="activate(true)"
       >
       <span v-if="this.suggestions.length > 0" class="suggest-counter">
@@ -14,25 +16,26 @@
       </span>
       <div class="suggest" :style="suggestStyles" v-if="isFocused">
         <ul>
-          <li v-for="(suggestion, index) in suggestions" @click="handleSelect(index)" :key="suggestion.molId">
+          <li v-for="(suggestion, index) in suggestions" 
+          @click="handleSelect(index)" 
+          @mouseover="highlightedSuggestion = index"
+          :class="{highlight: (highlightedSuggestion === index)}"
+          :key="suggestion.molId">
             {{ suggestion.value }}
           </li>
         </ul>
       </div>
     </div>
-    <!--<el-autocomplete
-      v-model="state"
-      :fetch-suggestions="debouncedQuery"
-      placeholder="Mot clé"
-      @select="handleSelect">
-    </el-autocomplete>-->
   </form-item>
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 import debounce from 'throttle-debounce/debounce'
 import FormItem from './FormItem'
+
+const CancelToken = axios.CancelToken
+const source = CancelToken.source()
 
 export default {
   name: 'SearchLibmol',
@@ -44,7 +47,8 @@ export default {
       suggestions: [],
       timeout: null,
       isFocused: false,
-      state: ''
+      state: '',
+      highlightedSuggestion: -1
     }
   },
   computed: {
@@ -83,65 +87,77 @@ export default {
     },
     getSuggestion: function (event) {
       this.isFocused = true
-      this.state = event.target.value
-      this.debouncedQuery(this.state)
+
+      const queryString = event.target.value
+
+      source.cancel()
+      const sessionStorageValue = window.sessionStorage.getItem(`searchLibmol-${queryString}`)
+      if (sessionStorageValue !== null) {
+        this.suggestions = JSON.parse(sessionStorageValue)
+      } else {
+        this.debouncedQuery(queryString)
+      }
     },
     debouncedQuery: debounce(
       300,
-      function (q, c) {
-        this.querySearchAsync(q, c)
+      function (q) {
+        this.querySearchAsync(q)
       }),
 
-    querySearchAsync (queryString, cb) {
+    querySearchAsync (queryString) {
       if (queryString.length === 0) {
         this.suggestions.splice(0)
         return
       }
       const path = (process.env.NODE_ENV !== 'production') ? 'api/recherche.php' : 'https://libmol.org/api/recherche.php'
 
-      /*  axios.get(path, {
+      axios.get(path, {
         params: {
-          txt: queryString
+          txt: queryString,
+          cancelToken: source.token
         }
       })
       .then(function (response) {
-        const rep = response.data.map(item => (
+        this.suggestions = response.data.map(item => (
           { value: item.label,
             file: ((item.file.indexOf('.cif') > -1) || (item.file.indexOf('.mmtf') > -1) || (item.file.indexOf('.sdf') > -1))
             ? 'static/mol/' + item.file
             : `static/mol/pdb/${item.file}.pdb`,
-            molId: item.molId }))
-        cb(rep)
-      })
-      .catch(function (error) {
-        console.log(error)
-      }) */
-      window.fetch(path, {
-        method: 'POST',
-        body: JSON.stringify({
-          txt: queryString
-        })
-      })
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        this.suggestions = data.map(item => ({
-          value: item.label,
-          file: ((item.file.indexOf('.cif') > -1) || (item.file.indexOf('.mmtf') > -1) || (item.file.indexOf('.sdf') > -1))
-            ? 'static/mol/' + item.file
-            : `static/mol/pdb/${item.file}.pdb`,
-          molId: item.molId,
-          source: 'libmol'
-        }))
-        // cb(rep)
-      })
+            molId: item.molId,
+            source: 'libmol'
+          }))
+
+        window.sessionStorage.setItem(`searchLibmol-${queryString}`, JSON.stringify(this.suggestions))
+      }.bind(this))
       .catch(function (error) {
         console.log(error)
       })
     },
     handleSelect (index) {
       this.$store.dispatch('loadNewFile', this.suggestions[index])
+    },
+    highlightSuggestion (delta) {
+      if (this.isFocused && this.suggestions.length > 0) {
+        this.highlightedSuggestion += delta
+        if (this.highlightedSuggestion <= -1) this.highlightedSuggestion = -1
+        else this.checkVisibility(delta)
+      }
+    },
+    checkVisibility (delta) {
+      let suggestionsListNode = this.$el.getElementsByClassName('suggest')[0]
+      let focusedResult = suggestionsListNode.firstChild.children[this.highlightedSuggestion]
+      switch (delta) {
+        case 1:
+          if (suggestionsListNode.scrollTop + suggestionsListNode.offsetHeight - 10 < focusedResult.offsetTop) {
+            focusedResult.scrollIntoView(false)
+          }
+          break
+        case -1:
+          if (suggestionsListNode.scrollTop > focusedResult.offsetTop) {
+            focusedResult.scrollIntoView()
+          }
+          break
+      }
     }
   }
 }
@@ -212,7 +228,7 @@ export default {
     box-sizing: border-box;
     line-height: 1.5em;
   }
-  .suggest ul li:hover {
+  .suggest li.highlight  {
     background: #20A0FF;
     color: #FFF;
   }

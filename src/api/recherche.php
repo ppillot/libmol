@@ -13,9 +13,10 @@ $db = new PDO('sqlite:libmol.sqlite');
 /*
  * definition des constantes
  */
-
- 	$data = json_decode(file_get_contents('php://input'), true);
-
+	//this was used by fetch method in javascript : sends a json
+ 	// $data = json_decode(file_get_contents('php://input'), true);
+	$data['txt'] = $_REQUEST['txt'];
+	error_log($data['txt']);
 	if (isset($data['txt'])) {
 	
  		$sql = $db->prepare("SELECT titre,id,fichier FROM molecule where molecule.FTINDEX LIKE ?");

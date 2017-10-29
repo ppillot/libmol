@@ -53,6 +53,7 @@ var startParams = getStartingParameters()
  * @param {number} skipReprIndex index of the latest representation : must be skipped !
  */
 function removeSelectionFromRepresentations (newAtomSet, skipReprIndex, overlay = false) {
+  console.log(representationsList)
   for (let i = 0; i < representationsList.length; i++) {
     if (i === skipReprIndex || (i === skipReprIndex + 1 && representationsList[i].display === 'base')) {
       continue

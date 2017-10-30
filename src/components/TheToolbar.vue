@@ -54,7 +54,7 @@
   const PDBHeteroCode = /^\w{3}$/i
 
   export default {
-    name: 'toolbar',
+    name: 'theToolbar',
     components: {
       settings,
       measuresPanel

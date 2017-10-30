@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <div class="full-height sidebar row-bg" v-if="isSidebarVisible" id="sidebar">
-      <sidebar></sidebar>
+      <sidebar/>
     </div>
     <div class="full-height viewer" id="view">
-      <toolbar></toolbar>
-      <ngl></ngl>
-      <statusbar></statusbar>
+      <the-toolbar/>
+      <ngl/>
+      <statusbar/>
     </div>
-    <alert></alert>
+    <alert/>
   </div>
   <!-- <el-row class="row-bg" id="app">
     <el-col :span="8" class="full-height">
@@ -29,7 +29,7 @@
 import Sidebar from './components/Sidebar'
 import ngl from './components/NGLViewport'
 import SearchLibmol from './components/Searchlibmol'
-import Toolbar from './components/Toolbar'
+import TheToolbar from './components/TheToolbar'
 import Statusbar from './components/Statusbar'
 import Alert from './components/Alert'
 import Split from 'split.js'
@@ -40,7 +40,7 @@ export default {
     Sidebar,
     ngl,
     SearchLibmol,
-    Toolbar,
+    TheToolbar,
     Statusbar,
     Alert
   },

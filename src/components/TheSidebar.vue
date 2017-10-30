@@ -41,7 +41,7 @@ import CommandsTab from './CommandsTab'
 import Marked from 'marked'
 
 export default {
-  name: 'sidebar',
+  name: 'theSidebar',
   components: {
     SearchLibmol,
     SearchPdb,

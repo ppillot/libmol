@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <div class="full-height sidebar row-bg" v-if="isSidebarVisible" id="sidebar">
-      <sidebar/>
+      <the-sidebar/>
     </div>
     <div class="full-height viewer" id="view">
       <the-toolbar/>
       <ngl/>
-      <statusbar/>
+      <the-statusbar/>
     </div>
     <alert/>
   </div>
@@ -26,22 +26,22 @@
 </template>
 
 <script>
-import Sidebar from './components/Sidebar'
+import TheSidebar from './components/TheSidebar'
 import ngl from './components/NGLViewport'
 import SearchLibmol from './components/Searchlibmol'
 import TheToolbar from './components/TheToolbar'
-import Statusbar from './components/Statusbar'
+import TheStatusbar from './components/TheStatusbar'
 import Alert from './components/Alert'
 import Split from 'split.js'
 
 export default {
   name: 'app',
   components: {
-    Sidebar,
+    TheSidebar,
     ngl,
     SearchLibmol,
     TheToolbar,
-    Statusbar,
+    TheStatusbar,
     Alert
   },
   computed: {

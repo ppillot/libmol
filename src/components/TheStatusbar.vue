@@ -49,7 +49,7 @@
   }
 
   export default {
-    name: 'statusbar',
+    name: 'theStatusbar',
     data () {
       return {
         tooltipStyles: {

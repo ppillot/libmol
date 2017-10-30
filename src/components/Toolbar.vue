@@ -50,8 +50,8 @@
   import measuresPanel from './MeasuresPanel'
   import Screenfull from 'screenfull'
 
-  const PDBCodeRegEx = /^\d\w{3}$/gi
-  const PDBHeteroCode = /^\w{3}$/gi
+  const PDBCodeRegEx = /^\d\w{3}$/i
+  const PDBHeteroCode = /^\w{3}$/i
 
   export default {
     name: 'toolbar',

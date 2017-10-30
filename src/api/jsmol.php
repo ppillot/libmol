@@ -87,7 +87,7 @@ function getValueSimple($json, $key, $default) {
 if ($_GET['isform']=="true") {
 	$values = "";
 } else {
-	$values= json_decode(file_get_contents("php://input"), true);
+	$values= $_REQUEST; //json_decode(file_get_contents("php://input"), true);
 }
 $encoding = $values["encoding"]; //, "");
 $call = $values["call"]; //, "getRawDataFromDatabase");

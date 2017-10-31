@@ -104,6 +104,9 @@
       toggle: function () {
         this.active = !this.active
       }
+    },
+    updated: function () {
+      this.$el.firstChild.scrollTop = 0
     }
   }
 </script>

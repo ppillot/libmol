@@ -16,14 +16,14 @@
           <table :style="[listScrollStyle, listWidthStyle]" id="table-seq">
             <tr v-for="line in visibleResidues" :key="line.index">
               <template v-for="residu in line.resRow">
-              <td v-if="residu" 
-              :data-index="residu.index" 
-              :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH'), sel: isSelected(residu.index), usersel: isBeingSelected(residu.index)}"
-              :key="residu.index">
-                {{ residu.resname }}
-              </td>
-              <td v-else>
-              </td>
+                <td v-if="residu" 
+                :data-index="residu.index" 
+                :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH'), sel: isSelected(residu.index), usersel: isBeingSelected(residu.index)}"
+                :key="residu.index">
+                  {{ residu.resname }}
+                </td>
+                <td v-else :key="residu.index">
+                </td>
               </template>
             </tr>
           </table>
@@ -231,6 +231,10 @@
       },
 
       listHeightStyle: function () {
+        this.$nextTick(function () {
+          actualPos = { top: 0, left: 0 }
+          this.scrolling()
+        })
         const nbElementMax = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
           return Math.max(accumulator, currentValue.sequence.length)
         }, 0)
@@ -317,14 +321,12 @@
           top: target.scrollTop,
           left: target.scrollLeft
         }
-
         if (!isScrollInProcess) {
           isScrollInProcess = true
-          let self = this
           this.hideTooltip()
           window.requestAnimationFrame(function () {
-            self.scrolling()
-          })
+            this.scrolling()
+          }.bind(this))
         }
 
         actualPos = pos
@@ -338,7 +340,7 @@
           }
           let vec = actualPos.top - (actualPos.top % this.elementHeight)
           this.listScrollStyle = { transform: 'translate(0,' + vec + 'px)' }
-          this.visibleResidues = this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
+          this.setVisibleResidues()
         } else {
           this.headerStyle = 'transform: translate(-' + actualPos.left + 'px, 0)'
         }
@@ -423,8 +425,18 @@
     watch: {
       active: function (val) {
         if (val) {
-          this.setNbElementsToDisplay()
-          this.setVisibleResidues()
+          this.$nextTick(function () {
+            this.setNbElementsToDisplay()
+            this.setVisibleResidues()
+            // when a new model has been loaded, if the previous sequence has been scrolled,
+            // the (v?)dom node keeps track of the scroll amount which reappears when the component
+            // is loaded again. We set scrollTop to zero when the vertical pos has been set back to 0
+            if (actualPos.top === 0 && actualPos.left === 0) {
+              const tb = this.$el.getElementsByClassName('tab-body')[0]
+              tb.scrollTop = 0
+              tb.scrollLeft = 0
+            }
+          })
           document.getElementById('table-seq').addEventListener('mousedown', this.startSelection)
         } else {
           document.getElementById('table-seq').removeEventListener('mousedown', this.startSelection)
@@ -432,7 +444,11 @@
       }
     },
     mounted: function () {
-      this.$nextTick(this.setNbElementsToDisplay)
+      this.$nextTick(function () {
+        this.setNbElementsToDisplay()
+        this.setVisibleResidues()
+        this.$el.getElementsByClassName('tab-body')[0].scrollTop = 0
+      })
       resize.add(this.setNbElementsToDisplay.bind(this))
     }
   }

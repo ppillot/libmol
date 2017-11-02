@@ -49,7 +49,7 @@
                 </el-switch>
               </form-item>
               <form-item :label="$t('ui.surface.color')">
-                <palette v-model="colors" :compact="true"></palette>
+                <palette :value="colors" @color="pickColor" :compact="true"></palette>
               </form-item>
               <div style="text-align: right">
                 <el-button type="primary" @click="downloadSTL(surface.id)">{{ $t('ui.surface.export_as_stl') }}</el-button>
@@ -122,21 +122,8 @@
           return this.$store.state.surfaces[this.edit].props.background
         }
       },
-      colors: {
-        set: function (val) {
-          console.log(val)
-          this.$store.dispatch('setSurfaceProperty', {
-            id: this.surfaces[this.edit].id,
-            props: {
-              colorValue: parseInt(val.substr(1), 16)
-            }
-          })
-        },
-        get: function () {
-          return {
-            hex: `#${this.$store.state.surfaces[this.edit].props.colorValue.toString(16)}`
-          }
-        }
+      colors: function () {
+        return `#${this.$store.state.surfaces[this.edit].props.colorValue.toString(16)}`
       }
     },
     methods: {
@@ -156,6 +143,14 @@
       },
       downloadSTL: function (index) {
         this.$store.dispatch('downloadSurface', index)
+      },
+      pickColor: function (val) {
+        this.$store.dispatch('setSurfaceProperty', {
+          id: this.surfaces[this.edit].id,
+          props: {
+            colorValue: parseInt(val.substr(1), 16)
+          }
+        })
       }
     }
   }

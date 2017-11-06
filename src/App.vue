@@ -10,19 +10,6 @@
     </div>
     <alert/>
   </div>
-  <!-- <el-row class="row-bg" id="app">
-    <el-col :span="8" class="full-height">
-      <div class="grid-content full-height">
-        <sidebar></sidebar>
-      </div>
-    </el-col>
-    <el-col :span="16" class="full-height" id="view" :style="fullscreen">
-        <toolbar></toolbar>
-        <ngl></ngl>
-        <statusbar></statusbar>
-    </el-col>
-    <alert></alert>
-  </el-row> -->
 </template>
 
 <script>
@@ -33,6 +20,8 @@ import TheToolbar from './components/TheToolbar'
 import TheStatusbar from './components/TheStatusbar'
 import Alert from './components/Alert'
 import Split from 'split.js'
+
+let sp
 
 export default {
   name: 'app',
@@ -58,11 +47,23 @@ export default {
       }
     }
   },
+  methods: {
+    collapse: function () {
+      sp.collapse(0)
+    }
+  },
   mounted: function () {
-    Split([this.$el.children[0], this.$el.children[1]], {
+    sp = Split([this.$el.children[0], this.$el.children[1]], {
       sizes: [30, 70],
       minSize: 300,
+      snapOffset: 0,
       gutterSize: 4,
+      gutter: (index, direction) => {
+        const gutter = document.createElement('div')
+        gutter.className = `gutter gutter-${direction}`
+        gutter.innerHTML = '<i class="el-icon-caret-left"></i>'
+        return gutter
+      },
       elementStyle: function (dimension, size, gutterSize) {
         return {
           'flex-basis': 'calc(' + size + '% - ' + gutterSize + 'px)'

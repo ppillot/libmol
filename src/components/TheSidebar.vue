@@ -2,15 +2,7 @@
     <div class="side-bar full-height">
         <h1 @click="dialogVisible = true">LibMol<span> {{$t('ui.about.title')}}...</span></h1>
         
-        <el-dialog
-            :title="$t('ui.about.title')"
-            :visible.sync="dialogVisible"
-            size="large">
-            <div v-html="about" class="help"></div>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false" type="primary" icon="close">{{ $t('ui.about.close') }}</el-button>
-            </span>
-        </el-dialog>
+        <about-panel :visible="dialogVisible" @close="dialogVisible = false"/>
 
         <el-tabs value="files" type="border-card" class="tab-card" @tab-click="switchTab">
             <el-tab-pane :label="$t('ui.files_tab_label')" name="files">
@@ -38,7 +30,7 @@ import LoadFile from './Loadfile'
 import SequenceTab from './SequenceTab'
 import SurfaceTab from './SurfaceTab'
 import CommandsTab from './CommandsTab'
-import Marked from 'marked'
+import AboutPanel from './AboutPanel'
 
 export default {
   name: 'theSidebar',
@@ -48,7 +40,8 @@ export default {
     LoadFile,
     SequenceTab,
     SurfaceTab,
-    CommandsTab
+    CommandsTab,
+    AboutPanel
   },
   data () {
     return {
@@ -59,9 +52,6 @@ export default {
   computed: {
     noSequence: function () {
       return this.$store.state.mol.noSequence
-    },
-    about: function () {
-      return Marked(this.$t('help.about'))
     }
   },
   methods: {
@@ -130,10 +120,6 @@ export default {
         flex-direction: column;
         max-height: 100%;
         flex: 1;
-    }
-
-    .el-autocomplete {
-        width: 100%
     }
 
 </style>

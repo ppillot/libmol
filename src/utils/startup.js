@@ -29,8 +29,16 @@ function getSearchParameters () {
   })
 
   if (params.hasOwnProperty('pdb')) {
-    params.file = `rcsb://${params.pdb}`
-    params.value = ''
+    switch (params.pdb.length) {
+      case 4:
+        params.file = `rcsb://${params.pdb}`
+        params.value = ''
+        break
+      case 3:
+        params.file = `http://files.rcsb.org/ligands/view/${params.pdb}.cif`
+        params.value = ''
+        break
+    }
   }
   // console.dir(params)
   return params

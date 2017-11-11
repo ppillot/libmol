@@ -35,7 +35,7 @@ function getSearchParameters () {
         params.value = ''
         break
       case 3:
-        params.file = `http://files.rcsb.org/ligands/view/${params.pdb}.cif`
+        params.file = `https://files.rcsb.org/ligands/view/${params.pdb}.cif`
         params.value = ''
         break
     }

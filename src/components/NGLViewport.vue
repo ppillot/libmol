@@ -105,4 +105,8 @@ export default {
     border-width: 5px;
     margin-top: 0;
   }
+
+  .ngl {
+    overflow: hidden;
+  }
 </style>

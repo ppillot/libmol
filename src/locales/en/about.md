@@ -2,7 +2,7 @@ LibMol is an open-source educational application, dedicated to teaching structur
 Libmol is available as an [online application](https://libmol.org) (accessible from a browser without installation) or a [downloadable executable](https://libmol.org/downloads).
 
 ## Author
-[Paul Pillot](mailto:paulpillot@gmail.com) - Life Sciences teacher at the Collège International Marie de France (Montreal - Canada)
+[Paul Pillot](mailto:paul.pillot@libmol.org) - Life Sciences teacher at the Collège International Marie de France (Montreal - Canada)
 
 
 ## Licence
@@ -13,6 +13,13 @@ The source code is published under the terms of the [free license GPL v3.0](http
 - Hervé Furstoss (embedded documentation)
 - Philippe Cosentino, Sandrine Beaudin, Eric Jourdan, Valérie Rambaud,  Jacques Janin, Frédéric Labaune, Sandra Rodot, Sébastien Gruszka, Nazim Sellal, David Bard, Mélanie Fenaert for their extensive tests and suggestions
 - Alexander Rose, main author of NGL for his commitment to creating a powerful, streamlined and web-optimized molecular visualization library.
+
+### Molecular data
+- [Protein Data Bank](https://www.rcsb.org)  
+H.M. Berman, J. Westbrook, Z. Feng, G. Gilliland, T.N. Bhat, H. Weissig, I.N. Shindyalov, P.E. Bourne.
+(2000) _The Protein Data Bank_ [Nucleic Acids Research, 28: 235-242](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC102472/)
+- [Pubchem](https://pubchem.ncbi.nlm.nih.gov/)  
+Kim S, Thiessen PA, Bolton EE, Chen J, Fu G, Gindulyte A, Han L, He J, He S, Shoemaker BA, Wang J, Yu B, Zhang J, Bryant SH. PubChem Substance and Compound databases. Nucleic Acids Res. 2016 Jan 4; 44(D1):D1202-13. Epub 2015 Sep 22 [doi:10.1093/nar/gkv951](http://dx.doi.org/10.1093/nar/gkv951)
 
 ### Libraries
 LibMol is based on several invaluable open-source libraries or services.

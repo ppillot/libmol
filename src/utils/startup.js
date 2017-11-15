@@ -40,6 +40,12 @@ function getSearchParameters () {
         break
     }
   }
+
+  if (params.hasOwnProperty('pubchem')) {
+    params.file = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${params.pubchem}/record/SDF/?record_type=3d&response_type=save&response_basename=Structure3D_CID_${params.pubchem}`
+    params.value = ''
+    params.ext = 'mol'
+  }
   // console.dir(params)
   return params
 }

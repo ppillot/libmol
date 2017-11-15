@@ -586,7 +586,8 @@ var vuex = new Vuex.Store({
         value: fileObject.value,
         molId: fileObject.molId,
         molCode: '',
-        source: fileObject.source
+        source: fileObject.source,
+        ext: fileObject.ext
       }
 
       loadNewFile(newFile).then(
@@ -1039,7 +1040,8 @@ var vuex = new Vuex.Store({
         stage.signals.clicked.remove(measurement.clickAngle)
         context.commit('isMeasuringAngles', false)
         measurement.disable()
-      } else if (context.state.isMeasuringDistances) {
+      }
+      if (context.state.isMeasuringDistances) {
         stage.signals.clicked.remove(measurement.clickDistance)
         context.commit('isMeasuringDistances', false)
         measurement.disable()

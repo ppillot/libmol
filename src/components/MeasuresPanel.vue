@@ -121,7 +121,7 @@
           return this.$store.state.isMeasuringDistances
         },
         set (value) {
-          this.$store.commit('isMeasuringDistances', value)
+          // this.$store.commit('isMeasuringDistances', value)
         }
       },
       mouseAngle: {
@@ -129,7 +129,7 @@
           return this.$store.state.isMeasuringAngles
         },
         set (value) {
-          this.$store.commit('isMeasuringAngles', value)
+          // this.$store.commit('isMeasuringAngles', value)
         }
       }
     },

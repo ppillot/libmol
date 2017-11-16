@@ -69,8 +69,8 @@ function measure (component, context) {
         labelColor: labelColor,
         labelZOffset: 2,
         // showBackground: true,
-        color: 0x1D8CE0,
-        opacity: 0.7,
+        color: 0x409EFF,
+        opacity: 0.9,
         scale: 0.4,
         labelUnit: 'nm'
       })

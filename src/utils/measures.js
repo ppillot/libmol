@@ -67,9 +67,11 @@ function measure (component, context) {
       distRepr = comp.addRepresentation('distance', {
         atomPair: tabAtomPairs,
         labelColor: labelColor,
+        labelZOffset: 2,
+        // showBackground: true,
         color: 0x1D8CE0,
-        opacity: 0.5,
-        scale: 0.1,
+        opacity: 0.7,
+        scale: 0.4,
         labelUnit: 'nm'
       })
     }

@@ -796,19 +796,23 @@ var vuex = new Vuex.Store({
           currentlyDisplayedAtomSet.union(atomSet)
         }
       }
-      // debugger
+
       updateRepresentationDisplay()
       if (!currentlyDisplayedAtomSet.isAllClear()) updateStageCenter()
       context.commit('hide', currentlyDisplayedAtomSet.isEqualTo(wholeAtomSet))
       context.commit('updateHiddenPercentage')
-      let payload = {
-        type: token.type,
-        chainName: (token.chainName) ? token.chainName : null,
-        resnum: (token.resnum) ? token.resnum : null,
-        resname: (token.resname) ? token.resname : null
-      }
 
-      context.dispatch('contextMenuCalled', payload)
+      // if hide has been called from an eye button, we call a context menu
+      if (token !== undefined) {
+        let payload = {
+          type: token.type,
+          chainName: (token.chainName) ? token.chainName : null,
+          resnum: (token.resnum) ? token.resnum : null,
+          resname: (token.resname) ? token.resname : null
+        }
+
+        context.dispatch('contextMenuCalled', payload)
+      }
     },
 
     togglePresetVisibility (context, selector) {

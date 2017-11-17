@@ -50,24 +50,23 @@ export default {
       }),
 
     querySearchAsync (queryString) {
-      if (queryString.length === 0) {
+      if (queryString.length < 2) {
         this.suggestions.splice(0)
         return
       }
-      /* var xml = `<orgPdbQuery>
+      const xml = `<orgPdbQuery>
         <queryType>org.pdb.query.simple.AdvancedKeywordQuery</queryType>
         <description>Text Search</description>
         <keywords>${queryString}</keywords>
-      </orgPdbQuery>` */
-      // var self = this
-      /* axios.post('http://www.rcsb.org/pdb/rest/search',
-        xml
-      , {
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-      }
-      ) */
+      </orgPdbQuery>`
       source = CancelToken.source()
-
+      axios.post('https://www.rcsb.org/pdb/rest/search',
+        xml, {
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          cancelToken: source.token
+        }
+      )
+      /*
       const path = (process.env.NODE_ENV !== 'production') ? 'api/jsmol.php' : 'https://libmol.org/api/jsmol.php'
 
       axios.get(path,
@@ -79,22 +78,23 @@ export default {
           },
           cancelToken: source.token
         }
-      )
-      /* .then(function (response) {
-        console.log(response)
+      ) */
+      .then(function (response) {
+        // console.log(response)
         if (response.data.length > 0) {
-          let listPdbId = response.data.split('\n').join(',')
-          return axios.get('http://www.rcsb.org/pdb/rest/customReport', {
+          let listPdbId = response.data.split('\n').slice(0, 100).join(',')
+          return axios.get('https://www.rcsb.org/pdb/rest/customReport', {
             params: {
               pdbids: listPdbId,
               customReportColumns: 'structureId,structureTitle'
-            }
+            },
+            cancelToken: source.token
           })
         } else {
           // self.$message.error(self.$t('messages.no_record_found'))
-          throw new Error(self.$t('messages.no_record_found'))
+          throw new Error(this.$t('messages.no_record_found'))
         }
-      }) */
+      }.bind(this))
       .then(function ({data}) {
         /* global DOMParser */
         const parser = new DOMParser()

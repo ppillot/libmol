@@ -47,7 +47,7 @@ var startParams = getStartingParameters()
 // console.log(startParams)
 
 /**
- * @description removes residues form their current representation so that they are set only in the latest
+ * @description removes residues from their current representation so that they are set only in the latest
  *
  * @param {NGL atomSet} atomSet
  * @param {number} skipReprIndex index of the latest representation : must be skipped !
@@ -661,10 +661,6 @@ var vuex = new Vuex.Store({
 
     display (context, {display, atomSet = currentSelectionAtomSet.clone(), overlay = false}) {
       const displayType = display
-      // does this representation already exist?
-      const num = representationsList.findIndex(val => {
-        return (val.display === displayType && val.overlay === overlay)
-      })
 
       // if selection is of mixed type (not just polymer) and display is either
       // cartoon or backbone, we need to limit it to the polymer selection
@@ -672,7 +668,13 @@ var vuex = new Vuex.Store({
         atomSet.intersection(predefined.getAtomSet('protein').clone().union(predefined.getAtomSet('nucleic')))
       }
 
+      // We concern only about the representations of actually displayed atoms
       let dAtomSet = atomSet.clone().intersection(currentlyDisplayedAtomSet)
+
+      // does this representation already exist?
+      const num = representationsList.findIndex(val => {
+        return (val.display === displayType && val.overlay === overlay)
+      })
 
       if (num === -1) {
         // new representation
@@ -689,7 +691,7 @@ var vuex = new Vuex.Store({
             reprParam.multipleBond = (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
             break
           case 'spacefill':
-            reprParam.scale = 1.2
+            reprParam.scale = 1.1
             break
           case 'licorice':
             reprParam.multipleBond = (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
@@ -738,6 +740,8 @@ var vuex = new Vuex.Store({
         // update base representation if cartoon
         if (displayType === 'cartoon') {
           stage.compList[0].reprList[repr.index + 1].setSelection(repr.displayedAtomSet.toSeleString())
+          representationsList[num + 1].atomSet = repr.atomSet.clone()
+          representationsList[num + 1].displayedAtomSet = repr.displayedAtomSet.clone()
         }
       }
       context.commit('display', displayType)

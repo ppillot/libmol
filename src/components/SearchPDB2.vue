@@ -10,14 +10,12 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import axios from 'axios'
 import debounce from 'throttle-debounce/debounce'
 import BaseSearchDatabase from './BaseSearchDatabase'
 
 const CancelToken = axios.CancelToken
 let source
-// let _cancel
 
 export default {
   name: 'SearchPdb',
@@ -66,19 +64,6 @@ export default {
           cancelToken: source.token
         }
       )
-      /*
-      const path = (process.env.NODE_ENV !== 'production') ? 'api/jsmol.php' : 'https://libmol.org/api/jsmol.php'
-
-      axios.get(path,
-        {
-          params: {
-            call: 'getInfoFromDatabase',
-            database: '=',
-            query: queryString
-          },
-          cancelToken: source.token
-        }
-      ) */
       .then(function (response) {
         // console.log(response)
         if (response.data.length > 0) {

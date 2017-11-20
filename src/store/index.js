@@ -307,6 +307,7 @@ var vuex = new Vuex.Store({
     name: 'LibMol',
     source: 'libmol',
     molCode: '',
+    dbId: '',
     fullscreen: false,
     embedded: startParams.embedded,
     isMeasuringDistances: false,
@@ -386,6 +387,7 @@ var vuex = new Vuex.Store({
       state.name = newFile.value
       state.source = newFile.source
       state.molCode = newFile.molCode
+      state.dbId = newFile.molId
     },
     setMolTypes (state, {molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence}) {
       state.mol.molTypes.protein = molTypes.has(3)

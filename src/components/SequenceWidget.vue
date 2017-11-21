@@ -22,7 +22,7 @@
                 :key="residu.index">
                   {{ residu.resname }}
                 </td>
-                <td v-else :key="residu.index">
+                <td v-else>
                 </td>
               </template>
             </tr>

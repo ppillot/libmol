@@ -48,7 +48,7 @@
         </span>
       </div>
       <div class="section">
-        Résumé
+        <b>Résumé</b>
         <br/>
         {{ pubmed.abstract }}
       </div>

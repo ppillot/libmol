@@ -142,7 +142,10 @@ function updateGlobalColorScheme () {
 
 function updateRepresentationColor () {
   stage.compList[0].eachRepresentation(repr => {
-    if (repr.name === 'highlight' || repr.name === 'distance' || repr.name.indexOf('molsurf') > -1) return
+    if (repr.name === 'highlight' ||
+      repr.name === 'distance' ||
+      repr.name === 'angle' ||
+      repr.name.indexOf('molsurf') > -1) return
     repr.setColor(globalColorScheme)
   })
 }
@@ -192,7 +195,8 @@ function highlightRes (component) {
       sele: 'none',
       color: 'limegreen',
       opacity: 0.2,
-      scale: 1.2,
+      radiusType: 'vdw',
+      radiusScale: 1.2,
       name: 'highlight'
     })
   return function (sel) {
@@ -693,7 +697,7 @@ var vuex = new Vuex.Store({
             reprParam.multipleBond = (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
             break
           case 'spacefill':
-            reprParam.scale = 1.1
+            reprParam.radiusType = 'vdw'
             break
           case 'licorice':
             reprParam.multipleBond = (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'

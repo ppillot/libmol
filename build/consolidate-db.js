@@ -1,17 +1,20 @@
-var fs = require('fs');
-var readline = require('readline');
-var google = require('googleapis');
-var googleAuth = require('google-auth-library');
-var escapeQuotes = require('escape-quotes')
-var https = require('https')
-var sqlite3 = require('sqlite3').verbose()
-var axios = require('axios')
+const fs = require('fs');
+const readline = require('readline');
+const google = require('googleapis');
+const googleAuth = require('google-auth-library');
+const escapeQuotes = require('escape-quotes')
+const https = require('https')
+const sqlite3 = require('sqlite3').verbose()
+const axios = require('axios')
+const removeAccents = require('remove-accents-diacritics');
+const Entities = require('html-entities').AllHtmlEntities
+const entities = new Entities()
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/sheets.googleapis.com-nodejs-quickstart.json
-var SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
-var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
-    process.env.USERPROFILE) + '/.credentials/';
-var TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json';
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
+const TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
+  process.env.USERPROFILE) + '/.credentials/';
+const TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json';
 
 // Load client secrets from a local file.
 fs.readFile('./build/client_secret.json', function processClientSecrets(err, content) {
@@ -98,6 +101,39 @@ function storeToken(token) {
   console.log('Token stored to ' + TOKEN_PATH);
 }
 
+function getFileProperties(file, type, idsource) {
+  let fileName = file
+  let destPath = ''
+  let source = ''
+  let dest = ''
+
+  switch (type) {
+    case 'mmtf':
+      fileName = `${idsource}-${file}.mmtf.gz`
+      destPath = 'static/mol/'
+      source = `https://mmtf.rcsb.org/v1.0/full/${idsource}.mmtf.gz`
+      dest = destPath + fileName
+      break
+    case 'cif pdb':
+      fileName = `${idsource}-${file}.cif`
+      destPath = 'static/mol/'
+      source = `https://files.rcsb.org/ligands/view/${idsource}.cif`
+      dest = destPath + fileName
+      break
+    case 'pubchem':
+      fileName = `${idsource}-${file}.cif`
+      destPath = 'static/mol/'
+      source = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${idsource}/record/SDF/?record_type=3d&response_type=save&response_basename=Structure3D_CID_${idsource}`
+      dest = destPath + fileName
+      break
+  }
+  return {
+    fileName: fileName,
+    dest: dest,
+    source: source
+  }
+}
+
 /**
  * Print the names and majors of students in a sample spreadsheet:
  * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
@@ -120,19 +156,132 @@ function buildI18N(auth) {
       console.log('No data found.');
     } else {
       let tabFiles = []
-      for (let i=0; i<rows.length; i++) {
-        if (rows[i][6]==="cid sdf" && rows[i][2]!=="?") {
-          tabFiles.push({id: rows[i][0], code: rows[i][2], fileName: rows[i][2] + '-' + rows[i][5] + '.sdf'})
+
+      //loop through google spreadsheet rows
+      rows.forEach((row, index) => {
+        if (index === 0) return //columns names
+        if (row[0]!=='') {
+          //get record from sqlite and compare
+          db.get('SELECT * FROM molecule WHERE id = ?', [row[0]],
+            (err, record) => {
+              if (err) {
+                console.log(err)
+              } else if (record === undefined) {
+                console.log('missing id: ' + row[0])
+              } else {
+                //check if records are identical, if not then update sqlite from google sheet
+                
+                //model source
+                if (record.SOURCE != row[1]) {
+                  db.run('UPDATE molecule SET source = ? WHERE id='+row[0], 
+                    [row[1]], (err, success) => {
+                      if (err) {
+                        console.log('Problem occured at ', row, '\n', err)
+                      } else {
+                        console.log('Succesfully updated SOURCE for id:' + row[0])
+                      }
+                    }
+                  )
+                }
+                
+                //model idsource
+                if (record.IDSOURCE != row[2]) {
+                  db.run('UPDATE molecule SET idsource = ? WHERE id='+row[0], 
+                    [row[2]], (err, success) => {
+                      if (err) {
+                        console.log('Problem occured at ', row, '\n', err)
+                      } else {
+                        console.log('Succesfully updated IDSOURCE for id:' + row[0])
+                      }
+                    }
+                  )
+                }
+
+                //model modification
+                if (record.MODIFICATION != row[3]) {
+                  db.run('UPDATE molecule SET modification = ? WHERE id='+row[0], 
+                    [row[3]], (err, success) => {
+                      if (err) {
+                        console.log('Problem occured at ', row, '\n', err)
+                      } else {
+                        console.log('Succesfully updated MODIFICATION for id:' + row[0])
+                      }
+                    }
+                  )
+                }
+
+                //model title
+                if (record.TITRE != row[4]) {
+                  db.run('UPDATE molecule SET TITRE = ? WHERE id='+row[0], 
+                    [row[4]], (err, success) => {
+                      if (err) {
+                        console.log('Problem occured at ', row, '\n', err)
+                      } else {
+                        console.log('Succesfully updated TITRE for id:' + row[0])
+                      }
+                    }
+                  )
+                }
+
+                //check wether description has no html tags or no html entities
+                const htmlTagRe = /<\/?[\w\s="/.':;#-\/]+>/gi
+                const htmlEncodedEntities = /&#?[a-z0-9]+;/gi
+                if (htmlTagRe.test(record.DESCRIPTION) || htmlEncodedEntities.test(record.DESCRIPTION)) {
+                  let txt = record.DESCRIPTION
+                  txt = txt.replace(htmlTagRe, '').trim()
+                  txt = entities.decode(txt)
+                  db.run('UPDATE molecule SET DESCRIPTION = ? WHERE id='+row[0], 
+                    [txt], (err, success) => {
+                      if (err) {
+                        console.log('Problem occured at ', row, '\n', err)
+                      } else {
+                        console.log('Succesfully updated DESCRIPTION for id:' + row[0])
+                      }
+                    }
+                  )
+                }
+
+                //create a search index without accented characters
+                const accentedCharacters = /[\u00C0-\u017F]+/gi
+                if (accentedCharacters.test(record.FTINDEX)) {
+                  const txt = removeAccents.remove(record.FTINDEX)
+                  db.run('UPDATE molecule SET FTINDEX = ? WHERE id='+row[0], 
+                    [txt], (err, success) => {
+                      if (err) {
+                        console.log('Problem occured at ', row, '\n', err)
+                      } else {
+                        console.log('Succesfully updated FTINDEX for id:' + row[0])
+                      }
+                    }
+                  )
+                }
+              }
+            }
+          )
+        } else { //new record for the sqlite DB
+          const file = getFileProperties(row[5], row[6], row[2])
+          db.run(`INSERT INTO molecule (SOURCE, IDSOURCE, MODIFICATION, TITRE, FICHIER, DESCRIPTION, FTINDEX ) 
+            VALUES ($source, $idsource, $modification, $titre, $fichier, $description, $ftindex)`, {
+              $source      : row[1],
+              $idsource    : row[2],
+              $modification: row[3],
+              $titre       : row[4],
+              $fichier     : file.fileName,
+              $description : row[8],
+              $ftindex    : removeAccents.remove(row[8])
+            }, (err, success) => {
+              if (err) {
+                console.log('Problem occured at ', row, '\n', err)
+              } else {
+                console.log('Succesfully inserted: #' + index + ' at index ' + this.lastId)
+              }
+            }
+          )
+          if (file.source !== '') {
+            download(file.source, file.dest, callBack.apply(file))
+          }
         }
-      }
-      console.log(tabFiles)
-      let destPath = 'static/mol/'
-      tabFiles.forEach(file => {
-        // download file from RCSB
-        const source = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${file.code}/record/SDF/?record_type=3d&response_type=save&response_basename=Structure3D_CID_${file.code}`
-        const dest = destPath + file.fileName
-        download(source, dest, callBack.apply(file))
-        db.run(`UPDATE molecule SET FICHIER="${file.fileName}" WHERE ID=${file.id}`)
+
       })
       db.close()
       
@@ -154,5 +303,5 @@ var download = function(url, dest, cb) {
 };
 
 function callBack(message) {
-  console.log(this.code, message)
+  console.log(this.fileName, message)
 }

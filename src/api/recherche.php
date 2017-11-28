@@ -13,6 +13,12 @@ $db = new PDO('sqlite:libmol.sqlite');
 /*
  * definition des constantes
  */
+function removeAccents($str) {
+	$search = explode(",","ç,æ,œ,á,é,í,ó,ú,à,è,ì,ò,ù,ä,ë,ï,ö,ü,ÿ,â,ê,î,ô,û,å,e,i,ø,u");
+	$replace = explode(",","c,ae,oe,a,e,i,o,u,a,e,i,o,u,a,e,i,o,u,y,a,e,i,o,u,a,e,i,o,u");
+	$strWOAccents = str_replace($search, $replace, $str);
+	return $strWOAccents;
+}
 	//this was used by fetch method in javascript : sends a json
  	// $data = json_decode(file_get_contents('php://input'), true);
 	$data['txt'] = $_REQUEST['txt'];
@@ -20,7 +26,7 @@ $db = new PDO('sqlite:libmol.sqlite');
 	if (isset($data['txt'])) {
 	
  		$sql = $db->prepare("SELECT titre,id,fichier FROM molecule where molecule.FTINDEX LIKE ? ORDER BY molecule.titre");
-		$sql->execute(array("%".$data['txt']."%"));
+		$sql->execute(array("%".removeAccents($data['txt'])."%"));
 		$result = array();
 		while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
 			array_push($result, array('label'=>$row['TITRE'], 'molId'=>$row['ID'], 'file'=>$row['FICHIER']));

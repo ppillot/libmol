@@ -171,7 +171,7 @@
     methods: {
       getDescriptionFromPDB (pdbCode) {
         console.log(pdbCode)
-        axios.get('http://www.rcsb.org/pdb/rest/describePDB', {
+        axios.get('https://www.rcsb.org/pdb/rest/describePDB', {
           params: {
             structureId: pdbCode
           }

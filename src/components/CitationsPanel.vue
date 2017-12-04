@@ -1,56 +1,87 @@
 <template>
-  <div>
+  <div>{{ description }}
+  <!-- ************** file from Libmol ********************** -->
     <p v-if="source.code == 'libmol'">
-      Librairie de molécules
+      Données chargées depuis <a :href="source.href" target="_blank">la Librairie de molécules/Libmol</a>
+      <span v-if="molHref !== ''">
+         - <a :href="molHref" target="_blank" class="dbid">{{ dbId }}</a> 
+      </span>
+      <div v-if="meta.modifications !== ''">
+        Modification du fichier original : {{ meta.modifications }}
+      </div>
     </p>
-    <div class="section" v-if="source.code !== ''">
+  <!-- ************** file from local file ********************** -->
+    <p v-if="source.code == 'local'">
+      Données provenant d'un fichier local 
+      <div v-if="molCode === ''">
+        Pas d'information sur la banque d'origine du fichier
+      </div>
+    </p>
+  
+    <div v-if="isSearching">
+      <i class="el-icon-loading" />
+    </div>
+
+    <!-- ************ meta from databases *********************** -->
+    <div class="section" v-if="meta.source !== ''">
       <h2>Source du modèle</h2>
-      <a :href="source.href" target="_blank">{{ source.title }}</a> 
-      Identifiant : 
-      <a :href="molHref" target="_blank" class="dbid">{{ molCode }}</a>
-      <br>
-      Auteurs : {{ citation.structure_authors }}
+      <template v-if="meta.source === 'pdb ligand'">
+        <a href="https://rcsb.org/pdb" target="_blank">Protein Data Bank - Ligand</a>
+        <br>
+        <a :href="'http://www4.rcsb.org/ligand/' + molCode" target="_blank"><span class="dbid"> {{ molCode }}</span> {{ meta.title }}</a>
+      </template>
+      <template v-else-if="meta.source === 'pdb'">
+        <a href="https://rcsb.org/pdb" target="_blank"> Protein Data Bank </a> 
+        <br>
+        <a :href="'http://www.rcsb.org/pdb/explore/explore.do?structureId=' + molCode" target="_blank"><span class="dbid"> {{ molCode }}</span> {{ meta.title }}</a> 
+        <br>
+        Auteurs : {{ meta.structure_authors }}
+      </template>
+      <template v-else-if="meta.source === 'pubchem'">
+        <a href="https://pubchem.ncbi.nlm.nih.gov" target="_blank"> PubChem </a> 
+        <br>
+        <a :href="'https://pubchem.ncbi.nlm.nih.gov/compound/' + this.meta.pubchemCID" target="_blank">PubChem CID <span class="dbid"> {{ meta.pubchemCID }}</span></a>
+      </template>
+      
     </div>
-    <div v-else-if="citation.structureId == molCode">
-      Banque de données du modèle moléculaire : 
-      <a :href="source.href" target="_blank"> Protein Data Bank </a> 
-      <a :href="source.href" target="_blank"> {{ molCode }} </a>
-    </div>
-    <div class="section">
+    <div class="section" v-if="meta.source !==''">
       <h2>Référence</h2>
       <div class="section">
-        PDB ID: {{ molCode }}, {{ citation.citation_authors }} ({{ pubmed.year }})
-        "<i>{{ pubmed.articleTitle }}</i>", {{ pubmed.journal }} {{ pubmed.volume }}: {{ pubmed.pages }}
+        <span v-if="meta.source==='pdb'">
+          PDB ID: {{ meta.structureId }}, 
+        </span>
+        {{ meta.citation_authors }} ({{ meta.year }})
+        "<i>{{ meta.articleTitle }}</i>", {{ meta.journal }} {{ meta.volume }}: {{ meta.pages }}
         <a 
-          :href="`http://dx.doi.org/${ pubmed.doi }`" 
+          :href="`http://dx.doi.org/${ meta.doi }`" 
           target="_blank" 
-          v-if="pubmed.doi !== ''"
+          v-if="meta.doi !== ''"
           >
-          DOI: {{ pubmed.doi }}
+          DOI: {{ meta.doi }}
         </a>
       </div>
-      <div class="section">
+      <div class="section" v-if="meta.pubmedId !== ''">
         Pubmed 
           <a 
-            :href="`https://www.ncbi.nlm.nih.gov/pubmed/${pubmed.pubmedId}`" 
+            :href="`https://www.ncbi.nlm.nih.gov/pubmed/${meta.pubmedId}`" 
             target="_blank"
             class="dbid">
-            {{ pubmed.pubmedId }}
+            {{ meta.pubmedId }}
           </a>
-        <span v-if="pubmed.pmc !== ''">
-          Article complet sur Pubmed Central 
+        <span v-if="meta.pmc !== ''">
+          Article en accès libre sur Pubmed Central 
           <a 
-            :href="`https://www.ncbi.nlm.nih.gov/pmc/articles/${pubmed.pmc}`" 
+            :href="`https://www.ncbi.nlm.nih.gov/pmc/articles/${meta.pmc}`" 
             target="_blank"
             class="dbid">
-            {{ pubmed.pmc }}
+            {{ meta.pmc }}
             </a>
         </span>
       </div>
-      <div class="section">
+      <div class="section" v-if="meta.abstract !== ''">
         <b>Résumé</b>
         <br/>
-        {{ pubmed.abstract }}
+        {{ meta.abstract }}
       </div>
     </div>
   </div>
@@ -60,19 +91,22 @@
   import axios from 'axios'
 
   const PDBCodeRegEx = /^\d\w{3}$/i
-  const PDBHeteroCode = /^\w{3}$/i
+  const PDBHeteroCode = /^[A-Z0-9]{1,3}$/i
 
   export default {
     name: 'citationsPanel',
     data () {
       return {
-        citation: {
+        isSearching: false,
+        meta: {
+          source: '',
+          InChlKey: '',
           structureId: '',
+          pubchemCID: '',
           title: '',
           pubmedId: '',
-          citation_authors: ''
-        },
-        pubmed: {
+          structure_authors: '',
+          citation_authors: '',
           pmc: '',
           doi: '',
           volume: '',
@@ -82,14 +116,87 @@
           month: '',
           day: '',
           articleTitle: '',
-          abstract: ''
+          abstract: '',
+          modifications: ''
         }
       }
     },
     computed: {
       source: function () {
-        let response = {}
+        return this.getSourceURL(this.$store.state.source)
+      },
+      dataToUpdate: function () {
+        return this.$store.state.dbId + this.$store.state.molCode + this.$store.state.source
+      },
+      description: function () {
         switch (this.$store.state.source) {
+          case 'libmol':
+            this.getMetaFromLibmol(this.$store.state.dbId)
+            break
+          case 'pdb':
+            this.getMetaFromPDB(this.$store.state.molCode)
+            break
+          case 'local':
+            if (PDBCodeRegEx.test(this.$store.state.molCode)) {
+              this.getMetaFromPDB(this.$store.state.molCode)
+            } else {
+              this.isSearching = false
+            }
+            break
+          default:
+            this.isSearching = false
+        }
+        return ''
+      },
+      molCode: function () {
+        return this.$store.state.molCode
+      },
+      dbId: function () {
+        return this.$store.state.dbId
+      },
+      molHref: function () {
+        if (this.$store.state.source === 'libmol') {
+          if (parseInt(this.$store.state.dbId) < 356) {
+            // note: in libmol, records post 355 have no more description on the reference website
+            return `http://www.librairiedemolecules.education.fr/molecule.php?idmol=${this.$store.state.dbId}`
+          }
+        } else if (this.$store.state.molCode !== '') {
+          if (PDBCodeRegEx.test(this.molCode)) {
+            return `http://www.rcsb.org/pdb/explore/explore.do?structureId=${this.$store.state.molCode.toLowerCase()}`
+          } else if (PDBHeteroCode.test(this.$store.state.molCode)) {
+            return `http://www4.rcsb.org/ligand/${this.$store.state.molCode.toUpperCase()}`
+          }
+        }
+        return ''
+      }
+    },
+    methods: {
+      init () {
+        this.meta = {
+          source: '',
+          InChlKey: '',
+          structureId: '',
+          pubchemCID: '',
+          title: '',
+          pubmedId: '',
+          structure_authors: '',
+          citation_authors: '',
+          pmc: '',
+          doi: '',
+          volume: '',
+          journal: '',
+          pages: '',
+          year: '',
+          month: '',
+          day: '',
+          articleTitle: '',
+          abstract: '',
+          modifications: ''
+        }
+      },
+      getSourceURL (source) {
+        let response = {}
+        switch (source) {
           case 'pdb':
             response = {
               href: 'https://www.rcsb.org',
@@ -103,7 +210,6 @@
               title: 'Librairie de molécules',
               code: 'libmol'
             }
-            this.getDescriptionFromLibmol(this.$store.data.dbId)
             break
           case 'pubchem':
             response = {
@@ -128,78 +234,48 @@
         }
         return response
       },
-      molCode: function () {
-        this.citation = {
-          structureId: '',
-          title: '',
-          pubmedId: '',
-          citation_authors: ''
-        }
-
-        this.pubmed = {
-          pubmedId: '',
-          pmc: '',
-          doi: '',
-          volume: '',
-          journal: '',
-          pages: '',
-          year: '',
-          month: '',
-          day: '',
-          articleTitle: '',
-          abstract: ''
-        }
-
-        if (PDBCodeRegEx.test(this.$store.state.molCode)) {
-          this.getDescriptionFromPDB(this.$store.state.molCode)
-        }
-        return this.$store.state.molCode
-      },
-      molHref: function () {
-        if (this.molCode !== '') {
-          if (PDBCodeRegEx.test(this.molCode)) {
-            return `http://www.rcsb.org/pdb/explore/explore.do?structureId=${this.molCode.toLowerCase()}`
-          } else if (PDBHeteroCode.test(this.molCode)) {
-            return `http://www4.rcsb.org/ligand/${this.molCode.toUpperCase()}`
-          } else if (this.$store.state.source === 'libmol') {
-            return `http://www.librairiedemolecules.education.fr/molecule.php?idmol=${this.$store.state.dbId}`
-          }
-        }
-        return ''
-      }
-    },
-    methods: {
-      getDescriptionFromPDB (pdbCode) {
+      getMetaFromPDB (pdbCode) {
         console.log(pdbCode)
         axios.get('https://www.rcsb.org/pdb/rest/describePDB', {
           params: {
             structureId: pdbCode
           }
         }).then(function ({data}) {
+          this.init()
           /* global DOMParser */
           const parser = new DOMParser()
           const xmlDocument = parser.parseFromString(data, 'application/xml')
           const pdbNode = xmlDocument.getElementsByTagName('PDB')[0]
-          console.log(pdbNode)
-          let response = {
-            structureId: pdbNode.getAttribute('structureId'),
-            title: pdbNode.getAttribute('title'),
-            pubmedId: pdbNode.getAttribute('pubmedId'),
-            structure_authors: pdbNode.getAttribute('structure_authors'),
-            citation_authors: pdbNode.getAttribute('citation_authors')
-          }
 
-          this.citation = response
+          this.meta.source = 'pdb'
+          this.meta.structureId = pdbNode.getAttribute('structureId')
+          this.meta.title = pdbNode.getAttribute('title')
+          this.meta.pubmedId = pdbNode.getAttribute('pubmedId')
+          this.meta.structure_authors = pdbNode.getAttribute('structure_authors')
+          this.meta.citation_authors = pdbNode.getAttribute('citation_authors')
 
-          if (response.pubmedId) {
-            this.getAbstractFromPubmed(response.pubmedId)
+          if (this.meta.pubmedId !== '') {
+            this.getMetaFromPubmed(this.meta.pubmedId)
+          } else {
+            this.isSearching = false
+            this.$forceUpdate()
           }
         }.bind(this))
       },
-      getDescriptionFromLibmol (id) {
-
+      getMetaFromLibmol (id) {
+        const path = (process.env.NODE_ENV !== 'production') ? 'api/recherche.php' : 'https://libmol.org/api/recherche.php'
+        axios.get(path, {
+          params: {
+            meta: id
+          }
+        }).then(function ({data}) {
+          this.init()
+          this.meta = Object.assign({}, this.meta, data)
+          this.isSearching = false
+          // this.$forceUpdate()
+        }.bind(this))
       },
-      getAbstractFromPubmed (pubmedId) {
+      getMetaFromPubmed (pubmedId) {
         axios.get('https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi', {
           params: {
             db: 'pubmed',
@@ -213,22 +289,19 @@
           const xmlDocument = parser.parseFromString(data, 'application/xml')
           // const root = xmlDocument.getElementsByTagName('PubmedArticle')[0]
           // debugger
-          let response = {
-            pubmedId: pubmedId,
-            pmc: this.getSelectorContent(xmlDocument, 'ArticleId[IdType="pmc"]'),
-            doi: this.getSelectorContent(xmlDocument, 'ArticleId[IdType="doi"]'),
-            articleTitle: this.getSelectorContent(xmlDocument, 'ArticleTitle'),
-            volume: this.getSelectorContent(xmlDocument, 'Volume'),
-            journal: this.getSelectorContent(xmlDocument, 'Title'),
-            pages: this.getSelectorContent(xmlDocument, 'MedlinePgn'),
-            year: this.getSelectorContent(xmlDocument, 'PubDate > Year'),
-            month: this.getSelectorContent(xmlDocument, 'PubDate > Month'),
-            day: this.getSelectorContent(xmlDocument, 'PubDate > Day'),
-            abstract: this.getSelectorContent(xmlDocument, 'AbstractText')
-          }
+          this.meta.pubmedId = pubmedId
+          this.meta.pmc = this.getSelectorContent(xmlDocument, 'ArticleId[IdType="pmc"]')
+          this.meta.doi = this.getSelectorContent(xmlDocument, 'ArticleId[IdType="doi"]')
+          this.meta.articleTitle = this.getSelectorContent(xmlDocument, 'ArticleTitle')
+          this.meta.volume = this.getSelectorContent(xmlDocument, 'Volume')
+          this.meta.journal = this.getSelectorContent(xmlDocument, 'Title')
+          this.meta.pages = this.getSelectorContent(xmlDocument, 'MedlinePgn')
+          this.meta.year = this.getSelectorContent(xmlDocument, 'PubDate > Year')
+          this.meta.month = this.getSelectorContent(xmlDocument, 'PubDate > Month')
+          this.meta.day = this.getSelectorContent(xmlDocument, 'PubDate > Day')
+          this.meta.abstract = this.getSelectorContent(xmlDocument, 'AbstractText')
 
-          this.pubmed = response
-          this.citation.title = response.articleTitle
+          this.isSearching = false
         }.bind(this))
       },
       getSelectorContent (doc, sel) {
@@ -280,4 +353,6 @@
   .section {
     margin-bottom: 0.6em;
   }
+
+  
 </style>

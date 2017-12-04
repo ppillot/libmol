@@ -130,8 +130,11 @@ function buildI18N(auth) {
         // download file from RCSB
         const source = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${file.code}/record/SDF/?record_type=3d&response_type=save&response_basename=Structure3D_CID_${file.code}`
         const dest = destPath + file.fileName
-        download(source, dest, callBack.apply(file))
-        db.run(`UPDATE molecule SET FICHIER="${file.fileName}" WHERE ID=${file.id}`)
+        //check if file is already there
+        if (!fs.existsSync(dest)) {
+          download(source, dest, callBack.apply(file))
+          db.run(`UPDATE molecule SET FICHIER="${file.fileName}" WHERE ID=${file.id}`)
+        }
       })
       db.close()
       

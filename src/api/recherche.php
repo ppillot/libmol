@@ -1,5 +1,8 @@
 <?php
 ob_start();
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: text/javascript; charset=utf-8');
+
 /*
  *  démarrage session
  */
@@ -21,16 +24,18 @@ function removeAccents($str) {
 }
 	//this was used by fetch method in javascript : sends a json
  	// $data = json_decode(file_get_contents('php://input'), true);
-	$data['txt'] = $_REQUEST['txt'];
+	// $data['txt'] = $_REQUEST['txt'];
 	// error_log($data['txt']);
-	if (isset($data['txt'])) {
+	if (isset($_REQUEST['txt'])) {
 	
  		$sql = $db->prepare("SELECT titre,id,fichier FROM molecule where molecule.FTINDEX LIKE ? ORDER BY molecule.titre");
-		$sql->execute(array("%".removeAccents($data['txt'])."%"));
+		$sql->execute(array("%".removeAccents($_REQUEST['txt'])."%"));
 		$result = array();
 		while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
 			array_push($result, array('label'=>$row['TITRE'], 'molId'=>$row['ID'], 'file'=>$row['FICHIER']));
 		}
+		echo json_encode($result) ; 
+		
 	} else if (isset($_REQUEST['id'])) {
 		$sql = $db->prepare("SELECT titre,id,source,molecule.description,modification,adresse,idsource FROM molecule WHERE id = ?");
 		$sql->execute(array($_REQUEST['id']));
@@ -42,11 +47,16 @@ function removeAccents($str) {
 						'modification'=>$row['MODIFICATION'], 
 						'adresse'=>$row['adresse'], 
 						'molIdSource'=>$row['IDSOURCE']);
+		echo json_encode($result) ; 
+						
+	} else if (isset($_REQUEST['meta'])) {
+		$sql = $db->prepare("SELECT meta FROM molecule WHERE id = ?");
+		$sql->execute(array($_REQUEST['meta']));
+		$row = $sql->fetch(PDO::FETCH_ASSOC);
+		$result = $row['META'];
+		echo $result;
 	}
 	
-	header('Access-Control-Allow-Origin: *');
-    header('Content-Type: text/javascript; charset=utf-8');
-	echo json_encode($result) ; 
 	ob_end_flush();
 
 ?>

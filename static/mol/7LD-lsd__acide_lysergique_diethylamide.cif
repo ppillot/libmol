@@ -1,0 +1,188 @@
+data_7LD
+# 
+_chem_comp.id                                    7LD 
+_chem_comp.name                                  "(8alpha)-N,N-diethyl-6-methyl-9,10-didehydroergoline-8-carboxamide" 
+_chem_comp.type                                  NON-POLYMER 
+_chem_comp.pdbx_type                             HETAIN 
+_chem_comp.formula                               "C20 H25 N3 O" 
+_chem_comp.mon_nstd_parent_comp_id               ? 
+_chem_comp.pdbx_synonyms                         ? 
+_chem_comp.pdbx_formal_charge                    0 
+_chem_comp.pdbx_initial_date                     2016-11-10 
+_chem_comp.pdbx_modified_date                    2017-01-26 
+_chem_comp.pdbx_ambiguous_flag                   N 
+_chem_comp.pdbx_release_status                   REL 
+_chem_comp.pdbx_replaced_by                      ? 
+_chem_comp.pdbx_replaces                         ? 
+_chem_comp.formula_weight                        323.432 
+_chem_comp.one_letter_code                       ? 
+_chem_comp.three_letter_code                     7LD 
+_chem_comp.pdbx_model_coordinates_details        ? 
+_chem_comp.pdbx_model_coordinates_missing_flag   N 
+_chem_comp.pdbx_ideal_coordinates_details        Corina 
+_chem_comp.pdbx_ideal_coordinates_missing_flag   N 
+_chem_comp.pdbx_model_coordinates_db_code        5TVN 
+_chem_comp.pdbx_subcomponent_list                ? 
+_chem_comp.pdbx_processing_site                  RCSB 
+# 
+loop_
+_chem_comp_atom.comp_id 
+_chem_comp_atom.atom_id 
+_chem_comp_atom.alt_atom_id 
+_chem_comp_atom.type_symbol 
+_chem_comp_atom.charge 
+_chem_comp_atom.pdbx_align 
+_chem_comp_atom.pdbx_aromatic_flag 
+_chem_comp_atom.pdbx_leaving_atom_flag 
+_chem_comp_atom.pdbx_stereo_config 
+_chem_comp_atom.model_Cartn_x 
+_chem_comp_atom.model_Cartn_y 
+_chem_comp_atom.model_Cartn_z 
+_chem_comp_atom.pdbx_model_Cartn_x_ideal 
+_chem_comp_atom.pdbx_model_Cartn_y_ideal 
+_chem_comp_atom.pdbx_model_Cartn_z_ideal 
+_chem_comp_atom.pdbx_component_atom_id 
+_chem_comp_atom.pdbx_component_comp_id 
+_chem_comp_atom.pdbx_ordinal 
+7LD N1  N1  N 0 1 Y N N -25.976 -12.817 6.961  5.157  0.314  0.448  N1  7LD 1  
+7LD N3  N2  N 0 1 N N N -21.864 -20.023 10.866 -3.879 0.503  0.291  N3  7LD 2  
+7LD C4  C1  C 0 1 Y N N -26.221 -12.989 9.395  4.058  2.564  -0.124 C4  7LD 3  
+7LD C5  C2  C 0 1 Y N N -25.866 -13.776 10.490 2.791  3.064  -0.401 C5  7LD 4  
+7LD C6  C3  C 0 1 Y N N -24.689 -15.220 9.007  1.704  0.942  -0.174 C6  7LD 5  
+7LD C7  C4  C 0 1 Y N N -24.779 -14.611 6.745  3.316  -0.941 0.435  C7  7LD 6  
+7LD C8  C5  C 0 1 Y N N -25.338 -13.597 6.082  4.632  -0.957 0.618  C8  7LD 7  
+7LD C10 C6  C 0 1 N N N -23.329 -17.078 9.739  -0.607 0.287  0.043  C10 7LD 8  
+7LD C13 C7  C 0 1 N N N -23.007 -18.837 8.162  -1.324 -1.921 -0.782 C13 7LD 9  
+7LD C15 C8  C 0 1 N N N -23.988 -15.691 6.352  2.217  -1.970 0.493  C15 7LD 10 
+7LD C17 C9  C 0 1 N N N -20.534 -20.017 10.238 -3.602 0.630  1.724  C17 7LD 11 
+7LD C20 C10 C 0 1 N N N -22.772 -22.256 11.381 -4.952 2.472  -0.686 C20 7LD 12 
+7LD N2  N3  N 0 1 N N N -22.935 -17.809 7.116  -0.063 -2.449 -0.252 N2  7LD 13 
+7LD C12 C11 C 0 1 N N N -23.226 -18.427 5.814  0.260  -3.748 -0.858 C12 7LD 14 
+7LD C11 C12 C 0 1 N N R -23.992 -16.826 7.392  1.048  -1.516 -0.393 C11 7LD 15 
+7LD C3  C13 C 0 1 Y N N -25.080 -14.430 8.019  2.993  0.445  0.116  C3  7LD 16 
+7LD C1  C14 C 0 1 Y N N -25.812 -13.339 8.177  4.168  1.200  0.143  C1  7LD 17 
+7LD C2  C15 C 0 1 Y N N -25.086 -14.914 10.302 1.632  2.292  -0.431 C2  7LD 18 
+7LD C9  C16 C 0 1 N N N -23.939 -16.350 8.714  0.644  -0.084 -0.164 C9  7LD 19 
+7LD C14 C17 C 0 1 N N R -22.597 -18.247 9.509  -1.735 -0.710 0.062  C14 7LD 20 
+7LD C16 C18 C 0 1 N N N -22.857 -19.171 10.533 -2.976 -0.083 -0.520 C16 7LD 21 
+7LD O1  O1  O 0 1 N N N -23.959 -19.190 11.081 -3.161 -0.105 -1.718 O1  7LD 22 
+7LD C19 C19 C 0 1 N N N -22.040 -21.027 11.928 -5.136 1.013  -0.261 C19 7LD 23 
+7LD C18 C20 C 0 1 N N N -19.495 -19.669 11.303 -4.217 -0.557 2.469  C18 7LD 24 
+7LD H1  H1  H 0 1 N N N -26.488 -11.986 6.744  6.095  0.542  0.538  H1  7LD 25 
+7LD H2  H2  H 0 1 N N N -26.823 -12.103 9.534  4.925  3.208  -0.117 H2  7LD 26 
+7LD H3  H3  H 0 1 N N N -26.195 -13.503 11.482 2.700  4.121  -0.606 H3  7LD 27 
+7LD H4  H4  H 0 1 N N N -25.284 -13.434 5.016  5.210  -1.836 0.864  H4  7LD 28 
+7LD H5  H5  H 0 1 N N N -23.427 -16.722 10.754 -0.826 1.332  0.204  H5  7LD 29 
+7LD H6  H6  H 0 1 N N N -24.038 -19.215 8.229  -1.186 -1.615 -1.819 H6  7LD 30 
+7LD H7  H7  H 0 1 N N N -22.329 -19.664 7.906  -2.098 -2.687 -0.726 H7  7LD 31 
+7LD H8  H8  H 0 1 N N N -24.373 -16.083 5.399  2.596  -2.927 0.133  H8  7LD 32 
+7LD H9  H9  H 0 1 N N N -22.954 -15.341 6.214  1.873  -2.078 1.521  H9  7LD 33 
+7LD H10 H10 H 0 1 N N N -20.317 -21.011 9.819  -2.525 0.643  1.887  H10 7LD 34 
+7LD H11 H11 H 0 1 N N N -20.507 -19.267 9.434  -4.037 1.557  2.097  H11 7LD 35 
+7LD H12 H12 H 0 1 N N N -22.896 -22.997 12.184 -5.888 2.851  -1.096 H12 7LD 36 
+7LD H13 H13 H 0 1 N N N -23.760 -21.956 11.003 -4.666 3.069  0.180  H13 7LD 37 
+7LD H14 H14 H 0 1 N N N -22.185 -22.698 10.562 -4.172 2.533  -1.444 H14 7LD 38 
+7LD H16 H16 H 0 1 N N N -22.450 -19.170 5.579  1.136  -4.171 -0.366 H16 7LD 39 
+7LD H17 H17 H 0 1 N N N -24.207 -18.922 5.855  -0.586 -4.424 -0.739 H17 7LD 40 
+7LD H18 H18 H 0 1 N N N -23.239 -17.651 5.035  0.470  -3.612 -1.919 H18 7LD 41 
+7LD H19 H19 H 0 1 N N N -24.952 -17.349 7.266  1.389  -1.582 -1.426 H19 7LD 42 
+7LD H20 H20 H 0 1 N N N -24.799 -15.538 11.136 0.680  2.751  -0.655 H20 7LD 43 
+7LD H21 H21 H 0 1 N N N -21.522 -18.018 9.473  -1.929 -1.025 1.087  H21 7LD 44 
+7LD H22 H22 H 0 1 N N N -21.053 -21.331 12.307 -5.422 0.416  -1.126 H22 7LD 45 
+7LD H23 H23 H 0 1 N N N -22.629 -20.589 12.748 -5.917 0.952  0.498  H23 7LD 46 
+7LD H24 H24 H 0 1 N N N -18.493 -19.660 10.849 -5.294 -0.570 2.306  H24 7LD 47 
+7LD H25 H25 H 0 1 N N N -19.717 -18.676 11.721 -3.782 -1.485 2.096  H25 7LD 48 
+7LD H26 H26 H 0 1 N N N -19.527 -20.420 12.106 -4.011 -0.463 3.535  H26 7LD 49 
+# 
+loop_
+_chem_comp_bond.comp_id 
+_chem_comp_bond.atom_id_1 
+_chem_comp_bond.atom_id_2 
+_chem_comp_bond.value_order 
+_chem_comp_bond.pdbx_aromatic_flag 
+_chem_comp_bond.pdbx_stereo_config 
+_chem_comp_bond.pdbx_ordinal 
+7LD C12 N2  SING N N 1  
+7LD C8  C7  DOUB Y N 2  
+7LD C8  N1  SING Y N 3  
+7LD C15 C7  SING N N 4  
+7LD C15 C11 SING N N 5  
+7LD C7  C3  SING Y N 6  
+7LD N1  C1  SING Y N 7  
+7LD N2  C11 SING N N 8  
+7LD N2  C13 SING N N 9  
+7LD C11 C9  SING N N 10 
+7LD C3  C1  DOUB Y N 11 
+7LD C3  C6  SING Y N 12 
+7LD C13 C14 SING N N 13 
+7LD C1  C4  SING Y N 14 
+7LD C9  C6  SING N N 15 
+7LD C9  C10 DOUB N N 16 
+7LD C6  C2  DOUB Y N 17 
+7LD C4  C5  DOUB Y N 18 
+7LD C14 C10 SING N N 19 
+7LD C14 C16 SING N N 20 
+7LD C17 N3  SING N N 21 
+7LD C17 C18 SING N N 22 
+7LD C2  C5  SING Y N 23 
+7LD C16 N3  SING N N 24 
+7LD C16 O1  DOUB N N 25 
+7LD N3  C19 SING N N 26 
+7LD C20 C19 SING N N 27 
+7LD N1  H1  SING N N 28 
+7LD C4  H2  SING N N 29 
+7LD C5  H3  SING N N 30 
+7LD C8  H4  SING N N 31 
+7LD C10 H5  SING N N 32 
+7LD C13 H6  SING N N 33 
+7LD C13 H7  SING N N 34 
+7LD C15 H8  SING N N 35 
+7LD C15 H9  SING N N 36 
+7LD C17 H10 SING N N 37 
+7LD C17 H11 SING N N 38 
+7LD C20 H12 SING N N 39 
+7LD C20 H13 SING N N 40 
+7LD C20 H14 SING N N 41 
+7LD C12 H16 SING N N 42 
+7LD C12 H17 SING N N 43 
+7LD C12 H18 SING N N 44 
+7LD C11 H19 SING N N 45 
+7LD C2  H20 SING N N 46 
+7LD C14 H21 SING N N 47 
+7LD C19 H22 SING N N 48 
+7LD C19 H23 SING N N 49 
+7LD C18 H24 SING N N 50 
+7LD C18 H25 SING N N 51 
+7LD C18 H26 SING N N 52 
+# 
+loop_
+_pdbx_chem_comp_descriptor.comp_id 
+_pdbx_chem_comp_descriptor.type 
+_pdbx_chem_comp_descriptor.program 
+_pdbx_chem_comp_descriptor.program_version 
+_pdbx_chem_comp_descriptor.descriptor 
+7LD SMILES           ACDLabs              12.01 "n1c4cccc2c4c(c1)CC3N(CC(C=C23)C(N(CC)CC)=O)C"                                                                                                      
+7LD InChI            InChI                1.03  "InChI=1S/C20H25N3O/c1-4-23(5-2)20(24)14-9-16-15-7-6-8-17-19(15)13(11-21-17)10-18(16)22(3)12-14/h6-9,11,14,18,21H,4-5,10,12H2,1-3H3/t14-,18-/m1/s1" 
+7LD InChIKey         InChI                1.03  VAYOSLLFUXYJDT-RDTXWAMCSA-N                                                                                                                         
+7LD SMILES_CANONICAL CACTVS               3.385 "CCN(CC)C(=O)[C@H]1CN(C)[C@@H]2Cc3c[nH]c4cccc(C2=C1)c34"                                                                                            
+7LD SMILES           CACTVS               3.385 "CCN(CC)C(=O)[CH]1CN(C)[CH]2Cc3c[nH]c4cccc(C2=C1)c34"                                                                                               
+7LD SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6 "CCN(CC)C(=O)[C@H]1CN([C@@H]2Cc3c[nH]c4c3c(ccc4)C2=C1)C"                                                                                            
+7LD SMILES           "OpenEye OEToolkits" 2.0.6 "CCN(CC)C(=O)C1CN(C2Cc3c[nH]c4c3c(ccc4)C2=C1)C"                                                                                                     
+# 
+loop_
+_pdbx_chem_comp_identifier.comp_id 
+_pdbx_chem_comp_identifier.type 
+_pdbx_chem_comp_identifier.program 
+_pdbx_chem_comp_identifier.program_version 
+_pdbx_chem_comp_identifier.identifier 
+7LD "SYSTEMATIC NAME" ACDLabs              12.01 "(8alpha)-N,N-diethyl-6-methyl-9,10-didehydroergoline-8-carboxamide"                                              
+7LD "SYSTEMATIC NAME" "OpenEye OEToolkits" 2.0.6 "(6~{a}~{R},9~{R})-~{N},~{N}-diethyl-7-methyl-6,6~{a},8,9-tetrahydro-4~{H}-indolo[4,3-fg]quinoline-9-carboxamide" 
+# 
+loop_
+_pdbx_chem_comp_audit.comp_id 
+_pdbx_chem_comp_audit.action_type 
+_pdbx_chem_comp_audit.date 
+_pdbx_chem_comp_audit.processing_site 
+7LD "Create component" 2016-11-10 RCSB 
+7LD "Initial release"  2017-02-01 RCSB 
+# 

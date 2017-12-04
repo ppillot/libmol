@@ -5,7 +5,14 @@
       :visible.sync="isPanelVisible"
       :modal-append-to-body="false"
       size="mini">
-      <citations-panel/>
+      <!--<el-tabs>
+        <el-tab-pane label="Citation" name="citation">-->
+          <citations-panel/>
+        <!--</el-tab-pane>
+        <el-tab-pane label="Statistiques" name="stats" disabled>Config</el-tab-pane>
+        <el-tab-pane label="Constituants" name="comps" disabled>Role</el-tab-pane>
+      </el-tabs>-->
+      
     </el-dialog>
     <el-button 
       class="pdb-code" 
@@ -28,7 +35,8 @@
     },
     data () {
       return {
-        isPanelVisible: false
+        isPanelVisible: false,
+        activeName: 'citation'
       }
     },
     computed: {
@@ -61,4 +69,20 @@
     background: #03a9f4;
     color: #f9fafc;
   }
+
+  .el-dialog__wrapper {
+    overflow: hidden;
+  }
+
+  .el-dialog {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .el-dialog__body {
+    flex: 1;
+    overflow: auto;
+  }
+
 </style>

@@ -580,7 +580,7 @@ var vuex = new Vuex.Store({
       loadNewFile = loadFile(stage, context)
       stage.mouseControls.remove('hoverPick')
       stage.signals.hovered.add(hover(context))
-      context.dispatch('loadNewFile', { file: startParams.file, value: startParams.value })
+      context.dispatch('loadNewFile', startParams)
 
       let resize = resizeStage(stage)
       window.onresize = debounce(100, resize)
@@ -595,7 +595,6 @@ var vuex = new Vuex.Store({
         source: fileObject.source,
         ext: fileObject.ext
       }
-
       loadNewFile(newFile).then(
         ({molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component}) => {
           structure = component.structure

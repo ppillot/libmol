@@ -95,7 +95,7 @@ function loadFile (stage, context) {
         (color, index) => {
           chains[index].color = color
         }
-    )
+      )
 
       const noSequence = (structure.residueStore.count / structure.modelStore.count <= 1)
 

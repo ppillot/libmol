@@ -3,10 +3,10 @@
  */
 
 let defaultParameters = {
-  file: 'static/mol/1BKV-collagene.mmtf.gz',
+  file: 'rcsb://1bkv',
   value: 'Collagene',
-  source: 'libmol',
-  molId: '63',
+  source: 'pdb',
+  molId: '1bkv',
   embedded: false
 }
 /**

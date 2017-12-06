@@ -1116,7 +1116,7 @@ var vuex = new Vuex.Store({
       }
     },
     userSelection (context, value) {
-      const sel = new NGL.Selection(value)
+      const sel = new NGL.Selection(`(${value}) and /0`)
       const as = structure.getAtomSet(sel)
       context.commit('userSelectionSize', as.getSize())
       highlight(value)

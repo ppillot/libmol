@@ -142,7 +142,10 @@ function updateGlobalColorScheme () {
 
 function updateRepresentationColor () {
   stage.compList[0].eachRepresentation(repr => {
-    if (repr.name === 'highlight' || repr.name === 'distance' || repr.name.indexOf('molsurf') > -1) return
+    if (repr.name === 'highlight' ||
+      repr.name === 'distance' ||
+      repr.name === 'angle' ||
+      repr.name.indexOf('molsurf') > -1) return
     repr.setColor(globalColorScheme)
   })
 }
@@ -192,7 +195,8 @@ function highlightRes (component) {
       sele: 'none',
       color: 'limegreen',
       opacity: 0.2,
-      scale: 1.2,
+      radiusType: 'vdw',
+      radiusScale: 1.2,
       name: 'highlight'
     })
   return function (sel) {
@@ -307,6 +311,7 @@ var vuex = new Vuex.Store({
     name: 'LibMol',
     source: 'libmol',
     molCode: '',
+    dbId: '',
     fullscreen: false,
     embedded: startParams.embedded,
     isMeasuringDistances: false,
@@ -386,6 +391,7 @@ var vuex = new Vuex.Store({
       state.name = newFile.value
       state.source = newFile.source
       state.molCode = newFile.molCode
+      state.dbId = newFile.molId
     },
     setMolTypes (state, {molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence}) {
       state.mol.molTypes.protein = molTypes.has(3)
@@ -574,7 +580,7 @@ var vuex = new Vuex.Store({
       loadNewFile = loadFile(stage, context)
       stage.mouseControls.remove('hoverPick')
       stage.signals.hovered.add(hover(context))
-      context.dispatch('loadNewFile', { file: startParams.file, value: startParams.value })
+      context.dispatch('loadNewFile', startParams)
 
       let resize = resizeStage(stage)
       window.onresize = debounce(100, resize)
@@ -589,7 +595,6 @@ var vuex = new Vuex.Store({
         source: fileObject.source,
         ext: fileObject.ext
       }
-
       loadNewFile(newFile).then(
         ({molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component}) => {
           structure = component.structure
@@ -691,7 +696,7 @@ var vuex = new Vuex.Store({
             reprParam.multipleBond = (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
             break
           case 'spacefill':
-            reprParam.scale = 1.1
+            reprParam.radiusType = 'vdw'
             break
           case 'licorice':
             reprParam.multipleBond = (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
@@ -1111,7 +1116,7 @@ var vuex = new Vuex.Store({
       }
     },
     userSelection (context, value) {
-      const sel = new NGL.Selection(value)
+      const sel = new NGL.Selection(`(${value}) and /0`)
       const as = structure.getAtomSet(sel)
       context.commit('userSelectionSize', as.getSize())
       highlight(value)

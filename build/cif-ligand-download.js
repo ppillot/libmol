@@ -130,8 +130,11 @@ function buildI18N(auth) {
         // download file from RCSB
         const source = `http://files.rcsb.org/ligands/view/${file.code}.cif`
         const dest = destPath + file.fileName
-        download(source, dest, callBack.apply(file))
-        db.run(`UPDATE molecule SET FICHIER="${file.fileName}" WHERE ID=${file.id}`)
+         //check if file is already there
+         if (!fs.existsSync(dest)) {
+          download(source, dest, callBack.apply(file))
+          db.run(`UPDATE molecule SET FICHIER="${file.fileName}" WHERE ID=${file.id}`)
+        }
       })
       db.close()
       

@@ -3,8 +3,10 @@
  */
 
 let defaultParameters = {
-  file: 'rcsb://1crn',
-  value: 'Crambin',
+  file: 'static/mol/1BKV-collagene.mmtf.gz',
+  value: 'Collagene',
+  source: 'libmol',
+  molId: '63',
   embedded: false
 }
 /**
@@ -29,15 +31,12 @@ function getSearchParameters () {
   })
 
   if (params.hasOwnProperty('pdb')) {
-    switch (params.pdb.length) {
-      case 4:
-        params.file = `rcsb://${params.pdb}`
-        params.value = ''
-        break
-      case 3:
-        params.file = `https://files.rcsb.org/ligands/view/${params.pdb}.cif`
-        params.value = ''
-        break
+    if (params.pdb.length === 4) {
+      params.file = `rcsb://${params.pdb}`
+      params.value = ''
+    } else if (params.pdb.length < 4 && params.pdb.length > 0) {
+      params.file = `https://files.rcsb.org/ligands/view/${params.pdb}.cif`
+      params.value = ''
     }
   }
 

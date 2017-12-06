@@ -95,9 +95,9 @@ function loadFile (stage, context) {
         (color, index) => {
           chains[index].color = color
         }
-    )
+      )
 
-      let noSequence = (structure.residueStore.count / structure.modelStore.count <= 1)
+      const noSequence = (structure.residueStore.count / structure.modelStore.count <= 1)
 
       component.setSelection('/0')
       component.addRepresentation('ball+stick', {

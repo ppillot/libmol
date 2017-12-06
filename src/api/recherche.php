@@ -1,5 +1,8 @@
 <?php
 ob_start();
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: text/javascript; charset=utf-8');
+
 /*
  *  démarrage session
  */
@@ -13,45 +16,47 @@ $db = new PDO('sqlite:libmol.sqlite');
 /*
  * definition des constantes
  */
+function removeAccents($str) {
+	$search = explode(",","ç,æ,œ,á,é,í,ó,ú,à,è,ì,ò,ù,ä,ë,ï,ö,ü,ÿ,â,ê,î,ô,û,å,e,i,ø,u");
+	$replace = explode(",","c,ae,oe,a,e,i,o,u,a,e,i,o,u,a,e,i,o,u,y,a,e,i,o,u,a,e,i,o,u");
+	$strWOAccents = str_replace($search, $replace, $str);
+	return $strWOAccents;
+}
 	//this was used by fetch method in javascript : sends a json
  	// $data = json_decode(file_get_contents('php://input'), true);
-	$data['txt'] = $_REQUEST['txt'];
-	error_log($data['txt']);
-	if (isset($data['txt'])) {
+	// $data['txt'] = $_REQUEST['txt'];
+	// error_log($data['txt']);
+	if (isset($_REQUEST['txt'])) {
 	
- 		$sql = $db->prepare("SELECT titre,id,fichier FROM molecule where molecule.FTINDEX LIKE ?");
-		$sql->execute(array("%".$data['txt']."%"));
+ 		$sql = $db->prepare("SELECT titre,id,fichier FROM molecule where molecule.FTINDEX LIKE ? ORDER BY molecule.titre");
+		$sql->execute(array("%".removeAccents($_REQUEST['txt'])."%"));
+		$result = array();
+		while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+			array_push($result, array('label'=>$row['TITRE'], 'molId'=>$row['ID'], 'file'=>$row['FICHIER']));
+		}
+		echo json_encode($result) ; 
 		
-	} else if (isset($_REQUEST['cat'])) {
-		$requete = "SELECT titre,id,fichier FROM molecule where 1=1";
-		
-		require ("inc/classification.class.php");
-		$categories = new classification("chimique.xml");
-		//$categories->selid($_GET['cat']);
-		$categories->selnoeud('//categorie[@id="'.$_REQUEST['cat'].'"]/descendant::molecule');///descendant::molecule');
-		$listeid = $categories->listeAttr('molid');
-		if (count($listeid)>0) {
-			$in = "";
-			//print_r($listeid);
-			foreach ($listeid as $id) {
-				//echo $id;
-				$in .= $id.",";
-			}
-			$in = substr($in,0,-1);
-			$requete .= " AND molecule.id IN ($in)";
-		} else $requete .= " AND 0=1";
-		$requete .= " ORDER BY molecule.titre";
-		
-		$sql = $db->prepare($requete);
-		$sql->execute(array());
+	} else if (isset($_REQUEST['id'])) {
+		$sql = $db->prepare("SELECT titre,id,source,molecule.description,modification,adresse,idsource FROM molecule WHERE id = ?");
+		$sql->execute(array($_REQUEST['id']));
+		$row = $sql->fetch(PDO::FETCH_ASSOC);
+		$result = array('label'=>$row['TITRE'], 
+						'molId'=>$row['ID'], 
+						'source'=>$row['FICHIER'], 
+						'description'=>$row['DESCRIPTION'], 
+						'modification'=>$row['MODIFICATION'], 
+						'adresse'=>$row['adresse'], 
+						'molIdSource'=>$row['IDSOURCE']);
+		echo json_encode($result) ; 
+						
+	} else if (isset($_REQUEST['meta'])) {
+		$sql = $db->prepare("SELECT meta FROM molecule WHERE id = ?");
+		$sql->execute(array($_REQUEST['meta']));
+		$row = $sql->fetch(PDO::FETCH_ASSOC);
+		$result = $row['META'];
+		echo $result;
 	}
-	$result = array();
-	while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-		array_push($result, array('label'=>$row['TITRE'], 'molId'=>$row['ID'], 'file'=>$row['FICHIER']));
-	}
-	header('Access-Control-Allow-Origin: *');
-    header('Content-Type: text/javascript; charset=utf-8');
-	echo json_encode($result) ; 
+	
 	ob_end_flush();
 
 ?>

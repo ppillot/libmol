@@ -126,7 +126,7 @@ function measure (component, context) {
       measureHighlightRepr = comp.addRepresentation('spacefill', {
         sele: '@' + atom.index,
         color: 'red',
-        scale: 0.4,
+        radiusScale: 0.4,
         opacity: 0.5
       })
     }

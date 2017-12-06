@@ -5,8 +5,6 @@
 let defaultParameters = {
   file: 'rcsb://1bkv',
   value: 'Collagene',
-  source: 'pdb',
-  molId: '1bkv',
   embedded: false
 }
 /**

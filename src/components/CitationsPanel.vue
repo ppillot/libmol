@@ -2,19 +2,19 @@
   <div>{{ description }}
   <!-- ************** file from Libmol ********************** -->
     <p v-if="source.code == 'libmol'">
-      Données chargées depuis <a :href="source.href" target="_blank">la Librairie de molécules/Libmol</a>
+      {{ $t('ui.citations.data_from')}} <a :href="source.href" target="_blank">la Librairie de molécules/Libmol</a>
       <span v-if="molHref !== ''">
          - <a :href="molHref" target="_blank" class="dbid">{{ dbId }}</a> 
       </span>
       <div v-if="meta.modifications !== ''">
-        Modification du fichier original : {{ meta.modifications }}
+        {{ $t('ui.citations.modifications') }} {{ meta.modifications }}
       </div>
     </p>
   <!-- ************** file from local file ********************** -->
     <p v-if="source.code == 'local'">
-      Données provenant d'un fichier local 
+      {{ $t('ui.citations.local_file') }} 
       <div v-if="molCode === ''">
-        Pas d'information sur la banque d'origine du fichier
+        {{ $t('ui.citations.local_file_no_data') }}
       </div>
     </p>
   
@@ -24,7 +24,7 @@
 
     <!-- ************ meta from databases *********************** -->
     <div class="section" v-if="meta.source !== ''">
-      <h2>Source du modèle</h2>
+      <h2>{{$t('ui.citations.source_title')}}</h2>
       <template v-if="meta.source === 'pdb ligand'">
         <a href="https://rcsb.org/pdb" target="_blank">Protein Data Bank - Ligand</a>
         <br>
@@ -35,7 +35,7 @@
         <br>
         <a :href="'http://www.rcsb.org/pdb/explore/explore.do?structureId=' + molCode" target="_blank"><span class="dbid"> {{ molCode }}</span> {{ meta.title }}</a> 
         <br>
-        Auteurs : {{ meta.structure_authors }}
+        {{ $t('ui.citations.authors') }} {{ meta.structure_authors }}
       </template>
       <template v-else-if="meta.source === 'pubchem'">
         <a href="https://pubchem.ncbi.nlm.nih.gov" target="_blank"> PubChem </a> 
@@ -45,7 +45,7 @@
       
     </div>
     <div class="section" v-if="meta.source !==''">
-      <h2>Référence</h2>
+      <h2>{{ $t('ui.citations.reference') }}</h2>
       <div class="section">
         <span v-if="meta.source==='pdb'">
           PDB ID: {{ meta.structureId }}, 
@@ -69,7 +69,7 @@
             {{ meta.pubmedId }}
           </a>
         <span v-if="meta.pmc !== ''">
-          Article en accès libre sur Pubmed Central 
+          {{ $t('ui.citations.pmc') }} 
           <a 
             :href="`https://www.ncbi.nlm.nih.gov/pmc/articles/${meta.pmc}`" 
             target="_blank"
@@ -79,7 +79,7 @@
         </span>
       </div>
       <div class="section" v-if="meta.abstract !== ''">
-        <b>Résumé</b>
+        <b>{{ $t('ui.citations.abstract') }}</b>
         <br/>
         {{ meta.abstract }}
       </div>

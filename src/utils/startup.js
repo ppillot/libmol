@@ -3,8 +3,10 @@
  */
 
 let defaultParameters = {
-  file: 'rcsb://1bkv',
+  file: 'static/mol/1BKV-collagene.mmtf.gz',
   value: 'Collagene',
+  source: 'libmol',
+  molId: '63',
   embedded: false
 }
 /**
@@ -32,9 +34,13 @@ function getSearchParameters () {
     if (params.pdb.length === 4) {
       params.file = `rcsb://${params.pdb}`
       params.value = ''
+      params.source = 'pdb'
+      params.molId = params.pdb
     } else if (params.pdb.length < 4 && params.pdb.length > 0) {
       params.file = `https://files.rcsb.org/ligands/view/${params.pdb}.cif`
       params.value = ''
+      params.source = 'pdb ligand'
+      params.molId = params.pdb
     }
   }
 

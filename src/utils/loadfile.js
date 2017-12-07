@@ -51,7 +51,7 @@ function loadFile (stage, context) {
         newFile.value = structure.title
       }
       if (structure.id !== '') {
-        newFile.molCode = structure.id
+        newFile.molCode = structure.id.trim()
       }
 
     // let's iterate through each residue from this structure

@@ -25,6 +25,7 @@ let keywords = [
   'nucleophilic',
   'hydrophobic',
   'aromatic',
+  'metal',
   'amid',
   'acidic',
   'basic',

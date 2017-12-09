@@ -370,6 +370,7 @@ var vuex = new Vuex.Store({
     distances: [],
     angles: [],
     surfaces: [],
+    contacts: [],
     help: '',
     helpHistory: [],
     helpHistoryForward: [],
@@ -497,6 +498,9 @@ var vuex = new Vuex.Store({
     },
     surface (state, tabSurfaces) {
       state.surfaces = tabSurfaces
+    },
+    updateContactsList (state, contactsList) {
+      state.contacts = contactsList
     },
     help (state, {subject, resetHistory}) {
       if (subject) {
@@ -822,6 +826,45 @@ var vuex = new Vuex.Store({
 
         context.dispatch('contextMenuCalled', payload)
       }
+    },
+
+    displayContacts (context, contactsList) {
+      // check if contact representation already exists
+      let contactRepr = stage.getRepresentationsByName('contact').first
+
+      let param = {
+        hydrogenBond: false,
+        weakHydrogenBond: false,
+        backboneHydrogenBond: false,
+        waterHydrogenBond: false,
+        hydrophobic: false,
+        ionicInteraction: false,
+        metalCoordination: false,
+        cationPi: false,
+        piStacking: false
+      }
+
+      contactsList.forEach((contact) => {
+        param[contact] = true
+      })
+
+      if (contactRepr !== undefined) {
+        // it does exist, we need to update it accordingly with contactsList
+        if (contactsList.length === 0) {
+          // edge case: no contact to display
+          contactRepr.setVisibility(false)
+        } else {
+          contactRepr.setVisibility(true)
+          contactRepr.setParameters(param)
+        }
+      } else {
+        // it does not exist yet, we need to create it
+        Object.assign(param, {
+          sele: currentlyDisplayedAtomSet.toSeleString()
+        })
+        stage.compList[0].addRepresentation('contact', param)
+      }
+      context.commit('updateContactsList', contactsList)
     },
 
     togglePresetVisibility (context, selector) {

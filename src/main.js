@@ -3,7 +3,7 @@ import 'utils/polyfills/array-find'
 // import 'whatwg-fetch'
 
 import Vue from 'vue'
-import {Button, Dialog, Icon, Popover, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'
+import {Button, Checkbox, CheckboxGroup, Dialog, Icon, Popover, Scrollbar, Slider, Switch, Tabs, TabPane} from 'element-ui'
 import App from './App'
 import store from './store'
 import { locales } from './locales/locales'
@@ -11,6 +11,8 @@ import './assets/font/css/icons.css'
 
 // Vue.use(VueI18n)
 Vue.use(Button)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
 Vue.use(Dialog)
 Vue.use(Icon)
 Vue.use(Popover)

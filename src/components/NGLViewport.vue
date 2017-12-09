@@ -68,7 +68,9 @@ export default {
     }
   },
   mounted () {
-    window.setTimeout(function () { this.$store.dispatch('createNewStage', {id: 'viewport'}) }.bind(this), 0)
+    this.$nextTick(function () {
+      this.$store.dispatch('createNewStage', {id: 'viewport'})
+    })
   }
 }
 </script>

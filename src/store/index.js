@@ -655,6 +655,7 @@ var vuex = new Vuex.Store({
       commit('isMeasuringDistances', false)
       commit('isMeasuringAngles', false)
       commit('setUserSelectionText', null)
+      commit('updateContactsList', [])
     },
     selection (context, selector) {
       if (selector === 'invert') {

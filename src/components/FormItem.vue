@@ -39,7 +39,7 @@ export default {
 .form-item {
   margin-bottom: 22px;
 }
-.form-item>label {
+.form-item label {
   font-size: 14px;
   color: #48576a;
   line-height: 1;

@@ -58,6 +58,8 @@ function removeSelectionFromRepresentations (newAtomSet, skipReprIndex, overlay 
       continue
     } else if (overlay && ['cartoon', 'ribbon', 'backbone'].includes(representationsList[i].display)) {
       continue
+    } else if (representationsList[i].display === 'contact') {
+      continue
     }
     const repr = representationsList[i]
     if (repr.atomSet.intersects(newAtomSet)) {
@@ -863,6 +865,13 @@ var vuex = new Vuex.Store({
           sele: currentlyDisplayedAtomSet.toSeleString()
         })
         stage.compList[0].addRepresentation('contact', param)
+        representationsList.push({
+          display: 'contact',
+          index: stage.compList[0].reprList.length - 1,
+          atomSet: structure.getAtomSet().clone(),
+          displayedAtomSet: currentlyDisplayedAtomSet,
+          overlay: false
+        })
       }
       context.commit('updateContactsList', contactsList)
     },

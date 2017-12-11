@@ -52,11 +52,13 @@ function hover (context) {
         prevAtom = atom
         return debouncedCallBack(atom)
       case 'contact':
+        // console.log(pickingProxy)
         let contact = {
           type: 'contact',
           atom1: getAtomProperties(pickingProxy.contact.atom1),
           atom2: getAtomProperties(pickingProxy.contact.atom2),
-          contactType: pickingProxy.contact.type
+          contactType: pickingProxy.contact.type,
+          pos: pickingProxy.canvasPosition
         }
         return debouncedCallBack(contact)
       default:

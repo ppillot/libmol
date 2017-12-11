@@ -357,7 +357,10 @@ var vuex = new Vuex.Store({
         y: 0
       }
     },
+    contactHovered: {
+    },
     isAtomHovered: false,
+    isContactHovered: false,
     isHidden: false,
     itemHovered: {
       name: '',
@@ -429,6 +432,11 @@ var vuex = new Vuex.Store({
       Object.assign(a, atom)
       state.atomHovered = a
     },
+    contactHovered (state, contact) {
+      let a = {}
+      Object.assign(a, contact)
+      state.contactHovered = a
+    },
     itemHovered (state, res) {
       state.itemHovered = res
     },
@@ -451,6 +459,9 @@ var vuex = new Vuex.Store({
     },
     isAtomHovered (state, isDisplayed) {
       state.isAtomHovered = isDisplayed
+    },
+    isContactHovered (state, isDisplayed) {
+      state.isContactHovered = isDisplayed
     },
     isMeasuringDistances (state, isMeasuring) {
       state.isMeasuringDistances = isMeasuring
@@ -572,13 +583,20 @@ var vuex = new Vuex.Store({
     },
     hover (context, sceneObject) {
       if (sceneObject) {
-        if (sceneObject.index !== undefined) {
-          context.dispatch('atomHovered', sceneObject)
+        if (sceneObject.type !== undefined) {
+          switch (sceneObject.type) {
+            case 'atom':
+              context.dispatch('atomHovered', sceneObject)
+              break
+            case 'contact':
+              context.dispatch('contactHovered', sceneObject)
+              break
+          }
         } else {
-          context.dispatch('displayAtomTooltip', false)
+          context.dispatch('hideTooltip')
         }
       } else {
-        context.dispatch('displayAtomTooltip', false)
+        context.dispatch('hideTooltip')
       }
     },
     createNewStage (context, options) {
@@ -942,9 +960,16 @@ var vuex = new Vuex.Store({
     atomHovered (context, atom) {
       context.commit('atomHovered', atom)
       context.commit('isAtomHovered', true)
+      context.commit('isContactHovered', false)
     },
-    displayAtomTooltip (context, isDisplayed) {
-      context.commit('isAtomHovered', isDisplayed)
+    contactHovered (context, contact) {
+      context.commit('contactHovered', contact)
+      context.commit('isContactHovered', true)
+      context.commit('isAtomHovered', false)
+    },
+    hideTooltip (context) {
+      context.commit('isAtomHovered', false)
+      context.commit('isContactHovered', false)
     },
 
     contextMenuCalled (context, item) {

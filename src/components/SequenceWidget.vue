@@ -84,6 +84,10 @@
               <i class="icon-eye"></i> 
               {{ $t('ctxMenu.unmask_rest') }}
             </li>
+            <li @click="contact({resnum: ctxMProp.num, chainId: ctxMProp.chain}, $event)">
+              <i class="el-icon-share"></i> 
+              {{ $t('ctxMenu.contact') }}
+            </li>
           </ul>
         </template>
       </div>
@@ -313,6 +317,9 @@
             resnum: (this.ctxMProp.type === 'res') ? this.ctxMProp.num : null,
             resname: (this.ctxMProp.type === 'res') ? this.ctxMProp.name : null
           })
+      },
+      contact (part, event) {
+        this.$store.dispatch('focusContact', part)
       },
 // *********  Virtual scrolling
       scroll (event) {

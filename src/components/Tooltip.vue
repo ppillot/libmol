@@ -14,13 +14,13 @@
       {{ contactDescription.contactName }}
       <table>
         <tr>
-          <td>
+          <td :class="contactDescription.contactClass">
             {{ (this.$te('biochem.pdb_res_name.' + contactDescription.atom1.resname)) ? this.$t('biochem.pdb_res_name.' + contactDescription.atom1.resname) : contactDescription.atom1.resname }}
             {{ contactDescription.atom1.resno }}
             <br>
             {{ this.$t('tooltips.chain') }}: {{ contactDescription.atom1.chainname }}
           </td>
-          <td>
+          <td :class="contactDescription.contactClass">
             {{ (this.$te('biochem.pdb_res_name.' + contactDescription.atom2.resname)) ? this.$t('biochem.pdb_res_name.' + contactDescription.atom2.resname) : contactDescription.atom2.resname }}
             {{ contactDescription.atom2.resno }}
             <br>
@@ -94,7 +94,7 @@ export default {
         const contactHovered = this.$store.state.contactHovered
         const key = contactTypesMap.get(contactHovered.contactType)
         const contactNameTranslation = (key === undefined) ? contactHovered.contactType : this.$t('ui.contacts.' + key)
-        Object.assign(this.contactDescription, contactHovered, {'contactName': contactNameTranslation})
+        Object.assign(this.contactDescription, contactHovered, {'contactName': contactNameTranslation, 'contactClass': key})
         this.tooltipStyles = this.getTooltipStyles(contactHovered.pos)
         this.content = 'contact'
       }
@@ -156,8 +156,46 @@ export default {
     
   }
   .contact td {
-    background:#446688;
-    color: #fff;
     padding: 0 0.5em;
+  }
+
+  .hbond, .waterHbond, .backboneHbond {
+    background: #2B83BA;
+    color: #fff;
+  }
+
+  .hydrophobic {
+    background: #808080;
+    color: #fff;
+  }
+
+  .halogenBond {
+    background: #40FFBF;
+    color: #1f2d3d;
+  }
+
+  .ionic {
+    background: #f0c814;
+    color: #1f2d3d;
+  }
+
+  .metalCoordination {
+    background: #8C4099;
+    color: #fff;
+  }
+
+  .cationPi {
+    background: #ff8000;
+    color: #1f2d3d;
+  }
+
+  .piStacking {
+    background: #8cb366;
+    color: #1f2d3d;
+  }
+
+  .weakHbond {
+    background: #c5ddec;
+    color: #1f2d3d;
   }
 </style>

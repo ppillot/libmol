@@ -895,6 +895,59 @@ var vuex = new Vuex.Store({
       context.commit('updateContactsList', contactsList)
     },
 
+    focusContact (context, {resnum, chainId}) {
+      const sele = `${resnum}:${chainId} and not backbone`
+      const seleWithin = structure.getAtomSetWithinSelection(new NGL.Selection(sele), 4.5)
+      const water = structure.getAtomSet(new NGL.Selection('water'))
+      seleWithin.difference(water)
+      const seleGroupWithin = structure.getAtomSetWithinGroup(new NGL.Selection(`(${seleWithin.toSeleString()}) and not water`))
+      console.log(sele, seleWithin.getSize(), seleWithin)
+
+      stage.compList[0].addRepresentation('contact', {
+        hydrogenBond: true,
+        weakHydrogenBond: false,
+        backboneHydrogenBond: true,
+        waterHydrogenBond: false,
+        hydrophobic: true,
+        ionicInteraction: true,
+        metalCoordination: true,
+        cationPi: true,
+        piStacking: true,
+        sele: seleWithin.toSeleString(),
+        filterSele: sele
+      })
+
+      stage.compList[0].addRepresentation('licorice', {
+        multipleBond: true,
+        sele: `(${seleGroupWithin.toSeleString()}) and sidechainattached and not ${resnum}:${chainId}`
+      })
+      stage.compList[0].addRepresentation('ball+stick', {
+        sele: `${resnum}:${chainId} and sidechainattached`
+      })
+
+      // get names for each residue
+      let resnameList = []
+      structure.getAtomSet().forEach(atom => {
+        const atomProxy = structure.getAtomProxy(atom)
+        const txt = atomProxy.resname + atomProxy.resno
+        resnameList.push(txt)
+      })
+
+      stage.compList[0].addRepresentation('label', {
+        labelType: 'text',
+        labelText: resnameList,
+        zOffset: 2,
+        backgroundOpacity: 0.8,
+        color: 0x1f2d3d,
+        fontWeight: 'normal',
+        showBackground: true,
+        sele: `(${seleGroupWithin.toSeleString()}) and .CA`
+      })
+      const center = stage.compList[0].getCenter(sele)
+      const zoom = stage.compList[0].getZoom(sele)
+      stage.animationControls.zoomMove(center, zoom, 400)
+    },
+
     togglePresetVisibility (context, selector) {
       const atomSetToHide = structure.getAtomSet(new NGL.Selection(selector))
 

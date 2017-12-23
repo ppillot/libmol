@@ -6,18 +6,15 @@
     <form-item :label="$t('ui.toolbar.settings.fog_label')">
       <el-slider v-model="fog" range></el-slider>  
     </form-item>
-    <form-item :label="$t('ui.toolbar.settings.background_label')" inline>
+    <form-item :label="$t('ui.toolbar.settings.background_label')">
       <el-switch
         v-model="color"
-        :width="80"
-        on-color="#bfcbd9"
-        off-color="black"
-        :on-text="$t('ui.toolbar.settings.white')"
-        :off-text="$t('ui.toolbar.settings.black')"
+        :active-text="$t('ui.toolbar.settings.white')"
+        :inactive-text="$t('ui.toolbar.settings.black')"
         @change="switchBackgroundColor">
       </el-switch>
     </form-item>
-    <form-item :label="$t('ui.toolbar.settings.multiple_bonds')" inline>
+    <form-item :label="$t('ui.toolbar.settings.multiple_bonds')">
       <el-switch
         v-model="multipleBond"
         @change="switchMultipleBond">

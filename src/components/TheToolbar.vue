@@ -30,7 +30,7 @@
           <el-button class="button" type="text" size="large" @click="toggleFullscreen" v-if="isFullscreenEnabled">
             <i :class="[isFullScreen ? 'icon-resize-small' : 'icon-resize-full']"></i>
           </el-button>
-          <el-button v-popover:settings icon="setting" class="button" type="text" size="large"></el-button>
+          <el-button v-popover:settings icon="icon-sliders" class="button" type="text" size="large"></el-button>
         </div>
     </div>
 </template>

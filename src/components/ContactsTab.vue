@@ -44,7 +44,6 @@
             <!-- <el-checkbox label="cationPi">{{ $t('ui.contacts.cationPi') }}</el-checkbox> -->
           </ul>
         </el-checkbox-group>
-      </form-item>
     </div>
 </template>
 
@@ -98,10 +97,10 @@ export default {
     }
   },
   methods: {
-    handleCheckAllHbondsChange (event) {
+    handleCheckAllHbondsChange (val) {
       let list = this.contactsList.slice()
 
-      if (event.target.checked) {
+      if (val) {
         // add all hbonds types to the list of contacts to display
         hb.forEach(element => {
           if (!list.includes(element)) {
@@ -153,12 +152,11 @@ export default {
     }
 
     li ul {
-      padding-left: 1.5em;
+      padding-left: 25px;
     }
 
     i {
       color: #505b68;
-      font-size: 0.8em;
       transition: all 0.4s ease;
     }
 

@@ -3,7 +3,7 @@
   "plugins": ["transform-runtime", "syntax-dynamic-import", ["component", [
     {
       "libraryName": "element-ui",
-      "styleLibraryName": "theme-default"
+      "styleLibraryName": "theme-chalk"
     }
   ]]],
   "comments": false

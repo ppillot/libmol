@@ -6,6 +6,7 @@ function hover (context) {
   let timeout
 
   function debouncedCallBack (token) {
+    console.log(token)
     clearTimeout(timeout)
     timeout = setTimeout(function () {
       context.dispatch('hover', token)
@@ -17,6 +18,7 @@ function hover (context) {
   }
 
   return function (pickingProxy) {
+    // console.log(pickingProxy)
     // background is being hovered
     if (pickingProxy === undefined || pickingProxy.mouse.pressed) {
       if (isNaN(prevPid)) { // nothing has changed

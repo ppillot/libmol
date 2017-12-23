@@ -5,8 +5,8 @@ I plugged the open/close emission with the update:visible event-->
     <el-dialog
         :title="$t('ui.about.title')"
         :visible="visible"
-        @update:visible="val => $emit((val === true) ? 'open' : 'close')"
-        size="large">
+        width="70%"
+        @update:visible="val => $emit((val === true) ? 'open' : 'close')">
         <div v-html="about" class="help"></div>
         <span slot="footer" class="dialog-footer">
             <el-button @click="$emit('close')" type="primary" icon="close">{{ $t('ui.about.close') }}</el-button>

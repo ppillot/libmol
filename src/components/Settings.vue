@@ -31,14 +31,20 @@
         </option>
       </select>  
     </form-item>
+    <contacts-types-settings />
+
     <div style="text-align: right">
-      <el-button type="primary" @click="reset">{{ $t('ui.toolbar.settings.reset') }}</el-button>
+      <el-button
+        type="primary"
+        size="medium"
+        @click="reset">{{ $t('ui.toolbar.settings.reset') }}</el-button>
     </div>
   </div>
 </template>
 
 <script>
   import FormItem from './FormItem'
+  import ContactsTypesSettings from './ContactsTypesSettings'
   import { locales } from '../locales/locales'
   import Vue from 'vue'
   
@@ -56,7 +62,8 @@
   export default {
     name: 'settings',
     components: {
-      FormItem
+      FormItem,
+      ContactsTypesSettings
     },
     data () {
       return {
@@ -77,6 +84,7 @@
       reset () {
         Object.assign(this.$data, defaultParameters, {color: true})
         this.setStageParameters(defaultParameters)
+        this.$store.dispatch('displayContacts', [])
       },
       setStageParameters (params) {
         this.$store.dispatch('setStageParameters', params)

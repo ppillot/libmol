@@ -15,6 +15,7 @@ import {measure} from 'utils/measures'
 import {loadFile} from 'utils/loadfile'
 import {byres} from 'utils/colors'
 import surface from 'utils/surface'
+import {contact} from 'utils/contacts'
 import {Notification} from 'element-ui'
 import getStartingParameters from 'utils/startup'
 
@@ -29,10 +30,12 @@ var stage = {
 }
 var structure = {}
 var representationsList = []
+// let contactsReprList = []
 var highlight
 var loadNewFile
 var measurement
 var surf
+var contacts
 var currentSelectionAtomSet
 var currentlyDisplayedAtomSet
 var tempDisplayedAtomSet
@@ -359,6 +362,7 @@ var vuex = new Vuex.Store({
     },
     contactHovered: {
     },
+    contactsReprList: [],
     isAtomHovered: false,
     isContactHovered: false,
     isHidden: false,
@@ -512,7 +516,7 @@ var vuex = new Vuex.Store({
     surface (state, tabSurfaces) {
       state.surfaces = tabSurfaces
     },
-    updateContactsList (state, contactsList) {
+    setContacts (state, contactsList) {
       state.contacts = contactsList
     },
     help (state, {subject, resetHistory}) {
@@ -646,6 +650,7 @@ var vuex = new Vuex.Store({
           if (context.state.isMeasuringDistances || context.state.isMeasuringAngles) context.dispatch('setMouseMode', 'default')
           measurement = measure(component, context)
           surf = surface(component, context)
+          contacts = contact(component, context)
 
           context.commit('loadNewFile', newFile)
           context.dispatch('init')
@@ -673,7 +678,7 @@ var vuex = new Vuex.Store({
       commit('isMeasuringDistances', false)
       commit('isMeasuringAngles', false)
       commit('setUserSelectionText', null)
-      commit('updateContactsList', [])
+      commit('setContacts', [])
     },
     selection (context, selector) {
       if (selector === 'invert') {
@@ -896,53 +901,10 @@ var vuex = new Vuex.Store({
     },
 
     focusContact (context, {resnum, chainId}) {
+      contacts.addContact({resnum, chainId})
       const sele = `${resnum}:${chainId} and not backbone`
-      const seleWithin = structure.getAtomSetWithinSelection(new NGL.Selection(sele), 4.5)
-      const water = structure.getAtomSet(new NGL.Selection('water'))
-      seleWithin.difference(water)
-      const seleGroupWithin = structure.getAtomSetWithinGroup(new NGL.Selection(`(${seleWithin.toSeleString()}) and not water`))
-      console.log(sele, seleWithin.getSize(), seleWithin)
+      // console.log(sele, seleWithin.getSize(), seleWithin)
 
-      stage.compList[0].addRepresentation('contact', {
-        hydrogenBond: true,
-        weakHydrogenBond: false,
-        backboneHydrogenBond: true,
-        waterHydrogenBond: false,
-        hydrophobic: true,
-        ionicInteraction: true,
-        metalCoordination: true,
-        cationPi: true,
-        piStacking: true,
-        sele: seleWithin.toSeleString(),
-        filterSele: sele
-      })
-
-      stage.compList[0].addRepresentation('licorice', {
-        multipleBond: true,
-        sele: `(${seleGroupWithin.toSeleString()}) and sidechainattached and not ${resnum}:${chainId}`
-      })
-      stage.compList[0].addRepresentation('ball+stick', {
-        sele: `${resnum}:${chainId} and sidechainattached`
-      })
-
-      // get names for each residue
-      let resnameList = []
-      structure.getAtomSet().forEach(atom => {
-        const atomProxy = structure.getAtomProxy(atom)
-        const txt = atomProxy.resname + atomProxy.resno
-        resnameList.push(txt)
-      })
-
-      stage.compList[0].addRepresentation('label', {
-        labelType: 'text',
-        labelText: resnameList,
-        zOffset: 2,
-        backgroundOpacity: 0.8,
-        color: 0x1f2d3d,
-        fontWeight: 'normal',
-        showBackground: true,
-        sele: `(${seleGroupWithin.toSeleString()}) and .CA`
-      })
       const center = stage.compList[0].getCenter(sele)
       const zoom = stage.compList[0].getZoom(sele)
       stage.animationControls.zoomMove(center, zoom, 400)

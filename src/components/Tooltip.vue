@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import {contactTypesMap} from '../utils/contacts'
 const residueTypes = [
   'hetero',
   'water',
@@ -46,7 +47,7 @@ const residueTypes = [
   'saccharide'
 ]
 
-const contactTypesMap = new Map([
+/* const contactTypesMap = new Map([
   ['hydrogen bond', 'hbond'],
   ['weak hydrogen bond', 'weakHbond'],
   ['water hydrogen bond', 'waterHbond'],
@@ -56,7 +57,7 @@ const contactTypesMap = new Map([
   ['pi-pi stacking', 'piStacking'],
   ['cation-pi interaction', 'cationPi'],
   ['metal coordination', 'metalCoordination']
-])
+]) */
 
 export default {
   name: 'tooltip',
@@ -159,8 +160,10 @@ export default {
   .contact td {
     padding: 0 0.5em;
   }
+</style>
 
-  .hbond, .waterHbond, .backboneHbond {
+<style>
+  .hydrogenBond, .waterHydrogenBond, .backboneHydrogenBond {
     background: #2B83BA;
     color: #fff;
   }
@@ -175,7 +178,7 @@ export default {
     color: #1f2d3d;
   }
 
-  .ionic {
+  .ionicInteraction {
     background: #f0c814;
     color: #1f2d3d;
   }
@@ -195,7 +198,7 @@ export default {
     color: #1f2d3d;
   }
 
-  .weakHbond {
+  .weakHydrogenBond {
     background: #c5ddec;
     color: #1f2d3d;
   }

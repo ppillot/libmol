@@ -33,7 +33,7 @@
               <el-checkbox label="hydrophobic">{{ $t('ui.contacts.hydrophobic') }}</el-checkbox>
             </li>
             <li>
-              <el-checkbox label="ionicInteraction">{{ $t('ui.contacts.ionic') }}</el-checkbox>
+              <el-checkbox label="ionicInteraction">{{ $t('ui.contacts.ionicInteraction') }}</el-checkbox>
             </li>
             <li>
               <el-checkbox label="metalCoordination">{{ $t('ui.contacts.metalCoordination') }}</el-checkbox>

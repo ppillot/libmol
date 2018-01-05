@@ -1,13 +1,53 @@
 <template>
     <div class="frame">
         Ici s'affichent les interactions qui ont été calculées entre les points d'intérêt choisis par l'utilisateur et le reste du modèle moléculaire.
-        Pour ajouter de nouvelles interactions, faire un clic droit sur un résidu ou une sélection. 
+        Pour ajouter de nouvelles interactions, faire un clic droit sur un résidu ou une sélection et choisir "interactions"
+    
+      <div class="container no-scroll surface-list"
+        v-for="contact in contacts"
+        :key="contact.index">
+        <div class="surface-list-header">
+          Interactions avec {{ contact.pivot.name }}
+          <el-button
+            type="text"
+            icon="el-icon-delete"
+            class="button align-right"
+            size="large"
+            @click="handleDelete(contact.index)">
+          </el-button>
+        </div>
+        <div class="surface-list-body"
+          v-if="contacts.length>0"
+          @mouseout="highlight('none')">
+          <div class="surface-list-item"
+            :class="pair.type"
+            @mouseover="highlight(pair.seleString)"
+            v-for="(pair, index) in contact.contactsList" 
+            :key="index">
+            <div >
+              <!--<i 
+                class="el-icon-caret-right"
+                :class="[index === edit ? 'rotate' : 'unrotate']"
+                @click="edit = (index === edit)? -1 : index"></i>-->
+              {{ pair.res1.resname }}{{ pair.res1.resno }}:{{ pair.res1.chainname }}
+                /
+              {{ pair.res2.resname }}{{ pair.res2.resno }}:{{ pair.res2.chainname }}
+               -
+              {{ $t('ui.contacts.' + pair.type)}}
+            </div>
+          </div>
+        </div>  
+        <div class="surface-list-item" v-else>
+          {{$t('ui.surface.list_instructions')}}
+        </div>
+      </div>
     </div>
 </template>
 
 <script>
 import Help from './Help'
 import FormItem from './FormItem'
+// import {contactTypesIndices} from '../utils/contacts'
 
 export default {
   name: 'contactsTab',
@@ -21,8 +61,15 @@ export default {
     }
   },
   computed: {
+    contacts: function () {
+      return this.$store.state.contacts
+    }
   },
   methods: {
+    highlight: function (selector) {
+      console.log(selector)
+      this.$store.dispatch('highlightSelectHovered', selector)
+    }
   }
 }
 </script>

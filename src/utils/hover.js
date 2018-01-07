@@ -6,7 +6,7 @@ function hover (context) {
   let timeout
 
   function debouncedCallBack (token) {
-    console.log(token)
+    // console.log(token)
     clearTimeout(timeout)
     timeout = setTimeout(function () {
       context.dispatch('hover', token)

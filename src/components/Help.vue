@@ -10,7 +10,7 @@
       </template>
       <template v-else>
         <span class="open" @click.stop="toggle">
-          <i class="el-icon-information"></i> 
+          <i class="el-icon-info"></i> 
           {{ $t('ui.help.open_help') }}
         </span>
       </template>

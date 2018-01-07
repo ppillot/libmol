@@ -910,6 +910,10 @@ var vuex = new Vuex.Store({
       stage.animationControls.zoomMove(center, zoom, 400)
     },
 
+    updateDisplayContact (context, contactParam) {
+      contacts.setProperties(contactParam)
+    },
+
     togglePresetVisibility (context, selector) {
       const atomSetToHide = structure.getAtomSet(new NGL.Selection(selector))
 

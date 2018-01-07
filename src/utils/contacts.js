@@ -1,4 +1,5 @@
-import {Selection} from 'ngl'
+import {Selection, ColormakerRegistry} from 'ngl'
+import {byres} from './colors'
 
 const contactTypesMap = new Map([
   ['hydrogen bond', 'hydrogenBond'],
@@ -47,18 +48,11 @@ function makeRes (atomP) {
 
 function contact (comp, context) {
   let tabContacts = []
+  let tabContactsRepr = []
   let nbContacts = 0
   let structure = comp.structure
 
   function dispatch () {
-    /* const tC = tabContacts.map(val => {
-      return {
-        id: val.id,
-        atomSet: val.atomSet,
-        props: val.props,
-        sele: val.sele
-      }
-    }) */
     context.commit('setContacts', tabContacts)
   }
 
@@ -111,15 +105,16 @@ function contact (comp, context) {
       })
     })
 
-    console.dir(contactsArray)
+    const vicinitySele = `(${seleGroupWithin.toSeleString()}) and not backbone and not ${resnum}:${chainId}`
 
-    const around = comp.addRepresentation('licorice', {
+    const vicinity = comp.addRepresentation('licorice', {
       multipleBond: true,
-      sele: `(${seleGroupWithin.toSeleString()}) and sidechainattached and not ${resnum}:${chainId}`
+      sele: vicinitySele
     })
 
-    const pivot = comp.addRepresentation('ball+stick', {
-      sele: `${resnum}:${chainId} and sidechainattached`
+    const target = comp.addRepresentation('ball+stick', {
+      sele: sele,
+      multipleBond: true
     })
 
       // get names for each residue
@@ -143,32 +138,42 @@ function contact (comp, context) {
 
     tabContacts.push({
       index: nbContacts,
-      pivot: {
+      visible: true,
+      target: {
         type: 'res',
         name: `${resnum}:${chainId}`
       },
       contactsList: contactsArray,
       repr: {
-        contact: c,
-        label: label,
-        pivot: {
-          repr: pivot,
+        colormaker: undefined,
+        label: {
+          visible: true
+        },
+        target: {
           color: 'element',
           reprName: 'ball+stick',
           visible: true,
           surface: false,
-          label: true
+          label: true,
+          seleString: sele
         },
-        around: {
-          repr: around,
+        vicinity: {
           contactOnly: false,
           visible: true,
           radius: 4.5,
           label: true,
           reprName: 'licorice',
-          color: 'element'
+          color: 'element',
+          seleString: vicinitySele
         }
       }
+    })
+
+    tabContactsRepr.push({
+      contact: c,
+      target: target,
+      vicinity: vicinity,
+      label: label
     })
 
     ++nbContacts
@@ -177,8 +182,8 @@ function contact (comp, context) {
   }
 
   function getIndexFromId (id) {
-    return tabContacts.findIndex(surf => {
-      return (surf.id === id)
+    return tabContacts.findIndex(c => {
+      return (c.index === id)
     })
   }
 
@@ -196,12 +201,59 @@ function contact (comp, context) {
     dispatch()
   }
 
-  function setProperties (index, properties) {
-    if (properties.hasOwnProperty('visible')) {
-      tabContacts[index].repr.setVisibility(properties.visible)
+  function replaceByByres (val) {
+    return (val === 'resname') ? byres : val
+  }
+  function setColormaker (index) {
+    const contact = tabContacts[index].repr
+    const c = ColormakerRegistry.addSelectionScheme([
+      [replaceByByres(contact.target.color), contact.target.seleString],
+      [replaceByByres(contact.vicinity.color), contact.vicinity.seleString]
+    ])
+    if (contact.colormaker !== undefined) {
+      ColormakerRegistry.removeScheme(contact.colormaker)
     }
-    tabContacts[index].repr.setParameters(properties)
-    Object.assign(tabContacts[index].props, properties)
+    contact.colormaker = c
+  }
+
+  function setProperties (index, properties) {
+    console.log(index, tabContactsRepr, tabContacts)
+    const contactRepr = tabContactsRepr[index]
+    const repr = contactRepr[properties.repr]
+
+    const contact = tabContacts[index]
+
+    if (properties.param.hasOwnProperty('visible')) {
+      repr.setVisibility(properties.param.visible)
+    } else if (properties.param.hasOwnProperty('reprName')) {
+      const r = comp.addRepresentation(properties.param.reprName, {
+        sele: repr.parameters.sele,
+        multipleBond: true
+      })
+      repr.dispose()
+      contactRepr[properties.repr] = r
+
+      contact.repr[properties.repr].reprName = properties.param.reprName
+    } else if (properties.param.hasOwnProperty('color')) {
+      const c = properties.param.color
+      switch (c) {
+        case 'element':
+          contact.repr[properties.repr].color = 'element'
+          break
+        case 'resname':
+          contact.repr[properties.repr].color = 'resname'
+          break
+        case 'default':
+          break
+        default:
+          if (c.charAt(0) === '#') {
+            contact.repr[properties.repr].color = properties.param.color
+          }
+      }
+      setColormaker(index)
+      repr.setColor(contact.repr.colormaker)
+    }
+    // tabContacts[index].repr.setParameters(properties)
     dispatch()
   }
 
@@ -229,8 +281,8 @@ function contact (comp, context) {
     addContact: function ({resnum, chainId}) {
       return createContact({resnum, chainId})
     },
-    setProperties: function (id, props) {
-      const index = getIndexFromId(id)
+    setProperties: function (props) {
+      const index = getIndexFromId(props.index)
       return setProperties(index, props)
     },
     checkContactExists: function (atomSet) {

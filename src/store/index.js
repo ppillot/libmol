@@ -150,6 +150,8 @@ function updateRepresentationColor () {
     if (repr.name === 'highlight' ||
       repr.name === 'distance' ||
       repr.name === 'angle' ||
+      repr.name === 'label' ||
+      repr.name === 'contact' ||
       repr.name.indexOf('molsurf') > -1) return
     repr.setColor(globalColorScheme)
   })

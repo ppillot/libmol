@@ -247,7 +247,7 @@ function contact (comp, context) {
           break
         default:
           if (c.charAt(0) === '#') {
-            contact.repr[properties.repr].color = properties.param.color
+            contact.repr[properties.repr].color = c
           }
       }
       setColormaker(index)

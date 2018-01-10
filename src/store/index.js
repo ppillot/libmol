@@ -382,6 +382,7 @@ var vuex = new Vuex.Store({
     angles: [],
     surfaces: [],
     contacts: [],
+    wholeMoleculeContacts: [],
     help: '',
     helpHistory: [],
     helpHistoryForward: [],
@@ -520,6 +521,9 @@ var vuex = new Vuex.Store({
     },
     setContacts (state, contactsList) {
       state.contacts = contactsList
+    },
+    setWholeMoleculeContacts (state, contactsList) {
+      state.wholeMoleculeContacts = contactsList
     },
     help (state, {subject, resetHistory}) {
       if (subject) {
@@ -858,7 +862,7 @@ var vuex = new Vuex.Store({
 
     displayContacts (context, contactsList) {
       // check if contact representation already exists
-      let contactRepr = stage.getRepresentationsByName('contact').first
+      let contactRepr = stage.getRepresentationsByName('wholeMoleculeContacts').first
 
       let param = {
         hydrogenBond: false,
@@ -869,7 +873,8 @@ var vuex = new Vuex.Store({
         ionicInteraction: false,
         metalCoordination: false,
         cationPi: false,
-        piStacking: false
+        piStacking: false,
+        name: 'wholeMoleculeContacts'
       }
 
       contactsList.forEach((contact) => {
@@ -899,7 +904,7 @@ var vuex = new Vuex.Store({
           overlay: false
         })
       }
-      context.commit('updateContactsList', contactsList)
+      context.commit('setWholeMoleculeContacts', contactsList)
     },
 
     focusContact (context, {resnum, chainId}) {

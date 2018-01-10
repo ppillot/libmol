@@ -16,16 +16,16 @@
             <li v-if="hbondsTypesDisplayed">
               <ul>
                 <li>
-                  <el-checkbox label="hydrogenBond">{{ $t('ui.contacts.hbond') }}</el-checkbox>
+                  <el-checkbox label="hydrogenBond">{{ $t('ui.contacts.hydrogenBond') }}</el-checkbox>
                 </li>
                 <li>
-                  <el-checkbox label="backboneHydrogenBond">{{ $t('ui.contacts.backboneHbond') }}</el-checkbox>
+                  <el-checkbox label="backboneHydrogenBond">{{ $t('ui.contacts.backboneHydrogenBond') }}</el-checkbox>
                 </li>
                 <li>
-                  <el-checkbox label="waterHydrogenBond">{{ $t('ui.contacts.waterHbond') }}</el-checkbox>
+                  <el-checkbox label="waterHydrogenBond">{{ $t('ui.contacts.waterHydrogenBond') }}</el-checkbox>
                 </li>
                 <li>
-                  <el-checkbox label="weakHydrogenBond">{{ $t('ui.contacts.weakHbond') }}</el-checkbox>
+                  <el-checkbox label="weakHydrogenBond">{{ $t('ui.contacts.weakHydrogenBond') }}</el-checkbox>
                 </li>
               </ul>   
             </li>
@@ -90,11 +90,11 @@ export default {
         this.$store.dispatch('displayContacts', value)
       },
       get: function () {
-        if (this.$store.state.contacts.length === 0) {
+        if (this.$store.state.wholeMoleculeContacts.length === 0) {
           this.checkAllHbonds = false
           this.isIndeterminate = false
         }
-        return (this.$store.state.contacts)
+        return (this.$store.state.wholeMoleculeContacts)
       }
     }
   },

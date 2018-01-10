@@ -21,16 +21,16 @@
             <measures-panel></measures-panel>
           </el-popover>
           
-          <el-button v-popover:measures class="button" type="text" size="small">
+          <el-button v-popover:measures class="button" type="text" size="medium">
             {{ $t('ui.toolbar.measures.button') }}
           </el-button>
-          <el-button class="button" type="text" size="large" @click="screenCapture">
+          <el-button class="button large" type="text" @click="screenCapture">
             <i class="icon-camera"></i>
           </el-button>
-          <el-button class="button" type="text" size="large" @click="toggleFullscreen" v-if="isFullscreenEnabled">
+          <el-button class="button large" type="text" @click="toggleFullscreen" v-if="isFullscreenEnabled">
             <i :class="[isFullScreen ? 'icon-resize-small' : 'icon-resize-full']"></i>
           </el-button>
-          <el-button v-popover:settings icon="icon-sliders" class="button" type="text" size="large"></el-button>
+          <el-button v-popover:settings icon="icon-sliders" class="button large" type="text"></el-button>
         </div>
     </div>
 </template>
@@ -92,6 +92,9 @@
 </script>
 
 <style>
+  .button.large {
+    font-size: 16px;
+  }
   .toolbar {
     width: 100%;
     position: absolute;

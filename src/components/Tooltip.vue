@@ -4,7 +4,7 @@
       {{ this.$t('tooltips.atom') }}: {{ this.$t('biochem.el_name.' + atomDescription.symbol) }}
       {{ atomDescription.atomname }}
       <br>
-      {{ (this.$te('tooltips.res.' + atomDescription.residueTypeName))? this.$t('tooltips.res.' + atomDescription.residueTypeName) : 'Res' }}: {{ (this.$te('biochem.pdb_res_name.' + atomDescription.resname)) ? this.$t('biochem.pdb_res_name.' + atomDescription.resname) : '' }}
+      {{ (this.$te('tooltips.resType.' + atomDescription.residueTypeName))? this.$t('tooltips.resType.' + atomDescription.residueTypeName) : 'Res' }}: {{ (this.$te('biochem.pdb_res_name.' + atomDescription.resname)) ? this.$t('biochem.pdb_res_name.' + atomDescription.resname) : '' }}
       {{ atomDescription.resname }} {{ atomDescription.resno }}
       <br>
       {{ this.$t('tooltips.chain') }}: {{ atomDescription.chainname }}

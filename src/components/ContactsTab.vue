@@ -110,6 +110,14 @@ export default {
     handleEdit: function (contactNum) {
       console.log(contactNum)
     },
+    handleVisibility: function (val, contactNum) {
+      this.$store.dispatch('updateDisplayContact', {
+        index: contactNum,
+        param: {
+          visible: val
+        }
+      })
+    },
     changeColor: function (val) {
       console.log(val)
     },

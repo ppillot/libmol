@@ -105,7 +105,7 @@ function contact (comp, context) {
       })
     })
 
-    const vicinitySele = `(${seleGroupWithin.toSeleString()}) and not backbone and not ${resnum}:${chainId}`
+    const vicinitySele = `(${seleGroupWithin.toSeleString()}) and (not backbone or .CA or (PRO and .N)) and not ${resnum}:${chainId}`
 
     const vicinity = comp.addRepresentation('licorice', {
       multipleBond: true,
@@ -113,7 +113,7 @@ function contact (comp, context) {
     })
 
     const target = comp.addRepresentation('ball+stick', {
-      sele: sele,
+      sele: `${resnum}:${chainId} and (not backbone or .CA or (PRO and .N))`,
       multipleBond: true
     })
 
@@ -146,6 +146,9 @@ function contact (comp, context) {
       contactsList: contactsArray,
       repr: {
         colormaker: undefined,
+        contact: {
+          visible: true
+        },
         label: {
           visible: true
         },
@@ -219,39 +222,54 @@ function contact (comp, context) {
   function setProperties (index, properties) {
     console.log(index, tabContactsRepr, tabContacts)
     const contactRepr = tabContactsRepr[index]
-    const repr = contactRepr[properties.repr]
-
     const contact = tabContacts[index]
+    const repr = (properties.hasOwnProperty('repr')) ? contactRepr[properties.repr] : undefined
 
-    if (properties.param.hasOwnProperty('visible')) {
-      repr.setVisibility(properties.param.visible)
-    } else if (properties.param.hasOwnProperty('reprName')) {
-      const r = comp.addRepresentation(properties.param.reprName, {
-        sele: repr.parameters.sele,
-        multipleBond: true
-      })
-      repr.dispose()
-      contactRepr[properties.repr] = r
-
-      contact.repr[properties.repr].reprName = properties.param.reprName
-    } else if (properties.param.hasOwnProperty('color')) {
-      const c = properties.param.color
-      switch (c) {
-        case 'element':
-          contact.repr[properties.repr].color = 'element'
-          break
-        case 'resname':
-          contact.repr[properties.repr].color = 'resname'
-          break
-        case 'default':
-          break
-        default:
-          if (c.charAt(0) === '#') {
-            contact.repr[properties.repr].color = c
+    if (repr === undefined) {
+      if (properties.param.hasOwnProperty('visible')) {
+        for (let i in contactRepr) {
+          if (contactRepr.hasOwnProperty(i)) {
+            // if user switches visibiity back to true globally,
+            // we roll back each representation from the contact
+            // to its previous individual visibility setting
+            // hence the boolean operation
+            const visible = (properties.param.visible && contact.repr[i].visible)
+            contactRepr[i].setVisibility(visible)
           }
+        }
+        contact.visible = properties.param.visible
       }
-      setColormaker(index)
-      repr.setColor(contact.repr.colormaker)
+    } else {
+      if (properties.param.hasOwnProperty('visible')) {
+        repr.setVisibility(properties.param.visible)
+      } else if (properties.param.hasOwnProperty('reprName')) {
+        const r = comp.addRepresentation(properties.param.reprName, {
+          sele: repr.parameters.sele,
+          multipleBond: true
+        })
+        repr.dispose()
+        contactRepr[properties.repr] = r
+
+        contact.repr[properties.repr].reprName = properties.param.reprName
+      } else if (properties.param.hasOwnProperty('color')) {
+        const c = properties.param.color
+        switch (c) {
+          case 'element':
+            contact.repr[properties.repr].color = 'element'
+            break
+          case 'resname':
+            contact.repr[properties.repr].color = 'resname'
+            break
+          case 'default':
+            break
+          default:
+            if (c.charAt(0) === '#') {
+              contact.repr[properties.repr].color = c
+            }
+        }
+        setColormaker(index)
+        repr.setColor(contact.repr.colormaker)
+      }
     }
     // tabContacts[index].repr.setParameters(properties)
     dispatch()

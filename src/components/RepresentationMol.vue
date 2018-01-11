@@ -44,7 +44,7 @@
     },
     methods: {
       display (displayType) {
-        if (this.$store.state.selection !== 'user') {
+        if (this.$store.state.selection !== 'user' || ['backbone', 'cartoon'].includes(displayType)) {
           this.$store.dispatch('display', {display: displayType})
         } else {
           // it could be a selection from the command line

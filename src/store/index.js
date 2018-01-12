@@ -921,6 +921,10 @@ var vuex = new Vuex.Store({
       contacts.setProperties(contactParam)
     },
 
+    deleteContact (context, contactId) {
+      contacts.delete(contactId)
+    },
+
     togglePresetVisibility (context, selector) {
       const atomSetToHide = structure.getAtomSet(new NGL.Selection(selector))
 

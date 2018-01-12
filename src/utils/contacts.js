@@ -184,14 +184,17 @@ function contact (comp, context) {
     dispatch()
   }
 
-  function getIndexFromId (id) {
+  /* function getIndexFromId (id) {
     return tabContacts.findIndex(c => {
       return (c.index === id)
     })
-  }
+  } */
 
   function clearContact (index) {
-    comp.removeRepresentation(tabContacts[index].repr)
+    for (let r in tabContactsRepr[index]) {
+      tabContactsRepr[index][r].dispose()
+    }
+    tabContactsRepr.splice(index, 1)
     tabContacts.splice(index, 1)
     dispatch()
   }
@@ -287,8 +290,8 @@ function contact (comp, context) {
   dispatch()
   return {
     delete: function (id) {
-      const index = getIndexFromId(id)
-      return clearContact(index)
+      // const index = getIndexFromId(id)
+      return clearContact(id)
     },
     deleteAll: function () {
       return clearAllContacts()
@@ -300,8 +303,8 @@ function contact (comp, context) {
       return createContact({resnum, chainId})
     },
     setProperties: function (props) {
-      const index = getIndexFromId(props.index)
-      return setProperties(index, props)
+      // const index = getIndexFromId(props.index)
+      return setProperties(props.index, props)
     },
     checkContactExists: function (atomSet) {
       return checkContactExists(atomSet)

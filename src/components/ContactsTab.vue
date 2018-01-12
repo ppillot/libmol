@@ -4,23 +4,23 @@
         Pour ajouter de nouvelles interactions, faire un clic droit sur un résidu ou une sélection et choisir "interactions"
                 
       <div class="container no-scroll surface-list"
-        v-for="contact in contacts"
-        :key="contact.index">
+        v-for="(contact, index) in contacts"
+        :key="index">
         <div class="surface-header list-header--card">
           <i 
             class="el-icon-caret-right"
             :class="[contact.index === edit ? 'rotate' : 'unrotate']"
-            @click="edit = (contact.index === edit)? -1 : contact.index">
+            @click="edit = (index === edit)? -1 : index">
           </i>
           <div class="surface-title">
             Interactions avec {{ contact.target.name }}
           </div>
-          <visible :value="visibility[contact.index]" @input="val => {handleVisibility(val, contact.index)}"></visible>
-          <el-button type="text" icon="el-icon-delete" @click="handleDelete(contact.index)"></el-button>
+          <visible :value="visibility[index]" @input="val => {handleVisibility(val, index)}"></visible>
+          <el-button type="text" icon="el-icon-delete" @click="handleDelete(index)"></el-button>
         </div>
 
         <!-- Contacts settings -->
-        <contacts-tab-contact-settings :edit="contact.index" v-if="edit === contact.index"/>
+        <contacts-tab-contact-settings :edit="index" v-if="edit === index"/>
         <!-- End Contacts settings -->
 
         <div class="surface-list-body"
@@ -29,8 +29,8 @@
           <div class="surface-list-item list-item--card"
             :class="pair.type"
             @mouseover="highlight(pair.seleString)"
-            v-for="(pair, index) in contact.contactsList" 
-            :key="index">
+            v-for="(pair, i) in contact.contactsList" 
+            :key="i">
             <div >
               {{ pair.res1.resname }}{{ pair.res1.resno }}:{{ pair.res1.chainname }}
                 /
@@ -117,6 +117,9 @@ export default {
           visible: val
         }
       })
+    },
+    handleDelete: function (contactNum) {
+      this.$store.dispatch('deleteContact', contactNum)
     },
     changeColor: function (val) {
       console.log(val)

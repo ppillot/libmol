@@ -1,31 +1,53 @@
 <template>
-    <div>
-      <el-popover
-        ref="pcontact"
-        placement="right"
-        trigger="click">
-        <palette v-model="colors" @color="pickColor"></palette>
-      </el-popover>
-
-      <div class="surface-settings settings--card">
-        Apparence de la cible ({{ contact.target.name }})
-        <form-item :label="$t('ui.commands.representation.label')">
-          <button-group :active-value="targetRepresentationMode" @change="display">
-            <radio-button value="spacefill">{{ $t('ui.commands.representation.spacefill') }}</radio-button>
-            <radio-button value="ball+stick">{{ $t('ui.commands.representation.balls_and_sticks') }}</radio-button>
-            <radio-button value="licorice">{{ $t('ui.commands.representation.sticks') }}</radio-button>
-          </button-group>
-        </form-item>
-        <form-item :label="$t('ui.commands.color.label')">
-          <button-group :active-value="targetColor" @change="changeColor">
-            <radio-button value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>
-            <radio-button value="default">Par défaut</radio-button>
-            <radio-button value="palette" v-popover:pcontact>{{ $t('ui.commands.color.pick_color') }}</radio-button>
-          </button-group>
-        </form-item>
-        
-      </div>
-    </div>
+  <div class="interaction_panel">
+    Réglages
+    <el-tabs v-model="activeName" 
+    tab-position="left">
+      <el-tab-pane label="Contact" name="contact">User</el-tab-pane>
+      <el-tab-pane label="Cible" name="target">
+        <el-popover
+          ref="pcontact"
+          placement="right"
+          trigger="click">
+          <palette v-model="colors" @color="pickColor"></palette>
+        </el-popover>
+        <div class="contact-settings">
+          Apparence de la cible ({{ contact.target.name }})
+          <form-item :label="$t('ui.commands.representation.label')">
+            <el-select v-model="targetRepresentation">
+              <el-option
+                :label="$t('ui.commands.representation.spacefill')"
+                value="spacefill">
+              </el-option>
+              <el-option
+                :label="$t('ui.commands.representation.balls_and_sticks')"
+                value="ball+stick" >
+              </el-option>
+              <el-option
+                :label="$t('ui.commands.representation.sticks')"
+                value="licorice">
+              </el-option>
+            </el-select>
+            <!-- <button-group :active-value="targetRepresentationMode" @change="display">
+              <radio-button value="spacefill">{{ $t('ui.commands.representation.spacefill') }}</radio-button>
+              <radio-button value="ball+stick">{{ $t('ui.commands.representation.balls_and_sticks') }}</radio-button>
+              <radio-button value="licorice">{{ $t('ui.commands.representation.sticks') }}</radio-button>
+            </button-group>-->
+          </form-item>
+          <form-item :label="$t('ui.commands.color.label')">
+            <button-group :active-value="targetColor" @change="changeColor">
+              <radio-button value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>
+              <radio-button value="default">Par défaut</radio-button>
+              <radio-button value="palette" v-popover:pcontact>{{ $t('ui.commands.color.pick_color') }}</radio-button>
+            </button-group>
+          </form-item>
+          
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="Entourage" name="third">Role</el-tab-pane>
+      <el-tab-pane label="Etiquettes" name="fourth">Task</el-tab-pane>
+    </el-tabs>
+  </div>
 </template>
 
 <script>
@@ -52,12 +74,31 @@ export default {
   },
   data () {
     return {
-      colors: '#ff00ff'
+      colors: '#ff00ff',
+      activeName: 'Contact'
     }
   },
   computed: {
     contact: function () {
       return this.$store.state.contacts[this.edit]
+    },
+    targetRepresentation: {
+      set: function (val) {
+        this.$store.dispatch('updateDisplayContact', {
+          index: this.edit,
+          repr: 'target',
+          param: {
+            reprName: val
+          }
+        })
+      },
+      get: function () {
+        if (this.edit > -1) {
+          return this.contact.repr.target.reprName
+        } else {
+          return undefined
+        }
+      }
     },
     targetRepresentationMode: function () {
       if (this.edit > -1) {
@@ -111,5 +152,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    
+    .interaction_panel {
+      padding-top: 1em;
+    }
+
+    .contact-settings {
+      padding: 0 5px;
+    }
 </style>

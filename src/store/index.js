@@ -25,27 +25,27 @@ Vue.use(VueI18n)
 /** @description local module variable to hold the NGL stage object
  * @typedef {NGL.stage}
  */
-var stage = {
+let stage = {
   setParameters: function () {}
 }
-var structure = {}
-var representationsList = []
+let structure = {}
+let representationsList = []
 // let contactsReprList = []
-var highlight
-var loadNewFile
-var measurement
-var surf
-var contacts
-var currentSelectionAtomSet
-var currentlyDisplayedAtomSet
-var tempDisplayedAtomSet
-var wholeAtomSet
-var tabColorScheme = [['element', 'all']]
-var tabColorAtomSet
-var globalColorScheme
-var predefined
-var latestHelp = {}
-var startParams = getStartingParameters()
+let highlight
+let loadNewFile
+let measurement
+let surf
+let contacts
+let currentSelectionAtomSet
+let currentlyDisplayedAtomSet
+let tempDisplayedAtomSet
+let wholeAtomSet
+let tabColorScheme = [['element', 'all']]
+let tabColorAtomSet
+let globalColorScheme = ''
+let predefined
+let latestHelp = {}
+let startParams = getStartingParameters()
 
 // console.log(startParams)
 
@@ -134,6 +134,7 @@ function getColorFromSelection (as = currentSelectionAtomSet) {
 }
 
 function updateGlobalColorScheme () {
+  NGL.ColormakerRegistry.removeScheme(globalColorScheme)
   globalColorScheme = NGL.ColormakerRegistry.addSelectionScheme(tabColorScheme.map(
     (val) => {
       if (val[0] === 'resname') {
@@ -142,7 +143,7 @@ function updateGlobalColorScheme () {
         return val
       }
     }
-  ))
+  ), 'default')
 }
 
 function updateRepresentationColor () {

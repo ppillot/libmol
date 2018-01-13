@@ -210,12 +210,20 @@ function contact (comp, context) {
   function replaceByByres (val) {
     return (val === 'resname') ? byres : val
   }
+  function setColormakerArray ({target, vicinity}) {
+    let a = []
+    if (target.color !== 'default') {
+      a.push([replaceByByres(target.color), target.seleString])
+    }
+    if (vicinity.color !== 'default') {
+      a.push([replaceByByres(vicinity.color), vicinity.seleString])
+    }
+    return a
+  }
   function setColormaker (index) {
     const contact = tabContacts[index].repr
-    const c = ColormakerRegistry.addSelectionScheme([
-      [replaceByByres(contact.target.color), contact.target.seleString],
-      [replaceByByres(contact.vicinity.color), contact.vicinity.seleString]
-    ])
+    const colormakerArray = setColormakerArray(contact)
+    const c = ColormakerRegistry.addSelectionScheme(colormakerArray)
     if (contact.colormaker !== undefined) {
       ColormakerRegistry.removeScheme(contact.colormaker)
     }
@@ -257,21 +265,33 @@ function contact (comp, context) {
       } else if (properties.param.hasOwnProperty('color')) {
         const c = properties.param.color
         switch (c) {
+          case 'default':
+            contact.repr[properties.repr].color = 'default'
+            break
           case 'element':
             contact.repr[properties.repr].color = 'element'
             break
           case 'resname':
             contact.repr[properties.repr].color = 'resname'
             break
-          case 'default':
-            break
           default:
             if (c.charAt(0) === '#') {
               contact.repr[properties.repr].color = c
             }
         }
-        setColormaker(index)
-        repr.setColor(contact.repr.colormaker)
+        if (c === 'default') {
+          // Coloration by default is the same coloration as the globalColormaker
+          // we need to find in the userSchemes, the first scheme with a name including "default"
+          const cm = Object.keys(ColormakerRegistry.userSchemes).find(
+            val => {
+              return val.indexOf('default') !== -1
+            }
+          )
+          repr.setColor(cm)
+        } else {
+          setColormaker(index)
+          repr.setColor(contact.repr.colormaker)
+        }
       }
     }
     // tabContacts[index].repr.setParameters(properties)

@@ -12,7 +12,8 @@
           <palette v-model="colors" @color="pickColor"></palette>
         </el-popover>
         <div class="contact-settings">
-          Apparence de la cible ({{ contact.target.name }})
+          Apparence de la cible ({{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
+      {{ contact.target.res.resno }} chaîne {{ contact.target.res.chainname }})
           <form-item :label="$t('ui.commands.representation.label')">
             <el-select v-model="targetRepresentation">
               <el-option
@@ -35,11 +36,30 @@
             </button-group>-->
           </form-item>
           <form-item :label="$t('ui.commands.color.label')">
-            <button-group :active-value="targetColor" @change="changeColor">
+            <el-select v-model="targetColor">
+              <el-option
+                :label="$t('ui.commands.color.cpk')"
+                value="element">
+              </el-option>
+              <el-option
+                :label="$t('ui.commands.color.by_res')"
+                value="resname">
+              </el-option>
+              <el-option
+                :label="$t('ui.commands.color.default')"
+                value="default" >
+              </el-option>
+              <el-option
+                :label="$t('ui.commands.color.pick_color')"
+                value="palette"
+                v-popover:pcontact>
+              </el-option>
+            </el-select>
+            <!-- <button-group :active-value="targetColor" @change="changeColor">
               <radio-button value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>
               <radio-button value="default">Par défaut</radio-button>
               <radio-button value="palette" v-popover:pcontact>{{ $t('ui.commands.color.pick_color') }}</radio-button>
-            </button-group>
+            </button-group> -->
           </form-item>
           
         </div>
@@ -107,15 +127,20 @@ export default {
         return undefined
       }
     },
-    targetColor: function () {
-      if (this.edit > -1) {
-        if (this.contact.repr.target.color.charAt(0) === '#') {
-          return 'palette'
+    targetColor: {
+      set: function (val) {
+        this.changeColor(val)
+      },
+      get: function () {
+        if (this.edit > -1) {
+          if (this.contact.repr.target.color.charAt(0) === '#') {
+            return 'palette'
+          } else {
+            return this.contact.repr.target.color
+          }
         } else {
-          return this.contact.repr.target.color
+          return undefined
         }
-      } else {
-        return undefined
       }
     }
   },

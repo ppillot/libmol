@@ -13,7 +13,8 @@
             @click="edit = (index === edit)? -1 : index">
           </i>
           <div class="surface-title">
-            Interactions avec {{ contact.target.name }}
+            Interactions avec {{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
+      {{ contact.target.res.resno }} chaîne {{ contact.target.res.chainname }}
           </div>
           <visible :value="visibility[index]" @input="val => {handleVisibility(val, index)}"></visible>
           <el-button type="text" icon="el-icon-delete" @click="handleDelete(index)"></el-button>
@@ -48,8 +49,6 @@
 import Help from './Help'
 import FormItem from './FormItem'
 import Visible from './Visible'
-import ButtonGroup from './ButtonGroup'
-import RadioButton from './RadioButton'
 import ContactsTabContactSettings from './ContactsTabContactSettings'
 
 // import {contactTypesIndices} from '../utils/contacts'
@@ -60,8 +59,6 @@ export default {
     FormItem,
     Help,
     Visible,
-    ButtonGroup,
-    RadioButton,
     ContactsTabContactSettings
   },
   data () {

@@ -42,6 +42,7 @@ function makeRes (atomP) {
     resname: atomP.resname,
     resno: atomP.resno,
     element: atomP.element,
+    description: atomP.entity.description,
     atomList: getAtomListFromAToRange(atomP.residueAtomOffset, atomP.residueStore.atomCount[atomP.residueIndex])
   }
 }
@@ -54,6 +55,14 @@ function contact (comp, context) {
 
   function dispatch () {
     context.commit('setContacts', tabContacts)
+  }
+
+  function getResiduePropertiesFromSelestring (res) {
+    const as = comp.structure.getAtomSet(new Selection(res))
+    const an = as.toArray()[0]
+    const ap = comp.structure.getAtomProxy(an)
+
+    return makeRes(ap)
   }
 
   function createContact ({resnum, chainId}) {
@@ -117,17 +126,13 @@ function contact (comp, context) {
       multipleBond: true
     })
 
-      // get names for each residue
-    let resnameList = []
-    structure.getAtomSet().forEach(atom => {
-      const atomProxy = structure.getAtomProxy(atom)
-      const txt = atomProxy.resname + atomProxy.resno
-      resnameList.push(txt)
-    })
-
     const label = comp.addRepresentation('label', {
-      labelType: 'text',
-      labelText: resnameList,
+      labelType: 'residue',
+      // labelText: resnameList,
+      labelGrouping: 'residue',
+      attachment: 'middle-center',
+      radisuType: 'size',
+      radiusSize: 0.8,
       zOffset: 2,
       backgroundOpacity: 0.8,
       color: 0x1f2d3d,
@@ -141,7 +146,8 @@ function contact (comp, context) {
       visible: true,
       target: {
         type: 'res',
-        name: `${resnum}:${chainId}`
+        name: `${resnum}:${chainId}`,
+        res: getResiduePropertiesFromSelestring(`${resnum}:${chainId}`)
       },
       contactsList: contactsArray,
       repr: {

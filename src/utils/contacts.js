@@ -118,12 +118,17 @@ function contact (comp, context) {
 
     const vicinity = comp.addRepresentation('licorice', {
       multipleBond: true,
-      sele: vicinitySele
+      sele: vicinitySele,
+      aspectRatio: 2.1,
+      radiusScale: 1.1
     })
 
+    const targetSele = `${resnum}:${chainId} and (not backbone or .CA or (PRO and .N))`
     const target = comp.addRepresentation('ball+stick', {
-      sele: `${resnum}:${chainId} and (not backbone or .CA or (PRO and .N))`,
-      multipleBond: true
+      sele: targetSele,
+      multipleBond: true,
+      aspectRatio: 2.1,
+      radiusScale: 1.2
     })
 
     const label = comp.addRepresentation('label', {
@@ -164,7 +169,7 @@ function contact (comp, context) {
           visible: true,
           surface: false,
           label: true,
-          seleString: sele
+          seleString: targetSele
         },
         vicinity: {
           contactOnly: false,

@@ -26,7 +26,7 @@
         <contacts-tab-settings-representation-select 
             :edit="edit"
             repr="vicinity"/>
-            
+
         <contacts-tab-settings-color-select
           :edit="edit"
           repr="vicinity"/>
@@ -41,17 +41,13 @@
 </template>
 
 <script>
-import FormItem from './FormItem'
 import ContactsTabContactSettingsLabels from './ContactsTabContactSettingsLabels'
 import ContactsTabSettingsRepresentationSelect from './ContactsTabSettingsRepresentationSelect'
 import ContactsTabSettingsColorSelect from './ContactsTabSettingsColorSelect'
 
-// import {contactTypesIndices} from '../utils/contacts'
-
 export default {
   name: 'contactsTabContactsSettings',
   components: {
-    FormItem,
     ContactsTabContactSettingsLabels,
     ContactsTabSettingsRepresentationSelect,
     ContactsTabSettingsColorSelect
@@ -65,32 +61,6 @@ export default {
   data () {
     return {
       activeName: 'contact'
-    }
-  },
-  computed: {
-    contact: function () {
-      return this.$store.state.contacts[this.edit]
-    },
-    targetRepresentationMode: function () {
-      if (this.edit > -1) {
-        return this.contact.repr.target.reprName
-      } else {
-        return undefined
-      }
-    }
-  },
-  methods: {
-    display: function (val) {
-      this.$store.dispatch('updateDisplayContact', {
-        index: this.edit,
-        repr: 'target',
-        param: {
-          reprName: val
-        }
-      })
-    },
-    handleEdit: function (contactNum) {
-      console.log(contactNum)
     }
   }
 }

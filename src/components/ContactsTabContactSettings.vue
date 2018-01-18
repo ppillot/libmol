@@ -1,9 +1,14 @@
 <template>
   <div class="interaction_panel">
-    Réglages
+    <!-- Réglages -->
     <el-tabs v-model="activeName" 
     tab-position="left">
-      <el-tab-pane label="Contact" name="contact">User</el-tab-pane>
+      <el-tab-pane label="Contacts" name="contact">
+        Interactions à afficher<br>
+        Inclure les interactions avec les molécules d'eau <br>
+        Afficher les résidus autour de la cible dans un rayon de 
+
+      </el-tab-pane>
       <el-tab-pane label="Cible" name="target">
         <el-popover
           ref="pcontact"
@@ -12,8 +17,8 @@
           <palette v-model="colors" @color="pickColor"></palette>
         </el-popover>
         <div class="contact-settings">
-          Apparence de la cible ({{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
-      {{ contact.target.res.resno }} chaîne {{ contact.target.res.chainname }})
+          <!-- Apparence de la cible ({{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
+      {{ contact.target.res.resno }} chaîne {{ contact.target.res.chainname }})-->
           <form-item :label="$t('ui.commands.representation.label')">
             <el-select v-model="targetRepresentation">
               <el-option
@@ -29,11 +34,6 @@
                 value="licorice">
               </el-option>
             </el-select>
-            <!-- <button-group :active-value="targetRepresentationMode" @change="display">
-              <radio-button value="spacefill">{{ $t('ui.commands.representation.spacefill') }}</radio-button>
-              <radio-button value="ball+stick">{{ $t('ui.commands.representation.balls_and_sticks') }}</radio-button>
-              <radio-button value="licorice">{{ $t('ui.commands.representation.sticks') }}</radio-button>
-            </button-group>-->
           </form-item>
           <form-item :label="$t('ui.commands.color.label')">
             <el-select v-model="targetColor">
@@ -55,17 +55,19 @@
                 v-popover:pcontact>
               </el-option>
             </el-select>
-            <!-- <button-group :active-value="targetColor" @change="changeColor">
-              <radio-button value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>
-              <radio-button value="default">Par défaut</radio-button>
-              <radio-button value="palette" v-popover:pcontact>{{ $t('ui.commands.color.pick_color') }}</radio-button>
-            </button-group> -->
           </form-item>
           
         </div>
       </el-tab-pane>
-      <el-tab-pane label="Entourage" name="third">Role</el-tab-pane>
-      <el-tab-pane label="Etiquettes" name="fourth">Task</el-tab-pane>
+      <el-tab-pane label="Entourage" name="third">
+        Afficher/Cacher 
+        Représenter
+        Colorer 
+      </el-tab-pane>
+      <el-tab-pane label="Etiquettes" name="fourth">
+        <contacts-tab-contact-settings-labels
+          :edit="edit" />
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -75,6 +77,7 @@ import FormItem from './FormItem'
 import Palette from './Palette'
 import ButtonGroup from './ButtonGroup'
 import RadioButton from './RadioButton'
+import ContactsTabContactSettingsLabels from './ContactsTabContactSettingsLabels'
 
 // import {contactTypesIndices} from '../utils/contacts'
 
@@ -84,7 +87,8 @@ export default {
     FormItem,
     Palette,
     ButtonGroup,
-    RadioButton
+    RadioButton,
+    ContactsTabContactSettingsLabels
   },
   props: {
     edit: {
@@ -95,7 +99,7 @@ export default {
   data () {
     return {
       colors: '#ff00ff',
-      activeName: 'Contact'
+      activeName: 'contact'
     }
   },
   computed: {
@@ -179,6 +183,7 @@ export default {
 <style scoped>
     .interaction_panel {
       padding-top: 1em;
+      border: 2px solid #f5f7fa;
     }
 
     .contact-settings {

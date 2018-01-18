@@ -95,7 +95,7 @@ export default {
         const contactHovered = this.$store.state.contactHovered
         const key = contactTypesMap.get(contactHovered.contactType)
         const contactNameTranslation = (key === undefined) ? contactHovered.contactType : this.$t('ui.contacts.' + key)
-        console.log(key, contactNameTranslation)
+        // console.log(key, contactNameTranslation)
         Object.assign(this.contactDescription, contactHovered, {'contactName': contactNameTranslation, 'contactClass': key})
         this.tooltipStyles = this.getTooltipStyles(contactHovered.pos)
         this.content = 'contact'

@@ -193,6 +193,8 @@ function contact (comp, context) {
     ++nbContacts
 
     dispatch()
+
+    setColormaker(tabContacts.length - 1)
   }
 
   /* function getIndexFromId (id) {
@@ -221,6 +223,17 @@ function contact (comp, context) {
   function replaceByByres (val) {
     return (val === 'resname') ? byres : val
   }
+
+  function getGlobalColormaker () {
+    // we need to find in the userSchemes, the first scheme with a name including "default"
+    const cm = Object.keys(ColormakerRegistry.userSchemes).find(
+      val => {
+        return val.indexOf('default') !== -1
+      }
+    )
+    return cm
+  }
+
   function setColormakerArray ({target, vicinity}) {
     let a = []
     if (target.color !== 'default') {
@@ -264,10 +277,12 @@ function contact (comp, context) {
     } else {
       if (properties.param.hasOwnProperty('visible')) {
         repr.setVisibility(properties.param.visible)
+        contact.repr[properties.repr].visible = properties.param.visible
       } else if (properties.param.hasOwnProperty('reprName')) {
         const r = comp.addRepresentation(properties.param.reprName, {
           sele: repr.parameters.sele,
-          multipleBond: true
+          multipleBond: true,
+          color: (contact.repr.target.color === 'default') ? getGlobalColormaker() : contact.repr.colormaker
         })
         repr.dispose()
         contactRepr[properties.repr] = r
@@ -292,12 +307,7 @@ function contact (comp, context) {
         }
         if (c === 'default') {
           // Coloration by default is the same coloration as the globalColormaker
-          // we need to find in the userSchemes, the first scheme with a name including "default"
-          const cm = Object.keys(ColormakerRegistry.userSchemes).find(
-            val => {
-              return val.indexOf('default') !== -1
-            }
-          )
+          const cm = getGlobalColormaker()
           repr.setColor(cm)
         } else {
           setColormaker(index)

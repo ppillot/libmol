@@ -305,6 +305,7 @@ function contact (comp, context) {
               contact.repr[properties.repr].color = c
             }
         }
+
         if (c === 'default') {
           // Coloration by default is the same coloration as the globalColormaker
           const cm = getGlobalColormaker()

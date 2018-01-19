@@ -75,6 +75,7 @@ export default {
     .interaction_panel {
       padding-top: 1em;
       border: 2px solid #f5f7fa;
+      box-shadow: inset 0 1px 3px #afb2b3;
     }
 
     .contact-settings {

@@ -6,7 +6,7 @@
         trigger="click">
         <palette v-model="colors" @color="changeColor"></palette>
       </el-popover>
-      <el-select v-model="color">
+      <el-select v-model="color" :disabled="disabled">
         <el-option
           :label="$t('ui.commands.color.cpk')"
           value="element">
@@ -54,6 +54,9 @@ export default {
     }
   },
   computed: {
+    disabled: function () {
+      return !this.$store.state.contacts[this.edit].repr[this.repr].visible
+    },
     color: {
       set: function (val) {
         this.changeColor(val)

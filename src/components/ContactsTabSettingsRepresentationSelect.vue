@@ -1,6 +1,6 @@
 <template>
     <form-item :label="$t('ui.commands.representation.label')">
-      <el-select v-model="representation">
+      <el-select v-model="representation" :disabled="disabled">
         <el-option
           :label="$t('ui.commands.representation.spacefill')"
           value="spacefill">
@@ -36,6 +36,9 @@ export default {
     }
   },
   computed: {
+    disabled: function () {
+      return !this.$store.state.contacts[this.edit].repr[this.repr].visible
+    },
     representation: {
       set: function (val) {
         this.$store.dispatch('updateDisplayContact', {

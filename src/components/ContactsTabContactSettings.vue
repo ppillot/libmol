@@ -22,7 +22,10 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="Entourage" name="third">
-        Afficher/Cacher 
+        <contacts-tab-settings-visibility-switch
+          :edit="edit"
+          repr="vicinity" />
+
         <contacts-tab-settings-representation-select 
             :edit="edit"
             repr="vicinity"/>
@@ -33,24 +36,25 @@
 
       </el-tab-pane>
       <el-tab-pane label="Etiquettes" name="fourth">
-        <contacts-tab-contact-settings-labels
-          :edit="edit" />
+        <contacts-tab-settings-visibility-switch
+          :edit="edit"
+          repr="label" />
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
-import ContactsTabContactSettingsLabels from './ContactsTabContactSettingsLabels'
 import ContactsTabSettingsRepresentationSelect from './ContactsTabSettingsRepresentationSelect'
 import ContactsTabSettingsColorSelect from './ContactsTabSettingsColorSelect'
+import ContactsTabSettingsVisibilitySwitch from './ContactsTabSettingsVisibilitySwitch'
 
 export default {
   name: 'contactsTabContactsSettings',
   components: {
-    ContactsTabContactSettingsLabels,
     ContactsTabSettingsRepresentationSelect,
-    ContactsTabSettingsColorSelect
+    ContactsTabSettingsColorSelect,
+    ContactsTabSettingsVisibilitySwitch
   },
   props: {
     edit: {

@@ -1,9 +1,7 @@
 <template>
-    <form-item :label="$t('ui.contacts.displayLabels')">
-      Off
+    <form-item :label="$t(label)" inline>
       <el-switch
-        v-model="labelVisibility" />
-      On
+        v-model="visibility" />
     </form-item>
 </template>
 
@@ -11,7 +9,7 @@
 import FormItem from './FormItem'
 
 export default {
-  name: 'contactsTabContactsSettingsLabels',
+  name: 'contactsTabContactsSettingsVisibilitySwitch',
   components: {
     FormItem
   },
@@ -19,14 +17,24 @@ export default {
     edit: {
       default: -1,
       type: Number
+    },
+    repr: {
+      type: String,
+      required: true
     }
   },
   computed: {
-    labelVisibility: {
+    label: function () {
+      let l = 'ui.contacts.display'
+      l += this.repr.charAt(0).toUpperCase()
+      l += this.repr.substring(1)
+      return l
+    },
+    visibility: {
       set: function (val) {
         this.$store.dispatch('updateDisplayContact', {
           index: this.edit,
-          repr: 'label',
+          repr: this.repr,
           param: {
             visible: val
           }
@@ -34,7 +42,7 @@ export default {
       },
       get: function () {
         if (this.edit > -1) {
-          return this.$store.state.contacts[this.edit].repr.label.visible
+          return this.$store.state.contacts[this.edit].repr[this.repr].visible
         } else {
           return undefined
         }

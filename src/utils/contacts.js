@@ -28,12 +28,36 @@ const contactTypesIndices = [
   'backboneHydrogenBond'
 ]
 
+const defaultDisplayedContacts = {
+  hydrogenBond: true,
+  weakHydrogenBond: false,
+  backboneHydrogenBond: true,
+  waterHydrogenBond: false,
+  hydrophobic: true,
+  ionicInteraction: true,
+  metalCoordination: true,
+  cationPi: true,
+  piStacking: true
+}
+
 function getAtomListFromAToRange (start, range) {
   let numArr = []
   for (let i = 0; i < range; i++) {
     numArr.push(start + i)
   }
   return numArr
+}
+
+function getArray (obj) {
+  let t = []
+  for (let prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      if (obj[prop] === true) {
+        t.push(prop)
+      }
+    }
+  }
+  return t
 }
 
 function makeRes (atomP) {
@@ -73,20 +97,14 @@ function contact (comp, context) {
     const seleGroupWithin = structure.getAtomSetWithinGroup(new Selection(`(${seleWithin.toSeleString()}) and not water`))
       // console.log(sele, seleWithin.getSize(), seleWithin)
 
-    const c = comp.addRepresentation('contact', {
-      hydrogenBond: true,
-      weakHydrogenBond: false,
-      backboneHydrogenBond: true,
-      waterHydrogenBond: false,
-      hydrophobic: true,
-      ionicInteraction: true,
-      metalCoordination: true,
-      cationPi: true,
-      piStacking: true,
+    let contactReprParam = {
       flatShaded: true,
       sele: seleWithin.toSeleString(),
       filterSele: sele
-    })
+    }
+    Object.assign(contactReprParam, defaultDisplayedContacts)
+
+    const c = comp.addRepresentation('contact', contactReprParam)
 
     const contactStore = c.repr.bufferList[0].picking.contacts.contactStore
     const atomSets = c.repr.bufferList[0].picking.contacts.features.atomSets
@@ -136,7 +154,7 @@ function contact (comp, context) {
       // labelText: resnameList,
       labelGrouping: 'residue',
       attachment: 'middle-center',
-      radisuType: 'size',
+      radiusType: 'size',
       radiusSize: 0.8,
       zOffset: 2,
       backgroundOpacity: 0.8,
@@ -158,7 +176,8 @@ function contact (comp, context) {
       repr: {
         colormaker: undefined,
         contact: {
-          visible: true
+          visible: true,
+          contactsTypes: getArray(defaultDisplayedContacts)
         },
         label: {
           visible: true
@@ -314,6 +333,16 @@ function contact (comp, context) {
           setColormaker(index)
           repr.setColor(contact.repr.colormaker)
         }
+      } else if (properties.param.hasOwnProperty('contactsTypes')) {
+        let cT = {}
+        for (let p in defaultDisplayedContacts) {
+          cT[p] = false
+        }
+        properties.param.contactsTypes.forEach(val => {
+          cT[val] = true
+        })
+        repr.setParameters(cT)
+        contact.repr.contact.contactsTypes = getArray(cT)
       }
     }
     // tabContacts[index].repr.setParameters(properties)

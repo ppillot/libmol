@@ -4,7 +4,8 @@
     <el-tabs v-model="activeName" 
     tab-position="left">
       <el-tab-pane label="Contacts" name="contact">
-        Interactions à afficher<br>
+        <contacts-types-settings
+          :edit="edit" />
         Inclure les interactions avec les molécules d'eau <br>
         Afficher les résidus autour de la cible dans un rayon de 
 
@@ -48,13 +49,15 @@
 import ContactsTabSettingsRepresentationSelect from './ContactsTabSettingsRepresentationSelect'
 import ContactsTabSettingsColorSelect from './ContactsTabSettingsColorSelect'
 import ContactsTabSettingsVisibilitySwitch from './ContactsTabSettingsVisibilitySwitch'
+import ContactsTypesSettings from './ContactsTypesSettings'
 
 export default {
   name: 'contactsTabContactsSettings',
   components: {
     ContactsTabSettingsRepresentationSelect,
     ContactsTabSettingsColorSelect,
-    ContactsTabSettingsVisibilitySwitch
+    ContactsTabSettingsVisibilitySwitch,
+    ContactsTypesSettings
   },
   props: {
     edit: {

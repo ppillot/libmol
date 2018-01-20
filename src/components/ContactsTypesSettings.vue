@@ -5,7 +5,7 @@
         </div>
         <el-checkbox 
           :indeterminate="isIndeterminate" 
-          v-model="checkAllHbonds" 
+          :value="checkAllHbonds" 
           @change="handleCheckAllHbondsChange"
           label="allHbonds">
           {{ $t('ui.contacts.allHbonds') }}
@@ -56,45 +56,55 @@ export default {
   components: {
     FormItem
   },
+  props: {
+    edit: {
+      default: -1,
+      type: Number
+    }
+  },
   data () {
     return {
-      isIndeterminate: false,
-      checkAllHbonds: false,
       hbondsTypesDisplayed: false
     }
   },
   computed: {
+    isIndeterminate () {
+      return (this.nbHbonds > 0 && this.nbHbonds < 4)
+    },
+    checkAllHbonds () {
+      return (this.nbHbonds === 4)
+    },
+    nbHbonds () {
+      let total = 0
+      this.contactsList.forEach(item => {
+        total += (hb.includes(item)) ? 1 : 0
+      })
+      return total
+    },
     contactsList: {
       set: function (value) {
-        let nbMatches = 0
-
-        if (value !== undefined) {
-          value.forEach(item => {
-            nbMatches += (hb.includes(item)) ? 1 : 0
-          })
-        } else {
+        if (value === undefined || value === false) {
           value = []
         }
 
-        if (nbMatches === 0) {
-          this.checkAllHbonds = false
-          this.isIndeterminate = false
-        } else if (nbMatches === hb.length) {
-          this.checkAllHbonds = true
-          this.isIndeterminate = false
+        if (this.edit === -1) {
+          this.$store.dispatch('displayContacts', value)
         } else {
-          this.checkAllHbonds = false
-          this.isIndeterminate = true
+          this.$store.dispatch('updateDisplayContact', {
+            index: this.edit,
+            repr: 'contact',
+            param: {
+              contactsTypes: value
+            }
+          })
         }
-
-        this.$store.dispatch('displayContacts', value)
       },
       get: function () {
-        if (this.$store.state.wholeMoleculeContacts.length === 0) {
-          this.checkAllHbonds = false
-          this.isIndeterminate = false
-        }
-        return (this.$store.state.wholeMoleculeContacts)
+        let contactsList = (this.edit === -1)
+          ? this.$store.state.wholeMoleculeContacts
+          : this.$store.state.contacts[this.edit].repr.contact.contactsTypes
+
+        return (contactsList)
       }
     }
   },
@@ -118,8 +128,6 @@ export default {
           return l
         }, [])
       }
-
-      this.isIndeterminate = false
     },
     handleDisplayHbondsTypes (event) {
       this.hbondsTypesDisplayed = !this.hbondsTypesDisplayed

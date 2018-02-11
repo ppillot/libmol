@@ -291,7 +291,7 @@ function contact (comp, context) {
   }
 
   function setProperties (index, properties) {
-    console.log(index, tabContactsRepr, tabContacts)
+    // console.log(index, tabContactsRepr, tabContacts)
     const contactRepr = tabContactsRepr[index]
     const contact = tabContacts[index]
     const repr = (properties.hasOwnProperty('repr')) ? contactRepr[properties.repr] : undefined
@@ -313,6 +313,10 @@ function contact (comp, context) {
         contactRepr.contactEntities.setParameters({isWaterExcluded: properties.param.isWaterExcluded})
         contact.params.isWaterExcluded = properties.param.isWaterExcluded
         updateRepresentations(index)
+      } else if (properties.param.hasOwnProperty('radius')) {
+        contactRepr.contactEntities.setParameters({radius: properties.param.radius})
+        contact.repr.vicinity.radius = properties.param.radius
+        updateRepresentations(index)
       }
     } else {
       if (properties.param.hasOwnProperty('visible')) {
@@ -320,7 +324,7 @@ function contact (comp, context) {
         contact.repr[properties.repr].visible = properties.param.visible
       } else if (properties.param.hasOwnProperty('reprName')) {
         const r = comp.addRepresentation(properties.param.reprName, {
-          sele: repr.parameters.sele,
+          sele: contact.repr[properties.repr].seleString,
           multipleBond: true,
           color: (contact.repr.target.color === 'default') ? getGlobalColormaker() : contact.repr.colormaker
         })
@@ -383,6 +387,11 @@ function contact (comp, context) {
     cState.repr.target.seleString = repr.contactEntities.targetSeleString
     cState.repr.vicinity.seleString = repr.contactEntities.vicinitySeleString
     cState.contactsList = getContactsArray(repr.contact)
+
+    // update colors
+    setColormaker(index)
+    repr.target.setColor(cState.repr.colormaker)
+    repr.vicinity.setColor(cState.repr.colormaker)
   }
 
   function checkContactExists (atomSet) {

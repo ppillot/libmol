@@ -8,7 +8,8 @@
           :edit="edit" />
         <contacts-tab-settings-water-switch
           :edit="edit" />
-        Afficher les résidus autour de la cible dans un rayon de 
+        <contacts-tab-settings-within-radius
+          :edit="edit" /> 
 
       </el-tab-pane>
       <el-tab-pane label="Cible" name="target">
@@ -52,6 +53,7 @@ import ContactsTabSettingsColorSelect from './ContactsTabSettingsColorSelect'
 import ContactsTabSettingsVisibilitySwitch from './ContactsTabSettingsVisibilitySwitch'
 import ContactsTypesSettings from './ContactsTypesSettings'
 import ContactsTabSettingsWaterSwitch from './ContactsTabSettingsWaterSwitch'
+import ContactsTabSettingsWithinRadius from './ContactsTabSettingsWithinRadius'
 
 export default {
   name: 'contactsTabContactsSettings',
@@ -60,7 +62,8 @@ export default {
     ContactsTabSettingsColorSelect,
     ContactsTabSettingsVisibilitySwitch,
     ContactsTypesSettings,
-    ContactsTabSettingsWaterSwitch
+    ContactsTabSettingsWaterSwitch,
+    ContactsTabSettingsWithinRadius
   },
   props: {
     edit: {

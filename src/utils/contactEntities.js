@@ -69,7 +69,6 @@ class ContactEntities {
   updateWithin () {
     const seleWithin = this.structure.getAtomSetWithinSelection(new Selection(this.targetSele), this.neighbouringRadius)
     this.withinSele = '(' + seleWithin.toSeleString() + ')' + ((this.isWaterExcluded) ? ' AND NOT WATER' : '')
-    console.log(this.withinSele)
   }
 
   /**

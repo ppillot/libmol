@@ -161,13 +161,14 @@ function contact (comp, context) {
       labelGrouping: 'residue',
       attachment: 'middle-center',
       radiusType: 'size',
-      radiusSize: 0.8,
+      radiusSize: 5,
       zOffset: 2,
       backgroundOpacity: 0.8,
       color: 0x1f2d3d,
       fontWeight: 'normal',
       showBackground: true,
-      sele: `(${cE.vicinitySeleString})`
+      sele: `(${cE.vicinitySeleString})`,
+      fixedSize: true
     })
 
     tabContacts.push({

@@ -1,5 +1,6 @@
 import {Selection, ColormakerRegistry} from 'ngl'
 import {byres} from './colors'
+import ContactEntities from './contactEntities'
 
 const contactTypesMap = new Map([
   ['hydrogen bond', 'hydrogenBond'],
@@ -90,17 +91,23 @@ function contact (comp, context) {
   }
 
   function createContact ({resnum, chainId}) {
-    const sele = `${resnum}:${chainId} and not backbone`
-    const seleWithin = structure.getAtomSetWithinSelection(new Selection(sele), 4.5)
-    const water = structure.getAtomSet(new Selection('water'))
-    seleWithin.difference(water)
-    const seleGroupWithin = structure.getAtomSetWithinGroup(new Selection(`(${seleWithin.toSeleString()}) and not water`))
-      // console.log(sele, seleWithin.getSize(), seleWithin)
+    const cE = new ContactEntities(structure, {
+      target: {
+        resnum: resnum,
+        chainId: chainId
+      },
+      isWaterExcluded: true,
+      isBackboneExcluded: true,
+      neighbouringRadius: 4.5
+    })
+    // const seleWithin = cE.withinTargetSeleString
+    // const seleGroupWithin = structure.getAtomSetWithinGroup(new Selection(`(${seleWithin.toSeleString()}) and not water`))
+    console.log(cE)
 
     let contactReprParam = {
       flatShaded: true,
-      sele: seleWithin.toSeleString(),
-      filterSele: sele
+      sele: cE.withinTargetSeleString,
+      filterSele: cE.targetSeleString
     }
     Object.assign(contactReprParam, defaultDisplayedContacts)
 
@@ -132,16 +139,14 @@ function contact (comp, context) {
       })
     })
 
-    const vicinitySele = `(${seleGroupWithin.toSeleString()}) and (not backbone or .CA or (PRO and .N)) and not ${resnum}:${chainId}`
-
     const vicinity = comp.addRepresentation('licorice', {
       multipleBond: true,
-      sele: vicinitySele,
+      sele: cE.vicinitySeleString,
       aspectRatio: 2.1,
       radiusScale: 1.1
     })
 
-    const targetSele = `${resnum}:${chainId} and (not backbone or .CA or (PRO and .N))`
+    const targetSele = cE.targetSeleString
     const target = comp.addRepresentation('ball+stick', {
       sele: targetSele,
       multipleBond: true,
@@ -150,7 +155,8 @@ function contact (comp, context) {
     })
 
     const label = comp.addRepresentation('label', {
-      labelType: 'residue',
+      labelType: 'format',
+      labelFormat: '[%(resname)s]%(resno)s',
       // labelText: resnameList,
       labelGrouping: 'residue',
       attachment: 'middle-center',
@@ -161,7 +167,7 @@ function contact (comp, context) {
       color: 0x1f2d3d,
       fontWeight: 'normal',
       showBackground: true,
-      sele: `(${seleGroupWithin.toSeleString()}) and .CA`
+      sele: `(${cE.vicinitySeleString})`
     })
 
     tabContacts.push({
@@ -197,7 +203,7 @@ function contact (comp, context) {
           label: true,
           reprName: 'licorice',
           color: 'element',
-          seleString: vicinitySele
+          seleString: cE.vicinitySeleString
         }
       }
     })

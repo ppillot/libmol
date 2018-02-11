@@ -6,7 +6,7 @@
       <el-tab-pane label="Contacts" name="contact">
         <contacts-types-settings
           :edit="edit" />
-        Inclure les interactions avec les molécules d'eau <br>
+        <contacts-tab-settings-water-switch />
         Afficher les résidus autour de la cible dans un rayon de 
 
       </el-tab-pane>
@@ -22,7 +22,7 @@
 
         </div>
       </el-tab-pane>
-      <el-tab-pane label="Entourage" name="third">
+      <el-tab-pane label="Entourage" name="vicinity">
         <contacts-tab-settings-visibility-switch
           :edit="edit"
           repr="vicinity" />
@@ -36,7 +36,7 @@
           repr="vicinity"/>
 
       </el-tab-pane>
-      <el-tab-pane label="Etiquettes" name="fourth">
+      <el-tab-pane label="Etiquettes" name="labels">
         <contacts-tab-settings-visibility-switch
           :edit="edit"
           repr="label" />
@@ -50,6 +50,7 @@ import ContactsTabSettingsRepresentationSelect from './ContactsTabSettingsRepres
 import ContactsTabSettingsColorSelect from './ContactsTabSettingsColorSelect'
 import ContactsTabSettingsVisibilitySwitch from './ContactsTabSettingsVisibilitySwitch'
 import ContactsTypesSettings from './ContactsTypesSettings'
+import ContactsTabSettingsWaterSwitch from './ContactsTabSettingsWaterSwitch'
 
 export default {
   name: 'contactsTabContactsSettings',
@@ -57,7 +58,8 @@ export default {
     ContactsTabSettingsRepresentationSelect,
     ContactsTabSettingsColorSelect,
     ContactsTabSettingsVisibilitySwitch,
-    ContactsTypesSettings
+    ContactsTypesSettings,
+    ContactsTabSettingsWaterSwitch
   },
   props: {
     edit: {

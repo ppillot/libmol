@@ -113,31 +113,7 @@ function contact (comp, context) {
 
     const c = comp.addRepresentation('contact', contactReprParam)
 
-    const contactStore = c.repr.bufferList[0].picking.contacts.contactStore
-    const atomSets = c.repr.bufferList[0].picking.contacts.features.atomSets
-    const contactsDisplayed = c.repr.bufferList[0].picking.array.reduce((arr, val) => {
-      if (arr.indexOf(val) === -1) {
-        arr.push(val)
-      }
-      return arr
-    }, [])
-
-    let contactsArray = []
-
-    contactsDisplayed.forEach(val => {
-      const atom1 = structure.getAtomProxy(atomSets[contactStore.index1[val]][0])
-      const res1 = makeRes(atom1)
-      const atom2 = structure.getAtomProxy(atomSets[contactStore.index2[val]][0])
-      const res2 = makeRes(atom2)
-      const type = contactStore.type[val]
-
-      contactsArray.push({
-        res1: res1,
-        res2: res2,
-        type: contactTypesIndices[type],
-        seleString: '@' + res1.atomList.join(',') + ',' + res2.atomList.join(',')
-      })
-    })
+    let contactsArray = getContactsArray(c)
 
     const vicinity = comp.addRepresentation('licorice', {
       multipleBond: true,
@@ -179,6 +155,10 @@ function contact (comp, context) {
         name: `${resnum}:${chainId}`,
         res: getResiduePropertiesFromSelestring(`${resnum}:${chainId}`)
       },
+      params: {
+        isWaterExcluded: true,
+        isBackboneExcluded: true
+      },
       contactsList: contactsArray,
       repr: {
         colormaker: undefined,
@@ -211,6 +191,7 @@ function contact (comp, context) {
 
     tabContactsRepr.push({
       contact: c,
+      contactEntities: cE,
       target: target,
       vicinity: vicinity,
       label: label
@@ -228,6 +209,35 @@ function contact (comp, context) {
       return (c.index === id)
     })
   } */
+
+  function getContactsArray (c) {
+    const contactStore = c.repr.bufferList[0].picking.contacts.contactStore
+    const atomSets = c.repr.bufferList[0].picking.contacts.features.atomSets
+    const contactsDisplayed = c.repr.bufferList[0].picking.array.reduce((arr, val) => {
+      if (arr.indexOf(val) === -1) {
+        arr.push(val)
+      }
+      return arr
+    }, [])
+
+    const contactsArray = []
+    contactsDisplayed.forEach(val => {
+      const atom1 = structure.getAtomProxy(atomSets[contactStore.index1[val]][0])
+      const res1 = makeRes(atom1)
+      const atom2 = structure.getAtomProxy(atomSets[contactStore.index2[val]][0])
+      const res2 = makeRes(atom2)
+      const type = contactStore.type[val]
+
+      contactsArray.push({
+        res1: res1,
+        res2: res2,
+        type: contactTypesIndices[type],
+        seleString: '@' + res1.atomList.join(',') + ',' + res2.atomList.join(',')
+      })
+    })
+
+    return contactsArray
+  }
 
   function clearContact (index) {
     for (let r in tabContactsRepr[index]) {
@@ -299,6 +309,9 @@ function contact (comp, context) {
           }
         }
         contact.visible = properties.param.visible
+      } else if (properties.param.hasOwnProperty('isWaterExcluded')) {
+        contactRepr.cE.setParameters({isWaterExcluded: properties.param.isWaterExcluded})
+        updateRepresentations(index)
       }
     } else {
       if (properties.param.hasOwnProperty('visible')) {
@@ -354,6 +367,10 @@ function contact (comp, context) {
     }
     // tabContacts[index].repr.setParameters(properties)
     dispatch()
+  }
+
+  function updateRepresentations (index) {
+
   }
 
   function checkContactExists (atomSet) {

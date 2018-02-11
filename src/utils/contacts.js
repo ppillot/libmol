@@ -135,7 +135,7 @@ function contact (comp, context) {
       labelFormat: '[%(resname)s]%(resno)s',
       // labelText: resnameList,
       labelGrouping: 'residue',
-      attachment: 'middle-center',
+      attachment: 'top-center',
       radiusType: 'size',
       radiusSize: 5,
       zOffset: 2,
@@ -204,12 +204,12 @@ function contact (comp, context) {
     setColormaker(tabContacts.length - 1)
   }
 
-  /* function getIndexFromId (id) {
-    return tabContacts.findIndex(c => {
-      return (c.index === id)
-    })
-  } */
-
+  /**
+   * Returns an array containing each pair of residue in contact
+   * with the type of contact involved
+   * @param {Object} c: NGL contact representation
+   * @returns {Array} Array of objects
+   */
   function getContactsArray (c) {
     const contactStore = c.repr.bufferList[0].picking.contacts.contactStore
     const atomSets = c.repr.bufferList[0].picking.contacts.features.atomSets
@@ -310,7 +310,8 @@ function contact (comp, context) {
         }
         contact.visible = properties.param.visible
       } else if (properties.param.hasOwnProperty('isWaterExcluded')) {
-        contactRepr.cE.setParameters({isWaterExcluded: properties.param.isWaterExcluded})
+        contactRepr.contactEntities.setParameters({isWaterExcluded: properties.param.isWaterExcluded})
+        contact.params.isWaterExcluded = properties.param.isWaterExcluded
         updateRepresentations(index)
       }
     } else {
@@ -370,7 +371,18 @@ function contact (comp, context) {
   }
 
   function updateRepresentations (index) {
+    const repr = tabContactsRepr[index]
+    // update NGL representations
+    repr.contact.setSelection(repr.contactEntities.withinTargetSeleString)
+    repr.target.setSelection(repr.contactEntities.targetSeleString)
+    repr.vicinity.setSelection(repr.contactEntities.vicinitySeleString)
+    repr.label.setSelection(repr.contactEntities.vicinitySeleString)
 
+    // update state data
+    const cState = tabContacts[index]
+    cState.repr.target.seleString = repr.contactEntities.targetSeleString
+    cState.repr.vicinity.seleString = repr.contactEntities.vicinitySeleString
+    cState.contactsList = getContactsArray(repr.contact)
   }
 
   function checkContactExists (atomSet) {

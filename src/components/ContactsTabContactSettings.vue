@@ -6,7 +6,8 @@
       <el-tab-pane label="Contacts" name="contact">
         <contacts-types-settings
           :edit="edit" />
-        <contacts-tab-settings-water-switch />
+        <contacts-tab-settings-water-switch
+          :edit="edit" />
         Afficher les résidus autour de la cible dans un rayon de 
 
       </el-tab-pane>

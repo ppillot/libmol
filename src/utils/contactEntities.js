@@ -69,6 +69,7 @@ class ContactEntities {
   updateWithin () {
     const seleWithin = this.structure.getAtomSetWithinSelection(new Selection(this.targetSele), this.neighbouringRadius)
     this.withinSele = '(' + seleWithin.toSeleString() + ')' + ((this.isWaterExcluded) ? ' AND NOT WATER' : '')
+    console.log(this.withinSele)
   }
 
   /**
@@ -111,20 +112,20 @@ class ContactEntities {
   setParameters (params) {
     const updates = new Set()
 
-    if (params.isWaterExcluded && params.isWaterExcluded !== this.isWaterExcluded) {
+    if (params.hasOwnProperty('isWaterExcluded') && params.isWaterExcluded !== this.isWaterExcluded) {
       this.isWaterExcluded = params.isWaterExcluded
       updates.add('within')
       updates.add('vicinity')
     }
 
-    if (params.isBackboneExcluded && params.isBackboneExcluded !== this.isBackboneExcluded) {
+    if (params.hasOwnProperty('isBackboneExcluded') && params.isBackboneExcluded !== this.isBackboneExcluded) {
       this.isBackboneExcluded = params.isBackboneExcluded
       updates.add('target')
       updates.add('within')
       updates.add('vicinity')
     }
 
-    if (params.radius && params.radius !== this.neighbouringRadius) {
+    if (params.hasOwnProperty('radius') && params.radius !== this.neighbouringRadius) {
       this.neighbouringRadius = params.radius
       updates.add('within')
       updates.add('vicinity')
@@ -135,7 +136,7 @@ class ContactEntities {
       ['within', this.updateWithin],
       ['vicinity', this.updateVicinity]].map((val) => {
         if (updates.has(val[0])) {
-          val[1]()
+          val[1].call(this)
         }
       })
   }

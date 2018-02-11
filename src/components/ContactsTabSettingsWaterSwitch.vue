@@ -13,6 +13,12 @@ export default {
   components: {
     FormItem
   },
+  props: {
+    edit: {
+      default: -1,
+      type: Number
+    }
+  },
   computed: {
     included: {
       set: function (val) {

@@ -242,7 +242,7 @@ function contact (comp, context) {
 
   function clearContact (index) {
     for (let r in tabContactsRepr[index]) {
-      tabContactsRepr[index][r].dispose()
+      if (tabContactsRepr[index][r].dispose) tabContactsRepr[index][r].dispose()
     }
     tabContactsRepr.splice(index, 1)
     tabContacts.splice(index, 1)

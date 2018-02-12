@@ -300,7 +300,7 @@ function contact (comp, context) {
     if (repr === undefined) {
       if (properties.param.hasOwnProperty('visible')) {
         for (let i in contactRepr) {
-          if (contactRepr.hasOwnProperty(i)) {
+          if (contactRepr.hasOwnProperty(i) && contact.repr.hasOwnProperty(i)) {
             // if user switches visibiity back to true globally,
             // we roll back each representation from the contact
             // to its previous individual visibility setting

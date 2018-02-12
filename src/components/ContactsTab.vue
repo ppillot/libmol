@@ -13,8 +13,8 @@
             @click="edit = (index === edit)? -1 : index">
           </i>
           <div class="surface-title">
-            Interactions avec {{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
-      {{ contact.target.res.resno }} chaîne {{ contact.target.res.chainname }}
+            {{ $t('ui.contacts.contactHeader') }} {{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
+      {{ contact.target.res.resno }} {{ $t('tooltips.chain') }} {{ contact.target.res.chainname }}
           </div>
           <visible :value="visibility[index]" @input="val => {handleVisibility(val, index)}"></visible>
           <el-button type="text" icon="el-icon-delete" @click="handleDelete(index)"></el-button>

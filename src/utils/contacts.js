@@ -167,7 +167,8 @@ function contact (comp, context) {
           contactsTypes: getArray(defaultDisplayedContacts)
         },
         label: {
-          visible: true
+          visible: true,
+          size: 5
         },
         target: {
           color: 'element',
@@ -368,6 +369,11 @@ function contact (comp, context) {
         })
         repr.setParameters(cT)
         contact.repr.contact.contactsTypes = getArray(cT)
+      } else if (properties.param.hasOwnProperty('size')) {
+        repr.setParameters({
+          radiusSize: properties.param.size
+        })
+        contact.repr.label.size = properties.param.size
       }
     }
     // tabContacts[index].repr.setParameters(properties)

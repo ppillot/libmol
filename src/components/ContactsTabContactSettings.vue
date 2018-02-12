@@ -42,6 +42,9 @@
         <contacts-tab-settings-visibility-switch
           :edit="edit"
           repr="label" />
+
+        <contacts-tab-settings-label-size
+          :edit="edit" />
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -54,6 +57,7 @@ import ContactsTabSettingsVisibilitySwitch from './ContactsTabSettingsVisibility
 import ContactsTypesSettings from './ContactsTypesSettings'
 import ContactsTabSettingsWaterSwitch from './ContactsTabSettingsWaterSwitch'
 import ContactsTabSettingsWithinRadius from './ContactsTabSettingsWithinRadius'
+import ContactsTabSettingsLabelSize from './ContactsTabSettingsLabelSize'
 
 export default {
   name: 'contactsTabContactsSettings',
@@ -63,7 +67,8 @@ export default {
     ContactsTabSettingsVisibilitySwitch,
     ContactsTypesSettings,
     ContactsTabSettingsWaterSwitch,
-    ContactsTabSettingsWithinRadius
+    ContactsTabSettingsWithinRadius,
+    ContactsTabSettingsLabelSize
   },
   props: {
     edit: {

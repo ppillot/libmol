@@ -41,7 +41,9 @@
             <li>
               <el-checkbox label="piStacking">{{ $t('ui.contacts.piStacking') }}</el-checkbox>
             </li>
-            <!-- <el-checkbox label="cationPi">{{ $t('ui.contacts.cationPi') }}</el-checkbox> -->
+            <li>
+              <el-checkbox label="cationPi">{{ $t('ui.contacts.cationPi') }}</el-checkbox>
+            </li>
           </ul>
         </el-checkbox-group>
     </div>

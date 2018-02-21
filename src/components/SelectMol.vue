@@ -40,7 +40,6 @@
         @click.stop="toggle('hetero')"></i>
       </radio-button>
     </button-group>
-   </form-item>
   </div>
 </template>
 
@@ -91,7 +90,8 @@
         this.$store.dispatch('help', {
           action: 'select',
           attribute: selector,
-          active: active
+          active: active,
+          namespace: 'commands'
         })
       },
       toggle (selector) {

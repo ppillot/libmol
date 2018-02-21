@@ -384,9 +384,18 @@ var vuex = new Vuex.Store({
     surfaces: [],
     contacts: [],
     wholeMoleculeContacts: [],
-    help: '',
-    helpHistory: [],
-    helpHistoryForward: [],
+    help: {
+      'commands': '',
+      'contacts': ''
+    },
+    helpHistory: {
+      'commands': [],
+      'contacts': []
+    },
+    helpHistoryForward: {
+      'commands': [],
+      'contacts': []
+    },
     alert: {
       type: '',
       token: {}
@@ -526,29 +535,29 @@ var vuex = new Vuex.Store({
     setWholeMoleculeContacts (state, contactsList) {
       state.wholeMoleculeContacts = contactsList
     },
-    help (state, {subject, resetHistory}) {
+    help (state, {subject, resetHistory, namespace}) {
       if (subject) {
-        state.help = subject
+        state.help[namespace] = subject
         if (resetHistory) {
-          state.helpHistory = []
-          state.helpHistoryForward = []
+          state.helpHistory[namespace] = []
+          state.helpHistoryForward[namespace] = []
         }
       }
     },
-    helpHistoryStart (state, {subject, resetHistory}) {
+    helpHistoryStart (state, {subject, resetHistory, namespace}) {
       if (resetHistory) {
-        state.helpHistory = [state.help]
-        state.helpHistoryForward = []
+        state.helpHistory[namespace] = [state.help[namespace]]
+        state.helpHistoryForward[namespace] = []
       }
-      state.help = subject
+      state.help[namespace] = subject
     },
-    helpHistoryStep (state, step) {
+    helpHistoryStep (state, {step, namespace}) {
       if (step === -1 && state.helpHistory.length > 0) { // step back
-        state.helpHistoryForward.push(state.help)
-        state.help = state.helpHistory.pop()
-      } else if (step === 1 && state.helpHistoryForward.length > 0) { // step forward
-        state.helpHistory.push(state.help)
-        state.help = state.helpHistoryForward.pop()
+        state.helpHistoryForward[namespace].push(state.help[namespace])
+        state.help[namespace] = state.helpHistory[namespace].pop()
+      } else if (step === 1 && state.helpHistoryForward[namespace].length > 0) { // step forward
+        state.helpHistory[namespace].push(state.help[namespace])
+        state.help[namespace] = state.helpHistoryForward[namespace].pop()
       }
     },
     isUserSelectionValid (state, value) {
@@ -1208,20 +1217,28 @@ var vuex = new Vuex.Store({
       if (subject.attribute) {
         commit('help', {
           subject: help(subject.action, subject.attribute),
-          resetHistory: newSubject
+          resetHistory: newSubject,
+          namespace: subject.namespace
         })
       } else if (subject.token) { // help system internal link
         commit('helpHistoryStart', {
           subject: subject.token,
-          resetHistory: newSubject
+          resetHistory: newSubject,
+          namespace: subject.namespace
         })
       }
     },
-    helpNavigate ({commit}, step) {
+    helpNavigate ({commit}, {step, namespace}) {
       if (step === 'backward') {
-        commit('helpHistoryStep', -1)
+        commit('helpHistoryStep', {
+          step: -1,
+          namespace: namespace
+        })
       } else {
-        commit('helpHistoryStep', 1)
+        commit('helpHistoryStep', {
+          step: 1,
+          namespace: namespace
+        })
       }
     },
     userSelection (context, value) {

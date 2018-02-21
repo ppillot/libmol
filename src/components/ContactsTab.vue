@@ -1,43 +1,47 @@
 <template>
     <div class="frame">
-        Ici s'affichent les interactions qui ont été calculées entre les points d'intérêt choisis par l'utilisateur et le reste du modèle moléculaire.
-        Pour ajouter de nouvelles interactions, faire un clic droit sur un résidu ou une sélection et choisir "interactions"
-                
-      <div class="container no-scroll surface-list"
-        v-for="(contact, index) in contacts"
-        :key="index">
-        <div class="surface-header list-header--card">
-          <i 
-            class="el-icon-caret-right"
-            :class="[contact.index === edit ? 'rotate' : 'unrotate']"
-            @click="edit = (index === edit)? -1 : index">
-          </i>
-          <div class="surface-title">
-            {{ $t('ui.contacts.contactHeader') }} {{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
-      {{ contact.target.res.resno }} {{ $t('tooltips.chain') }} {{ contact.target.res.chainname }}
+      <div id="contact-tab--help">
+        <help
+          namespace="contacts"
+          start="contacts" />
+      </div>
+      <div id="contact-tab--list">          
+        <div class="container no-scroll surface-list"
+          v-for="(contact, index) in contacts"
+          :key="index">
+          <div class="surface-header list-header--card">
+            <i 
+              class="el-icon-caret-right"
+              :class="[contact.index === edit ? 'rotate' : 'unrotate']"
+              @click="edit = (index === edit)? -1 : index">
+            </i>
+            <div class="surface-title">
+              {{ $t('ui.contacts.contactHeader') }} {{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
+        {{ contact.target.res.resno }} {{ $t('tooltips.chain') }} {{ contact.target.res.chainname }}
+            </div>
+            <visible :value="visibility[index]" @input="val => {handleVisibility(val, index)}"></visible>
+            <el-button type="text" icon="el-icon-delete" @click="handleDelete(index)"></el-button>
           </div>
-          <visible :value="visibility[index]" @input="val => {handleVisibility(val, index)}"></visible>
-          <el-button type="text" icon="el-icon-delete" @click="handleDelete(index)"></el-button>
-        </div>
 
-        <!-- Contacts settings -->
-        <contacts-tab-contact-settings :edit="index" v-if="edit === index"/>
-        <!-- End Contacts settings -->
+          <!-- Contacts settings -->
+          <contacts-tab-contact-settings :edit="index" v-if="edit === index"/>
+          <!-- End Contacts settings -->
 
-        <div class="surface-list-body"
-          v-if="contact.contactsList.length>0"
-          @mouseout="highlight('none')">
-          <div class="surface-list-item list-item--card"
-            :class="pair.type"
-            @mouseover="highlight(pair.seleString)"
-            v-for="(pair, i) in contact.contactsList" 
-            :key="i">
-            <div >
-              {{ pair.res1.resname }}{{ pair.res1.resno }}:{{ pair.res1.chainname }}
-                /
-              {{ pair.res2.resname }}{{ pair.res2.resno }}:{{ pair.res2.chainname }}
-               -
-              {{ $t('ui.contacts.' + pair.type)}}
+          <div class="surface-list-body"
+            v-if="contact.contactsList.length>0"
+            @mouseout="highlight('none')">
+            <div class="surface-list-item list-item--card"
+              :class="pair.type"
+              @mouseover="highlight(pair.seleString)"
+              v-for="(pair, i) in contact.contactsList" 
+              :key="i">
+              <div >
+                {{ pair.res1.resname }}{{ pair.res1.resno }}:{{ pair.res1.chainname }}
+                  /
+                {{ pair.res2.resname }}{{ pair.res2.resno }}:{{ pair.res2.chainname }}
+                -
+                {{ $t('ui.contacts.' + pair.type)}}
+              </div>
             </div>
           </div>
         </div>
@@ -50,6 +54,7 @@ import Help from './Help'
 import FormItem from './FormItem'
 import Visible from './Visible'
 import ContactsTabContactSettings from './ContactsTabContactSettings'
+import Split from 'split.js'
 
 // import {contactTypesIndices} from '../utils/contacts'
 
@@ -124,6 +129,15 @@ export default {
     pickColor (val) {
       if (val !== 'palette') this.changeColor(val)
     }
+  },
+  mounted: function () {
+    Split([this.$el.children[0], this.$el.children[1]], {
+      direction: 'vertical',
+      cursor: 'ns-resize',
+      sizes: [50, 50],
+      minSize: [150, 150],
+      gutterSize: 6
+    })
   }
 }
 </script>
@@ -137,11 +151,11 @@ export default {
         flex: 1;
         overflow: hidden;
     }
-    #commands-tab--commands {
+    #contact-tab--list {
         overflow-y: auto;
         padding-left: 1px;
     }
-    #commands-tab--help {
+    #contact-tab--help {
         display: flex;
         flex-direction: column;
         overflow-y: auto;
@@ -190,26 +204,5 @@ export default {
     }
     .settings--card {
       border: solid 1px #f5f7fa;
-    }
-    .help h3 {
-        font-size: 0.95em;
-        margin: 0 0.5em;
-        font-weight: 500;
-    }
-
-    .gutter.gutter-vertical {
-        border-top: 1px solid #eee;
-        /*border-bottom: 1px solid #eee;*/
-        margin: 0 0 0 0;
-        cursor: ns-resize;
-        /*box-shadow: #e8e8e8 0px 1px 2px 0px;*/
-        
-    }
-    .gutter.gutter-vertical:hover {
-        border-color: #ccc;
-        transition: border-color 0.3s ease-in-out 0.1s;
-        /* background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
-        transition: background-image 0.5s ease-in-out 0.3s; */
-        
     }
 </style>

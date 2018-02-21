@@ -70,13 +70,12 @@ ToDo
   - add/remove labels
   - provide choices for selecting hetero (e.g. : in cox2 ara and hem)
 - Sequences : 
-  - interactions ? <http://www.rcsb.org/pdb/news.do?year=2016&article=57e30fd490f5613003407f09&feature=true>
-  - select from distance (within)
   - search (user selection ?)
 - 3D View:
   - change cursor when rotating, zooming, panning, selecting
   - rotating around z-axis
 - code refactor
+  - help history may be internal to help component state (not in shared state)
   - event bus : https://devblog.digimondo.io/building-a-simple-eventbus-in-vue-js-64b70fb90834#.706mbapkg
 - bugs :
   - polymer size should exceed 3 for ribbon/backbone

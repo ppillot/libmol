@@ -70,7 +70,8 @@
         this.$store.dispatch('help', {
           action: 'display',
           attribute: displayType,
-          active: active
+          active: active,
+          namespace: 'commands'
         })
       }
     },

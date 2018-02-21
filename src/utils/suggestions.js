@@ -4,6 +4,7 @@ let keywords = [
   'or',
   'not',
   'all',
+  'none',
   'sidechain',
   'sidechainAttached',
   'backbone',

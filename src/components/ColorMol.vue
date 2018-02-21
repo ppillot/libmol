@@ -75,7 +75,8 @@
         this.$store.dispatch('help', {
           action: 'color',
           attribute: colorScheme,
-          active: active
+          active: active,
+          namespace: 'commands'
         })
       }
     }

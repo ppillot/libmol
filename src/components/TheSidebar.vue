@@ -16,13 +16,15 @@
             <el-tab-pane :label="$t('ui.sequences_tab_label')" name="sequences" :disabled="noSequence">
                 <sequence-tab :active="isSequenceTabActive"/>
             </el-tab-pane>
-            <el-tab-pane :label="$t('ui.contacts_tab_label')" name="contacts" :disabled="noSequence">
-                <contacts-tab/>
-            </el-tab-pane>
             
             <el-tab-pane :label="$t('ui.surfaces_tab_label')" name="surfaces">
                 <surface-tab/>
             </el-tab-pane>
+
+            <el-tab-pane :label="$t('ui.contacts_tab_label')" name="contacts" :disabled="noSequence">
+                <contacts-tab/>
+            </el-tab-pane>
+            
         </el-tabs>
     </div>
 </template>

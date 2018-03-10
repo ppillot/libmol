@@ -107,7 +107,7 @@ function contact (comp, context) {
     let contactReprParam = {
       flatShaded: true,
       sele: cE.withinTargetSeleString,
-      filterSele: cE.targetSeleString
+      filterSele: cE.targetFilter
     }
     Object.assign(contactReprParam, defaultDisplayedContacts)
 

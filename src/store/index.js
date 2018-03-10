@@ -50,7 +50,7 @@ let startParams = getStartingParameters()
 // console.log(startParams)
 
 /**
- * @description removes residues from their current representation so that they are set only in the latest
+ * @description removes atoms from their current representation so that they are set only in the latest
  *
  * @param {NGL atomSet} atomSet
  * @param {number} skipReprIndex index of the latest representation : must be skipped !
@@ -125,11 +125,11 @@ function getColorFromSelection (as = currentSelectionAtomSet) {
   // edge case atom set is empty
   if (as.isAllClear()) return 'none'
   let color = 'mix'
-  for (let i = 0; i < tabColorAtomSet.length; i++) {
-    if (!tabColorAtomSet[i].isAllClear() && tabColorAtomSet[i].getIntersectionSize(as) === as.getSize()) {
-      color = tabColorScheme[i][0]
+  tabColorAtomSet.forEach((colorAS, index) => {
+    if (!colorAS.isAllClear() && colorAS.getIntersectionSize(as) === as.getSize()) {
+      color = tabColorScheme[index][0]
     }
-  }
+  })
   return color
 }
 
@@ -170,6 +170,12 @@ function updateRepresentationDisplay () {
 function updateStageCenter () {
   const sele = currentlyDisplayedAtomSet.toSeleString()
   stage.compList[0].autoView(sele, 1000)
+}
+
+function triggerContextMenu (context) {
+  return function (pickingProxy) {
+    console.log(pickingProxy)
+  }
 }
 
 function resizeStage (stage) {
@@ -623,6 +629,8 @@ var vuex = new Vuex.Store({
       stage = new NGL.Stage(options.id, { backgroundColor: 'white' })
       loadNewFile = loadFile(stage, context)
       stage.mouseControls.remove('hoverPick')
+      stage.mouseControls.remove('clickPick-right')
+      stage.mouseControls.add('clickPick-right', triggerContextMenu(context))
       stage.signals.hovered.add(hover(context))
       context.dispatch('loadNewFile', startParams)
 

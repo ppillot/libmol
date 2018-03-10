@@ -1,5 +1,16 @@
 {
-  "presets": [["es2015", {"modules": false}], "stage-2"],
+  "presets": [
+    ["es2015", 
+      {"modules": false}
+    ],
+    "stage-2",
+    "jest"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs", "dynamic-import-node"]
+    }
+  },
   "plugins": ["transform-runtime", "syntax-dynamic-import", ["component", [
     {
       "libraryName": "element-ui",

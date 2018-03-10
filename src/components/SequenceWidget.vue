@@ -11,16 +11,19 @@
         </li>
       </ul>
     </div>
-    <div class="tab-body" @mouseover.stop="getHoveredItem('res', $event)" @mouseout.stop="hideTooltip" @scroll.stop="scroll($event)">
+    <div class="tab-body" 
+      @mouseover.stop="getHoveredItem('res', $event)" 
+      @mouseout.stop="hideTooltip" 
+      @scroll.stop="scroll($event)">
       <div :style="listHeightStyle">
           <table :style="[listScrollStyle, listWidthStyle]" id="table-seq">
             <tr v-for="line in visibleResidues" :key="line.index">
               <template v-for="residu in line.resRow">
                 <td v-if="residu" 
-                :data-index="residu.index" 
-                :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH'), sel: isSelected(residu.index), usersel: isBeingSelected(residu.index)}"
-                :key="residu.index">
-                  {{ residu.resname }}
+                  :data-index="residu.index" 
+                  :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH'), sel: isSelected(residu.index), usersel: isBeingSelected(residu.index)}"
+                  :key="residu.index">
+                    {{ residu.resname }}
                 </td>
                 <td v-else>
                 </td>
@@ -30,72 +33,13 @@
         </div>
     </div>
     <div class="tooltip" v-bind:style="tooltipStyles" v-html="tooltipText"></div>
-    <div v-if="showContextMenu" class="context-menu-backdrop" @click.self="hideContextMenu">
-      <div class="context-menu" :style="contextMenuStyles">
-        <template v-if="ctxMProp.type==='chain'">
-          <div>{{ $t('tooltips.chain') }} {{ ctxMProp.chain }}</div>
-          <ul>
-            <li @click="hide(':' + ctxMProp.chain, $event)"
-              :class="{disabled: !ctxMProp.isMaskable}">
-              <i class="icon-eye-off"></i>
-              {{ $t('ctxMenu.mask') }}
-            </li>
-            <li @click="show(':' + ctxMProp.chain, $event)"
-              :class="{disabled: !ctxMProp.isUnMaskable}">
-              <i class="icon-eye"></i>
-              {{ $t('ctxMenu.unmask') }}
-            </li>
-            <li @click="hide('not :' + ctxMProp.chain, $event)"
-              :class="{disabled: !ctxMProp.isRestMaskable}"
-              v-if="ctxMProp.isRestPresent">
-              <i class="icon-eye-off"></i> 
-              {{ $t('ctxMenu.mask_rest') }}
-            </li>
-            <li @click="show('not :' + ctxMProp.chain, $event)" 
-              :class="{disabled: !ctxMProp.isRestUnMaskable}"
-              v-if="ctxMProp.isRestPresent">
-              <i class="icon-eye"></i> 
-              {{ $t('ctxMenu.unmask_rest') }}
-            </li>
-          </ul>
-        </template>
-        <template v-else-if="ctxMProp.type==='res'">
-          <div>{{ ctxMProp.name }} {{ ctxMProp.num }} - {{ $t('tooltips.chain') }} {{ ctxMProp.chain }}</div>
-          <ul>
-            <li @click="hide(ctxMProp.num + ':' + ctxMProp.chain, $event)"
-              :class="{disabled: !ctxMProp.isMaskable}">
-              <i class="icon-eye-off"></i>
-              {{ $t('ctxMenu.mask') }}
-            </li>
-            <li @click="show(ctxMProp.num + ':' + ctxMProp.chain, $event)"
-              :class="{disabled: !ctxMProp.isUnMaskable}">
-              <i class="icon-eye"></i>
-              {{ $t('ctxMenu.unmask') }}
-            </li>
-            <li @click="hide('not ' + ctxMProp.num + ':' + ctxMProp.chain, $event)"
-              :class="{disabled: !ctxMProp.isRestMaskable}"
-            >
-              <i class="icon-eye-off"></i> 
-              {{ $t('ctxMenu.mask_rest') }}
-            </li>
-            <li @click="show('not ' + ctxMProp.num + ':' + ctxMProp.chain, $event)" 
-              :class="{disabled: !ctxMProp.isRestUnMaskable}"
-            >
-              <i class="icon-eye"></i> 
-              {{ $t('ctxMenu.unmask_rest') }}
-            </li>
-            <li @click="contact({resnum: ctxMProp.num, chainId: ctxMProp.chain}, $event)">
-              <i class="el-icon-share"></i> 
-              {{ $t('ctxMenu.contact') }}
-            </li>
-          </ul>
-        </template>
-      </div>
-    </div>
+    <entity-context-menu 
+      :showContextMenu="showContextMenu" :target="contextMenuTarget" @hide="hideContextMenu"/>
   </div>
 </template>
 
 <script>
+  import EntityContextMenu from './EntityContextMenu'
   import optimizedResize from '../utils/resize'
 
   let prevPos = {top: 0, left: 0}
@@ -152,6 +96,9 @@
 
   export default {
     name: 'SequenceWidget',
+    components: {
+      EntityContextMenu
+    },
     props: ['active'],
     data () {
       return {
@@ -160,12 +107,8 @@
           left: '0px',
           visibility: 'hidden'
         },
-        contextMenuStyles: {
-          top: '0px',
-          left: '0px',
-          visibility: 'hidden'
-        },
         showContextMenu: false,
+        contextMenuTarget: this.$el,
         listStart: 0,
         listEnd: 9,
         elementHeight: 22,
@@ -283,43 +226,18 @@
         this.hideTooltip()
         if (((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) && !isScrollInProcess) {
           this.showContextMenu = true
-          this.contextMenuStyles = getTooltipStyles(target)
           const targetType = (target.tagName === 'LI') ? 'chain' : 'res'
           this.$store.dispatch('contextMenuCalled', {
             type: targetType,
             index: target.dataset.index
           })
+          this.contextMenuTarget = target
         } else {
           this.hideContextMenu()
         }
       },
       hideContextMenu () {
         this.showContextMenu = false
-      },
-      hide (part, event) {
-        if (event.target.className === 'disabled') return
-        this.$store.dispatch('hide',
-          { sele: part,
-            action: 'hide',
-            type: this.ctxMProp.type,
-            chainName: this.ctxMProp.chain,
-            resnum: (this.ctxMProp.type === 'res') ? this.ctxMProp.num : null,
-            resname: (this.ctxMProp.type === 'res') ? this.ctxMProp.name : null
-          })
-      },
-      show (part, event) {
-        if (event.target.className === 'disabled') return
-        this.$store.dispatch('hide',
-          { sele: part,
-            action: 'show',
-            type: this.ctxMProp.type,
-            chainName: this.ctxMProp.chain,
-            resnum: (this.ctxMProp.type === 'res') ? this.ctxMProp.num : null,
-            resname: (this.ctxMProp.type === 'res') ? this.ctxMProp.name : null
-          })
-      },
-      contact (part, event) {
-        this.$store.dispatch('focusContact', part)
       },
 // *********  Virtual scrolling
       scroll (event) {

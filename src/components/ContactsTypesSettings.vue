@@ -8,9 +8,11 @@
           :value="checkAllHbonds" 
           @change="handleCheckAllHbondsChange"
           label="allHbonds">
-          {{ $t('ui.contacts.allHbonds') }}
+            {{ $t('ui.contacts.allHbonds') }}
         </el-checkbox>
-        <i class="el-icon-arrow-right " @click="handleDisplayHbondsTypes" :class="{'display-sub': hbondsTypesDisplayed}"></i>
+        <i class="el-icon-arrow-right " 
+          @click="handleDisplayHbondsTypes" 
+          :class="{'display-sub': hbondsTypesDisplayed}"></i>
         <el-checkbox-group v-model="contactsList">
           <ul>
             <li v-if="hbondsTypesDisplayed">

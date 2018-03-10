@@ -18,6 +18,7 @@ class ContactEntities {
 
     this.targetCompleteSele = ''
     this.targetSele = ''
+    this.targetFilter = ''
     this.updateTarget(params.target)
 
     this.withinSele = ''
@@ -33,7 +34,7 @@ class ContactEntities {
    * Depends on :
    * - target: fixed
    * - isBackboneExcluded: changeable
-   * @param {Object} [params] parameters: esnum, chainId, seleString
+   * @param {Object} [params] parameters: resnum, chainId, seleString
    */
   updateTarget ({resnum = '', chainId = '', seleString = ''}) {
     let s = ''
@@ -50,6 +51,7 @@ class ContactEntities {
     } else s = `(${seleString})`
 
     this.targetCompleteSele = s
+    this.targetFilter = s
 
     if (this.isBackboneExcluded) {
       s += ' AND NOT BACKBONE'

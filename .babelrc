@@ -11,11 +11,11 @@
       "plugins": ["transform-es2015-modules-commonjs", "dynamic-import-node"]
     }
   },
-  "plugins": ["transform-runtime", "syntax-dynamic-import", ["component", [
+  "plugins": ["transform-runtime", "syntax-dynamic-import", ["component", 
     {
       "libraryName": "element-ui",
       "styleLibraryName": "theme-chalk"
     }
-  ]]],
+  ]],
   "comments": false
 }

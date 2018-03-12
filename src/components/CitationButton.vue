@@ -4,7 +4,7 @@
       :title="title"
       :visible.sync="isPanelVisible"
       :modal-append-to-body="false"
-      size="mini">
+    >
       <!--<el-tabs>
         <el-tab-pane label="Citation" name="citation">-->
           <citations-panel/>

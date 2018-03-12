@@ -261,7 +261,7 @@ let byres = ColormakerRegistry.addScheme(function () {
   this.atomColor = function (atom) {
     return ResidueColors2[atom.resname] || DefaultResidueColor2
   }
-})
+}, 'byres')
 
 export {
   getColor,

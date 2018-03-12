@@ -2,7 +2,7 @@
   <el-dialog
     :title="$t('ui.alert.error')"
     v-model="dialogVisible"
-    size="small">
+  >
     <template v-if="type === 'old_file'">
       <span>{{ $t('ui.alert.old_file_msg') }}</span>
       <span slot="footer" class="dialog-footer">

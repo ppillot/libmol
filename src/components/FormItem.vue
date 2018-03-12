@@ -35,14 +35,18 @@ export default {
 
 </script>
 
-<style lang="stylus">
-.form-item
-  margin-bottom: 22px
-  label
-    font-size 14px
-    color #48576a
-    line-height 1
-    display block
-.form-item-slot
-  margin-top 8px
+<style>
+.form-item {
+  margin-bottom: 22px;
+}
+.form-item label {
+  font-size: 14px;
+  color: #48576a;
+  line-height: 1;
+  display: block;
+}
+    
+.form-item-slot {
+  margin-top: 8px
+}
 </style>

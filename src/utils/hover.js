@@ -6,6 +6,7 @@ function hover (context) {
   let timeout
 
   function debouncedCallBack (token) {
+    // console.log(token)
     clearTimeout(timeout)
     timeout = setTimeout(function () {
       context.dispatch('hover', token)
@@ -17,6 +18,7 @@ function hover (context) {
   }
 
   return function (pickingProxy) {
+    // console.log(pickingProxy)
     // background is being hovered
     if (pickingProxy === undefined || pickingProxy.mouse.pressed) {
       if (isNaN(prevPid)) { // nothing has changed
@@ -42,14 +44,27 @@ function hover (context) {
       case 'atom':
         atom = getAtomProperties(pickingProxy.atom)
         atom.pos = pickingProxy.controls.stage.viewerControls.getPositionOnCanvas(pickingProxy.atom)
+        atom.type = 'atom'
         prevAtom = atom
         return debouncedCallBack(atom)
       case 'bond':
         atom = getAtomProperties(pickingProxy.closestBondAtom)
         atom.pos = pickingProxy.controls.stage.viewerControls.getPositionOnCanvas(pickingProxy.closestBondAtom)
+        atom.type = 'atom'
         prevAtom = atom
         return debouncedCallBack(atom)
+      case 'contact':
+        // console.log(pickingProxy)
+        let contact = {
+          type: 'contact',
+          atom1: getAtomProperties(pickingProxy.contact.atom1),
+          atom2: getAtomProperties(pickingProxy.contact.atom2),
+          contactType: pickingProxy.contact.type,
+          pos: pickingProxy.canvasPosition
+        }
+        return debouncedCallBack(contact)
       default:
+        // console.log(pickingProxy.picker.type)
         prevAtom = {}
         return callback()
     }

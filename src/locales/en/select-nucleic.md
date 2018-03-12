@@ -1,5 +1,5 @@
 # Select nucleic acids (DNA or RNA)
-This control selects **nucleic acids** present in the molecular model. Every nucleic chains or individual nucleotides are selected with this command.   
+This control selects **[nucleic acids](lexicon-nucleic)** present in the molecular model. Every nucleic chains or individual nucleotides are selected with this command.   
  
 After selecting, it's possible to act (represent, color,...) upon these selected atoms without affecting the rest of the molecular model.
 

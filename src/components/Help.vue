@@ -10,7 +10,7 @@
       </template>
       <template v-else>
         <span class="open" @click.stop="toggle">
-          <i class="el-icon-information"></i> 
+          <i class="el-icon-info"></i> 
           {{ $t('ui.help.open_help') }}
         </span>
       </template>
@@ -58,6 +58,16 @@
 
   export default {
     name: 'Help',
+    props: {
+      namespace: {
+        default: 'commands',
+        type: String
+      },
+      start: {
+        default: '',
+        type: String
+      }
+    },
     data: function () {
       return {
         active: true
@@ -70,13 +80,14 @@
           : ''
       },
       helpHistory: function () {
-        return this.$store.state.helpHistory.length > 0
+        return this.$store.state.helpHistory[this.namespace].length > 0
       },
       helpHistoryForward: function () {
-        return this.$store.state.helpHistoryForward.length > 0
+        return this.$store.state.helpHistoryForward[this.namespace].length > 0
       },
       helpToken: function () {
-        return this.$store.state.help
+        const helpFilename = this.$store.state.help[this.namespace]
+        return (helpFilename === '') ? this.start : helpFilename
       },
       navigationStyle: function () {
         return this.active ? { right: '5px', left: 'auto' } : { left: '5px', right: 'auto' }
@@ -86,7 +97,7 @@
       getLink: function (event) {
         const href = event.target.getAttribute('href')
         if (href) {
-          const subject = getHelpSubject(href)
+          const subject = Object.assign({namespace: this.namespace}, getHelpSubject(href))
           if (subject !== null) {
             this.$store.dispatch('help', subject)
           }
@@ -94,11 +105,17 @@
       },
 
       stepBackHistory: function () {
-        this.$store.dispatch('helpNavigate', 'backward')
+        this.$store.dispatch('helpNavigate', {
+          step: 'backward',
+          namespace: this.namespace
+        })
       },
 
       stepForwardHistory: function () {
-        this.$store.dispatch('helpNavigate', 'forward')
+        this.$store.dispatch('helpNavigate', {
+          step: 'forward',
+          namespace: this.namespace
+        })
       },
 
       toggle: function () {

@@ -7,7 +7,8 @@
         </div>
         <div id="commands-tab--help">
             
-           <help></help>
+           <help
+            namespace="commands" />
             
         </div>
     </div>

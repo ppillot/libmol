@@ -6,19 +6,25 @@
 
         <el-tabs value="files" type="border-card" class="tab-card" @tab-click="switchTab">
             <el-tab-pane :label="$t('ui.files_tab_label')" name="files">
-                <search-libmol></search-libmol>
-                <search-pdb></search-pdb>
-                <load-file></load-file>
+                <search-libmol/>
+                <search-pdb/>
+                <load-file/>
             </el-tab-pane>
             <el-tab-pane :label="$t('ui.commands_tab_label')" name="commands">
-                <commands-tab></commands-tab>
+                <commands-tab/>
             </el-tab-pane>
             <el-tab-pane :label="$t('ui.sequences_tab_label')" name="sequences" :disabled="noSequence">
-                <sequence-tab :active="isSequenceTabActive"></sequence-tab>
+                <sequence-tab :active="isSequenceTabActive"/>
             </el-tab-pane>
+            
             <el-tab-pane :label="$t('ui.surfaces_tab_label')" name="surfaces">
-                <surface-tab></surface-tab>
+                <surface-tab/>
             </el-tab-pane>
+
+            <el-tab-pane :label="$t('ui.contacts_tab_label')" name="contacts" :disabled="noSequence">
+                <contacts-tab/>
+            </el-tab-pane>
+            
         </el-tabs>
     </div>
 </template>
@@ -31,6 +37,7 @@ import SequenceTab from './SequenceTab'
 import SurfaceTab from './SurfaceTab'
 import CommandsTab from './CommandsTab'
 import AboutPanel from './AboutPanel'
+import ContactsTab from './ContactsTab'
 
 export default {
   name: 'theSidebar',
@@ -41,6 +48,7 @@ export default {
     SequenceTab,
     SurfaceTab,
     CommandsTab,
+    ContactsTab,
     AboutPanel
   },
   data () {

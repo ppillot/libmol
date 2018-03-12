@@ -6,18 +6,15 @@
     <form-item :label="$t('ui.toolbar.settings.fog_label')">
       <el-slider v-model="fog" range></el-slider>  
     </form-item>
-    <form-item :label="$t('ui.toolbar.settings.background_label')" inline>
+    <form-item :label="$t('ui.toolbar.settings.background_label')">
       <el-switch
         v-model="color"
-        :width="80"
-        on-color="#bfcbd9"
-        off-color="black"
-        :on-text="$t('ui.toolbar.settings.white')"
-        :off-text="$t('ui.toolbar.settings.black')"
+        :active-text="$t('ui.toolbar.settings.white')"
+        :inactive-text="$t('ui.toolbar.settings.black')"
         @change="switchBackgroundColor">
       </el-switch>
     </form-item>
-    <form-item :label="$t('ui.toolbar.settings.multiple_bonds')" inline>
+    <form-item :label="$t('ui.toolbar.settings.multiple_bonds')">
       <el-switch
         v-model="multipleBond"
         @change="switchMultipleBond">
@@ -34,14 +31,20 @@
         </option>
       </select>  
     </form-item>
+    <contacts-types-settings />
+
     <div style="text-align: right">
-      <el-button type="primary" @click="reset">{{ $t('ui.toolbar.settings.reset') }}</el-button>
+      <el-button
+        type="primary"
+        size="medium"
+        @click="reset">{{ $t('ui.toolbar.settings.reset') }}</el-button>
     </div>
   </div>
 </template>
 
 <script>
   import FormItem from './FormItem'
+  import ContactsTypesSettings from './ContactsTypesSettings'
   import { locales } from '../locales/locales'
   import Vue from 'vue'
   
@@ -59,7 +62,8 @@
   export default {
     name: 'settings',
     components: {
-      FormItem
+      FormItem,
+      ContactsTypesSettings
     },
     data () {
       return {
@@ -80,6 +84,7 @@
       reset () {
         Object.assign(this.$data, defaultParameters, {color: true})
         this.setStageParameters(defaultParameters)
+        this.$store.dispatch('displayContacts', [])
       },
       setStageParameters (params) {
         this.$store.dispatch('setStageParameters', params)

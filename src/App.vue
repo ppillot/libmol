@@ -10,19 +10,6 @@
     </div>
     <alert/>
   </div>
-  <!-- <el-row class="row-bg" id="app">
-    <el-col :span="8" class="full-height">
-      <div class="grid-content full-height">
-        <sidebar></sidebar>
-      </div>
-    </el-col>
-    <el-col :span="16" class="full-height" id="view" :style="fullscreen">
-        <toolbar></toolbar>
-        <ngl></ngl>
-        <statusbar></statusbar>
-    </el-col>
-    <alert></alert>
-  </el-row> -->
 </template>
 
 <script>
@@ -111,10 +98,6 @@ export default {
     overflow-x: hidden;
   }
   
-  .el-col {
-    border-radius: 4px;
-  }
-  
   .bg-purple {
     background: #d3dce6;
   }
@@ -152,4 +135,18 @@ export default {
     background-color: #f9fafc;
   }
 
+  .el-slider__runway {
+    height: 4px;
+  }
+
+  .el-slider__bar {
+    height: 4px;
+    background-color: #20a0ff;
+  }
+
+  .el-slider__button {
+    width: 11px;
+    height: 11px;
+    background-color: #20a0ff;
+  }
 </style>

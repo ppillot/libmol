@@ -36,7 +36,7 @@
               )})` }}
             </div>
             <visible :value="visibility[index]" @input="val => {handleVisibility(val, surface.id)}"></visible>
-            <el-button type="text" icon="delete" @click="handleDelete(surface.id)"></el-button>
+            <el-button type="text" icon="el-icon-delete" @click="handleDelete(surface.id)"></el-button>
           </div>
           <transition appear>
             <div v-if="edit === index" class="surface-settings">

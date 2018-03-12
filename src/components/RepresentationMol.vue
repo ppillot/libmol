@@ -7,11 +7,21 @@
    </button-group>
    <form-item :label="$t('ui.commands.representation.label')" v-else>
       <button-group :active-value="displayed" @change="display" @hover="hover">
-        <radio-button :disabled="none" value="spacefill">{{ $t('ui.commands.representation.spacefill') }}</radio-button>
-        <radio-button :disabled="none" value="ball+stick">{{ $t('ui.commands.representation.balls_and_sticks') }}</radio-button>
-        <radio-button :disabled="none" value="licorice">{{ $t('ui.commands.representation.sticks') }}</radio-button>
-        <radio-button :disabled="nonPolymer || none" value="cartoon">{{ $t('ui.commands.representation.cartoon') }}</radio-button>
-        <radio-button :disabled="nonPolymer || none" value="backbone">{{ $t('ui.commands.representation.backbone') }}</radio-button>
+        <radio-button :disabled="none" value="spacefill">
+          {{ $t('ui.commands.representation.spacefill') }}
+        </radio-button>
+        <radio-button :disabled="none" value="ball+stick">
+          {{ $t('ui.commands.representation.balls_and_sticks') }}
+        </radio-button>
+        <radio-button :disabled="none" value="licorice">
+          {{ $t('ui.commands.representation.sticks') }}
+        </radio-button>
+        <radio-button :disabled="nonPolymer || none" value="cartoon">
+          {{ $t('ui.commands.representation.cartoon') }}
+        </radio-button>
+        <radio-button :disabled="nonPolymer || none" value="backbone">
+          {{ $t('ui.commands.representation.backbone') }}
+        </radio-button>
       </button-group>
    </form-item>
   </div>
@@ -31,8 +41,8 @@
     },
     computed: {
       nonPolymer: function () {
-        let sel = this.$store.state.selection
-        let molTypes = this.$store.state.mol.molTypes
+        const sel = this.$store.state.selection
+        const molTypes = this.$store.state.mol.molTypes
         return ((molTypes.nucleic === false && molTypes.protein === false) || sel === 'hetero' || sel === 'water' || sel === 'saccharide' || this.$store.state.mol.noSequence)
       },
       none: function () {
@@ -70,7 +80,8 @@
         this.$store.dispatch('help', {
           action: 'display',
           attribute: displayType,
-          active: active
+          active: active,
+          namespace: 'commands'
         })
       }
     },

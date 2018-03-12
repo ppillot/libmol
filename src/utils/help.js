@@ -36,6 +36,10 @@ const helpFiles = {
     nucleotide: 'lexiconNucleotide',
     protein: 'lexiconProtein',
     technique: 'lexiconTechnique'
+  },
+  contacts: {
+    hbond: 'contactsHbond',
+    saltbridge: 'contactsSaltbridge'
   }
 }
 

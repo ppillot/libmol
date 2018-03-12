@@ -69,7 +69,12 @@
 
 <script>
   function getTooltipStyles (target) {
-    let rect = target.getBoundingClientRect() || {top: 0, right: 0}
+    let rect = (target.left === undefined)
+    ? target.getBoundingClientRect() || {top: 0, right: 0}
+    : {
+      top: target.top - 10,
+      right: target.left
+    }
     return {
       top: rect.top - 5 + 'px',
       left: rect.right + 5 + 'px',
@@ -85,7 +90,7 @@
         required: false,
         default: false
       },
-      target: { // HTMLElement
+      target: { // HTMLElement or position object (top, left)
         required: true
       }
     },
@@ -93,8 +98,9 @@
       ctxMProp: function () {
         return this.$store.state.anchor
       },
-      contextMenuStyles: function () {
-        return getTooltipStyles(this.target)
+      contextMenuStyles () {
+        const pos = getTooltipStyles(this.target)
+        return pos
       }
     },
     methods: {
@@ -169,6 +175,7 @@
     font-weight: 400;
     font-size: 0.9em;
     padding: 0;
+    white-space: nowrap;
   }
 
   .context-menu ul {

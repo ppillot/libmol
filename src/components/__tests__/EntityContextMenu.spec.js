@@ -1,5 +1,5 @@
 import EntityContextMenu from '../EntityContextMenu.vue'
-import { mount, createLocalVue } from 'vue-test-utils'
+import { shallow, createLocalVue } from 'vue-test-utils'
 import VueI18n from 'vue-i18n'
 
 const localVue = createLocalVue()
@@ -34,7 +34,7 @@ describe('EntityContextMenu.vue', () => {
       showContextMenu: true,
       target: target
     }
-    const wrapper = mount(EntityContextMenu, {
+    const wrapper = shallow(EntityContextMenu, {
       localVue,
       propsData: props,
       mocks: {
@@ -49,7 +49,7 @@ describe('EntityContextMenu.vue', () => {
       showContextMenu: true,
       target: target
     }
-    const wrapper = mount(EntityContextMenu, {
+    const wrapper = shallow(EntityContextMenu, {
       localVue,
       propsData: props,
       mocks: {
@@ -67,7 +67,7 @@ describe('EntityContextMenu.vue', () => {
       showContextMenu: true,
       target: target
     }
-    const wrapper = mount(EntityContextMenu, {
+    const wrapper = shallow(EntityContextMenu, {
       localVue,
       propsData: props,
       mocks: {
@@ -75,6 +75,21 @@ describe('EntityContextMenu.vue', () => {
       }
     })
     expect(wrapper.findAll('li.disabled').length).toBe(1)
+  })
+
+  test('target prop accepts object', () => {
+    const props = {
+      showContextMenu: true,
+      target: {top: 10, left: 20, right: 20}
+    }
+    const wrapper = shallow(EntityContextMenu, {
+      localVue,
+      propsData: props,
+      mocks: {
+        $store
+      }
+    })
+    expect(wrapper.vm.contextMenuStyles.top).toBe('-5px')
   })
 })
 

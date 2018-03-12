@@ -30,13 +30,13 @@
       <!-- suggestions -->
           <div class="suggest" :style="suggestStyles">
             
-              <template v-for="(subject, index) in suggestions">
+              <template v-for="(subject) in suggestions">
                 <div class="category" :key="subject.category">{{ $t(`tooltips.${subject.category}`) }}</div>
-                <ul :key="subject.category">
+                <ul :key="subject.category + '-ul'">
                   <li
                     v-for="(suggestion, index) in subject.content" 
                     :class="{highlight: (highlightedSuggestion === suggestion.index)}"
-                    :key="index"
+                    :key="subject.category + index"
                     class="suggestion"
                     @mouseup="replaceBySuggestion(suggestion.word)"
                     >
@@ -47,10 +47,10 @@
                       <span v-else-if="subject.category === 'chain'">
                         {{ getEntityFromChainName(suggestion.word) }}
                       </span>
-                      <span v-if="subject.category==='element'">
+                      <span v-else-if="subject.category==='element'">
                         {{ $t(`biochem.el_name.${suggestion.word.substring(1)}`) }}
                       </span>
-                      <span v-if="subject.category==='keyword'">
+                      <span v-else-if="subject.category==='keyword'">
                         {{ $t(`tooltips.${suggestion.word}`) }}
                       </span>
                   </li>

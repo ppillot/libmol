@@ -172,11 +172,11 @@ function updateStageCenter () {
   stage.compList[0].autoView(sele, 1000)
 }
 
-function triggerContextMenu (context) {
-  return function (pickingProxy) {
-    console.log(pickingProxy)
+/* function triggerContextMenu (context) {
+  return function (stage) {
+    console.log(stage.mouseObserver.canvasPosition)
   }
-}
+} */
 
 function resizeStage (stage) {
   return function () {
@@ -374,6 +374,7 @@ var vuex = new Vuex.Store({
     contactsReprList: [],
     isAtomHovered: false,
     isContactHovered: false,
+    isContextMenuCalled: false,
     isHidden: false,
     itemHovered: {
       name: '',
@@ -382,6 +383,7 @@ var vuex = new Vuex.Store({
       description: ''
     },
     anchor: {},
+    contextMenuPos: {},
     stage: {
       clipNear: 30
     },
@@ -491,6 +493,10 @@ var vuex = new Vuex.Store({
     },
     isMeasuringAngles (state, isMeasuring) {
       state.isMeasuringAngles = isMeasuring
+    },
+    isContextMenuCalled (state, {show = true, pos = {top: 0, left: 0}}) {
+      state.isContextMenuCalled = show
+      state.contextMenuPos = pos
     },
     updateColor (state) {
       state.color = getColorFromSelection()
@@ -630,7 +636,9 @@ var vuex = new Vuex.Store({
       loadNewFile = loadFile(stage, context)
       stage.mouseControls.remove('hoverPick')
       stage.mouseControls.remove('clickPick-right')
-      stage.mouseControls.add('clickPick-right', triggerContextMenu(context))
+      stage.mouseControls.add('clickPick-right', (stageInstance, pickingProxy) => {
+        return context.dispatch('stageContextMenu', {stageInstance, pickingProxy})
+      })
       stage.signals.hovered.add(hover(context))
       context.dispatch('loadNewFile', startParams)
 
@@ -1019,7 +1027,26 @@ var vuex = new Vuex.Store({
       context.commit('isAtomHovered', false)
       context.commit('isContactHovered', false)
     },
-
+    stageContextMenu (context, {stageInstance, pickingProxy}) {
+      if (pickingProxy === undefined) return
+      const containerPos = stageInstance.viewer.container.getBoundingClientRect()
+      const mousePos = stageInstance.mouseObserver.canvasPosition
+      const absolutePosition = {
+        top: containerPos.bottom - mousePos.y,
+        left: containerPos.left + mousePos.x,
+        right: containerPos.left + mousePos.x
+      }
+      const atom = pickingProxy.atom || pickingProxy.closestAtom
+      if (atom !== undefined) {
+        context.dispatch('contextMenuCalled', {
+          type: 'res',
+          resnum: atom.resno,
+          chainName: atom.chainname,
+          resname: atom.resname
+        })
+        context.commit('isContextMenuCalled', {show: true, pos: absolutePosition})
+      }
+    },
     contextMenuCalled (context, item) {
       let anchor = {}
       switch (item.type) {
@@ -1050,7 +1077,7 @@ var vuex = new Vuex.Store({
             chain: res.chainname,
             isMaskable: currentlyDisplayedAtomSet.intersects(residueAtomSet),
             isUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(residueAtomSet) < residueAtomSet.getSize(),
-            // isRestPresent: isRestPresent,
+            isRestPresent: !restResAtomSet.isAllClear(),
             isRestMaskable: currentlyDisplayedAtomSet.intersects(restResAtomSet),
             isRestUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(restResAtomSet) < restResAtomSet.getSize(),
             isSelected: currentSelectionAtomSet.intersects(residueAtomSet),

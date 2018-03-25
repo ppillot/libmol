@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import getHelp from 'utils/help'
+  import getHelp from '../utils/help'
   import Marked from 'marked'
   let renderer = new Marked.Renderer()
 

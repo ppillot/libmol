@@ -564,7 +564,7 @@ var vuex = new Vuex.Store({
       state.help[namespace] = subject
     },
     helpHistoryStep (state, {step, namespace}) {
-      if (step === -1 && state.helpHistory.length > 0) { // step back
+      if (step === -1 && state.helpHistory[namespace].length > 0) { // step back
         state.helpHistoryForward[namespace].push(state.help[namespace])
         state.help[namespace] = state.helpHistory[namespace].pop()
       } else if (step === 1 && state.helpHistoryForward[namespace].length > 0) { // step forward

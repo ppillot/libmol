@@ -28,9 +28,6 @@
           </td>
         </tr>
       </table>
-      
-      
-      
     </template>
   </div>
 </template>

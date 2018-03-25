@@ -4,7 +4,7 @@ import VueI18n from 'vue-i18n'
 
 // import * as actions from './actions'
 // import * as getters from './getters'
-import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDebug} from 'ngl'
+import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDebug, MouseActions} from 'ngl'
 /* eslint-disable-next-line */
 // let NGL = () => import('ngl') /* eslint-disable-line */
 import debounce from 'throttle-debounce/debounce'
@@ -19,7 +19,7 @@ import {contact} from 'utils/contacts'
 import {Notification} from 'element-ui'
 import getStartingParameters from 'utils/startup'
 
-let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug}
+let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug, MouseActions}
 Vue.use(Vuex)
 Vue.use(VueI18n)
 /** @description local module variable to hold the NGL stage object

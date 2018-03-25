@@ -39,7 +39,10 @@ const helpFiles = {
   },
   contacts: {
     hbond: 'contactsHbond',
-    saltbridge: 'contactsSaltbridge'
+    saltbridge: 'contactsSaltbridge',
+    metal: 'contactsMetal',
+    hydrophobic: 'contactsHydrophobic',
+    pi: 'contactsPi'
   }
 }
 

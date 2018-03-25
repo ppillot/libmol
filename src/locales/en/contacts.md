@@ -1,20 +1,13 @@
-# Interactions non covalentes
-Cet onglet affiche les informations et contrôle la visualisation
-des interactions non covalentes :
-* les [liaisons hydrogène](contacts-hbonds)
-* les [liaisons ioniques](contacts-saltbridge)
-* les liaisons de coordination
-* les interactions hydrophobes
-* les interactions avec des cycles aromatiques
+# Non covalent interactions
+This tab is where you can control and get informations about non covalent interactions:
+* [Hydrogen bonds](contacts-hbonds)
+* [Salt bridges](contacts-saltbridge)
+* [Metal coordination](contacts-metal)
+* [Hydrophobic interactions](contacts-hydrophobic)
+* [π-stacking and cation-π interactions](contacts-pi)
 
-## Définition
-Une **liaison covalente** relie deux atomes d'une même molécule par la
-mise en commun d'un doublet d'**électrons**. Les interactions non covalentes
-peuvent s'établir entre des atomes de molécules différentes. L'énergie
-associée est en général plus faible. Elles sont impliquées dans les contacts entre molécules, dans les repliements des molécules biologiques et dans les réactions biochimiques.
+## Definitions
+A **covalent interaction** bonds two atoms from the same molecule by sharing an **electron** duet. Non covalent interactions may occur between atoms of the same chain, between different chains from the same molecule or between two different molecules (such as a protein and a ligand). The corresponding binding energy of a single non covalent interaction is generally weaker than the one of a covalent bond. These interactions are critical to many biological processes such as contact between molecules, spatial conformation, biochemical reactions.
 
-## Mode d'emploi
-Pour afficher les interactions avec un résidu ou une chaîne, vous 
-devez d'abord utiliser l'onglet **Séquence** et faire un **clic-droit** sur 
-le résidu d'intérêt. Dans le menu contextuel affiché, choisissez 
-l'option "**Interactions**".
+## Guide
+To display interactions with a specific residue or a specific chain, you can right-click on this object from the 3D model or the **Sequence tab**. In the context-menu pick the **Interactions** option.

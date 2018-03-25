@@ -3,9 +3,9 @@ Cet onglet affiche les informations et contrôle la visualisation
 des interactions non covalentes :
 * les [liaisons hydrogène](contacts-hbonds)
 * les [liaisons ioniques](contacts-saltbridge)
-* les liaisons de coordination
-* les interactions hydrophobes
-* les interactions avec des cycles aromatiques
+* les [liaisons des complexes de coordination](contacts-metal)
+* les [interactions hydrophobes](contacts-hydrophobic)
+* les [interactions avec des cycles aromatiques](contacts-pi)
 
 ## Définition
 Une **liaison covalente** relie deux atomes d'une même molécule par la

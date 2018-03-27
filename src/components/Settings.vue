@@ -69,7 +69,6 @@
       return {
         clipNear: 0,
         clipFar: 100,
-        fog: [50, 100],
         backgroundColor: 'white',
         ambientIntensity: 0.2,
         lightIntensity: 1,
@@ -78,6 +77,16 @@
         locales: locales,
         lang: this.$root.$lang,
         multipleBond: false
+      }
+    },
+    computed: {
+      fog: {
+        get: function () {
+          return this.$store.state.fog
+        },
+        set: function ([percentNear, percentFar]) {
+          this.setStageParameters({fogNear: percentNear, fogFar: percentFar})
+        }
       }
     },
     methods: {
@@ -102,6 +111,7 @@
         /* eslint-disable */
         import(`../locales/bundles/${ev.target.value}.json`)
         .then(response => {
+          console.dir(this)
           Vue.locale([ev.target.value], response)
           Vue.config.lang = this.lang = ev.target.value
           return Promise.resolve()
@@ -115,9 +125,6 @@
     watch: {
       clipNear: function (val) {
         this.setStageParameters({clipNear: val})
-      },
-      fog: function ([percentNear, percentFar]) {
-        this.setStageParameters({fogNear: percentNear, fogFar: percentFar})
       }
     }
   }

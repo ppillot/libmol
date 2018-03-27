@@ -357,6 +357,7 @@ var vuex = new Vuex.Store({
     display: 'licorice',
     color: 'element',
     multipleBond: false,
+    fog: [50, 100],
     atomHovered: {
       symbol: '',
       atomname: '',
@@ -481,6 +482,9 @@ var vuex = new Vuex.Store({
     },
     setMultipleBond (state, val) {
       state.multipleBond = val
+    },
+    setFog (state, fogParams) {
+      state.fog = fogParams
     },
     isAtomHovered (state, isDisplayed) {
       state.isAtomHovered = isDisplayed
@@ -1153,6 +1157,8 @@ var vuex = new Vuex.Store({
       stage.setParameters(params)
       if (params.backgroundColor) {
         measurement.switchColor(params.backgroundColor)
+      } else if (params.fogNear) {
+        commit('setFog', [params.fogNear, params.fogFar])
       }
     },
     setRepresentationParameters (context, params) {

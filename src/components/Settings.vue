@@ -51,7 +51,6 @@
   var defaultParameters = {
     clipNear: 0,
     clipFar: 100,
-    fog: [50, 100],
     backgroundColor: 'white',
     ambientIntensity: 0.2,
     lightIntensity: 1,
@@ -93,6 +92,9 @@
       reset () {
         Object.assign(this.$data, defaultParameters, {color: true})
         this.setStageParameters(defaultParameters)
+        // fog needs a special treatment here and cannot be set with
+        // the defaultParameters set
+        this.fog = [50, 100]
         this.$store.dispatch('displayContacts', [])
       },
       setStageParameters (params) {

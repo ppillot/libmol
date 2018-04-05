@@ -18,6 +18,7 @@ import surface from 'utils/surface'
 import {contact} from 'utils/contacts'
 import {Notification} from 'element-ui'
 import getStartingParameters from 'utils/startup'
+import {mouseFocus} from 'utils/mouse-focus'
 
 let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug, MouseActions}
 Vue.use(Vuex)
@@ -640,9 +641,11 @@ var vuex = new Vuex.Store({
       loadNewFile = loadFile(stage, context)
       stage.mouseControls.remove('hoverPick')
       stage.mouseControls.remove('clickPick-right')
+      stage.mouseControls.remove('clickPick-left')
       stage.mouseControls.add('clickPick-right', (stageInstance, pickingProxy) => {
         return context.dispatch('stageContextMenu', {stageInstance, pickingProxy})
       })
+      stage.mouseControls.add('doubleClick-left', mouseFocus(updateStageCenter))
       stage.signals.hovered.add(hover(context))
       context.dispatch('loadNewFile', startParams)
 
@@ -937,7 +940,7 @@ var vuex = new Vuex.Store({
       context.commit('setWholeMoleculeContacts', contactsList)
     },
 
-    focusContact (context, {resnum, chainId}) {
+    focusContact ({commit}, {resnum, chainId}) {
       contacts.addContact({resnum, chainId})
       const sele = `${resnum}:${chainId} and not backbone`
       // console.log(sele, seleWithin.getSize(), seleWithin)
@@ -945,6 +948,7 @@ var vuex = new Vuex.Store({
       const center = stage.compList[0].getCenter(sele)
       const zoom = stage.compList[0].getZoom(sele)
       stage.animationControls.zoomMove(center, zoom, 400)
+      commit('setFog', [50, 60])
     },
 
     updateDisplayContact (context, contactParam) {

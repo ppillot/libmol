@@ -1,5 +1,5 @@
 function optimizedResize () {
-  var callbacks = []
+  var callbacks: Function[] = []
   var running = false
   // fired on resize event
   function resize () {
@@ -21,14 +21,14 @@ function optimizedResize () {
     running = false
   }
   // adds callback to loop
-  function addCallback (callback) {
+  function addCallback (callback: Function) {
     if (callback) {
       callbacks.push(callback)
     }
   }
 
   return {
-    add: function (callback) {
+    add: function (callback: Function) {
       if (callbacks.length === 0) {
         window.addEventListener('resize', resize)
       }

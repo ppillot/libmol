@@ -1,7 +1,7 @@
 # Interactions non covalentes
 Cet onglet affiche les informations et contrôle la visualisation
 des interactions non covalentes :
-* les [liaisons hydrogène](contacts-hbonds)
+* les [liaisons hydrogène](contacts-hbond)
 * les [liaisons ioniques](contacts-saltbridge)
 * les [liaisons des complexes de coordination](contacts-metal)
 * les [interactions hydrophobes](contacts-hydrophobic)

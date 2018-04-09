@@ -1,6 +1,6 @@
 # Non covalent interactions
 This tab is where you can control and get informations about non covalent interactions:
-* [Hydrogen bonds](contacts-hbonds)
+* [Hydrogen bonds](contacts-hbond)
 * [Salt bridges](contacts-saltbridge)
 * [Metal coordination](contacts-metal)
 * [Hydrophobic interactions](contacts-hydrophobic)

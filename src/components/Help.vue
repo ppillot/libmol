@@ -19,42 +19,8 @@
 </template>
 
 <script>
-  import getHelp from '../utils/help'
-  import Marked from 'marked'
-  let renderer = new Marked.Renderer()
-
-  renderer.link = function (href, title, text) {
-    let txt = ''
-    if (/^\w+-\w+$/.test(href)) { // custom libmol link
-      txt = '<a href="#' + href + '" '
-      txt += (title) ? 'title="' + title + '"' : ''
-      txt += '>' + text + '</a>'
-    } else {
-      txt = '<a href="' + href + '" '
-      txt += (title !== '') ? 'title="' + title + '"' : ''
-      txt += ' target="_blank">' + text + '</a>'
-    }
-    return txt
-  }
-
-  Marked.setOptions({
-    renderer: renderer,
-    sanitize: true
-  })
-
-  function getHelpSubject (token) {
-    const reg = /^#(\w+)-(\w+)$/ // internal links are based on the hash #action-attribute
-    if (reg.test(token)) {
-      const results = reg.exec(token)
-      const subject = {
-        token: getHelp(results[1], results[2]),
-        active: true
-      }
-      return subject
-    } else {
-      return null
-    }
-  }
+  import { getHelpSubject } from '../utils/help.ts'
+  import Marked from '../utils/markedWrapper'
 
   export default {
     name: 'Help',

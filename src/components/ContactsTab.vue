@@ -41,6 +41,7 @@
                 {{ pair.res2.resname }}{{ pair.res2.resno }}:{{ pair.res2.chainname }}
                 -
                 {{ $t('ui.contacts.' + pair.type)}}
+                <context-help :subject="pair.type"/>
               </div>
             </div>
           </div>
@@ -55,6 +56,7 @@ import FormItem from './FormItem'
 import Visible from './Visible'
 import ContactsTabContactSettings from './ContactsTabContactSettings'
 import Split from 'split.js'
+import ContextHelp from './ContextHelp'
 
 // import {contactTypesIndices} from '../utils/contacts'
 
@@ -64,7 +66,8 @@ export default {
     FormItem,
     Help,
     Visible,
-    ContactsTabContactSettings
+    ContactsTabContactSettings,
+    ContextHelp
   },
   data () {
     return {

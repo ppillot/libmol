@@ -20,6 +20,17 @@
         @change="switchMultipleBond">
       </el-switch>
     </form-item>
+    
+    <form-item :label="$t('ui.toolbar.settings.ss_bridge')">
+      <el-switch
+        v-model="ssbridge"
+        @change="switchSSBridge"
+        :disabled="!hasSSBridge">
+      </el-switch>
+    </form-item>
+    
+    <contacts-types-settings />
+    
     <form-item :label="$t('ui.toolbar.settings.language')" inline>
       <select @change="switchLanguage">
         <option 
@@ -31,7 +42,7 @@
         </option>
       </select>  
     </form-item>
-    <contacts-types-settings />
+    
 
     <div style="text-align: right">
       <el-button
@@ -55,7 +66,8 @@
     ambientIntensity: 0.2,
     lightIntensity: 1,
     cameraType: 'perspective',
-    multipleBond: false
+    multipleBond: false,
+    ssbridge: false
   }
 
   export default {
@@ -75,7 +87,8 @@
         color: true,
         locales: locales,
         lang: this.$root.$lang,
-        multipleBond: false
+        multipleBond: false,
+        ssbridge: false
       }
     },
     computed: {
@@ -86,6 +99,9 @@
         set: function ([percentNear, percentFar]) {
           this.setStageParameters({fogNear: percentNear, fogFar: percentFar})
         }
+      },
+      hasSSBridge: function () {
+        return this.$store.state.mol.nbSSBridges > 0
       }
     },
     methods: {
@@ -108,6 +124,9 @@
         this.$store.dispatch('setRepresentationParameters', {
           multipleBond: (enableMultipleBond) ? 'symmetric' : 'off'
         })
+      },
+      switchSSBridge (enableSSBridges) {
+        this.$store.dispatch('setSSBridges', enableSSBridges)
       },
       switchLanguage (ev) {
         /* eslint-disable */

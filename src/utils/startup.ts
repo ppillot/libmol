@@ -1,14 +1,25 @@
 /**
  * define default settings at starting up
  */
+interface StartupParameters {
+  file?: string,
+  value?: string,
+  source?: string,
+  molId?: string,
+  ext?: string,
+  pdb?: string,
+  pubchem?: string,
+  embedded?: boolean
+}
 
-let defaultParameters = {
+let defaultParameters: StartupParameters = {
   file: 'static/mol/1BKV-collagene.mmtf.gz',
   value: 'Collagene',
   source: 'libmol',
   molId: '63',
   embedded: false
 }
+
 /**
  * transform the search part of the URL in a JSON
  *
@@ -16,7 +27,7 @@ let defaultParameters = {
  */
 function getSearchParameters () {
   const search = document.location.search.substr(1)
-  let params = {}
+  let params: StartupParameters = {}
 
   const tabParams = search.split('&')
   tabParams.forEach(val => {
@@ -31,12 +42,12 @@ function getSearchParameters () {
   })
 
   if (params.hasOwnProperty('pdb')) {
-    if (params.pdb.length === 4) {
+    if (params.pdb!.length === 4) {
       params.file = `rcsb://${params.pdb}`
       params.value = ''
       params.source = 'pdb'
       params.molId = params.pdb
-    } else if (params.pdb.length < 4 && params.pdb.length > 0) {
+    } else if (params.pdb!.length < 4 && params.pdb!.length > 0) {
       params.file = `https://files.rcsb.org/ligands/view/${params.pdb}.cif`
       params.value = ''
       params.source = 'pdb ligand'

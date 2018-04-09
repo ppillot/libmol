@@ -118,7 +118,7 @@
 
 <script>
   import {Selection} from 'ngl'
-  import Suggestions from 'utils/suggestions'
+  import Suggestions from 'utils/suggestions.ts'
   let suggestions = Suggestions()
   
   function getWordBoundaries (text, caretPos) {

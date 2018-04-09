@@ -4,23 +4,24 @@ import VueI18n from 'vue-i18n'
 
 // import * as actions from './actions'
 // import * as getters from './getters'
-import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDebug, MouseActions} from 'ngl'
+import {Stage, Selection, ColormakerRegistry, download, Vector3, Vector2, setDebug, MouseActions, Shape} from 'ngl'
 /* eslint-disable-next-line */
 // let NGL = () => import('ngl') /* eslint-disable-line */
 import debounce from 'throttle-debounce/debounce'
 import Screenfull from 'screenfull'
-import help from 'utils/help'
+import {getHelp} from 'utils/help.ts'
 import {hover} from 'utils/hover'
 import {measure} from 'utils/measures'
 import {loadFile} from 'utils/loadfile'
 import {byres} from 'utils/colors'
 import surface from 'utils/surface'
 import {contact} from 'utils/contacts'
+import {ssBridges} from 'utils/ssbridges'
 import {Notification} from 'element-ui'
-import getStartingParameters from 'utils/startup'
+import getStartingParameters from 'utils/startup.ts'
 import {mouseFocus} from 'utils/mouse-focus'
 
-let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug, MouseActions}
+let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug, MouseActions, Shape}
 Vue.use(Vuex)
 Vue.use(VueI18n)
 /** @description local module variable to hold the NGL stage object
@@ -37,6 +38,7 @@ let loadNewFile
 let measurement
 let surf
 let contacts
+let ssbridges
 let currentSelectionAtomSet
 let currentlyDisplayedAtomSet
 let tempDisplayedAtomSet
@@ -56,9 +58,9 @@ let startParams = getStartingParameters()
  * @param {NGL atomSet} atomSet
  * @param {number} skipReprIndex index of the latest representation : must be skipped !
  */
-function removeSelectionFromRepresentations (newAtomSet, skipReprIndex, overlay = false) {
+function removeSelectionFromRepresentations (newAtomSet, skipRepr, overlay = false) {
   for (let i = 0; i < representationsList.length; i++) {
-    if (i === skipReprIndex || (i === skipReprIndex + 1 && representationsList[i].display === 'base')) {
+    if ((representationsList[i].repr.uuid === skipRepr.uuid) || (i > 0 && representationsList[i - 1].repr.uuid === skipRepr.uuid && representationsList[i].display === 'base')) {
       continue
     } else if (overlay && ['cartoon', 'ribbon', 'backbone'].includes(representationsList[i].display)) {
       continue
@@ -71,9 +73,10 @@ function removeSelectionFromRepresentations (newAtomSet, skipReprIndex, overlay 
       const sele = repr.displayedAtomSet.difference(newAtomSet)
       const overlay = (repr.overlay) ? ' and sidechainAttached' : ''
 
-      stage.compList[0].reprList[repr.index].setSelection(sele.toSeleString() + overlay)
+      repr.repr.setSelection(sele.toSeleString() + overlay)
     }
   }
+  ssbridges.update()
 }
 
 /**
@@ -85,7 +88,7 @@ function removeSelectionFromRepresentations (newAtomSet, skipReprIndex, overlay 
 function updateRepresentationParameters (reprNames, parameters) {
   representationsList.forEach(repr => {
     if (reprNames.includes(repr.display)) {
-      stage.compList[0].reprList[repr.index].setParameters(parameters)
+      repr.repr.setParameters(parameters)
     }
   })
 }
@@ -154,6 +157,7 @@ function updateRepresentationColor () {
       repr.name === 'angle' ||
       repr.name === 'label' ||
       repr.name === 'contact' ||
+      repr.name === 'ssbridge' ||
       repr.name.indexOf('molsurf') > -1) return
     repr.setColor(globalColorScheme)
   })
@@ -164,7 +168,7 @@ function updateRepresentationDisplay () {
     if (repr.name === 'highlight') return
     repr.displayedAtomSet = repr.atomSet.clone().intersection(currentlyDisplayedAtomSet)
     // console.log('update repr:', repr.name, repr.index, repr.displayedAtomSet)
-    stage.compList[0].reprList[repr.index].setSelection(repr.displayedAtomSet.toSeleString())
+    repr.repr.setSelection(repr.displayedAtomSet.toSeleString())
   })
 }
 
@@ -318,6 +322,7 @@ if (debug) {
   window.NGL = NGL
   window.stage = stage
   window.structure = structure
+  window.repr = representationsList
 }
 
 var vuex = new Vuex.Store({
@@ -347,7 +352,8 @@ var vuex = new Vuex.Store({
         ion: false
       },
       sstruc: new Set(),
-      noSequence: false
+      noSequence: false,
+      nbSSBridges: 0
     },
     selected: [],
     selectedChains: [],
@@ -444,6 +450,9 @@ var vuex = new Vuex.Store({
       state.mol.atoms = atoms
 
       state.selected = selected
+    },
+    setSSBridges (state, count) {
+      state.mol.nbSSBridges = count
     },
     selection (state, selector) {
       state.selection = selector
@@ -677,7 +686,9 @@ var vuex = new Vuex.Store({
             sele: 'all',
             atomSet: structure.getAtomSet().clone(),
             displayedAtomSet: structure.getAtomSet(new NGL.Selection('not water')).clone(),
-            index: component.reprList.length - 1
+            index: component.reprList.length - 1,
+            repr: component.reprList[0],
+            overlay: false
           }]
           currentSelectionAtomSet = structure.getAtomSet().clone()
           currentlyDisplayedAtomSet = representationsList[0].displayedAtomSet.clone()
@@ -690,6 +701,7 @@ var vuex = new Vuex.Store({
           measurement = measure(component, context)
           surf = surface(component, context)
           contacts = contact(component, context)
+          ssbridges = ssBridges(component, representationsList)
 
           context.commit('loadNewFile', newFile)
           context.dispatch('init')
@@ -718,6 +730,7 @@ var vuex = new Vuex.Store({
       commit('isMeasuringAngles', false)
       commit('setUserSelectionText', null)
       commit('setContacts', [])
+      commit('setSSBridges', ssbridges.count())
     },
     selection (context, selector) {
       if (selector === 'invert') {
@@ -772,7 +785,7 @@ var vuex = new Vuex.Store({
             break
         }
 
-        stage.compList[0].addRepresentation(displayType, reprParam)
+        const r = stage.compList[0].addRepresentation(displayType, reprParam)
 
         representationsList.push({
           display: displayType,
@@ -780,23 +793,26 @@ var vuex = new Vuex.Store({
           atomSet: atomSet.clone(),
           displayedAtomSet: dAtomSet,
           sele: context.state.selection,
-          overlay: overlay
+          overlay: overlay,
+          repr: r
         })
-        removeSelectionFromRepresentations(atomSet, representationsList.length - 1, overlay)
+        removeSelectionFromRepresentations(atomSet, r, overlay)
 
         // Add base representation if cartoon
         if (displayType === 'cartoon') {
-          stage.compList[0].addRepresentation('base',
+          let rbase = stage.compList[0].addRepresentation('base',
             {
               sele: dAtomSet.toSeleString(),
               color: globalColorScheme
             })
-          representationsList.push(
-            {display: 'base',
-              index: stage.compList[0].reprList.length - 1,
-              atomSet: atomSet.clone(),
-              displayedAtomSet: dAtomSet.clone(),
-              sele: context.state.selection})
+          representationsList.push({
+            display: 'base',
+            index: stage.compList[0].reprList.length - 1,
+            atomSet: atomSet.clone(),
+            displayedAtomSet: dAtomSet.clone(),
+            sele: context.state.selection,
+            repr: rbase
+          })
         }
       } else {
         const repr = representationsList[num]
@@ -806,14 +822,14 @@ var vuex = new Vuex.Store({
 
         // need to update the representation
         const seleString = (overlay && displayType !== 'spacefill') ? repr.displayedAtomSet.toSeleString() + ' and sidechainAttached' : repr.displayedAtomSet.toSeleString()
-        stage.compList[0].reprList[repr.index].setSelection(seleString)
+        repr.repr.setSelection(seleString)
 
         // and to update the remaining representations
-        removeSelectionFromRepresentations(atomSet, num, overlay)
+        removeSelectionFromRepresentations(atomSet, repr.repr, overlay)
 
         // update base representation if cartoon
         if (displayType === 'cartoon') {
-          stage.compList[0].reprList[repr.index + 1].setSelection(repr.displayedAtomSet.toSeleString())
+          representationsList[num + 1].repr.setSelection(repr.displayedAtomSet.toSeleString())
           representationsList[num + 1].atomSet = repr.atomSet.clone()
           representationsList[num + 1].displayedAtomSet = repr.displayedAtomSet.clone()
         }
@@ -928,13 +944,14 @@ var vuex = new Vuex.Store({
         Object.assign(param, {
           sele: currentlyDisplayedAtomSet.toSeleString()
         })
-        stage.compList[0].addRepresentation('contact', param)
+        let repr = stage.compList[0].addRepresentation('contact', param)
         representationsList.push({
           display: 'contact',
           index: stage.compList[0].reprList.length - 1,
           atomSet: structure.getAtomSet().clone(),
           displayedAtomSet: currentlyDisplayedAtomSet,
-          overlay: false
+          overlay: false,
+          repr
         })
       }
       context.commit('setWholeMoleculeContacts', contactsList)
@@ -1171,6 +1188,9 @@ var vuex = new Vuex.Store({
         context.commit('setMultipleBond', params.multipleBond === 'symmetric')
       }
     },
+    setSSBridges (context, enableSSBridges) {
+      ssbridges.enable(enableSSBridges)
+    },
     sequenceSelected (context, tabSelectedResidues) {
       // has the selection started by a selected residue ?
       let isToBeSelected = (context.state.selected[tabSelectedResidues[0]] === false)
@@ -1261,7 +1281,7 @@ var vuex = new Vuex.Store({
       }
       if (subject.attribute) {
         commit('help', {
-          subject: help(subject.action, subject.attribute),
+          subject: getHelp(subject.action, subject.attribute),
           resetHistory: newSubject,
           namespace: subject.namespace
         })

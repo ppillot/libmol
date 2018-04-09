@@ -37,8 +37,8 @@ let keywords = [
   'aliphatic'
 ]
 
-function filter (array, word, startIndex = 0) {
-  let filteredArray = []
+function filter (array: string[], word: string, startIndex = 0): string[] {
+  let filteredArray: string[] = []
   let w = word.toUpperCase()
 
   array.forEach(function (val) {
@@ -51,17 +51,25 @@ function filter (array, word, startIndex = 0) {
   return filteredArray
 }
 
+interface Suggestion {
+  category: string,
+  content: {
+    word: string,
+    index: number
+  }[]
+}
+
 function suggestion () {
-  let suggestionsList = []
+  let suggestionsList: Suggestion[] = []
   let suggestionsSize = 0
-  let suggestionsIndexes = []
+  let suggestionsIndexes: string[] = []
 
   function empty () {
     suggestionsList = []
     suggestionsSize = 0
   }
 
-  function add (category, list, word, startIndex = 0) {
+  function add (category: string, list: string[], word: string, startIndex = 0) {
     if (category === 'keyword') list = keywords
     let newSuggestions = filter(list, word, startIndex)
 
@@ -84,15 +92,15 @@ function suggestion () {
     return suggestionsList
   }
 
-  function getByIndex (index) {
+  function getByIndex (index: number) {
     return suggestionsIndexes[index]
   }
 
   return {
-    empty: empty,
-    add: add,
-    get: get,
-    getByIndex: getByIndex
+    empty,
+    add,
+    get,
+    getByIndex
   }
 }
 

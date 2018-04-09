@@ -40,7 +40,7 @@
 
 <script>
   import EntityContextMenu from './EntityContextMenu'
-  import optimizedResize from '../utils/resize'
+  import optimizedResize from '../utils/resize.ts'
 
   let prevPos = {top: 0, left: 0}
   let actualPos = {top: 0, left: 0}

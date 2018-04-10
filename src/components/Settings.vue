@@ -66,8 +66,7 @@
     ambientIntensity: 0.2,
     lightIntensity: 1,
     cameraType: 'perspective',
-    multipleBond: false,
-    ssbridge: false
+    multipleBond: false
   }
 
   export default {
@@ -87,8 +86,7 @@
         color: true,
         locales: locales,
         lang: this.$root.$lang,
-        multipleBond: false,
-        ssbridge: false
+        multipleBond: false
       }
     },
     computed: {
@@ -102,15 +100,24 @@
       },
       hasSSBridge: function () {
         return this.$store.state.mol.nbSSBridges > 0
+      },
+      ssbridge: {
+        set: function (enableSSBridges) {
+          this.$store.dispatch('setSSBridges', enableSSBridges)
+        },
+        get: function () {
+          return this.$store.state.ssBridgeDisplayed
+        }
       }
     },
     methods: {
       reset () {
         Object.assign(this.$data, defaultParameters, {color: true})
         this.setStageParameters(defaultParameters)
-        // fog needs a special treatment here and cannot be set with
+        // fog and ssbridge need a special treatment here and cannot be set with
         // the defaultParameters set
         this.fog = [50, 100]
+        this.ssbridge = false
         this.$store.dispatch('displayContacts', [])
       },
       setStageParameters (params) {

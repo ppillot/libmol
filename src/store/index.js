@@ -364,6 +364,7 @@ var vuex = new Vuex.Store({
     display: 'licorice',
     color: 'element',
     multipleBond: false,
+    ssBridgeDisplayed: false,
     fog: [50, 100],
     atomHovered: {
       symbol: '',
@@ -495,6 +496,9 @@ var vuex = new Vuex.Store({
     },
     setFog (state, fogParams) {
       state.fog = fogParams
+    },
+    setSSBridgesDisplayed (state, displayed) {
+      state.ssBridgeDisplayed = displayed
     },
     isAtomHovered (state, isDisplayed) {
       state.isAtomHovered = isDisplayed
@@ -718,7 +722,7 @@ var vuex = new Vuex.Store({
         console.log(error)
       })
     },
-    init ({commit}) {
+    init ({commit, state}) {
       commit('selectedChains')
       commit('selection', 'all')
       commit('display', 'ball+stick')
@@ -731,6 +735,9 @@ var vuex = new Vuex.Store({
       commit('setUserSelectionText', null)
       commit('setContacts', [])
       commit('setSSBridges', ssbridges.count())
+      if (state.ssBridgeDisplayed && ssbridges.count() > 0) {
+        ssbridges.enable(true)
+      }
     },
     selection (context, selector) {
       if (selector === 'invert') {
@@ -1188,8 +1195,9 @@ var vuex = new Vuex.Store({
         context.commit('setMultipleBond', params.multipleBond === 'symmetric')
       }
     },
-    setSSBridges (context, enableSSBridges) {
+    setSSBridges ({commit}, enableSSBridges) {
       ssbridges.enable(enableSSBridges)
+      commit('setSSBridgesDisplayed', enableSSBridges)
     },
     sequenceSelected (context, tabSelectedResidues) {
       // has the selection started by a selected residue ?

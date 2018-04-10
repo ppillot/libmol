@@ -70,12 +70,14 @@ function removeSelectionFromRepresentations (newAtomSet, skipRepr, overlay = fal
     const repr = representationsList[i]
     if (repr.atomSet.intersects(newAtomSet)) {
       repr.atomSet.difference(newAtomSet)
-      const sele = repr.displayedAtomSet.difference(newAtomSet)
-      const overlay = (repr.overlay) ? ' and sidechainAttached' : ''
+      repr.displayedAtomSet.difference(newAtomSet)
+      let sele = repr.displayedAtomSet.toSeleString()
+      sele += (repr.overlay && sele !== 'NONE') ? ' and sidechainAttached' : ''
 
-      repr.repr.setSelection(sele.toSeleString() + overlay)
+      repr.repr.setSelection(sele)
     }
   }
+  // debugger
   ssbridges.update()
 }
 
@@ -823,7 +825,6 @@ var vuex = new Vuex.Store({
         }
       } else {
         const repr = representationsList[num]
-
         repr.atomSet.union(atomSet)
         repr.displayedAtomSet = repr.atomSet.clone().intersection(currentlyDisplayedAtomSet)
 

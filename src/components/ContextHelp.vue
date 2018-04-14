@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import {getHelpSubject} from '../utils/help.ts'
+  import {getHelp, getHelpSubject} from '../utils/help.ts'
   import Marked from '../utils/markedWrapper'
 
   export default {
@@ -21,6 +21,10 @@
     props: {
       subject: {
         default: '',
+        type: String
+      },
+      namespace: {
+        default: 'contacts',
         type: String
       }
     },
@@ -48,13 +52,20 @@
       }
     },
     mounted: function () {
-      this.helpToken = this.subject
+      this.helpToken = getHelp(this.namespace, this.subject)
     }
   }
 </script>
 
-<style>
-  
+<style scoped>
+  i {
+    color: #ddd;
+    float: right;
+    line-height: 1.4em;
+  }
+  i:hover {
+    color: #fff;
+  }
   .help {
     overflow-y: auto;
     font-size: 0.9em;

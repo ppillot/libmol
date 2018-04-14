@@ -41,7 +41,7 @@
                 {{ pair.res2.resname }}{{ pair.res2.resno }}:{{ pair.res2.chainname }}
                 -
                 {{ $t('ui.contacts.' + pair.type)}}
-                <context-help :subject="pair.type"/>
+                <context-help :subject="pair.type" :namespace="contacts"/>
               </div>
             </div>
           </div>

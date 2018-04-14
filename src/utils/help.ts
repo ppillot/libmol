@@ -42,7 +42,15 @@ const helpFiles: {[index: string] : {[index: string]: string}} = {
     saltbridge: 'contactsSaltbridge',
     metal: 'contactsMetal',
     hydrophobic: 'contactsHydrophobic',
-    pi: 'contactsPi'
+    pi: 'contactsPi',
+    hydrogenBond: 'contactsHbond',
+    cationPi: 'contactsPi',
+    ionicInteraction: 'contactsSaltbridge',
+    metalCoordination: 'contactsMetal',
+    piStacking: 'contactsPi',
+    weakHydrogenBond: 'contactsHbond',
+    waterHydrogenBond: 'contactsHbond',
+    backboneHydrogenBond: 'contactsHbond'
   }
 }
 

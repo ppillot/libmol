@@ -1,11 +1,11 @@
 <template>
-    <div class="frame">
-      <div id="contact-tab--help">
+    <div>
+      <div id="contact-tab--help" v-if="contacts.length === 0">
         <help
           namespace="contacts"
           start="contacts" />
       </div>
-      <div id="contact-tab--list">          
+      <div id="contact-tab--list" v-else>          
         <div class="container no-scroll surface-list"
           v-for="(contact, index) in contacts"
           :key="index">
@@ -41,7 +41,7 @@
                 {{ pair.res2.resname }}{{ pair.res2.resno }}:{{ pair.res2.chainname }}
                 -
                 {{ $t('ui.contacts.' + pair.type)}}
-                <context-help :subject="pair.type" :namespace="contacts"/>
+                <context-help :subject="pair.type" namespace="contacts"/>
               </div>
             </div>
           </div>
@@ -55,7 +55,6 @@ import Help from './Help'
 import FormItem from './FormItem'
 import Visible from './Visible'
 import ContactsTabContactSettings from './ContactsTabContactSettings'
-import Split from 'split.js'
 import ContextHelp from './ContextHelp'
 
 // import {contactTypesIndices} from '../utils/contacts'
@@ -132,15 +131,6 @@ export default {
     pickColor (val) {
       if (val !== 'palette') this.changeColor(val)
     }
-  },
-  mounted: function () {
-    Split([this.$el.children[0], this.$el.children[1]], {
-      direction: 'vertical',
-      cursor: 'ns-resize',
-      sizes: [50, 50],
-      minSize: [150, 150],
-      gutterSize: 6
-    })
   }
 }
 </script>

@@ -107,7 +107,7 @@ function contact (comp, context) {
     let contactReprParam = {
       flatShaded: true,
       sele: cE.withinTargetSeleString,
-      filterSele: cE.targetFilter
+      filterSele: [cE.targetFilter, `not (${cE.targetFilter})`]
     }
     Object.assign(contactReprParam, defaultDisplayedContacts)
 
@@ -137,7 +137,7 @@ function contact (comp, context) {
       labelGrouping: 'residue',
       attachment: 'top-center',
       radiusType: 'size',
-      radiusSize: 5,
+      radiusSize: 3,
       zOffset: 2,
       backgroundOpacity: 0.8,
       color: 0x1f2d3d,
@@ -168,7 +168,7 @@ function contact (comp, context) {
         },
         label: {
           visible: true,
-          size: 5
+          size: 3
         },
         target: {
           color: 'element',

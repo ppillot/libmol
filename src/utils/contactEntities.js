@@ -26,6 +26,9 @@ class ContactEntities {
 
     this.vicinitySele = ''
     this.updateVicinity()
+
+    this.targetCloseToContact = ''
+    this.updateTargetCloseToContact()
   }
 
   /**
@@ -84,6 +87,19 @@ class ContactEntities {
     const seleGroupWithin = this.structure.getAtomSetWithinGroup(new Selection(this.withinSele))
     this.vicinitySele = `(${seleGroupWithin.toSeleString()}) and (not backbone or .CA or (PRO and .N)) and not (${this.targetCompleteSele})`
   }
+
+  /**
+   * Updates selection for the residues from the target that are in contact
+   * with the surrounding. It is relevant if target is not a single residue
+   * Depends on :
+   * - target (isBackboneExcluded)
+   * - withinTargetSelestring (radius, isWaterExcluded)
+   */
+  updateTargetCloseToContact () {
+    const seleTargetContact = this.structure.getAtomSetWithinSelection(new Selection(`${this.withinSele} and not (${this.targetCompleteSele})`), this.neighbouringRadius)
+    const seleGroupTargetContact = this.structure.getAtomSetWithinGroup(new Selection(`${seleTargetContact.toSeleString()} and (${this.targetCompleteSele})`))
+    this.targetCloseToContact = `(${seleGroupTargetContact.toSeleString()}) and (not backbone or .CA or (PRO and .N))`
+  }
   // Getters
 
   /**
@@ -117,6 +133,7 @@ class ContactEntities {
       this.isWaterExcluded = params.isWaterExcluded
       updates.add('within')
       updates.add('vicinity')
+      updates.add('targetContact')
     }
 
     if (params.hasOwnProperty('isBackboneExcluded') && params.isBackboneExcluded !== this.isBackboneExcluded) {
@@ -124,18 +141,21 @@ class ContactEntities {
       updates.add('target')
       updates.add('within')
       updates.add('vicinity')
+      updates.add('targetContact')
     }
 
     if (params.hasOwnProperty('radius') && params.radius !== this.neighbouringRadius) {
       this.neighbouringRadius = params.radius
       updates.add('within')
       updates.add('vicinity')
+      updates.add('targetContact')
     }
 
     // this array controls the right order for updating properties values
     [['target', this.updateTarget],
       ['within', this.updateWithin],
-      ['vicinity', this.updateVicinity]].map((val) => {
+      ['vicinity', this.updateVicinity],
+      ['targetContact', this.updateTargetCloseToContact]].map((val) => {
         if (updates.has(val[0])) {
           val[1].call(this)
         }

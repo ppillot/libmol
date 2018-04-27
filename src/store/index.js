@@ -968,7 +968,7 @@ var vuex = new Vuex.Store({
     focusContact ({commit}, {resnum, chainId}) {
       contacts.addContact({resnum, chainId})
       const sele = `${resnum}:${chainId} and not backbone`
-      // console.log(sele, seleWithin.getSize(), seleWithin)
+      console.log(sele)
 
       const center = stage.compList[0].getCenter(sele)
       const zoom = stage.compList[0].getZoom(sele)

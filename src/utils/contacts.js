@@ -83,6 +83,7 @@ function contact (comp, context) {
   }
 
   function getResiduePropertiesFromSelestring (res) {
+    if (res.indexOf('undefined') === 0) return undefined
     const as = comp.structure.getAtomSet(new Selection(res))
     const an = as.toArray()[0]
     const ap = comp.structure.getAtomProxy(an)
@@ -122,9 +123,9 @@ function contact (comp, context) {
       radiusScale: 1.1
     })
 
-    const targetSele = cE.targetSeleString
+    const targetSele = cE.targetCloseToContact
     const target = comp.addRepresentation('ball+stick', {
-      sele: targetSele,
+      sele: cE.targetCloseToContact,
       multipleBond: true,
       aspectRatio: 2.1,
       radiusScale: 1.2
@@ -151,9 +152,10 @@ function contact (comp, context) {
       index: nbContacts,
       visible: true,
       target: {
-        type: 'res',
-        name: `${resnum}:${chainId}`,
-        res: getResiduePropertiesFromSelestring(`${resnum}:${chainId}`)
+        type: (resnum === undefined) ? 'chain' : 'res',
+        name: `${(resnum === undefined) ? '' : resnum}:${chainId}`,
+        res: getResiduePropertiesFromSelestring(`${resnum}:${chainId}`),
+        chain: chainId
       },
       params: {
         isWaterExcluded: true,
@@ -384,13 +386,13 @@ function contact (comp, context) {
     const repr = tabContactsRepr[index]
     // update NGL representations
     repr.contact.setSelection(repr.contactEntities.withinTargetSeleString)
-    repr.target.setSelection(repr.contactEntities.targetSeleString)
+    repr.target.setSelection(repr.contactEntities.targetCloseToContact)
     repr.vicinity.setSelection(repr.contactEntities.vicinitySeleString)
     repr.label.setSelection(repr.contactEntities.vicinitySeleString)
 
     // update state data
     const cState = tabContacts[index]
-    cState.repr.target.seleString = repr.contactEntities.targetSeleString
+    cState.repr.target.seleString = repr.contactEntities.targetCloseToContact
     cState.repr.vicinity.seleString = repr.contactEntities.vicinitySeleString
     cState.contactsList = getContactsArray(repr.contact)
 

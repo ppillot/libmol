@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contact-tab--container">
       <div id="contact-tab--help" v-if="contacts.length === 0">
         <help
           namespace="contacts"
@@ -16,8 +16,12 @@
               @click="edit = (index === edit)? -1 : index">
             </i>
             <div class="surface-title">
-              {{ $t('ui.contacts.contactHeader') }} {{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
-        {{ contact.target.res.resno }} {{ $t('tooltips.chain') }} {{ contact.target.res.chainname }}
+              {{ $t('ui.contacts.contactHeader') }}
+              <span v-if="contact.target.type === 'res'">
+               {{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
+        {{ contact.target.res.resno }}
+              </span>
+              {{ $t('tooltips.chain') }} {{ contact.target.chain }}
             </div>
             <visible :value="visibility[index]" @input="val => {handleVisibility(val, index)}"></visible>
             <el-button type="text" icon="el-icon-delete" @click="handleDelete(index)"></el-button>
@@ -137,6 +141,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    .contact-tab--container {
+      overflow: hidden;
+      flex: 1;
+      max-height: 100%;
+    }
     .help {
         font-size: 1em;
     }
@@ -147,6 +156,7 @@ export default {
     #contact-tab--list {
         overflow-y: auto;
         padding-left: 1px;
+        max-height: 100%;
     }
     #contact-tab--help {
         display: flex;

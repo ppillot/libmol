@@ -9,9 +9,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'FormItem',
   props: {
     label: {
@@ -25,13 +26,13 @@ export default {
     }
   },
   computed: {
-    display () {
+    display (): {display: string, verticalAlign?: string} {
       return (this.inline)
         ? {display: 'inline-block', verticalAlign: 'text-bottom'}
         : {display: 'block'}
     }
   }
-}
+})
 
 </script>
 

@@ -1,5 +1,5 @@
 // from NGL mmtf-parser.js
-var sstrucDict = {
+const sstrucDict: {[k: string]: string} = {
   h: 'alphaHelix',
   g: 'threeTenHelix',
   i: 'piHelix',
@@ -10,9 +10,8 @@ var sstrucDict = {
   l: 'coil'
 }
 
-function getSStrucName (abbrev) {
-  var name = sstrucDict[abbrev] || ''
-  return name
+function getSStrucName (abbrev: string) {
+  return sstrucDict[abbrev] || ''
 }
 
 export {

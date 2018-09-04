@@ -1,15 +1,21 @@
-import {Selection, Shape} from 'ngl'
+import {Selection, Shape, Structure} from 'ngl'
+import BitArray from 'ngl/declarations/utils/bitarray';
+import AtomProxy from 'ngl/declarations/proxy/atom-proxy';
+import StructureComponent from 'ngl/declarations/component/structure-component';
+import RepresentationElement from 'ngl/declarations/component/representation-element';
+import Representation from 'ngl/declarations/representation/representation';
 
-function getDiSulfideBridges (structure) {
+function getDiSulfideBridges (structure: Structure) {
   const sulfursInCysteins = structure.getAtomSet(new Selection('cys and _S'))
-  let sulfurPairs = []
-  let traceAtomPairs = []
-  let atomSet = structure.getAtomSet().clone().clearAll()
+  let sulfurPairs: number[] = []
+  let traceAtomPairs: number[] = []
+  let atomSet: BitArray = structure.getAtomSet().clone().clearAll()
 
-  const getTraceAtom = function (ap) {
+  const getTraceAtom = function (ap: AtomProxy) {
     return structure.getResidueProxy(ap.residueIndex).traceAtomIndex
   }
-
+  
+  structure.atomCenter()
   sulfursInCysteins.forEach(index => {
     if (!atomSet.get(index)) {
       const sulfur = structure.getAtomProxy(index)
@@ -36,13 +42,13 @@ function getDiSulfideBridges (structure) {
   }
 }
 
-function ssBridges (component, representationsList) {
+function ssBridges (component: StructureComponent, representationsList: Representation[]) {
   const structure = component.structure
   let enabled = false
   const ssb = getDiSulfideBridges(structure)
-  let reprSSBridges = {}
+  let reprSSBridges: RepresentationElement
 
-  function enable (setting) {
+  function enable (setting: boolean) {
     enabled = setting
     update()
   }
@@ -72,8 +78,7 @@ function ssBridges (component, representationsList) {
 
       let visiblePairs = []
       // let visibleTracePairs = []
-      // eslint-disable-next-line no-inner-declarations
-      function getVisibleAtom (id) {
+      let getVisibleAtom = function (id: number) {
         return (visibleCysSideChain.get(ssb.sulfurPairs[id]))
         ? ssb.sulfurPairs[id]
         : ssb.traceAtomPairs[id]
@@ -96,7 +101,7 @@ function ssBridges (component, representationsList) {
           [a.x, a.y, a.z],
           [b.x, b.y, b.z],
           [1, 1, 0],
-          0.315)
+          0.315, 'ss')
       }
       reprSSBridges = component.addBufferRepresentation(shapeSSBridge, {name: 'ssbridge'})
     }

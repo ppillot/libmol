@@ -1,8 +1,33 @@
-import {ColormakerRegistry} from 'ngl'
+import {ColormakerRegistry, Structure, Stage} from 'ngl'
+import { ActionContext } from 'vuex';
+import StructureComponent from 'ngl/declarations/component/structure-component';
 
-function getChainColors (chains, structure) {
+interface SequenceElement {
+  resname: string,
+  resno: number,
+  hetero: boolean,
+  index: number,
+  selected: boolean
+}
+interface ChainProperties {
+  id: number,
+  name: string,
+  entity: string,
+  sequence: SequenceElement[],
+  color: string|undefined
+}
+interface FileObject {
+  file: File,
+  value: string,
+  molId: string,
+  molCode: string,
+  source: string,
+  ext: string
+}
+
+function getChainColors (chains: ChainProperties[], structure: Structure) {
   // console.log(structure)
-  var chainColors = []
+  let chainColors: string[] = []
   var chainNameScheme = ColormakerRegistry.getScheme({scheme: 'chainname', structure: structure})
 
   chains.forEach(chain => {
@@ -17,12 +42,12 @@ function getChainColors (chains, structure) {
   return chainColors
 }
 
-function loadFile (stage, context) {
-  function newFile (newFile) {
+function loadFile (stage: Stage, context: ActionContext<any, any>) {
+  function newFile (newFile: FileObject) {
     stage.removeAllComponents()
     // console.log(newFile)
     return stage.loadFile(newFile.file, {assembly: 'AU'})
-    .then((component) => { // let's get the structure property from the structureComponent object returned by NGL's promise
+    .then((component: StructureComponent) => { // let's get the structure property from the structureComponent object returned by NGL's promise
       const structure = component.structure
 
       // check if PDB file is recent enough to be valid
@@ -31,7 +56,7 @@ function loadFile (stage, context) {
       }
       let molTypes = new Set()
       let chainMap = new Map()
-      let chains = []
+      let chains: ChainProperties[] = []
       let atoms = Object.keys(structure.atomMap.dict).map(val => { return val.substring(0, val.indexOf('|')) })
       let elements = new Set(Object.keys(structure.atomMap.dict).sort()
                                     .map(atomIdentifier =>
@@ -44,7 +69,7 @@ function loadFile (stage, context) {
                                     )
       )
       let sstruc = new Set()
-      let selected = []
+      let selected: boolean[] = []
 
     // in case no value has been provided for the file name, extract it from the title property in structure
       if (newFile.value === '') {
@@ -81,7 +106,7 @@ function loadFile (stage, context) {
         chains[chainId].sequence.push({
           resname: item.resname,
           resno: item.resno,
-          hetero: item.hetero,
+          hetero: item.hetero === 1,
           index: item.index,
           // moleculeType: item.moleculeType,
           selected: true

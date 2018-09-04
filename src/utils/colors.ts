@@ -1,6 +1,7 @@
-import {ColormakerRegistry} from 'ngl'
+import {ColormakerRegistry, Colormaker} from 'ngl'
+import AtomProxy from 'ngl/declarations/proxy/atom-proxy'
 
-var ElementColors = {
+var ElementColors: {[k:string]: number} = {
   'H': 0xFFFFFF,
   'HE': 0xD9FFFF,
   'LI': 0xCC80FF,
@@ -125,7 +126,7 @@ var ElementColors = {
 var DefaultElementColor = 0xFFFFFF
 
 // from Jmol http://jmol.sourceforge.net/jscolors/ (protein + shapely for nucleic)
-var ResidueColors2 = {
+var ResidueColors2: {[k:string]: number} = {
   'ALA': 0xd9d9d9,
   'ARG': 0x80b1d3,
   'ASN': 0xbc80bd,
@@ -169,7 +170,7 @@ var ResidueColors2 = {
 var DefaultResidueColor2 = 0xFF00FF
 
 // from Jmol http://jmol.sourceforge.net/jscolors/ (shapely)
-var StructureColors = {
+var StructureColors: {[k:string]: number} = {
   'alphaHelix': 0xFF0080,
   'threeTenHelix': 0xA00080,
   'piHelix': 0x600080,
@@ -184,7 +185,7 @@ var StructureColors = {
 }
 var DefaultStructureColor = 0x808080
 
-var MolecuteTypeColor = {
+var MolecuteTypeColor: {[k:string]: number} = {
   'water': 0x386cb0,
   'ion': 0xf0027f,
   'protein': 0xbeaed4,
@@ -195,7 +196,7 @@ var MolecuteTypeColor = {
 }
 var DefaultMoleculeTypeColor = 0xffff99
 
-function getColor (scheme, token) {
+function getColor (scheme: string, token: string) {
   var color = 0
   switch (scheme) {
     case 'element':
@@ -213,8 +214,8 @@ function getColor (scheme, token) {
   return color
 }
 
-let byres = ColormakerRegistry.addScheme(function () {
-  this.atomColor = function (atom) {
+let byres = ColormakerRegistry.addScheme(function (this: Colormaker) {
+  this.atomColor = function (atom: AtomProxy) {
     return ResidueColors2[atom.resname] || DefaultResidueColor2
   }
 }, 'byres')

@@ -1,7 +1,24 @@
 import { StlWriter } from 'ngl'
+import StructureComponent from 'ngl/declarations/component/structure-component';
+import { ActionContext } from 'vuex';
+import RepresentationElement from 'ngl/declarations/component/representation-element';
+import BitArray from 'ngl/declarations/utils/bitarray';
 
-function surface (comp, context) {
-  let tabSurfaces = []
+interface SurfaceElement {
+  repr: RepresentationElement,
+  atomSet: BitArray,
+  sele: string,
+  id: number,
+  props: {
+    visible: boolean,
+    opacity: number,
+    colorValue: number,
+    background: boolean
+  }
+}
+
+function surface (comp: StructureComponent, context: ActionContext<any, any>) {
+  let tabSurfaces: SurfaceElement[] = []
   let nbSurf = 0
   // let molsurf = new MolecularSurface(structure)
 
@@ -17,7 +34,7 @@ function surface (comp, context) {
     context.dispatch('setSurfaces', tS)
   }
 
-  function createSurface (selectedAtomSet, selectionToken) {
+  function createSurface (selectedAtomSet: BitArray, selectionToken: string) {
     // check if surface corresponding to selection is already defined
 
     // Creating the new surface object
@@ -51,13 +68,13 @@ function surface (comp, context) {
     dispatch()
   }
 
-  function getIndexFromId (id) {
+  function getIndexFromId (id: number) {
     return tabSurfaces.findIndex(surf => {
       return (surf.id === id)
     })
   }
 
-  function clearSurface (index) {
+  function clearSurface (index: number) {
     comp.removeRepresentation(tabSurfaces[index].repr)
     tabSurfaces.splice(index, 1)
     dispatch()
@@ -72,12 +89,12 @@ function surface (comp, context) {
   }
 
   // @@ Expected changes to NGL API regarding extracting vertices from representation
-  function downloadSTL (index) {
+  function downloadSTL (index: number) {
     const stl = new StlWriter(tabSurfaces[index].repr.repr.dataList[0].info.surface)
     stl.download(comp.structure.name + index)
   }
 
-  function setProperties (index, properties) {
+  function setProperties (index: number, properties: SurfaceElement['props']) {
     if (properties.hasOwnProperty('visible')) {
       tabSurfaces[index].repr.setVisibility(properties.visible)
     }
@@ -86,7 +103,7 @@ function surface (comp, context) {
     dispatch()
   }
 
-  function checkSurfaceExists (atomSet) {
+  function checkSurfaceExists (atomSet: BitArray) {
     if (tabSurfaces.length === 0) return false
     const surf = tabSurfaces.find(val => {
       return val.atomSet.isEqualTo(atomSet)
@@ -97,7 +114,7 @@ function surface (comp, context) {
   // clean all surfaces when starting
   dispatch()
   return {
-    delete: function (id) {
+    delete: function (id: number) {
       const index = getIndexFromId(id)
       return clearSurface(index)
     },
@@ -107,18 +124,18 @@ function surface (comp, context) {
     getSurfaces: function () {
       return tabSurfaces
     },
-    addSurface: function (atomSet, sele) {
+    addSurface: function (atomSet: BitArray, sele: string) {
       return createSurface(atomSet, sele)
     },
-    downloadSTL: function (id) {
+    downloadSTL: function (id: number) {
       const index = getIndexFromId(id)
       return downloadSTL(index)
     },
-    setProperties: function (id, props) {
+    setProperties: function (id: number, props: SurfaceElement['props']) {
       const index = getIndexFromId(id)
       return setProperties(index, props)
     },
-    checkSurfaceExists: function (atomSet) {
+    checkSurfaceExists: function (atomSet: BitArray) {
       return checkSurfaceExists(atomSet)
     }
   }

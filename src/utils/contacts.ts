@@ -1,6 +1,70 @@
 import {Selection, ColormakerRegistry} from 'ngl'
 import {byres} from './colors'
 import ContactEntities from './contactEntities'
+import AtomProxy from 'ngl/declarations/proxy/atom-proxy';
+import { ActionContext } from 'vuex';
+import StructureComponent from 'ngl/declarations/component/structure-component';
+import ContactRepresentation from 'ngl/declarations/representation/contact-representation';
+import RepresentationElement from 'ngl/declarations/component/representation-element';
+import ContactStore from 'ngl/declarations/store/contact-store';
+import { ContactPicker } from 'ngl/declarations/utils/picker';
+import BitArray from 'ngl/declarations/utils/bitarray';
+import { ContactType } from 'ngl/declarations/chemistry/interactions/contact';
+
+interface ContactRepr {
+  contact: RepresentationElement,
+  contactEntities: ContactEntities,
+  target: RepresentationElement,
+  vicinity: RepresentationElement,
+  label: RepresentationElement
+  [k: string]: RepresentationElement|ContactEntities
+}
+
+interface ContactObject {
+  index: number,
+  visible: boolean,
+  target: {
+    type: 'chain' | 'res',
+    name: string,
+    res: Res | undefined,
+    chain: string
+  },
+  params: {
+    isWaterExcluded: boolean,
+    isBackboneExcluded: boolean
+  },
+  contactsList: any[],
+  repr: {
+    colormaker: number|string|undefined,
+    contact: {
+      visible: boolean,
+      contactsTypes: string[]
+    },
+    label: {
+      visible: boolean,
+      size: 3
+    },
+    target: {
+      color: string,
+      reprName: string,
+      visible: boolean,
+      surface: boolean,
+      label: boolean,
+      seleString: string
+    },
+    vicinity: {
+      contactOnly: boolean,
+      visible: boolean,
+      radius: number,
+      label: boolean,
+      reprName: string,
+      color: string,
+      seleString: string
+    }
+    [k: string]: any
+  }
+  [k: string]: any
+}
 
 const contactTypesMap = new Map([
   ['hydrogen bond', 'hydrogenBond'],
@@ -41,7 +105,7 @@ const defaultDisplayedContacts = {
   piStacking: true
 }
 
-function getAtomListFromAToRange (start, range) {
+function getAtomListFromAToRange (start: number, range: number) {
   let numArr = []
   for (let i = 0; i < range; i++) {
     numArr.push(start + i)
@@ -49,7 +113,7 @@ function getAtomListFromAToRange (start, range) {
   return numArr
 }
 
-function getArray (obj) {
+function getArray (obj: {[k: string]: any}) {
   let t = []
   for (let prop in obj) {
     if (obj.hasOwnProperty(prop)) {
@@ -61,7 +125,15 @@ function getArray (obj) {
   return t
 }
 
-function makeRes (atomP) {
+interface Res {
+  chainname: string,
+  resname: string,
+  resno: number,
+  element: string,
+  description: string,
+  atomList: number[]
+}
+function makeRes (atomP: AtomProxy): Res {
   return {
     chainname: atomP.chainname,
     resname: atomP.resname,
@@ -72,9 +144,9 @@ function makeRes (atomP) {
   }
 }
 
-function contact (comp, context) {
-  let tabContacts = []
-  let tabContactsRepr = []
+function contact (comp: StructureComponent, context: ActionContext<any, any>) {
+  let tabContacts: ContactObject[] = []
+  let tabContactsRepr: ContactRepr[] = []
   let nbContacts = 0
   let structure = comp.structure
 
@@ -82,7 +154,7 @@ function contact (comp, context) {
     context.commit('setContacts', tabContacts)
   }
 
-  function getResiduePropertiesFromSelestring (res) {
+  function getResiduePropertiesFromSelestring (res: string) {
     if (res.indexOf('undefined') === 0) return undefined
     const as = comp.structure.getAtomSet(new Selection(res))
     const an = as.toArray()[0]
@@ -91,15 +163,15 @@ function contact (comp, context) {
     return makeRes(ap)
   }
 
-  function createContact ({resnum, chainId}) {
+  function createContact ({resnum, chainId}: {resnum: number, chainId: string, [k: string]: any}) {
     const cE = new ContactEntities(structure, {
       target: {
-        resnum: resnum,
+        resnum: '' + resnum,
         chainId: chainId
       },
       isWaterExcluded: true,
       isBackboneExcluded: true,
-      neighbouringRadius: 4.5
+      radius: 4.5
     })
     // const seleWithin = cE.withinTargetSeleString
     // const seleGroupWithin = structure.getAtomSetWithinGroup(new Selection(`(${seleWithin.toSeleString()}) and not water`))
@@ -210,20 +282,27 @@ function contact (comp, context) {
   /**
    * Returns an array containing each pair of residue in contact
    * with the type of contact involved
-   * @param {Object} c: NGL contact representation
+   * @param {RepresentationElement} c: NGL contact representation
    * @returns {Array} Array of objects
    */
-  function getContactsArray (c) {
-    const contactStore = c.repr.bufferList[0].picking.contacts.contactStore
-    const atomSets = c.repr.bufferList[0].picking.contacts.features.atomSets
-    const contactsDisplayed = c.repr.bufferList[0].picking.array.reduce((arr, val) => {
+  function getContactsArray (c: RepresentationElement) {
+    const contactPicker = (c.repr.bufferList[0].picking! as ContactPicker)
+    const contactStore = contactPicker.contacts.contactStore
+    const atomSets = contactPicker.contacts.features.atomSets
+    const contactsDisplayed = (contactPicker.array as number[]).reduce((arr, val) => {
       if (arr.indexOf(val) === -1) {
         arr.push(val)
       }
       return arr
-    }, [])
+    }, [] as number[])
 
-    const contactsArray = []
+    const contactsArray: {
+      res1: Res,
+      res2: Res,
+      type: string,
+      seleString: string
+    }[] = []
+
     contactsDisplayed.forEach(val => {
       const atom1 = structure.getAtomProxy(atomSets[contactStore.index1[val]][0])
       const res1 = makeRes(atom1)
@@ -242,9 +321,10 @@ function contact (comp, context) {
     return contactsArray
   }
 
-  function clearContact (index) {
+  function clearContact (index: number) {
     for (let r in tabContactsRepr[index]) {
-      if (tabContactsRepr[index][r].dispose) tabContactsRepr[index][r].dispose()
+      if (tabContactsRepr[index][r].hasOwnProperty('repr'))
+        (tabContactsRepr[index][r] as RepresentationElement).dispose()
     }
     tabContactsRepr.splice(index, 1)
     tabContacts.splice(index, 1)
@@ -252,14 +332,14 @@ function contact (comp, context) {
   }
 
   function clearAllContacts () {
-    tabContacts.forEach(s => {
-      comp.removeRepresentation(s.repr)
-    })
+    while (tabContactsRepr.length > 0) {
+      clearContact(0)
+    }
     tabContacts = []
     dispatch()
   }
 
-  function replaceByByres (val) {
+  function replaceByByres (val: string) {
     return (val === 'resname') ? byres : val
   }
 
@@ -273,7 +353,13 @@ function contact (comp, context) {
     return cm
   }
 
-  function setColormakerArray ({target, vicinity}) {
+  function setColormakerArray ({
+    target,
+    vicinity
+  }: {
+    target: ContactObject['repr']['target'],
+    vicinity: ContactObject['repr']['vicinity']
+  }) {
     let a = []
     if (target.color !== 'default') {
       a.push([replaceByByres(target.color), target.seleString])
@@ -283,32 +369,33 @@ function contact (comp, context) {
     }
     return a
   }
-  function setColormaker (index) {
+
+  function setColormaker (index: number) {
     const contact = tabContacts[index].repr
     const colormakerArray = setColormakerArray(contact)
-    const c = ColormakerRegistry.addSelectionScheme(colormakerArray)
+    const c = ColormakerRegistry.addSelectionScheme(colormakerArray as any)
     if (contact.colormaker !== undefined) {
-      ColormakerRegistry.removeScheme(contact.colormaker)
+      ColormakerRegistry.removeScheme(contact.colormaker as string)
     }
     contact.colormaker = c
   }
 
-  function setProperties (index, properties) {
+  function setProperties (index: number, properties: {[k: string]: any}) {
     // console.log(index, tabContactsRepr, tabContacts)
     const contactRepr = tabContactsRepr[index]
     const contact = tabContacts[index]
-    const repr = (properties.hasOwnProperty('repr')) ? contactRepr[properties.repr] : undefined
+    const repr = (properties.hasOwnProperty('repr')) ? contactRepr[properties.repr] as RepresentationElement : undefined
 
     if (repr === undefined) {
       if (properties.param.hasOwnProperty('visible')) {
         for (let i in contactRepr) {
           if (contactRepr.hasOwnProperty(i) && contact.repr.hasOwnProperty(i)) {
-            // if user switches visibiity back to true globally,
+            // if user switches visibility back to true globally,
             // we roll back each representation from the contact
             // to its previous individual visibility setting
             // hence the boolean operation
-            const visible = (properties.param.visible && contact.repr[i].visible)
-            contactRepr[i].setVisibility(visible)
+            const visible = (properties.param.visible && contact.repr[i].visible);
+            (contactRepr[i] as RepresentationElement).setVisibility(visible)
           }
         }
         contact.visible = properties.param.visible
@@ -356,17 +443,17 @@ function contact (comp, context) {
         if (c === 'default') {
           // Coloration by default is the same coloration as the globalColormaker
           const cm = getGlobalColormaker()
-          repr.setColor(cm)
+          repr.setColor(cm!)
         } else {
           setColormaker(index)
-          repr.setColor(contact.repr.colormaker)
+          repr.setColor(contact.repr.colormaker!)
         }
       } else if (properties.param.hasOwnProperty('contactsTypes')) {
-        let cT = {}
+        let cT: {[k:string]: boolean} = {}
         for (let p in defaultDisplayedContacts) {
           cT[p] = false
         }
-        properties.param.contactsTypes.forEach(val => {
+        (properties.param.contactsTypes as string[]).forEach(val => {
           cT[val] = true
         })
         repr.setParameters(cT)
@@ -382,7 +469,7 @@ function contact (comp, context) {
     dispatch()
   }
 
-  function updateRepresentations (index) {
+  function updateRepresentations (index: number) {
     const repr = tabContactsRepr[index]
     // update NGL representations
     repr.contact.setSelection(repr.contactEntities.withinTargetSeleString)
@@ -398,11 +485,11 @@ function contact (comp, context) {
 
     // update colors
     setColormaker(index)
-    repr.target.setColor(cState.repr.colormaker)
-    repr.vicinity.setColor(cState.repr.colormaker)
+    repr.target.setColor(cState.repr.colormaker!)
+    repr.vicinity.setColor(cState.repr.colormaker!)
   }
 
-  function checkContactExists (atomSet) {
+  function checkContactExists (atomSet: BitArray) {
     if (tabContacts.length === 0) return false
     const surf = tabContacts.find(val => {
       return val.atomSet.isEqualTo(atomSet)
@@ -413,7 +500,7 @@ function contact (comp, context) {
   // clean all surfaces when starting
   dispatch()
   return {
-    delete: function (id) {
+    delete: function (id: number) {
       // const index = getIndexFromId(id)
       return clearContact(id)
     },
@@ -423,14 +510,14 @@ function contact (comp, context) {
     getContacts: function () {
       return tabContacts
     },
-    addContact: function ({resnum, chainId}) {
+    addContact: function ({resnum, chainId}: {resnum: number, chainId: string}) {
       return createContact({resnum, chainId})
     },
-    setProperties: function (props) {
+    setProperties: function (props: {[k: string]: any}) {
       // const index = getIndexFromId(props.index)
       return setProperties(props.index, props)
     },
-    checkContactExists: function (atomSet) {
+    checkContactExists: function (atomSet: BitArray) {
       return checkContactExists(atomSet)
     }
   }

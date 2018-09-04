@@ -4,10 +4,34 @@
  * @private
  */
 
-import {Selection} from 'ngl'
+import {Selection, Structure} from 'ngl'
+
+interface ContactEntitiesTargetParameters {
+  resnum: string,
+  chainId:string
+  seleString?: string
+}
+
+interface ContactEntitiesParameters {
+  isWaterExcluded?: boolean,
+  isBackboneExcluded?: boolean,
+  radius?: number,
+  target?: ContactEntitiesTargetParameters
+}
 
 class ContactEntities {
-  constructor (structure, params) {
+  structure: Structure
+  isWaterExcluded: boolean
+  isBackboneExcluded: boolean
+  neighbouringRadius: number
+  targetCompleteSele: string
+  targetSele: string
+  targetFilter: string
+  withinSele: string
+  vicinitySele: string
+  targetCloseToContact: string
+
+  constructor (structure: Structure, params: ContactEntitiesParameters) {
     this.structure = structure
 
     this.isWaterExcluded = (params.isWaterExcluded) ? params.isWaterExcluded : true
@@ -19,7 +43,7 @@ class ContactEntities {
     this.targetCompleteSele = ''
     this.targetSele = ''
     this.targetFilter = ''
-    this.updateTarget(params.target)
+    this.updateTarget(params.target!)
 
     this.withinSele = ''
     this.updateWithin()
@@ -126,18 +150,18 @@ class ContactEntities {
     return this.vicinitySele
   }
 
-  setParameters (params) {
+  setParameters (params: ContactEntitiesParameters) {
     const updates = new Set()
 
     if (params.hasOwnProperty('isWaterExcluded') && params.isWaterExcluded !== this.isWaterExcluded) {
-      this.isWaterExcluded = params.isWaterExcluded
+      this.isWaterExcluded = params.isWaterExcluded!
       updates.add('within')
       updates.add('vicinity')
       updates.add('targetContact')
     }
 
     if (params.hasOwnProperty('isBackboneExcluded') && params.isBackboneExcluded !== this.isBackboneExcluded) {
-      this.isBackboneExcluded = params.isBackboneExcluded
+      this.isBackboneExcluded = params.isBackboneExcluded!
       updates.add('target')
       updates.add('within')
       updates.add('vicinity')
@@ -145,17 +169,17 @@ class ContactEntities {
     }
 
     if (params.hasOwnProperty('radius') && params.radius !== this.neighbouringRadius) {
-      this.neighbouringRadius = params.radius
+      this.neighbouringRadius = params.radius!
       updates.add('within')
       updates.add('vicinity')
       updates.add('targetContact')
     }
 
     // this array controls the right order for updating properties values
-    [['target', this.updateTarget],
+    ([['target', this.updateTarget],
       ['within', this.updateWithin],
       ['vicinity', this.updateVicinity],
-      ['targetContact', this.updateTargetCloseToContact]].map((val) => {
+      ['targetContact', this.updateTargetCloseToContact]] as [string, ()=>void][]).map((val) => {
         if (updates.has(val[0])) {
           val[1].call(this)
         }

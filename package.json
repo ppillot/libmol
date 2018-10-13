@@ -31,9 +31,9 @@
   "dependencies": {
     "@types/marked": "^0.3.0",
     "axios": "^0.17.0",
-    "element-ui": "^2.0.11",
+    "element-ui": "^2.4.8",
     "marked": "^0.3.6",
-    "ngl": "git://github.com/ppillot/ngl.git#ppp",
+    "ngl": "^2.0.0-dev.32",
     "remove-accents-diacritics": "^1.0.2",
     "screenfull": "^3.3.1",
     "split.js": "^1.3.5",
@@ -42,6 +42,8 @@
     "vuex": "^2.3.1"
   },
   "devDependencies": {
+    "@types/signals": "^1.0.1",
+    "@types/three": "^0.92.18",
     "autoprefixer": "^6.7.5",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.1.1",
@@ -111,7 +113,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^2.5.0",
     "ts-loader": "^3.5.0",
-    "typescript": "^2.8.1",
+    "typescript": "^3.0.3",
     "url-loader": "^0.5.8",
     "vue-jest": "^2.1.1",
     "vue-loader": "^13.0.5",

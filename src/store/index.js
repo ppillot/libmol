@@ -342,6 +342,7 @@ var vuex = new Vuex.Store({
       chains: [],
       atoms: [],
       elements: new Set(),
+      hetero: [],
       residues: new Set(),
       molTypes: {
         protein: true,
@@ -435,7 +436,7 @@ var vuex = new Vuex.Store({
       state.molCode = newFile.molCode
       state.dbId = newFile.molId
     },
-    setMolTypes (state, {molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence}) {
+    setMolTypes (state, {molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, hetero}) {
       state.mol.molTypes.protein = molTypes.has(3)
       state.mol.molTypes.dna = molTypes.has(5)
       state.mol.molTypes.rna = molTypes.has(4)
@@ -451,6 +452,7 @@ var vuex = new Vuex.Store({
       state.mol.sstruc = sstruc
       state.mol.noSequence = noSequence
       state.mol.atoms = atoms
+      state.mol.hetero = hetero
 
       state.selected = selected
     },
@@ -678,11 +680,11 @@ var vuex = new Vuex.Store({
         ext: fileObject.ext
       }
       loadNewFile(newFile).then(
-        ({molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component}) => {
+        ({molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component, hetero}) => {
           structure = component.structure
           if (debug) window.structure = structure
 
-          context.commit('setMolTypes', {molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence})
+          context.commit('setMolTypes', {molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, hetero})
 
           tabColorScheme = [['element', 'all']]
           updateGlobalColorScheme()
@@ -965,9 +967,9 @@ var vuex = new Vuex.Store({
       context.commit('setWholeMoleculeContacts', contactsList)
     },
 
-    focusContact ({commit}, {resnum, chainId}) {
-      contacts.addContact({resnum, chainId})
-      const sele = `${resnum}:${chainId} and not backbone`
+    focusContact ({commit}, {target, filter}) {
+      contacts.addContact({target, filter})
+      const sele = `${target.resnum}:${target.chainId} and not backbone`
       console.log(sele)
 
       const center = stage.compList[0].getCenter(sele)
@@ -1235,7 +1237,7 @@ var vuex = new Vuex.Store({
       })
       // context.commit('updateSelectedFromTab', {tabSelectedResidues, isToBeSelected})
       context.commit('updateSelected', currentSelectionAtomSet)
-      context.commit('updateSelection')
+      context.commit('updateSelection', 'user')
       context.commit('updateSelectedPercentage')
       context.commit('color', getColorFromSelection())
       context.commit('display', getRepresentationFromSelection())

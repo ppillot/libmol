@@ -24,6 +24,12 @@ interface FileObject {
   source: string,
   ext: string
 }
+interface Hetero {
+  resname: string,
+  resno: number,
+  chainname: string,
+  entity: string
+}
 
 function getChainColors (chains: ChainProperties[], structure: Structure) {
   // console.log(structure)
@@ -47,8 +53,8 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
     stage.removeAllComponents()
     // console.log(newFile)
     return stage.loadFile(newFile.file, {assembly: 'AU'})
-    .then((component: StructureComponent) => { // let's get the structure property from the structureComponent object returned by NGL's promise
-      const structure = component.structure
+    .then((component: any) => { // let's get the structure property from the structureComponent object returned by NGL's promise
+      const structure = component.structure as Structure
 
       // check if PDB file is recent enough to be valid
       if (structure.atomMap.list[0].element.match(/\d/gi) !== null) {
@@ -68,6 +74,7 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
                                     residueIdentifier.substr(0, residueIdentifier.indexOf('|'))
                                     )
       )
+      let hetero: Hetero[] = []
       let sstruc = new Set()
       let selected: boolean[] = []
 
@@ -111,6 +118,14 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
           // moleculeType: item.moleculeType,
           selected: true
         })
+        if (item.hetero === 1 && item.resname !== 'HOH') {
+          hetero.push({
+            resname: item.resname,
+            resno: item.resno,
+            entity: item.entity.description,
+            chainname: item.chainname
+          })
+        }
         molTypes.add(item.moleculeType)
         sstruc.add(item.sstruc)
         selected.push(true)
@@ -133,7 +148,7 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
       })
       stage.autoView()
 
-      return Promise.resolve({molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component})
+      return Promise.resolve({molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component, hetero})
       // context.commit('setMolTypes', )
       // context.commit('selectedChains')
     })

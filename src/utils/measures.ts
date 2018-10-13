@@ -151,7 +151,7 @@ function measure (component: StructureComponent, context: ActionContext<any, any
   }
 
   function clearMeasureHightLight () {
-    if (measureHighlightRepr.name !== undefined) {
+    if (measureHighlightRepr !== undefined) {
       measureHighlightRepr.setSelection('none')
       highlight = false
     }

@@ -163,12 +163,13 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
     return makeRes(ap)
   }
 
-  function createContact ({resnum, chainId}: {resnum: number, chainId: string, [k: string]: any}) {
+  function createContact ({target: {resnum, chainId}, filter}: {target: {resnum: number, chainId: string, [k: string]: any}, filter: string}) {
     const cE = new ContactEntities(structure, {
       target: {
-        resnum: '' + resnum,
+        resnum: (resnum)? resnum.toString() : '',
         chainId: chainId
       },
+      filter: filter,
       isWaterExcluded: true,
       isBackboneExcluded: true,
       radius: 4.5
@@ -180,7 +181,7 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
     let contactReprParam = {
       flatShaded: true,
       sele: cE.withinTargetSeleString,
-      filterSele: [cE.targetFilter, `not (${cE.targetFilter})`]
+      filterSele: cE.targetFilter
     }
     Object.assign(contactReprParam, defaultDisplayedContacts)
 
@@ -191,16 +192,16 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
     const vicinity = comp.addRepresentation('licorice', {
       multipleBond: true,
       sele: cE.vicinitySeleString,
-      aspectRatio: 2.1,
-      radiusScale: 1.1
+      aspectRatio: 1.5,
+      radiusScale: 1
     })
 
     const targetSele = cE.targetCloseToContact
     const target = comp.addRepresentation('ball+stick', {
       sele: cE.targetCloseToContact,
       multipleBond: true,
-      aspectRatio: 2.1,
-      radiusScale: 1.2
+      aspectRatio: 1.5,
+      radiusScale: 1
     })
 
     const label = comp.addRepresentation('label', {
@@ -510,8 +511,8 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
     getContacts: function () {
       return tabContacts
     },
-    addContact: function ({resnum, chainId}: {resnum: number, chainId: string}) {
-      return createContact({resnum, chainId})
+    addContact: function ({target: {resnum, chainId}, filter}: {target: {resnum: number, chainId: string, [k: string]: any}, filter: string}) {
+      return createContact({target: {resnum, chainId}, filter})
     },
     setProperties: function (props: {[k: string]: any}) {
       // const index = getIndexFromId(props.index)

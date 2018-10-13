@@ -13,10 +13,11 @@ interface ContactEntitiesTargetParameters {
 }
 
 interface ContactEntitiesParameters {
-  isWaterExcluded?: boolean,
-  isBackboneExcluded?: boolean,
-  radius?: number,
-  target?: ContactEntitiesTargetParameters
+  isWaterExcluded: boolean,
+  isBackboneExcluded: boolean,
+  radius: number,
+  target: ContactEntitiesTargetParameters,
+  filter: string
 }
 
 class ContactEntities {
@@ -26,23 +27,26 @@ class ContactEntities {
   neighbouringRadius: number
   targetCompleteSele: string
   targetSele: string
-  targetFilter: string
+  targetFilter: [string, string]
+  filter: string|undefined
   withinSele: string
   vicinitySele: string
   targetCloseToContact: string
 
-  constructor (structure: Structure, params: ContactEntitiesParameters) {
+  constructor (structure: Structure, params: Partial<ContactEntitiesParameters>) {
     this.structure = structure
 
-    this.isWaterExcluded = (params.isWaterExcluded) ? params.isWaterExcluded : true
+    this.isWaterExcluded = (params.isWaterExcluded !== undefined) ? params.isWaterExcluded : true
 
-    this.isBackboneExcluded = (params.isBackboneExcluded) ? params.isBackboneExcluded : true
+    this.isBackboneExcluded = (params.isBackboneExcluded !== undefined) ? params.isBackboneExcluded : true
 
     this.neighbouringRadius = (params.radius) ? params.radius : 4.5
 
     this.targetCompleteSele = ''
     this.targetSele = ''
-    this.targetFilter = ''
+    this.targetFilter = ['', '']
+    this.filter = params.filter || ''
+
     this.updateTarget(params.target!)
 
     this.withinSele = ''
@@ -60,10 +64,11 @@ class ContactEntities {
    * based upon wether the backbone is included or not
    * Depends on :
    * - target: fixed
+   * - filter: fixed
    * - isBackboneExcluded: changeable
    * @param {Object} [params] parameters: resnum, chainId, seleString
    */
-  updateTarget ({resnum = '', chainId = '', seleString = ''}) {
+  updateTarget ({resnum = '', chainId = '', seleString = ''}: Partial<ContactEntitiesTargetParameters>) {
     let s = ''
     if (seleString === '') {
       if (resnum === '' && chainId === '') {
@@ -78,7 +83,9 @@ class ContactEntities {
     } else s = `(${seleString})`
 
     this.targetCompleteSele = s
-    this.targetFilter = s
+    this.targetFilter = (this.filter) ? 
+      [s, this.filter] :
+      [s, `not ${s}`]
 
     if (this.isBackboneExcluded) {
       s += ' AND NOT BACKBONE'
@@ -97,7 +104,8 @@ class ContactEntities {
    */
   updateWithin () {
     const seleWithin = this.structure.getAtomSetWithinSelection(new Selection(this.targetSele), this.neighbouringRadius)
-    this.withinSele = '(' + seleWithin.toSeleString() + ')' + ((this.isWaterExcluded) ? ' AND NOT WATER' : '')
+    this.withinSele = '(' + seleWithin.toSeleString() + ')'
+      + ((this.isWaterExcluded) ? ' AND NOT WATER' : '')
   }
 
   /**
@@ -105,11 +113,14 @@ class ContactEntities {
    * it is used to display those residues
    * Depends on :
    * - target (isBackboneExcluded)
+   * - filter
    * - withinTargetSelestring (radius, isWaterExcluded)
    */
   updateVicinity () {
     const seleGroupWithin = this.structure.getAtomSetWithinGroup(new Selection(this.withinSele))
-    this.vicinitySele = `(${seleGroupWithin.toSeleString()}) and (not backbone or .CA or (PRO and .N)) and not (${this.targetCompleteSele})`
+    const filterSele = ((this.filter) ? ` AND (${this.filter})` : '')
+
+    this.vicinitySele = `(${seleGroupWithin.toSeleString()}) and (not backbone or .CA or (PRO and .N)) and not (${this.targetCompleteSele}) ${filterSele}`
   }
 
   /**
@@ -117,10 +128,12 @@ class ContactEntities {
    * with the surrounding. It is relevant if target is not a single residue
    * Depends on :
    * - target (isBackboneExcluded)
+   * - filter
    * - withinTargetSelestring (radius, isWaterExcluded)
    */
   updateTargetCloseToContact () {
-    const seleTargetContact = this.structure.getAtomSetWithinSelection(new Selection(`${this.withinSele} and not (${this.targetCompleteSele})`), this.neighbouringRadius)
+    const filterSele = ((this.filter) ? ` AND (${this.filter})` : '')
+    const seleTargetContact = this.structure.getAtomSetWithinSelection(new Selection(`${this.withinSele} and not (${this.targetCompleteSele})  ${filterSele}`), this.neighbouringRadius)
     const seleGroupTargetContact = this.structure.getAtomSetWithinGroup(new Selection(`${seleTargetContact.toSeleString()} and (${this.targetCompleteSele})`))
     this.targetCloseToContact = `(${seleGroupTargetContact.toSeleString()}) and (not backbone or .CA or (PRO and .N))`
   }
@@ -150,7 +163,7 @@ class ContactEntities {
     return this.vicinitySele
   }
 
-  setParameters (params: ContactEntitiesParameters) {
+  setParameters (params: Partial<ContactEntitiesParameters>) {
     const updates = new Set()
 
     if (params.hasOwnProperty('isWaterExcluded') && params.isWaterExcluded !== this.isWaterExcluded) {

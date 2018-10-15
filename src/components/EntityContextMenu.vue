@@ -130,7 +130,7 @@
           })
       },
       contact (part, event) {
-        this.$store.dispatch('focusContact', part)
+        this.$store.dispatch('focusContact', {target: part})
       }
     }
   }

@@ -1,28 +1,41 @@
 <template>
   <div class="container">
-    <h2>Créer la représentation d'une zone d'interaction</h2>
+    <h2>{{ $t('ui.contacts.createHeader') }}</h2>
     <el-tabs v-model="interactionType">
-      <el-tab-pane label="Avec un ligand" name="ligand">
-        <p>
-          Visualiser les liaisons entre un ligand et une protéine.<br/>
-          Sélectionner le ligand voulu dans la liste et créer la représentation.
+<!-- ligand pane -->
+      <el-tab-pane :label="$t('ui.contacts.ligandTabHeader')" name="ligand">
+        <p class="objectives">
+          {{ $t('ui.contacts.ligandManifest')}}
         </p>
-        <el-select v-model="pickedLigand" filterable placeholder="Nom du ligand">
+        <p class="instructions">
+          {{ $t('ui.contacts.ligandInstructions')}}
+        </p>
+        <el-select 
+          v-model="pickedLigand" 
+          filterable 
+          :placeholder="$t('ui.contacts.ligandPlaceholder')"
+        >
           <el-option v-for="item in ligands"
             :key="item.value"
             :label="item.label"
             :value="item.value"
+            @hover="highlight(item.param.resnum + ':' + item.param.chainId)"
           >
           </el-option>
         </el-select>
       </el-tab-pane>
-      <el-tab-pane label="Entre chaînes" name="chain">
+<!-- chain pane -->
+      <el-tab-pane :label="$t('ui.contacts.chainTabHeader')" name="chain">
+        <p class="objectives">{{ $t('ui.contacts.chainManifest') }}</p>
+        <p class="instructions">{{ $t('ui.contacts.chainTargetInstructions') }}</p>
         
-        Visualisers les liaisons entre une chaîne et ses voisines.<br/>
-        Sélectionner la chaîne voulue
-        
-        <el-select v-model="pickedChain" clearable placeholder="Chaîne">
-          <el-option v-for="item in chains"
+        <el-select 
+          v-model="pickedChain" 
+          clearable 
+          :placeholder="$t('ui.contacts.chainTargetPlaceholder')"
+        >
+          <el-option 
+            v-for="item in chains"
             :key="item.value"
             :label="item.label"
             :value="item.value"
@@ -31,11 +44,16 @@
           <span style="float: right; margin-left: 1em;">{{ item.entity }}</span>
           </el-option>
         </el-select>
-        <p>
-          Option : limiter la représentation aux contacts avec les chaînes suivantes
+        <p class="instructions">
+          {{ $t('ui.contacts.chainFilterInstructions') }}
         </p>
-        <el-select v-model="filterChains" multiple placeholder="Limiter aux chaînes...">
-          <el-option v-for="item in filteredChains"
+        <el-select 
+          v-model="filterChains" 
+          multiple 
+          :placeholder="$t('ui.contacts.chainFilterPlaceholder')"
+        >
+          <el-option 
+            v-for="item in filteredChains"
             :key="item.value"
             :label="item.label"
             :value="item.value"
@@ -43,6 +61,7 @@
           </el-option>
         </el-select>
       </el-tab-pane>
+<!-- custom pane -->
       <!--
       <el-tab-pane label="Personnalisée" name="custom">
         Visualiser les liaisons entre la sélection définie et les résidus voisins.<br/>
@@ -58,7 +77,7 @@
       @click="createContact"
       :disabled="pickedLigand === '' && pickedChain === ''"
     >
-      Créer une nouvelle représentation
+      {{ $t('ui.contacts.makeContactRepresentation') }}
     </el-button>
   </div>
 </template>
@@ -138,20 +157,8 @@ export default {
           break
       }
     },
-    createInterChainContact: function () {
-      if (this.pickedChain !== '') {
-        const target = this.chains[this.pickedChain].param
-        const filter = this.filterChains.map((val) => {
-          return ':' + val
-        }).join(' || ')
-
-        this.$store.dispatch('focusContact', {
-          target: target,
-          filter: filter
-        })
-      }
-    },
     highlight: function (selector) {
+      console.log(selector)
       this.$store.dispatch('highlightSelectHovered', selector)
     }
   }
@@ -165,10 +172,10 @@ export default {
     }
     .container {
       border: solid 1px #e2e7ec;
+      border-radius: 5px;
     }
 
     .el-tabs {
-      height: 15em;
       padding: 0.3em;
     }
     h2 {
@@ -176,9 +183,14 @@ export default {
       margin: 0;
       height: 3em;
       line-height: 3em;
-      background: #f5f7fa;
-      padding-left: 1em;
-      color: #303133;
+      background: #063c79;
+      color: #e3e5ea;
+      text-align: center;
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
 
     .fullwidth {
@@ -190,6 +202,24 @@ export default {
       height: 30px;
     }
 
+    .objectives {
+      margin: 0;
+      color: #8e9398;
+      padding: 2px 6px;
+      font-style: italic;
+    }
+
+    .instructions {
+      margin-top: 0.6em;
+    }
+
+    p {
+      margin: 0;
+    }
     
-    
+</style>
+<style>
+  .contact-tab--container .el-tabs .el-tabs__header {
+    margin-bottom: 0.2em;
+  }
 </style>

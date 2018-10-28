@@ -60,18 +60,28 @@ export default {
   overflow hidden
   padding 0
   margin 0
+.el-popover .vue-color__compact__colors
+  display flex
+  flex-direction row
+  width 100%
+  flex-wrap wrap
 .compact__ul
-  display inline-flex
+  display flex
+  flex-direction row
   width 100%
 .vue-color__compact__color-item
   list-style none
   width 2em
-  height 2em
-  float left
+  height auto
   margin 2px
-  position relative
   cursor pointer
   position relative
+  flex 1 1 2em
+  padding 0
+  &::before
+    padding-top 100%
+    content ''
+    display block
 .vue-color__compact__color-item--white
   box-shadow inset 0 0 0 1px #ddd
   .vue-color__compact__dot

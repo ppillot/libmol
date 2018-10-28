@@ -47,6 +47,18 @@
       "css": "info",
       "code": 59392,
       "src": "modernpics"
+    },
+    {
+      "uid": "414fe97e4af5215a06d29be0f2cecdf5",
+      "css": "network",
+      "code": 59393,
+      "src": "entypo"
+    },
+    {
+      "uid": "c92ad3028acce9d51bae0ac82f5de8a2",
+      "css": "center",
+      "code": 61760,
+      "src": "fontawesome"
     }
   ]
 }

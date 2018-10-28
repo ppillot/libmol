@@ -1,56 +1,43 @@
 <template>
-    <div id="contact-tab--list" v-if="contacts.length > 0">          
-        <div class="container no-scroll surface-list"
+  <div class="container surface-list">
+    <div class="surface-list-header">
+        {{ $t('ui.contacts.list_label') }}
+        <el-button
+          type="text"
+          icon="delete"
+          class="button align-right"
+          size="large"
+          @click="handleDelete(-1)" v-if="contacts.length > 0">
+        </el-button>
+    </div>
+    <div
+      id="contact-tab--list"
+      class="surface-list-body"
+      v-if="contacts.length > 0"
+      >
+        <contact-header-list-item 
           v-for="(contact, index) in contacts"
-          :key="index">
-          <div class="surface-header list-header--card">
-            <i 
-              class="el-icon-caret-right"
-              :class="[contact.index === edit ? 'rotate' : 'unrotate']"
-              @click="edit = (index === edit)? -1 : index">
-            </i>
-            <div class="surface-title">
-              {{ $t('ui.contacts.contactHeader') }}
-              <span v-if="contact.target.type === 'res'">
-               {{ ($te('biochem.pdb_res_name.' + contact.target.res.resname)) ? $t('biochem.pdb_res_name.' + contact.target.res.resname) : contact.target.res.resname }}
-        {{ contact.target.res.resno }}
-              </span>
-              {{ $t('tooltips.chain') }} {{ contact.target.chain }}
-            </div>
-            <visible :value="visibility[index]" @input="val => {handleVisibility(val, index)}"></visible>
-            <el-button type="text" icon="el-icon-delete" @click="handleDelete(index)"></el-button>
-          </div>
+          :key="index"
+          :contact-num="index"
+          link
+        />          
+        
+    </div>
+        <!-- No contact created yet -->
+    <div v-else
+      class="surface-list-item"
+    >
+      {{ $t('ui.contacts.list_instructions') }}
 
-          <!-- Contacts settings -->
-          <contacts-tab-contact-settings :edit="index" v-if="edit === index"/>
-          <!-- End Contacts settings -->
-
-          <div class="surface-list-body"
-            v-if="contact.contactsList.length>0"
-            @mouseout="highlight('none')">
-            <div class="surface-list-item list-item--card"
-              :class="pair.type"
-              @mouseover="highlight(pair.seleString)"
-              v-for="(pair, i) in contact.contactsList" 
-              :key="i">
-              <div >
-                {{ pair.res1.resname }}{{ pair.res1.resno }}:{{ pair.res1.chainname }}
-                  /
-                {{ pair.res2.resname }}{{ pair.res2.resno }}:{{ pair.res2.chainname }}
-                -
-                {{ $t('ui.contacts.' + pair.type)}}
-                <context-help :subject="pair.type" namespace="contacts"/>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import Visible from './Visible'
 import ContactsTabContactSettings from './ContactsTabContactSettings'
 import ContextHelp from './ContextHelp'
+import ContactHeaderListItem from './ContactHeaderListItem'
 
 // import {contactTypesIndices} from '../utils/contacts'
 
@@ -59,15 +46,23 @@ export default {
   components: {
     Visible,
     ContactsTabContactSettings,
+    ContactHeaderListItem,
     ContextHelp
   },
   data () {
     return {
-      edit: -1,
-      colors: '#ff00ff'
+      edit: -1
     }
   },
   computed: {
+    isEditing: {
+      get: function () {
+        return this.edit > -1
+      },
+      set: function (val) {
+        if (val === false) this.edit = -1
+      }
+    },
     contacts: function () {
       return this.$store.state.contacts
     },
@@ -75,38 +70,9 @@ export default {
       return this.$store.state.contacts.map(val => {
         return val.visible
       })
-    },
-    targetRepresentationMode: function () {
-      if (this.edit > -1) {
-        return this.contacts[this.edit].repr.target.reprName
-      } else {
-        return undefined
-      }
-    },
-    targetColor: function () {
-      if (this.edit > -1) {
-        return this.contacts[this.edit].repr.target.color
-      } else {
-        return undefined
-      }
     }
   },
   methods: {
-    highlight: function (selector) {
-      this.$store.dispatch('highlightSelectHovered', selector)
-    },
-    display: function (val) {
-      this.$store.dispatch('updateDisplayContact', {
-        index: this.edit,
-        repr: 'target',
-        param: {
-          reprName: val
-        }
-      })
-    },
-    handleEdit: function (contactNum) {
-      console.log(contactNum)
-    },
     handleVisibility: function (val, contactNum) {
       this.$store.dispatch('updateDisplayContact', {
         index: contactNum,
@@ -117,12 +83,6 @@ export default {
     },
     handleDelete: function (contactNum) {
       this.$store.dispatch('deleteContact', contactNum)
-    },
-    changeColor: function (val) {
-      console.log(val)
-    },
-    pickColor (val) {
-      if (val !== 'palette') this.changeColor(val)
     }
   }
 }
@@ -130,16 +90,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-    #contact-tab--list {
-        overflow-y: auto;
-        padding-left: 1px;
-        max-height: 100%;
-    }
-    #contact-tab--help {
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
+    .container {
+      flex: 1;
     }
 
     ul {
@@ -162,12 +114,12 @@ export default {
       color: #20a0ff;
     }
 
-    .display-sub {
-      transform: rotate(90deg);
+    .el-button.el-button--text {
+      margin: 0;
     }
 
-    @keyframes rotating {
-
+    .surface-list-item {
+      background: none;
     }
     
 </style>

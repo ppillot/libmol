@@ -3,7 +3,11 @@
     <h2>{{ $t('ui.contacts.createHeader') }}</h2>
     <el-tabs v-model="interactionType">
 <!-- ligand pane -->
-      <el-tab-pane :label="$t('ui.contacts.ligandTabHeader')" name="ligand">
+      <el-tab-pane 
+      :label="$t('ui.contacts.ligandTabHeader')" 
+      name="ligand"
+      :disabled="ligands.length===0"
+      >
         <p class="objectives">
           {{ $t('ui.contacts.ligandManifest')}}
         </p>
@@ -25,7 +29,10 @@
         </el-select>
       </el-tab-pane>
 <!-- chain pane -->
-      <el-tab-pane :label="$t('ui.contacts.chainTabHeader')" name="chain">
+      <el-tab-pane 
+        :label="$t('ui.contacts.chainTabHeader')" 
+        :disabled="chains.length<2"
+        name="chain">
         <p class="objectives">{{ $t('ui.contacts.chainManifest') }}</p>
         <p class="instructions">{{ $t('ui.contacts.chainTargetInstructions') }}</p>
         
@@ -99,6 +106,9 @@ export default {
       return this.$store.state.contacts
     },
     ligands: function () {
+      if (this.$store.state.mol.hetero.length === 0) {
+        this.interactionType = 'chain'
+      }
       return this.$store.state.mol.hetero.map((res, id) => {
         return {
           label: res.resname + ' ' + res.resno + ' (' + res.entity + ') ' +
@@ -172,7 +182,8 @@ export default {
     }
     .container {
       border: solid 1px #e2e7ec;
-      border-radius: 5px;
+      border-radius: 0px;
+      flex: none;
     }
 
     .el-tabs {
@@ -183,14 +194,14 @@ export default {
       margin: 0;
       height: 3em;
       line-height: 3em;
-      background: #063c79;
-      color: #e3e5ea;
+      background: #ecf1f5;
+      color: #283e52;
       text-align: center;
       white-space: nowrap;
       overflow-x: hidden;
       text-overflow: ellipsis;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
     }
 
     .fullwidth {

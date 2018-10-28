@@ -1,19 +1,31 @@
 <template>
   <div class="contact-tab--container">
-    <contacts-tab-create-widget />
-    <contacts-tab-list />
+    <template v-if="activeContact===null">
+      <contacts-tab-create-widget/>
+      <contacts-tab-list/>
+    </template>
+    <contact-details v-else
+      :contactNum="activeContact"
+    />
   </div>
 </template>
 
 <script>
 import ContactsTabList from './ContactsTabList'
 import ContactsTabCreateWidget from './ContactsTabCreateWidget'
+import ContactDetails from './ContactDetails'
 
 export default {
   name: 'contactsTab',
   components: {
     ContactsTabList,
-    ContactsTabCreateWidget
+    ContactsTabCreateWidget,
+    ContactDetails
+  },
+  computed: {
+    activeContact: function () {
+      return this.$store.state.activeContact
+    }
   }
 }
 </script>
@@ -25,6 +37,8 @@ export default {
       overflow: hidden;
       flex: 1;
       max-height: 100%;
+      display: flex;
+      flex-direction: column;
     }
        
 </style>

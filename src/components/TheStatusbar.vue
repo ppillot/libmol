@@ -1,5 +1,24 @@
 <template>
     <div class="statusbar">
+      <div class="statusbar--contact" v-if="hasContacts">
+        <div v-for="type in contactTypes" 
+          :key="type"
+          class="statusbar--element"
+          >
+          <context-help 
+            :subject="type" 
+            namespace="contacts"
+            placement="top"
+            trigger-event="click">
+              <span :class="`${type}-border dashed`">
+              </span>
+              <span :class="`${type}-text`">
+                {{ $t(`ui.contacts.${type}`) }}
+              </span>
+          </context-help>
+        </div>
+
+      </div>
       <div class="coloration">
         <div  v-show='isShown'>
           {{ colorDescription }} :
@@ -21,6 +40,7 @@
   import {getSStrucName} from '../utils/sstruc'
   import CounterHidden from './CounterHidden'
   import CounterSelection from './CounterSelection'
+  import ContextHelp from './ContextHelp'
   
   /**
    * remove values from the set when they are redundant with alias values
@@ -63,9 +83,30 @@
     },
     components: {
       CounterHidden,
-      CounterSelection
+      CounterSelection,
+      ContextHelp
     },
     computed: {
+      hasContacts: function () {
+        return this.$store.state.contacts.length > 0
+      },
+      contactTypes: function () {
+        const visibleContacts = this.$store.state.contacts.reduce((acc, contact) => {
+          if (contact.visible) {
+            acc.push(contact)
+          }
+          return acc
+        }, [])
+
+        let cTypes = new Set()
+        visibleContacts.forEach((contact) => {
+          contact.contactsList.forEach((contactEl) => {
+            cTypes.add(contactEl.type)
+          })
+        })
+
+        return [...cTypes]
+      },
       isShown: function () {
         return this.$store.state.selection !== 'none'
       },
@@ -202,6 +243,7 @@
     padding: 0.2em;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
   }
 
 
@@ -214,6 +256,19 @@
 
   .statusbar span span {
     cursor: default;
+  }
+
+  .statusbar--element {
+    display: inline-block;
+    margin-right: 0.8em;
+  }
+
+  .statusbar .statusbar--element span {
+    font-weight: normal;
+    -webkit-text-stroke: unset;
+    -moz-text-stroke: unset;
+    -ms-text-stroke: unset;
+    font-size: 0.95em;
   }
 
   .statusbar .tooltip {
@@ -255,4 +310,16 @@
     flex: 1;
   }
 
+  .statusbar .statusbar--contact {
+    width: 100%;
+  }
+
+  .dashed {
+    display: inline-block;
+    height: 0; 
+    width: 20px;
+    border-style: dashed;
+    border-width: 2px;
+    vertical-align: middle;
+  }
 </style>

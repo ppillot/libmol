@@ -131,6 +131,8 @@
       },
       contact (part, event) {
         this.$store.dispatch('focusContact', {target: part})
+        this.$store.commit('setActiveTab', 'contacts')
+        this.$store.commit('setActiveContact', this.$store.state.contacts.length - 1)
       }
     }
   }

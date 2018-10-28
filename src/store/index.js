@@ -381,6 +381,7 @@ var vuex = new Vuex.Store({
         y: 0
       }
     },
+    activeContact: null,
     contactHovered: {
     },
     contactsReprList: [],
@@ -422,9 +423,13 @@ var vuex = new Vuex.Store({
     },
     isUserSelectionValid: false,
     userSelectionSize: 0,
-    userSelectionText: null
+    userSelectionText: null,
+    activeTab: 'files'
   },
   mutations: {
+    setActiveTab (state, value) {
+      state.activeTab = value
+    },
     alert (state, {type, token}) {
       state.alert.type = type
       state.alert.token = token
@@ -602,6 +607,9 @@ var vuex = new Vuex.Store({
     },
     setUserSelectionText (state, value) {
       state.userSelectionText = value
+    },
+    setActiveContact (state, value) {
+      state.activeContact = value
     }
   },
   actions: {

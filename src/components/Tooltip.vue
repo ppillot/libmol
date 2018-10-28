@@ -160,6 +160,73 @@ export default {
 </style>
 
 <style>
+/* text colors */
+  .hydrogenBond-text, .waterHydrogenBond-text, .backboneHydrogenBond-text {
+    color: #2B83BA;
+  }
+
+  .hydrophobic-text {
+    color: #808080;
+  }
+
+  .halogenBond-text {
+    color: #40FFBF;
+  }
+
+  .ionicInteraction-text {
+    color: #f0c814;
+  }
+
+  .metalCoordination-text {
+    color: #8C4099;
+  }
+
+  .cationPi-text {
+    color: #ff8000;
+  }
+
+  .piStacking-text {
+    color: #8cb366;
+  }
+
+  .weakHydrogenBond-text {
+    color: #c5ddec;
+  }
+
+/* border-color*/
+  .hydrogenBond-border, .waterHydrogenBond-border, .backboneHydrogenBond-border {
+    border-color: #2B83BA;
+  }
+
+  .hydrophobic-border {
+    border-color: #808080;
+  }
+
+  .halogenBond-border {
+    border-color: #40FFBF;
+  }
+
+  .ionicInteraction-border {
+    border-color: #f0c814;
+  }
+
+  .metalCoordination-border {
+    border-color: #8C4099;
+  }
+
+  .cationPi-border {
+    border-color: #ff8000;
+  }
+
+  .piStacking-border {
+    border-color: #8cb366;
+  }
+
+  .weakHydrogenBond-border {
+    border-color: #c5ddec;
+  }
+
+/* background color */
   .hydrogenBond, .waterHydrogenBond, .backboneHydrogenBond {
     background: #2B83BA;
     color: #fff;

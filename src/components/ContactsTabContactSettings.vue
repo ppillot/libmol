@@ -88,8 +88,7 @@ export default {
 <style scoped>
     .interaction_panel {
       padding-top: 1em;
-      border: 2px solid #f5f7fa;
-      box-shadow: inset 0 1px 3px #afb2b3;
+      border-top: 1px solid #e1e7eb;
     }
 
     .contact-settings {

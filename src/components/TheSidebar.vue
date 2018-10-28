@@ -4,7 +4,7 @@
         
         <about-panel :visible="dialogVisible" @close="dialogVisible = false"/>
 
-        <el-tabs value="files" type="border-card" class="tab-card" @tab-click="switchTab">
+        <el-tabs v-model="activeTab" type="border-card" class="tab-card">
             <el-tab-pane :label="$t('ui.files_tab_label')" name="files">
                 <search-libmol/>
                 <search-pdb/>
@@ -14,7 +14,7 @@
                 <commands-tab/>
             </el-tab-pane>
             <el-tab-pane :label="$t('ui.sequences_tab_label')" name="sequences" :disabled="noSequence">
-                <sequence-tab :active="isSequenceTabActive"/>
+                <sequence-tab :active="activeTab === 'sequences'"/>
             </el-tab-pane>
             
             <el-tab-pane :label="$t('ui.surfaces_tab_label')" name="surfaces">
@@ -53,18 +53,20 @@ export default {
   },
   data () {
     return {
-      isSequenceTabActive: false,
       dialogVisible: false
     }
   },
   computed: {
     noSequence: function () {
       return this.$store.state.mol.noSequence
-    }
-  },
-  methods: {
-    switchTab (tabClicked) {
-      this.isSequenceTabActive = (tabClicked.name === 'sequences')
+    },
+    activeTab: {
+      get: function () {
+        return this.$store.state.activeTab
+      },
+      set: function (val) {
+        this.$store.commit('setActiveTab', val)
+      }
     }
   }
 }

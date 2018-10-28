@@ -2,13 +2,17 @@
   <span>
     <el-popover
       ref="help"
-      placement="right"
+      :placement="placement"
       width="400"
-      trigger="click">
+      :trigger="triggerEvent">
       <div class="help" v-html="text" @click.stop.prevent="getLink">
       </div>
     </el-popover>
-    <i v-popover:help class="el-icon-info"></i>
+    <span v-popover:help >
+      <slot>
+        <i class="el-icon-info"></i>
+      </slot>
+    </span>
   </span>
 </template>
 
@@ -25,6 +29,14 @@
       },
       namespace: {
         default: 'contacts',
+        type: String
+      },
+      placement: {
+        default: 'right',
+        type: String
+      },
+      triggerEvent: {
+        default: 'click',
         type: String
       }
     },
@@ -59,12 +71,11 @@
 
 <style scoped>
   i {
-    color: #ddd;
-    float: right;
+    color: #88a9d4;
     line-height: 1.4em;
   }
   i:hover {
-    color: #fff;
+    color: #20a0ff;
   }
   .help {
     overflow-y: auto;

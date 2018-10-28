@@ -750,6 +750,7 @@ var vuex = new Vuex.Store({
       if (state.ssBridgeDisplayed && ssbridges.count() > 0) {
         ssbridges.enable(true)
       }
+      commit('setActiveContact', null)
     },
     selection (context, selector) {
       if (selector === 'invert') {

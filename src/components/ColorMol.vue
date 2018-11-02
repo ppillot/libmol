@@ -9,7 +9,18 @@
     <button-group :active-value="colored" @change="changeColor" @hover="hover">
         <radio-button :disabled="none" value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>
         <radio-button :disabled="nonPolymer || none" value="chainname">{{ $t('ui.commands.color.by_chain') }}</radio-button>
-        <radio-button :disabled="nonPolymer || none" value="resname">{{ $t('ui.commands.color.by_res') }}</radio-button>
+        <split-button :disabled="nonPolymer || none" value="resname">
+          {{ $t('ui.commands.color.by_res') }}
+          <split-button-item default value="resname" slot="list">
+            {{ $t('ui.commands.color.by_res') }}
+          </split-button-item>
+          <split-button-item default value="residueindex" slot="list">
+            {{ $t('ui.commands.color.resindex') }}
+          </split-button-item>
+          <split-button-item default value="sidechain" slot="list">
+            {{ $t('ui.commands.color.sidechain') }}
+          </split-button-item>
+        </split-button>
         <radio-button :disabled="noSStruc || none" value="sstruc">{{ $t('ui.commands.color.by_secondary_structure') }}</radio-button>
         <radio-button :disabled="notAll || none" value="moleculetype">{{ $t('ui.commands.color.by_biochemical_nature') }}</radio-button>
         <radio-button :disabled="none" value="palette" v-popover:palette>{{ $t('ui.commands.color.pick_color') }}</radio-button>
@@ -22,6 +33,8 @@ import Palette from './Palette'
 import FormItem from './FormItem'
 import ButtonGroup from './ButtonGroup'
 import RadioButton from './RadioButton'
+import SplitButton from './SplitButton'
+import SplitButtonItem from './SplitButtonItem'
 
 export default {
   name: 'ColorMol',
@@ -34,7 +47,9 @@ export default {
     'palette': Palette,
     FormItem,
     ButtonGroup,
-    RadioButton
+    RadioButton,
+    SplitButton,
+    SplitButtonItem
   },
   computed: {
     nonPolymer: function () {

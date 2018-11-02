@@ -220,7 +220,15 @@ let byres = ColormakerRegistry.addScheme(function (this: Colormaker) {
   }
 }, 'byres')
 
+let sidechain = ColormakerRegistry.addScheme(function (this: Colormaker) {
+  this.atomColor = function (atom: AtomProxy) {
+    return (atom.isBackbone()) ? 0x888888 :
+      ResidueColors2[atom.resname] || DefaultResidueColor2
+  }
+}, 'byres')
+
 export {
   getColor,
-  byres
+  byres,
+  sidechain
 }

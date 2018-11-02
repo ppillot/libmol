@@ -141,10 +141,13 @@ function updateGlobalColorScheme () {
   NGL.ColormakerRegistry.removeScheme(globalColorScheme)
   globalColorScheme = NGL.ColormakerRegistry.addSelectionScheme(tabColorScheme.map(
     (val) => {
-      if (val[0] === 'resname') {
-        return [byres, val[1]]
-      } else {
-        return val
+      switch (val[0]) {
+        case 'resname':
+          return [byres, val[1]]
+        case 'sidechain':
+          return [sidechain, val[1]]
+        default:
+          return val
       }
     }
   ), 'default')

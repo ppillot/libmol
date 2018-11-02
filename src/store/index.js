@@ -13,7 +13,7 @@ import {getHelp} from 'utils/help.ts'
 import {hover} from 'utils/hover'
 import {measure} from 'utils/measures'
 import {loadFile} from 'utils/loadfile'
-import {byres} from 'utils/colors'
+import {byres, sidechain} from 'utils/colors'
 import surface from 'utils/surface'
 import {contact} from 'utils/contacts'
 import {ssBridges} from 'utils/ssbridges'
@@ -143,10 +143,13 @@ function updateGlobalColorScheme () {
   NGL.ColormakerRegistry.removeScheme(globalColorScheme)
   globalColorScheme = NGL.ColormakerRegistry.addSelectionScheme(tabColorScheme.map(
     (val) => {
-      if (val[0] === 'resname') {
-        return [byres, val[1]]
-      } else {
-        return val
+      switch (val[0]) {
+        case 'resname':
+          return [byres, val[1]]
+        case 'sidechain':
+          return [sidechain, val[1]]
+        default:
+          return val
       }
     }
   ), 'default')

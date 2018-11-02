@@ -1,7 +1,7 @@
 <template>
   <div class="radio-button" 
     :class="{active: isActive, disabled: disabled}" 
-    @click="handlerClick"
+    @click.stop="handlerClick"
     @mouseenter="handlerHover">
     <slot></slot>
   </div>

@@ -122,7 +122,7 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
           hetero.push({
             resname: item.resname,
             resno: item.resno,
-            entity: item.entity.description,
+            entity: (item.entity) ? item.entity.description : 'unknown',
             chainname: item.chainname
           })
         }

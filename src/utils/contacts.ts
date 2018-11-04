@@ -278,6 +278,8 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
     dispatch()
 
     setColormaker(tabContacts.length - 1)
+
+    return tabContacts[tabContacts.length - 1]
   }
 
   /**

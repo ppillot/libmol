@@ -174,9 +174,7 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
       isBackboneExcluded: true,
       radius: 4.5
     })
-    // const seleWithin = cE.withinTargetSeleString
-    // const seleGroupWithin = structure.getAtomSetWithinGroup(new Selection(`(${seleWithin.toSeleString()}) and not water`))
-    console.log(cE)
+    // console.log(cE)
 
     let contactReprParam = {
       flatShaded: true,
@@ -500,12 +498,50 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
     return (surf !== undefined)
   }
 
-  // clean all surfaces when starting
+  /**
+   * focus on the given contact
+   * @param {number} id index of the contact 
+   */
+  function focus (id: number) {
+    const contact = tabContacts.find((c)=> {return c.index===id}) as ContactObject
+    const sele = contact.repr.target.seleString + ' or ' + contact.repr.vicinity.seleString
+    const stage = comp.stage
+    const center = stage.compList[0].getCenter(sele)
+    const zoom = stage.compList[0].getZoom(sele)
+      
+    stage.animationControls.zoomMove(center, zoom, 400)
+    context.commit('setFog', [50, 60])
+  }
+
+  /**
+   * show only the contact with the given id
+   * @param id index of the contact
+   */
+  function showOnly (id: number) {
+    tabContacts.forEach((contact, i) => {
+      const repr = tabContactsRepr[i]
+      const visibility = (contact.index === id)
+
+      contact.visible = visibility;
+      ['contact', 'target', 'label', 'vicinity'].forEach(part => {
+        (repr[part] as RepresentationElement).setVisibility(visibility)
+      })
+    })
+    dispatch()
+  }
+
+  // clean all contacts when starting
   dispatch()
   return {
     delete: function (id: number) {
       // const index = getIndexFromId(id)
       return clearContact(id)
+    },
+    focus: function (id: number) {
+      return focus(id)
+    },
+    showOnly: function (id: number) {
+      return showOnly(id)
     },
     deleteAll: function () {
       return clearAllContacts()

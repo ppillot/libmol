@@ -978,12 +978,8 @@ var vuex = new Vuex.Store({
 
     focusContact ({commit}, {target, filter}) {
       const contact = contacts.addContact({target, filter})
-      const sele = contact.repr.target.seleString + ' or ' + contact.repr.vicinity.seleString
-
-      const center = stage.compList[0].getCenter(sele)
-      const zoom = stage.compList[0].getZoom(sele)
-      stage.animationControls.zoomMove(center, zoom, 400)
-      commit('setFog', [50, 60])
+      contacts.focus(contact.index)
+      contacts.showOnly(contact.index)
     },
 
     updateDisplayContact (context, contactParam) {

@@ -67,6 +67,7 @@ export default {
     },
     forwardActive (val) {
       this.$parent.handlerActive(val)
+      this.isSplit = false // close the menu
       console.log('forwardActive:', val)
     },
     forwardHover (event) {

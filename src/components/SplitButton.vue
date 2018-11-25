@@ -73,6 +73,15 @@ export default {
     forwardHover (event) {
       console.log('forwardHover:', event)
     }
+  },
+  watch: {
+    isSplit: function (newValue, oldValue) {
+      if (newValue === true) {
+        this.$root.$on('click', this.toggleMenu)
+      } else {
+        this.$root.$off('click', this.toggleMenu)
+      }
+    }
   }
 }
 

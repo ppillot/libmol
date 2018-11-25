@@ -269,11 +269,11 @@ function buildI18N(auth) {
               $fichier     : file.fileName,
               $description : row[8],
               $ftindex    : removeAccents.remove(row[8])
-            }, (err, success) => {
+            }, function (err) {
               if (err) {
                 console.log('Problem occured at ', row, '\n', err)
               } else {
-                console.log('Succesfully inserted: #' + index + ' at index ' + this.lastId)
+                console.log('Succesfully inserted: #' + index + ' at index ' + this.lastID)
               }
             }
           )

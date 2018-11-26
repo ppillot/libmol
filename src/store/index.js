@@ -430,6 +430,9 @@ var vuex = new Vuex.Store({
     setActiveTab (state, value) {
       state.activeTab = value
     },
+    setName (state, value) {
+      state.name = value
+    },
     alert (state, {type, token}) {
       state.alert.type = type
       state.alert.token = token

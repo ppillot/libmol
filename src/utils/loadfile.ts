@@ -1,6 +1,6 @@
 import {ColormakerRegistry, Structure, Stage} from 'ngl'
-import { ActionContext } from 'vuex';
-import StructureComponent from 'ngl/declarations/component/structure-component';
+import { ActionContext, Action } from 'vuex'
+import axios from 'axios'
 
 interface SequenceElement {
   resname: string,
@@ -31,6 +31,16 @@ interface Hetero {
   entity: string
 }
 
+function getNameFromPubchem (file: FileObject, context: ActionContext<any, any>) {
+  axios.get(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/CID/${file.molId}/synonyms/TXT`).then(
+    function({data}: {data: string}) {
+      let name = data.split('\n')[0]
+      context.commit('setName', name)
+      file.value = name
+    }
+  )
+}
+
 function getChainColors (chains: ChainProperties[], structure: Structure) {
   // console.log(structure)
   let chainColors: string[] = []
@@ -51,8 +61,10 @@ function getChainColors (chains: ChainProperties[], structure: Structure) {
 function loadFile (stage: Stage, context: ActionContext<any, any>) {
   function newFile (newFile: FileObject) {
     stage.removeAllComponents()
+    let params = {assembly: 'AU'}
+    if (newFile.ext) Object.assign(params, {ext: newFile.ext})
     // console.log(newFile)
-    return stage.loadFile(newFile.file, {assembly: 'AU'})
+    return stage.loadFile(newFile.file, params)
     .then((component: any) => { // let's get the structure property from the structureComponent object returned by NGL's promise
       const structure = component.structure as Structure
 
@@ -80,7 +92,10 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
 
     // in case no value has been provided for the file name, extract it from the title property in structure
       if (newFile.value === '') {
-        newFile.value = structure.title
+          // this is not pertaining when info comes from pubchem
+          if (newFile.source==='pubchem') {
+            getNameFromPubchem(newFile, context)
+          } else newFile.value = structure.title
       }
       if (structure.id !== '') {
         newFile.molCode = structure.id.trim()

@@ -59,6 +59,8 @@ function getSearchParameters () {
     params.file = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${params.pubchem}/record/SDF/?record_type=3d&response_type=save&response_basename=Structure3D_CID_${params.pubchem}`
     params.value = ''
     params.ext = 'mol'
+    params.source = 'pubchem'
+    params.molId = params.pubchem
   }
   // console.dir(params)
   return params

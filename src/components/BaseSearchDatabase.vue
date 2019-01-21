@@ -10,6 +10,7 @@
         @keydown.up.prevent="highlightSuggestion(-1)"
         @keydown.enter="handleSelect(highlightedSuggestion)"
         @focus="activate(true)"
+        v-model="queryString"
       >
       <span v-if="suggestions.length > 0" class="suggest-counter">
         {{ suggestions.length }}
@@ -69,7 +70,8 @@ export default {
   data () {
     return {
       isFocused: false,
-      highlightedSuggestion: -1
+      highlightedSuggestion: -1,
+      queryString: ''
     }
   },
   computed: {
@@ -108,11 +110,11 @@ export default {
     },
     getSuggestion: function (event) {
       this.isFocused = true
-      const queryString = event.target.value
-      this.$emit('search', queryString)
+      this.$emit('search', this.queryString)
     },
     handleSelect: function (index) {
-      this.$emit('picked', index)
+      if (index > -1 && this.suggestions[index] !== undefined) this.$emit('picked', index)
+      else this.$emit('submitted', this.queryString)
     },
     highlightSuggestion (delta) {
       if (this.isFocused && this.suggestions.length > 0) {
@@ -124,6 +126,8 @@ export default {
         } else {
           this.checkVisibility(delta)
         }
+      } else if (this.suggestions.length === 0) {
+        this.highlightedSuggestion = -1
       }
     },
     checkVisibility (delta) {

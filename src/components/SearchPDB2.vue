@@ -6,6 +6,7 @@
     :displayMolIdInSuggestions="true"
     @search="getSuggestion"
     @picked="handleSelect"
+    @submitted="handleSubmit"
   />
 </template>
 
@@ -110,6 +111,25 @@ export default {
     },
     handleSelect (index) {
       this.$store.dispatch('loadNewFile', this.suggestions[index])
+    },
+    // user has directly submitted a text. CHeck for PDB code
+    handleSubmit (val) {
+      if (val.length < 4 && val.length > 0) {
+        this.$store.dispatch('loadNewFile', {
+          file: `https://files.rcsb.org/ligands/view/${val}.cif`,
+          value: '',
+          source: 'pdb ligand',
+          molId: val
+        })
+      } else if (val.length === 4) {
+        this.$store.dispatch('loadNewFile', {
+          file: `rcsb://${val}`,
+          value: '',
+          source: 'pdb',
+          molId: val
+        })
+      }
+      // default case is not valid pdb ref... do nothing!
     }
   }
 }

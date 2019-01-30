@@ -793,6 +793,9 @@ var vuex = new Vuex.Store({
         let reprParam = {
           color: globalColorScheme,
           sele: seleString,
+          diffuseInterior: true,
+          useInteriorColor: false,
+          interiorDarkening: 0.3
         }
 
         switch (displayType) {

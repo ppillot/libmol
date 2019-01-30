@@ -792,7 +792,7 @@ var vuex = new Vuex.Store({
 
         let reprParam = {
           color: globalColorScheme,
-          sele: seleString
+          sele: seleString,
         }
 
         switch (displayType) {

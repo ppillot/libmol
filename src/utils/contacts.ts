@@ -191,7 +191,10 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
       multipleBond: true,
       sele: cE.vicinitySeleString,
       aspectRatio: 1.5,
-      radiusScale: 1
+      radiusScale: 1,
+      diffuseInterior: true,
+      useInteriorColor: false,
+      interiorDarkening: 0.3
     })
 
     const targetSele = cE.targetCloseToContact
@@ -199,7 +202,10 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
       sele: cE.targetCloseToContact,
       multipleBond: true,
       aspectRatio: 1.5,
-      radiusScale: 1
+      radiusScale: 1,
+      diffuseInterior: true,
+      useInteriorColor: false,
+      interiorDarkening: 0.3
     })
 
     const label = comp.addRepresentation('label', {
@@ -417,7 +423,10 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
         const r = comp.addRepresentation(properties.param.reprName, {
           sele: contact.repr[properties.repr].seleString,
           multipleBond: true,
-          color: (contact.repr.target.color === 'default') ? getGlobalColormaker() : contact.repr.colormaker
+          color: (contact.repr.target.color === 'default') ? getGlobalColormaker() : contact.repr.colormaker,
+          diffuseInterior: true,
+          useInteriorColor: false,
+          interiorDarkening: 0.3
         })
         repr.dispose()
         contactRepr[properties.repr] = r

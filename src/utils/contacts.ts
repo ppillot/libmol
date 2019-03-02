@@ -139,7 +139,7 @@ function makeRes (atomP: AtomProxy): Res {
     resname: atomP.resname,
     resno: atomP.resno,
     element: atomP.element,
-    description: atomP.entity.description,
+    description: atomP.entity ? atomP.entity.description : 'unknown',
     atomList: getAtomListFromAToRange(atomP.residueAtomOffset, atomP.residueStore.atomCount[atomP.residueIndex])
   }
 }

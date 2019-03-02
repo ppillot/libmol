@@ -9,6 +9,7 @@ interface StartupParameters {
   ext?: string,
   pdb?: string,
   pubchem?: string,
+  libmol?: string
   embedded?: boolean
 }
 
@@ -61,6 +62,14 @@ function getSearchParameters () {
     params.ext = 'mol'
     params.source = 'pubchem'
     params.molId = params.pubchem
+  }
+
+  if (params.hasOwnProperty('libmol')) {
+    params.file = `https://libmol.org/api/download.php?id=${params.pubchem}`
+    params.value = ''
+    params.ext = 'pdb'
+    params.source = 'libmol'
+    params.molId = params.libmol
   }
   // console.dir(params)
   return params

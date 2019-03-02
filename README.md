@@ -1,5 +1,7 @@
 # Libmol.org
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ppillot/libmol.svg)](https://greenkeeper.io/)
+
 > Molecular visualization made easy for beginners
 
 ## Web Application

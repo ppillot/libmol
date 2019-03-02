@@ -67,6 +67,7 @@
     "cross-env": "^3.1.4",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.1",
+    "cypress": "^3.1.5",
     "escape-quotes": "^1.0.2",
     "eslint": "^3.14.1",
     "eslint-config-standard": "^6.2.1",

@@ -23,27 +23,27 @@ let defaultParameters: StartupParameters = {
   embedded: false
 }
 
+const search = document.location.search.substr(1)
+let params: StartupParameters = {}
+
+const tabParams = search.split('&')
+tabParams.forEach(val => {
+  let tabProp = val.split('=')
+  Object.defineProperty(
+    params,
+    tabProp[0],
+    {
+      value: tabProp[1] || true,
+      enumerable: true
+    })
+})
+
 /**
  * transform the search part of the URL in a JSON
  *
  * @returns object
  */
 function getSearchParameters () {
-  const search = document.location.search.substr(1)
-  let params: StartupParameters = {}
-
-  const tabParams = search.split('&')
-  tabParams.forEach(val => {
-    let tabProp = val.split('=')
-    Object.defineProperty(
-      params,
-      tabProp[0],
-      {
-        value: tabProp[1] || true,
-        enumerable: true
-      })
-  })
-
   if (params.hasOwnProperty('pdb')) {
     if (params.pdb!.length === 4) {
       params.file = `rcsb://${params.pdb}`
@@ -102,11 +102,22 @@ function getSearchParameters () {
   return params
 }
 
-export default function getStartingParameters() {
+function getStartingParameters() {
   return Promise.resolve().then( function () {
     return getSearchParameters()
-  }).then(params => {
-    const p = Object.assign(defaultParameters, params)
+  }).then(searchParams => {
+    const p = Object.assign(defaultParameters, searchParams)
     return p
   })
+}
+
+function getStartingLayout() {
+  return {
+    embedded: (params.embedded !== undefined) ? params.embedded || defaultParameters.embedded : false
+  }
+}
+
+export default {
+  getStartingParameters,
+  getStartingLayout
 }

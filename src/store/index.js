@@ -18,7 +18,7 @@ import surface from 'utils/surface'
 import {contact} from 'utils/contacts'
 import {ssBridges} from 'utils/ssbridges'
 import {Notification} from 'element-ui'
-import getStartingParameters from 'utils/startup.ts'
+import startup from 'utils/startup.ts'
 import {mouseFocus} from 'utils/mouse-focus'
 
 let NGL = {Stage, Selection, ColormakerRegistry, download, Vector2, Vector3, setDebug, MouseActions, Shape}
@@ -48,6 +48,7 @@ let tabColorAtomSet
 let globalColorScheme = ''
 let predefined
 let latestHelp = {}
+const startupLayout = startup.getStartingLayout()
 
 /**
  * @description removes atoms from their current representation so that they are set only in the latest
@@ -332,7 +333,7 @@ var vuex = new Vuex.Store({
     molCode: '',
     dbId: '',
     fullscreen: false,
-    embedded: false, // TODO embedded
+    embedded: startupLayout.embedded,
     isMeasuringDistances: false,
     isMeasuringAngles: false,
     mol: {
@@ -672,7 +673,7 @@ var vuex = new Vuex.Store({
       })
       stage.mouseControls.add('doubleClick-left', mouseFocus(updateStageCenter))
       stage.signals.hovered.add(hover(context))
-      getStartingParameters().then(startParams =>
+      startup.getStartingParameters().then(startParams =>
         context.dispatch('loadNewFile', startParams)
       )
 

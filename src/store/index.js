@@ -48,9 +48,6 @@ let tabColorAtomSet
 let globalColorScheme = ''
 let predefined
 let latestHelp = {}
-let startParams = getStartingParameters()
-
-// console.log(startParams)
 
 /**
  * @description removes atoms from their current representation so that they are set only in the latest
@@ -335,7 +332,7 @@ var vuex = new Vuex.Store({
     molCode: '',
     dbId: '',
     fullscreen: false,
-    embedded: startParams.embedded,
+    embedded: false, // TODO embedded
     isMeasuringDistances: false,
     isMeasuringAngles: false,
     mol: {
@@ -675,7 +672,9 @@ var vuex = new Vuex.Store({
       })
       stage.mouseControls.add('doubleClick-left', mouseFocus(updateStageCenter))
       stage.signals.hovered.add(hover(context))
-      context.dispatch('loadNewFile', startParams)
+      getStartingParameters().then(startParams =>
+        context.dispatch('loadNewFile', startParams)
+      )
 
       let resize = resizeStage(stage)
       window.onresize = debounce(100, resize)

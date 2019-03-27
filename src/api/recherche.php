@@ -55,6 +55,19 @@ function removeAccents($str) {
 		$row = $sql->fetch(PDO::FETCH_ASSOC);
 		$result = $row['META'];
 		echo $result;
+	} else if (isset($_REQUEST['libmol'])) {
+		$sql = $db->prepare("SELECT titre,fichier FROM molecule where molecule.ID = ?");
+		$sql->execute(array($_REQUEST['libmol']));
+    $row = $sql->fetch(PDO::FETCH_ASSOC);
+    if ($row === FALSE) {
+      ob_end_flush();
+      exit('Record not found in database');
+		}
+		$result = array(
+			'label' => $row['TITRE'],
+			'file' => $row['FICHIER']
+		);
+		echo json_encode($result);
 	}
 	
 	ob_end_flush();

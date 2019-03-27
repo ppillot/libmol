@@ -1,3 +1,5 @@
+import axios, { AxiosPromise, AxiosResponse } from 'axios'
+
 /**
  * define default settings at starting up
  */
@@ -54,6 +56,7 @@ function getSearchParameters () {
       params.source = 'pdb ligand'
       params.molId = params.pdb
     }
+    return params // return synchronous value
   }
 
   if (params.hasOwnProperty('pubchem')) {
@@ -62,21 +65,48 @@ function getSearchParameters () {
     params.ext = 'mol'
     params.source = 'pubchem'
     params.molId = params.pubchem
+    return params // return synchronous value
   }
 
   if (params.hasOwnProperty('libmol')) {
-    params.file = `https://libmol.org/api/download.php?id=${params.pubchem}`
-    params.value = ''
-    params.ext = 'pdb'
-    params.source = 'libmol'
-    params.molId = params.libmol
+
+    const path = (process.env.NODE_ENV !== 'production') ? 'api/recherche.php' : 'https://libmol.org/api/recherche.php'
+
+      return axios.get(path, {
+        params: {
+          libmol: params.libmol
+        }
+      })
+      .then( (response: AxiosResponse) => {
+        let p: StartupParameters =
+          { ...params,
+            value: response.data.label,
+            file: ((response.data.file.indexOf('.cif') > -1) || (response.data.file.indexOf('.mmtf') > -1) || (response.data.file.indexOf('.sdf') > -1))
+            ? 'static/mol/' + response.data.file
+            : `static/mol/pdb/${response.data.file}.pdb`,
+            molId: params.libmol,
+            source: 'libmol'
+          }
+        return p
+      })
+      .catch(function (error) {
+        if (axios.isCancel(error) && process.env.NODE_ENV !== 'production') {
+          console.log('Request canceled', error)
+        } else {
+          console.log(error)
+        }
+        return Promise.reject(error)
+      })
   }
   // console.dir(params)
   return params
 }
 
-function getStartingParameters () {
-  return Object.assign(defaultParameters, getSearchParameters())
+export default function getStartingParameters() {
+  return Promise.resolve().then( function () {
+    return getSearchParameters()
+  }).then(params => {
+    const p = Object.assign(defaultParameters, params)
+    return p
+  })
 }
-
-export default getStartingParameters

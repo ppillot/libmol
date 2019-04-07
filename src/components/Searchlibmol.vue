@@ -1,5 +1,5 @@
 <template>
-  <base-search-database 
+  <base-search-database
     :suggestions="suggestions"
     :label-text="$t('ui.search_libmol_label')"
     placeHolderText="Mot clé"
@@ -41,6 +41,7 @@ export default {
         this.debouncedQuery(queryString)
       }
     },
+
     debouncedQuery: debounce(
       300,
       function (q) {
@@ -62,26 +63,27 @@ export default {
         },
         cancelToken: source.token
       })
-      .then(function (response) {
-        this.suggestions = response.data.map(item => (
-          { value: item.label,
-            file: ((item.file.indexOf('.cif') > -1) || (item.file.indexOf('.mmtf') > -1) || (item.file.indexOf('.sdf') > -1))
-            ? 'static/mol/' + item.file
-            : `static/mol/pdb/${item.file}.pdb`,
-            molId: item.molId,
-            source: 'libmol'
-          }))
+        .then((response) => {
+          this.suggestions = response.data.map(item => (
+            { value: item.label,
+              file: ((item.file.indexOf('.cif') > -1) || (item.file.indexOf('.mmtf') > -1) || (item.file.indexOf('.sdf') > -1))
+                ? 'static/mol/' + item.file
+                : `static/mol/pdb/${item.file}.pdb`,
+              molId: item.molId,
+              source: 'libmol'
+            })
+          )
 
-        window.sessionStorage.setItem(`searchLibmol-${queryString}`, JSON.stringify(this.suggestions))
-        source = undefined
-      }.bind(this))
-      .catch(function (error) {
-        if (axios.isCancel(error) && process.env.NODE_ENV !== 'production') {
-          console.log('Request canceled', error)
-        } else {
-          console.log(error)
-        }
-      })
+          window.sessionStorage.setItem(`searchLibmol-${queryString}`, JSON.stringify(this.suggestions))
+          source = undefined
+        })
+        .catch(function (error) {
+          if (axios.isCancel(error) && process.env.NODE_ENV !== 'production') {
+            console.log('Request canceled', error)
+          } else {
+            console.log(error)
+          }
+        })
     },
     handleSelect (index) {
       this.$store.dispatch('loadNewFile', this.suggestions[index])

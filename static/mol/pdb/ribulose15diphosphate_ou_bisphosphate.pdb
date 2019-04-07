@@ -1,0 +1,35 @@
+COMPND RUB RIBULOSE-1,5-DIPHOSPHATE
+REMARK RUB Part of HIC-Up: http://xray.bmc.uu.se/hicup
+REMARK RUB Extracted from PDB file pdb1rxo.ent
+REMARK RUB Formula C5 H12 O11 P2
+REMARK RUB Nr of non-hydrogen atoms  18
+REMARK RUB Eigen-values covariance X/Y/Z      239.7      32.9       7.4
+REMARK RUB Residue type RUB
+REMARK RUB Residue name   6683
+REMARK RUB Original residue name (for O) $A476
+REMARK RUB  RESOLUTION. 2.20 ANGSTROMS.
+REMARK RUB occurs in        2 other PDB entries
+REMARK RUB Also in 2.0-2.5A  :  1RCX
+REMARK RUB Resolution (A)    :  2.40
+REMARK RUB Also in 2.5-3.0A  :  9RUB
+REMARK RUB Resolution (A)    :  2.60
+REMARK RUB
+HETATM    1  C1  RUB  6683       2.263   0.244  -0.083  1.00 20.00      
+HETATM    2  C2  RUB  6683       1.411   1.503   0.112  1.00 20.00      
+HETATM    3  C3  RUB  6683      -0.068   1.427  -0.444  1.00 20.00      
+HETATM    4  C4  RUB  6683      -0.987   0.476   0.322  1.00 20.00      
+HETATM    5  C5  RUB  6683      -2.438   0.499  -0.195  1.00 20.00      
+HETATM    6  O1  RUB  6683       3.692   0.293   0.177  1.00 20.00      
+HETATM    7  O2  RUB  6683       1.883   2.536   0.629  1.00 20.00      
+HETATM    8  O3  RUB  6683      -0.640   2.685  -0.395  1.00 20.00      
+HETATM    9  O4  RUB  6683      -0.509  -0.825   0.223  1.00 20.00      
+HETATM   10  O5  RUB  6683      -3.483  -0.025   0.643  1.00 20.00      
+HETATM   11  P1  RUB  6683       4.590  -1.030   0.032  1.00 20.00      
+HETATM   12  P2  RUB  6683      -4.830  -0.725   0.031  1.00 20.00      
+HETATM   13  O1P RUB  6683       5.938  -0.735   0.515  1.00 20.00      
+HETATM   14  O2P RUB  6683       4.657  -1.208  -1.561  1.00 20.00      
+HETATM   15  O3P RUB  6683       3.855  -2.162   0.586  1.00 20.00      
+HETATM   16  O4P RUB  6683      -5.510  -1.467   1.158  1.00 20.00      
+HETATM   17  O5P RUB  6683      -4.245  -1.781  -0.997  1.00 20.00      
+HETATM   18  O6P RUB  6683      -5.580   0.294  -0.755  1.00 20.00      
+REMARK RUB ENDHET

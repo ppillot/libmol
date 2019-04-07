@@ -1,0 +1,1009 @@
+HEADER    GROWTH FACTOR                           24-MAR-92   1EPI      1EPI   2
+COMPND    EPIDERMAL GROWTH FACTOR (EGF) IN PH 6.8 SOLUTION (NMR,        1EPI   3
+COMPND   2 MINIMIZED MEAN STRUCTURE)                                    1EPI   4
+SOURCE    MOUSE (MUS MUSCULUS) ADULT MALE SUBMAXILLARY GLAND            1EPI   5
+EXPDTA    NMR                                                           1EPI   6
+AUTHOR    D.KOHDA,F.INAGAKI                                             1EPI   7
+REVDAT   1   31-JAN-94 1EPI    0                                        1EPI   8
+JRNL        AUTH   D.KOHDA,F.INAGAKI                                    1EPI   9
+JRNL        TITL   THREE-DIMENSIONAL NUCLEAR MAGNETIC RESONANCE         1EPI  10
+JRNL        TITL 2 STRUCTURES OF MOUSE EPIDERMAL GROWTH FACTOR IN       1EPI  11
+JRNL        TITL 3 ACIDIC AND PHYSIOLOGICAL PH SOLUTIONS                1EPI  12
+JRNL        REF    BIOCHEMISTRY                  V.  31 11928 1992      1EPI  13
+JRNL        REFN   ASTM BICHAW  US ISSN 0006-2960                  033  1EPI  14
+REMARK   1                                                              1EPI  15
+REMARK   1 REFERENCE 1                                                  1EPI  16
+REMARK   1  AUTH   D.KOHDA,F.INAGAKI                                    1EPI  17
+REMARK   1  TITL   STRUCTURE OF EPIDERMAL GROWTH FACTOR BOUND TO        1EPI  18
+REMARK   1  TITL 2 PERDEUTERATED DODECYLPHOSPHOCHOLINE MICELLES         1EPI  19
+REMARK   1  TITL 3 DETERMINED BY TWO-DIMENSIONAL NMR AND SIMULATED      1EPI  20
+REMARK   1  TITL 4 ANNEALING CALCULATIONS                               1EPI  21
+REMARK   1  REF    BIOCHEMISTRY                  V.  31   677 1992      1EPI  22
+REMARK   1  REFN   ASTM BICHAW  US ISSN 0006-2960                  033  1EPI  23
+REMARK   1 REFERENCE 2                                                  1EPI  24
+REMARK   1  AUTH   D.KOHDA,T.SAWADA,F.INAGAKI                           1EPI  25
+REMARK   1  TITL   CHARACTERIZATION OF PH TITRATION SHIFTS FOR ALL      1EPI  26
+REMARK   1  TITL 2 THE NONLABILE PROTON RESONANCES IN A PROTEIN BY      1EPI  27
+REMARK   1  TITL 3 TWO-DIMENSIONAL NMR:  THE CASE OF MOUSE EPIDERMAL    1EPI  28
+REMARK   1  TITL 4 GROWTH FACTOR                                        1EPI  29
+REMARK   1  REF    BIOCHEMISTRY                  V.  30  4896 1991      1EPI  30
+REMARK   1  REFN   ASTM BICHAW  US ISSN 0006-2960                  033  1EPI  31
+REMARK   1 REFERENCE 3                                                  1EPI  32
+REMARK   1  AUTH   D.KOHDA,N.GO,K.HAYASHI,F.INAGAKI                     1EPI  33
+REMARK   1  TITL   TERTIARY STRUCTURE OF MOUSE EPIDERMAL GROWTH         1EPI  34
+REMARK   1  TITL 2 FACTOR DETERMINED BY TWO-DIMENSIONAL ==1==H NMR      1EPI  35
+REMARK   1  REF    J.BIOCHEM.(TOKYO)             V. 103   741 1988      1EPI  36
+REMARK   1  REFN   ASTM JOBIAO  JA ISSN 0021-924X                  418  1EPI  37
+REMARK   1 REFERENCE 4                                                  1EPI  38
+REMARK   1  AUTH   D.KOHDA,C.KODAMA,R.KASE,H.NOMOTO,K.HAYASHI,          1EPI  39
+REMARK   1  AUTH 2 F.INAGAKI                                            1EPI  40
+REMARK   1  TITL   A COMPARATIVE ==1==H NMR STUDY OF MOUSE              1EPI  41
+REMARK   1  TITL 2 ALPHA(1-53) AND BETA(2-53) EPIDERMAL GROWTH          1EPI  42
+REMARK   1  TITL 3 FACTORS                                              1EPI  43
+REMARK   1  REF    BIOCHEM.INT.                  V.  16   647 1988      1EPI  44
+REMARK   1  REFN   ASTM BIINDF  AT ISSN 0158-5231                  758  1EPI  45
+REMARK   1 REFERENCE 5                                                  1EPI  46
+REMARK   1  AUTH   D.KOHDA,F.INAGAKI                                    1EPI  47
+REMARK   1  TITL   COMPLETE SEQUENCE-SPECIFIC ==1==H NUCLEAR MAGNETIC   1EPI  48
+REMARK   1  TITL 2 RESONANCE ASSIGNMENTS FOR MOUSE EPIDERMAL GROWTH     1EPI  49
+REMARK   1  TITL 3 FACTOR                                               1EPI  50
+REMARK   1  REF    J.BIOCHEM.(TOKYO)             V. 103   554 1988      1EPI  51
+REMARK   1  REFN   ASTM JOBIAO  JA ISSN 0021-924X                  418  1EPI  52
+REMARK   2                                                              1EPI  53
+REMARK   2 RESOLUTION. NOT APPLICABLE.                                  1EPI  54
+REMARK   3                                                              1EPI  55
+REMARK   3 REFINEMENT.                                                  1EPI  56
+REMARK   3   PROGRAM                    X-PLOR                          1EPI  57
+REMARK   3   AUTHORS                    BRUNGER                         1EPI  58
+REMARK   3                                                              1EPI  59
+REMARK   3  NMR DATA WERE COLLECTED IN H2O AND D2O AT PH 6.8, AT A      1EPI  60
+REMARK   3  TEMPERATURE OF 28 DEGREES CELSIUS.                          1EPI  61
+REMARK   3                                                              1EPI  62
+REMARK   3  STRUCTURAL STATISTICS:                                      1EPI  63
+REMARK   3                                                              1EPI  64
+REMARK   3  RMS DEVIATION FROM EXPERIMENTAL RESTRAINTS.                 1EPI  65
+REMARK   3                                                              1EPI  66
+REMARK   3  RESTRAINT TYPE      NUMBER OF RESTRAINTS   RMS              1EPI  67
+REMARK   3                                                              1EPI  68
+REMARK   3  DISTANCE RESTRAINTS *(1)*                                   1EPI  69
+REMARK   3   ALL                261                  0.119 (ANGSTROMS)  1EPI  70
+REMARK   3   INTRARESIDUE        77                                     1EPI  71
+REMARK   3   DISULFIDE BOND       3                                     1EPI  72
+REMARK   3   HYDROGEN BOND       16                                     1EPI  73
+REMARK   3                                                              1EPI  74
+REMARK   3  DIHEDRAL RESTRAINTS *(2)*                                   1EPI  75
+REMARK   3   ALL                  0                     -  (DEGS)       1EPI  76
+REMARK   3                                                              1EPI  77
+REMARK   3  POTENTIAL ENERGY TERMS                                      1EPI  78
+REMARK   3                                                              1EPI  79
+REMARK   3  TYPE                 ENERGY (KCAL/MOL)                      1EPI  80
+REMARK   3                                                              1EPI  81
+REMARK   3  F(NOE) *(3)*          185.5                                 1EPI  82
+REMARK   3  F(TOR) *(4)*             -                                  1EPI  83
+REMARK   3  F(REPEL) *(5)*        105.2                                 1EPI  84
+REMARK   3                                                              1EPI  85
+REMARK   3  LENNARD-JONES VAN DER WAALS ENERGY (E(L-J)) CALCULATED      1EPI  86
+REMARK   3  USING THE *CHARMM* EMPIRICAL ENERGY FUNCTION IS             1EPI  87
+REMARK   3  -156 KCAL/MOL.  IT IS NOT INCLUDED IN THE TARGET            1EPI  88
+REMARK   3  FUNCTION FOR SIMULATED ANNEALING.                           1EPI  89
+REMARK   3                                                              1EPI  90
+REMARK   3  DEVIATIONS FROM IDEALIZED GEOMETRY *(6)*                    1EPI  91
+REMARK   3                                                              1EPI  92
+REMARK   3  TYPE             TOTAL NUMBER        RMS DEVIATION          1EPI  93
+REMARK   3                                                              1EPI  94
+REMARK   3  BONDS             807                0.008 (ANGSTROMS)      1EPI  95
+REMARK   3  ANGLES           1430                2.45  (DEGREES)        1EPI  96
+REMARK   3  IMPROPERS         399                1.43  (DEGREES)        1EPI  97
+REMARK   3                                                              1EPI  98
+REMARK   3  NOTES.                                                      1EPI  99
+REMARK   3  *(1)*  THE RMS DEVIATION FROM THE EXPERIMENTAL RESTRAINTS   1EPI 100
+REMARK   3         IS CALCULATED WITH RESPECT TO THE UPPER AND          1EPI 101
+REMARK   3         LOWER LIMITS OF THE DISTANCE RESTRAINTS.             1EPI 102
+REMARK   3         THE UPPER LIMITS WERE 2.5, 3.0 AND 4.0 ANGSTROMS.    1EPI 103
+REMARK   3         THE UPPER LIMITS OF SOME DISTANCE CONSTRAINTS WERE   1EPI 104
+REMARK   3         RELAXED BY 0.5 ANGSTROMS TO TAKE INTO ACCOUNT THE    1EPI 105
+REMARK   3         EFFECTS OF SPIN DIFFUSION.                           1EPI 106
+REMARK   3         THE LOWER LIMITS WERE 1.8 ANGSTROMS.                 1EPI 107
+REMARK   3         THE NUMBER OF VIOLATIONS GREATER THAN 0.5 ANGSTROMS  1EPI 108
+REMARK   3         IS TWO (MAX 0.73 ANGSTROMS).                         1EPI 109
+REMARK   3  *(2)*  THE RMS DEVIATION FROM THE EXPERIMENTAL RESTRAINTS   1EPI 110
+REMARK   3         IS CALCULATED WITH RESPECT TO THE UPPER AND          1EPI 111
+REMARK   3         LOWER LIMITS OF THE DIHEDRAL RESTRAINTS.             1EPI 112
+REMARK   3  *(3)*  THE VALUES OF THE SQUARE-WELL NOE POTENTIAL          1EPI 113
+REMARK   3         WITH A FORCE CONSTANT OF 50 KCAL/MOL/ANGSTROM**2.    1EPI 114
+REMARK   3  *(4)*  THE VALUES OF F(TOR) ARE CALCULATED WITH A FORCE     1EPI 115
+REMARK   3         CONSTANT OF 50 KCAL/MOL/RAD**2.  F(TOR) IS A         1EPI 116
+REMARK   3         SQUARE-WELL DIHEDRAL POTENTIAL WHICH IS USED TO      1EPI 117
+REMARK   3         RESTRICT THE RANGES OF TORSION ANGLES.               1EPI 118
+REMARK   3  *(5)*  THE VALUE OF THE VAN DER WAALS REPULSION TERM        1EPI 119
+REMARK   3         F(REPEL) IS CALCULATED WITH A FORCE CONSTANT OF      1EPI 120
+REMARK   3         4 KCAL/MOL/ANGSTROM**4 WITH THE HARD SPHERE          1EPI 121
+REMARK   3         VAN DER WAALS RADII SET TO 0.8 TIMES THE STANDARD    1EPI 122
+REMARK   3         VALUES USED IN THE *CHARMM* EMPIRICAL ENERGY         1EPI 123
+REMARK   3         FUNCTION. NBXMOD=-4.                                 1EPI 124
+REMARK   3  *(6)*  THE IMPROPER TERMS SERVE TO MAINTAIN PLANARITY       1EPI 125
+REMARK   3         AND APPROPRIATE CHIRALITY.  IN THE *X-PLOR*          1EPI 126
+REMARK   3         PROTOCOL, THE RESTRAINTS FOR THE DISULFIDE BRIDGES   1EPI 127
+REMARK   3         ARE INCLUDED IN THE BOND AND ANGLES TERMS.           1EPI 128
+REMARK   4                                                              1EPI 129
+REMARK   4 THESE COORDINATES WERE GENERATED FROM SOLUTION NMR DATA.     1EPI 130
+REMARK   4 PROTEIN DATA BANK CONVENTIONS REQUIRE THAT *CRYST1* AND      1EPI 131
+REMARK   4 *SCALE* RECORDS BE INCLUDED, BUT THE VALUES ON THESE         1EPI 132
+REMARK   4 RECORDS ARE MEANINGLESS.                                     1EPI 133
+REMARK   5                                                              1EPI 134
+REMARK   5 RELATED PROTEIN DATA BANK ENTRIES, MOUSE EGF:                1EPI 135
+REMARK   5  *1EPG*   PH 2.0, MINIMIZED MEAN STRUCTURE                   1EPI 136
+REMARK   5  *1EPH*   PH 2.0, 10 SIMULATED ANNEALING STRUCTURES          1EPI 137
+REMARK   5  *1EPI*   PH 6.8, MINIMIZED MEAN STRUCTURE                   1EPI 138
+REMARK   5  *1EPJ*   PH 6.8, 5 SIMULATED ANNEALING STRUCTURES           1EPI 139
+REMARK   5                                                              1EPI 140
+REMARK   5 THE MEAN STRUCTURES (1EPG AT PH 2.0, 1EPI AT PH 6.8) WERE    1EPI 141
+REMARK   5 OBTAINED BY AVERAGING THE COORDINATES OF THE INDIVIDUAL      1EPI 142
+REMARK   5 STRUCTURES AND SUBJECTING THE RESULTING COORDINATES TO       1EPI 143
+REMARK   5 FURTHER RESTRAINED MINIMIZATION.  THE STRUCTURES AT PH 2.0   1EPI 144
+REMARK   5 SHOW BETTER CONVERGENCE THAN THOSE AT PH 6.8.  THE           1EPI 145
+REMARK   5 AUTHORS RECOMMEND THE USE OF 1EPG RATHER THAN 1EPI FOR       1EPI 146
+REMARK   5 MODELING WORK.  AT PH 6.8, THE STRUCTURE AROUND HIS 22 IS    1EPI 147
+REMARK   5 POORLY DEFINED.  THIS IS AN ARTIFACTUAL DRAWBACK FROM        1EPI 148
+REMARK   5 DISAPPEARANCE OF NOE CROSS PEAKS INVOLVING THE RESONANCES    1EPI 149
+REMARK   5 OF HIS 22 RING PROTONS THAT ARE IN A HALF-PROTONATED         1EPI 150
+REMARK   5 STATE AT PH 6.8, AND AMIDE RESONANCES OF RESIDUES            1EPI 151
+REMARK   5 GLU 24 - ASP 27 DUE TO A RAPID EXCHANGE WITH THE SOLVENT     1EPI 152
+REMARK   5 WATER AT NEUTRAL PH.  THE MAJOR CONFORMATIONAL DIFFERENCE    1EPI 153
+REMARK   5 LIES IN THE C-TERMINAL TAIL REGION LEU 47-TRP 50.  THE       1EPI 154
+REMARK   5 RESIDUES ASN 1 AND GLU 51 - ARG 53 ARE NOT DEFINED OWING     1EPI 155
+REMARK   5 TO THE ABSENCE OF NOES, IMPLYING SOME FLEXIBILITY IN         1EPI 156
+REMARK   5 SOLUTION.                                                    1EPI 157
+REMARK   6                                                              1EPI 158
+REMARK   6 HYDROGEN ATOMS IN THIS ENTRY HAVE BEEN ASSIGNED NAMES        1EPI 159
+REMARK   6 CONSISTENT WITH THE RECOMMENDATIONS OF THE IUPAC-IUB         1EPI 160
+REMARK   6 COMMISSION ON BIOCHEMICAL NOMENCLATURE (SEE,E.G., J.MOL.     1EPI 161
+REMARK   6 BIOL. 52, 1 (1970)).  THE PROTEIN DATA BANK HAS FOLLOWED     1EPI 162
+REMARK   6 RULE 4.4 OF THE RECOMMENDATIONS WITH THE FOLLOWING           1EPI 163
+REMARK   6 MODIFICATION - WHEN MORE THAN ONE HYDROGEN ATOM IS BONDED    1EPI 164
+REMARK   6 TO A SINGLE NON-HYDROGEN ATOM, THE HYDROGEN ATOM NUMBER      1EPI 165
+REMARK   6 DESIGNATION IS GIVEN AS THE FIRST CHARACTER OF THE ATOM      1EPI 166
+REMARK   6 NAME RATHER THAN AS THE LAST CHARACTER (E.G. H*BETA*1 IS     1EPI 167
+REMARK   6 DENOTED AS 1HB).                                             1EPI 168
+REMARK   7                                                              1EPI 169
+REMARK   7 A COMPLETE LIST OF EXPERIMENTAL RESTRAINTS HAS BEEN          1EPI 170
+REMARK   7 DEPOSITED WITH THE BROOKHAVEN PROTEIN DATA BANK AND IS       1EPI 171
+REMARK   7 LOCATED IN ENTRY R1EPJMR.                                    1EPI 172
+REMARK   8                                                              1EPI 173
+REMARK   8 THE THERMAL PARAMETERS GIVEN IN THIS ENTRY REPRESENT THE     1EPI 174
+REMARK   8 AVERAGE OF RMS DIFFERENCE PER ATOM BETWEEN THE INDIVIDUAL    1EPI 175
+REMARK   8 STRUCTURES AND THE MEAN STRUCTURE (IN ANGSTROMS).            1EPI 176
+REMARK   8 THE RMS DIFFERENCES WERE OBTAINED FOR A GIVEN STRUCTURE      1EPI 177
+REMARK   8 AFTER THE BACKBONE ATOMS OF RESIDUES 2 TO 50 WERE FITTED TO  1EPI 178
+REMARK   8 THE BACKBONE OF THE MEAN STRUCTURE, AND THEN AVERAGED.       1EPI 179
+REMARK   9                                                              1EPI 180
+REMARK   9 ALL PEPTIDE BONDS ARE IN THE TRANS CONFORMATION.             1EPI 181
+REMARK  10                                                              1EPI 182
+REMARK  10 THE DESCRIPTIONS OF SHEETS AND TURNS WERE OBTAINED FROM      1EPI 183
+REMARK  10 THE STRUCTURES AT PH 2.0, BUT ARE APPLICABLE TO THE PH 6.8   1EPI 184
+REMARK  10 STRUCTURES.                                                  1EPI 185
+SEQRES   1     53  ASN SER TYR PRO GLY CYS PRO SER SER TYR ASP GLY TYR  1EPI 186
+SEQRES   2     53  CYS LEU ASN GLY GLY VAL CYS MET HIS ILE GLU SER LEU  1EPI 187
+SEQRES   3     53  ASP SER TYR THR CYS ASN CYS VAL ILE GLY TYR SER GLY  1EPI 188
+SEQRES   4     53  ASP ARG CYS GLN THR ARG ASP LEU ARG TRP TRP GLU LEU  1EPI 189
+SEQRES   5     53  ARG                                                  1EPI 190
+SHEET    1 SAB 3 SER     2  PRO     4  0                                1EPI 191
+SHEET    2 SAB 3 VAL    19  ILE    23 -1  O  HIS    22   N  TYR     3   1EPI 192
+SHEET    3 SAB 3 SER    28  ASN    32 -1  O  THR    30   N  MET    21   1EPI 193
+SHEET    1  SC 2 TYR    37  SER    38  0                                1EPI 194
+SHEET    2  SC 2 THR    44  ARG    45 -1  O  THR    44   N  SER    38   1EPI 195
+TURN     1 TNA LEU    15  GLY    18     TYPE I'                         1EPI 196
+TURN     2 TNB GLU    24  ASP    27     TYPE I                          1EPI 197
+TURN     3 TNC VAL    34  TYR    37     TYPE II                         1EPI 198
+SSBOND   1 CYS      6    CYS     20                                     1EPI 199
+SSBOND   2 CYS     14    CYS     31                                     1EPI 200
+SSBOND   3 CYS     33    CYS     42                                     1EPI 201
+CRYST1    1.000    1.000    1.000  90.00  90.00  90.00 P 1           1  1EPI 202
+ORIGX1      1.000000  0.000000  0.000000        0.00000                 1EPI 203
+ORIGX2      0.000000  1.000000  0.000000        0.00000                 1EPI 204
+ORIGX3      0.000000  0.000000  1.000000        0.00000                 1EPI 205
+SCALE1      1.000000  0.000000  0.000000        0.00000                 1EPI 206
+SCALE2      0.000000  1.000000  0.000000        0.00000                 1EPI 207
+SCALE3      0.000000  0.000000  1.000000        0.00000                 1EPI 208
+ATOM      1  N   ASN     1       0.000   0.000   0.000  1.00  4.61      1EPI 209
+ATOM      2  CA  ASN     1      -0.894  -1.117   0.402  1.00  3.77      1EPI 210
+ATOM      3  C   ASN     1      -0.725  -1.410   1.889  1.00  3.08      1EPI 211
+ATOM      4  O   ASN     1      -1.692  -1.512   2.618  1.00  3.22      1EPI 212
+ATOM      5  CB  ASN     1      -0.537  -2.383  -0.387  1.00  4.83      1EPI 213
+ATOM      6  CG  ASN     1      -0.538  -2.065  -1.884  1.00  5.69      1EPI 214
+ATOM      7  OD1 ASN     1       0.452  -2.234  -2.566  1.00  6.84      1EPI 215
+ATOM      8  ND2 ASN     1      -1.628  -1.602  -2.432  1.00  5.81      1EPI 216
+ATOM      9 1H   ASN     1       0.039   0.704   0.764  1.00  5.24      1EPI 217
+ATOM     10 2H   ASN     1       0.955  -0.369  -0.182  1.00  4.98      1EPI 218
+ATOM     11 3H   ASN     1      -0.370   0.446  -0.864  1.00  4.80      1EPI 219
+ATOM     12  HA  ASN     1      -1.924  -0.824   0.219  1.00  3.99      1EPI 220
+ATOM     13 1HB  ASN     1       0.443  -2.731  -0.097  1.00  5.36      1EPI 221
+ATOM     14 2HB  ASN     1      -1.264  -3.156  -0.187  1.00  5.15      1EPI 222
+ATOM     15 1HD2 ASN     1      -1.645  -1.393  -3.389  1.00  6.68      1EPI 223
+ATOM     16 2HD2 ASN     1      -2.430  -1.463  -1.886  1.00  5.52      1EPI 224
+ATOM     17  N   SER     2       0.503  -1.540   2.311  1.00  2.63      1EPI 225
+ATOM     18  CA  SER     2       0.752  -1.827   3.748  1.00  1.99      1EPI 226
+ATOM     19  C   SER     2       0.769  -0.536   4.564  1.00  1.70      1EPI 227
+ATOM     20  O   SER     2       1.776  -0.178   5.143  1.00  2.15      1EPI 228
+ATOM     21  CB  SER     2       2.119  -2.513   3.875  1.00  2.22      1EPI 229
+ATOM     22  OG  SER     2       3.031  -1.585   3.306  1.00  3.00      1EPI 230
+ATOM     23  H   SER     2       1.253  -1.448   1.687  1.00  2.91      1EPI 231
+ATOM     24  HA  SER     2      -0.039  -2.469   4.121  1.00  1.84      1EPI 232
+ATOM     25 1HB  SER     2       2.364  -2.689   4.912  1.00  2.98      1EPI 233
+ATOM     26 2HB  SER     2       2.135  -3.440   3.321  1.00  2.18      1EPI 234
+ATOM     27  HG  SER     2       2.565  -1.086   2.632  1.00  3.49      1EPI 235
+ATOM     28  N   TYR     3      -0.349   0.140   4.594  1.00  1.55      1EPI 236
+ATOM     29  CA  TYR     3      -0.414   1.408   5.368  1.00  1.33      1EPI 237
+ATOM     30  C   TYR     3      -0.591   1.112   6.866  1.00  0.98      1EPI 238
+ATOM     31  O   TYR     3      -1.125   0.082   7.224  1.00  0.93      1EPI 239
+ATOM     32  CB  TYR     3      -1.649   2.190   4.897  1.00  1.71      1EPI 240
+ATOM     33  CG  TYR     3      -1.268   3.130   3.753  1.00  1.93      1EPI 241
+ATOM     34  CD1 TYR     3      -0.917   2.624   2.519  1.00  2.52      1EPI 242
+ATOM     35  CD2 TYR     3      -1.290   4.498   3.934  1.00  2.20      1EPI 243
+ATOM     36  CE1 TYR     3      -0.593   3.473   1.481  1.00  3.34      1EPI 244
+ATOM     37  CE2 TYR     3      -0.966   5.347   2.896  1.00  2.98      1EPI 245
+ATOM     38  CZ  TYR     3      -0.616   4.841   1.661  1.00  3.56      1EPI 246
+ATOM     39  OH  TYR     3      -0.300   5.690   0.622  1.00  4.46      1EPI 247
+ATOM     40  H   TYR     3      -1.136  -0.186   4.110  1.00  2.07      1EPI 248
+ATOM     41  HA  TYR     3       0.494   1.964   5.191  1.00  1.40      1EPI 249
+ATOM     42 1HB  TYR     3      -2.405   1.501   4.552  1.00  2.35      1EPI 250
+ATOM     43 2HB  TYR     3      -2.046   2.771   5.716  1.00  1.87      1EPI 251
+ATOM     44  HD1 TYR     3      -0.896   1.556   2.364  1.00  2.51      1EPI 252
+ATOM     45  HD2 TYR     3      -1.563   4.908   4.895  1.00  2.04      1EPI 253
+ATOM     46  HE1 TYR     3      -0.321   3.064   0.519  1.00  3.89      1EPI 254
+ATOM     47  HE2 TYR     3      -0.988   6.415   3.051  1.00  3.27      1EPI 255
+ATOM     48  HH  TYR     3      -1.098   6.159   0.369  1.00  4.70      1EPI 256
+ATOM     49  N   PRO     4      -0.145   2.012   7.725  1.00  0.88      1EPI 257
+ATOM     50  CA  PRO     4      -0.281   1.802   9.175  1.00  0.86      1EPI 258
+ATOM     51  C   PRO     4      -1.756   1.651   9.549  1.00  0.73      1EPI 259
+ATOM     52  O   PRO     4      -2.504   2.607   9.520  1.00  0.99      1EPI 260
+ATOM     53  CB  PRO     4       0.286   3.083   9.814  1.00  1.06      1EPI 261
+ATOM     54  CG  PRO     4       0.721   4.030   8.668  1.00  1.24      1EPI 262
+ATOM     55  CD  PRO     4       0.514   3.281   7.344  1.00  1.16      1EPI 263
+ATOM     56  HA  PRO     4       0.276   0.923   9.478  1.00  0.93      1EPI 264
+ATOM     57 1HB  PRO     4      -0.471   3.559  10.418  1.00  1.00      1EPI 265
+ATOM     58 2HB  PRO     4       1.138   2.839  10.433  1.00  1.24      1EPI 266
+ATOM     59 1HG  PRO     4       0.119   4.927   8.682  1.00  1.31      1EPI 267
+ATOM     60 2HG  PRO     4       1.762   4.293   8.783  1.00  1.45      1EPI 268
+ATOM     61 1HD  PRO     4      -0.117   3.847   6.676  1.00  1.31      1EPI 269
+ATOM     62 2HD  PRO     4       1.471   3.083   6.883  1.00  1.29      1EPI 270
+ATOM     63  N   GLY     5      -2.148   0.455   9.891  1.00  0.67      1EPI 271
+ATOM     64  CA  GLY     5      -3.575   0.236  10.265  1.00  0.58      1EPI 272
+ATOM     65  C   GLY     5      -3.692  -0.838  11.342  1.00  0.52      1EPI 273
+ATOM     66  O   GLY     5      -3.296  -1.960  11.131  1.00  0.71      1EPI 274
+ATOM     67  H   GLY     5      -1.512  -0.290   9.907  1.00  0.85      1EPI 275
+ATOM     68 1HA  GLY     5      -3.997   1.159  10.628  1.00  0.66      1EPI 276
+ATOM     69 2HA  GLY     5      -4.114  -0.087   9.390  1.00  0.69      1EPI 277
+ATOM     70  N   CYS     6      -4.266  -0.493  12.465  1.00  0.42      1EPI 278
+ATOM     71  CA  CYS     6      -4.392  -1.516  13.536  1.00  0.60      1EPI 279
+ATOM     72  C   CYS     6      -5.194  -0.997  14.751  1.00  0.64      1EPI 280
+ATOM     73  O   CYS     6      -4.760  -0.066  15.400  1.00  0.72      1EPI 281
+ATOM     74  CB  CYS     6      -2.976  -1.797  14.028  1.00  0.77      1EPI 282
+ATOM     75  SG  CYS     6      -2.059  -0.385  14.685  1.00  1.29      1EPI 283
+ATOM     76  H   CYS     6      -4.610   0.416  12.595  1.00  0.43      1EPI 284
+ATOM     77  HA  CYS     6      -4.830  -2.408  13.124  1.00  0.70      1EPI 285
+ATOM     78 1HB  CYS     6      -3.028  -2.545  14.795  1.00  1.26      1EPI 286
+ATOM     79 2HB  CYS     6      -2.403  -2.209  13.215  1.00  1.16      1EPI 287
+ATOM     80  N   PRO     7      -6.346  -1.585  15.054  1.00  0.66      1EPI 288
+ATOM     81  CA  PRO     7      -7.146  -1.129  16.207  1.00  0.80      1EPI 289
+ATOM     82  C   PRO     7      -6.318  -1.043  17.484  1.00  0.94      1EPI 290
+ATOM     83  O   PRO     7      -5.111  -1.169  17.457  1.00  0.93      1EPI 291
+ATOM     84  CB  PRO     7      -8.256  -2.182  16.348  1.00  0.93      1EPI 292
+ATOM     85  CG  PRO     7      -8.259  -3.024  15.047  1.00  1.01      1EPI 293
+ATOM     86  CD  PRO     7      -6.969  -2.691  14.285  1.00  0.77      1EPI 294
+ATOM     87  HA  PRO     7      -7.558  -0.153  16.003  1.00  0.83      1EPI 295
+ATOM     88 1HB  PRO     7      -8.052  -2.819  17.197  1.00  0.97      1EPI 296
+ATOM     89 2HB  PRO     7      -9.212  -1.698  16.480  1.00  1.02      1EPI 297
+ATOM     90 1HG  PRO     7      -8.283  -4.078  15.288  1.00  1.17      1EPI 298
+ATOM     91 2HG  PRO     7      -9.119  -2.770  14.444  1.00  1.19      1EPI 299
+ATOM     92 1HD  PRO     7      -6.326  -3.553  14.262  1.00  0.76      1EPI 300
+ATOM     93 2HD  PRO     7      -7.194  -2.365  13.280  1.00  0.80      1EPI 301
+ATOM     94  N   SER     8      -6.989  -0.834  18.582  1.00  1.14      1EPI 302
+ATOM     95  CA  SER     8      -6.257  -0.730  19.868  1.00  1.37      1EPI 303
+ATOM     96  C   SER     8      -5.640  -2.060  20.316  1.00  1.49      1EPI 304
+ATOM     97  O   SER     8      -4.489  -2.106  20.703  1.00  2.14      1EPI 305
+ATOM     98  CB  SER     8      -7.241  -0.259  20.945  1.00  1.48      1EPI 306
+ATOM     99  OG  SER     8      -8.484  -0.818  20.546  1.00  2.08      1EPI 307
+ATOM    100  H   SER     8      -7.965  -0.746  18.559  1.00  1.18      1EPI 308
+ATOM    101  HA  SER     8      -5.468  -0.005  19.731  1.00  1.53      1EPI 309
+ATOM    102 1HB  SER     8      -6.956  -0.637  21.916  1.00  1.97      1EPI 310
+ATOM    103 2HB  SER     8      -7.304   0.818  20.962  1.00  1.85      1EPI 311
+ATOM    104  HG  SER     8      -9.182  -0.342  21.001  1.00  2.60      1EPI 312
+ATOM    105  N   SER     9      -6.417  -3.109  20.269  1.00  1.24      1EPI 313
+ATOM    106  CA  SER     9      -5.892  -4.444  20.692  1.00  1.37      1EPI 314
+ATOM    107  C   SER     9      -4.505  -4.728  20.108  1.00  1.49      1EPI 315
+ATOM    108  O   SER     9      -3.847  -5.672  20.501  1.00  2.56      1EPI 316
+ATOM    109  CB  SER     9      -6.861  -5.519  20.184  1.00  1.47      1EPI 317
+ATOM    110  OG  SER     9      -7.412  -4.957  19.001  1.00  1.97      1EPI 318
+ATOM    111  H   SER     9      -7.342  -3.021  19.959  1.00  1.62      1EPI 319
+ATOM    112  HA  SER     9      -5.828  -4.470  21.774  1.00  1.50      1EPI 320
+ATOM    113 1HB  SER     9      -6.334  -6.432  19.953  1.00  2.10      1EPI 321
+ATOM    114 2HB  SER     9      -7.642  -5.705  20.907  1.00  2.02      1EPI 322
+ATOM    115  HG  SER     9      -8.203  -4.473  19.243  1.00  2.39      1EPI 323
+ATOM    116  N   TYR    10      -4.095  -3.909  19.183  1.00  0.96      1EPI 324
+ATOM    117  CA  TYR    10      -2.762  -4.101  18.554  1.00  1.02      1EPI 325
+ATOM    118  C   TYR    10      -1.741  -3.110  19.108  1.00  1.03      1EPI 326
+ATOM    119  O   TYR    10      -1.082  -2.406  18.368  1.00  1.42      1EPI 327
+ATOM    120  CB  TYR    10      -2.955  -3.876  17.058  1.00  1.15      1EPI 328
+ATOM    121  CG  TYR    10      -3.469  -5.185  16.474  1.00  0.72      1EPI 329
+ATOM    122  CD1 TYR    10      -2.637  -6.269  16.424  1.00  0.70      1EPI 330
+ATOM    123  CD2 TYR    10      -4.781  -5.326  16.084  1.00  0.67      1EPI 331
+ATOM    124  CE1 TYR    10      -3.088  -7.493  16.009  1.00  0.65      1EPI 332
+ATOM    125  CE2 TYR    10      -5.251  -6.553  15.656  1.00  0.99      1EPI 333
+ATOM    126  CZ  TYR    10      -4.405  -7.651  15.614  1.00  1.02      1EPI 334
+ATOM    127  OH  TYR    10      -4.866  -8.878  15.181  1.00  1.50      1EPI 335
+ATOM    128  H   TYR    10      -4.668  -3.170  18.894  1.00  1.50      1EPI 336
+ATOM    129  HA  TYR    10      -2.406  -5.115  18.745  1.00  1.05      1EPI 337
+ATOM    130 1HB  TYR    10      -3.683  -3.096  16.898  1.00  1.48      1EPI 338
+ATOM    131 2HB  TYR    10      -2.017  -3.611  16.594  1.00  1.39      1EPI 339
+ATOM    132  HD1 TYR    10      -1.611  -6.147  16.686  1.00  0.99      1EPI 340
+ATOM    133  HD2 TYR    10      -5.445  -4.475  16.122  1.00  0.76      1EPI 341
+ATOM    134  HE1 TYR    10      -2.414  -8.342  16.036  1.00  0.70      1EPI 342
+ATOM    135  HE2 TYR    10      -6.282  -6.653  15.342  1.00  1.31      1EPI 343
+ATOM    136  HH  TYR    10      -5.655  -9.093  15.684  1.00  2.05      1EPI 344
+ATOM    137  N   ASP    11      -1.642  -3.082  20.411  1.00  0.96      1EPI 345
+ATOM    138  CA  ASP    11      -0.681  -2.161  21.072  1.00  1.08      1EPI 346
+ATOM    139  C   ASP    11       0.190  -2.945  22.046  1.00  1.15      1EPI 347
+ATOM    140  O   ASP    11       1.007  -2.386  22.750  1.00  1.65      1EPI 348
+ATOM    141  CB  ASP    11      -1.471  -1.103  21.852  1.00  1.00      1EPI 349
+ATOM    142  CG  ASP    11      -0.498  -0.079  22.439  1.00  1.63      1EPI 350
+ATOM    143  OD1 ASP    11      -0.205   0.863  21.721  1.00  2.08      1EPI 351
+ATOM    144  OD2 ASP    11      -0.100  -0.298  23.572  1.00  1.91      1EPI 352
+ATOM    145  H   ASP    11      -2.205  -3.672  20.955  1.00  1.12      1EPI 353
+ATOM    146  HA  ASP    11      -0.046  -1.701  20.322  1.00  1.39      1EPI 354
+ATOM    147 1HB  ASP    11      -2.162  -0.601  21.192  1.00  1.27      1EPI 355
+ATOM    148 2HB  ASP    11      -2.021  -1.573  22.654  1.00  1.01      1EPI 356
+ATOM    149  N   GLY    12      -0.009  -4.237  22.061  1.00  0.89      1EPI 357
+ATOM    150  CA  GLY    12       0.789  -5.095  22.977  1.00  1.07      1EPI 358
+ATOM    151  C   GLY    12       0.719  -6.559  22.531  1.00  0.89      1EPI 359
+ATOM    152  O   GLY    12       1.270  -7.429  23.176  1.00  1.08      1EPI 360
+ATOM    153  H   GLY    12      -0.682  -4.638  21.473  1.00  0.98      1EPI 361
+ATOM    154 1HA  GLY    12       1.819  -4.768  22.967  1.00  1.36      1EPI 362
+ATOM    155 2HA  GLY    12       0.397  -5.009  23.979  1.00  1.36      1EPI 363
+ATOM    156  N   TYR    13       0.044  -6.805  21.438  1.00  0.67      1EPI 364
+ATOM    157  CA  TYR    13      -0.060  -8.207  20.955  1.00  0.60      1EPI 365
+ATOM    158  C   TYR    13       1.335  -8.772  20.704  1.00  0.64      1EPI 366
+ATOM    159  O   TYR    13       1.564  -9.955  20.856  1.00  0.97      1EPI 367
+ATOM    160  CB  TYR    13      -0.898  -8.219  19.658  1.00  0.64      1EPI 368
+ATOM    161  CG  TYR    13      -0.129  -8.841  18.495  1.00  0.46      1EPI 369
+ATOM    162  CD1 TYR    13       0.197 -10.184  18.478  1.00  0.80      1EPI 370
+ATOM    163  CD2 TYR    13       0.137  -8.081  17.386  1.00  0.74      1EPI 371
+ATOM    164  CE1 TYR    13       0.771 -10.747  17.355  1.00  1.04      1EPI 372
+ATOM    165  CE2 TYR    13       0.694  -8.635  16.270  1.00  0.96      1EPI 373
+ATOM    166  CZ  TYR    13       1.024  -9.974  16.239  1.00  1.07      1EPI 374
+ATOM    167  OH  TYR    13       1.594 -10.532  15.114  1.00  1.40      1EPI 375
+ATOM    168  H   TYR    13      -0.382  -6.075  20.940  1.00  0.78      1EPI 376
+ATOM    169  HA  TYR    13      -0.540  -8.802  21.727  1.00  0.81      1EPI 377
+ATOM    170 1HB  TYR    13      -1.802  -8.786  19.812  1.00  0.85      1EPI 378
+ATOM    171 2HB  TYR    13      -1.168  -7.207  19.387  1.00  0.83      1EPI 379
+ATOM    172  HD1 TYR    13      -0.002 -10.798  19.343  1.00  1.00      1EPI 380
+ATOM    173  HD2 TYR    13      -0.034  -7.024  17.413  1.00  0.93      1EPI 381
+ATOM    174  HE1 TYR    13       1.035 -11.796  17.352  1.00  1.31      1EPI 382
+ATOM    175  HE2 TYR    13       0.816  -8.024  15.396  1.00  1.23      1EPI 383
+ATOM    176  HH  TYR    13       1.193 -11.393  14.974  1.00  1.28      1EPI 384
+ATOM    177  N   CYS    14       2.245  -7.904  20.343  1.00  0.61      1EPI 385
+ATOM    178  CA  CYS    14       3.640  -8.360  20.078  1.00  0.83      1EPI 386
+ATOM    179  C   CYS    14       4.573  -7.950  21.221  1.00  0.78      1EPI 387
+ATOM    180  O   CYS    14       4.511  -6.837  21.704  1.00  0.75      1EPI 388
+ATOM    181  CB  CYS    14       4.142  -7.699  18.788  1.00  1.10      1EPI 389
+ATOM    182  SG  CYS    14       2.906  -7.097  17.615  1.00  1.36      1EPI 390
+ATOM    183  H   CYS    14       2.005  -6.959  20.237  1.00  0.70      1EPI 391
+ATOM    184  HA  CYS    14       3.651  -9.440  19.986  1.00  0.95      1EPI 392
+ATOM    185 1HB  CYS    14       4.767  -6.862  19.060  1.00  1.30      1EPI 393
+ATOM    186 2HB  CYS    14       4.763  -8.412  18.266  1.00  1.22      1EPI 394
+ATOM    187  N   LEU    15       5.420  -8.859  21.635  1.00  0.86      1EPI 395
+ATOM    188  CA  LEU    15       6.362  -8.531  22.744  1.00  0.89      1EPI 396
+ATOM    189  C   LEU    15       7.546  -7.743  22.197  1.00  0.88      1EPI 397
+ATOM    190  O   LEU    15       8.181  -6.981  22.898  1.00  1.56      1EPI 398
+ATOM    191  CB  LEU    15       6.913  -9.832  23.362  1.00  0.94      1EPI 399
+ATOM    192  CG  LEU    15       5.955 -11.007  23.127  1.00  0.98      1EPI 400
+ATOM    193  CD1 LEU    15       6.370 -11.755  21.854  1.00  0.89      1EPI 401
+ATOM    194  CD2 LEU    15       6.055 -11.962  24.317  1.00  1.46      1EPI 402
+ATOM    195  H   LEU    15       5.435  -9.746  21.219  1.00  1.01      1EPI 403
+ATOM    196  HA  LEU    15       5.846  -7.932  23.487  1.00  0.95      1EPI 404
+ATOM    197 1HB  LEU    15       7.870 -10.059  22.915  1.00  0.92      1EPI 405
+ATOM    198 2HB  LEU    15       7.052  -9.691  24.423  1.00  1.10      1EPI 406
+ATOM    199  HG  LEU    15       4.940 -10.654  23.036  1.00  1.23      1EPI 407
+ATOM    200 1HD1 LEU    15       6.667 -11.049  21.094  1.00  0.99      1EPI 408
+ATOM    201 2HD1 LEU    15       7.200 -12.410  22.072  1.00  1.02      1EPI 409
+ATOM    202 3HD1 LEU    15       5.542 -12.344  21.488  1.00  1.45      1EPI 410
+ATOM    203 1HD2 LEU    15       7.085 -12.251  24.468  1.00  1.63      1EPI 411
+ATOM    204 2HD2 LEU    15       5.691 -11.472  25.208  1.00  1.47      1EPI 412
+ATOM    205 3HD2 LEU    15       5.462 -12.844  24.128  1.00  1.83      1EPI 413
+ATOM    206  N   ASN    16       7.811  -7.964  20.943  1.00  0.89      1EPI 414
+ATOM    207  CA  ASN    16       8.937  -7.269  20.270  1.00  0.82      1EPI 415
+ATOM    208  C   ASN    16       8.458  -5.975  19.620  1.00  0.83      1EPI 416
+ATOM    209  O   ASN    16       7.308  -5.612  19.755  1.00  1.26      1EPI 417
+ATOM    210  CB  ASN    16       9.428  -8.217  19.179  1.00  0.81      1EPI 418
+ATOM    211  CG  ASN    16       9.275  -9.651  19.688  1.00  1.03      1EPI 419
+ATOM    212  OD1 ASN    16       8.266 -10.294  19.473  1.00  1.36      1EPI 420
+ATOM    213  ND2 ASN    16      10.251 -10.190  20.366  1.00  1.06      1EPI 421
+ATOM    214  H   ASN    16       7.259  -8.596  20.436  1.00  1.41      1EPI 422
+ATOM    215  HA  ASN    16       9.724  -7.056  20.986  1.00  0.85      1EPI 423
+ATOM    216 1HB  ASN    16       8.834  -8.090  18.287  1.00  1.03      1EPI 424
+ATOM    217 2HB  ASN    16      10.458  -8.020  18.953  1.00  0.60      1EPI 425
+ATOM    218 1HD2 ASN    16      10.164 -11.105  20.704  1.00  1.30      1EPI 426
+ATOM    219 2HD2 ASN    16      11.067  -9.678  20.540  1.00  0.98      1EPI 427
+ATOM    220  N   GLY    17       9.344  -5.294  18.937  1.00  1.13      1EPI 428
+ATOM    221  CA  GLY    17       8.922  -4.023  18.280  1.00  1.24      1EPI 429
+ATOM    222  C   GLY    17       7.634  -4.285  17.499  1.00  0.80      1EPI 430
+ATOM    223  O   GLY    17       6.553  -4.228  18.050  1.00  1.38      1EPI 431
+ATOM    224  H   GLY    17      10.269  -5.612  18.863  1.00  1.34      1EPI 432
+ATOM    225 1HA  GLY    17       8.742  -3.268  19.032  1.00  1.57      1EPI 433
+ATOM    226 2HA  GLY    17       9.696  -3.687  17.605  1.00  1.53      1EPI 434
+ATOM    227  N   GLY    18       7.762  -4.539  16.225  1.00  0.74      1EPI 435
+ATOM    228  CA  GLY    18       6.541  -4.807  15.430  1.00  1.03      1EPI 436
+ATOM    229  C   GLY    18       5.988  -3.532  14.807  1.00  0.88      1EPI 437
+ATOM    230  O   GLY    18       5.904  -2.504  15.450  1.00  1.13      1EPI 438
+ATOM    231  H   GLY    18       8.641  -4.512  15.788  1.00  0.99      1EPI 439
+ATOM    232 1HA  GLY    18       6.778  -5.510  14.648  1.00  1.33      1EPI 440
+ATOM    233 2HA  GLY    18       5.793  -5.241  16.075  1.00  1.41      1EPI 441
+ATOM    234  N   VAL    19       5.626  -3.645  13.559  1.00  0.71      1EPI 442
+ATOM    235  CA  VAL    19       5.073  -2.499  12.831  1.00  0.61      1EPI 443
+ATOM    236  C   VAL    19       3.632  -2.800  12.440  1.00  0.64      1EPI 444
+ATOM    237  O   VAL    19       3.370  -3.454  11.456  1.00  0.93      1EPI 445
+ATOM    238  CB  VAL    19       5.922  -2.269  11.584  1.00  0.56      1EPI 446
+ATOM    239  CG1 VAL    19       5.441  -0.987  10.903  1.00  0.70      1EPI 447
+ATOM    240  CG2 VAL    19       7.393  -2.118  12.008  1.00  0.69      1EPI 448
+ATOM    241  H   VAL    19       5.723  -4.485  13.104  1.00  0.85      1EPI 449
+ATOM    242  HA  VAL    19       5.093  -1.650  13.477  1.00  0.75      1EPI 450
+ATOM    243  HB  VAL    19       5.817  -3.105  10.909  1.00  0.62      1EPI 451
+ATOM    244 1HG1 VAL    19       4.599  -0.583  11.450  1.00  0.88      1EPI 452
+ATOM    245 2HG1 VAL    19       6.237  -0.258  10.885  1.00  0.69      1EPI 453
+ATOM    246 3HG1 VAL    19       5.135  -1.206   9.891  1.00  0.91      1EPI 454
+ATOM    247 1HG2 VAL    19       7.694  -2.967  12.615  1.00  0.66      1EPI 455
+ATOM    248 2HG2 VAL    19       8.021  -2.068  11.132  1.00  0.78      1EPI 456
+ATOM    249 3HG2 VAL    19       7.516  -1.214  12.586  1.00  0.80      1EPI 457
+ATOM    250  N   CYS    20       2.737  -2.298  13.237  1.00  0.70      1EPI 458
+ATOM    251  CA  CYS    20       1.279  -2.506  13.001  1.00  0.60      1EPI 459
+ATOM    252  C   CYS    20       0.796  -2.125  11.601  1.00  0.54      1EPI 460
+ATOM    253  O   CYS    20       1.091  -1.061  11.094  1.00  0.78      1EPI 461
+ATOM    254  CB  CYS    20       0.554  -1.676  14.045  1.00  0.79      1EPI 462
+ATOM    255  SG  CYS    20      -0.441  -0.279  13.490  1.00  1.08      1EPI 463
+ATOM    256  H   CYS    20       3.029  -1.755  13.997  1.00  1.00      1EPI 464
+ATOM    257  HA  CYS    20       1.050  -3.544  13.160  1.00  0.53      1EPI 465
+ATOM    258 1HB  CYS    20      -0.090  -2.344  14.594  1.00  0.79      1EPI 466
+ATOM    259 2HB  CYS    20       1.294  -1.301  14.734  1.00  1.15      1EPI 467
+ATOM    260  N   MET    21       0.048  -3.035  11.010  1.00  0.38      1EPI 468
+ATOM    261  CA  MET    21      -0.499  -2.803   9.639  1.00  0.48      1EPI 469
+ATOM    262  C   MET    21      -1.905  -3.381   9.513  1.00  0.47      1EPI 470
+ATOM    263  O   MET    21      -2.362  -4.107  10.378  1.00  0.45      1EPI 471
+ATOM    264  CB  MET    21       0.371  -3.539   8.613  1.00  0.55      1EPI 472
+ATOM    265  CG  MET    21       1.823  -3.593   9.084  1.00  0.50      1EPI 473
+ATOM    266  SD  MET    21       3.069  -4.118   7.880  1.00  0.75      1EPI 474
+ATOM    267  CE  MET    21       2.051  -5.336   7.008  1.00  1.87      1EPI 475
+ATOM    268  H   MET    21      -0.149  -3.875  11.474  1.00  0.39      1EPI 476
+ATOM    269  HA  MET    21      -0.541  -1.734   9.436  1.00  0.59      1EPI 477
+ATOM    270 1HB  MET    21      -0.004  -4.549   8.501  1.00  0.56      1EPI 478
+ATOM    271 2HB  MET    21       0.315  -3.032   7.661  1.00  0.72      1EPI 479
+ATOM    272 1HG  MET    21       2.105  -2.612   9.437  1.00  0.61      1EPI 480
+ATOM    273 2HG  MET    21       1.872  -4.273   9.919  1.00  0.40      1EPI 481
+ATOM    274 1HE  MET    21       1.647  -6.042   7.718  1.00  2.26      1EPI 482
+ATOM    275 2HE  MET    21       1.242  -4.833   6.500  1.00  2.60      1EPI 483
+ATOM    276 3HE  MET    21       2.659  -5.861   6.285  1.00  2.37      1EPI 484
+ATOM    277  N   HIS    22      -2.552  -3.054   8.422  1.00  0.57      1EPI 485
+ATOM    278  CA  HIS    22      -3.933  -3.559   8.187  1.00  0.65      1EPI 486
+ATOM    279  C   HIS    22      -3.975  -4.488   6.975  1.00  0.69      1EPI 487
+ATOM    280  O   HIS    22      -4.754  -5.418   6.937  1.00  0.87      1EPI 488
+ATOM    281  CB  HIS    22      -4.836  -2.355   7.895  1.00  0.84      1EPI 489
+ATOM    282  CG  HIS    22      -5.851  -2.739   6.818  1.00  1.22      1EPI 490
+ATOM    283  ND1 HIS    22      -7.004  -3.217   7.039  1.00  1.88      1EPI 491
+ATOM    284  CD2 HIS    22      -5.757  -2.658   5.441  1.00  2.26      1EPI 492
+ATOM    285  CE1 HIS    22      -7.621  -3.434   5.939  1.00  2.45      1EPI 493
+ATOM    286  NE2 HIS    22      -6.894  -3.105   4.884  1.00  2.76      1EPI 494
+ATOM    287  H   HIS    22      -2.124  -2.476   7.756  1.00  0.63      1EPI 495
+ATOM    288  HA  HIS    22      -4.276  -4.099   9.063  1.00  0.66      1EPI 496
+ATOM    289 1HB  HIS    22      -5.358  -2.061   8.792  1.00  1.12      1EPI 497
+ATOM    290 2HB  HIS    22      -4.239  -1.528   7.542  1.00  1.25      1EPI 498
+ATOM    291  HD1 HIS    22      -7.371  -3.398   7.930  1.00  2.40      1EPI 499
+ATOM    292  HD2 HIS    22      -4.899  -2.291   4.896  1.00  2.95      1EPI 500
+ATOM    293  HE1 HIS    22      -8.622  -3.836   5.879  1.00  3.14      1EPI 501
+ATOM    294  N   ILE    23      -3.139  -4.200   6.008  1.00  1.32      1EPI 502
+ATOM    295  CA  ILE    23      -3.090  -5.037   4.773  1.00  1.43      1EPI 503
+ATOM    296  C   ILE    23      -4.452  -5.085   4.081  1.00  1.33      1EPI 504
+ATOM    297  O   ILE    23      -5.471  -5.281   4.712  1.00  1.32      1EPI 505
+ATOM    298  CB  ILE    23      -2.659  -6.461   5.149  1.00  1.52      1EPI 506
+ATOM    299  CG1 ILE    23      -1.279  -6.428   5.802  1.00  1.60      1EPI 507
+ATOM    300  CG2 ILE    23      -2.567  -7.297   3.865  1.00  1.94      1EPI 508
+ATOM    301  CD1 ILE    23      -1.187  -7.554   6.834  1.00  1.45      1EPI 509
+ATOM    302  H   ILE    23      -2.543  -3.427   6.095  1.00  1.76      1EPI 510
+ATOM    303  HA  ILE    23      -2.375  -4.593   4.089  1.00  1.63      1EPI 511
+ATOM    304  HB  ILE    23      -3.374  -6.891   5.841  1.00  1.71      1EPI 512
+ATOM    305 1HG1 ILE    23      -0.518  -6.564   5.048  1.00  2.34      1EPI 513
+ATOM    306 2HG1 ILE    23      -1.128  -5.477   6.290  1.00  1.96      1EPI 514
+ATOM    307 1HG2 ILE    23      -2.091  -6.719   3.086  1.00  2.20      1EPI 515
+ATOM    308 2HG2 ILE    23      -1.985  -8.188   4.051  1.00  2.30      1EPI 516
+ATOM    309 3HG2 ILE    23      -3.557  -7.581   3.542  1.00  2.34      1EPI 517
+ATOM    310 1HD1 ILE    23      -1.587  -8.465   6.415  1.00  2.01      1EPI 518
+ATOM    311 2HD1 ILE    23      -0.155  -7.712   7.109  1.00  1.67      1EPI 519
+ATOM    312 3HD1 ILE    23      -1.752  -7.288   7.714  1.00  1.49      1EPI 520
+ATOM    313  N   GLU    24      -4.440  -4.902   2.786  1.00  2.19      1EPI 521
+ATOM    314  CA  GLU    24      -5.719  -4.932   2.032  1.00  2.20      1EPI 522
+ATOM    315  C   GLU    24      -6.435  -6.260   2.239  1.00  2.28      1EPI 523
+ATOM    316  O   GLU    24      -6.196  -6.952   3.209  1.00  2.85      1EPI 524
+ATOM    317  CB  GLU    24      -5.409  -4.770   0.538  1.00  3.20      1EPI 525
+ATOM    318  CG  GLU    24      -6.465  -3.864  -0.098  1.00  3.66      1EPI 526
+ATOM    319  CD  GLU    24      -6.251  -3.822  -1.612  1.00  4.53      1EPI 527
+ATOM    320  OE1 GLU    24      -6.776  -4.714  -2.259  1.00  4.93      1EPI 528
+ATOM    321  OE2 GLU    24      -5.575  -2.900  -2.038  1.00  5.02      1EPI 529
+ATOM    322  H   GLU    24      -3.593  -4.749   2.317  1.00  2.95      1EPI 530
+ATOM    323  HA  GLU    24      -6.357  -4.128   2.384  1.00  1.81      1EPI 531
+ATOM    324 1HB  GLU    24      -4.431  -4.329   0.416  1.00  3.38      1EPI 532
+ATOM    325 2HB  GLU    24      -5.424  -5.737   0.057  1.00  3.77      1EPI 533
+ATOM    326 1HG  GLU    24      -7.452  -4.250   0.112  1.00  3.78      1EPI 534
+ATOM    327 2HG  GLU    24      -6.379  -2.865   0.302  1.00  3.93      1EPI 535
+ATOM    328  N   SER    25      -7.301  -6.593   1.323  1.00  3.24      1EPI 536
+ATOM    329  CA  SER    25      -8.041  -7.873   1.453  1.00  3.81      1EPI 537
+ATOM    330  C   SER    25      -8.823  -7.910   2.766  1.00  3.73      1EPI 538
+ATOM    331  O   SER    25      -9.565  -6.997   3.072  1.00  4.47      1EPI 539
+ATOM    332  CB  SER    25      -7.021  -9.022   1.438  1.00  4.76      1EPI 540
+ATOM    333  OG  SER    25      -6.077  -8.630   0.452  1.00  5.54      1EPI 541
+ATOM    334  H   SER    25      -7.462  -6.002   0.558  1.00  4.00      1EPI 542
+ATOM    335  HA  SER    25      -8.737  -7.962   0.625  1.00  4.05      1EPI 543
+ATOM    336 1HB  SER    25      -6.537  -9.123   2.398  1.00  5.35      1EPI 544
+ATOM    337 2HB  SER    25      -7.494  -9.950   1.153  1.00  4.69      1EPI 545
+ATOM    338  HG  SER    25      -5.997  -7.674   0.482  1.00  5.37      1EPI 546
+ATOM    339  N   LEU    26      -8.645  -8.960   3.519  1.00  3.39      1EPI 547
+ATOM    340  CA  LEU    26      -9.375  -9.060   4.810  1.00  3.65      1EPI 548
+ATOM    341  C   LEU    26      -8.559  -8.447   5.949  1.00  3.26      1EPI 549
+ATOM    342  O   LEU    26      -7.501  -7.892   5.728  1.00  3.53      1EPI 550
+ATOM    343  CB  LEU    26      -9.623 -10.544   5.113  1.00  4.63      1EPI 551
+ATOM    344  CG  LEU    26     -10.965 -10.967   4.507  1.00  5.50      1EPI 552
+ATOM    345  CD1 LEU    26     -10.986 -10.611   3.018  1.00  5.64      1EPI 553
+ATOM    346  CD2 LEU    26     -11.128 -12.480   4.662  1.00  6.06      1EPI 554
+ATOM    347  H   LEU    26      -8.039  -9.676   3.235  1.00  3.53      1EPI 555
+ATOM    348  HA  LEU    26     -10.314  -8.523   4.725  1.00  3.87      1EPI 556
+ATOM    349 1HB  LEU    26      -8.829 -11.138   4.687  1.00  5.00      1EPI 557
+ATOM    350 2HB  LEU    26      -9.645 -10.696   6.182  1.00  4.67      1EPI 558
+ATOM    351  HG  LEU    26     -11.771 -10.459   5.015  1.00  5.98      1EPI 559
+ATOM    352 1HD1 LEU    26      -9.998 -10.728   2.599  1.00  5.53      1EPI 560
+ATOM    353 2HD1 LEU    26     -11.671 -11.264   2.498  1.00  6.07      1EPI 561
+ATOM    354 3HD1 LEU    26     -11.307  -9.587   2.891  1.00  5.76      1EPI 562
+ATOM    355 1HD2 LEU    26     -10.896 -12.770   5.677  1.00  6.02      1EPI 563
+ATOM    356 2HD2 LEU    26     -12.146 -12.763   4.437  1.00  6.59      1EPI 564
+ATOM    357 3HD2 LEU    26     -10.459 -12.990   3.985  1.00  6.24      1EPI 565
+ATOM    358  N   ASP    27      -9.074  -8.559   7.144  1.00  3.08      1EPI 566
+ATOM    359  CA  ASP    27      -8.358  -7.994   8.325  1.00  2.81      1EPI 567
+ATOM    360  C   ASP    27      -6.857  -8.284   8.278  1.00  2.15      1EPI 568
+ATOM    361  O   ASP    27      -6.112  -7.610   7.594  1.00  2.87      1EPI 569
+ATOM    362  CB  ASP    27      -8.940  -8.640   9.588  1.00  3.19      1EPI 570
+ATOM    363  CG  ASP    27     -10.384  -8.173   9.776  1.00  4.36      1EPI 571
+ATOM    364  OD1 ASP    27     -11.067  -8.105   8.768  1.00  4.92      1EPI 572
+ATOM    365  OD2 ASP    27     -10.724  -7.909  10.918  1.00  4.85      1EPI 573
+ATOM    366  H   ASP    27      -9.936  -9.010   7.264  1.00  3.60      1EPI 574
+ATOM    367  HA  ASP    27      -8.506  -6.919   8.342  1.00  3.31      1EPI 575
+ATOM    368 1HB  ASP    27      -8.923  -9.715   9.491  1.00  2.97      1EPI 576
+ATOM    369 2HB  ASP    27      -8.356  -8.350  10.450  1.00  3.42      1EPI 577
+ATOM    370  N   SER    28      -6.445  -9.275   9.025  1.00  1.99      1EPI 578
+ATOM    371  CA  SER    28      -5.000  -9.636   9.050  1.00  1.87      1EPI 579
+ATOM    372  C   SER    28      -4.202  -8.636   9.886  1.00  1.87      1EPI 580
+ATOM    373  O   SER    28      -2.991  -8.585   9.807  1.00  3.14      1EPI 581
+ATOM    374  CB  SER    28      -4.459  -9.620   7.615  1.00  2.16      1EPI 582
+ATOM    375  OG  SER    28      -3.510 -10.676   7.592  1.00  2.26      1EPI 583
+ATOM    376  H   SER    28      -7.085  -9.776   9.571  1.00  2.64      1EPI 584
+ATOM    377  HA  SER    28      -4.893 -10.623   9.491  1.00  2.26      1EPI 585
+ATOM    378 1HB  SER    28      -5.249  -9.812   6.904  1.00  2.82      1EPI 586
+ATOM    379 2HB  SER    28      -3.975  -8.679   7.398  1.00  2.42      1EPI 587
+ATOM    380  HG  SER    28      -3.903 -11.437   8.026  1.00  2.38      1EPI 588
+ATOM    381  N   TYR    29      -4.896  -7.862  10.675  1.00  0.93      1EPI 589
+ATOM    382  CA  TYR    29      -4.192  -6.861  11.523  1.00  0.70      1EPI 590
+ATOM    383  C   TYR    29      -2.995  -7.488  12.232  1.00  0.66      1EPI 591
+ATOM    384  O   TYR    29      -3.136  -8.484  12.915  1.00  0.79      1EPI 592
+ATOM    385  CB  TYR    29      -5.162  -6.365  12.601  1.00  0.72      1EPI 593
+ATOM    386  CG  TYR    29      -6.324  -5.614  11.955  1.00  0.74      1EPI 594
+ATOM    387  CD1 TYR    29      -6.113  -4.398  11.341  1.00  0.71      1EPI 595
+ATOM    388  CD2 TYR    29      -7.602  -6.134  11.989  1.00  0.84      1EPI 596
+ATOM    389  CE1 TYR    29      -7.163  -3.711  10.768  1.00  0.77      1EPI 597
+ATOM    390  CE2 TYR    29      -8.653  -5.447  11.414  1.00  0.88      1EPI 598
+ATOM    391  CZ  TYR    29      -8.441  -4.230  10.799  1.00  0.85      1EPI 599
+ATOM    392  OH  TYR    29      -9.489  -3.543  10.220  1.00  0.92      1EPI 600
+ATOM    393  H   TYR    29      -5.873  -7.940  10.710  1.00  1.51      1EPI 601
+ATOM    394  HA  TYR    29      -3.851  -6.041  10.900  1.00  0.63      1EPI 602
+ATOM    395 1HB  TYR    29      -5.548  -7.207  13.157  1.00  0.77      1EPI 603
+ATOM    396 2HB  TYR    29      -4.645  -5.700  13.276  1.00  0.70      1EPI 604
+ATOM    397  HD1 TYR    29      -5.117  -3.982  11.308  1.00  0.66      1EPI 605
+ATOM    398  HD2 TYR    29      -7.783  -7.080  12.479  1.00  0.89      1EPI 606
+ATOM    399  HE1 TYR    29      -6.986  -2.753  10.304  1.00  0.78      1EPI 607
+ATOM    400  HE2 TYR    29      -9.648  -5.865  11.445  1.00  0.96      1EPI 608
+ATOM    401  HH  TYR    29      -9.396  -2.614  10.448  1.00  1.38      1EPI 609
+ATOM    402  N   THR    30      -1.837  -6.906  12.061  1.00  0.52      1EPI 610
+ATOM    403  CA  THR    30      -0.642  -7.486  12.739  1.00  0.55      1EPI 611
+ATOM    404  C   THR    30       0.528  -6.516  12.707  1.00  0.50      1EPI 612
+ATOM    405  O   THR    30       0.467  -5.492  12.057  1.00  0.42      1EPI 613
+ATOM    406  CB  THR    30      -0.238  -8.760  11.997  1.00  0.60      1EPI 614
+ATOM    407  OG1 THR    30       0.646  -9.440  12.869  1.00  0.70      1EPI 615
+ATOM    408  CG2 THR    30       0.616  -8.422  10.769  1.00  0.80      1EPI 616
+ATOM    409  H   THR    30      -1.752  -6.109  11.478  1.00  0.46      1EPI 617
+ATOM    410  HA  THR    30      -0.886  -7.700  13.784  1.00  0.63      1EPI 618
+ATOM    411  HB  THR    30      -1.097  -9.377  11.756  1.00  0.67      1EPI 619
+ATOM    412  HG1 THR    30       1.252  -9.955  12.333  1.00  1.04      1EPI 620
+ATOM    413 1HG2 THR    30       0.221  -7.542  10.283  1.00  0.59      1EPI 621
+ATOM    414 2HG2 THR    30       1.634  -8.232  11.075  1.00  1.20      1EPI 622
+ATOM    415 3HG2 THR    30       0.602  -9.249  10.075  1.00  1.10      1EPI 623
+ATOM    416  N   CYS    31       1.578  -6.881  13.395  1.00  0.65      1EPI 624
+ATOM    417  CA  CYS    31       2.781  -6.011  13.440  1.00  0.68      1EPI 625
+ATOM    418  C   CYS    31       3.974  -6.675  12.754  1.00  0.65      1EPI 626
+ATOM    419  O   CYS    31       4.528  -7.634  13.255  1.00  0.86      1EPI 627
+ATOM    420  CB  CYS    31       3.121  -5.763  14.912  1.00  0.86      1EPI 628
+ATOM    421  SG  CYS    31       3.867  -7.125  15.838  1.00  1.18      1EPI 629
+ATOM    422  H   CYS    31       1.578  -7.736  13.869  1.00  0.77      1EPI 630
+ATOM    423  HA  CYS    31       2.564  -5.081  12.942  1.00  0.68      1EPI 631
+ATOM    424 1HB  CYS    31       3.792  -4.921  14.963  1.00  1.51      1EPI 632
+ATOM    425 2HB  CYS    31       2.211  -5.483  15.423  1.00  1.53      1EPI 633
+ATOM    426  N   ASN    32       4.345  -6.150  11.614  1.00  0.63      1EPI 634
+ATOM    427  CA  ASN    32       5.500  -6.733  10.876  1.00  0.62      1EPI 635
+ATOM    428  C   ASN    32       6.706  -6.896  11.798  1.00  0.64      1EPI 636
+ATOM    429  O   ASN    32       7.157  -5.944  12.399  1.00  0.77      1EPI 637
+ATOM    430  CB  ASN    32       5.880  -5.777   9.739  1.00  0.63      1EPI 638
+ATOM    431  CG  ASN    32       6.193  -6.588   8.480  1.00  0.75      1EPI 639
+ATOM    432  OD1 ASN    32       7.164  -7.316   8.424  1.00  1.50      1EPI 640
+ATOM    433  ND2 ASN    32       5.399  -6.492   7.450  1.00  1.50      1EPI 641
+ATOM    434  H   ASN    32       3.866  -5.378  11.248  1.00  0.79      1EPI 642
+ATOM    435  HA  ASN    32       5.217  -7.705  10.486  1.00  0.65      1EPI 643
+ATOM    436 1HB  ASN    32       5.061  -5.103   9.536  1.00  0.58      1EPI 644
+ATOM    437 2HB  ASN    32       6.752  -5.205  10.020  1.00  0.68      1EPI 645
+ATOM    438 1HD2 ASN    32       5.586  -7.008   6.638  1.00  1.55      1EPI 646
+ATOM    439 2HD2 ASN    32       4.614  -5.906   7.488  1.00  2.29      1EPI 647
+ATOM    440  N   CYS    33       7.214  -8.097  11.879  1.00  0.52      1EPI 648
+ATOM    441  CA  CYS    33       8.391  -8.342  12.759  1.00  0.55      1EPI 649
+ATOM    442  C   CYS    33       9.580  -7.465  12.360  1.00  0.68      1EPI 650
+ATOM    443  O   CYS    33       9.375  -6.418  11.778  1.00  0.82      1EPI 651
+ATOM    444  CB  CYS    33       8.736  -9.827  12.674  1.00  0.44      1EPI 652
+ATOM    445  SG  CYS    33       8.235 -10.818  14.091  1.00  0.35      1EPI 653
+ATOM    446  H   CYS    33       6.819  -8.834  11.367  1.00  0.44      1EPI 654
+ATOM    447  HA  CYS    33       8.109  -8.079  13.773  1.00  0.60      1EPI 655
+ATOM    448 1HB  CYS    33       8.252 -10.236  11.800  1.00  0.49      1EPI 656
+ATOM    449 2HB  CYS    33       9.797  -9.945  12.545  1.00  0.47      1EPI 657
+ATOM    450  N   VAL    34      10.803  -7.875  12.663  1.00  0.66      1EPI 658
+ATOM    451  CA  VAL    34      11.939  -6.995  12.268  1.00  0.80      1EPI 659
+ATOM    452  C   VAL    34      13.194  -7.742  11.817  1.00  0.77      1EPI 660
+ATOM    453  O   VAL    34      13.239  -8.958  11.745  1.00  0.67      1EPI 661
+ATOM    454  CB  VAL    34      12.286  -6.101  13.460  1.00  0.96      1EPI 662
+ATOM    455  CG1 VAL    34      11.889  -4.659  13.136  1.00  1.26      1EPI 663
+ATOM    456  CG2 VAL    34      11.506  -6.564  14.693  1.00  0.90      1EPI 664
+ATOM    457  H   VAL    34      10.962  -8.733  13.126  1.00  0.57      1EPI 665
+ATOM    458  HA  VAL    34      11.623  -6.379  11.436  1.00  0.93      1EPI 666
+ATOM    459  HB  VAL    34      13.341  -6.148  13.652  1.00  0.99      1EPI 667
+ATOM    460 1HG1 VAL    34      10.848  -4.625  12.851  1.00  1.31      1EPI 668
+ATOM    461 2HG1 VAL    34      12.040  -4.035  14.005  1.00  1.45      1EPI 669
+ATOM    462 3HG1 VAL    34      12.494  -4.288  12.322  1.00  1.32      1EPI 670
+ATOM    463 1HG2 VAL    34      11.659  -7.621  14.850  1.00  0.75      1EPI 671
+ATOM    464 2HG2 VAL    34      11.846  -6.022  15.562  1.00  1.02      1EPI 672
+ATOM    465 3HG2 VAL    34      10.453  -6.376  14.549  1.00  0.96      1EPI 673
+ATOM    466  N   ILE    35      14.211  -6.954  11.601  1.00  0.90      1EPI 674
+ATOM    467  CA  ILE    35      15.509  -7.462  11.151  1.00  0.97      1EPI 675
+ATOM    468  C   ILE    35      16.292  -8.058  12.297  1.00  0.86      1EPI 676
+ATOM    469  O   ILE    35      16.897  -7.352  13.081  1.00  0.89      1EPI 677
+ATOM    470  CB  ILE    35      16.254  -6.247  10.600  1.00  1.17      1EPI 678
+ATOM    471  CG1 ILE    35      15.651  -5.804   9.258  1.00  1.32      1EPI 679
+ATOM    472  CG2 ILE    35      17.731  -6.585  10.423  1.00  1.29      1EPI 680
+ATOM    473  CD1 ILE    35      16.044  -6.750   8.111  1.00  2.09      1EPI 681
+ATOM    474  H   ILE    35      14.141  -6.018  11.824  1.00  0.96      1EPI 682
+ATOM    475  HA  ILE    35      15.356  -8.212  10.389  1.00  1.00      1EPI 683
+ATOM    476  HB  ILE    35      16.138  -5.430  11.309  1.00  1.16      1EPI 684
+ATOM    477 1HG1 ILE    35      14.575  -5.785   9.344  1.00  1.79      1EPI 685
+ATOM    478 2HG1 ILE    35      15.995  -4.807   9.028  1.00  2.05      1EPI 686
+ATOM    479 1HG2 ILE    35      17.853  -7.647  10.294  1.00  1.25      1EPI 687
+ATOM    480 2HG2 ILE    35      18.118  -6.069   9.559  1.00  1.45      1EPI 688
+ATOM    481 3HG2 ILE    35      18.271  -6.269  11.301  1.00  1.31      1EPI 689
+ATOM    482 1HD1 ILE    35      16.456  -7.665   8.490  1.00  2.44      1EPI 690
+ATOM    483 2HD1 ILE    35      15.169  -6.980   7.524  1.00  2.56      1EPI 691
+ATOM    484 3HD1 ILE    35      16.775  -6.267   7.479  1.00  2.44      1EPI 692
+ATOM    485  N   GLY    36      16.258  -9.350  12.361  1.00  0.78      1EPI 693
+ATOM    486  CA  GLY    36      16.990 -10.045  13.442  1.00  0.72      1EPI 694
+ATOM    487  C   GLY    36      16.096 -11.019  14.141  1.00  0.54      1EPI 695
+ATOM    488  O   GLY    36      16.566 -11.952  14.763  1.00  0.59      1EPI 696
+ATOM    489  H   GLY    36      15.736  -9.856  11.707  1.00  0.81      1EPI 697
+ATOM    490 1HA  GLY    36      17.826 -10.580  13.036  1.00  0.84      1EPI 698
+ATOM    491 2HA  GLY    36      17.326  -9.326  14.158  1.00  0.73      1EPI 699
+ATOM    492  N   TYR    37      14.828 -10.791  14.042  1.00  0.37      1EPI 700
+ATOM    493  CA  TYR    37      13.930 -11.720  14.712  1.00  0.26      1EPI 701
+ATOM    494  C   TYR    37      12.591 -11.914  14.041  1.00  0.30      1EPI 702
+ATOM    495  O   TYR    37      12.013 -10.992  13.464  1.00  0.37      1EPI 703
+ATOM    496  CB  TYR    37      13.805 -11.351  16.135  1.00  0.24      1EPI 704
+ATOM    497  CG  TYR    37      13.433  -9.926  16.462  1.00  0.29      1EPI 705
+ATOM    498  CD1 TYR    37      13.837  -8.829  15.726  1.00  0.41      1EPI 706
+ATOM    499  CD2 TYR    37      12.953  -9.733  17.717  1.00  0.41      1EPI 707
+ATOM    500  CE1 TYR    37      13.792  -7.582  16.268  1.00  0.59      1EPI 708
+ATOM    501  CE2 TYR    37      12.911  -8.512  18.280  1.00  0.60      1EPI 709
+ATOM    502  CZ  TYR    37      13.323  -7.395  17.564  1.00  0.68      1EPI 710
+ATOM    503  OH  TYR    37      13.256  -6.133  18.118  1.00  0.90      1EPI 711
+ATOM    504  H   TYR    37      14.483  -9.999  13.558  1.00  0.39      1EPI 712
+ATOM    505  HA  TYR    37      14.407 -12.669  14.713  1.00  0.31      1EPI 713
+ATOM    506 1HB  TYR    37      13.076 -12.009  16.573  1.00  0.29      1EPI 714
+ATOM    507 2HB  TYR    37      14.789 -11.530  16.588  1.00  0.33      1EPI 715
+ATOM    508  HD1 TYR    37      14.127  -8.926  14.710  1.00  0.44      1EPI 716
+ATOM    509  HD2 TYR    37      12.500 -10.555  18.232  1.00  0.40      1EPI 717
+ATOM    510  HE1 TYR    37      14.125  -6.748  15.664  1.00  0.69      1EPI 718
+ATOM    511  HE2 TYR    37      12.665  -8.459  19.328  1.00  0.72      1EPI 719
+ATOM    512  HH  TYR    37      12.908  -6.217  19.008  1.00  1.01      1EPI 720
+ATOM    513  N   SER    38      12.103 -13.130  14.185  1.00  0.33      1EPI 721
+ATOM    514  CA  SER    38      10.787 -13.462  13.558  1.00  0.40      1EPI 722
+ATOM    515  C   SER    38      10.087 -14.661  14.211  1.00  0.50      1EPI 723
+ATOM    516  O   SER    38      10.432 -15.090  15.298  1.00  0.54      1EPI 724
+ATOM    517  CB  SER    38      11.042 -13.803  12.087  1.00  0.60      1EPI 725
+ATOM    518  OG  SER    38      11.774 -12.691  11.594  1.00  1.41      1EPI 726
+ATOM    519  H   SER    38      12.575 -13.785  14.766  1.00  0.37      1EPI 727
+ATOM    520  HA  SER    38      10.142 -12.601  13.635  1.00  0.37      1EPI 728
+ATOM    521 1HB  SER    38      11.628 -14.705  12.000  1.00  1.31      1EPI 729
+ATOM    522 2HB  SER    38      10.110 -13.904  11.551  1.00  1.15      1EPI 730
+ATOM    523  HG  SER    38      12.560 -13.025  11.156  1.00  2.04      1EPI 731
+ATOM    524  N   GLY    39       9.107 -15.169  13.511  1.00  0.74      1EPI 732
+ATOM    525  CA  GLY    39       8.332 -16.335  14.022  1.00  0.94      1EPI 733
+ATOM    526  C   GLY    39       6.885 -15.887  14.213  1.00  1.05      1EPI 734
+ATOM    527  O   GLY    39       6.413 -15.033  13.490  1.00  1.71      1EPI 735
+ATOM    528  H   GLY    39       8.876 -14.775  12.643  1.00  0.89      1EPI 736
+ATOM    529 1HA  GLY    39       8.373 -17.141  13.305  1.00  1.11      1EPI 737
+ATOM    530 2HA  GLY    39       8.740 -16.664  14.966  1.00  0.89      1EPI 738
+ATOM    531  N   ASP    40       6.197 -16.461  15.160  1.00  1.24      1EPI 739
+ATOM    532  CA  ASP    40       4.790 -16.030  15.358  1.00  1.26      1EPI 740
+ATOM    533  C   ASP    40       4.759 -14.505  15.428  1.00  1.05      1EPI 741
+ATOM    534  O   ASP    40       3.764 -13.874  15.135  1.00  1.21      1EPI 742
+ATOM    535  CB  ASP    40       4.279 -16.601  16.686  1.00  1.39      1EPI 743
+ATOM    536  CG  ASP    40       4.139 -18.120  16.569  1.00  1.84      1EPI 744
+ATOM    537  OD1 ASP    40       3.568 -18.537  15.575  1.00  1.89      1EPI 745
+ATOM    538  OD2 ASP    40       4.610 -18.778  17.482  1.00  2.62      1EPI 746
+ATOM    539  H   ASP    40       6.596 -17.157  15.724  1.00  1.70      1EPI 747
+ATOM    540  HA  ASP    40       4.187 -16.367  14.520  1.00  1.40      1EPI 748
+ATOM    541 1HB  ASP    40       4.977 -16.367  17.476  1.00  1.89      1EPI 749
+ATOM    542 2HB  ASP    40       3.316 -16.171  16.922  1.00  1.83      1EPI 750
+ATOM    543  N   ARG    41       5.880 -13.959  15.818  1.00  0.83      1EPI 751
+ATOM    544  CA  ARG    41       6.016 -12.483  15.938  1.00  0.71      1EPI 752
+ATOM    545  C   ARG    41       7.356 -12.148  16.597  1.00  0.60      1EPI 753
+ATOM    546  O   ARG    41       7.409 -11.486  17.614  1.00  0.69      1EPI 754
+ATOM    547  CB  ARG    41       4.866 -11.921  16.798  1.00  0.99      1EPI 755
+ATOM    548  CG  ARG    41       4.530 -12.884  17.941  1.00  0.77      1EPI 756
+ATOM    549  CD  ARG    41       4.004 -12.076  19.126  1.00  1.13      1EPI 757
+ATOM    550  NE  ARG    41       3.587 -13.016  20.203  1.00  1.21      1EPI 758
+ATOM    551  CZ  ARG    41       2.324 -13.308  20.340  1.00  1.44      1EPI 759
+ATOM    552  NH1 ARG    41       1.740 -14.029  19.422  1.00  1.88      1EPI 760
+ATOM    553  NH2 ARG    41       1.686 -12.868  21.389  1.00  1.68      1EPI 761
+ATOM    554  H   ARG    41       6.645 -14.532  16.034  1.00  0.91      1EPI 762
+ATOM    555  HA  ARG    41       6.001 -12.051  14.942  1.00  0.64      1EPI 763
+ATOM    556 1HB  ARG    41       5.159 -10.967  17.210  1.00  1.33      1EPI 764
+ATOM    557 2HB  ARG    41       3.992 -11.779  16.181  1.00  1.23      1EPI 765
+ATOM    558 1HG  ARG    41       3.770 -13.581  17.622  1.00  1.18      1EPI 766
+ATOM    559 2HG  ARG    41       5.416 -13.427  18.238  1.00  1.36      1EPI 767
+ATOM    560 1HD  ARG    41       4.780 -11.423  19.496  1.00  1.52      1EPI 768
+ATOM    561 2HD  ARG    41       3.153 -11.484  18.819  1.00  1.48      1EPI 769
+ATOM    562  HE  ARG    41       4.254 -13.413  20.800  1.00  1.41      1EPI 770
+ATOM    563 1HH1 ARG    41       2.261 -14.348  18.630  1.00  2.05      1EPI 771
+ATOM    564 2HH1 ARG    41       0.771 -14.261  19.510  1.00  2.23      1EPI 772
+ATOM    565 1HH2 ARG    41       2.167 -12.317  22.070  1.00  1.75      1EPI 773
+ATOM    566 2HH2 ARG    41       0.717 -13.080  21.510  1.00  2.10      1EPI 774
+ATOM    567  N   CYS    42       8.418 -12.621  15.990  1.00  0.43      1EPI 775
+ATOM    568  CA  CYS    42       9.768 -12.357  16.547  1.00  0.37      1EPI 776
+ATOM    569  C   CYS    42       9.847 -12.920  17.938  1.00  0.50      1EPI 777
+ATOM    570  O   CYS    42      10.706 -12.557  18.717  1.00  0.55      1EPI 778
+ATOM    571  CB  CYS    42      10.092 -10.869  16.504  1.00  0.34      1EPI 779
+ATOM    572  SG  CYS    42       8.889  -9.774  15.701  1.00  0.42      1EPI 780
+ATOM    573  H   CYS    42       8.320 -13.149  15.170  1.00  0.41      1EPI 781
+ATOM    574  HA  CYS    42      10.502 -12.888  15.969  1.00  0.31      1EPI 782
+ATOM    575 1HB  CYS    42      10.248 -10.524  17.507  1.00  0.42      1EPI 783
+ATOM    576 2HB  CYS    42      11.042 -10.770  15.970  1.00  0.28      1EPI 784
+ATOM    577  N   GLN    43       8.919 -13.806  18.232  1.00  0.60      1EPI 785
+ATOM    578  CA  GLN    43       8.939 -14.415  19.570  1.00  0.76      1EPI 786
+ATOM    579  C   GLN    43      10.342 -14.953  19.676  1.00  0.78      1EPI 787
+ATOM    580  O   GLN    43      10.927 -15.053  20.736  1.00  0.91      1EPI 788
+ATOM    581  CB  GLN    43       7.928 -15.567  19.623  1.00  0.84      1EPI 789
+ATOM    582  CG  GLN    43       8.420 -16.618  20.618  1.00  1.68      1EPI 790
+ATOM    583  CD  GLN    43       7.242 -17.487  21.062  1.00  1.85      1EPI 791
+ATOM    584  OE1 GLN    43       6.835 -17.462  22.206  1.00  2.54      1EPI 792
+ATOM    585  NE2 GLN    43       6.666 -18.267  20.189  1.00  2.10      1EPI 793
+ATOM    586  H   GLN    43       8.236 -14.055  17.577  1.00  0.59      1EPI 794
+ATOM    587  HA  GLN    43       8.763 -13.659  20.332  1.00  0.82      1EPI 795
+ATOM    588 1HB  GLN    43       6.965 -15.190  19.937  1.00  1.40      1EPI 796
+ATOM    589 2HB  GLN    43       7.832 -16.010  18.643  1.00  1.32      1EPI 797
+ATOM    590 1HG  GLN    43       9.168 -17.243  20.152  1.00  2.35      1EPI 798
+ATOM    591 2HG  GLN    43       8.849 -16.131  21.482  1.00  2.29      1EPI 799
+ATOM    592 1HE2 GLN    43       5.911 -18.830  20.458  1.00  2.27      1EPI 800
+ATOM    593 2HE2 GLN    43       6.989 -18.290  19.264  1.00  2.48      1EPI 801
+ATOM    594  N   THR    44      10.844 -15.289  18.510  1.00  0.70      1EPI 802
+ATOM    595  CA  THR    44      12.203 -15.820  18.412  1.00  0.77      1EPI 803
+ATOM    596  C   THR    44      13.089 -14.602  18.238  1.00  0.61      1EPI 804
+ATOM    597  O   THR    44      13.518 -14.273  17.132  1.00  0.50      1EPI 805
+ATOM    598  CB  THR    44      12.316 -16.718  17.176  1.00  0.80      1EPI 806
+ATOM    599  OG1 THR    44      11.209 -17.598  17.245  1.00  1.19      1EPI 807
+ATOM    600  CG2 THR    44      13.542 -17.631  17.277  1.00  1.19      1EPI 808
+ATOM    601  H   THR    44      10.307 -15.180  17.694  1.00  0.62      1EPI 809
+ATOM    602  HA  THR    44      12.463 -16.341  19.329  1.00  0.93      1EPI 810
+ATOM    603  HB  THR    44      12.297 -16.143  16.257  1.00  0.73      1EPI 811
+ATOM    604  HG1 THR    44      11.502 -18.466  16.956  1.00  1.61      1EPI 812
+ATOM    605 1HG2 THR    44      14.180 -17.298  18.082  1.00  1.09      1EPI 813
+ATOM    606 2HG2 THR    44      13.226 -18.645  17.471  1.00  1.55      1EPI 814
+ATOM    607 3HG2 THR    44      14.096 -17.602  16.350  1.00  1.51      1EPI 815
+ATOM    608  N   ARG    45      13.245 -13.908  19.338  1.00  0.64      1EPI 816
+ATOM    609  CA  ARG    45      14.077 -12.685  19.352  1.00  0.53      1EPI 817
+ATOM    610  C   ARG    45      15.514 -13.037  19.620  1.00  0.60      1EPI 818
+ATOM    611  O   ARG    45      15.829 -13.663  20.612  1.00  0.84      1EPI 819
+ATOM    612  CB  ARG    45      13.561 -11.743  20.467  1.00  0.65      1EPI 820
+ATOM    613  CG  ARG    45      14.499 -10.539  20.602  1.00  1.14      1EPI 821
+ATOM    614  CD  ARG    45      13.876  -9.498  21.539  1.00  1.15      1EPI 822
+ATOM    615  NE  ARG    45      14.354  -9.762  22.926  1.00  1.10      1EPI 823
+ATOM    616  CZ  ARG    45      13.500  -9.758  23.912  1.00  1.57      1EPI 824
+ATOM    617  NH1 ARG    45      12.562  -8.851  23.929  1.00  2.15      1EPI 825
+ATOM    618  NH2 ARG    45      13.613 -10.663  24.846  1.00  1.98      1EPI 826
+ATOM    619  H   ARG    45      12.804 -14.203  20.161  1.00  0.76      1EPI 827
+ATOM    620  HA  ARG    45      14.029 -12.213  18.397  1.00  0.38      1EPI 828
+ATOM    621 1HB  ARG    45      12.568 -11.394  20.224  1.00  0.93      1EPI 829
+ATOM    622 2HB  ARG    45      13.523 -12.277  21.403  1.00  1.13      1EPI 830
+ATOM    623 1HG  ARG    45      15.440 -10.860  21.011  1.00  1.51      1EPI 831
+ATOM    624 2HG  ARG    45      14.669 -10.098  19.632  1.00  1.38      1EPI 832
+ATOM    625 1HD  ARG    45      14.181  -8.509  21.238  1.00  1.56      1EPI 833
+ATOM    626 2HD  ARG    45      12.799  -9.560  21.510  1.00  1.44      1EPI 834
+ATOM    627  HE  ARG    45      15.303  -9.938  23.096  1.00  1.55      1EPI 835
+ATOM    628 1HH1 ARG    45      12.506  -8.175  23.194  1.00  2.10      1EPI 836
+ATOM    629 2HH1 ARG    45      11.899  -8.831  24.678  1.00  2.89      1EPI 837
+ATOM    630 1HH2 ARG    45      14.344 -11.344  24.798  1.00  1.79      1EPI 838
+ATOM    631 2HH2 ARG    45      12.969 -10.676  25.611  1.00  2.74      1EPI 839
+ATOM    632  N   ASP    46      16.361 -12.664  18.706  1.00  0.44      1EPI 840
+ATOM    633  CA  ASP    46      17.782 -12.976  18.913  1.00  0.59      1EPI 841
+ATOM    634  C   ASP    46      18.357 -11.984  19.922  1.00  0.72      1EPI 842
+ATOM    635  O   ASP    46      19.419 -11.420  19.748  1.00  0.87      1EPI 843
+ATOM    636  CB  ASP    46      18.520 -12.889  17.564  1.00  0.54      1EPI 844
+ATOM    637  CG  ASP    46      18.780 -14.305  17.044  1.00  1.03      1EPI 845
+ATOM    638  OD1 ASP    46      19.756 -14.878  17.499  1.00  1.61      1EPI 846
+ATOM    639  OD2 ASP    46      17.987 -14.734  16.221  1.00  1.21      1EPI 847
+ATOM    640  H   ASP    46      16.056 -12.205  17.890  1.00  0.28      1EPI 848
+ATOM    641  HA  ASP    46      17.834 -13.967  19.332  1.00  0.76      1EPI 849
+ATOM    642 1HB  ASP    46      17.914 -12.353  16.849  1.00  0.56      1EPI 850
+ATOM    643 2HB  ASP    46      19.464 -12.381  17.683  1.00  0.92      1EPI 851
+ATOM    644  N   LEU    47      17.610 -11.809  20.974  1.00  0.80      1EPI 852
+ATOM    645  CA  LEU    47      18.018 -10.878  22.052  1.00  1.01      1EPI 853
+ATOM    646  C   LEU    47      18.636  -9.620  21.484  1.00  1.08      1EPI 854
+ATOM    647  O   LEU    47      18.406  -9.266  20.344  1.00  1.98      1EPI 855
+ATOM    648  CB  LEU    47      19.040 -11.576  22.961  1.00  1.27      1EPI 856
+ATOM    649  CG  LEU    47      18.427 -12.858  23.527  1.00  1.41      1EPI 857
+ATOM    650  CD1 LEU    47      19.306 -14.048  23.137  1.00  1.64      1EPI 858
+ATOM    651  CD2 LEU    47      18.372 -12.754  25.053  1.00  1.87      1EPI 859
+ATOM    652  H   LEU    47      16.776 -12.305  21.057  1.00  0.79      1EPI 860
+ATOM    653  HA  LEU    47      17.131 -10.583  22.609  1.00  1.05      1EPI 861
+ATOM    654 1HB  LEU    47      19.925 -11.818  22.392  1.00  1.50      1EPI 862
+ATOM    655 2HB  LEU    47      19.311 -10.921  23.774  1.00  1.51      1EPI 863
+ATOM    656  HG  LEU    47      17.431 -12.992  23.132  1.00  1.65      1EPI 864
+ATOM    657 1HD1 LEU    47      20.302 -13.910  23.533  1.00  1.90      1EPI 865
+ATOM    658 2HD1 LEU    47      18.886 -14.958  23.540  1.00  1.67      1EPI 866
+ATOM    659 3HD1 LEU    47      19.359 -14.126  22.061  1.00  2.02      1EPI 867
+ATOM    660 1HD2 LEU    47      17.838 -11.860  25.339  1.00  1.96      1EPI 868
+ATOM    661 2HD2 LEU    47      17.864 -13.617  25.459  1.00  2.32      1EPI 869
+ATOM    662 3HD2 LEU    47      19.375 -12.713  25.452  1.00  2.00      1EPI 870
+ATOM    663  N   ARG    48      19.413  -8.967  22.291  1.00  1.32      1EPI 871
+ATOM    664  CA  ARG    48      20.049  -7.731  21.820  1.00  1.34      1EPI 872
+ATOM    665  C   ARG    48      21.170  -8.006  20.837  1.00  1.28      1EPI 873
+ATOM    666  O   ARG    48      22.143  -8.668  21.142  1.00  1.70      1EPI 874
+ATOM    667  CB  ARG    48      20.573  -6.971  23.036  1.00  1.65      1EPI 875
+ATOM    668  CG  ARG    48      19.372  -6.357  23.769  1.00  1.87      1EPI 876
+ATOM    669  CD  ARG    48      18.513  -7.459  24.398  1.00  2.47      1EPI 877
+ATOM    670  NE  ARG    48      17.770  -6.880  25.555  1.00  3.46      1EPI 878
+ATOM    671  CZ  ARG    48      17.096  -7.668  26.349  1.00  4.04      1EPI 879
+ATOM    672  NH1 ARG    48      17.700  -8.192  27.379  1.00  4.88      1EPI 880
+ATOM    673  NH2 ARG    48      15.839  -7.901  26.090  1.00  4.20      1EPI 881
+ATOM    674  H   ARG    48      19.572  -9.291  23.201  1.00  2.05      1EPI 882
+ATOM    675  HA  ARG    48      19.300  -7.156  21.307  1.00  1.37      1EPI 883
+ATOM    676 1HB  ARG    48      21.103  -7.646  23.693  1.00  1.82      1EPI 884
+ATOM    677 2HB  ARG    48      21.243  -6.188  22.715  1.00  1.65      1EPI 885
+ATOM    678 1HG  ARG    48      19.720  -5.683  24.537  1.00  2.59      1EPI 886
+ATOM    679 2HG  ARG    48      18.769  -5.808  23.066  1.00  2.30      1EPI 887
+ATOM    680 1HD  ARG    48      17.803  -7.830  23.668  1.00  2.99      1EPI 888
+ATOM    681 2HD  ARG    48      19.136  -8.270  24.742  1.00  2.68      1EPI 889
+ATOM    682  HE  ARG    48      17.787  -5.913  25.717  1.00  4.17      1EPI 890
+ATOM    683 1HH1 ARG    48      18.664  -7.988  27.551  1.00  4.95      1EPI 891
+ATOM    684 2HH1 ARG    48      17.199  -8.797  27.997  1.00  5.62      1EPI 892
+ATOM    685 1HH2 ARG    48      15.405  -7.478  25.294  1.00  3.65      1EPI 893
+ATOM    686 2HH2 ARG    48      15.308  -8.501  26.688  1.00  5.11      1EPI 894
+ATOM    687  N   TRP    49      20.991  -7.471  19.666  1.00  1.31      1EPI 895
+ATOM    688  CA  TRP    49      21.998  -7.652  18.602  1.00  1.39      1EPI 896
+ATOM    689  C   TRP    49      21.821  -6.582  17.536  1.00  1.64      1EPI 897
+ATOM    690  O   TRP    49      22.768  -6.019  17.028  1.00  2.20      1EPI 898
+ATOM    691  CB  TRP    49      21.778  -9.068  17.989  1.00  1.35      1EPI 899
+ATOM    692  CG  TRP    49      20.804  -9.077  16.774  1.00  1.41      1EPI 900
+ATOM    693  CD1 TRP    49      19.562  -9.654  16.750  1.00  1.32      1EPI 901
+ATOM    694  CD2 TRP    49      21.134  -8.717  15.521  1.00  1.82      1EPI 902
+ATOM    695  NE1 TRP    49      19.226  -9.619  15.468  1.00  1.74      1EPI 903
+ATOM    696  CE2 TRP    49      20.130  -9.057  14.636  1.00  2.05      1EPI 904
+ATOM    697  CE3 TRP    49      22.267  -8.103  15.041  1.00  2.19      1EPI 905
+ATOM    698  CZ2 TRP    49      20.266  -8.782  13.287  1.00  2.57      1EPI 906
+ATOM    699  CZ3 TRP    49      22.406  -7.828  13.698  1.00  2.69      1EPI 907
+ATOM    700  CH2 TRP    49      21.405  -8.168  12.820  1.00  2.84      1EPI 908
+ATOM    701  H   TRP    49      20.187  -6.939  19.494  1.00  1.61      1EPI 909
+ATOM    702  HA  TRP    49      22.989  -7.566  19.033  1.00  1.48      1EPI 910
+ATOM    703 1HB  TRP    49      22.730  -9.462  17.667  1.00  1.64      1EPI 911
+ATOM    704 2HB  TRP    49      21.380  -9.720  18.752  1.00  1.22      1EPI 912
+ATOM    705  HD1 TRP    49      18.940 -10.005  17.572  1.00  1.05      1EPI 913
+ATOM    706  HE1 TRP    49      18.394 -10.009  15.145  1.00  1.91      1EPI 914
+ATOM    707  HE3 TRP    49      23.042  -7.836  15.711  1.00  2.20      1EPI 915
+ATOM    708  HZ2 TRP    49      19.479  -9.041  12.599  1.00  2.84      1EPI 916
+ATOM    709  HZ3 TRP    49      23.301  -7.343  13.336  1.00  3.02      1EPI 917
+ATOM    710  HH2 TRP    49      21.515  -7.959  11.766  1.00  3.27      1EPI 918
+ATOM    711  N   TRP    50      20.598  -6.285  17.291  1.00  1.61      1EPI 919
+ATOM    712  CA  TRP    50      20.237  -5.270  16.279  1.00  1.94      1EPI 920
+ATOM    713  C   TRP    50      19.940  -3.867  16.817  1.00  2.04      1EPI 921
+ATOM    714  O   TRP    50      20.820  -3.061  17.045  1.00  1.96      1EPI 922
+ATOM    715  CB  TRP    50      18.959  -5.830  15.726  1.00  2.26      1EPI 923
+ATOM    716  CG  TRP    50      17.973  -6.273  16.876  1.00  2.01      1EPI 924
+ATOM    717  CD1 TRP    50      16.880  -7.004  16.603  1.00  2.28      1EPI 925
+ATOM    718  CD2 TRP    50      18.017  -5.991  18.238  1.00  1.91      1EPI 926
+ATOM    719  NE1 TRP    50      16.292  -7.175  17.784  1.00  1.98      1EPI 927
+ATOM    720  CE2 TRP    50      16.900  -6.591  18.831  1.00  1.60      1EPI 928
+ATOM    721  CE3 TRP    50      18.785  -5.162  19.077  1.00  2.45      1EPI 929
+ATOM    722  CZ2 TRP    50      16.579  -6.375  20.166  1.00  1.57      1EPI 930
+ATOM    723  CZ3 TRP    50      18.432  -4.935  20.379  1.00  2.62      1EPI 931
+ATOM    724  CH2 TRP    50      17.333  -5.539  20.922  1.00  2.15      1EPI 932
+ATOM    725  H   TRP    50      19.886  -6.744  17.782  1.00  1.77      1EPI 933
+ATOM    726  HA  TRP    50      20.997  -5.225  15.511  1.00  2.10      1EPI 934
+ATOM    727 1HB  TRP    50      18.478  -5.097  15.097  1.00  2.66      1EPI 935
+ATOM    728 2HB  TRP    50      19.215  -6.698  15.131  1.00  2.41      1EPI 936
+ATOM    729  HD1 TRP    50      16.439  -7.147  15.640  1.00  3.05      1EPI 937
+ATOM    730  HE1 TRP    50      15.464  -7.691  17.883  1.00  2.24      1EPI 938
+ATOM    731  HE3 TRP    50      19.726  -4.798  18.769  1.00  2.88      1EPI 939
+ATOM    732  HZ2 TRP    50      15.824  -6.971  20.655  1.00  1.42      1EPI 940
+ATOM    733  HZ3 TRP    50      18.996  -4.220  20.953  1.00  3.19      1EPI 941
+ATOM    734  HH2 TRP    50      17.016  -5.296  21.921  1.00  2.38      1EPI 942
+ATOM    735  N   GLU    51      18.668  -3.641  17.002  1.00  2.52      1EPI 943
+ATOM    736  CA  GLU    51      18.164  -2.357  17.518  1.00  3.00      1EPI 944
+ATOM    737  C   GLU    51      18.582  -2.123  18.977  1.00  2.78      1EPI 945
+ATOM    738  O   GLU    51      19.621  -2.578  19.408  1.00  3.26      1EPI 946
+ATOM    739  CB  GLU    51      16.632  -2.453  17.408  1.00  3.82      1EPI 947
+ATOM    740  CG  GLU    51      16.088  -1.197  16.721  1.00  4.48      1EPI 948
+ATOM    741  CD  GLU    51      16.362   0.021  17.605  1.00  4.75      1EPI 949
+ATOM    742  OE1 GLU    51      17.456   0.545  17.480  1.00  5.10      1EPI 950
+ATOM    743  OE2 GLU    51      15.462   0.357  18.357  1.00  4.94      1EPI 951
+ATOM    744  H   GLU    51      18.025  -4.337  16.781  1.00  2.67      1EPI 952
+ATOM    745  HA  GLU    51      18.550  -1.562  16.919  1.00  3.47      1EPI 953
+ATOM    746 1HB  GLU    51      16.371  -3.340  16.821  1.00  4.06      1EPI 954
+ATOM    747 2HB  GLU    51      16.196  -2.548  18.390  1.00  3.95      1EPI 955
+ATOM    748 1HG  GLU    51      16.572  -1.060  15.765  1.00  4.76      1EPI 956
+ATOM    749 2HG  GLU    51      15.023  -1.294  16.570  1.00  5.03      1EPI 957
+ATOM    750  N   LEU    52      17.780  -1.388  19.702  1.00  3.01      1EPI 958
+ATOM    751  CA  LEU    52      18.120  -1.117  21.126  1.00  3.51      1EPI 959
+ATOM    752  C   LEU    52      16.855  -0.856  21.942  1.00  3.79      1EPI 960
+ATOM    753  O   LEU    52      16.333   0.242  21.947  1.00  4.28      1EPI 961
+ATOM    754  CB  LEU    52      19.004   0.139  21.176  1.00  4.11      1EPI 962
+ATOM    755  CG  LEU    52      20.442  -0.246  21.550  1.00  4.61      1EPI 963
+ATOM    756  CD1 LEU    52      21.387   0.892  21.154  1.00  4.87      1EPI 964
+ATOM    757  CD2 LEU    52      20.536  -0.460  23.064  1.00  5.42      1EPI 965
+ATOM    758  H   LEU    52      16.964  -1.014  19.310  1.00  3.36      1EPI 966
+ATOM    759  HA  LEU    52      18.634  -1.978  21.538  1.00  3.60      1EPI 967
+ATOM    760 1HB  LEU    52      19.000   0.618  20.208  1.00  4.22      1EPI 968
+ATOM    761 2HB  LEU    52      18.612   0.827  21.910  1.00  4.46      1EPI 969
+ATOM    762  HG  LEU    52      20.729  -1.149  21.033  1.00  4.77      1EPI 970
+ATOM    763 1HD1 LEU    52      20.922   1.844  21.368  1.00  5.27      1EPI 971
+ATOM    764 2HD1 LEU    52      22.307   0.812  21.715  1.00  5.18      1EPI 972
+ATOM    765 3HD1 LEU    52      21.609   0.834  20.098  1.00  4.90      1EPI 973
+ATOM    766 1HD2 LEU    52      19.846  -1.231  23.371  1.00  5.77      1EPI 974
+ATOM    767 2HD2 LEU    52      21.541  -0.755  23.327  1.00  5.70      1EPI 975
+ATOM    768 3HD2 LEU    52      20.291   0.458  23.575  1.00  5.72      1EPI 976
+ATOM    769  N   ARG    53      16.389  -1.872  22.619  1.00  4.10      1EPI 977
+ATOM    770  CA  ARG    53      15.162  -1.703  23.440  1.00  4.56      1EPI 978
+ATOM    771  C   ARG    53      14.011  -1.181  22.585  1.00  4.94      1EPI 979
+ATOM    772  O   ARG    53      13.067  -0.691  23.184  1.00  4.95      1EPI 980
+ATOM    773  CB  ARG    53      15.456  -0.688  24.553  1.00  4.54      1EPI 981
+ATOM    774  CG  ARG    53      14.561  -0.990  25.760  1.00  5.23      1EPI 982
+ATOM    775  CD  ARG    53      14.548   0.221  26.698  1.00  5.27      1EPI 983
+ATOM    776  NE  ARG    53      15.932   0.458  27.198  1.00  5.84      1EPI 984
+ATOM    777  CZ  ARG    53      16.539   1.575  26.900  1.00  6.41      1EPI 985
+ATOM    778  NH1 ARG    53      17.752   1.523  26.421  1.00  6.63      1EPI 986
+ATOM    779  NH2 ARG    53      15.912   2.706  27.090  1.00  6.85      1EPI 987
+ATOM    780  OXT ARG    53      14.137  -1.303  21.378  1.00  5.51      1EPI 988
+ATOM    781  H   ARG    53      16.845  -2.738  22.586  1.00  4.22      1EPI 989
+ATOM    782  HA  ARG    53      14.882  -2.665  23.857  1.00  4.84      1EPI 990
+ATOM    783 1HB  ARG    53      16.494  -0.762  24.844  1.00  4.18      1EPI 991
+ATOM    784 2HB  ARG    53      15.259   0.311  24.194  1.00  4.71      1EPI 992
+ATOM    785 1HG  ARG    53      13.556  -1.199  25.426  1.00  5.75      1EPI 993
+ATOM    786 2HG  ARG    53      14.943  -1.853  26.287  1.00  5.59      1EPI 994
+ATOM    787 1HD  ARG    53      14.204   1.096  26.167  1.00  5.24      1EPI 995
+ATOM    788 2HD  ARG    53      13.892   0.030  27.536  1.00  5.79      1EPI 996
+ATOM    789  HE  ARG    53      16.384  -0.220  27.743  1.00  6.15      1EPI 997
+ATOM    790 1HH1 ARG    53      18.200   0.638  26.289  1.00  6.36      1EPI 998
+ATOM    791 2HH1 ARG    53      18.233   2.366  26.186  1.00  7.12      1EPI 999
+ATOM    792 1HH2 ARG    53      14.983   2.707  27.458  1.00  6.72      1EPI1000
+ATOM    793 2HH2 ARG    53      16.361   3.571  26.867  1.00  7.38      1EPI1001
+TER     794      ARG    53                                              1EPI1002
+CONECT   75   74  255                                                   1EPI1003
+CONECT  182  181  421                                                   1EPI1004
+CONECT  255   75  254                                                   1EPI1005
+CONECT  421  182  420                                                   1EPI1006
+CONECT  445  444  572                                                   1EPI1007
+CONECT  572  445  571                                                   1EPI1008
+MASTER      171    0    0    0    5    3    0    6  793    1    6    5  1EPI1009
+END                                                                     1EPI1010

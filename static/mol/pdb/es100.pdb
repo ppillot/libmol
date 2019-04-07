@@ -1,0 +1,470 @@
+COMPND  Amylose.pdb                                                             
+HETATM    1  C                 -20.458  -4.873  -3.541                
+HETATM    2  C                 -20.726  -6.269  -3.034                
+HETATM    3  C                 -20.229  -7.305  -4.015                
+HETATM    4  C                 -20.878  -7.039  -5.358                
+HETATM    5  C                 -20.552  -5.623  -5.809                
+HETATM    6  C                 -21.234  -5.257  -7.117                
+HETATM    7  O                 -20.984  -4.670  -4.846                
+HETATM    8  O                 -20.085  -6.456  -1.770                
+HETATM    9  O                 -20.600  -8.602  -3.551                
+HETATM   10  O                 -20.372  -8.000  -6.286                
+HETATM   11  O                 -20.922  -3.895  -7.415                
+HETATM   12  C                 -16.979  -1.256  -2.202                
+HETATM   13  C                 -18.036  -1.893  -1.325                
+HETATM   14  C                 -18.339  -3.317  -1.732                
+HETATM   15  C                 -18.710  -3.297  -3.206                
+HETATM   16  C                 -17.479  -2.800  -3.959                
+HETATM   17  C                 -17.675  -2.800  -5.468                
+HETATM   18  O                 -17.207  -1.455  -3.591                
+HETATM   19  O                 -17.620  -1.895   0.040                
+HETATM   20  O                 -19.408  -3.805  -0.922                
+HETATM   21  O                 -19.061  -4.606  -3.620                
+HETATM   22  O                 -16.530  -2.188  -6.065                
+HETATM   23  C                 -12.655   0.486   0.000                
+HETATM   24  C                 -13.408  -0.582   0.763                
+HETATM   25  C                 -14.070  -1.614  -0.124                
+HETATM   26  C                 -14.895  -0.842  -1.141                
+HETATM   27  C                 -13.903  -0.037  -1.973                
+HETATM   28  C                 -14.516   0.686  -3.162                
+HETATM   29  O                 -13.326   0.969  -1.155                
+HETATM   30  O                 -12.552  -1.230   1.706                
+HETATM   31  O                 -14.919  -2.426   0.690                
+HETATM   32  O                 -15.669  -1.745  -1.920                
+HETATM   33  O                 -13.496   1.478  -3.774                
+HETATM   34  C                  -7.954   2.483   0.268                
+HETATM   35  C                  -9.044   2.336   1.315                
+HETATM   36  C                  -9.815   1.048   1.166                
+HETATM   37  C                 -10.393   1.093  -0.240                
+HETATM   38  C                  -9.180   0.959  -1.158                
+HETATM   39  C                  -9.582   0.838  -2.621                
+HETATM   40  O                  -8.364   2.123  -1.052                
+HETATM   41  C                  14.906   3.992   6.634                
+HETATM   42  O                  -8.556   2.371   2.655                
+HETATM   43  O                 -10.800   1.003   2.195                
+HETATM   44  O                 -11.356   0.065  -0.418                
+HETATM   45  O                  -8.391   0.833  -3.411                
+HETATM   46  C                  14.153   3.284   7.734                
+HETATM   47  C                  12.674   3.142   7.444                
+HETATM   48  C                  12.122   4.516   7.095                
+HETATM   49  C                  -3.933   3.511   3.141                
+HETATM   50  C                  -4.800   2.355   3.610                
+HETATM   51  C                  -5.347   1.474   2.507                
+HETATM   52  C                  -5.927   2.435   1.483                
+HETATM   53  C                  -4.723   3.157   0.891                
+HETATM   54  C                  -5.013   3.972  -0.358                
+HETATM   55  O                  -4.252   4.076   1.870                
+HETATM   56  O                  -4.124   1.547   4.573                
+HETATM   57  O                  -6.358   0.622   3.051                
+HETATM   58  O                  -6.765   1.749   0.559                
+HETATM   59  O                  -3.800   4.615  -0.759                
+HETATM   60  C                   0.410   5.526   4.993                
+HETATM   61  C                  -0.861   5.168   5.730                
+HETATM   62  C                  -1.534   3.947   5.150                
+HETATM   63  C                  -1.756   4.230   3.672                
+HETATM   64  C                  -0.368   4.345   3.051                
+HETATM   65  C                  -0.422   4.521   1.542                
+HETATM   66  O                   0.280   5.500   3.573                
+HETATM   67  O                  -0.600   4.915   7.110                
+HETATM   68  O                  -2.755   3.736   5.857                
+HETATM   69  O                  -2.542   3.200   3.087                
+HETATM   70  O                   0.910   4.744   1.073                
+HETATM   71  C                   4.847   5.396   7.704                
+HETATM   72  C                   3.743   4.521   8.241                
+HETATM   73  C                   2.843   3.986   7.149                
+HETATM   74  C                   2.353   5.162   6.317                
+HETATM   75  C                   3.574   5.868   5.736                
+HETATM   76  C                   3.258   7.058   4.843                
+HETATM   77  O                   4.380   6.379   6.791                
+HETATM   78  O                   4.308   3.441   8.988                
+HETATM   79  O                   1.729   3.335   7.763                
+HETATM   80  O                   1.488   4.653   5.309                
+HETATM   81  O                   4.489   7.678   4.467                
+HETATM   82  C                   9.960   5.500   7.242                
+HETATM   83  C                   9.171   5.239   8.512                
+HETATM   84  C                   7.876   4.491   8.284                
+HETATM   85  C                   7.136   5.217   7.174                
+HETATM   86  C                   8.004   5.067   5.931                
+HETATM   87  C                   7.334   5.565   4.661                
+HETATM   88  O                   9.169   5.858   6.113                
+HETATM   89  O                   9.961   4.505   9.450                
+HETATM   90  O                   7.116   4.481   9.493                
+HETATM   91  O                   5.846   4.650   7.015                
+HETATM   92  O                   8.275   5.457   3.591                
+HETATM   93  C                  12.893   5.036   5.885                
+HETATM   94  C                  12.435   6.388   5.364                
+HETATM   95  O                  14.267   5.192   6.222                
+HETATM   96  C                  20.311  -0.034  -0.900                
+HETATM   97  O                  14.731   2.000   7.969                
+HETATM   98  O                  12.022   2.659   8.621                
+HETATM   99  O                  10.730   4.372   6.838                
+HETATM  100  O                  13.312   6.785   4.307                
+HETATM  189  C                  21.113   0.485   0.265                
+HETATM  275  C                  20.279   0.554   1.525                
+HETATM  276  C                  19.062   1.414   1.225                
+HETATM  285  C                  18.520   2.710   3.142                
+HETATM  286  C                  18.574   2.466   4.634                
+HETATM  287  C                  17.212   2.200   5.235                
+HETATM  288  C                  16.310   3.358   4.833                
+HETATM  289  C                  16.214   3.326   3.311                
+HETATM  290  C                  15.253   4.361   2.749                
+HETATM  291  O                  17.494   3.618   2.757                
+HETATM  293  O                  19.448   1.373   4.924                
+HETATM  294  O                  17.331   2.118   6.655                
+HETATM  295  O                  15.046   3.198   5.458                
+HETATM  296  O                  15.339   4.314   1.323                
+HETATM  318  C                  18.279   0.747   0.100                
+HETATM  321  C                  17.040   1.545  -0.285                
+HETATM  322  O                  19.077   0.644  -1.077                
+HETATM  323  O                  19.904  -1.393  -0.744                
+HETATM  324  O                  22.253  -0.341   0.506                
+HETATM  325  O                  21.066   1.121   2.572                
+HETATM  326  O                  18.270   1.520   2.400                
+HETATM  327  O                  16.471   0.951  -1.454                
+HETATM  101  H                 -20.973  -4.154  -2.866                
+HETATM  102  H                 -21.821  -6.405  -2.867                
+HETATM  103  H                 -19.118  -7.281  -4.100                
+HETATM  104  H                 -21.982  -7.183  -5.300                
+HETATM  105  H                 -19.451  -5.522  -5.953                
+HETATM  106  H                 -20.879  -5.884  -7.965                
+HETATM  107  H                 -22.340  -5.343  -7.031                
+HETATM  108  H                 -20.188  -7.368  -1.555                
+HETATM  109  H                 -20.311  -9.210  -4.210                
+HETATM  110  H                 -20.927  -8.000  -7.046                
+HETATM  111  H                 -21.100  -3.406  -6.627                
+HETATM  112  H                 -17.021  -0.150  -2.073                
+HETATM  113  H                 -18.973  -1.290  -1.376                
+HETATM  114  H                 -17.465  -3.983  -1.547                
+HETATM  115  H                 -19.546  -2.592  -3.423                
+HETATM  116  H                 -16.587  -3.425  -3.720                
+HETATM  117  H                 -17.763  -3.826  -5.884                
+HETATM  118  H                 -18.572  -2.206  -5.758                
+HETATM  119  H                 -18.321  -2.289   0.532                
+HETATM  120  H                 -19.488  -4.733  -1.075                
+HETATM  121  H                 -16.385  -1.382  -5.595                
+HETATM  122  H                 -12.585   1.368   0.676                
+HETATM  123  H                 -14.204  -0.082   1.370                
+HETATM  124  H                 -13.327  -2.280  -0.617                
+HETATM  125  H                 -15.568  -0.162  -0.570                
+HETATM  126  H                 -13.088  -0.696  -2.360                
+HETATM  127  H                 -14.898  -0.019  -3.933                
+HETATM  128  H                 -15.330   1.373  -2.840                
+HETATM  129  H                 -13.063  -1.923   2.090                
+HETATM  130  H                 -15.654  -2.689   0.161                
+HETATM  131  H                 -13.082   1.959  -3.075                
+HETATM  132  H                  -7.688   3.563   0.179                
+HETATM  133  H                  -9.751   3.197   1.227                
+HETATM  134  H                  -9.164   0.157   1.321                
+HETATM  135  H                 -10.869   2.071  -0.485                
+HETATM  136  H                  -8.562   0.069  -0.890                
+HETATM  137  H                 -10.132  -0.107  -2.830                
+HETATM  138  H                 -10.204   1.703  -2.942                
+HETATM  139  H                  15.902   4.271   7.049                
+HETATM  140  H                  -9.293   2.181   3.210                
+HETATM  141  H                 -11.227   0.164   2.147                
+HETATM  142  H                  -7.876   1.566  -3.114                
+HETATM  143  H                  14.279   3.866   8.680                
+HETATM  144  H                  12.487   2.415   6.621                
+HETATM  145  H                  12.289   5.172   7.981                
+HETATM  146  H                  -4.115   4.331   3.874                
+HETATM  147  H                  -5.680   2.785   4.154                
+HETATM  148  H                  -4.560   0.819   2.070                
+HETATM  149  H                  -6.529   3.206   2.014                
+HETATM  150  H                  -3.900   2.445   0.645                
+HETATM  151  H                  -5.356   3.335  -1.204                
+HETATM  152  H                  -5.763   4.769  -0.157                
+HETATM  153  H                  -4.702   0.826   4.759                
+HETATM  154  H                  -7.146   0.773   2.557                
+HETATM  155  H                  -3.449   5.024   0.015                
+HETATM  156  H                   0.682   6.576   5.241                
+HETATM  157  H                  -1.568   6.031   5.691                
+HETATM  158  H                  -0.918   3.030   5.298                
+HETATM  159  H                  -2.246   5.218   3.500                
+HETATM  160  H                   0.253   3.447   3.282                
+HETATM  161  H                  -0.817   3.618   1.025                
+HETATM  162  H                  -1.037   5.405   1.259                
+HETATM  163  H                  -1.425   4.674   7.495                
+HETATM  164  H                  -3.088   2.896   5.594                
+HETATM  165  H                   1.276   5.416   1.626                
+HETATM  166  H                   5.284   5.938   8.574                
+HETATM  167  H                   3.129   5.117   8.959                
+HETATM  168  H                   3.372   3.242   6.512                
+HETATM  169  H                   1.798   5.852   6.993                
+HETATM  170  H                   4.170   5.145   5.133                
+HETATM  171  H                   2.740   6.757   3.905                
+HETATM  172  H                   2.654   7.819   5.387                
+HETATM  173  H                   3.583   2.921   9.289                
+HETATM  174  H                   0.995   3.421   7.177                
+HETATM  175  H                   4.976   7.798   5.266                
+HETATM  176  H                  10.623   6.378   7.414                
+HETATM  177  H                   8.932   6.218   8.994                
+HETATM  178  H                   8.063   3.426   8.015                
+HETATM  179  H                   7.045   6.310   7.375                
+HETATM  180  H                   8.304   4.005   5.770                
+HETATM  181  H                   6.445   4.955   4.386                
+HETATM  182  H                   7.040   6.634   4.756                
+HETATM  183  H                   9.435   4.408  10.226                
+HETATM  184  H                   6.345   3.955   9.345                
+HETATM  185  H                   9.065   5.878   3.889                
+HETATM  186  H                  12.798   4.309   5.045                
+HETATM  187  H                  11.410   6.350   4.935                
+HETATM  188  H                  12.489   7.168   6.156                
+HETATM  328  H                  20.882   0.040  -1.855                
+HETATM  190  H                  14.208   1.591   8.638                
+HETATM  191  H                  11.119   2.927   8.575                
+HETATM  192  H                  14.188   6.660   4.635                
+HETATM  329  H                  21.500   1.503   0.021                
+HETATM  330  H                  19.977  -0.464   1.864                
+HETATM  331  H                  19.354   2.425   0.857                
+HETATM  297  H                  19.491   3.168   2.847                
+HETATM  298  H                  19.013   3.363   5.135                
+HETATM  299  H                  16.800   1.227   4.885                
+HETATM  300  H                  16.751   4.345   5.103                
+HETATM  301  H                  15.879   2.323   2.960                
+HETATM  302  H                  14.198   4.152   3.029                
+HETATM  303  H                  15.529   5.388   3.077                
+HETATM  305  H                  19.364   1.208   5.848                
+HETATM  306  H                  16.486   1.876   7.002                
+HETATM  308  H                  16.260   4.352   1.116                
+HETATM  332  H                  17.952  -0.274   0.407                
+HETATM  333  H                  16.266   1.532   0.514                
+HETATM  334  H                  17.296   2.600  -0.532                
+HETATM  335  H                  19.186  -1.514  -1.343                
+HETATM  336  H                  22.630  -0.029   1.313                
+HETATM  337  H                  20.600   0.987   3.381                
+HETATM  339  H                  17.168   0.922  -2.090                
+CONECT    1    2    7   21  101                              
+CONECT    2    1    3    8  102                              
+CONECT    3    2    4    9  103                              
+CONECT    4    3    5   10  104                              
+CONECT    5    4    6    7  105                              
+CONECT    6    5   11  106  107                              
+CONECT    7    1    5                                        
+CONECT    8    2  108                                        
+CONECT    9    3  109                                        
+CONECT   10    4  110                                        
+CONECT   11    6  111                                        
+CONECT   12   13   18   32  112                              
+CONECT   13   12   14   19  113                              
+CONECT   14   13   15   20  114                              
+CONECT   15   14   16   21  115                              
+CONECT   16   15   17   18  116                              
+CONECT   17   16   22  117  118                              
+CONECT   18   12   16                                        
+CONECT   19   13  119                                        
+CONECT   20   14  120                                        
+CONECT   21    1   15                                        
+CONECT   22   17  121                                        
+CONECT   23   24   29   44  122                              
+CONECT   24   23   25   30  123                              
+CONECT   25   24   26   31  124                              
+CONECT   26   25   27   32  125                              
+CONECT   27   26   28   29  126                              
+CONECT   28   27   33  127  128                              
+CONECT   29   23   27                                        
+CONECT   30   24  129                                        
+CONECT   31   25  130                                        
+CONECT   32   12   26                                        
+CONECT   33   28  131                                        
+CONECT   34   35   40   58  132                              
+CONECT   35   34   36   42  133                              
+CONECT   36   35   37   43  134                              
+CONECT   37   36   38   44  135                              
+CONECT   38   37   39   40  136                              
+CONECT   39   38   45  137  138                              
+CONECT   40   34   38                                        
+CONECT   41   46   95  295  139                              
+CONECT   42   35  140                                        
+CONECT   43   36  141                                        
+CONECT   44   23   37                                        
+CONECT   45   39  142                                        
+CONECT   46   41   47   97  143                              
+CONECT   47   46   48   98  144                              
+CONECT   48   47   93   99  145                              
+CONECT   49   50   55   69  146                              
+CONECT   50   49   51   56  147                              
+CONECT   51   50   52   57  148                              
+CONECT   52   51   53   58  149                              
+CONECT   53   52   54   55  150                              
+CONECT   54   53   59  151  152                              
+CONECT   55   49   53                                        
+CONECT   56   50  153                                        
+CONECT   57   51  154                                        
+CONECT   58   34   52                                        
+CONECT   59   54  155                                        
+CONECT   60   61   66   80  156                              
+CONECT   61   60   62   67  157                              
+CONECT   62   61   63   68  158                              
+CONECT   63   62   64   69  159                              
+CONECT   64   63   65   66  160                              
+CONECT   65   64   70  161  162                              
+CONECT   66   60   64                                        
+CONECT   67   61  163                                        
+CONECT   68   62  164                                        
+CONECT   69   49   63                                        
+CONECT   70   65  165                                        
+CONECT   71   72   77   91  166                              
+CONECT   72   71   73   78  167                              
+CONECT   73   72   74   79  168                              
+CONECT   74   73   75   80  169                              
+CONECT   75   74   76   77  170                              
+CONECT   76   75   81  171  172                              
+CONECT   77   71   75                                        
+CONECT   78   72  173                                        
+CONECT   79   73  174                                        
+CONECT   80   60   74                                        
+CONECT   81   76  175                                        
+CONECT   82   83   88   99  176                              
+CONECT   83   82   84   89  177                              
+CONECT   84   83   85   90  178                              
+CONECT   85   84   86   91  179                              
+CONECT   86   85   87   88  180                              
+CONECT   87   86   92  181  182                              
+CONECT   88   82   86                                        
+CONECT   89   83  183                                        
+CONECT   90   84  184                                        
+CONECT   91   71   85                                        
+CONECT   92   87  185                                        
+CONECT   93   48   94   95  186                              
+CONECT   94   93  100  187  188                              
+CONECT   95   41   93                                        
+CONECT   96  189  322  323  328                              
+CONECT   97   46  190                                        
+CONECT   98   47  191                                        
+CONECT   99   48   82                                        
+CONECT  100   94  192                                        
+CONECT  189   96  275  324  329                              
+CONECT  275  189  276  325  330                              
+CONECT  276  275  318  326  331                              
+CONECT  285  286  291  326  297                              
+CONECT  286  285  287  293  298                              
+CONECT  287  286  288  294  299                              
+CONECT  288  287  289  295  300                              
+CONECT  289  288  290  291  301                              
+CONECT  290  289  296  302  303                              
+CONECT  291  285  289                                        
+CONECT  293  286  305                                        
+CONECT  294  287  306                                        
+CONECT  295   41  288                                        
+CONECT  296  290  308                                        
+CONECT  318  276  321  322  332                              
+CONECT  321  318  327  333  334                              
+CONECT  322   96  318                                        
+CONECT  323   96  335                                        
+CONECT  324  189  336                                        
+CONECT  325  275  337                                        
+CONECT  326  276  285                                        
+CONECT  327  321  339                                        
+CONECT  101    1                                             
+CONECT  102    2                                             
+CONECT  103    3                                             
+CONECT  104    4                                             
+CONECT  105    5                                             
+CONECT  106    6                                             
+CONECT  107    6                                             
+CONECT  108    8                                             
+CONECT  109    9                                             
+CONECT  110   10                                             
+CONECT  111   11                                             
+CONECT  112   12                                             
+CONECT  113   13                                             
+CONECT  114   14                                             
+CONECT  115   15                                             
+CONECT  116   16                                             
+CONECT  117   17                                             
+CONECT  118   17                                             
+CONECT  119   19                                             
+CONECT  120   20                                             
+CONECT  121   22                                             
+CONECT  122   23                                             
+CONECT  123   24                                             
+CONECT  124   25                                             
+CONECT  125   26                                             
+CONECT  126   27                                             
+CONECT  127   28                                             
+CONECT  128   28                                             
+CONECT  129   30                                             
+CONECT  130   31                                             
+CONECT  131   33                                             
+CONECT  132   34                                             
+CONECT  133   35                                             
+CONECT  134   36                                             
+CONECT  135   37                                             
+CONECT  136   38                                             
+CONECT  137   39                                             
+CONECT  138   39                                             
+CONECT  139   41                                             
+CONECT  140   42                                             
+CONECT  141   43                                             
+CONECT  142   45                                             
+CONECT  143   46                                             
+CONECT  144   47                                             
+CONECT  145   48                                             
+CONECT  146   49                                             
+CONECT  147   50                                             
+CONECT  148   51                                             
+CONECT  149   52                                             
+CONECT  150   53                                             
+CONECT  151   54                                             
+CONECT  152   54                                             
+CONECT  153   56                                             
+CONECT  154   57                                             
+CONECT  155   59                                             
+CONECT  156   60                                             
+CONECT  157   61                                             
+CONECT  158   62                                             
+CONECT  159   63                                             
+CONECT  160   64                                             
+CONECT  161   65                                             
+CONECT  162   65                                             
+CONECT  163   67                                             
+CONECT  164   68                                             
+CONECT  165   70                                             
+CONECT  166   71                                             
+CONECT  167   72                                             
+CONECT  168   73                                             
+CONECT  169   74                                             
+CONECT  170   75                                             
+CONECT  171   76                                             
+CONECT  172   76                                             
+CONECT  173   78                                             
+CONECT  174   79                                             
+CONECT  175   81                                             
+CONECT  176   82                                             
+CONECT  177   83                                             
+CONECT  178   84                                             
+CONECT  179   85                                             
+CONECT  180   86                                             
+CONECT  181   87                                             
+CONECT  182   87                                             
+CONECT  183   89                                             
+CONECT  184   90                                             
+CONECT  185   92                                             
+CONECT  186   93                                             
+CONECT  187   94                                             
+CONECT  188   94                                             
+CONECT  328   96                                             
+CONECT  190   97                                             
+CONECT  191   98                                             
+CONECT  192  100                                             
+CONECT  329  189                                             
+CONECT  330  275                                             
+CONECT  331  276                                             
+CONECT  297  285                                             
+CONECT  298  286                                             
+CONECT  299  287                                             
+CONECT  300  288                                             
+CONECT  301  289                                             
+CONECT  302  290                                             
+CONECT  303  290                                             
+CONECT  305  293                                             
+CONECT  306  294                                             
+CONECT  308  296                                             
+CONECT  332  318                                             
+CONECT  333  321                                             
+CONECT  334  321                                             
+CONECT  335  323                                             
+CONECT  336  324                                             
+CONECT  337  325                                             
+CONECT  339  327                                             
+END   

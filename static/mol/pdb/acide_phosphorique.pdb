@@ -1,0 +1,12 @@
+HEADER    COMPOSANT  AC NUCL                      13-JUL-93   
+COMPND    ACIDE PHOSPHORIQUE (hydrogené)
+ATOM      1  O3* P       1       0.236   1.000  -1.028  1.00  3.00
+ATOM      2  P   P       1      -0.052  -0.360  -0.260  1.00  3.00
+ATOM      3  O1P P       1      -1.496  -0.672  -0.380  1.00  3.00
+ATOM      4  O2P P       1       0.864  -1.408  -0.764  1.00  3.00
+ATOM      5  O5* P       1       0.272  -0.040   1.256  1.00  3.00
+ATOM      6  H   P       1      -0.488   1.584  -1.260  1.00  3.00
+ATOM      7  H   P       1      -1.788  -1.584  -0.420  1.00  3.00
+ATOM      8  H   P       1       1.788  -1.200  -0.928  1.00  3.00
+TER       9      P       1 
+END   

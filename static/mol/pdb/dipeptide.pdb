@@ -1,0 +1,127 @@
+HEADER    OXYGEN TRANSPORT                        13-JUL-93   2HHB
+COMPND    DIPEPTIDE DE LA GLOBINE BETA (DEOXY)
+ATOM      1  N   VAL     1      -4.500  -0.472  -1.708  1.00  0.02
+ATOM      2  CA  VAL     1      -3.216   0.236  -1.588  1.00  0.02
+ATOM      3  C   VAL     1      -2.324  -0.536  -0.632  1.00  0.02
+ATOM      4  O   VAL     1      -2.732  -1.492   0.056  1.00  0.02
+ATOM      5  CB  VAL     1      -3.308   1.668  -0.980  1.00  0.02
+ATOM      6  CG1 VAL     1      -3.796   2.764  -1.920  1.00  0.02
+ATOM      7  CG2 VAL     1      -4.052   1.752   0.344  1.00  0.02
+ATOM      8  H   VAL     1      -5.224  -0.104  -2.304  1.00  0.02
+ATOM      9  HA  VAL     1      -2.840   0.320  -2.608  1.00  0.02
+ATOM     10  HB  VAL     1      -2.256   1.872  -0.784  1.00  0.02
+ATOM     11  HG1 VAL     1      -3.820   3.716  -1.392  1.00  0.02
+ATOM     12  HG1 VAL     1      -3.116   2.840  -2.772  1.00  0.02
+ATOM     13  HG1 VAL     1      -4.796   2.520  -2.276  1.00  0.02
+ATOM     14  HG2 VAL     1      -4.064   2.788   0.688  1.00  0.02
+ATOM     15  HG2 VAL     1      -5.072   1.400   0.212  1.00  0.02
+ATOM     16  HG2 VAL     1      -3.544   1.132   1.084  1.00  0.02
+ATOM     17  H   VAL     1      -4.652  -1.328  -1.192  1.00  0.02
+ATOM     18  N   HIS     2      -1.124  -0.040  -0.600  1.00  0.02
+ATOM     19  CA  HIS     2      -0.124  -0.696   0.232  1.00  0.02
+ATOM     20  C   HIS     2       0.284   0.120   1.480  1.00  0.02
+ATOM     21  O   HIS     2       1.008   1.140   1.392  1.00  0.02
+ATOM     22  CB  HIS     2       1.072  -1.068  -0.676  1.00  0.02
+ATOM     23  CG  HIS     2       2.276  -1.548   0.168  1.00  0.02
+ATOM     24  ND1 HIS     2       3.348  -0.620   0.524  1.00  0.02
+ATOM     25  CD2 HIS     2       2.552  -2.824   0.724  1.00  0.02
+ATOM     26  CE1 HIS     2       4.300  -1.348   1.300  1.00  0.02
+ATOM     27  NE2 HIS     2       3.812  -2.700   1.420  1.00  0.02
+ATOM     28  H   HIS     2      -0.888   0.780  -1.136  1.00  0.02
+ATOM     29  HA  HIS     2      -0.556  -1.600   0.668  1.00  0.02
+ATOM     30  HB  HIS     2       0.772  -1.860  -1.364  1.00  0.02
+ATOM     31  HB  HIS     2       1.372  -0.180  -1.232  1.00  0.02
+ATOM     32  HD2 HIS     2       1.940  -3.720   0.644  1.00  0.02
+ATOM     33  HE1 HIS     2       5.224  -0.956   1.724  1.00  0.02
+ATOM     34  HE2 HIS     2       4.276  -3.444   1.916  1.00  0.02
+ATOM     35  H   HIS     2       0.616   1.988   1.168  1.00  0.02
+ATOM     36  O   HIS     2      -0.172  -0.300   2.768  1.00  0.02
+TER      37      HIS     2 
+END   
+
+#!rasmol -rsm file
+# Creator: RasTop Version 2.0 - Copyright (C) Philippe Valadon 2000-2002
+
+zap
+set connect on
+load pdb inline
+set title 2HHB
+
+# Colour details
+background [0,0,0]
+set backfade off
+set headlight default
+set ambient 40
+set specular off
+set shadepower 50
+set depthcue off
+set shadow off
+stereo off
+
+# Transformation
+reset
+rotate molecule
+set picking ident
+set worlddepth 4438
+# zoom 100.00
+scale 17.75
+position x 0.000 y 0.000 z 0.000
+slab off
+depth off
+
+# Rendering
+set axes off
+set boundingbox off
+set unitcell off
+set bonds off
+set bondmode and
+dots off
+
+# Avoid Colour Problems!
+select all
+colour bonds none
+colour backbone none
+colour hbonds none
+colour ssbonds none
+colour ribbons none
+colour white
+
+# Atoms
+colour atoms cpk
+spacefill off
+
+# Bonds
+wireframe on
+
+# Ribbons
+ribbons off
+
+# Backbone
+backbone off
+
+# Labels
+labels off
+
+# Monitors
+monitors off
+
+# ssbonds
+ssbonds off
+
+# hbonds
+hbonds off
+
+# Dots
+set solvent false
+set radius 0
+set dots 1
+dots off
+
+# AtomSets
+# no sets
+
+select all
+
+rotate world
+
+exit

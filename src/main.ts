@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
-import store from './store'
-import './plugins/element.js'
+import store from './store/index'
+import './plugins/element'
 import VueI18n from 'vue-i18n'
 import { locales } from './locales/locales'
 
 Vue.config.productionTip = false
 Vue.use(VueI18n)
+
+let app: Vue;
 
 let langList = [navigator.language]
 if (navigator.languages) langList.push(...navigator.languages)
@@ -15,20 +17,27 @@ const langSet = new Set(
     return l.substr(0, 2).toLowerCase()
   })
 )
-let lang = locales.find(locale => {
+const langFound = locales.find(locale => {
     return langSet.has(locale)
 })
-if (lang === undefined) lang = 'en'
+const lang = (langFound === undefined) ? 'en' : langFound
 
 import('./locales/bundles/' + lang + '.json')
 .then(messages => {
 
-    const i18n = new VueI18n({
+    const opt = {
         locale: lang,
-        messages
+        messages: {}
+    }
+    Object.defineProperty(opt.messages, lang, {
+        value: messages,
+        enumerable: true,
+        writable: false
     })
+
+    const i18n = new VueI18n(opt)
   
-    new Vue({
+    app = new Vue({
         store,
         i18n,
         render: h => h(App)

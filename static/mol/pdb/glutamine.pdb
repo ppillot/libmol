@@ -1,0 +1,78 @@
+
+
+REMARK Release Notice
+
+
+REMARK This file, and all files referenced herein that are not contributed by
+REMARK someone else, are unequivocably placed in the public domain.  Be mindful
+REMARK that we use code, libraries, and information contributed by others, and
+REMARK they may not have released their work into the public domain.  Our
+REMARK goal is to release our own work, not inadvertantly place someone else's
+REMARK in the public domain.
+
+
+REMARK If you use, modify, redistribute, or publish anything in this file or based
+REMARK on this work, we ask that you follow good scholarly practice and:
+
+
+REMARK    1. cite the software system and file, or database and accession number,
+REMARK    as relevant, in all files or data you redistribute;
+
+
+REMARK    2. reference the most current URL and archival publication for this work, 
+REMARK    which will always be found at 
+REMARK    http://www.biocheminfo.org/repository/current_references.html, 
+REMARK    in your package, database, redistribution, or publication;
+
+
+REMARK    3. record all your modifications to this file in a new file that
+REMARK    preserves this message and authorship information, contains your
+REMARK    authorship information and code or data, and is named with a name
+REMARK    different from this file's name.
+
+
+REMARK The suitability of this work for any purpose is neither expressed nor implied.  Use
+REMARK it at your own risk!
+
+
+REMARK Why we release knowledge this way is explained at 
+REMARK          http://www.biocheminfo.org/release_notes.html
+
+
+REMARK Toni Kazic, February 28, 2002
+
+
+
+COMPNDStr1
+REMARK [C@2H]([CH2][CH2][C](=[O])[NH2])([NH3+])[C](=[O])[O-] 
+ATOM      1  C           1       1.677   0.008  -0.860
+ATOM      2  C           1       0.314   0.669  -0.658
+ATOM      3  C           1      -0.768  -0.408  -0.587
+ATOM      4  C           1      -2.115   0.245  -0.388
+ATOM      5  O           1      -2.199   1.470  -0.309
+ATOM      6  N           1      -3.210  -0.504  -0.297
+ATOM      7  N           1       1.961  -0.909   0.285
+ATOM      8  C           1       2.747   1.072  -0.931
+ATOM      9  O           1       3.436   1.179  -1.931
+ATOM     10  O           1       2.928   1.856   0.052
+ATOM     11  H           1       1.671  -0.561  -1.788
+ATOM     12  H           1       0.108   1.336  -1.492
+ATOM     13  H           1       0.321   1.238   0.269
+ATOM     14  H           1       2.885  -1.356   0.149
+ATOM     15  H           1       1.228  -1.638   0.334
+ATOM     16  H           1       1.968  -0.367   1.167
+ATOM     17  H           1      -0.561  -1.075   0.246
+ATOM     18  H           1      -0.774  -0.977  -1.515
+ATOM     19  H           1      -4.111  -0.068  -0.164
+ATOM     20  H           1      -3.140  -1.510  -0.362
+TER   
+CONECT    1    2    7    8   11
+CONECT    2    1    3   12   13
+CONECT    3    2    4   17   18
+CONECT    4    3    5    6    0
+CONECT    5    4    0    0    0
+CONECT    6    4   19   20    0
+CONECT    7    1   14   15   16
+CONECT    8    1    9   10    0
+CONECT    9    8    0    0    0
+CONECT   10    8    0    0    0

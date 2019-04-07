@@ -1,0 +1,98 @@
+
+
+REMARK Release Notice
+
+
+REMARK This file, and all files referenced herein that are not contributed by
+REMARK someone else, are unequivocably placed in the public domain.  Be mindful
+REMARK that we use code, libraries, and information contributed by others, and
+REMARK they may not have released their work into the public domain.  Our
+REMARK goal is to release our own work, not inadvertantly place someone else's
+REMARK in the public domain.
+
+
+REMARK If you use, modify, redistribute, or publish anything in this file or based
+REMARK on this work, we ask that you follow good scholarly practice and:
+
+
+REMARK    1. cite the software system and file, or database and accession number,
+REMARK    as relevant, in all files or data you redistribute;
+
+
+REMARK    2. reference the most current URL and archival publication for this work, 
+REMARK    which will always be found at 
+REMARK    http://www.biocheminfo.org/repository/current_references.html, 
+REMARK    in your package, database, redistribution, or publication;
+
+
+REMARK    3. record all your modifications to this file in a new file that
+REMARK    preserves this message and authorship information, contains your
+REMARK    authorship information and code or data, and is named with a name
+REMARK    different from this file's name.
+
+
+REMARK The suitability of this work for any purpose is neither expressed nor implied.  Use
+REMARK it at your own risk!
+
+
+REMARK Why we release knowledge this way is explained at 
+REMARK          http://www.biocheminfo.org/release_notes.html
+
+
+REMARK Toni Kazic, February 28, 2002
+
+
+
+COMPNDStr1
+REMARK [C@2H]-1([O][C@2H]([C@2H]([OH])[C@2H2]-1)[C@2H2][O-])-[n+]2([cH][n][c]3([c]2[n][c]([nH+][c]3[O-])[NH2])) 
+ATOM      1  C           1       0.763   0.076  -0.254
+ATOM      2  O           1       1.949   0.174   0.538
+ATOM      3  C           1       3.035  -0.030  -0.370
+ATOM      4  C           1       2.623   0.712  -1.655
+ATOM      5  O           1       3.028  -0.018  -2.816
+ATOM      6  C           1       1.088   0.803  -1.572
+ATOM      7  C           1       4.349   0.509   0.194
+ATOM      8  O           1       5.380   0.315  -0.748
+ATOM      9  N           1      -0.350   0.752   0.428
+ATOM     10  C           1      -0.388   2.077   0.823
+ATOM     11  N           1      -1.569   2.314   1.410
+ATOM     12  C           1      -2.304   1.193   1.412
+ATOM     13  C           1      -1.556   0.184   0.794
+ATOM     14  N           1      -2.062  -1.051   0.663
+ATOM     15  C           1      -3.286  -1.357   1.113
+ATOM     16  N           1      -4.070  -0.400   1.731
+ATOM     17  C           1      -3.585   0.886   1.886
+ATOM     18  O           1      -4.332   1.825   2.482
+ATOM     19  N           1      -3.777  -2.661   0.955
+ATOM     20  H           1       0.752   1.838  -1.548
+ATOM     21  H           1       0.615   0.315  -2.422
+ATOM     22  H           1       0.538  -0.970  -0.455
+ATOM     23  H           1       3.209  -1.088  -0.556
+ATOM     24  H           1       3.068   1.704  -1.689
+ATOM     25  H           1       0.403   2.799   0.683
+ATOM     26  H           1      -4.992  -0.639   2.067
+ATOM     27  H           1       3.604   0.532  -3.369
+ATOM     28  H           1       4.245   1.571   0.404
+ATOM     29  H           1       4.594  -0.020   1.113
+ATOM     30  H           1      -3.377  -3.073   0.124
+ATOM     31  H           1      -4.783  -2.633   0.867
+TER   
+CONECT    1    2    6    9   22
+CONECT    2    1    3    0    0
+CONECT    3    2    4    7   23
+CONECT    4    3    5    6   24
+CONECT    5    4   27    0    0
+CONECT    6    1    4   20   21
+CONECT    7    3    8   28   29
+CONECT    8    7    0    0    0
+CONECT    9    1   10   13    0
+CONECT   10    9   11   25    0
+CONECT   11   10   12    0    0
+CONECT   12   11   13   17    0
+CONECT   13    9   12   14    0
+CONECT   14   13   15    0    0
+CONECT   15   14   16   19    0
+CONECT   16   15   17   26    0
+CONECT   17   12   16   18    0
+CONECT   18   17    0    0    0
+CONECT   19   15   30   31    0

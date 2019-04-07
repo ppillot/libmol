@@ -4,6 +4,7 @@ import store from './store/index'
 import './plugins/element'
 import VueI18n from 'vue-i18n'
 import { locales } from './locales/locales'
+import './assets/font/css/icons.css'
 
 Vue.config.productionTip = false
 Vue.use(VueI18n)

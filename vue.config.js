@@ -67,5 +67,25 @@ module.exports = {
         }
       }
     }
+  },
+
+  publicPath: undefined,
+  outputDir: undefined,
+  assetsDir: undefined,
+  runtimeCompiler: undefined,
+  productionSourceMap: undefined,
+  parallel: undefined,
+  css: undefined,
+  devServer: {
+    proxy: {
+      '^/api': {
+        target: 'http://localhost:8888/libmol3/src/api',
+        ws: false,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
   }
 }

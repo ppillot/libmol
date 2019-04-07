@@ -15,13 +15,22 @@
   },
   "main": "background.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.4.5",
+    "marked": "^0.6.2",
+    "nedb": "^1.8.0",
+    "ngl": "^2.0.0-dev.35",
+    "screenfull": "^4.2.0",
+    "split.js": "^1.5.10",
     "vue": "^2.6.6",
+    "vue-i18n": "^8.0.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@kazupon/vue-i18n-loader": "^0.3.0",
     "@types/jest": "^23.1.4",
+    "@types/webpack": "^4.4.0",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-e2e-cypress": "^3.5.0",
     "@vue/cli-plugin-eslint": "^3.5.0",
@@ -43,6 +52,7 @@
     "typescript": "^3.2.1",
     "vue-cli-plugin-electron-builder": "^1.2.0",
     "vue-cli-plugin-element": "^1.0.1",
+    "vue-cli-plugin-i18n": "^0.5.2",
     "vue-template-compiler": "^2.5.21"
   }
 }

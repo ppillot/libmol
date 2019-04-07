@@ -299,7 +299,8 @@ export default {
       this.$store.dispatch('help', {
         action: 'select',
         attribute: selector,
-        active: active
+        active: active,
+        namespace: 'commands'
       })
     },
     toggleUserSelectionVisibility () {

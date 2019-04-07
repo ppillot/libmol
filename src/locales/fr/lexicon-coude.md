@@ -1,0 +1,2 @@
+# Les coudes
+Les coudes font partie des motifs caractéristiques de la forme que prend l'enchaînement d'[acides aminés](lexicon-aminoacid) d'une [protéine](lexicon-protein) (appelé structure secondaire). Un coude est un repli marqué, en épingle à cheveux, dans une chaine d'acides aminés d'une protéine.

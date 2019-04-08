@@ -80,7 +80,7 @@ describe('EntityContextMenu.vue', () => {
   test('target prop accepts object', () => {
     const props = {
       showContextMenu: true,
-      target: {top: 10, left: 20, right: 20}
+      target: { top: 10, left: 20, right: 20 }
     }
     const wrapper = shallow(EntityContextMenu, {
       localVue,
@@ -92,4 +92,3 @@ describe('EntityContextMenu.vue', () => {
     expect(wrapper.vm.contextMenuStyles.top).toBe('-5px')
   })
 })
-

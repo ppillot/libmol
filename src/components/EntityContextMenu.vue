@@ -17,17 +17,17 @@
             <li @click="hide('not :' + ctxMProp.chain, $event)"
                 :class="{disabled: !ctxMProp.isRestMaskable}"
                 v-if="ctxMProp.isRestPresent">
-                <i class="icon-eye-off"></i> 
+                <i class="icon-eye-off"></i>
                 {{ $t('ctxMenu.mask_rest') }}
             </li>
-            <li @click="show('not :' + ctxMProp.chain, $event)" 
+            <li @click="show('not :' + ctxMProp.chain, $event)"
                 :class="{disabled: !ctxMProp.isRestUnMaskable}"
                 v-if="ctxMProp.isRestPresent">
-                <i class="icon-eye"></i> 
+                <i class="icon-eye"></i>
                 {{ $t('ctxMenu.unmask_rest') }}
             </li>
             <li @click="contact({chainId: ctxMProp.chain}, $event)">
-                <i class="el-icon-share"></i> 
+                <i class="el-icon-share"></i>
                 {{ $t('ctxMenu.contact') }}
             </li>
             </ul>
@@ -48,17 +48,17 @@
             <li @click="hide('not ' + ctxMProp.num + ':' + ctxMProp.chain, $event)"
                 :class="{disabled: !ctxMProp.isRestMaskable}"
             >
-                <i class="icon-eye-off"></i> 
+                <i class="icon-eye-off"></i>
                 {{ $t('ctxMenu.mask_rest') }}
             </li>
-            <li @click="show('not ' + ctxMProp.num + ':' + ctxMProp.chain, $event)" 
+            <li @click="show('not ' + ctxMProp.num + ':' + ctxMProp.chain, $event)"
                 :class="{disabled: !ctxMProp.isRestUnMaskable}"
             >
-                <i class="icon-eye"></i> 
+                <i class="icon-eye"></i>
                 {{ $t('ctxMenu.unmask_rest') }}
             </li>
             <li @click="contact({resnum: ctxMProp.num, chainId: ctxMProp.chain}, $event)">
-                <i class="el-icon-share"></i> 
+                <i class="el-icon-share"></i>
                 {{ $t('ctxMenu.contact') }}
             </li>
             </ul>
@@ -68,78 +68,78 @@
 </template>
 
 <script>
-  function getTooltipStyles (target) {
-    let rect = (target.left === undefined)
-    ? target.getBoundingClientRect() || {top: 0, right: 0}
+function getTooltipStyles (target) {
+  let rect = (target.left === undefined)
+    ? target.getBoundingClientRect() || { top: 0, right: 0 }
     : {
       top: target.top - 10,
       right: target.left
     }
-    return {
-      top: rect.top - 5 + 'px',
-      left: rect.right + 5 + 'px',
-      visibility: 'visible'
-    }
+  return {
+    top: rect.top - 5 + 'px',
+    left: rect.right + 5 + 'px',
+    visibility: 'visible'
   }
+}
 
-  export default {
-    name: 'EntityContextMenu',
-    props: {
-      showContextMenu: {
-        type: Boolean,
-        required: false,
-        default: false
-      },
-      target: { // HTMLElement or position object (top, left)
-        required: true
-      }
+export default {
+  name: 'EntityContextMenu',
+  props: {
+    showContextMenu: {
+      type: Boolean,
+      required: false,
+      default: false
     },
-    computed: {
-      ctxMProp: function () {
-        return this.$store.state.anchor
-      },
-      contextMenuStyles () {
-        const pos = getTooltipStyles(this.target)
-        return pos
-      }
+    target: { // HTMLElement or position object (top, left)
+      required: true
+    }
+  },
+  computed: {
+    ctxMProp: function () {
+      return this.$store.state.anchor
     },
-    methods: {
-      hideContextMenu () {
-        this.$emit('hide')
-      },
-      hide (part, event) {
-        if (event.target.className === 'disabled') return
-        this.$store.dispatch('hide',
-          { sele: part,
-            action: 'hide',
-            type: this.ctxMProp.type,
-            chainName: this.ctxMProp.chain,
-            resnum: (this.ctxMProp.type === 'res') ? this.ctxMProp.num : null,
-            resname: (this.ctxMProp.type === 'res') ? this.ctxMProp.name : null
-          })
-      },
-      show (part, event) {
-        if (event.target.className === 'disabled') return
-        this.$store.dispatch('hide',
-          { sele: part,
-            action: 'show',
-            type: this.ctxMProp.type,
-            chainName: this.ctxMProp.chain,
-            resnum: (this.ctxMProp.type === 'res') ? this.ctxMProp.num : null,
-            resname: (this.ctxMProp.type === 'res') ? this.ctxMProp.name : null
-          })
-      },
-      contact (part, event) {
-        this.$store.dispatch('focusContact', {target: part})
-        this.$store.commit('setActiveTab', 'contacts')
-        this.$store.commit('setActiveContact', this.$store.state.contacts.length - 1)
-      }
+    contextMenuStyles () {
+      const pos = getTooltipStyles(this.target)
+      return pos
+    }
+  },
+  methods: {
+    hideContextMenu () {
+      this.$emit('hide')
+    },
+    hide (part, event) {
+      if (event.target.className === 'disabled') return
+      this.$store.dispatch('hide',
+        { sele: part,
+          action: 'hide',
+          type: this.ctxMProp.type,
+          chainName: this.ctxMProp.chain,
+          resnum: (this.ctxMProp.type === 'res') ? this.ctxMProp.num : null,
+          resname: (this.ctxMProp.type === 'res') ? this.ctxMProp.name : null
+        })
+    },
+    show (part, event) {
+      if (event.target.className === 'disabled') return
+      this.$store.dispatch('hide',
+        { sele: part,
+          action: 'show',
+          type: this.ctxMProp.type,
+          chainName: this.ctxMProp.chain,
+          resnum: (this.ctxMProp.type === 'res') ? this.ctxMProp.num : null,
+          resname: (this.ctxMProp.type === 'res') ? this.ctxMProp.name : null
+        })
+    },
+    contact (part, event) {
+      this.$store.dispatch('focusContact', { target: part })
+      this.$store.commit('setActiveTab', 'contacts')
+      this.$store.commit('setActiveContact', this.$store.state.contacts.length - 1)
     }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped> 
+<style scoped>
   .tooltip, .context-menu {
     position: fixed;
     background: #1f2d3d;
@@ -155,7 +155,7 @@
     z-index: 2;
     word-wrap: break-word;
   }
-  
+
   .tooltip:after, .context-menu:after {
     right: 100%;
     top: 1em;

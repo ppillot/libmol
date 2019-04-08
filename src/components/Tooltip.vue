@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import {contactTypesMap} from '../utils/contacts'
+import { contactTypesMap } from '../utils/contacts'
 const residueTypes = [
   'hetero',
   'water',
@@ -57,7 +57,7 @@ const residueTypes = [
 ]) */
 
 export default {
-  name: 'tooltip',
+  name: 'Tooltip',
   data () {
     return {
       tooltipStyles: {
@@ -93,7 +93,7 @@ export default {
         const key = contactTypesMap.get(contactHovered.contactType)
         const contactNameTranslation = (key === undefined) ? contactHovered.contactType : this.$t('ui.contacts.' + key)
         // console.log(key, contactNameTranslation)
-        Object.assign(this.contactDescription, contactHovered, {'contactName': contactNameTranslation, 'contactClass': key})
+        Object.assign(this.contactDescription, contactHovered, { 'contactName': contactNameTranslation, 'contactClass': key })
         this.tooltipStyles = this.getTooltipStyles(contactHovered.pos)
         this.content = 'contact'
       }
@@ -101,7 +101,7 @@ export default {
     }
   },
   methods: {
-    getTooltipStyles: function ({x, y}) {
+    getTooltipStyles: function ({ x, y }) {
       return {
         bottom: y + 10 + 'px',
         left: x - 12 + 'px'
@@ -128,7 +128,7 @@ export default {
     word-wrap: break-word;
     font-size: 0.8em;
   }
-  
+
   .tooltip:after {
     left: 0.5em;
     top: 100%;
@@ -152,7 +152,7 @@ export default {
     border-collapse: separate;
     width: 100%;
     font-weight: 400;
-    
+
   }
   .contact td {
     padding: 0 0.5em;

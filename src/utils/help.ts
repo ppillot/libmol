@@ -70,7 +70,7 @@ interface helpSubject {
 }
 
 /**
- * 
+ *
  * @param token kebab case key for helpsubject
  * @return helpSubject object if found, null otherwise
  */

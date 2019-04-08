@@ -6,10 +6,10 @@
             <color-mol></color-mol>
         </div>
         <div id="commands-tab--help">
-            
+
            <help
             namespace="commands" />
-            
+
         </div>
     </div>
 </template>
@@ -22,7 +22,7 @@ import Help from './Help'
 import Split from 'split.js'
 
 export default {
-  name: 'commandsTab',
+  name: 'CommandsTab',
   components: {
     SelectMol,
     RepresentationMol,
@@ -59,7 +59,7 @@ export default {
         flex-direction: column;
         overflow-y: auto;
     }
-    
+
 </style>
 <style>
 
@@ -75,13 +75,13 @@ export default {
         margin: 0 0 0 0;
         cursor: ns-resize;
         /*box-shadow: #e8e8e8 0px 1px 2px 0px;*/
-        
+
     }
     .gutter.gutter-vertical:hover {
         border-color: #ccc;
         transition: border-color 0.3s ease-in-out 0.1s;
         /* background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
         transition: background-image 0.5s ease-in-out 0.3s; */
-        
+
     }
 </style>

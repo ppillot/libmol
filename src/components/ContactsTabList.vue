@@ -15,13 +15,13 @@
       class="surface-list-body"
       v-if="contacts.length > 0"
       >
-        <contact-header-list-item 
+        <contact-header-list-item
           v-for="(contact, index) in contacts"
           :key="index"
           :contact-num="index"
           link
-        />          
-        
+        />
+
     </div>
         <!-- No contact created yet -->
     <div v-else
@@ -39,7 +39,7 @@ import ContactHeaderListItem from './ContactHeaderListItem'
 // import {contactTypesIndices} from '../utils/contacts'
 
 export default {
-  name: 'contactsTabList',
+  name: 'ContactsTabList',
   components: {
     ContactHeaderListItem
   },
@@ -115,7 +115,7 @@ export default {
     .surface-list-item {
       background: none;
     }
-    
+
 </style>
 <style>
     .list-header--card {

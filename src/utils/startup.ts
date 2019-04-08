@@ -69,21 +69,20 @@ function getSearchParameters () {
   }
 
   if (params.hasOwnProperty('libmol')) {
-
     const path = (process.env.NODE_ENV !== 'production') ? 'api/recherche.php' : 'https://libmol.org/api/recherche.php'
 
-      return axios.get(path, {
-        params: {
-          libmol: params.libmol
-        }
-      })
-      .then( (response: AxiosResponse) => {
+    return axios.get(path, {
+      params: {
+        libmol: params.libmol
+      }
+    })
+      .then((response: AxiosResponse) => {
         let p: StartupParameters =
           { ...params,
             value: response.data.label,
             file: ((response.data.file.indexOf('.cif') > -1) || (response.data.file.indexOf('.mmtf') > -1) || (response.data.file.indexOf('.sdf') > -1))
-            ? 'static/mol/' + response.data.file
-            : `static/mol/pdb/${response.data.file}.pdb`,
+              ? 'static/mol/' + response.data.file
+              : `static/mol/pdb/${response.data.file}.pdb`,
             molId: params.libmol,
             source: 'libmol'
           }
@@ -102,8 +101,8 @@ function getSearchParameters () {
   return params
 }
 
-function getStartingParameters() {
-  return Promise.resolve().then( function () {
+function getStartingParameters () {
+  return Promise.resolve().then(function () {
     return getSearchParameters()
   }).then(searchParams => {
     const p = Object.assign(defaultParameters, searchParams)
@@ -111,7 +110,7 @@ function getStartingParameters() {
   })
 }
 
-function getStartingLayout() {
+function getStartingLayout () {
   return {
     embedded: (params.embedded !== undefined) ? params.embedded || defaultParameters.embedded : false
   }

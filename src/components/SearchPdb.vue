@@ -55,9 +55,9 @@ export default {
           query: queryString
         })
       })
-      .then(function (response) {
-        return response.text()
-      })
+        .then(function (response) {
+          return response.text()
+        })
       /* axios.get('https://libmol.org/api/jsmol.php',
         {
           params: {
@@ -82,25 +82,25 @@ export default {
           throw new Error(self.$t('messages.no_record_found'))
         }
       }) */
-      .then(function (response) {
+        .then(function (response) {
         /* global DOMParser */
-        const parser = new DOMParser()
-        const xmlDocument = parser.parseFromString(response, 'application/xml')
-        const recordNodelist = xmlDocument.getElementsByTagName('record')
+          const parser = new DOMParser()
+          const xmlDocument = parser.parseFromString(response, 'application/xml')
+          const recordNodelist = xmlDocument.getElementsByTagName('record')
 
-        let rep = []
-        for (var item of recordNodelist) {
-          rep.push({
-            value: item.children[1].textContent,
-            file: 'rcsb://' + item.children[0].textContent,
-            molId: item.children[0].textContent
-          })
-        }
-        cb(rep)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+          let rep = []
+          for (var item of recordNodelist) {
+            rep.push({
+              value: item.children[1].textContent,
+              file: 'rcsb://' + item.children[0].textContent,
+              molId: item.children[0].textContent
+            })
+          }
+          cb(rep)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     },
     handleSelect (item) {
       this.$store.dispatch('loadNewFile', item)

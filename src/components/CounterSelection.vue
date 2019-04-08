@@ -7,42 +7,42 @@
         </div>
       </template>
       <div class="alert" v-else>
-        <i class="el-icon-warning"></i> {{ $t('ui.statusbar.counter.no-selection')}}
+        <i class="el-icon-warning"></i> {{ $t('ui.statusbar.counter.no-selection') }}
       </div>
     </div>
 </template>
 
 <script>
 
-  export default {
-    name: 'counter',
-    data () {
-      return {
-        hover: false
-      }
-    },
-    computed: {
-      percentSelection: function () {
-        return this.$store.state.selectedPercentage
-      }
-    },
-    directives: {
-      scale: {
-        bind (el, binding, vnode) {
-          el.children[0].style.width = binding.value + '%'
-        },
-        update (el, binding, vnode) {
-          el.children[0].style.width = binding.value + '%'
-        }
-      }
-    },
-    methods: {
-      highlight (val) {
-        this.hover = val
-        this.$store.dispatch('highlightSelectHovered', (val) ? 'selected' : 'none')
+export default {
+  name: 'Counter',
+  data () {
+    return {
+      hover: false
+    }
+  },
+  computed: {
+    percentSelection: function () {
+      return this.$store.state.selectedPercentage
+    }
+  },
+  directives: {
+    scale: {
+      bind (el, binding, vnode) {
+        el.children[0].style.width = binding.value + '%'
+      },
+      update (el, binding, vnode) {
+        el.children[0].style.width = binding.value + '%'
       }
     }
+  },
+  methods: {
+    highlight (val) {
+      this.hover = val
+      this.$store.dispatch('highlightSelectHovered', (val) ? 'selected' : 'none')
+    }
   }
+}
 </script>
 
 <style>

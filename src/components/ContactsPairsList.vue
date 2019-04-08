@@ -1,10 +1,10 @@
-<template>      
+<template>
   <div class="surface-list-body"
     v-if="contactsList.length > 0"
-    
+
   >
     <ul>
-      <li 
+      <li
         v-for="(contactTypes, index) in contactsListPerType"
         :key="index"
       >
@@ -16,7 +16,7 @@
         <ul
           @mouseout="highlight('none')"
         >
-          <li v-for="(pair, index) in contactTypes" 
+          <li v-for="(pair, index) in contactTypes"
             @mouseover="highlight(pair.seleString)"
             class="linkLike"
             :key="index"
@@ -37,7 +37,7 @@ import ContextHelp from './ContextHelp'
 // import {contactTypesIndices} from '../utils/contacts'
 
 export default {
-  name: 'contactsPairsList',
+  name: 'ContactsPairsList',
   components: {
     ContextHelp
   },
@@ -124,5 +124,5 @@ export default {
     .el-button.el-button--text {
       margin: 0;
     }
-    
+
 </style>

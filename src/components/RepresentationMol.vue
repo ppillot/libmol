@@ -28,65 +28,65 @@
 </template>
 
 <script>
-  import FormItem from './FormItem'
-  import ButtonGroup from './ButtonGroup'
-  import RadioButton from './RadioButton'
+import FormItem from './FormItem'
+import ButtonGroup from './ButtonGroup'
+import RadioButton from './RadioButton'
 
-  export default {
-    name: 'RepresentationMol',
-    components: {
-      FormItem,
-      ButtonGroup,
-      RadioButton
+export default {
+  name: 'RepresentationMol',
+  components: {
+    FormItem,
+    ButtonGroup,
+    RadioButton
+  },
+  computed: {
+    nonPolymer: function () {
+      const sel = this.$store.state.selection
+      const molTypes = this.$store.state.mol.molTypes
+      return ((molTypes.nucleic === false && molTypes.protein === false) || sel === 'hetero' || sel === 'water' || sel === 'saccharide' || this.$store.state.mol.noSequence)
     },
-    computed: {
-      nonPolymer: function () {
-        const sel = this.$store.state.selection
-        const molTypes = this.$store.state.mol.molTypes
-        return ((molTypes.nucleic === false && molTypes.protein === false) || sel === 'hetero' || sel === 'water' || sel === 'saccharide' || this.$store.state.mol.noSequence)
-      },
-      none: function () {
-        return (this.$store.state.selection === 'none')
-      },
-      displayed: function () {
-        return this.$store.state.display
-      }
+    none: function () {
+      return (this.$store.state.selection === 'none')
     },
-    methods: {
-      display (displayType) {
-        if (this.$store.state.selection !== 'user' || ['backbone', 'cartoon'].includes(displayType)) {
-          this.$store.dispatch('display', {display: displayType})
-        } else {
-          // it could be a selection from the command line
-          this.$store.dispatch('overlay', displayType)
-        }
-        this.help(displayType, true)
-      },
-      overlay (displayType) {
+    displayed: function () {
+      return this.$store.state.display
+    }
+  },
+  methods: {
+    display (displayType) {
+      if (this.$store.state.selection !== 'user' || ['backbone', 'cartoon'].includes(displayType)) {
+        this.$store.dispatch('display', { display: displayType })
+      } else {
+        // it could be a selection from the command line
         this.$store.dispatch('overlay', displayType)
-      },
-      hide () {
-        this.$store.dispatch('hide')
-        this.help('hide', true)
-      },
-      show () {
-        this.$store.dispatch('show')
-        this.help('show', true)
-      },
-      hover (displayType) {
-        this.help(displayType, false)
-      },
-      help (displayType, active) {
-        this.$store.dispatch('help', {
-          action: 'display',
-          attribute: displayType,
-          active: active,
-          namespace: 'commands'
-        })
       }
+      this.help(displayType, true)
     },
-    props: ['compact']
-  }
+    overlay (displayType) {
+      this.$store.dispatch('overlay', displayType)
+    },
+    hide () {
+      this.$store.dispatch('hide')
+      this.help('hide', true)
+    },
+    show () {
+      this.$store.dispatch('show')
+      this.help('show', true)
+    },
+    hover (displayType) {
+      this.help(displayType, false)
+    },
+    help (displayType, active) {
+      this.$store.dispatch('help', {
+        action: 'display',
+        attribute: displayType,
+        active: active,
+        namespace: 'commands'
+      })
+    }
+  },
+  props: ['compact']
+}
 </script>
 
 <style scoped>

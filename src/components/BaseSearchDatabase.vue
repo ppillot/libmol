@@ -17,8 +17,8 @@
       </span>
       <div class="suggest" :style="suggestStyles" v-if="isFocused">
         <ul>
-          <li v-for="(suggestion, index) in suggestions" 
-          @click="handleSelect(index)" 
+          <li v-for="(suggestion, index) in suggestions"
+          @click="handleSelect(index)"
           @mouseover="highlightedSuggestion = index"
           :class="{highlight: (highlightedSuggestion === index)}"
           :key="suggestion.molId">
@@ -33,7 +33,7 @@
             <template v-else>
             {{ suggestion.value }}
             </template>
-            
+
           </li>
         </ul>
       </div>
@@ -180,7 +180,7 @@ export default {
     padding: 2px 5px;
     min-width: initial;
   }
-  
+
   .suggest {
     position: fixed;
     width: 30em;
@@ -243,4 +243,3 @@ export default {
     line-height: 1.2em;
   }
 </style>
-

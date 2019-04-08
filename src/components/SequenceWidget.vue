@@ -2,25 +2,25 @@
   <div class="container" @contextmenu.prevent="displayContextMenu">
     <div class="header" @mouseover.stop="getHoveredItem('chain', $event)" @mouseout.stop="hideTooltip" :style="headerStyle">
       <ul id="chains-list">
-        <li v-for="chain in chains" 
-          :data-index="chain.id" 
-          @click="selectChain(chain.id)" 
-          :class="{ sel: isSelectedChain(chain.name) }" 
+        <li v-for="chain in chains"
+          :data-index="chain.id"
+          @click="selectChain(chain.id)"
+          :class="{ sel: isSelectedChain(chain.name) }"
           :key="chain.id">
           {{ chain.name }}
         </li>
       </ul>
     </div>
-    <div class="tab-body" 
-      @mouseover.stop="getHoveredItem('res', $event)" 
-      @mouseout.stop="hideTooltip" 
+    <div class="tab-body"
+      @mouseover.stop="getHoveredItem('res', $event)"
+      @mouseout.stop="hideTooltip"
       @scroll.stop="scroll($event)">
       <div :style="listHeightStyle">
           <table :style="[listScrollStyle, listWidthStyle]" id="table-seq">
             <tr v-for="line in visibleResidues" :key="line.index">
               <template v-for="residu in line.resRow">
-                <td v-if="residu" 
-                  :data-index="residu.index" 
+                <td v-if="residu"
+                  :data-index="residu.index"
                   :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH'), sel: isSelected(residu.index), usersel: isBeingSelected(residu.index)}"
                   :key="residu.index">
                     {{ residu.resname }}
@@ -33,350 +33,348 @@
         </div>
     </div>
     <div class="tooltip" v-bind:style="tooltipStyles" v-html="tooltipText"></div>
-    <entity-context-menu 
+    <entity-context-menu
       :showContextMenu="showContextMenu" :target="contextMenuTarget" @hide="hideContextMenu"/>
   </div>
 </template>
 
 <script>
-  import EntityContextMenu from './EntityContextMenu'
-  import optimizedResize from '../utils/resize.ts'
+import EntityContextMenu from './EntityContextMenu'
+import optimizedResize from '../utils/resize.ts'
 
-  let prevPos = {top: 0, left: 0}
-  let actualPos = {top: 0, left: 0}
-  let isScrollInProcess = false
-  let resize = optimizedResize()
-  let chainByResidueList = []
-  // let isSelectionInProcess = false
+let prevPos = { top: 0, left: 0 }
+let actualPos = { top: 0, left: 0 }
+let isScrollInProcess = false
+let resize = optimizedResize()
+let chainByResidueList = []
+// let isSelectionInProcess = false
 
-  function getTooltipStyles (target) {
-    let rect = target.getBoundingClientRect()
+function getTooltipStyles (target) {
+  let rect = target.getBoundingClientRect()
+  return {
+    top: rect.top - 5 + 'px',
+    left: rect.right + 5 + 'px',
+    visibility: 'visible'
+  }
+}
+
+function getResIndexFromNode (node) {
+  if (node.nodeType === window.Node.TEXT_NODE) {
+    node = node.parentNode
+  }
+  if (node.tagName !== 'TD') {
+    return NaN
+  }
+  return ('index' in node.dataset) ? node.dataset.index | 0 : NaN
+}
+
+function fillArrayTo (start, end) {
+  let arr = []
+  let chainSeq = this.$store.state.mol.chains[chainByResidueList[start]].sequence
+  let isReversed = (start > end)
+
+  if (isReversed) {
+    [start, end] = [end, start]
+  }
+  let i = 0
+  let push = false
+  while ((i < chainSeq.length) && (chainSeq[i].index <= end)) {
+    if (chainSeq[i].index === start) {
+      push = true
+    }
+    if (push) {
+      arr.push(chainSeq[i].index)
+    }
+    i++
+  }
+  if (isReversed) {
+    arr.reverse()
+  }
+
+  return arr
+}
+
+export default {
+  name: 'SequenceWidget',
+  components: {
+    EntityContextMenu
+  },
+  props: ['active'],
+  data () {
     return {
-      top: rect.top - 5 + 'px',
-      left: rect.right + 5 + 'px',
-      visibility: 'visible'
+      tooltipStyles: {
+        top: '0px',
+        left: '0px',
+        visibility: 'hidden'
+      },
+      showContextMenu: false,
+      contextMenuTarget: this.$el,
+      listStart: 0,
+      listEnd: 9,
+      elementHeight: 22,
+      elementWidth: 48,
+      listScrollStyle: { marginTop: 0 },
+      headerStyle: 'margin-left: 0',
+      nbElementsToDisplay: 20,
+      residuesList: [],
+      visibleResidues: [],
+      userSelection: [],
+      targetTYpe: 'res'
     }
-  }
-
-  function getResIndexFromNode (node) {
-    if (node.nodeType === window.Node.TEXT_NODE) {
-      node = node.parentNode
-    }
-    if (node.tagName !== 'TD') {
-      return NaN
-    }
-    return ('index' in node.dataset) ? node.dataset.index | 0 : NaN
-  }
-
-  function fillArrayTo (start, end) {
-    let arr = []
-    let chainSeq = this.$store.state.mol.chains[chainByResidueList[start]].sequence
-    let isReversed = (start > end)
-
-    if (isReversed) {
-      [start, end] = [end, start]
-    }
-    let i = 0
-    let push = false
-    while ((i < chainSeq.length) && (chainSeq[i].index <= end)) {
-      if (chainSeq[i].index === start) {
-        push = true
-      }
-      if (push) {
-        arr.push(chainSeq[i].index)
-      }
-      i++
-    }
-    if (isReversed) {
-      arr.reverse()
-    }
-
-    return arr
-  }
-
-  export default {
-    name: 'SequenceWidget',
-    components: {
-      EntityContextMenu
+  },
+  computed: {
+    ctxMProp: function () {
+      return this.$store.state.anchor
     },
-    props: ['active'],
-    data () {
+    chains: function () {
+      let chains = []
+      chainByResidueList = []
+
+      this.$store.state.mol.chains.forEach((chain, index) => {
+        chains.push({
+          entity: chain.entity,
+          id: chain.id,
+          name: chain.name
+        })
+        chain.sequence.forEach(res => {
+          chainByResidueList[res.index] = chain.id
+        })
+      })
+      // console.log(chainByResidueList)
+      let rList = []
+      const maxElementNb = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
+        return Math.max(accumulator, currentValue.sequence.length)
+      }, 0)
+
+      for (let i = 0; i < maxElementNb; i++) {
+        let resPosiList = []
+        this.$store.state.mol.chains.forEach(chain => {
+          resPosiList.push(
+            (chain.sequence.length > i) ? chain.sequence[i] : null
+          )
+        })
+        rList.push({ index: i, resRow: resPosiList })
+      }
+      this.residuesList = rList
+
+      return chains
+    },
+
+    listWidthStyle: function () {
       return {
-        tooltipStyles: {
-          top: '0px',
-          left: '0px',
-          visibility: 'hidden'
-        },
-        showContextMenu: false,
-        contextMenuTarget: this.$el,
-        listStart: 0,
-        listEnd: 9,
-        elementHeight: 22,
-        elementWidth: 48,
-        listScrollStyle: { marginTop: 0 },
-        headerStyle: 'margin-left: 0',
-        nbElementsToDisplay: 20,
-        residuesList: [],
-        visibleResidues: [],
-        userSelection: [],
-        targetTYpe: 'res'
+        width: this.$store.state.mol.chains.length * 3 + 'em'
       }
     },
-    computed: {
-      ctxMProp: function () {
-        return this.$store.state.anchor
-      },
-      chains: function () {
-        let chains = []
-        chainByResidueList = []
 
-        this.$store.state.mol.chains.forEach((chain, index) => {
-          chains.push({
-            entity: chain.entity,
-            id: chain.id,
-            name: chain.name
-          })
-          chain.sequence.forEach(res => {
-            chainByResidueList[res.index] = chain.id
-          })
-        })
-        // console.log(chainByResidueList)
-        let rList = []
-        const maxElementNb = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
-          return Math.max(accumulator, currentValue.sequence.length)
-        }, 0)
-
-        for (let i = 0; i < maxElementNb; i++) {
-          let resPosiList = []
-          this.$store.state.mol.chains.forEach(chain => {
-            resPosiList.push(
-              (chain.sequence.length > i) ? chain.sequence[i] : null
-            )
-          })
-          rList.push({index: i, resRow: resPosiList})
-        }
-        this.residuesList = rList
-
-        return chains
-      },
-
-      listWidthStyle: function () {
-        return {
-          width: this.$store.state.mol.chains.length * 3 + 'em'
-        }
-      },
-
-      tooltipText: function () {
-        let item = this.$store.state.itemHovered
-        let respHTML = ''
-        if (item.num !== -1) {
-          respHTML = item.name + ' ' + item.num + ' '
-        }
-        respHTML += this.$t('tooltips.chain') + ' ' + item.chain + '<br>'
-        respHTML += (this.$te('biochem.pdb_res_name.' + item.name)) ? this.$t('biochem.pdb_res_name.' + item.name) : item.description
-        return respHTML
-      },
-
-      listHeightStyle: function () {
-        this.$nextTick(function () {
-          actualPos = { top: 0, left: 0 }
-          this.scrolling()
-        })
-        const nbElementMax = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
-          return Math.max(accumulator, currentValue.sequence.length)
-        }, 0)
-        const maxHeight = nbElementMax * this.elementHeight
-        const maxWidth = this.$store.state.mol.chains.length * this.elementWidth
-        return { height: maxHeight + 'px', width: maxWidth + 'px' }
+    tooltipText: function () {
+      let item = this.$store.state.itemHovered
+      let respHTML = ''
+      if (item.num !== -1) {
+        respHTML = item.name + ' ' + item.num + ' '
       }
+      respHTML += this.$t('tooltips.chain') + ' ' + item.chain + '<br>'
+      respHTML += (this.$te('biochem.pdb_res_name.' + item.name)) ? this.$t('biochem.pdb_res_name.' + item.name) : item.description
+      return respHTML
     },
-    methods: {
-      isSelectedChain (chainName) {
-        return this.$store.state.selectedChains.includes(chainName)
-      },
-      isSelected (resIndex) {
-        return this.$store.state.selected[resIndex]
-      },
-      isBeingSelected (resIndex) {
-        return this.userSelection.includes(resIndex)
-      },
-      getHoveredItem (itemType, event) {
-        const target = event.target
-        if (((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) && !isScrollInProcess) {
-          this.tooltipStyles = getTooltipStyles(target)
-          this.$store.dispatch('sequenceHovered', {
-            type: itemType,
-            index: target.dataset.index
-          })
-          // if (this.showContextMenu) this.showContextMenu = false
-        } else {
-          this.hideTooltip()
-        }
-      },
-      hideTooltip () {
-        this.tooltipStyles.visibility = 'hidden'
+
+    listHeightStyle: function () {
+      this.$nextTick(function () {
+        actualPos = { top: 0, left: 0 }
+        this.scrolling()
+      })
+      const nbElementMax = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
+        return Math.max(accumulator, currentValue.sequence.length)
+      }, 0)
+      const maxHeight = nbElementMax * this.elementHeight
+      const maxWidth = this.$store.state.mol.chains.length * this.elementWidth
+      return { height: maxHeight + 'px', width: maxWidth + 'px' }
+    }
+  },
+  methods: {
+    isSelectedChain (chainName) {
+      return this.$store.state.selectedChains.includes(chainName)
+    },
+    isSelected (resIndex) {
+      return this.$store.state.selected[resIndex]
+    },
+    isBeingSelected (resIndex) {
+      return this.userSelection.includes(resIndex)
+    },
+    getHoveredItem (itemType, event) {
+      const target = event.target
+      if (((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) && !isScrollInProcess) {
+        this.tooltipStyles = getTooltipStyles(target)
         this.$store.dispatch('sequenceHovered', {
-          type: 'none',
-          index: 0
+          type: itemType,
+          index: target.dataset.index
         })
-      },
-// ******** Context menu
-      displayContextMenu (event) {
-        const target = event.target
+        // if (this.showContextMenu) this.showContextMenu = false
+      } else {
         this.hideTooltip()
-        if (((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) && !isScrollInProcess) {
-          this.showContextMenu = true
-          const targetType = (target.tagName === 'LI') ? 'chain' : 'res'
-          this.$store.dispatch('contextMenuCalled', {
-            type: targetType,
-            index: target.dataset.index
-          })
-          this.contextMenuTarget = target
-        } else {
-          this.hideContextMenu()
+      }
+    },
+    hideTooltip () {
+      this.tooltipStyles.visibility = 'hidden'
+      this.$store.dispatch('sequenceHovered', {
+        type: 'none',
+        index: 0
+      })
+    },
+    // ******** Context menu
+    displayContextMenu (event) {
+      const target = event.target
+      this.hideTooltip()
+      if (((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) && !isScrollInProcess) {
+        this.showContextMenu = true
+        const targetType = (target.tagName === 'LI') ? 'chain' : 'res'
+        this.$store.dispatch('contextMenuCalled', {
+          type: targetType,
+          index: target.dataset.index
+        })
+        this.contextMenuTarget = target
+      } else {
+        this.hideContextMenu()
+      }
+    },
+    hideContextMenu () {
+      this.showContextMenu = false
+    },
+    // *********  Virtual scrolling
+    scroll (event) {
+      const target = event.target
+      const pos = {
+        top: target.scrollTop,
+        left: target.scrollLeft
+      }
+      if (!isScrollInProcess) {
+        isScrollInProcess = true
+        this.hideTooltip()
+        window.requestAnimationFrame(function () {
+          this.scrolling()
+        }.bind(this))
+      }
+
+      actualPos = pos
+    },
+
+    scrolling () {
+      if (prevPos.top !== actualPos.top) {
+        this.listStart = (actualPos.top / this.elementHeight) | 0
+        if (this.listStart < 0) {
+          this.listStart = 0
         }
-      },
-      hideContextMenu () {
-        this.showContextMenu = false
-      },
-// *********  Virtual scrolling
-      scroll (event) {
-        const target = event.target
-        const pos = {
-          top: target.scrollTop,
-          left: target.scrollLeft
-        }
-        if (!isScrollInProcess) {
-          isScrollInProcess = true
-          this.hideTooltip()
-          window.requestAnimationFrame(function () {
-            this.scrolling()
-          }.bind(this))
-        }
+        let vec = actualPos.top - (actualPos.top % this.elementHeight)
+        this.listScrollStyle = { transform: 'translate(0,' + vec + 'px)' }
+        this.setVisibleResidues()
+      } else {
+        this.headerStyle = 'transform: translate(-' + actualPos.left + 'px, 0)'
+      }
+      this.$forceUpdate()
 
-        actualPos = pos
-      },
+      prevPos.top = actualPos.top
+      isScrollInProcess = false
+    },
 
-      scrolling () {
-        if (prevPos.top !== actualPos.top) {
-          this.listStart = (actualPos.top / this.elementHeight) | 0
-          if (this.listStart < 0) {
-            this.listStart = 0
-          }
-          let vec = actualPos.top - (actualPos.top % this.elementHeight)
-          this.listScrollStyle = { transform: 'translate(0,' + vec + 'px)' }
-          this.setVisibleResidues()
-        } else {
-          this.headerStyle = 'transform: translate(-' + actualPos.left + 'px, 0)'
-        }
-        this.$forceUpdate()
+    setNbElementsToDisplay () {
+      const coords = this.$el.getBoundingClientRect()
+      this.nbElementsToDisplay = Math.ceil(coords.height / this.elementHeight) + 3
+    },
 
-        prevPos.top = actualPos.top
-        isScrollInProcess = false
-      },
+    setVisibleResidues () {
+      this.visibleResidues = this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
+    },
+    // ************* Selection
+    startSelection (event) {
+      event.stopPropagation()
+      if (event.button > 1) return
 
-      setNbElementsToDisplay () {
-        const coords = this.$el.getBoundingClientRect()
-        this.nbElementsToDisplay = Math.ceil(coords.height / this.elementHeight) + 3
-      },
-
-      setVisibleResidues () {
-        this.visibleResidues = this.residuesList.slice(this.listStart, this.listStart + this.nbElementsToDisplay)
-      },
-// ************* Selection
-      startSelection (event) {
-        event.stopPropagation()
-        if (event.button > 1) return
-
-        let startResId = getResIndexFromNode(event.target)
-        // console.log('start:', startResId, 'chain:', chainByResidueList[startResId])
-        if (isNaN(startResId)) { // could not get the starting point
-          // console.log(event.target)
-          return
-        }
-        this.userSelection = [startResId]
-        // isSelectionInProcess = true
-        document.getElementById('table-seq').addEventListener('mouseover', this.currentSelection)
-        document.getElementById('table-seq').addEventListener('mouseleave', this.cancelSelection)
-        document.addEventListener('mouseup', this.endSelection)
-      },
-
-      cancelSelection (event) {
-        // event.stopPropagation()
-        this.userSelection.splice(1)
-        // console.log('cancel selection')
+      let startResId = getResIndexFromNode(event.target)
+      // console.log('start:', startResId, 'chain:', chainByResidueList[startResId])
+      if (isNaN(startResId)) { // could not get the starting point
+        // console.log(event.target)
         return
-      },
+      }
+      this.userSelection = [startResId]
+      // isSelectionInProcess = true
+      document.getElementById('table-seq').addEventListener('mouseover', this.currentSelection)
+      document.getElementById('table-seq').addEventListener('mouseleave', this.cancelSelection)
+      document.addEventListener('mouseup', this.endSelection)
+    },
 
-      currentSelection (event) {
-        // event.stopPropagation()
+    cancelSelection (event) {
+      // event.stopPropagation()
+      this.userSelection.splice(1)
+      // console.log('cancel selection')
+    },
 
-        let currentResId = getResIndexFromNode(event.target)
-        if (isNaN(currentResId)) {
+    currentSelection (event) {
+      // event.stopPropagation()
+
+      let currentResId = getResIndexFromNode(event.target)
+      if (isNaN(currentResId)) {
+        this.userSelection.splice(1)
+      } else {
+        // check if same chain
+        if (chainByResidueList[this.userSelection[0]] !== chainByResidueList[currentResId]) {
           this.userSelection.splice(1)
         } else {
-          // check if same chain
-          if (chainByResidueList[this.userSelection[0]] !== chainByResidueList[currentResId]) {
-            this.userSelection.splice(1)
-          } else {
-            this.userSelection = fillArrayTo.call(this, this.userSelection[0], currentResId)
-          }
-        }
-        // console.log('current:', currentResId)
-        return
-      },
-
-      endSelection (event) {
-        event.stopPropagation()
-        let endResId = getResIndexFromNode(event.target)
-
-        // let's commit the new selection if the event happened in the same chain
-        if (!isNaN(endResId) && (chainByResidueList[this.userSelection[0]] === chainByResidueList[endResId])) {
-          this.$store.dispatch('sequenceSelected', this.userSelection.slice(0))
-        }
-
-        this.userSelection = []
-        // console.log('end:', endResId)
-        document.getElementById('table-seq').removeEventListener('mouseover', this.currentSelection)
-        document.getElementById('table-seq').removeEventListener('mouseleave', this.cancelSelection)
-        document.removeEventListener('mouseup', this.endSelection)
-      },
-
-      selectChain (chainId) {
-        this.$store.dispatch('chainSelected', chainId)
-        this.$forceUpdate()
-      }
-    },
-    watch: {
-      active: function (val) {
-        if (val) {
-          this.$nextTick(function () {
-            this.setNbElementsToDisplay()
-            this.setVisibleResidues()
-            // when a new model has been loaded, if the previous sequence has been scrolled,
-            // the (v?)dom node keeps track of the scroll amount which reappears when the component
-            // is loaded again. We set scrollTop to zero when the vertical pos has been set back to 0
-            if (actualPos.top === 0 && actualPos.left === 0) {
-              const tb = this.$el.getElementsByClassName('tab-body')[0]
-              tb.scrollTop = 0
-              tb.scrollLeft = 0
-            }
-          })
-          document.getElementById('table-seq').addEventListener('mousedown', this.startSelection)
-        } else {
-          document.getElementById('table-seq').removeEventListener('mousedown', this.startSelection)
+          this.userSelection = fillArrayTo.call(this, this.userSelection[0], currentResId)
         }
       }
+      // console.log('current:', currentResId)
     },
-    mounted: function () {
-      this.$nextTick(function () {
-        this.setNbElementsToDisplay()
-        this.setVisibleResidues()
-        this.$el.getElementsByClassName('tab-body')[0].scrollTop = 0
-      })
-      resize.add(this.setNbElementsToDisplay.bind(this))
+
+    endSelection (event) {
+      event.stopPropagation()
+      let endResId = getResIndexFromNode(event.target)
+
+      // let's commit the new selection if the event happened in the same chain
+      if (!isNaN(endResId) && (chainByResidueList[this.userSelection[0]] === chainByResidueList[endResId])) {
+        this.$store.dispatch('sequenceSelected', this.userSelection.slice(0))
+      }
+
+      this.userSelection = []
+      // console.log('end:', endResId)
+      document.getElementById('table-seq').removeEventListener('mouseover', this.currentSelection)
+      document.getElementById('table-seq').removeEventListener('mouseleave', this.cancelSelection)
+      document.removeEventListener('mouseup', this.endSelection)
+    },
+
+    selectChain (chainId) {
+      this.$store.dispatch('chainSelected', chainId)
+      this.$forceUpdate()
     }
+  },
+  watch: {
+    active: function (val) {
+      if (val) {
+        this.$nextTick(function () {
+          this.setNbElementsToDisplay()
+          this.setVisibleResidues()
+          // when a new model has been loaded, if the previous sequence has been scrolled,
+          // the (v?)dom node keeps track of the scroll amount which reappears when the component
+          // is loaded again. We set scrollTop to zero when the vertical pos has been set back to 0
+          if (actualPos.top === 0 && actualPos.left === 0) {
+            const tb = this.$el.getElementsByClassName('tab-body')[0]
+            tb.scrollTop = 0
+            tb.scrollLeft = 0
+          }
+        })
+        document.getElementById('table-seq').addEventListener('mousedown', this.startSelection)
+      } else {
+        document.getElementById('table-seq').removeEventListener('mousedown', this.startSelection)
+      }
+    }
+  },
+  mounted: function () {
+    this.$nextTick(function () {
+      this.setNbElementsToDisplay()
+      this.setVisibleResidues()
+      this.$el.getElementsByClassName('tab-body')[0].scrollTop = 0
+    })
+    resize.add(this.setNbElementsToDisplay.bind(this))
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -387,7 +385,7 @@
     flex-direction: column;
     overflow: hidden;
   }
-  
+
   .header {
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.12);
     z-index: 2;
@@ -402,7 +400,7 @@
     -moz-user-select: none;
     user-select: none;
   }
-  
+
   .header ul li {
     display: inline-block;
     margin: 0;
@@ -413,11 +411,11 @@
     cursor: cell;
     color: #546e7a
   }
-  
+
   .header ul li:hover {
     background: #e6e9ef;
   }
-  
+
   .tab-body {
     flex: 1;
     overflow: auto;
@@ -428,7 +426,7 @@
   .tab-body div {
     overflow: hidden;
   }
-  
+
   .tab-body table {
     display: table;
     margin: 0;
@@ -440,7 +438,7 @@
     -moz-user-select: none;
     -webkit-user-select: none; */
   }
-  
+
   .tab-body table tr {
     box-sizing: border-box;
     height: 1em;
@@ -462,11 +460,11 @@
   .tab-body tr td:hover {
     background: #eef1f6;
   }
-  
+
   .hetero {
     color: #bf360c
   }
-  
+
   .hoh {
     color: #01579b
   }
@@ -497,7 +495,7 @@
   .usersel {
     background: #dbdf00;
   }
-  
+
   .tooltip, .context-menu {
     position: fixed;
     background: #1f2d3d;
@@ -513,7 +511,7 @@
     z-index: 2;
     word-wrap: break-word;
   }
-  
+
   .tooltip:after, .context-menu:after {
     right: 100%;
     top: 1em;

@@ -28,8 +28,8 @@ export default Vue.extend({
   computed: {
     display (): {display: string, verticalAlign?: string} {
       return (this.inline)
-        ? {display: 'inline-block', verticalAlign: 'text-bottom'}
-        : {display: 'block'}
+        ? { display: 'inline-block', verticalAlign: 'text-bottom' }
+        : { display: 'block' }
     }
   }
 })
@@ -46,7 +46,7 @@ export default Vue.extend({
   line-height: 1;
   display: block;
 }
-    
+
 .form-item-slot {
   margin-top: 8px
 }

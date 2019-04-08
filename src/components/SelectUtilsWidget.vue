@@ -9,30 +9,30 @@
 </template>
 
 <script>
-  import ButtonGroup from './ButtonGroup'
-  import RadioButton from './RadioButton'
+import ButtonGroup from './ButtonGroup'
+import RadioButton from './RadioButton'
 
-  export default {
-    name: 'SelectUtilsWidget',
-    components: {
-      ButtonGroup,
-      RadioButton
+export default {
+  name: 'SelectUtilsWidget',
+  components: {
+    ButtonGroup,
+    RadioButton
+  },
+  computed: {
+    selected: function () {
+      return this.$store.state.selection
+    }
+  },
+  methods: {
+    sel (selector) {
+      this.$store.dispatch('selection', selector)
     },
-    computed: {
-      selected: function () {
-        return this.$store.state.selection
-      }
-    },
-    methods: {
-      sel (selector) {
-        this.$store.dispatch('selection', selector)
-      },
-      highlight (selector) {
-        if (selector === undefined) selector = 'none'
-        this.$store.dispatch('highlightSelectHovered', selector)
-      }
+    highlight (selector) {
+      if (selector === undefined) selector = 'none'
+      this.$store.dispatch('highlightSelectHovered', selector)
     }
   }
+}
 </script>
 
 <style scoped>

@@ -10,7 +10,7 @@
       </template>
       <template v-else>
         <span class="open" @click.stop="toggle">
-          <i class="el-icon-info"></i> 
+          <i class="el-icon-info"></i>
           {{ $t('ui.help.open_help') }}
         </span>
       </template>
@@ -19,82 +19,82 @@
 </template>
 
 <script>
-  import { getHelpSubject } from '../utils/help.ts'
-  import Marked from '../utils/markedWrapper'
+import { getHelpSubject } from '../utils/help.ts'
+import Marked from '../utils/markedWrapper'
 
-  export default {
-    name: 'Help',
-    props: {
-      namespace: {
-        default: 'commands',
-        type: String
-      },
-      start: {
-        default: '',
-        type: String
-      }
+export default {
+  name: 'Help',
+  props: {
+    namespace: {
+      default: 'commands',
+      type: String
     },
-    data: function () {
-      return {
-        active: true
-      }
-    },
-    computed: {
-      text: function () {
-        return (this.$te('help.' + this.helpToken))
-          ? Marked(this.$t('help.' + this.helpToken))
-          : ''
-      },
-      helpHistory: function () {
-        return this.$store.state.helpHistory[this.namespace].length > 0
-      },
-      helpHistoryForward: function () {
-        return this.$store.state.helpHistoryForward[this.namespace].length > 0
-      },
-      helpToken: function () {
-        const helpFilename = this.$store.state.help[this.namespace]
-        return (helpFilename === '') ? this.start : helpFilename
-      },
-      navigationStyle: function () {
-        return this.active ? { right: '5px', left: 'auto' } : { left: '5px', right: 'auto' }
-      }
-    },
-    methods: {
-      getLink: function (event) {
-        const href = event.target.getAttribute('href')
-        if (href) {
-          const subject = getHelpSubject(href)
-          if (subject !== null) {
-            this.$store.dispatch('help', {
-              namespace: this.namespace,
-              ...subject
-            })
-          }
-        }
-      },
-
-      stepBackHistory: function () {
-        this.$store.dispatch('helpNavigate', {
-          step: 'backward',
-          namespace: this.namespace
-        })
-      },
-
-      stepForwardHistory: function () {
-        this.$store.dispatch('helpNavigate', {
-          step: 'forward',
-          namespace: this.namespace
-        })
-      },
-
-      toggle: function () {
-        this.active = !this.active
-      }
-    },
-    updated: function () {
-      this.$el.firstChild.scrollTop = 0
+    start: {
+      default: '',
+      type: String
     }
+  },
+  data: function () {
+    return {
+      active: true
+    }
+  },
+  computed: {
+    text: function () {
+      return (this.$te('help.' + this.helpToken))
+        ? Marked(this.$t('help.' + this.helpToken))
+        : ''
+    },
+    helpHistory: function () {
+      return this.$store.state.helpHistory[this.namespace].length > 0
+    },
+    helpHistoryForward: function () {
+      return this.$store.state.helpHistoryForward[this.namespace].length > 0
+    },
+    helpToken: function () {
+      const helpFilename = this.$store.state.help[this.namespace]
+      return (helpFilename === '') ? this.start : helpFilename
+    },
+    navigationStyle: function () {
+      return this.active ? { right: '5px', left: 'auto' } : { left: '5px', right: 'auto' }
+    }
+  },
+  methods: {
+    getLink: function (event) {
+      const href = event.target.getAttribute('href')
+      if (href) {
+        const subject = getHelpSubject(href)
+        if (subject !== null) {
+          this.$store.dispatch('help', {
+            namespace: this.namespace,
+            ...subject
+          })
+        }
+      }
+    },
+
+    stepBackHistory: function () {
+      this.$store.dispatch('helpNavigate', {
+        step: 'backward',
+        namespace: this.namespace
+      })
+    },
+
+    stepForwardHistory: function () {
+      this.$store.dispatch('helpNavigate', {
+        step: 'forward',
+        namespace: this.namespace
+      })
+    },
+
+    toggle: function () {
+      this.active = !this.active
+    }
+  },
+  updated: function () {
+    this.$el.firstChild.scrollTop = 0
   }
+}
 </script>
 
 <style>

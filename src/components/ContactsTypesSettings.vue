@@ -3,15 +3,15 @@
         <div class="instructions">
           {{ $t('ui.contacts.selectInteraction') }}
         </div>
-        <el-checkbox 
-          :indeterminate="isIndeterminate" 
-          :value="checkAllHbonds" 
+        <el-checkbox
+          :indeterminate="isIndeterminate"
+          :value="checkAllHbonds"
           @change="handleCheckAllHbondsChange"
           label="allHbonds">
             {{ $t('ui.contacts.allHbonds') }}
         </el-checkbox>
-        <i class="el-icon-arrow-right " 
-          @click="handleDisplayHbondsTypes" 
+        <i class="el-icon-arrow-right "
+          @click="handleDisplayHbondsTypes"
           :class="{'display-sub': hbondsTypesDisplayed}"></i>
         <el-checkbox-group v-model="contactsList">
           <ul>
@@ -29,7 +29,7 @@
                 <li>
                   <el-checkbox label="weakHydrogenBond">{{ $t('ui.contacts.weakHydrogenBond') }}</el-checkbox>
                 </li>
-              </ul>   
+              </ul>
             </li>
             <li>
               <el-checkbox label="hydrophobic">{{ $t('ui.contacts.hydrophobic') }}</el-checkbox>
@@ -55,7 +55,7 @@
 const hb = ['hydrogenBond', 'backboneHydrogenBond', 'waterHydrogenBond', 'weakHydrogenBond']
 
 export default {
-  name: 'contactsTypesSettings',
+  name: 'ContactsTypesSettings',
   props: {
     edit: {
       default: -1,
@@ -165,5 +165,5 @@ export default {
     @keyframes rotating {
 
     }
-    
+
 </style>

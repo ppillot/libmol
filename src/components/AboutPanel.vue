@@ -18,7 +18,7 @@ I plugged the open/close emission with the update:visible event-->
 import Marked from 'marked'
 
 export default {
-  name: 'aboutPanel',
+  name: 'AboutPanel',
   props: {
     visible: {
       type: Boolean,
@@ -41,4 +41,3 @@ export default {
         padding: 1em;
     }
 </style>
-

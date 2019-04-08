@@ -1,7 +1,7 @@
-import {getAtomProperties} from './atoms'
-import PickingProxy from 'ngl/declarations/controls/picking-proxy';
-import { ActionContext } from 'vuex';
-import { Vector2, Vector3 } from 'three';
+import { getAtomProperties } from './atoms'
+import PickingProxy from 'ngl/declarations/controls/picking-proxy'
+import { ActionContext } from 'vuex'
+import { Vector2, Vector3 } from 'three'
 
 interface AtomProps {
   index: number;
@@ -94,4 +94,4 @@ function hover (context: ActionContext<any, any>) {
   }
 }
 
-export {hover}
+export { hover }

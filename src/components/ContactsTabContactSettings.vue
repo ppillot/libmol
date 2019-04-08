@@ -1,7 +1,7 @@
 <template>
   <div class="interaction_panel">
     <!-- Réglages -->
-    <el-tabs v-model="activeName" 
+    <el-tabs v-model="activeName"
     tab-position="left">
       <el-tab-pane label="Contacts" name="contact">
         <contacts-types-settings
@@ -9,12 +9,12 @@
         <contacts-tab-settings-water-switch
           :edit="edit" />
         <contacts-tab-settings-within-radius
-          :edit="edit" /> 
+          :edit="edit" />
 
       </el-tab-pane>
       <el-tab-pane label="Cible" name="target">
         <div class="contact-settings">
-          <contacts-tab-settings-representation-select 
+          <contacts-tab-settings-representation-select
             :edit="edit"
             repr="target"/>
 
@@ -29,7 +29,7 @@
           :edit="edit"
           repr="vicinity" />
 
-        <contacts-tab-settings-representation-select 
+        <contacts-tab-settings-representation-select
             :edit="edit"
             repr="vicinity"/>
 
@@ -60,7 +60,7 @@ import ContactsTabSettingsWithinRadius from './ContactsTabSettingsWithinRadius'
 import ContactsTabSettingsLabelSize from './ContactsTabSettingsLabelSize'
 
 export default {
-  name: 'contactsTabContactsSettings',
+  name: 'ContactsTabContactsSettings',
   components: {
     ContactsTabSettingsRepresentationSelect,
     ContactsTabSettingsColorSelect,

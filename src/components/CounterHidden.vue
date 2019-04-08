@@ -1,6 +1,6 @@
 <template>
-    <div class="counter" 
-      @mouseenter.stop="highlight(true)" 
+    <div class="counter"
+      @mouseenter.stop="highlight(true)"
       @mouseleave.stop="highlight(false)"
       v-if="percentHidden > 0">
       <template v-if="percentHidden < 100">
@@ -10,50 +10,50 @@
         </div>
       </template>
       <div class="alert" v-else>
-        <i class="el-icon-warning"></i> {{ $t('ui.statusbar.counter.all-hidden')}}
+        <i class="el-icon-warning"></i> {{ $t('ui.statusbar.counter.all-hidden') }}
       </div>
     </div>
 </template>
 
 <script>
-  import { Notification } from 'element-ui'
+import { Notification } from 'element-ui'
 
-  export default {
-    name: 'counter',
-    data () {
-      return {
-        hover: false
+export default {
+  name: 'Counter',
+  data () {
+    return {
+      hover: false
+    }
+  },
+  computed: {
+    percentHidden: function () {
+      let percentage = this.$store.state.hiddenPercentage
+      if (percentage === 100) {
+        Notification.error({
+          title: this.$t('ui.notifications.all-hidden-title'),
+          message: this.$t('ui.notifications.all-hidden-message')
+        })
       }
-    },
-    computed: {
-      percentHidden: function () {
-        let percentage = this.$store.state.hiddenPercentage
-        if (percentage === 100) {
-          Notification.error({
-            title: this.$t('ui.notifications.all-hidden-title'),
-            message: this.$t('ui.notifications.all-hidden-message')
-          })
-        }
-        return percentage
-      }
-    },
-    directives: {
-      scale: {
-        bind (el, binding, vnode) {
-          el.children[0].style.width = binding.value + '%'
-        },
-        update (el, binding, vnode) {
-          el.children[0].style.width = binding.value + '%'
-        }
-      }
-    },
-    methods: {
-      highlight (val) {
-        this.hover = val
-        this.$store.dispatch('highlightSelectHovered', (val) ? 'hidden' : 'none')
+      return percentage
+    }
+  },
+  directives: {
+    scale: {
+      bind (el, binding, vnode) {
+        el.children[0].style.width = binding.value + '%'
+      },
+      update (el, binding, vnode) {
+        el.children[0].style.width = binding.value + '%'
       }
     }
+  },
+  methods: {
+    highlight (val) {
+      this.hover = val
+      this.$store.dispatch('highlightSelectHovered', (val) ? 'hidden' : 'none')
+    }
   }
+}
 </script>
 
 <style>

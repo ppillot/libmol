@@ -4,7 +4,7 @@
  * @private
  */
 
-import {Selection, Structure} from 'ngl'
+import { Selection, Structure } from 'ngl'
 
 interface ContactEntitiesTargetParameters {
   resnum: string,
@@ -68,7 +68,7 @@ class ContactEntities {
    * - isBackboneExcluded: changeable
    * @param {Object} [params] parameters: resnum, chainId, seleString
    */
-  updateTarget ({resnum = '', chainId = '', seleString = ''}: Partial<ContactEntitiesTargetParameters>) {
+  updateTarget ({ resnum = '', chainId = '', seleString = '' }: Partial<ContactEntitiesTargetParameters>) {
     let s = ''
     if (seleString === '') {
       if (resnum === '' && chainId === '') {
@@ -83,9 +83,9 @@ class ContactEntities {
     } else s = `(${seleString})`
 
     this.targetCompleteSele = s
-    this.targetFilter = (this.filter) ? 
-      [s, this.filter] :
-      [s, `not ${s}`]
+    this.targetFilter = (this.filter)
+      ? [s, this.filter]
+      : [s, `not ${s}`]
 
     if (this.isBackboneExcluded) {
       s += ' AND NOT BACKBONE'
@@ -104,8 +104,8 @@ class ContactEntities {
    */
   updateWithin () {
     const seleWithin = this.structure.getAtomSetWithinSelection(new Selection(this.targetSele), this.neighbouringRadius)
-    this.withinSele = '(' + seleWithin.toSeleString() + ')'
-      + ((this.isWaterExcluded) ? ' AND NOT WATER' : '')
+    this.withinSele = '(' + seleWithin.toSeleString() + ')' +
+      ((this.isWaterExcluded) ? ' AND NOT WATER' : '')
   }
 
   /**
@@ -193,12 +193,11 @@ class ContactEntities {
       ['within', this.updateWithin],
       ['vicinity', this.updateVicinity],
       ['targetContact', this.updateTargetCloseToContact]] as [string, ()=>void][]).forEach((val) => {
-        if (updates.has(val[0])) {
-          val[1].call(this)
-        }
-      })
+      if (updates.has(val[0])) {
+        val[1].call(this)
+      }
+    })
   }
-
 }
 
 export default ContactEntities

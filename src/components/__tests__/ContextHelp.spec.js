@@ -38,4 +38,3 @@ describe('ContextHelp.vue', () => {
     expect(wrapper.is('span')).toBe(true)
   })
 })
-

@@ -1,12 +1,12 @@
 <template>
     <div class="statusbar">
       <div class="statusbar--contact" v-if="hasContacts">
-        <div v-for="type in contactTypes" 
+        <div v-for="type in contactTypes"
           :key="type"
           class="statusbar--element"
           >
-          <context-help 
-            :subject="type" 
+          <context-help
+            :subject="type"
             namespace="contacts"
             placement="top"
             trigger-event="click">
@@ -20,7 +20,7 @@
 
       </div>
       <div class="coloration">
-        <div  v-show='isShown'>
+        <div  v-show="isShown">
           {{ colorDescription }} :
           <span @mouseover.stop="getHoveredItem($event)" @mouseout.stop="hideTooltip">
             <span v-for="token in colorScheme" :style="token.css" :data-tooltip="token.tooltip" :key="token.text">
@@ -36,199 +36,199 @@
 </template>
 
 <script>
-  import {getColor} from '../utils/colors'
-  import {getSStrucName} from '../utils/sstruc'
-  import CounterHidden from './CounterHidden'
-  import CounterSelection from './CounterSelection'
-  import ContextHelp from './ContextHelp'
-  
-  /**
+import { getColor } from '../utils/colors'
+import { getSStrucName } from '../utils/sstruc'
+import CounterHidden from './CounterHidden'
+import CounterSelection from './CounterSelection'
+import ContextHelp from './ContextHelp'
+
+/**
    * remove values from the set when they are redundant with alias values
    * @param {set} setObject - the set we want to remove redundant aliases from
    * @param {array} aliasValues - an array containing aliases as properties
    */
-  function removeRedundancyFromSet (setObject, aliasValues) {
-    var s = new Set()
-    setObject.forEach(item => {
-      if (aliasValues[item] !== undefined) {
-        s.add(aliasValues[item])
-      } else {
-        s.add(item)
-      }
-    })
-    return s
-  }
-
-  function getTooltipStyles (target) {
-    let rect = target.getBoundingClientRect()
-    return {
-      top: rect.top - 35 + 'px',
-      left: rect.left - 5 + 'px',
-      visibility: 'visible'
+function removeRedundancyFromSet (setObject, aliasValues) {
+  var s = new Set()
+  setObject.forEach(item => {
+    if (aliasValues[item] !== undefined) {
+      s.add(aliasValues[item])
+    } else {
+      s.add(item)
     }
+  })
+  return s
+}
+
+function getTooltipStyles (target) {
+  let rect = target.getBoundingClientRect()
+  return {
+    top: rect.top - 35 + 'px',
+    left: rect.left - 5 + 'px',
+    visibility: 'visible'
   }
+}
 
-  export default {
-    name: 'theStatusbar',
-    data () {
-      return {
-        tooltipStyles: {
-          top: '0px',
-          left: '0px',
-          visibility: 'hidden'
-        },
-        tooltipText: '',
-        colorDescription: this.$t('ui.commands.color.cpk')
-      }
-    },
-    components: {
-      CounterHidden,
-      CounterSelection,
-      ContextHelp
-    },
-    computed: {
-      hasContacts: function () {
-        return this.$store.state.contacts.length > 0
+export default {
+  name: 'TheStatusbar',
+  data () {
+    return {
+      tooltipStyles: {
+        top: '0px',
+        left: '0px',
+        visibility: 'hidden'
       },
-      contactTypes: function () {
-        const visibleContacts = this.$store.state.contacts.reduce((acc, contact) => {
-          if (contact.visible) {
-            acc.push(contact)
-          }
-          return acc
-        }, [])
+      tooltipText: '',
+      colorDescription: this.$t('ui.commands.color.cpk')
+    }
+  },
+  components: {
+    CounterHidden,
+    CounterSelection,
+    ContextHelp
+  },
+  computed: {
+    hasContacts: function () {
+      return this.$store.state.contacts.length > 0
+    },
+    contactTypes: function () {
+      const visibleContacts = this.$store.state.contacts.reduce((acc, contact) => {
+        if (contact.visible) {
+          acc.push(contact)
+        }
+        return acc
+      }, [])
 
-        let cTypes = new Set()
-        visibleContacts.forEach((contact) => {
-          contact.contactsList.forEach((contactEl) => {
-            cTypes.add(contactEl.type)
-          })
+      let cTypes = new Set()
+      visibleContacts.forEach((contact) => {
+        contact.contactsList.forEach((contactEl) => {
+          cTypes.add(contactEl.type)
         })
+      })
 
-        return [...cTypes]
-      },
-      isShown: function () {
-        return this.$store.state.selection !== 'none'
-      },
-      colorScheme: function () {
-        var cs = []
-        switch (this.$store.state.color) {
-          case 'element':
-            this.$store.state.mol.elements.forEach(
-              item => {
+      return [...cTypes]
+    },
+    isShown: function () {
+      return this.$store.state.selection !== 'none'
+    },
+    colorScheme: function () {
+      var cs = []
+      switch (this.$store.state.color) {
+        case 'element':
+          this.$store.state.mol.elements.forEach(
+            item => {
+              cs.push({
+                text: item,
+                css: 'color: #' + getColor('element', item).toString(16),
+                tooltip: (this.$te('biochem.el_name.' + item)) ? this.$t('biochem.el_name.' + item) : undefined
+              })
+            }
+          )
+          // Hydrogen though present in reality can be absent in the model (cf crystallography)
+          // We check for organic molecules
+          if (!this.$store.state.mol.elements.has('H')) {
+            const molTypes = this.$store.state.mol.molTypes
+            if (molTypes.water || molTypes.nucleic || molTypes.protein || molTypes.saccharide) {
+              cs.push({
+                text: '(H)',
+                css: 'color: #FFFFFF',
+                tooltip: this.$t('tooltips.missingH')
+              })
+            }
+          }
+          this.colorDescription = this.$t('ui.commands.color.cpk')
+          break
+        case 'chainname':
+          this.$store.state.mol.chains.forEach(
+            item => {
+              cs.push({
+                text: item.name,
+                css: 'color: #' + item.color,
+                tooltip: item.entity
+              })
+            }
+          )
+          this.colorDescription = this.$t('ui.commands.color.by_chain')
+          break
+        case 'resname':
+          this.$store.state.mol.residues.forEach(
+            item => {
+              cs.push({
+                text: item,
+                css: 'color: #' + getColor('resname', item).toString(16),
+                tooltip: (this.$te('biochem.pdb_res_name.' + item)) ? this.$t('biochem.pdb_res_name.' + item) : undefined
+              })
+            }
+          )
+          this.colorDescription = this.$t('ui.commands.color.by_res')
+          break
+        case 'sstruc':
+          let sstruc = removeRedundancyFromSet(this.$store.state.mol.sstruc, { 's': 'l', 'e': 'b' })
+          sstruc.forEach(
+            item => {
+              let sstruc = getSStrucName(item)
+              if (sstruc !== '') {
                 cs.push({
-                  text: item,
-                  css: 'color: #' + getColor('element', item).toString(16),
-                  tooltip: (this.$te('biochem.el_name.' + item)) ? this.$t('biochem.el_name.' + item) : undefined
-                })
-              }
-            )
-            // Hydrogen though present in reality can be absent in the model (cf crystallography)
-            // We check for organic molecules
-            if (!this.$store.state.mol.elements.has('H')) {
-              const molTypes = this.$store.state.mol.molTypes
-              if (molTypes.water || molTypes.nucleic || molTypes.protein || molTypes.saccharide) {
-                cs.push({
-                  text: '(H)',
-                  css: 'color: #FFFFFF',
-                  tooltip: this.$t('tooltips.missingH')
+                  text: this.$t('biochem.sstruc.' + sstruc),
+                  css: 'color: #' + getColor('sstruc', sstruc).toString(16)
                 })
               }
             }
-            this.colorDescription = this.$t('ui.commands.color.cpk')
-            break
-          case 'chainname':
-            this.$store.state.mol.chains.forEach(
-              item => {
+          )
+          this.colorDescription = this.$t('ui.commands.color.by_secondary_structure')
+          break
+        case 'moleculetype':
+          Object.keys(this.$store.state.mol.molTypes).forEach(
+            item => {
+              if (this.$store.state.mol.molTypes[item] && item !== 'nucleic') {
                 cs.push({
-                  text: item.name,
-                  css: 'color: #' + item.color,
-                  tooltip: item.entity
+                  text: this.$t('biochem.molecule_type.' + item),
+                  css: 'color: #' + getColor('moleculetype', item).toString(16)
                 })
               }
-            )
-            this.colorDescription = this.$t('ui.commands.color.by_chain')
-            break
-          case 'resname':
-            this.$store.state.mol.residues.forEach(
-              item => {
-                cs.push({
-                  text: item,
-                  css: 'color: #' + getColor('resname', item).toString(16),
-                  tooltip: (this.$te('biochem.pdb_res_name.' + item)) ? this.$t('biochem.pdb_res_name.' + item) : undefined
-                })
-              }
-            )
-            this.colorDescription = this.$t('ui.commands.color.by_res')
-            break
-          case 'sstruc':
-            let sstruc = removeRedundancyFromSet(this.$store.state.mol.sstruc, {'s': 'l', 'e': 'b'})
-            sstruc.forEach(
-              item => {
-                let sstruc = getSStrucName(item)
-                if (sstruc !== '') {
-                  cs.push({
-                    text: this.$t('biochem.sstruc.' + sstruc),
-                    css: 'color: #' + getColor('sstruc', sstruc).toString(16)
-                  })
-                }
-              }
-            )
-            this.colorDescription = this.$t('ui.commands.color.by_secondary_structure')
-            break
-          case 'moleculetype':
-            Object.keys(this.$store.state.mol.molTypes).forEach(
-              item => {
-                if (this.$store.state.mol.molTypes[item] && item !== 'nucleic') {
-                  cs.push({
-                    text: this.$t('biochem.molecule_type.' + item),
-                    css: 'color: #' + getColor('moleculetype', item).toString(16)
-                  })
-                }
-              }
-            )
-            this.colorDescription = this.$t('ui.commands.color.by_biochemical_nature')
-            break
-          case 'mix':
-            cs.push({
-              text: this.$t('ui.statusbar.color.mix'),
-              css: 'color: black'
-            })
-            this.colorDescription = this.$t('ui.statusbar.color.color')
-            break
-          default :
-            cs.push({
-              text: this.$t('ui.statusbar.color.user'),
-              css: 'color: ' + this.$store.state.color
-            })
-            this.colorDescription = this.$t('ui.statusbar.color.color')
-        }
-        return cs
+            }
+          )
+          this.colorDescription = this.$t('ui.commands.color.by_biochemical_nature')
+          break
+        case 'mix':
+          cs.push({
+            text: this.$t('ui.statusbar.color.mix'),
+            css: 'color: black'
+          })
+          this.colorDescription = this.$t('ui.statusbar.color.color')
+          break
+        default :
+          cs.push({
+            text: this.$t('ui.statusbar.color.user'),
+            css: 'color: ' + this.$store.state.color
+          })
+          this.colorDescription = this.$t('ui.statusbar.color.color')
+      }
+      return cs
+    }
+  },
+  methods: {
+    getHoveredItem (event) {
+      const target = event.target
+      if (target.tagName === 'SPAN' && target.dataset.tooltip !== undefined) {
+        this.tooltipStyles = getTooltipStyles(target)
+        this.tooltipText = target.dataset.tooltip
+      } else {
+        this.hideTooltip()
       }
     },
-    methods: {
-      getHoveredItem (event) {
-        const target = event.target
-        if (target.tagName === 'SPAN' && target.dataset.tooltip !== undefined) {
-          this.tooltipStyles = getTooltipStyles(target)
-          this.tooltipText = target.dataset.tooltip
-        } else {
-          this.hideTooltip()
-        }
-      },
-      hideTooltip () {
-        this.tooltipStyles.visibility = 'hidden'
-      }
-    },
-    filters: {
-      capitalize: function (value) {
-        if (!value) return ''
-        value = value.toString()
-        if (value.charAt(0) === '(') return value
-        return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
-      }
+    hideTooltip () {
+      this.tooltipStyles.visibility = 'hidden'
+    }
+  },
+  filters: {
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      if (value.charAt(0) === '(') return value
+      return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
     }
   }
+}
 </script>
 
 <style>
@@ -245,7 +245,6 @@
     flex-direction: row;
     flex-wrap: wrap;
   }
-
 
   .statusbar span {
     font-weight: bolder;
@@ -291,7 +290,7 @@
     overflow: hidden; */
     font-size: 0.8em;
   }
-  
+
   .statusbar .tooltip::after {
     left: 0.5em;
     top: 100%;
@@ -316,7 +315,7 @@
 
   .dashed {
     display: inline-block;
-    height: 0; 
+    height: 0;
     width: 20px;
     border-style: dashed;
     border-width: 2px;

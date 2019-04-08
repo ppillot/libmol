@@ -1,6 +1,6 @@
 <template>
   <el-tabs v-model="activeName">
-    <el-tab-pane 
+    <el-tab-pane
       :label="$t('ui.toolbar.measures.distance')"
       name="distance">
       <form-item :label="$t('ui.toolbar.measures.activate_distance_label')" inline>
@@ -14,7 +14,7 @@
           @change="switchDistance">
         </el-switch>
       </form-item>
-    
+
       <table class="table-distances">
         <thead>
           <tr>
@@ -32,26 +32,25 @@
               <el-button type="text" icon="el-icon-delete"  @click="handleDeleteDistances(index)" />
             </td>
             <td>
-              {{ measure.atom1.atomname}} {{ measure.atom1.serial }} | {{ measure.atom1.resname}}{{ measure.atom1.resno}}
+              {{ measure.atom1.atomname }} {{ measure.atom1.serial }} | {{ measure.atom1.resname }}{{ measure.atom1.resno }}
             </td>
             <td>
-              {{ measure.atom2.atomname}} {{ measure.atom2.serial }} | {{ measure.atom2.resname}}{{ measure.atom2.resno}}
+              {{ measure.atom2.atomname }} {{ measure.atom2.serial }} | {{ measure.atom2.resname }}{{ measure.atom2.resno }}
             </td>
             <td>
-              {{ measure.distance/10 | round(2)}} nm
+              {{ measure.distance/10 | round(2) }} nm
             </td>
-          </tr>  
+          </tr>
         </tbody>
         <tfoot v-else>
           <tr>
-            <td colspan="4">{{$t('ui.toolbar.measures.instructions_distances')}}</td>
+            <td colspan="4">{{ $t('ui.toolbar.measures.instructions_distances') }}</td>
           </tr>
         </tfoot>
       </table>
     </el-tab-pane>
 
-    
-    <el-tab-pane 
+    <el-tab-pane
       :label="$t('ui.toolbar.measures.angle')"
       name="angle">
       <form-item :label="$t('ui.toolbar.measures.activate_angle_label')" inline>
@@ -65,7 +64,7 @@
           @change="switchAngle">
         </el-switch>
       </form-item>
-    
+
       <table class="table-distances">
         <thead>
           <tr>
@@ -82,22 +81,22 @@
               <el-button type="text" icon="el-icon-delete" @click="handleDeleteAngles(index)"></el-button>
             </td>
             <td>
-              {{ measure.atom1.atomname}} {{ measure.atom1.serial }} | {{ measure.atom1.resname}}{{ measure.atom1.resno}}
+              {{ measure.atom1.atomname }} {{ measure.atom1.serial }} | {{ measure.atom1.resname }}{{ measure.atom1.resno }}
             </td>
             <td>
-              {{ measure.atom2.atomname}} {{ measure.atom2.serial }} | {{ measure.atom2.resname}}{{ measure.atom2.resno}}
+              {{ measure.atom2.atomname }} {{ measure.atom2.serial }} | {{ measure.atom2.resname }}{{ measure.atom2.resno }}
             </td>
             <td>
-              {{ measure.atom3.atomname}} {{ measure.atom3.serial }} | {{ measure.atom3.resname}}{{ measure.atom3.resno}}
+              {{ measure.atom3.atomname }} {{ measure.atom3.serial }} | {{ measure.atom3.resname }}{{ measure.atom3.resno }}
             </td>
             <td>
-              {{ measure.angle | round(1)}} °
+              {{ measure.angle | round(1) }} °
             </td>
-          </tr>  
+          </tr>
         </tbody>
         <tfoot v-else>
           <tr>
-            <td colspan="5">{{$t('ui.toolbar.measures.instructions_angles')}}</td>
+            <td colspan="5">{{ $t('ui.toolbar.measures.instructions_angles') }}</td>
           </tr>
         </tfoot>
       </table>
@@ -106,64 +105,64 @@
 </template>
 
 <script>
-  import FormItem from './FormItem'
+import FormItem from './FormItem'
 
-  export default {
-    name: 'measuresPanel',
-    data () {
-      return {
-        activeName: 'distance'
+export default {
+  name: 'MeasuresPanel',
+  data () {
+    return {
+      activeName: 'distance'
+    }
+  },
+  components: {
+    FormItem
+  },
+  computed: {
+    distances () {
+      return this.$store.state.distances
+    },
+    angles () {
+      return this.$store.state.angles
+    },
+    mouseDistance: {
+      get () {
+        return this.$store.state.isMeasuringDistances
+      },
+      set (value) {
+        // this.$store.commit('isMeasuringDistances', value)
       }
     },
-    components: {
-      FormItem
-    },
-    computed: {
-      distances () {
-        return this.$store.state.distances
+    mouseAngle: {
+      get () {
+        return this.$store.state.isMeasuringAngles
       },
-      angles () {
-        return this.$store.state.angles
-      },
-      mouseDistance: {
-        get () {
-          return this.$store.state.isMeasuringDistances
-        },
-        set (value) {
-          // this.$store.commit('isMeasuringDistances', value)
-        }
-      },
-      mouseAngle: {
-        get () {
-          return this.$store.state.isMeasuringAngles
-        },
-        set (value) {
-          // this.$store.commit('isMeasuringAngles', value)
-        }
-      }
-    },
-    filters: {
-      round: function (value, dec) {
-        return value.toFixed(dec)
-      }
-    },
-    methods: {
-      switchDistance (isMeasuringDistances) {
-        const mouseMode = (isMeasuringDistances) ? 'distance' : 'pick'
-        this.$store.dispatch('setMouseMode', mouseMode)
-      },
-      handleDeleteDistances (value) {
-        this.$store.dispatch('deleteMeasure', {type: 'distance', index: value})
-      },
-      switchAngle (isMeasuringAngles) {
-        const mouseMode = (isMeasuringAngles) ? 'angle' : 'pick'
-        this.$store.dispatch('setMouseMode', mouseMode)
-      },
-      handleDeleteAngles (value) {
-        this.$store.dispatch('deleteMeasure', {type: 'angle', index: value})
+      set (value) {
+        // this.$store.commit('isMeasuringAngles', value)
       }
     }
+  },
+  filters: {
+    round: function (value, dec) {
+      return value.toFixed(dec)
+    }
+  },
+  methods: {
+    switchDistance (isMeasuringDistances) {
+      const mouseMode = (isMeasuringDistances) ? 'distance' : 'pick'
+      this.$store.dispatch('setMouseMode', mouseMode)
+    },
+    handleDeleteDistances (value) {
+      this.$store.dispatch('deleteMeasure', { type: 'distance', index: value })
+    },
+    switchAngle (isMeasuringAngles) {
+      const mouseMode = (isMeasuringAngles) ? 'angle' : 'pick'
+      this.$store.dispatch('setMouseMode', mouseMode)
+    },
+    handleDeleteAngles (value) {
+      this.$store.dispatch('deleteMeasure', { type: 'angle', index: value })
+    }
   }
+}
 </script>
 
 <style>

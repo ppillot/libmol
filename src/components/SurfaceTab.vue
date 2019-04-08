@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <p>{{ $t('ui.surface.instructions') }}</p>
-    <el-button 
+    <el-button
       type="primary"
       @click="createSurface"
       :disabled="this.$store.state.selection==='none'"
@@ -23,14 +23,14 @@
       <div class="surface-list-body" v-if="surfaces.length>0">
         <div class="surface-list-item" v-for="(surface, index) in surfaces" :key="index">
           <div class="surface-header">
-            <i 
+            <i
               class="el-icon-caret-right"
               :class="[index === edit ? 'rotate' : 'unrotate']"
               @click="edit = (index === edit)? -1 : index"></i>
             <div class="surface-title">
             {{ `${$t('ui.surface.surface')} ${surface.id} (${
-              $t((surface.sele === 'user' || surface.sele === '')? 
-                'ctxMenu.user_selection' 
+              $t((surface.sele === 'user' || surface.sele === '')?
+                'ctxMenu.user_selection'
                 :
                 'tooltips.' + surface.sele
               )})` }}
@@ -41,7 +41,7 @@
           <transition appear>
             <div v-if="edit === index" class="surface-settings">
               <form-item :label="$t('ui.surface.opacity')">
-                <el-slider v-model="opacity" :min="0" :max="1" :step="0.1"></el-slider>  
+                <el-slider v-model="opacity" :min="0" :max="1" :step="0.1"></el-slider>
               </form-item>
               <form-item :label="$t('ui.surface.outline')" inline>
                 <el-switch
@@ -57,103 +57,103 @@
             </div>
           </transition>
         </div>
-      </div>  
+      </div>
       <div class="surface-list-item" v-else>
-        {{$t('ui.surface.list_instructions')}}
+        {{ $t('ui.surface.list_instructions') }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import Palette from './Palette'
-  import FormItem from './FormItem'
-  import Visible from './Visible'
+import Palette from './Palette'
+import FormItem from './FormItem'
+import Visible from './Visible'
 
-  export default {
-    name: 'SurfaceTab',
-    components: {
-      FormItem,
-      Palette,
-      Visible
-    },
-    data () {
-      return {
-        /* colors: {
+export default {
+  name: 'SurfaceTab',
+  components: {
+    FormItem,
+    Palette,
+    Visible
+  },
+  data () {
+    return {
+      /* colors: {
           hex: '#00ff00'
         }, */
-        edit: -1
-      }
+      edit: -1
+    }
+  },
+  computed: {
+    surfaces: function () {
+      if (this.$store.state.surfaces.length === 0) this.edit = -1
+      return this.$store.state.surfaces
     },
-    computed: {
-      surfaces: function () {
-        if (this.$store.state.surfaces.length === 0) this.edit = -1
-        return this.$store.state.surfaces
-      },
-      opacity: {
-        set: function (val) {
-          this.$store.dispatch('setSurfaceProperty', {
-            id: this.surfaces[this.edit].id,
-            props: {
-              opacity: val,
-              side: 'front'
-            }
-          })
-        },
-        get: function () {
-          return this.$store.state.surfaces[this.edit].props.opacity
-        }
-      },
-      visibility: function () {
-        return this.$store.state.surfaces.map(val => {
-          return val.props.visible
-        })
-      },
-      outline: {
-        set: function (val) {
-          this.$store.dispatch('setSurfaceProperty', {
-            id: this.surfaces[this.edit].id,
-            props: {
-              background: val
-            }
-          })
-        },
-        get: function () {
-          return this.$store.state.surfaces[this.edit].props.background
-        }
-      },
-      colors: function () {
-        return `#${this.$store.state.surfaces[this.edit].props.colorValue.toString(16)}`
-      }
-    },
-    methods: {
-      createSurface: function () {
-        this.$store.dispatch('createSurface')
-      },
-      handleDelete: function (index) {
-        this.$store.dispatch('deleteSurface', index)
-      },
-      handleVisibility: function (val, index) {
-        this.$store.dispatch('setSurfaceProperty', {
-          id: index,
-          props: {
-            visible: val
-          }
-        })
-      },
-      downloadSTL: function (index) {
-        this.$store.dispatch('downloadSurface', index)
-      },
-      pickColor: function (val) {
+    opacity: {
+      set: function (val) {
         this.$store.dispatch('setSurfaceProperty', {
           id: this.surfaces[this.edit].id,
           props: {
-            colorValue: parseInt(val.substr(1), 16)
+            opacity: val,
+            side: 'front'
           }
         })
+      },
+      get: function () {
+        return this.$store.state.surfaces[this.edit].props.opacity
       }
+    },
+    visibility: function () {
+      return this.$store.state.surfaces.map(val => {
+        return val.props.visible
+      })
+    },
+    outline: {
+      set: function (val) {
+        this.$store.dispatch('setSurfaceProperty', {
+          id: this.surfaces[this.edit].id,
+          props: {
+            background: val
+          }
+        })
+      },
+      get: function () {
+        return this.$store.state.surfaces[this.edit].props.background
+      }
+    },
+    colors: function () {
+      return `#${this.$store.state.surfaces[this.edit].props.colorValue.toString(16)}`
+    }
+  },
+  methods: {
+    createSurface: function () {
+      this.$store.dispatch('createSurface')
+    },
+    handleDelete: function (index) {
+      this.$store.dispatch('deleteSurface', index)
+    },
+    handleVisibility: function (val, index) {
+      this.$store.dispatch('setSurfaceProperty', {
+        id: index,
+        props: {
+          visible: val
+        }
+      })
+    },
+    downloadSTL: function (index) {
+      this.$store.dispatch('downloadSurface', index)
+    },
+    pickColor: function (val) {
+      this.$store.dispatch('setSurfaceProperty', {
+        id: this.surfaces[this.edit].id,
+        props: {
+          colorValue: parseInt(val.substr(1), 16)
+        }
+      })
     }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

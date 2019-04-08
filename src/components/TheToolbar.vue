@@ -5,7 +5,6 @@
         <div class="molname">{{ molName }}</div>
         <div class="commands">
 
-
           <el-popover
             ref="settings"
             placement="bottom-end"
@@ -36,59 +35,59 @@
 </template>
 
 <script>
-  import citationButton from './CitationButton'
-  import settings from './Settings'
-  import measuresPanel from './MeasuresPanel'
-  import Screenfull from 'screenfull'
+import citationButton from './CitationButton'
+import settings from './Settings'
+import measuresPanel from './MeasuresPanel'
+import Screenfull from 'screenfull'
 
-  export default {
-    name: 'theToolbar',
-    components: {
-      settings,
-      measuresPanel,
-      citationButton
+export default {
+  name: 'TheToolbar',
+  components: {
+    settings,
+    measuresPanel,
+    citationButton
+  },
+  data: function () {
+    return {
+      isFullScreen: false,
+      isCitationVisible: false
+    }
+  },
+  computed: {
+    isFullscreenEnabled: function () {
+      return Screenfull.enabled
     },
-    data: function () {
-      return {
-        isFullScreen: false,
-        isCitationVisible: false
-      }
+    molName: function () {
+      return this.$store.state.name
     },
-    computed: {
-      isFullscreenEnabled: function () {
-        return Screenfull.enabled
-      },
-      molName: function () {
-        return this.$store.state.name
-      },
-      isHidden: function () {
-        return this.$store.state.isHidden
-      },
-      molCode: function () {
-        return this.$store.state.molCode
-      }
+    isHidden: function () {
+      return this.$store.state.isHidden
     },
-    methods: {
-      toggleFullscreen () {
-        Screenfull.toggle()
-      },
-      screenCapture () {
-        this.$store.dispatch('screenCapture')
-      }
+    molCode: function () {
+      return this.$store.state.molCode
+    }
+  },
+  methods: {
+    toggleFullscreen () {
+      Screenfull.toggle()
     },
-    mounted: function () {
-      if (Screenfull.enabled) {
-        Screenfull.onchange(function () { // user can use ESC key to cancel fullscreen
-          if (this.$store.state.fullscreen && Screenfull.isFullscreen === false) {
-            this.$store.commit('setFullscreen', false)
-          } else {
-            this.$store.commit('setFullscreen', Screenfull.isFullscreen)
-          }
-          this.isFullScreen = Screenfull.isFullscreen
-        }.bind(this))
-      }
+    screenCapture () {
+      this.$store.dispatch('screenCapture')
+    }
+  },
+  mounted: function () {
+    if (Screenfull.enabled) {
+      Screenfull.onchange(function () { // user can use ESC key to cancel fullscreen
+        if (this.$store.state.fullscreen && Screenfull.isFullscreen === false) {
+          this.$store.commit('setFullscreen', false)
+        } else {
+          this.$store.commit('setFullscreen', Screenfull.isFullscreen)
+        }
+        this.isFullScreen = Screenfull.isFullscreen
+      }.bind(this))
     }
   }
+}
 </script>
 
 <style>

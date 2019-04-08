@@ -1,9 +1,9 @@
-import {Selection, Shape, Structure} from 'ngl'
-import BitArray from 'ngl/declarations/utils/bitarray';
-import AtomProxy from 'ngl/declarations/proxy/atom-proxy';
-import StructureComponent from 'ngl/declarations/component/structure-component';
-import RepresentationElement from 'ngl/declarations/component/representation-element';
-import Representation from 'ngl/declarations/representation/representation';
+import { Selection, Shape, Structure } from 'ngl'
+import BitArray from 'ngl/declarations/utils/bitarray'
+import AtomProxy from 'ngl/declarations/proxy/atom-proxy'
+import StructureComponent from 'ngl/declarations/component/structure-component'
+import RepresentationElement from 'ngl/declarations/component/representation-element'
+import Representation from 'ngl/declarations/representation/representation'
 
 function getDiSulfideBridges (structure: Structure) {
   const sulfursInCysteins = structure.getAtomSet(new Selection('cys and _S'))
@@ -14,7 +14,7 @@ function getDiSulfideBridges (structure: Structure) {
   const getTraceAtom = function (ap: AtomProxy) {
     return structure.getResidueProxy(ap.residueIndex).traceAtomIndex
   }
-  
+
   structure.atomCenter()
   sulfursInCysteins.forEach(index => {
     if (!atomSet.get(index)) {
@@ -80,8 +80,8 @@ function ssBridges (component: StructureComponent, representationsList: Represen
       // let visibleTracePairs = []
       let getVisibleAtom = function (id: number) {
         return (visibleCysSideChain.get(ssb.sulfurPairs[id]))
-        ? ssb.sulfurPairs[id]
-        : ssb.traceAtomPairs[id]
+          ? ssb.sulfurPairs[id]
+          : ssb.traceAtomPairs[id]
       }
 
       for (let i = 0; i < ssb.sulfurPairs.length; i += 2) {
@@ -103,7 +103,7 @@ function ssBridges (component: StructureComponent, representationsList: Represen
           [1, 1, 0],
           0.315, 'ss')
       }
-      reprSSBridges = component.addBufferRepresentation(shapeSSBridge, {name: 'ssbridge'})
+      reprSSBridges = component.addBufferRepresentation(shapeSSBridge, { name: 'ssbridge' })
     }
   }
 

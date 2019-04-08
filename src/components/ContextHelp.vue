@@ -17,56 +17,56 @@
 </template>
 
 <script>
-  import {getHelp, getHelpSubject} from '../utils/help.ts'
-  import Marked from '../utils/markedWrapper'
+import { getHelp, getHelpSubject } from '../utils/help.ts'
+import Marked from '../utils/markedWrapper'
 
-  export default {
-    name: 'ContextHelp',
-    props: {
-      subject: {
-        default: '',
-        type: String
-      },
-      namespace: {
-        default: 'contacts',
-        type: String
-      },
-      placement: {
-        default: 'right',
-        type: String
-      },
-      triggerEvent: {
-        default: 'click',
-        type: String
-      }
+export default {
+  name: 'ContextHelp',
+  props: {
+    subject: {
+      default: '',
+      type: String
     },
-    data: function () {
-      return {
-        helpToken: ''
-      }
+    namespace: {
+      default: 'contacts',
+      type: String
     },
-    computed: {
-      text: function () {
-        return (this.$te('help.' + this.helpToken))
-          ? Marked(this.$t('help.' + this.helpToken))
-          : ''
-      }
+    placement: {
+      default: 'right',
+      type: String
     },
-    methods: {
-      getLink: function (event) {
-        const href = event.target.getAttribute('href')
-        if (href) {
-          const subject = getHelpSubject(href)
-          if (subject !== null) {
-            this.helpToken = subject.token
-          }
+    triggerEvent: {
+      default: 'click',
+      type: String
+    }
+  },
+  data: function () {
+    return {
+      helpToken: ''
+    }
+  },
+  computed: {
+    text: function () {
+      return (this.$te('help.' + this.helpToken))
+        ? Marked(this.$t('help.' + this.helpToken))
+        : ''
+    }
+  },
+  methods: {
+    getLink: function (event) {
+      const href = event.target.getAttribute('href')
+      if (href) {
+        const subject = getHelpSubject(href)
+        if (subject !== null) {
+          this.helpToken = subject.token
         }
       }
-    },
-    mounted: function () {
-      this.helpToken = getHelp(this.namespace, this.subject)
     }
+  },
+  mounted: function () {
+    this.helpToken = getHelp(this.namespace, this.subject)
   }
+}
 </script>
 
 <style scoped>

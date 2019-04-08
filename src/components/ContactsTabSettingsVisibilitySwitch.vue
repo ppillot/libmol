@@ -9,7 +9,7 @@
 import FormItem from './FormItem'
 
 export default {
-  name: 'contactsTabContactsSettingsVisibilitySwitch',
+  name: 'ContactsTabContactsSettingsVisibilitySwitch',
   components: {
     FormItem
   },

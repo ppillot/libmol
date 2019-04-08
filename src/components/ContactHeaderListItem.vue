@@ -1,4 +1,4 @@
-<template>         
+<template>
   <div class="surface-list-item">
     <div class="surface-header">
       <div class="surface-title"
@@ -14,9 +14,9 @@
       </div>
       <visible :value="visibility" @input="val => {handleVisibility(val, contactNum)}"></visible>
       <el-button type="text" icon="el-icon-delete" @click="handleDelete(contactNum)"></el-button>
-      <el-button 
-        icon="icon-sliders" 
-        class="button large" 
+      <el-button
+        icon="icon-sliders"
+        class="button large"
         type="text"
         @click="edit = (edit === -1) ? contactNum : -1"
         v-popover:settings
@@ -32,7 +32,7 @@
       v-model="isEditing">
       <contacts-tab-contact-settings :edit="edit" v-if="edit !== -1"/>
     </el-popover>
-    
+
     <!-- End Contacts settings -->
   </div>
 </template>
@@ -44,7 +44,7 @@ import ContactsTabContactSettings from './ContactsTabContactSettings'
 // import {contactTypesIndices} from '../utils/contacts'
 
 export default {
-  name: 'contactsTabList',
+  name: 'ContactsTabList',
   components: {
     Visible,
     ContactsTabContactSettings
@@ -134,7 +134,7 @@ export default {
       color: #20a0ff;
       cursor: pointer;
     }
-    
+
 </style>
 <style>
     .list-header--card {

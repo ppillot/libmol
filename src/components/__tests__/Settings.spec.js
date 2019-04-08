@@ -43,12 +43,12 @@ describe('Settings.vue', () => {
     })
     wrapper.vm.fog = [50, 60]
     wrapper.update()
-    expect($store.dispatch).toHaveBeenCalledWith('setStageParameters', {fogFar: 60, fogNear: 50})
+    expect($store.dispatch).toHaveBeenCalledWith('setStageParameters', { fogFar: 60, fogNear: 50 })
 
     wrapper.vm.reset()
     wrapper.update()
     expect(wrapper.vm.fog).toEqual([50, 100])
-    expect($store.dispatch).toHaveBeenCalledWith('setStageParameters', {fogFar: 100, fogNear: 50})
+    expect($store.dispatch).toHaveBeenCalledWith('setStageParameters', { fogFar: 100, fogNear: 50 })
   })
 
 /*
@@ -86,4 +86,3 @@ describe('Settings.vue', () => {
   })
 */
 })
-

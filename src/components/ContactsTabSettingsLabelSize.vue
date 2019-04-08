@@ -14,7 +14,7 @@
 import FormItem from './FormItem'
 
 export default {
-  name: 'contactsTabSettingsLabelSize',
+  name: 'ContactsTabSettingsLabelSize',
   components: {
     FormItem
   },

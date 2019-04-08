@@ -12,7 +12,7 @@ import Tooltip from './Tooltip'
 import EntityContextMenu from './EntityContextMenu'
 
 export default {
-  name: 'ngl',
+  name: 'Ngl',
   components: {
     Tooltip,
     EntityContextMenu
@@ -27,12 +27,12 @@ export default {
   },
   methods: {
     hideContextMenu: function () {
-      this.$store.commit('isContextMenuCalled', {show: false})
+      this.$store.commit('isContextMenuCalled', { show: false })
     }
   },
   mounted () {
     this.$nextTick(function () {
-      this.$store.dispatch('createNewStage', {id: 'viewport'})
+      this.$store.dispatch('createNewStage', { id: 'viewport' })
     })
   }
 }

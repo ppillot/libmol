@@ -9,36 +9,36 @@
 </template>
 
 <script>
-  import Palette from './Palette'
-  import RepresentationMol from './RepresentationMol'
-  import SelectUtilsWidget from './SelectUtilsWidget'
-  import SequenceWidget from './SequenceWidget'
+import Palette from './Palette'
+import RepresentationMol from './RepresentationMol'
+import SelectUtilsWidget from './SelectUtilsWidget'
+import SequenceWidget from './SequenceWidget'
 
-  export default {
-    name: 'SequenceTab',
-    props: ['active'],
-    components: {
-      'palette': Palette,
-      'representation-mol': RepresentationMol,
-      'select-utils-widget': SelectUtilsWidget,
-      'sequence-widget': SequenceWidget
-    },
-    computed: {
-      colors () {
-        return this.$store.state.color
-      }
-    },
-    methods: {
-      pickColor (val) {
-        this.$store.dispatch('color', val)
-      }
+export default {
+  name: 'SequenceTab',
+  props: ['active'],
+  components: {
+    'palette': Palette,
+    'representation-mol': RepresentationMol,
+    'select-utils-widget': SelectUtilsWidget,
+    'sequence-widget': SequenceWidget
+  },
+  computed: {
+    colors () {
+      return this.$store.state.color
+    }
+  },
+  methods: {
+    pickColor (val) {
+      this.$store.dispatch('color', val)
     }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-  
+
   .container {
     flex: 1;
     display: flex;

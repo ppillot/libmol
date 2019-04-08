@@ -1,5 +1,5 @@
 <template>
-  <base-search-database 
+  <base-search-database
     :suggestions="suggestions"
     :label-text="$t('ui.search_pdb_label')"
     placeHolderText="Keyword"
@@ -61,53 +61,53 @@ export default {
       source = CancelToken.source()
       axios.post('https://www.rcsb.org/pdb/rest/search',
         xml, {
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           cancelToken: source.token
         }
       )
-      .then(function (response) {
+        .then(function (response) {
         // console.log(response)
-        if (response.data.length > 0) {
-          let listPdbId = response.data.split('\n').slice(0, 100).join(',')
-          return axios.get('https://www.rcsb.org/pdb/rest/customReport', {
-            params: {
-              pdbids: listPdbId,
-              customReportColumns: 'structureId,structureTitle'
-            },
-            cancelToken: source.token
-          })
-        } else {
+          if (response.data.length > 0) {
+            let listPdbId = response.data.split('\n').slice(0, 100).join(',')
+            return axios.get('https://www.rcsb.org/pdb/rest/customReport', {
+              params: {
+                pdbids: listPdbId,
+                customReportColumns: 'structureId,structureTitle'
+              },
+              cancelToken: source.token
+            })
+          } else {
           // self.$message.error(self.$t('messages.no_record_found'))
-          throw new Error(this.$t('messages.no_record_found'))
-        }
-      }.bind(this))
-      .then(function ({data}) {
+            throw new Error(this.$t('messages.no_record_found'))
+          }
+        }.bind(this))
+        .then(function ({ data }) {
         /* global DOMParser */
-        const parser = new DOMParser()
-        const xmlDocument = parser.parseFromString(data, 'application/xml')
-        const recordNodelist = xmlDocument.getElementsByTagName('record')
+          const parser = new DOMParser()
+          const xmlDocument = parser.parseFromString(data, 'application/xml')
+          const recordNodelist = xmlDocument.getElementsByTagName('record')
 
-        let rep = []
-        for (var item of recordNodelist) {
-          rep.push({
-            value: item.children[1].textContent,
-            file: 'rcsb://' + item.children[0].textContent,
-            molId: item.children[0].textContent,
-            source: 'pdb'
-          })
-        }
-        this.suggestions = rep
+          let rep = []
+          for (var item of recordNodelist) {
+            rep.push({
+              value: item.children[1].textContent,
+              file: 'rcsb://' + item.children[0].textContent,
+              molId: item.children[0].textContent,
+              source: 'pdb'
+            })
+          }
+          this.suggestions = rep
 
-        window.sessionStorage.setItem(`searchPDB-${queryString}`, JSON.stringify(rep))
-        source = undefined
-      }.bind(this))
-      .catch(function (error) {
-        if (axios.isCancel(error) && process.env.NODE_ENV !== 'production') {
-          console.log('Request canceled', error)
-        } else {
-          console.log(error)
-        }
-      })
+          window.sessionStorage.setItem(`searchPDB-${queryString}`, JSON.stringify(rep))
+          source = undefined
+        }.bind(this))
+        .catch(function (error) {
+          if (axios.isCancel(error) && process.env.NODE_ENV !== 'production') {
+            console.log('Request canceled', error)
+          } else {
+            console.log(error)
+          }
+        })
     },
     handleSelect (index) {
       this.$store.dispatch('loadNewFile', this.suggestions[index])

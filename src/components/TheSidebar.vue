@@ -1,7 +1,7 @@
 <template>
     <div class="side-bar full-height">
-        <h1 @click="dialogVisible = true">LibMol<span> {{$t('ui.about.title')}}...</span></h1>
-        
+        <h1 @click="dialogVisible = true">LibMol<span> {{ $t('ui.about.title') }}...</span></h1>
+
         <about-panel :visible="dialogVisible" @close="dialogVisible = false"/>
 
         <el-tabs v-model="activeTab" type="border-card" class="tab-card">
@@ -16,7 +16,7 @@
             <el-tab-pane :label="$t('ui.sequences_tab_label')" name="sequences" :disabled="noSequence">
                 <sequence-tab :active="activeTab === 'sequences'"/>
             </el-tab-pane>
-            
+
             <el-tab-pane :label="$t('ui.surfaces_tab_label')" name="surfaces">
                 <surface-tab/>
             </el-tab-pane>
@@ -24,7 +24,7 @@
             <el-tab-pane :label="$t('ui.contacts_tab_label')" name="contacts" :disabled="noSequence">
                 <contacts-tab/>
             </el-tab-pane>
-            
+
         </el-tabs>
     </div>
 </template>
@@ -40,7 +40,7 @@ import AboutPanel from './AboutPanel'
 import ContactsTab from './ContactsTab'
 
 export default {
-  name: 'theSidebar',
+  name: 'TheSidebar',
   components: {
     SearchLibmol,
     SearchPdb,
@@ -82,7 +82,7 @@ export default {
     h1 {
         cursor: help;
     }
-    
+
     h1:hover {
         color: #1D8CE0;
         transition: color 0.5s ease-in-out 0.2s;
@@ -117,7 +117,7 @@ export default {
         max-height: 100%;
         flex: 1;
     }
-    
+
     .el-tab-pane {
         flex: 1;
         display: flex;

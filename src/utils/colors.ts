@@ -1,4 +1,4 @@
-import {ColormakerRegistry, Colormaker} from 'ngl'
+import { ColormakerRegistry, Colormaker } from 'ngl'
 import AtomProxy from 'ngl/declarations/proxy/atom-proxy'
 
 var ElementColors: {[k:string]: number} = {

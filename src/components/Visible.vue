@@ -1,5 +1,5 @@
 <template>
-  <i :class="[value ? 'icon-eye' : 'icon-eye-off']" 
+  <i :class="[value ? 'icon-eye' : 'icon-eye-off']"
               @click.stop="handlerClick"></i>
 </template>
 

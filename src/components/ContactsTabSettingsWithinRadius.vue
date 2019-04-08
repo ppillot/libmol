@@ -15,7 +15,7 @@
 import FormItem from './FormItem'
 
 export default {
-  name: 'contactsTabSettingsWithinRadius',
+  name: 'ContactsTabSettingsWithinRadius',
   components: {
     FormItem
   },

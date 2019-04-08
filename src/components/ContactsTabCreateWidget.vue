@@ -3,20 +3,20 @@
     <h2>{{ $t('ui.contacts.createHeader') }}</h2>
     <el-tabs v-model="interactionType">
 <!-- ligand pane -->
-      <el-tab-pane 
-      :label="$t('ui.contacts.ligandTabHeader')" 
+      <el-tab-pane
+      :label="$t('ui.contacts.ligandTabHeader')"
       name="ligand"
       :disabled="ligands.length===0"
       >
         <p class="objectives">
-          {{ $t('ui.contacts.ligandManifest')}}
+          {{ $t('ui.contacts.ligandManifest') }}
         </p>
         <p class="instructions">
-          {{ $t('ui.contacts.ligandInstructions')}}
+          {{ $t('ui.contacts.ligandInstructions') }}
         </p>
-        <el-select 
-          v-model="pickedLigand" 
-          filterable 
+        <el-select
+          v-model="pickedLigand"
+          filterable
           :placeholder="$t('ui.contacts.ligandPlaceholder')"
         >
           <el-option v-for="item in ligands"
@@ -29,37 +29,37 @@
         </el-select>
       </el-tab-pane>
 <!-- chain pane -->
-      <el-tab-pane 
-        :label="$t('ui.contacts.chainTabHeader')" 
+      <el-tab-pane
+        :label="$t('ui.contacts.chainTabHeader')"
         :disabled="chains.length<2"
         name="chain">
         <p class="objectives">{{ $t('ui.contacts.chainManifest') }}</p>
         <p class="instructions">{{ $t('ui.contacts.chainTargetInstructions') }}</p>
-        
-        <el-select 
-          v-model="pickedChain" 
-          clearable 
+
+        <el-select
+          v-model="pickedChain"
+          clearable
           :placeholder="$t('ui.contacts.chainTargetPlaceholder')"
         >
-          <el-option 
+          <el-option
             v-for="item in chains"
             :key="item.value"
             :label="item.label"
             :value="item.value"
           >
-          <span style="float:left">{{ item.label}}</span>
+          <span style="float:left">{{ item.label }}</span>
           <span style="float: right; margin-left: 1em;">{{ item.entity }}</span>
           </el-option>
         </el-select>
         <p class="instructions">
           {{ $t('ui.contacts.chainFilterInstructions') }}
         </p>
-        <el-select 
-          v-model="filterChains" 
-          multiple 
+        <el-select
+          v-model="filterChains"
+          multiple
           :placeholder="$t('ui.contacts.chainFilterPlaceholder')"
         >
-          <el-option 
+          <el-option
             v-for="item in filteredChains"
             :key="item.value"
             :label="item.label"
@@ -77,8 +77,8 @@
       </el-tab-pane>
       -->
     </el-tabs>
-    
-    <el-button 
+
+    <el-button
       type="primary"
       class="fullwidth"
       @click="createContact"
@@ -92,7 +92,7 @@
 <script>
 
 export default {
-  name: 'contactsTabCreateWidget',
+  name: 'ContactsTabCreateWidget',
   data () {
     return {
       pickedLigand: '',
@@ -156,7 +156,7 @@ export default {
             let fChains = this.filterChains.map((val) => {
               return ':' + this.chains[val].param.chainId
             }).join(' ')
-            let filter = (fChains.length === 0) ? {} : {filter: fChains}
+            let filter = (fChains.length === 0) ? {} : { filter: fChains }
             this.$store.dispatch(
               'focusContact', {
                 target: this.chains[this.pickedChain].param,
@@ -227,7 +227,7 @@ export default {
     p {
       margin: 0;
     }
-    
+
 </style>
 <style>
   .contact-tab--container .el-tabs .el-tabs__header {

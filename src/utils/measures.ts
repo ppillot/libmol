@@ -1,10 +1,10 @@
 import { getAtomProperties, AtomProperties } from './atoms'
-import AtomProxy from "ngl/declarations/proxy/atom-proxy";
-import StructureComponent from 'ngl/declarations/component/structure-component';
+import AtomProxy from 'ngl/declarations/proxy/atom-proxy'
+import StructureComponent from 'ngl/declarations/component/structure-component'
 import RepresentationElement from 'ngl/declarations/component/representation-element'
-import PickingProxy from 'ngl/declarations/controls/picking-proxy';
+import PickingProxy from 'ngl/declarations/controls/picking-proxy'
 import { Vector3 } from 'ngl'
-import { ActionContext } from 'vuex';
+import { ActionContext } from 'vuex'
 
 interface Measure {
   atom1: AtomProperties|null,
@@ -64,10 +64,10 @@ function measure (component: StructureComponent, context: ActionContext<any, any
   function switchBackgroundColor (color: string|number) {
     labelColor = (color === 'black') ? 0xFFFFFF : 0x000000
     if (comp.hasRepresentation(distRepr)) {
-      distRepr.setParameters({labelColor: labelColor})
+      distRepr.setParameters({ labelColor: labelColor })
     }
     if (comp.hasRepresentation(angleRepr)) {
-      angleRepr.setParameters({labelColor: labelColor})
+      angleRepr.setParameters({ labelColor: labelColor })
     }
   }
 

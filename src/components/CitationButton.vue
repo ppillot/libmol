@@ -26,28 +26,28 @@
 </template>
 
 <script>
-  import citationsPanel from './CitationsPanel'
-
-  export default {
-    name: 'citationButton',
-    components: {
-      citationsPanel
+import citationsPanel from './CitationsPanel'
+console.log(process.env)
+export default {
+  name: 'CitationButton',
+  components: {
+    citationsPanel
+  },
+  data () {
+    return {
+      isPanelVisible: false,
+      activeName: 'citation'
+    }
+  },
+  computed: {
+    title: function () {
+      return this.$store.state.name
     },
-    data () {
-      return {
-        isPanelVisible: false,
-        activeName: 'citation'
-      }
-    },
-    computed: {
-      title: function () {
-        return this.$store.state.name
-      },
-      molCode: function () {
-        return this.$store.state.molCode
-      }
+    molCode: function () {
+      return this.$store.state.molCode
     }
   }
+}
 </script>
 
 <style lang="scss">

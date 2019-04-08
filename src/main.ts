@@ -9,41 +9,40 @@ import './assets/font/css/icons.css'
 Vue.config.productionTip = false
 Vue.use(VueI18n)
 
-let app: Vue;
+let app: Vue
 
 let langList = [navigator.language]
 if (navigator.languages) langList.push(...navigator.languages)
 const langSet = new Set(
-  langList.map( (l) => {
+  langList.map((l) => {
     return l.substr(0, 2).toLowerCase()
   })
 )
 const langFound = locales.find(locale => {
-    return langSet.has(locale)
+  return langSet.has(locale)
 })
 const lang = (langFound === undefined) ? 'en' : langFound
 
 import('./locales/bundles/' + lang + '.json')
-.then(messages => {
-
+  .then(messages => {
     const opt = {
-        locale: lang,
-        messages: {}
+      locale: lang,
+      messages: {}
     }
     Object.defineProperty(opt.messages, lang, {
-        value: messages,
-        enumerable: true,
-        writable: false
+      value: messages,
+      enumerable: true,
+      writable: false
     })
 
     const i18n = new VueI18n(opt)
-  
+
     app = new Vue({
-        store,
-        i18n,
-        render: h => h(App)
+      store,
+      i18n,
+      render: h => h(App)
     }).$mount('#app')
-})
-.catch(err => {
-  console.log('failed to import ' + lang + '.json', err)
-})
+  })
+  .catch(err => {
+    console.log('failed to import ' + lang + '.json', err)
+  })

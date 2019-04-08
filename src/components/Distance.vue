@@ -11,7 +11,7 @@
         @change="switchDistance">
       </el-switch>
     </form-item>
-   
+
     <table class="table-distances">
       <thead>
         <tr>
@@ -27,19 +27,19 @@
             <el-button type="text" icon="delete" @click="handleDelete(index)"></el-button>
           </td>
           <td>
-            {{ measure.atom1.atomname}} {{ measure.atom1.serial }} | {{ measure.atom1.resname}}{{ measure.atom1.resno}}
+            {{ measure.atom1.atomname }} {{ measure.atom1.serial }} | {{ measure.atom1.resname }}{{ measure.atom1.resno }}
           </td>
           <td>
-            {{ measure.atom2.atomname}} {{ measure.atom2.serial }} | {{ measure.atom2.resname}}{{ measure.atom2.resno}}
+            {{ measure.atom2.atomname }} {{ measure.atom2.serial }} | {{ measure.atom2.resname }}{{ measure.atom2.resno }}
           </td>
           <td>
-            {{ measure.distance/10 | round}} nm
+            {{ measure.distance/10 | round }} nm
           </td>
-        </tr>  
+        </tr>
       </tbody>
       <tfoot v-else>
         <tr>
-          <td colspan="4">{{$t('ui.toolbar.distance.instructions')}}</td>
+          <td colspan="4">{{ $t('ui.toolbar.distance.instructions') }}</td>
         </tr>
       </tfoot>
     </table>
@@ -55,7 +55,7 @@
         @change="switchDistance">
       </el-switch>
     </form-item>
-   
+
     <table class="table-distances">
       <thead>
         <tr>
@@ -71,19 +71,19 @@
             <el-button type="text" icon="delete" @click="handleDelete(index)"></el-button>
           </td>
           <td>
-            {{ measure.atom1.atomname}} {{ measure.atom1.serial }} | {{ measure.atom1.resname}}{{ measure.atom1.resno}}
+            {{ measure.atom1.atomname }} {{ measure.atom1.serial }} | {{ measure.atom1.resname }}{{ measure.atom1.resno }}
           </td>
           <td>
-            {{ measure.atom2.atomname}} {{ measure.atom2.serial }} | {{ measure.atom2.resname}}{{ measure.atom2.resno}}
+            {{ measure.atom2.atomname }} {{ measure.atom2.serial }} | {{ measure.atom2.resname }}{{ measure.atom2.resno }}
           </td>
           <td>
-            {{ measure.distance/10 | round}} nm
+            {{ measure.distance/10 | round }} nm
           </td>
-        </tr>  
+        </tr>
       </tbody>
       <tfoot v-else>
         <tr>
-          <td colspan="4">{{$t('ui.toolbar.distance.instructions')}}</td>
+          <td colspan="4">{{ $t('ui.toolbar.distance.instructions') }}</td>
         </tr>
       </tfoot>
     </table>
@@ -91,41 +91,41 @@
 </template>
 
 <script>
-  import FormItem from './FormItem'
+import FormItem from './FormItem'
 
-  export default {
-    name: 'distance',
-    components: {
-      FormItem
+export default {
+  name: 'Distance',
+  components: {
+    FormItem
+  },
+  computed: {
+    measures () {
+      return this.$store.state.distances
     },
-    computed: {
-      measures () {
-        return this.$store.state.distances
+    mouseDistance: {
+      get () {
+        return this.$store.state.isMeasuringDistances
       },
-      mouseDistance: {
-        get () {
-          return this.$store.state.isMeasuringDistances
-        },
-        set (value) {
-          this.$store.commit('isMeasuringDistances', value)
-        }
-      }
-    },
-    filters: {
-      round: function (value) {
-        return value.toFixed(2)
-      }
-    },
-    methods: {
-      switchDistance (isMeasuringDistances) {
-        const mouseMode = (isMeasuringDistances) ? 'distance' : 'pick'
-        this.$store.dispatch('setMouseMode', mouseMode)
-      },
-      handleDelete (value) {
-        this.$store.dispatch('deleteDistance', value)
+      set (value) {
+        this.$store.commit('isMeasuringDistances', value)
       }
     }
+  },
+  filters: {
+    round: function (value) {
+      return value.toFixed(2)
+    }
+  },
+  methods: {
+    switchDistance (isMeasuringDistances) {
+      const mouseMode = (isMeasuringDistances) ? 'distance' : 'pick'
+      this.$store.dispatch('setMouseMode', mouseMode)
+    },
+    handleDelete (value) {
+      this.$store.dispatch('deleteDistance', value)
+    }
   }
+}
 </script>
 
 <style>

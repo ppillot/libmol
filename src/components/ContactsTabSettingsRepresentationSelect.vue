@@ -21,7 +21,7 @@
 import FormItem from './FormItem'
 
 export default {
-  name: 'contactsTabSettingsRepresentationSelect',
+  name: 'ContactsTabSettingsRepresentationSelect',
   components: {
     FormItem
   },

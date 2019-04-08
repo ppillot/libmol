@@ -3,7 +3,6 @@
 // if it does, it triggers the callback function
 
 function mouseFocus (callBack: () => void) {
-  
   return function (stage: any, x: number, y: number): void {
     // background is being picked
     const pickingProxy = stage.pickingControls.pick(x, y)
@@ -11,7 +10,6 @@ function mouseFocus (callBack: () => void) {
       callBack()
     }
   }
-  
 }
 
-export {mouseFocus}
+export { mouseFocus }

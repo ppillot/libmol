@@ -16,7 +16,7 @@ import ContactsTabCreateWidget from './ContactsTabCreateWidget'
 import ContactDetails from './ContactDetails'
 
 export default {
-  name: 'contactsTab',
+  name: 'ContactsTab',
   components: {
     ContactsTabList,
     ContactsTabCreateWidget,
@@ -40,6 +40,5 @@ export default {
       display: flex;
       flex-direction: column;
     }
-       
-</style>
 
+</style>

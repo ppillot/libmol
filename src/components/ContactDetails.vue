@@ -7,7 +7,7 @@
       @click="back()">
       {{ $t('general.back') }}
     </el-button>
-    <contact-header-list-item 
+    <contact-header-list-item
       :contact-num="contactNum" />
     <contacts-pairs-list
       :contact-num="contactNum" />
@@ -19,7 +19,7 @@ import ContactsPairsList from './ContactsPairsList'
 import ContactHeaderListItem from './ContactHeaderListItem'
 
 export default {
-  name: 'contactsTabList',
+  name: 'ContactsTabList',
   components: {
     ContactsPairsList,
     ContactHeaderListItem
@@ -55,4 +55,3 @@ export default {
   text-align: left;
 }
 </style>
-

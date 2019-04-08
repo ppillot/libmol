@@ -4,12 +4,12 @@
         trigger="manual"
         placement="right"
         v-model="palette">
-        <palette 
-          v-model="colors" 
+        <palette
+          v-model="colors"
           @color="changeColor"
           @mouseleave="closePalette"
         />
-        <el-select 
+        <el-select
           v-model="color"
           :disabled="disabled"
           slot="reference"
@@ -31,8 +31,7 @@
             value="palette"
             >
           </el-option>
-        
-          
+
         </el-select>
       </el-popover>
     </form-item>
@@ -43,7 +42,7 @@ import FormItem from './FormItem'
 import Palette from './Palette'
 
 export default {
-  name: 'contactsTabSettingsColorSelect',
+  name: 'ContactsTabSettingsColorSelect',
   components: {
     FormItem,
     Palette

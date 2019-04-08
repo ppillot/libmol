@@ -1,12 +1,12 @@
-import {Selection, ColormakerRegistry} from 'ngl'
-import {byres} from './colors'
+import { Selection, ColormakerRegistry } from 'ngl'
+import { byres } from './colors'
 import ContactEntities from './contactEntities'
-import AtomProxy from 'ngl/declarations/proxy/atom-proxy';
-import { ActionContext } from 'vuex';
-import StructureComponent from 'ngl/declarations/component/structure-component';
-import RepresentationElement from 'ngl/declarations/component/representation-element';
-import { ContactPicker } from 'ngl/declarations/utils/picker';
-import BitArray from 'ngl/declarations/utils/bitarray';
+import AtomProxy from 'ngl/declarations/proxy/atom-proxy'
+import { ActionContext } from 'vuex'
+import StructureComponent from 'ngl/declarations/component/structure-component'
+import RepresentationElement from 'ngl/declarations/component/representation-element'
+import { ContactPicker } from 'ngl/declarations/utils/picker'
+import BitArray from 'ngl/declarations/utils/bitarray'
 
 interface ContactRepr {
   contact: RepresentationElement,
@@ -160,10 +160,10 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
     return makeRes(ap)
   }
 
-  function createContact ({target: {resnum, chainId}, filter}: {target: {resnum: number, chainId: string, [k: string]: any}, filter: string}) {
+  function createContact ({ target: { resnum, chainId }, filter }: {target: {resnum: number, chainId: string, [k: string]: any}, filter: string}) {
     const cE = new ContactEntities(structure, {
       target: {
-        resnum: (resnum)? resnum.toString() : '',
+        resnum: (resnum) ? resnum.toString() : '',
         chainId: chainId
       },
       filter: filter,
@@ -327,8 +327,7 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
 
   function clearContact (index: number) {
     for (let r in tabContactsRepr[index]) {
-      if (tabContactsRepr[index][r].hasOwnProperty('repr'))
-        (tabContactsRepr[index][r] as RepresentationElement).dispose()
+      if (tabContactsRepr[index][r].hasOwnProperty('repr')) { (tabContactsRepr[index][r] as RepresentationElement).dispose() }
     }
     tabContactsRepr.splice(index, 1)
     tabContacts.splice(index, 1)
@@ -404,11 +403,11 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
         }
         contact.visible = properties.param.visible
       } else if (properties.param.hasOwnProperty('isWaterExcluded')) {
-        contactRepr.contactEntities.setParameters({isWaterExcluded: properties.param.isWaterExcluded})
+        contactRepr.contactEntities.setParameters({ isWaterExcluded: properties.param.isWaterExcluded })
         contact.params.isWaterExcluded = properties.param.isWaterExcluded
         updateRepresentations(index)
       } else if (properties.param.hasOwnProperty('radius')) {
-        contactRepr.contactEntities.setParameters({radius: properties.param.radius})
+        contactRepr.contactEntities.setParameters({ radius: properties.param.radius })
         contact.repr.vicinity.radius = properties.param.radius
         updateRepresentations(index)
       }
@@ -506,15 +505,15 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
 
   /**
    * focus on the given contact
-   * @param {number} id index of the contact 
+   * @param {number} id index of the contact
    */
   function focus (id: number) {
-    const contact = tabContacts.find((c)=> {return c.index===id}) as ContactObject
+    const contact = tabContacts.find((c) => { return c.index === id }) as ContactObject
     const sele = contact.repr.target.seleString + ' or ' + contact.repr.vicinity.seleString
     const stage = comp.stage
     const center = stage.compList[0].getCenter(sele)
     const zoom = stage.compList[0].getZoom(sele)
-      
+
     stage.animationControls.zoomMove(center, zoom, 400)
     context.commit('setFog', [50, 60])
   }
@@ -555,8 +554,8 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
     getContacts: function () {
       return tabContacts
     },
-    addContact: function ({target: {resnum, chainId}, filter}: {target: {resnum: number, chainId: string, [k: string]: any}, filter: string}) {
-      return createContact({target: {resnum, chainId}, filter})
+    addContact: function ({ target: { resnum, chainId }, filter }: {target: {resnum: number, chainId: string, [k: string]: any}, filter: string}) {
+      return createContact({ target: { resnum, chainId }, filter })
     },
     setProperties: function (props: {[k: string]: any}) {
       // const index = getIndexFromId(props.index)
@@ -568,4 +567,4 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
   }
 }
 
-export {contact, contactTypesIndices, contactTypesMap}
+export { contact, contactTypesIndices, contactTypesMap }

@@ -1,11 +1,11 @@
 <template>
     <div class="toolbar">
         <citation-button/>
-        
+
         <div class="molname">{{ molName }}</div>
         <div class="commands">
-          
-          
+
+
           <el-popover
             ref="settings"
             placement="bottom-end"
@@ -20,7 +20,7 @@
             trigger="click">
             <measures-panel></measures-panel>
           </el-popover>
-          
+
           <el-button v-popover:measures class="button" type="text" size="medium">
             {{ $t('ui.toolbar.measures.button') }}
           </el-button>
@@ -111,7 +111,8 @@
     padding: 0.2em;
     transition: max-height 0.6s;
     align-items: center;
-  } 
+    font-size: 0.9em;
+  }
 
   .molname {
     flex: 1;
@@ -129,7 +130,7 @@
     transition: max-height 0.6s;
   }
 
-  .button {
+  .el-button.button {
     margin: 0 0.2em;
     padding: 0;
     color: #88a9d4;
@@ -138,7 +139,7 @@
   .warning {
     color: orangered;
   }
-  
+
   .commands {
     margin-right: 0.5em;
   }

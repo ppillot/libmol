@@ -12,12 +12,12 @@
         <el-tab-pane label="Statistiques" name="stats" disabled>Config</el-tab-pane>
         <el-tab-pane label="Constituants" name="comps" disabled>Role</el-tab-pane>
       </el-tabs>-->
-      
+
     </el-dialog>
-    <el-button 
-      class="pdb-code" 
-      type="text" 
-      size="large" 
+    <el-button
+      class="pdb-code"
+      type="text"
+      size="large"
       @click="isPanelVisible = true"
       v-if="molCode.length > 0">
       {{ molCode.toUpperCase() }}
@@ -50,12 +50,11 @@
   }
 </script>
 
-<style>
-  .pdb-code {
+<style lang="scss">
+  .el-button.pdb-code {
     font-size: 0.8em;
     background: #87a9d4;
     color: #f9fafc;
-    height: 1.3em;
     padding: 2px;
     border-radius: 3px;
     font-weight: 500;
@@ -63,11 +62,10 @@
     margin-right: 0.5em;
     text-decoration: none;
     display: inline-block;
-  }
-
-  .pdb-code:hover, .pdb-code:focus {
-    background: #03a9f4;
-    color: #f9fafc;
+    &:hover, &:focus {
+      background: #03a9f4;
+      color: #f9fafc;
+    }
   }
 
   .el-dialog__wrapper {

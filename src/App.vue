@@ -147,4 +147,8 @@ export default {
     height: 11px;
     background-color: #20a0ff;
   }
+
+  p {
+    word-break: break-word;
+  }
 </style>

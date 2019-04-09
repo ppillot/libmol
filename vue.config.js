@@ -9,21 +9,11 @@ module.exports = {
       enableInSFC: false
     },
     electronBuilder: {
+      disableMainProcessTypescript: false,
       builderOptions: {
         'productName': 'libmol',
         'appId': 'com.electron.libmol',
         copyright: 'Copyright © 2017-2019 Paul Pillot',
-        homepage: 'https://libmol.org',
-        repository: {
-          type: 'git',
-          url: 'https:github.com/ppillot/libmol.git'
-        },
-        'directories': {
-          'output': 'build'
-        },
-        'files': [
-          'dist/electron/**/*'
-        ],
         'fileAssociations': [
           {
             'ext': 'pdb',
@@ -48,11 +38,13 @@ module.exports = {
           ]
         },
         'mac': {
-          'icon': 'build/icons/icon.icns',
-          'category': 'public.app-category.education'
+          'icon': 'public/icons/icon.icns',
+          'category': 'public.app-category.education',
+          'target': 'dmg',
+          'electronLanguages': ['fr', 'en']
         },
         'win': {
-          'icon': 'build/icons/icon.ico',
+          'icon': 'public/icons/icon.ico',
           'target': [
             {
               'target': 'portable',
@@ -63,7 +55,7 @@ module.exports = {
           ]
         },
         'linux': {
-          'icon': 'build/icons'
+          'icon': 'public/icons'
         }
       }
     }

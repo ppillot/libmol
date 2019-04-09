@@ -42,9 +42,10 @@
 </template>
 
 <script>
-import FormItem from './FormItem'
+import Vue from 'vue'
+import FormItem from './FormItem.vue'
 
-export default {
+export default Vue.extend({
   name: 'BaseSearchDatabase',
   components: {
     FormItem
@@ -108,7 +109,7 @@ export default {
       } while (node !== document.body)
       return false
     },
-    getSuggestion: function (event) {
+    getSuggestion: function () {
       this.isFocused = true
       this.$emit('search', this.queryString)
     },
@@ -132,7 +133,7 @@ export default {
     },
     checkVisibility (delta) {
       let suggestionsListNode = this.$el.getElementsByClassName('suggest')[0]
-      let focusedResult = suggestionsListNode.firstChild.children[this.highlightedSuggestion]
+      let focusedResult = (suggestionsListNode.firstChild).children[this.highlightedSuggestion]
       switch (delta) {
         case 1:
           if (suggestionsListNode.scrollTop + suggestionsListNode.offsetHeight - 10 < focusedResult.offsetTop) {
@@ -147,7 +148,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style scoped>

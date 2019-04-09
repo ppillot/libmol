@@ -12,7 +12,7 @@
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({
+const FormItem = Vue.extend({
   name: 'FormItem',
   props: {
     label: {
@@ -33,6 +33,8 @@ export default Vue.extend({
     }
   }
 })
+
+export default FormItem
 
 </script>
 

@@ -27,15 +27,18 @@ function query (queryString: string): Promise<LibmolResponse[]> {
         })
     })
     .then((response: AxiosResponse<LibmolQueryResponse[]>) => {
-        return response.data.map((item) => (
-            { value: item.label,
+        return response.data.map((item) => {
+            let filename = (item.file.indexOf('.gz') > -1) ?
+                item.file.substring(0, item.file.lastIndexOf('.gz')) : item.file
+
+            return { value: item.label,
               file: ((item.file.indexOf('.cif') > -1) || (item.file.indexOf('.mmtf') > -1) || (item.file.indexOf('.sdf') > -1))
                 ? 'static/mol/' + item.file
                 : `static/mol/pdb/${item.file}.pdb`,
               molId: item.molId,
               source: 'libmol'
-            })
-        )
+            }
+        })
     })
 }
 

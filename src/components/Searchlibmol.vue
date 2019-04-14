@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import ajax, { LibmolQueryResponse } from '../utils/queryLibmolAjax'
-import debounce from 'throttle-debounce/debounce'
+import { debounce } from 'throttle-debounce'
 import BaseSearchDatabase from './BaseSearchDatabase.vue'
 import { LibmolResponse } from '../utils/queryLibmolElectron'
 
@@ -46,7 +46,7 @@ export default {
     },
 
     debouncedQuery: debounce(
-      300,
+      300, false,
       function (q: string) {
         this.querySearchAsync(q)
       }),

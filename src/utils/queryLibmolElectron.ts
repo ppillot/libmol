@@ -46,10 +46,12 @@ function query (queryString: string): Promise<LibmolResponse[]> {
             }
             let rep: LibmolResponse[] = []
             docs.forEach(d => {
+                let filename = (d.FICHIER.indexOf('.gz') > -1) ?
+                    d.FICHIER.substring(0, d.FICHIER.lastIndexOf('.gz')) : d.FICHIER
               rep.push({
                 value: d.TITRE,
                 file: ((d.FICHIER.indexOf('.cif') > -1) || (d.FICHIER.indexOf('.mmtf') > -1) || (d.FICHIER.indexOf('.sdf') > -1))
-                  ? 'static/mol/' + d.FICHIER
+                  ? 'static/mol/' + filename + '.gz'
                   : `static/mol/pdb/${d.FICHIER}.pdb.gz`,
                 molId: d.ID,
                 source: 'libmol'

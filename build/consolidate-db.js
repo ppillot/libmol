@@ -1,10 +1,12 @@
 const fs = require('fs')
 const readline = require('readline')
-const google = require('googleapis')
-const googleAuth = require('google-auth-library')
+const { google } = require('googleapis')
+// const googleAuth = require('google-auth-library')
 const escapeQuotes = require('escape-quotes')
 const https = require('https')
 const sqlite3 = require('sqlite3').verbose()
+const chalk = require('chalk')
+const zopfli = require('node-zopfli')
 
 const removeAccents = require('remove-accents-diacritics')
 const Entities = require('html-entities').AllHtmlEntities
@@ -20,11 +22,11 @@ const TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json'
 fs.readFile('./build/client_secret.json', function processClientSecrets (err, content) {
   if (err) {
     console.log('Error loading client secret file: ' + err)
-    return;
+    return
   }
   // Authorize a client with the loaded credentials, then call the
   // Google Sheets API.
-  authorize(JSON.parse(content), buildI18N)
+  authorize(JSON.parse(content), consolidateDB)
 })
 
 /**
@@ -38,8 +40,7 @@ function authorize (credentials, callback) {
   var clientSecret = credentials.installed.client_secret
   var clientId = credentials.installed.client_id
   var redirectUrl = credentials.installed.redirect_uris[0]
-  var auth = new googleAuth()
-  var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl)
+  var oauth2Client = new google.auth.OAuth2(clientId, clientSecret, redirectUrl)
 
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, function (err, token) {
@@ -75,7 +76,7 @@ function getNewToken (oauth2Client, callback) {
     oauth2Client.getToken(code, function (err, token) {
       if (err) {
         console.log('Error while trying to retrieve access token', err)
-        return;
+        return
       }
       oauth2Client.credentials = token
       storeToken(token)
@@ -93,7 +94,7 @@ function storeToken (token) {
   try {
     fs.mkdirSync(TOKEN_DIR)
   } catch (err) {
-    if (err.code != 'EEXIST') {
+    if (err.code !== 'EEXIST') {
       throw err
     }
   }
@@ -110,22 +111,27 @@ function getFileProperties (file, type, idsource) {
   switch (type) {
     case 'mmtf':
       fileName = `${idsource}-${file}.mmtf.gz`
-      destPath = 'static/mol/'
+      destPath = 'public/static/mol/'
       source = `https://mmtf.rcsb.org/v1.0/full/${idsource}.mmtf.gz`
       dest = destPath + fileName
       break
     case 'cif pdb':
       fileName = `${idsource}-${file}.cif`
-      destPath = 'static/mol/'
+      destPath = 'public/static/mol/'
       source = `https://files.rcsb.org/ligands/view/${idsource}.cif`
       dest = destPath + fileName
       break
-    case 'pubchem':
-      fileName = `${idsource}-${file}.cif`
-      destPath = 'static/mol/'
+    case 'cid sdf':
+      fileName = `${idsource}-${file}.sdf`
+      destPath = 'public/static/mol/'
       source = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${idsource}/record/SDF/?record_type=3d&response_type=save&response_basename=Structure3D_CID_${idsource}`
       dest = destPath + fileName
       break
+    default:
+      fileName = `${file}.pdb`
+      destPath = 'public/static/mol/pdb/'
+      source = type
+      dest = destPath + fileName
   }
   return {
     fileName: fileName,
@@ -138,10 +144,9 @@ function getFileProperties (file, type, idsource) {
  * Print the names and majors of students in a sample spreadsheet:
  * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
  */
-function buildI18N (auth) {
-  var sheets = google.sheets('v4')
+function consolidateDB (auth) {
+  var sheets = google.sheets({ version: 'v4', auth })
   sheets.spreadsheets.values.get({
-    auth: auth,
     spreadsheetId: '1uFoPLUlY73jpNubX0Z6F-Kyowrv3_GqT8TfrCWQ5H9g',
     range: 'out'
   }, function (err, response) {
@@ -150,9 +155,10 @@ function buildI18N (auth) {
       return
     }
 
-    var rows = response.values
+    var rows = response.data.values
+    console.log(process.cwd())
     var db = new sqlite3.Database('src/api/libmol.sqlite')
-    if (rows.length === 0) {
+    if (!rows.length) {
       console.log('No data found.')
     } else {
       let tabFiles = []
@@ -185,13 +191,14 @@ function buildI18N (auth) {
                 }
 
                 // model idsource
-                if (record.IDSOURCE !== row[2]) {
+                if (record.IDSOURCE + '' !== '' + row[2]) {
                   db.run('UPDATE molecule SET idsource = ? WHERE id=' + row[0],
                     [row[2]], (err, success) => {
                       if (err) {
                         console.log('Problem occured at ', row, '\n', err)
                       } else {
                         console.log('Succesfully updated IDSOURCE for id:' + row[0])
+                        console.log(record.IDSOURCE, row[2])
                       }
                     }
                   )
@@ -224,7 +231,7 @@ function buildI18N (auth) {
                 }
 
                 // check wether description has no html tags or no html entities
-                const htmlTagRe = /<\/?[\w\s="/.':;#-\/]+>/gi
+                const htmlTagRe = /<\/?[\w\s="/.':;#-/]+>/gi
                 const htmlEncodedEntities = /&#?[a-z0-9]+;/gi
                 if (htmlTagRe.test(record.DESCRIPTION) || htmlEncodedEntities.test(record.DESCRIPTION)) {
                   let txt = record.DESCRIPTION
@@ -255,6 +262,18 @@ function buildI18N (auth) {
                     }
                   )
                 }
+
+                // check if the file is here, and eventually requires compression
+                const file = getFileProperties(row[5], row[6], row[2])
+                fs.access(file.dest, fs.constants.F_OK, (err) => {
+                  if (err) {
+                    console.log(chalk.red(file.dest + ' from ' + file.source + ' does not exist'))
+                  } else {
+                    console.log(chalk.green('OK ' + file.fileName))
+                    tabFiles.push(file.dest)
+                    if (tabFiles.length === rows.length - 1) cleanFiles(tabFiles)
+                  }
+                })
               }
             }
           )
@@ -302,4 +321,41 @@ var download = function (url, dest, cb) {
 
 function callBack (message) {
   console.log(this.fileName, message)
+}
+
+function cleanFiles (fileList) {
+  console.log(chalk.yellow('Cleaning files...'))
+  let path = 'public/static/mol/'
+  let nbRem = 0
+  fs.readdir(path, (err, files) => {
+    if (err) return console.error(err)
+    // console.log(chalk.blue(fileList.join('\n')))
+    files.forEach(file => {
+      if (file[0] === '.') return
+      if (file.indexOf('.') === -1) return // might be a folder
+      if (fileList.indexOf(path + file) === -1) {
+        console.log(file + ' should be removed')
+        fs.unlink(path + file, (err) => {
+          if (err) throw err
+          console.log(chalk.yellow(++nbRem + ' files deleted'))
+        })
+      }
+    })
+  })
+  path2 = 'public/static/mol/pdb/'
+  fs.readdir(path2, (err, files) => {
+    if (err) return console.error(err)
+    // console.log(chalk.blue(fileList.join('\n')))
+    files.forEach(file => {
+      if (file[0] === '.') return
+      if (file.indexOf('.') === -1) return // might be a folder
+      if (fileList.indexOf(path2 + file) === -1) {
+        console.log(file + ' should be removed')
+        fs.unlink(path2 + file, (err) => {
+          if (err) throw err
+          console.log(chalk.yellow(++nbRem + ' files deleted'))
+        })
+      }
+    })
+  })
 }

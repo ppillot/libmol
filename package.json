@@ -1,6 +1,6 @@
 {
   "name": "libmol",
-  "version": "0.1.0",
+  "version": "0.3.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,14 +12,14 @@
     "postuninstall": "electron-builder install-app-deps",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
-    "i18n": "node build/help.js && node build/i18n.js"
+    "i18n": "node build/help.js && node build/i18n.js",
+    "db": "node build/consolidate-db.js"
   },
   "main": "background.js",
   "dependencies": {
     "@types/nedb": "^1.8.7",
     "@types/signals": "^1.0.1",
     "@types/three": "^0.93.30",
-    "@types/throttle-debounce": "^1.1.1",
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.4.5",
@@ -35,6 +35,7 @@
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "@types/jest": "^23.1.4",
+    "@types/throttle-debounce": "^1.1.1",
     "@types/webpack": "^4.4.0",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-e2e-cypress": "^3.5.0",
@@ -49,10 +50,16 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-component": "^1.1.1",
     "electron": "^4.0.0",
+    "escape-quotes": "^1.0.2",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "google-auth-library": "^3.1.2",
+    "googleapis": "^39.2.0",
+    "html-entities": "^1.2.1",
     "node-sass": "^4.9.0",
+    "remove-accents-diacritics": "^1.0.2",
     "sass-loader": "^7.1.0",
+    "sqlite3": "^4.0.6",
     "ts-jest": "^23.0.0",
     "typescript": "^3.2.1",
     "vue-cli-plugin-electron-builder": "^1.2.0",

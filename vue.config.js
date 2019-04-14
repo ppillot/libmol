@@ -1,6 +1,9 @@
 module.exports = {
   lintOnSave: false,
-
+  productionSourceMap: false,
+  chainWebpack: config => {
+    config.plugins.delete('prefetch')
+  },
   pluginOptions: {
     i18n: {
       locale: 'en',
@@ -9,11 +12,17 @@ module.exports = {
       enableInSFC: false
     },
     electronBuilder: {
+      chainWebpackRendererProcess: config => {
+        // Chain webpack config for electron renderer process only
+        // The following example will set IS_ELECTRON to true in your app
+        config.devtool()
+      },
       disableMainProcessTypescript: false,
       builderOptions: {
         'productName': 'libmol',
         'appId': 'com.electron.libmol',
         copyright: 'Copyright © 2017-2019 Paul Pillot',
+        compression: 'maximum',
         'fileAssociations': [
           {
             'ext': 'pdb',
@@ -21,6 +30,12 @@ module.exports = {
             'role': 'Viewer',
             'mimeType': 'chemical/x-pdb'
           }
+        ],
+        'files': [
+          '!node_modules',
+          '!icons',
+          '!*.map',
+          '!css/fonts'
         ],
         'dmg': {
           'contents': [
@@ -45,6 +60,9 @@ module.exports = {
         },
         'win': {
           'icon': 'public/icons/icon.ico',
+          'files': [
+            'public/icons/icon.ico'
+          ],
           'target': [
             {
               'target': 'portable',
@@ -61,11 +79,10 @@ module.exports = {
     }
   },
 
-  publicPath: undefined,
+  publicPath: './',
   outputDir: undefined,
   assetsDir: undefined,
   runtimeCompiler: undefined,
-  productionSourceMap: undefined,
   parallel: undefined,
   css: undefined,
   devServer: {

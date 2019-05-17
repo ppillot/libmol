@@ -636,7 +636,7 @@ var vuex = new Vuex.Store({
     screenCapture (context) {
       // from NGL example gui
       stage.makeImage({
-        factor: 2,
+        factor: 2, // 3,
         antialias: true,
         trim: false,
         transparent: true
@@ -809,6 +809,11 @@ var vuex = new Vuex.Store({
           case 'licorice':
             reprParam.multipleBond = (context.state.mol.noSequence || context.state.multipleBond) ? 'symmetric' : 'off'
             break
+          /* case 'cartoon':
+            reprParam.quality = 'high'
+            reprParam.radialSegments = 20
+            reprParam.subdiv = 20
+            break */
         }
 
         const r = stage.compList[0].addRepresentation(displayType, reprParam)

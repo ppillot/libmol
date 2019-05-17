@@ -6,7 +6,6 @@ const escapeQuotes = require('escape-quotes')
 const https = require('https')
 const sqlite3 = require('sqlite3').verbose()
 const chalk = require('chalk')
-const zopfli = require('node-zopfli')
 
 const removeAccents = require('remove-accents-diacritics')
 const Entities = require('html-entities').AllHtmlEntities
@@ -116,19 +115,19 @@ function getFileProperties (file, type, idsource) {
       dest = destPath + fileName
       break
     case 'cif pdb':
-      fileName = `${idsource}-${file}.cif`
+      fileName = `${idsource}-${file}.cif.gz`
       destPath = 'public/static/mol/'
       source = `https://files.rcsb.org/ligands/view/${idsource}.cif`
       dest = destPath + fileName
       break
     case 'cid sdf':
-      fileName = `${idsource}-${file}.sdf`
+      fileName = `${idsource}-${file}.sdf.gz`
       destPath = 'public/static/mol/'
       source = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${idsource}/record/SDF/?record_type=3d&response_type=save&response_basename=Structure3D_CID_${idsource}`
       dest = destPath + fileName
       break
     default:
-      fileName = `${file}.pdb`
+      fileName = `${file}.pdb.gz`
       destPath = 'public/static/mol/pdb/'
       source = type
       dest = destPath + fileName
@@ -271,7 +270,10 @@ function consolidateDB (auth) {
                   } else {
                     console.log(chalk.green('OK ' + file.fileName))
                     tabFiles.push(file.dest)
-                    if (tabFiles.length === rows.length - 1) cleanFiles(tabFiles)
+                    if (tabFiles.length === rows.length - 1) {
+                      cleanFiles(tabFiles)
+                      dumpDB(db)
+                    }
                   }
                 })
               }
@@ -301,7 +303,7 @@ function consolidateDB (auth) {
           }
         }
       })
-      db.close()
+      // db.close()
     }
   })
 }
@@ -317,6 +319,28 @@ var download = function (url, dest, cb) {
     fs.unlink(dest) // Delete the file async. (But we don't check the result)
     if (cb) cb(err.message)
   })
+}
+
+function dumpDB (db) {
+  console.log(chalk.yellow('Dump of DB in molecule.json'))
+  dump = []
+  db.all('SELECT * FROM molecule', [],
+    (err, rows) => {
+      if (err) throw err
+      dump = rows.map(row => {
+        return {
+          FICHIER: row.FICHIER,
+          ID: row.ID,
+          TITRE: row.TITRE
+          // FTINDEX: row.FTINDEX
+        }
+      })
+      fs.writeFile('./public/static/datastore/molecule.json', JSON.stringify(dump), 'utf8', (err) => {
+        if (err) throw err
+        console.log(chalk.green('Export database to molecule.json'))
+      })
+    }
+  )
 }
 
 function callBack (message) {

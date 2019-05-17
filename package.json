@@ -1,6 +1,6 @@
 {
   "name": "libmol",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

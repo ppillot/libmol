@@ -67,6 +67,7 @@ function suggestion () {
   function empty () {
     suggestionsList = []
     suggestionsSize = 0
+    suggestionsIndexes = []
   }
 
   function add (category: string, list: string[], word: string, startIndex = 0) {

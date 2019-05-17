@@ -62,12 +62,12 @@ interface Suggestion {
 function suggestion () {
   let suggestionsList: Suggestion[] = []
   let suggestionsSize = 0
-  let suggestionsIndexes: string[] = []
+  let suggestionsTexts: string[] = []
 
   function empty () {
     suggestionsList = []
     suggestionsSize = 0
-    suggestionsIndexes = []
+    suggestionsTexts = []
   }
 
   function add (category: string, list: string[], word: string, startIndex = 0) {
@@ -85,7 +85,7 @@ function suggestion () {
         })
       })
       suggestionsSize += newSuggestions.length
-      suggestionsIndexes = suggestionsIndexes.concat(newSuggestions)
+      suggestionsTexts = suggestionsTexts.concat(newSuggestions)
     }
   }
 
@@ -94,7 +94,7 @@ function suggestion () {
   }
 
   function getByIndex (index: number) {
-    return suggestionsIndexes[index]
+    return suggestionsTexts[index]
   }
 
   return {

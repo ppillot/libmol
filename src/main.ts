@@ -37,7 +37,7 @@ import('./locales/bundles/' + lang + '.json')
 
     const i18n = new VueI18n(opt)
 
-    app = new Vue({
+    new Vue({
       store,
       i18n,
       render: h => h(App)

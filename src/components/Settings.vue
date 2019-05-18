@@ -56,7 +56,6 @@
 import FormItem from './FormItem'
 import ContactsTypesSettings from './ContactsTypesSettings'
 import { locales } from '../locales/locales'
-import Vue from 'vue'
 
 var defaultParameters = {
   clipNear: 0,

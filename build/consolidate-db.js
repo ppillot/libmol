@@ -102,7 +102,7 @@ function storeToken (token) {
 }
 
 function getFileProperties (file, type, idsource) {
-  let fileName = file
+  let fileName = ''
   let destPath = ''
   let source = ''
   let dest = ''

@@ -267,6 +267,7 @@ function consolidateDB (auth) {
                 fs.access(file.dest, fs.constants.F_OK, (err) => {
                   if (err) {
                     console.log(chalk.red(file.dest + ' from ' + file.source + ' does not exist'))
+                    download(file.source, file.dest)
                   } else {
                     console.log(chalk.green('OK ' + file.fileName))
                     tabFiles.push(file.dest)
@@ -311,6 +312,14 @@ function consolidateDB (auth) {
 var download = function (url, dest, cb) {
   var file = fs.createWriteStream(dest)
   https.get(url, function (response) {
+
+    if (response.statusCode !== 200) {
+      console.log(chalk.red(`Upstream file ${url} not found`))
+      fs.unlink(dest) // Delete the file async. (But we don't check the result)
+      if (cb) cb(err.message)
+      return
+    }
+
     response.pipe(file)
     file.on('finish', function () {
       file.close(cb) // close() is async, call cb after close completes.

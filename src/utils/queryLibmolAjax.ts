@@ -32,9 +32,11 @@ function query (queryString: string): Promise<LibmolResponse[]> {
                 item.file.substring(0, item.file.lastIndexOf('.gz')) : item.file
 
             return { value: item.label,
-              file: ((item.file.indexOf('.cif') > -1) || (item.file.indexOf('.mmtf') > -1) || (item.file.indexOf('.sdf') > -1))
-                ? 'static/mol/' + item.file
-                : `static/mol/pdb/${item.file}.pdb`,
+              file: (filename.indexOf('.mmtf') > -1) ?
+                'static/mol/' + item.file : // item.file is intentional
+                ((filename.indexOf('.cif') > -1) || (filename.indexOf('.sdf') > -1))
+                    ? 'static/mol/' + filename + '.gz'
+                    : `static/mol/pdb/${filename}.pdb.gz`,
               molId: item.molId,
               source: 'libmol'
             }

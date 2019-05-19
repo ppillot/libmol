@@ -58,7 +58,7 @@ export default {
       }
 
       query.query(queryString)
-        .then((sug: LibmolResponse[]) => {
+        .then((sug: LibmolResponse[]|LibmolQueryResponse[]) => {
           this.suggestions = sug
 
           window.sessionStorage.setItem(`searchLibmol-${queryString}`, JSON.stringify(this.suggestions))

@@ -5,7 +5,6 @@ import RepresentationElement from 'ngl/declarations/component/representation-ele
 import PickingProxy from 'ngl/declarations/controls/picking-proxy'
 import { Vector3 } from 'ngl'
 import { ActionContext } from 'vuex'
-import { DistanceRepresentationParameters } from 'ngl/declarations/representation/distance-representation';
 
 interface Measure {
   atom1: AtomProperties|null,

@@ -82,7 +82,6 @@ export default {
       cameraType: 'perspective',
       color: true,
       locales: locales,
-      lang: this.$root.$lang,
       multipleBond: false
     }
   },
@@ -105,6 +104,9 @@ export default {
       get: function () {
         return this.$store.state.ssBridgeDisplayed
       }
+    },
+    lang () {
+      return this._i18n.locale
     }
   },
   methods: {
@@ -133,17 +135,15 @@ export default {
       this.$store.dispatch('setSSBridges', enableSSBridges)
     },
     switchLanguage (ev) {
-      /* eslint-disable */
-      import(`../locales/bundles/${ev.target.value}.json`)
-      .then(response => {
-        this._i18n.setLocaleMessage(ev.target.value, response)
-        this._i18n.locale = ev.target.value
-        return Promise.resolve()
-      })
-      .catch(err => {
-        console.log('failed to import ' + ev.target.value + '.json', err)
-      })
-      /* eslint-enable */
+      import('../locales/bundles/' + ev.target.value + '.json')
+        .then(response => {
+          this._i18n.setLocaleMessage(ev.target.value, response)
+          this._i18n.locale = ev.target.value
+          return Promise.resolve()
+        })
+        .catch(err => {
+          console.log('failed to import ' + ev.target.value + '.json', err)
+        })
     }
   },
   watch: {

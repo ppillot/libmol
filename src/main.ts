@@ -32,11 +32,7 @@ import('./locales/bundles/' + lang + '.json')
       locale: lang,
       messages: {}
     }
-    Object.defineProperty(opt.messages, lang, {
-      value: messages,
-      enumerable: true,
-      writable: false
-    })
+    opt.messages[lang] = messages
 
     const i18n = new VueI18n(opt)
 
@@ -45,6 +41,7 @@ import('./locales/bundles/' + lang + '.json')
       i18n,
       render: h => h(App)
     }).$mount('#app')
+
   })
   .catch(err => {
     console.log('failed to import ' + lang + '.json', err)

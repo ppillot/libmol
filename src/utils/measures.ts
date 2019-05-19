@@ -5,6 +5,7 @@ import RepresentationElement from 'ngl/declarations/component/representation-ele
 import PickingProxy from 'ngl/declarations/controls/picking-proxy'
 import { Vector3 } from 'ngl'
 import { ActionContext } from 'vuex'
+import { DistanceRepresentationParameters } from 'ngl/declarations/representation/distance-representation';
 
 interface Measure {
   atom1: AtomProperties|null,
@@ -88,7 +89,8 @@ function measure (component: StructureComponent, context: ActionContext<any, any
         // showBackground: true,
         color: 0x409EFF,
         opacity: 0.9,
-        scale: 0.4,
+        //labelSize: 3,
+        labelFixedSize: true,
         labelUnit: 'nm'
       })
     }

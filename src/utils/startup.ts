@@ -77,14 +77,19 @@ function getSearchParameters () {
       }
     })
       .then((response: AxiosResponse) => {
+        let filePath = ((response.data.file.indexOf('.cif') > -1) || (response.data.file.indexOf('.mmtf') > -1) || (response.data.file.indexOf('.sdf') > -1))
+          ? 'static/mol/' + response.data.file
+          : `static/mol/pdb/${response.data.file}.pdb`
+        if (filePath.indexOf('.gz') === -1) filePath += '.gz'
+        const ext = /\.([a-zA-Z]*)\.gz$/gi.exec(filePath)[1]
+
         let p: StartupParameters =
           { ...params,
             value: response.data.label,
-            file: ((response.data.file.indexOf('.cif') > -1) || (response.data.file.indexOf('.mmtf') > -1) || (response.data.file.indexOf('.sdf') > -1))
-              ? 'static/mol/' + response.data.file
-              : `static/mol/pdb/${response.data.file}.pdb`,
+            file: filePath,
             molId: params.libmol,
-            source: 'libmol'
+            source: 'libmol',
+            ext
           }
         return p
       })

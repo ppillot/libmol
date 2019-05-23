@@ -85,12 +85,13 @@ function measure (component: StructureComponent, context: ActionContext<any, any
         atomPair: tabAtomPairs,
         labelColor: labelColor,
         labelZOffset: 2,
-        // showBackground: true,
         color: 0x409EFF,
         opacity: 0.9,
-        //labelSize: 3,
         labelFixedSize: true,
-        labelUnit: 'nm'
+        fixedSize: true,
+        size: 4,
+        labelUnit: 'nm',
+        radiusScale: window.devicePixelRatio
       })
     }
   }

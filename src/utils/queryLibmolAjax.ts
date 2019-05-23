@@ -30,6 +30,9 @@ function query (queryString: string): Promise<LibmolResponse[]> {
         return response.data.map((item) => {
             let filename = (item.file.indexOf('.gz') > -1) ?
                 item.file.substring(0, item.file.lastIndexOf('.gz')) : item.file
+            let extPos = filename.lastIndexOf('.') + 1;
+            const ext = (extPos > 0) ? filename.substring(extPos) : 'pdb'
+
 
             return { value: item.label,
               file: (filename.indexOf('.mmtf') > -1) ?
@@ -38,7 +41,8 @@ function query (queryString: string): Promise<LibmolResponse[]> {
                     ? 'static/mol/' + filename + '.gz'
                     : `static/mol/pdb/${filename}.pdb.gz`,
               molId: item.molId,
-              source: 'libmol'
+              source: 'libmol',
+              ext
             }
         })
     })

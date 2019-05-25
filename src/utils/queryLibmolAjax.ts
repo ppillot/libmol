@@ -33,13 +33,16 @@ function query (queryString: string): Promise<LibmolResponse[]> {
             let extPos = filename.lastIndexOf('.') + 1;
             const ext = (extPos > 0) ? filename.substring(extPos) : 'pdb'
 
+                // In electron app, data files are gzipped. On line to allow
+                // compression via CDN, filenames are appended a .txt extension
+            const extPostfix = (process.env.IS_ELECTRON) ? '.gz' : '.txt'
 
             return { value: item.label,
               file: (filename.indexOf('.mmtf') > -1) ?
                 'static/mol/' + item.file : // item.file is intentional
                 ((filename.indexOf('.cif') > -1) || (filename.indexOf('.sdf') > -1))
-                    ? 'static/mol/' + filename + '.txt'
-                    : `static/mol/pdb/${filename}.pdb.txt`,
+                    ? 'static/mol/' + filename + extPostfix
+                    : `static/mol/pdb/${filename}.pdb${ extPostfix }`,
               molId: item.molId,
               source: 'libmol',
               ext

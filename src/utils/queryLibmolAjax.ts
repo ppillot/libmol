@@ -38,8 +38,8 @@ function query (queryString: string): Promise<LibmolResponse[]> {
               file: (filename.indexOf('.mmtf') > -1) ?
                 'static/mol/' + item.file : // item.file is intentional
                 ((filename.indexOf('.cif') > -1) || (filename.indexOf('.sdf') > -1))
-                    ? 'static/mol/' + filename + '.gz'
-                    : `static/mol/pdb/${filename}.pdb.gz`,
+                    ? 'static/mol/' + filename + '.txt'
+                    : `static/mol/pdb/${filename}.pdb.txt`,
               molId: item.molId,
               source: 'libmol',
               ext

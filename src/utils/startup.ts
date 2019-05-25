@@ -80,8 +80,8 @@ function getSearchParameters () {
         let filePath = ((response.data.file.indexOf('.cif') > -1) || (response.data.file.indexOf('.mmtf') > -1) || (response.data.file.indexOf('.sdf') > -1))
           ? 'static/mol/' + response.data.file
           : `static/mol/pdb/${response.data.file}.pdb`
-        if (filePath.indexOf('.gz') === -1) filePath += '.gz'
-        const ext = /\.([a-zA-Z]*)\.gz$/gi.exec(filePath)[1]
+        if (filePath.indexOf('.gz') === -1) filePath += '.txt'
+        const ext = /\.([a-zA-Z]*)\.(gz|txt)$/gi.exec(filePath)[1]
 
         let p: StartupParameters =
           { ...params,

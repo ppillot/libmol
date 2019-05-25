@@ -35,7 +35,8 @@ module.exports = {
           '!node_modules',
           '!icons',
           '!*.map',
-          '!css/fonts'
+          '!css/fonts',
+          '!static/mol/**/*.txt'
         ],
         'dmg': {
           'contents': [

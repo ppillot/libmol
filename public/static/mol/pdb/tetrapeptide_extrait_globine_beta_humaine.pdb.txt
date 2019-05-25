@@ -1,0 +1,160 @@
+HEADER    OXYGEN TRANSPORT                        13-JUL-93   2HHB
+COMPND    TETRAPEPTIDE DE LA GLOBINE BETA (DEOXY)
+ATOM      1  N   VAL     1       5.464  -0.472   3.556  1.00  0.02
+ATOM      2  CA  VAL     1       4.196   0.240   3.788  1.00  0.02
+ATOM      3  C   VAL     1       3.080  -0.536   3.108  1.00  0.02
+ATOM      4  O   VAL     1       3.284  -1.492   2.332  1.00  0.02
+ATOM      5  CB  VAL     1       4.120   1.672   3.176  1.00  0.02
+ATOM      6  CG1 VAL     1       4.844   2.768   3.952  1.00  0.02
+ATOM      7  CG2 VAL     1       4.476   1.756   1.700  1.00  0.02
+ATOM      8  H   VAL     1       6.324  -0.104   3.936  1.00  0.02
+ATOM      9  HA  VAL     1       4.108   0.320   4.872  1.00  0.02
+ATOM     10  HB  VAL     1       3.056   1.876   3.272  1.00  0.02
+ATOM     11  HG1 VAL     1       4.724   3.716   3.436  1.00  0.02
+ATOM     12  HG1 VAL     1       4.420   2.844   4.952  1.00  0.02
+ATOM     13  HG1 VAL     1       5.904   2.524   4.024  1.00  0.02
+ATOM     14  HG2 VAL     1       4.396   2.788   1.364  1.00  0.02
+ATOM     15  HG2 VAL     1       5.496   1.404   1.552  1.00  0.02
+ATOM     16  HG2 VAL     1       3.792   1.132   1.124  1.00  0.02
+ATOM     17  H   VAL     1       5.576  -0.644   2.568  1.00  0.02
+ATOM     18  N   HIS     2       1.912  -0.040   3.400  1.00  0.02
+ATOM     19  CA  HIS     2       0.724  -0.696   2.864  1.00  0.02
+ATOM     20  C   HIS     2      -0.004   0.120   1.776  1.00  0.02
+ATOM     21  O   HIS     2      -0.676   1.144   2.056  1.00  0.02
+ATOM     22  CB  HIS     2      -0.180  -1.068   4.064  1.00  0.02
+ATOM     23  CG  HIS     2      -1.568  -1.548   3.576  1.00  0.02
+ATOM     24  ND1 HIS     2      -2.696  -0.620   3.520  1.00  0.02
+ATOM     25  CD2 HIS     2      -1.984  -2.824   3.112  1.00  0.02
+ATOM     26  CE1 HIS     2      -3.824  -1.348   3.028  1.00  0.02
+ATOM     27  NE2 HIS     2      -3.384  -2.700   2.780  1.00  0.02
+ATOM     28  H   HIS     2       1.832   0.780   3.980  1.00  0.02
+ATOM     29  HA  HIS     2       1.020  -1.596   2.332  1.00  0.02
+ATOM     30  HB  HIS     2       0.292  -1.856   4.644  1.00  0.02
+ATOM     31  HB  HIS     2      -0.316  -0.180   4.684  1.00  0.02
+ATOM     32  HD2 HIS     2      -1.372  -3.720   3.028  1.00  0.02
+ATOM     33  HE1 HIS     2      -4.828  -0.956   2.868  1.00  0.02
+ATOM     34  HE2 HIS     2      -3.964  -3.444   2.432  1.00  0.02
+ATOM     35  N   LEU     3       0.140  -0.440   0.540  1.00  0.02
+ATOM     36  CA  LEU     3      -0.540   0.156  -0.588  1.00  0.02
+ATOM     37  C   LEU     3      -1.588  -0.820  -1.104  1.00  0.02
+ATOM     38  O   LEU     3      -1.344  -2.024  -1.184  1.00  0.02
+ATOM     39  CB  LEU     3       0.376   0.456  -1.776  1.00  0.02
+ATOM     40  CG  LEU     3       1.484   1.504  -1.524  1.00  0.02
+ATOM     41  CD1 LEU     3       2.052   1.956  -2.868  1.00  0.02
+ATOM     42  CD2 LEU     3       1.008   2.728  -0.812  1.00  0.02
+ATOM     43  H   LEU     3       0.716  -1.260   0.416  1.00  0.02
+ATOM     44  HA  LEU     3      -0.956   1.092  -0.220  1.00  0.02
+ATOM     45  HB  LEU     3       0.824  -0.468  -2.132  1.00  0.02
+ATOM     46  HB  LEU     3      -0.272   0.908  -2.528  1.00  0.02
+ATOM     47  HD1 LEU     3       2.836   2.692  -2.700  1.00  0.02
+ATOM     48  HD1 LEU     3       2.472   1.096  -3.392  1.00  0.02
+ATOM     49  HD1 LEU     3       1.260   2.396  -3.468  1.00  0.02
+ATOM     50  HD2 LEU     3       1.844   3.412  -0.672  1.00  0.02
+ATOM     51  HD2 LEU     3       0.232   3.212  -1.404  1.00  0.02
+ATOM     52  HD2 LEU     3       0.604   2.448   0.160  1.00  0.02
+ATOM     53  H   LEU     3       2.224   1.012  -0.892  1.00  0.02
+ATOM     54  N   THR     4      -2.708  -0.272  -1.500  1.00  0.02
+ATOM     55  CA  THR     4      -3.724  -1.044  -2.196  1.00  0.02
+ATOM     56  C   THR     4      -3.148  -1.436  -3.564  1.00  0.02
+ATOM     57  O   THR     4      -2.180  -0.816  -4.000  1.00  0.02
+ATOM     58  CB  THR     4      -4.968  -0.156  -2.332  1.00  0.02
+ATOM     59  OG1 THR     4      -4.832   0.840  -3.352  1.00  0.02
+ATOM     60  CG2 THR     4      -5.440   0.472  -1.024  1.00  0.02
+ATOM     61  H   THR     4      -2.876   0.704  -1.312  1.00  0.02
+ATOM     62  HA  THR     4      -4.000  -1.952  -1.664  1.00  0.02
+ATOM     63  HB  THR     4      -5.752  -0.848  -2.640  1.00  0.02
+ATOM     64  HG1 THR     4      -5.636   1.364  -3.396  1.00  0.02
+ATOM     65  HG2 THR     4      -6.324   1.080  -1.208  1.00  0.02
+ATOM     66  HG2 THR     4      -5.684  -0.312  -0.312  1.00  0.02
+ATOM     67  HG2 THR     4      -4.644   1.096  -0.612  1.00  0.02
+ATOM     68  O   THR     4      -3.584  -2.240  -4.136  1.00  0.02
+ATOM     69  H   THR     4      -3.104  -2.348  -4.956  1.00  0.02
+TER      70      THR     4 
+END   
+
+#!rasmol -rsm file
+# Creator: RasTop Version 2.0 - Copyright (C) Philippe Valadon 2000-2002
+
+zap
+set connect on
+load pdb inline
+set title 2HHB
+
+# Colour details
+background [0,0,0]
+set backfade off
+set headlight default
+set ambient 40
+set specular off
+set shadepower 50
+set depthcue off
+set shadow off
+stereo off
+
+# Transformation
+reset
+rotate molecule
+set picking ident
+set worlddepth 5288
+# zoom 100.00
+scale 21.15
+position x 0.000 y 0.000 z 0.000
+slab off
+depth off
+
+# Rendering
+set axes off
+set boundingbox off
+set unitcell off
+set bonds off
+set bondmode and
+dots off
+
+# Avoid Colour Problems!
+select all
+colour bonds none
+colour backbone none
+colour hbonds none
+colour ssbonds none
+colour ribbons none
+colour white
+
+# Atoms
+colour atoms cpk
+spacefill off
+
+# Bonds
+wireframe on
+
+# Ribbons
+ribbons off
+
+# Backbone
+backbone off
+
+# Labels
+labels off
+
+# Monitors
+monitors off
+
+# ssbonds
+ssbonds off
+
+# hbonds
+hbonds off
+
+# Dots
+set solvent false
+set radius 0
+set dots 1
+dots off
+
+# AtomSets
+# no sets
+
+select all
+
+rotate world
+
+exit

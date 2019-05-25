@@ -1,0 +1,169 @@
+HEADER    NEUROPEPTIDE                            09-JUN-03   1PLW              
+TITLE     NMR STRUCTURE OF METHIONINE-ENKEPHALIN IN FAST TUMBLING               
+TITLE    2 DMPC/DHPC BICELLES                                                   
+COMPND    MOL_ID: 1;                                                            
+COMPND   2 MOLECULE: MET-ENKEPHALIN 1;                                          
+COMPND   3 CHAIN: A;                                                            
+COMPND   4 ENGINEERED: YES                                                      
+SOURCE    MOL_ID: 1;                                                            
+SOURCE   2 SYNTHETIC: YES;                                                      
+SOURCE   3 OTHER_DETAILS: THE PEPETIDE WAS CHEMICALLY SYNTHESIZED.              
+SOURCE   4 THE SEQUENCE OF THE PEPTIDE IS NATURALLY FOUND IN HOMO               
+SOURCE   5 SAPIENS (HUMAN)                                                      
+KEYWDS    PEPTIDE, NEUROPEPTIDE                                                 
+EXPDTA    SOLUTION NMR                                                          
+AUTHOR    I.MARCOTTE,F.SEPAROVIC,M.AUGER,S.M.GAGNE                              
+REVDAT   2   24-FEB-09 1PLW    1       VERSN                                    
+REVDAT   1   16-MAR-04 1PLW    0                                                
+JRNL        AUTH   I.MARCOTTE,F.SEPAROVIC,M.AUGER,S.M.GAGNE                     
+JRNL        TITL   A MULTIDIMENSIONAL (1)H NMR INVESTIGATION OF THE             
+JRNL        TITL 2 CONFORMATION OF METHIONINE-ENKEPHALIN IN                     
+JRNL        TITL 3 FAST-TUMBLING BICELLES.                                      
+JRNL        REF    BIOPHYS.J.                    V.  86  1587 2004              
+JRNL        REFN                   ISSN 0006-3495                               
+JRNL        PMID   14990485                                                     
+REMARK   1                                                                      
+REMARK   2                                                                      
+REMARK   2 RESOLUTION. NOT APPLICABLE.                                          
+REMARK   3                                                                      
+REMARK   3 REFINEMENT.                                                          
+REMARK   3   PROGRAM     : CNS 1.1                                              
+REMARK   3   AUTHORS     : AXEL T. BRUNGER                                      
+REMARK   3                                                                      
+REMARK   3  OTHER REFINEMENT REMARKS: THE STRUCTURES ARE BASED ON A TOTAL       
+REMARK   3  OF 2 PHI ANGLE AND 57 NOE-DERIVED DISTANCE CONSTRAINTS. 1000        
+REMARK   3  HIGH-TEMPERATURE STEPS WERE USED (15 PS) UP TO A FINAL              
+REMARK   3  TEMPERATURE OF 50000 K THEN 1000 COOLING STEPS (250 K, 15 PS)       
+REMARK   3  WERE APPLIED. FINALLY, 10 CYCLES OF 200 MINIMIZATION STEPS          
+REMARK   3  WERE PERFORMED. A REPEL CONSTANT VALUE OF 0.8 WAS USED              
+REMARK   4                                                                      
+REMARK   4 1PLW COMPLIES WITH FORMAT V. 3.15, 01-DEC-08                         
+REMARK 100                                                                      
+REMARK 100 THIS ENTRY HAS BEEN PROCESSED BY RCSB ON 12-JUN-03.                  
+REMARK 100 THE RCSB ID CODE IS RCSB019412.                                      
+REMARK 210                                                                      
+REMARK 210 EXPERIMENTAL DETAILS                                                 
+REMARK 210  EXPERIMENT TYPE                : NMR                                
+REMARK 210  TEMPERATURE           (KELVIN) : 295                                
+REMARK 210  PH                             : 4.5                                
+REMARK 210  IONIC STRENGTH                 : 9MM                                
+REMARK 210  PRESSURE                       : AMBIENT                            
+REMARK 210  SAMPLE CONTENTS                : 5.4UM MENK; DMPC/DHPC: 0.5:1       
+REMARK 210                                   (MOLAR RATIO); LIPID/PEPTIDE:      
+REMARK 210                                   25:1 (MOLAR RATIO); 10% W/V OF     
+REMARK 210                                   LIPIDS IN WATER; 90%H2O, 10%D2O    
+REMARK 210                                                                      
+REMARK 210  NMR EXPERIMENTS CONDUCTED      : 2D NOESY, G-COSY                   
+REMARK 210  SPECTROMETER FIELD STRENGTH    : 600 MHZ                            
+REMARK 210  SPECTROMETER MODEL             : INOVA                              
+REMARK 210  SPECTROMETER MANUFACTURER      : VARIAN                             
+REMARK 210                                                                      
+REMARK 210  STRUCTURE DETERMINATION.                                            
+REMARK 210   SOFTWARE USED                 : VNMR 6.1C, NMRPIPE 2.0 REV         
+REMARK 210                                   2001.117.12.48, NMRVIEW 5.0.4,     
+REMARK 210                                   CNS 1.1                            
+REMARK 210   METHOD USED                   : SIMULATED ANNEALING                
+REMARK 210                                                                      
+REMARK 210 CONFORMERS, NUMBER CALCULATED   : 200                                
+REMARK 210 CONFORMERS, NUMBER SUBMITTED    : 80                                 
+REMARK 210 CONFORMERS, SELECTION CRITERIA  : STRUCTURES WITH THE LOWEST         
+REMARK 210                                   ENERGY                             
+REMARK 210                                                                      
+REMARK 210 BEST REPRESENTATIVE CONFORMER IN THIS ENSEMBLE : 1                   
+REMARK 210                                                                      
+REMARK 210 REMARK: PFG EXPERIMENTS WERE ALSO PERFORMED ON THE SAMPLE            
+REMARK 215                                                                      
+REMARK 215 NMR STUDY                                                            
+REMARK 215 THE COORDINATES IN THIS ENTRY WERE GENERATED FROM SOLUTION           
+REMARK 215 NMR DATA.  PROTEIN DATA BANK CONVENTIONS REQUIRE THAT                
+REMARK 215 CRYST1 AND SCALE RECORDS BE INCLUDED, BUT THE VALUES ON              
+REMARK 215 THESE RECORDS ARE MEANINGLESS.                                       
+REMARK 900                                                                      
+REMARK 900 RELATED ENTRIES                                                      
+REMARK 900 RELATED ID: 1PLX   RELATED DB: PDB                                   
+REMARK 900 THE SAME PEPTIDE IN FAST TUMBLING BICELLES/DMPG                      
+DBREF  1PLW A    1     5  UNP    P01210   PENK_HUMAN     100    104             
+SEQRES   1 A    5  TYR GLY GLY PHE MET                                          
+CRYST1    1.000    1.000    1.000  90.00  90.00  90.00 P 1           1          
+ORIGX1      1.000000  0.000000  0.000000        0.00000                         
+ORIGX2      0.000000  1.000000  0.000000        0.00000                         
+ORIGX3      0.000000  0.000000  1.000000        0.00000                         
+SCALE1      1.000000  0.000000  0.000000        0.00000                         
+SCALE2      0.000000  1.000000  0.000000        0.00000                         
+SCALE3      0.000000  0.000000  1.000000        0.00000                         
+ATOM      1  N   TYR A   1      -4.077  -2.911  -2.774  1.00  0.00           N
+ATOM      2  CA  TYR A   1      -2.910  -2.162  -2.242  1.00  0.00           C
+ATOM      3  C   TYR A   1      -3.312  -1.254  -1.086  1.00  0.00           C
+ATOM      4  O   TYR A   1      -4.468  -0.847  -0.973  1.00  0.00           O
+ATOM      5  CB  TYR A   1      -2.297  -1.335  -3.372  1.00  0.00           C
+ATOM      6  CG  TYR A   1      -0.857  -0.955  -3.123  1.00  0.00           C
+ATOM      7  CD1 TYR A   1      -0.535   0.033  -2.205  1.00  0.00           C
+ATOM      8  CD2 TYR A   1       0.178  -1.585  -3.801  1.00  0.00           C
+ATOM      9  CE1 TYR A   1       0.776   0.385  -1.964  1.00  0.00           C
+ATOM     10  CE2 TYR A   1       1.496  -1.240  -3.566  1.00  0.00           C
+ATOM     11  CZ  TYR A   1       1.790  -0.254  -2.646  1.00  0.00           C
+ATOM     12  OH  TYR A   1       3.099   0.093  -2.409  1.00  0.00           O
+ATOM     13  H1  TYR A   1      -4.481  -3.466  -1.994  1.00  0.00           H
+ATOM     14  H2  TYR A   1      -3.735  -3.529  -3.538  1.00  0.00           H
+ATOM     15  H3  TYR A   1      -4.762  -2.216  -3.133  1.00  0.00           H
+ATOM     16  HA  TYR A   1      -2.176  -2.870  -1.886  1.00  0.00           H
+ATOM     17  HB2 TYR A   1      -2.339  -1.903  -4.289  1.00  0.00           H
+ATOM     18  HB3 TYR A   1      -2.866  -0.425  -3.489  1.00  0.00           H
+ATOM     19  HD1 TYR A   1      -1.332   0.531  -1.674  1.00  0.00           H
+ATOM     20  HD2 TYR A   1      -0.055  -2.356  -4.519  1.00  0.00           H
+ATOM     21  HE1 TYR A   1       1.002   1.152  -1.241  1.00  0.00           H
+ATOM     22  HE2 TYR A   1       2.289  -1.741  -4.100  1.00  0.00           H
+ATOM     23  HH  TYR A   1       3.241   1.006  -2.671  1.00  0.00           H
+ATOM     24  N   GLY A   2      -2.347  -0.944  -0.231  1.00  0.00           N
+ATOM     25  CA  GLY A   2      -2.606  -0.090   0.912  1.00  0.00           C
+ATOM     26  C   GLY A   2      -2.140   1.334   0.694  1.00  0.00           C
+ATOM     27  O   GLY A   2      -2.914   2.280   0.854  1.00  0.00           O
+ATOM     28  H   GLY A   2      -1.446  -1.302  -0.376  1.00  0.00           H
+ATOM     29  HA2 GLY A   2      -3.668  -0.084   1.110  1.00  0.00           H
+ATOM     30  HA3 GLY A   2      -2.093  -0.495   1.769  1.00  0.00           H
+ATOM     31  N   GLY A   3      -0.873   1.488   0.330  1.00  0.00           N
+ATOM     32  CA  GLY A   3      -0.323   2.812   0.099  1.00  0.00           C
+ATOM     33  C   GLY A   3       1.135   2.909   0.491  1.00  0.00           C
+ATOM     34  O   GLY A   3       1.959   3.430  -0.261  1.00  0.00           O
+ATOM     35  H   GLY A   3      -0.307   0.696   0.219  1.00  0.00           H
+ATOM     36  HA2 GLY A   3      -0.422   3.056  -0.947  1.00  0.00           H
+ATOM     37  HA3 GLY A   3      -0.886   3.525   0.680  1.00  0.00           H
+ATOM     38  N   PHE A   4       1.448   2.404   1.675  1.00  0.00           N
+ATOM     39  CA  PHE A   4       2.811   2.423   2.186  1.00  0.00           C
+ATOM     40  C   PHE A   4       3.477   1.071   1.966  1.00  0.00           C
+ATOM     41  O   PHE A   4       4.702   0.974   1.887  1.00  0.00           O
+ATOM     42  CB  PHE A   4       2.818   2.766   3.681  1.00  0.00           C
+ATOM     43  CG  PHE A   4       1.519   3.323   4.193  1.00  0.00           C
+ATOM     44  CD1 PHE A   4       0.493   2.476   4.579  1.00  0.00           C
+ATOM     45  CD2 PHE A   4       1.324   4.692   4.287  1.00  0.00           C
+ATOM     46  CE1 PHE A   4      -0.703   2.982   5.052  1.00  0.00           C
+ATOM     47  CE2 PHE A   4       0.130   5.205   4.759  1.00  0.00           C
+ATOM     48  CZ  PHE A   4      -0.884   4.349   5.141  1.00  0.00           C
+ATOM     49  H   PHE A   4       0.744   2.001   2.221  1.00  0.00           H
+ATOM     50  HA  PHE A   4       3.361   3.179   1.646  1.00  0.00           H
+ATOM     51  HB2 PHE A   4       3.030   1.871   4.242  1.00  0.00           H
+ATOM     52  HB3 PHE A   4       3.591   3.495   3.870  1.00  0.00           H
+ATOM     53  HD1 PHE A   4       0.635   1.405   4.509  1.00  0.00           H
+ATOM     54  HD2 PHE A   4       2.117   5.362   3.989  1.00  0.00           H
+ATOM     55  HE1 PHE A   4      -1.494   2.311   5.349  1.00  0.00           H
+ATOM     56  HE2 PHE A   4      -0.008   6.273   4.828  1.00  0.00           H
+ATOM     57  HZ  PHE A   4      -1.818   4.747   5.510  1.00  0.00           H
+ATOM     58  N   MET A   5       2.658   0.028   1.874  1.00  0.00           N
+ATOM     59  CA  MET A   5       3.158  -1.323   1.670  1.00  0.00           C
+ATOM     60  C   MET A   5       3.777  -1.472   0.284  1.00  0.00           C
+ATOM     61  O   MET A   5       4.996  -1.240   0.153  1.00  0.00           O
+ATOM     62  CB  MET A   5       2.027  -2.337   1.850  1.00  0.00           C
+ATOM     63  CG  MET A   5       1.103  -2.021   3.016  1.00  0.00           C
+ATOM     64  SD  MET A   5       1.018  -3.359   4.224  1.00  0.00           S
+ATOM     65  CE  MET A   5       1.378  -2.468   5.737  1.00  0.00           C
+ATOM     66  OXT MET A   5       3.036  -1.822  -0.659  1.00  0.00           O
+ATOM     67  H   MET A   5       1.692   0.171   1.950  1.00  0.00           H
+ATOM     68  HA  MET A   5       3.916  -1.509   2.415  1.00  0.00           H
+ATOM     69  HB2 MET A   5       1.434  -2.361   0.947  1.00  0.00           H
+ATOM     70  HB3 MET A   5       2.457  -3.314   2.012  1.00  0.00           H
+ATOM     71  HG2 MET A   5       1.461  -1.132   3.511  1.00  0.00           H
+ATOM     72  HG3 MET A   5       0.109  -1.839   2.631  1.00  0.00           H
+ATOM     73  HE1 MET A   5       1.018  -1.454   5.652  1.00  0.00           H
+ATOM     74  HE2 MET A   5       2.446  -2.460   5.903  1.00  0.00           H
+ATOM     75  HE3 MET A   5       0.890  -2.957   6.566  1.00  0.00           H
+END

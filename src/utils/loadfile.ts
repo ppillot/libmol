@@ -87,7 +87,7 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
         if (structure.atomMap.list[0].element.match(/\d/gi) !== null) {
           return Promise.reject({ err: 'old', molId: structure.id })
         }
-        let molTypes: Set<MolType>  = new Set()
+        let molTypesSet: Set<MolType>  = new Set()
         let chainMap: Map<string, number> = new Map()
         let chains: ChainProperties[] = []
         let atoms = Object.keys(structure.atomMap.dict).map(val => { return val.substring(0, val.indexOf('|')) })
@@ -156,7 +156,7 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
               chainname: item.chainname
             })
           }
-          molTypes.add(item.moleculeType)
+          molTypesSet.add(item.moleculeType)
           sstruc.add(item.sstruc)
           selected.push(true)
         })
@@ -167,6 +167,16 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
           }
         )
 
+        const molTypes = {
+          protein: molTypesSet.has(MolType.protein),
+          dna: molTypesSet.has(MolType.dna),
+          rna: molTypesSet.has(MolType.rna),
+          nucleic: molTypesSet.has(MolType.dna) || molTypesSet.has(MolType.rna),
+          water: molTypesSet.has(MolType.water),
+          saccharide: molTypesSet.has(MolType.saccharide),
+          hetero: molTypesSet.has(MolType.unknown) || molTypesSet.has(MolType.ion), // 0: Unknown; 2: Ions
+          ion: molTypesSet.has(MolType.ion),
+        }
         const noSequence = (structure.residueStore.count / structure.modelStore.count <= 1)
 
         component.setSelection('/0')

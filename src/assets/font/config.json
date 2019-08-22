@@ -59,6 +59,12 @@
       "css": "center",
       "code": 61760,
       "src": "fontawesome"
+    },
+    {
+      "uid": "6020aff067fc3c119cdd75daa5249220",
+      "css": "reverse",
+      "code": 61676,
+      "src": "fontawesome"
     }
   ]
 }

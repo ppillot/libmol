@@ -6,5 +6,6 @@
 .icon-eye-off:before { content: '\e804'; } /* '' */
 .icon-resize-small:before { content: '\e80a'; } /* '' */
 .icon-resize-full:before { content: '\f0b2'; } /* '' */
+.icon-reverse:before { content: '\f0ec'; } /* '' */
 .icon-center:before { content: '\f140'; } /* '' */
 .icon-sliders:before { content: '\f1de'; } /* '' */

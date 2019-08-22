@@ -12,7 +12,7 @@ import Screenfull from 'screenfull'
 import { getHelp } from '../utils/help.ts'
 import { hover } from '../utils/hover'
 import { measure } from '../utils/measures'
-import { loadFile } from '../utils/loadfile'
+import { loadFile, reverseSequence } from '../utils/loadfile'
 import { byres } from '../utils/colors'
 import surface from '../utils/surface'
 import { contact } from '../utils/contacts'
@@ -604,6 +604,10 @@ var vuex = new Vuex.Store({
     },
     setActiveContact (state, value) {
       state.activeContact = value
+    },
+    setSequenceChain (state, { chainId, seq }) {
+      state.mol.chains[chainId].sequence = seq
+      state.mol.chains[chainId].isInReverse = !state.mol.chains[chainId].isInReverse
     }
   },
   actions: {
@@ -1101,6 +1105,7 @@ var vuex = new Vuex.Store({
           anchor = {
             type: 'chain',
             chain: chain.name,
+            isDNA: chain.hasDNA,
             isMaskable: currentlyDisplayedAtomSet.intersects(chainAtomSet),
             isUnMaskable: currentlyDisplayedAtomSet.getIntersectionSize(chainAtomSet) < chainAtomSet.getSize(),
             isRestPresent: isRestPresent,
@@ -1361,6 +1366,14 @@ var vuex = new Vuex.Store({
     },
     downloadSurface (context, surfaceIndex) {
       surf.downloadSTL(surfaceIndex)
+    },
+    reverse (context, chainName) {
+      const chain = context.state.mol.chains.find((ch) => {
+        return ch.name === chainName
+      })
+      if (!chain) return
+      const seq = reverseSequence(chain.sequence.slice())
+      context.commit('setSequenceChain', { chainId: chain.id, seq })
     }
   },
   getters: {

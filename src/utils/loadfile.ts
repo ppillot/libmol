@@ -130,6 +130,7 @@ function optimizeSeqOrder (chains: ChainProperties[], structure: Structure) {
   chnSenseMap.forEach((sense, i) => {
     if (sense === false) {
       ch[i].sequence = reverseSequence(ch[i].sequence)
+      ch[i].isInReverse = true
     }
   })
 

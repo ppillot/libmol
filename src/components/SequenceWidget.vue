@@ -5,7 +5,9 @@
         <li v-for="chain in chains"
           :data-index="chain.id"
           @click="selectChain(chain.id)"
-          :class="{ sel: isSelectedChain(chain.name) }"
+          :class="{ sel: isSelectedChain(chain.name),
+                    sense: chain.sense,
+                    'anti-sense': chain.antiSense }"
           :key="chain.id">
           {{ chain.name }}
         </li>
@@ -21,7 +23,10 @@
               <template v-for="residu in line.resRow">
                 <td v-if="residu"
                   :data-index="residu.index"
-                  :class="{ hetero: residu.hetero, hoh: (residu.resname === 'HOH'), sel: isSelected(residu.index), usersel: isBeingSelected(residu.index)}"
+                  :class="{ hetero: residu.hetero,
+                            hoh: (residu.resname === 'HOH'),
+                            sel: isSelected(residu.index),
+                            usersel: isBeingSelected(residu.index)}"
                   :key="residu.index">
                     {{ residu.resname }}
                 </td>
@@ -134,7 +139,9 @@ export default {
         chains.push({
           entity: chain.entity,
           id: chain.id,
-          name: chain.name
+          name: chain.name,
+          sense: chain.hasDNA && !chain.isInReverse,
+          antiSense: chain.hasDNA && chain.isInReverse
         })
         chain.sequence.forEach(res => {
           chainByResidueList[res.index] = chain.id
@@ -416,6 +423,18 @@ export default {
     background: #e6e9ef;
   }
 
+  .header ul li.sense::after {
+    content: '↓';
+  }
+  .header ul li.anti-sense::after {
+    content: '↑';
+  }
+  .header ul li::after {
+    position: absolute;
+    color: #b0bec5;
+    margin-left: 3px;
+  }
+
   .tab-body {
     flex: 1;
     overflow: auto;
@@ -481,6 +500,10 @@ export default {
     background: #6ab6e2;
     color: white;
     font-weight: bold;
+  }
+
+  .header ul li.sel::after {
+    color: lightblue;
   }
 
   .header ul li.sel:sel {

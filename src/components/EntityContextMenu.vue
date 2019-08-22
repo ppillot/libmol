@@ -30,6 +30,11 @@
                 <i class="el-icon-share"></i>
                 {{ $t('ctxMenu.contact') }}
             </li>
+            <li @click="reverse(ctxMProp.chain)"
+              v-if="ctxMProp.isDNA">
+                <i class="icon-reverse"></i>
+                {{ $t('ctxMenu.reverse') }}
+            </li>
             </ul>
         </template>
         <template v-else-if="ctxMProp.type==='res'">
@@ -133,6 +138,9 @@ export default {
       this.$store.dispatch('focusContact', { target: part })
       this.$store.commit('setActiveTab', 'contacts')
       this.$store.commit('setActiveContact', this.$store.state.contacts.length - 1)
+    },
+    reverse (chainName) {
+      this.$store.dispatch('reverse', chainName)
     }
   }
 }
@@ -218,5 +226,8 @@ export default {
     bottom: 0;
     right: 0;
     z-index: 10;
+  }
+  .icon-reverse::before {
+    transform: rotate(90deg);
   }
 </style>

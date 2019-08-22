@@ -121,8 +121,6 @@ export default {
       listScrollStyle: { marginTop: 0 },
       headerStyle: 'margin-left: 0',
       nbElementsToDisplay: 20,
-      residuesList: [],
-      visibleResidues: [],
       userSelection: [],
       targetTYpe: 'res'
     }
@@ -148,13 +146,17 @@ export default {
         })
       })
       // console.log(chainByResidueList)
-      let rList = []
-      const maxElementNb = this.$store.state.mol.chains.reduce((accumulator, currentValue) => {
-        return Math.max(accumulator, currentValue.sequence.length)
-      }, 0)
+      return chains
+    },
+
+    residuesList: function () {
+      const rList = []
+      const maxElementNb = Math.max(...this.$store.state.mol.chains.map(ch => {
+        return ch.sequence.length
+      }))
 
       for (let i = 0; i < maxElementNb; i++) {
-        let resPosiList = []
+        const resPosiList = []
         this.$store.state.mol.chains.forEach(chain => {
           resPosiList.push(
             (chain.sequence.length > i) ? chain.sequence[i] : null
@@ -162,9 +164,13 @@ export default {
         })
         rList.push({ index: i, resRow: resPosiList })
       }
-      this.residuesList = rList
+      return rList
+    },
 
-      return chains
+    visibleResidues: function () {
+      return this.residuesList.slice(
+        this.listStart,
+        this.listStart + this.nbElementsToDisplay)
     },
 
     listWidthStyle: function () {
@@ -180,7 +186,9 @@ export default {
         respHTML = item.name + ' ' + item.num + ' '
       }
       respHTML += this.$t('tooltips.chain') + ' ' + item.chain + '<br>'
-      respHTML += (this.$te('biochem.pdb_res_name.' + item.name)) ? this.$t('biochem.pdb_res_name.' + item.name) : item.description
+      respHTML += (this.$te('biochem.pdb_res_name.' + item.name))
+        ? this.$t('biochem.pdb_res_name.' + item.name)
+        : item.description
       return respHTML
     },
 
@@ -195,6 +203,10 @@ export default {
       const maxHeight = nbElementMax * this.elementHeight
       const maxWidth = this.$store.state.mol.chains.length * this.elementWidth
       return { height: maxHeight + 'px', width: maxWidth + 'px' }
+    },
+
+    selectedResidues: function () {
+      return this.$store.state.selected
     }
   },
   methods: {
@@ -202,7 +214,7 @@ export default {
       return this.$store.state.selectedChains.includes(chainName)
     },
     isSelected (resIndex) {
-      return this.$store.state.selected[resIndex]
+      return this.selectedResidues[resIndex]
     },
     isBeingSelected (resIndex) {
       return this.userSelection.includes(resIndex)
@@ -221,6 +233,7 @@ export default {
       }
     },
     hideTooltip () {
+      if (this.tooltipStyles.visibility === 'hidden') return
       this.tooltipStyles.visibility = 'hidden'
       this.$store.dispatch('sequenceHovered', {
         type: 'none',
@@ -272,7 +285,6 @@ export default {
         }
         let vec = actualPos.top - (actualPos.top % this.elementHeight)
         this.listScrollStyle = { transform: 'translate(0,' + vec + 'px)' }
-        this.setVisibleResidues()
       } else {
         this.headerStyle = 'transform: translate(-' + actualPos.left + 'px, 0)'
       }
@@ -357,7 +369,6 @@ export default {
       if (val) {
         this.$nextTick(function () {
           this.setNbElementsToDisplay()
-          this.setVisibleResidues()
           // when a new model has been loaded, if the previous sequence has been scrolled,
           // the (v?)dom node keeps track of the scroll amount which reappears when the component
           // is loaded again. We set scrollTop to zero when the vertical pos has been set back to 0
@@ -376,7 +387,6 @@ export default {
   mounted: function () {
     this.$nextTick(function () {
       this.setNbElementsToDisplay()
-      this.setVisibleResidues()
       this.$el.getElementsByClassName('tab-body')[0].scrollTop = 0
     })
     resize.add(this.setNbElementsToDisplay.bind(this))

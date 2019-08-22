@@ -136,7 +136,7 @@ function optimizeSeqOrder (chains: ChainProperties[], structure: Structure) {
 
 }
 
-function reverseSequence (seq: SequenceElement[]) {
+export function reverseSequence (seq: SequenceElement[]) {
   // determine lower and upper bounds of the nucleic sequence
   let lowB = -1
   let upB = -1

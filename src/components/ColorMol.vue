@@ -38,11 +38,6 @@ import SplitButtonItem from './SplitButtonItem'
 
 export default {
   name: 'ColorMol',
-  data () {
-    return {
-      colors: '#00ff00'
-    }
-  },
   components: {
     'palette': Palette,
     FormItem,
@@ -65,10 +60,12 @@ export default {
     none: function () {
       return (this.$store.state.selection === 'none')
     },
+    colors: function () {
+      return this.$store.state.color
+    },
     colored: function () {
-      this.colors = this.$store.state.color
-      if (this.$store.state.color.indexOf('#') === -1) {
-        return this.$store.state.color
+      if (this.colors.indexOf('#') === -1) {
+        return this.colors
       } else {
         return 'palette'
       }

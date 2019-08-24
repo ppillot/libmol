@@ -77,8 +77,7 @@ export default {
         left: '0px',
         visibility: 'hidden'
       },
-      tooltipText: '',
-      colorDescription: this.$t('ui.commands.color.cpk')
+      tooltipText: ''
     }
   },
   components: {
@@ -110,8 +109,15 @@ export default {
     isShown: function () {
       return this.$store.state.selection !== 'none'
     },
+    colorDescription: function () {
+      return this.colorState.colorName
+    },
     colorScheme: function () {
-      var cs = []
+      return this.colorState.colorScheme
+    },
+    colorState: function () {
+      const cs = []
+      let cName = ''
       switch (this.$store.state.color) {
         case 'element':
           this.$store.state.mol.elements.forEach(
@@ -135,7 +141,7 @@ export default {
               })
             }
           }
-          this.colorDescription = this.$t('ui.commands.color.cpk')
+          cName = this.$t('ui.commands.color.cpk')
           break
         case 'chainname':
           this.$store.state.mol.chains.forEach(
@@ -147,7 +153,7 @@ export default {
               })
             }
           )
-          this.colorDescription = this.$t('ui.commands.color.by_chain')
+          cName = this.$t('ui.commands.color.by_chain')
           break
         case 'sidechain':
           cs.push({
@@ -167,7 +173,7 @@ export default {
               })
             }
           )
-          this.colorDescription = (this.$store.state.color === 'resname')
+          cName = (this.$store.state.color === 'resname')
             ? this.$t('ui.commands.color.by_res')
             : this.$t('ui.commands.color.sidechain')
           break
@@ -184,7 +190,7 @@ export default {
               }
             }
           )
-          this.colorDescription = this.$t('ui.commands.color.by_secondary_structure')
+          cName = this.$t('ui.commands.color.by_secondary_structure')
           break
         case 'moleculetype':
           Object.keys(this.$store.state.mol.molTypes).forEach(
@@ -197,23 +203,26 @@ export default {
               }
             }
           )
-          this.colorDescription = this.$t('ui.commands.color.by_biochemical_nature')
+          cName = this.$t('ui.commands.color.by_biochemical_nature')
           break
         case 'mix':
           cs.push({
             text: this.$t('ui.statusbar.color.mix'),
             css: 'color: black'
           })
-          this.colorDescription = this.$t('ui.statusbar.color.color')
+          cName = this.$t('ui.statusbar.color.color')
           break
         default :
           cs.push({
             text: this.$t('ui.statusbar.color.user'),
             css: 'color: ' + this.$store.state.color
           })
-          this.colorDescription = this.$t('ui.statusbar.color.color')
+          cName = this.$t('ui.statusbar.color.color')
       }
-      return cs
+      return {
+        colorScheme: cs,
+        colorName: cName
+      }
     }
   },
   methods: {

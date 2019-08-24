@@ -20,17 +20,17 @@
       <div :style="listHeightStyle">
           <table :style="[listScrollStyle, listWidthStyle]" id="table-seq">
             <tr v-for="line in visibleResidues" :key="line.index">
-              <template v-for="residu in line.resRow">
-                <td v-if="residu"
+              <template v-for="(residu, ix) in line.resRow">
+                <td v-if="residu !== null"
                   :data-index="residu.index"
                   :class="{ hetero: residu.hetero,
                             hoh: (residu.resname === 'HOH'),
                             sel: isSelected(residu.index),
                             usersel: isBeingSelected(residu.index)}"
-                  :key="residu.index">
+                  :key="line.index +' '+ ix">
                     {{ residu.resname }}
                 </td>
-                <td v-else>
+                <td v-else :key="line.index +' '+ ix">
                 </td>
               </template>
             </tr>

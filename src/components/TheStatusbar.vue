@@ -22,7 +22,12 @@
       <div class="coloration">
         <div  v-show="isShown">
           {{ colorDescription }} :
-          <span @mouseover.stop="getHoveredItem($event)" @mouseout.stop="hideTooltip">
+          <div v-if="colorState.colorScale" class="scale__ctnr">
+            <div class="scale__label--start">{{ colorState.colorScale.start }}</div>
+            <div class="scale__label--end">{{ colorState.colorScale.end }}</div>
+            <div class="scale" :class="colorState.colorScale.scaleName"></div>
+          </div>
+          <span @mouseover.stop="getHoveredItem($event)" @mouseout.stop="hideTooltip" v-else>
             <span v-for="token in colorScheme" :style="token.css" :data-tooltip="token.tooltip" :key="token.text">
                 {{ token.text | capitalize }}
             </span>
@@ -118,6 +123,7 @@ export default {
     colorState: function () {
       const cs = []
       let cName = ''
+      let cScale = null
       switch (this.$store.state.color) {
         case 'element':
           this.$store.state.mol.elements.forEach(
@@ -212,6 +218,14 @@ export default {
           })
           cName = this.$t('ui.statusbar.color.color')
           break
+        case 'residueindex':
+          cName = this.$t('ui.commands.color.resindex')
+          cScale = {
+            scaleName: 'rainbow',
+            start: this.$t('ui.statusbar.color.start'),
+            end: this.$t('ui.statusbar.color.end')
+          }
+          break
         default :
           cs.push({
             text: this.$t('ui.statusbar.color.user'),
@@ -221,7 +235,8 @@ export default {
       }
       return {
         colorScheme: cs,
-        colorName: cName
+        colorName: cName,
+        colorScale: cScale
       }
     }
   },
@@ -250,7 +265,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .statusbar {
     width: 100%;
     position: absolute;
@@ -339,5 +354,31 @@ export default {
     border-style: dashed;
     border-width: 2px;
     vertical-align: middle;
+  }
+  .rainbow {
+    background: linear-gradient(to left, #ff0000 0%,#ff8800 25%,#ffff00 50%,#27c474 75%,#0000ff 100%);
+  }
+  .scale__ctnr {
+    display: inline-block;
+    width: 150px;
+    line-height: 0.6em;
+    vertical-align: middle;
+    margin-left: 0.7em;
+  }
+  .scale__label--start {
+    float: left;
+    font-size: 0.8em;
+    color: blue;
+  }
+  .scale__label--end {
+    float: right;
+    font-size: 0.8em;
+    color: red;
+  }
+  .scale {
+    display: inline-block;
+    width: 150px;
+    height: 8px;
+    border-radius: 2px;
   }
 </style>

@@ -149,6 +149,14 @@ export default {
           )
           this.colorDescription = this.$t('ui.commands.color.by_chain')
           break
+        case 'sidechain':
+          cs.push({
+            text: this.$t('ui.commands.representation.backbone'),
+            css: 'color: #888',
+            tooltip: this.$t('ui.commands.representation.backbone')
+          })
+        // intentional fallthrough
+        // eslint-disable-next-line
         case 'resname':
           this.$store.state.mol.residues.forEach(
             item => {
@@ -159,7 +167,9 @@ export default {
               })
             }
           )
-          this.colorDescription = this.$t('ui.commands.color.by_res')
+          this.colorDescription = (this.$store.state.color === 'resname')
+            ? this.$t('ui.commands.color.by_res')
+            : this.$t('ui.commands.color.sidechain')
           break
         case 'sstruc':
           let sstruc = removeRedundancyFromSet(this.$store.state.mol.sstruc, { 's': 'l', 'e': 'b' })

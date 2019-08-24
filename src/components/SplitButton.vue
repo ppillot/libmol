@@ -1,11 +1,11 @@
 <template>
-  <div class="radio-button" 
-    :class="{active: isActive, disabled: disabled}" 
+  <div class="radio-button"
+    :class="{active: isActive, disabled: disabled}"
     @click.stop="handlerClick"
     @mouseenter="handlerHover">
       <slot></slot>
-      
-      <div 
+
+      <div
         class="split--button-trigger"
         @click.stop="toggleMenu"
         v-popover:splitList
@@ -104,7 +104,9 @@ export default {
     padding: 0;
     font-size: 1rem;
     color: #8192a8;
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
     margin-right: 2px;
   }
   .split--buton-trigger:hover i::before {

@@ -27,7 +27,7 @@
 
 <script>
 import citationsPanel from './CitationsPanel'
-console.log(process.env)
+
 export default {
   name: 'CitationButton',
   components: {

@@ -50,6 +50,9 @@ import optimizedResize from '../utils/resize.ts'
 let prevPos = { top: 0, left: 0 }
 let actualPos = { top: 0, left: 0 }
 let isScrollInProcess = false
+let preventShowTooltip = false
+let preventTooltipTimeout = 0
+let lastHoveredItem = null
 let resize = optimizedResize()
 let chainByResidueList = []
 // let isSelectionInProcess = false
@@ -219,8 +222,11 @@ export default {
     isBeingSelected (resIndex) {
       return this.userSelection.includes(resIndex)
     },
-    getHoveredItem (itemType, event) {
-      const target = event.target
+    getHoveredItem (itemType, { target }) {
+      if (preventShowTooltip) {
+        lastHoveredItem = { itemType, target }
+        return
+      }
       if (((target.tagName === 'LI') || (target.tagName === 'TD' && target.dataset.index !== undefined)) && !isScrollInProcess) {
         this.tooltipStyles = getTooltipStyles(target)
         this.$store.dispatch('sequenceHovered', {
@@ -239,6 +245,7 @@ export default {
         type: 'none',
         index: 0
       })
+      lastHoveredItem = null
     },
     // ******** Context menu
     displayContextMenu (event) {
@@ -268,6 +275,7 @@ export default {
       }
       if (!isScrollInProcess) {
         isScrollInProcess = true
+        preventShowTooltip = true
         this.hideTooltip()
         window.requestAnimationFrame(function () {
           this.scrolling()
@@ -292,6 +300,14 @@ export default {
 
       prevPos.top = actualPos.top
       isScrollInProcess = false
+      window.clearTimeout(preventTooltipTimeout)
+
+      preventTooltipTimeout = window.setTimeout(() => {
+        preventShowTooltip = false
+        if (lastHoveredItem !== null) {
+          this.getHoveredItem(lastHoveredItem.itemType, { target: lastHoveredItem.target })
+        }
+      }, 300)
     },
 
     setNbElementsToDisplay () {

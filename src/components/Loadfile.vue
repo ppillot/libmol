@@ -56,6 +56,11 @@ export default {
       ev.preventDefault()
       if (ev.target.files) this.dropFile(ev)
     }.bind(this))
+  },
+  beforeDestroy () {
+    window.removeEventListener('dragenter')
+    window.removeEventListener('dragover')
+    window.removeEventListener('drop')
   }
 }
 </script>

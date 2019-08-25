@@ -230,7 +230,7 @@ function consolidateDB (auth) {
                 }
 
                 // check wether description has no html tags or no html entities
-                const htmlTagRe = /<\/?[\w\s="/.':;#-/]+>/gi
+                const htmlTagRe = /<\/?[\w\s="/.':;#-]+>/gi
                 const htmlEncodedEntities = /&#?[a-z0-9]+;/gi
                 if (htmlTagRe.test(record.DESCRIPTION) || htmlEncodedEntities.test(record.DESCRIPTION)) {
                   let txt = record.DESCRIPTION

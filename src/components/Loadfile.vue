@@ -36,6 +36,9 @@ export default {
       return false
     },
     dropFile (ev) {
+      ev.preventDefault()
+      if (!ev.target.files) return
+
       const dt = ev.dataTransfer
       const file = dt.files[0]
       this.getFile(file)
@@ -52,10 +55,7 @@ export default {
     window.addEventListener('dragover', ev => {
       ev.preventDefault()
     })
-    window.addEventListener('drop', function (ev) {
-      ev.preventDefault()
-      if (ev.target.files) this.dropFile(ev)
-    }.bind(this))
+    window.addEventListener('drop', this.dropFile.bind(this))
   },
   beforeDestroy () {
     window.removeEventListener('dragenter')

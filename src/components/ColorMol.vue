@@ -49,7 +49,12 @@ export default {
   computed: {
     nonPolymer: function () {
       let sel = this.$store.state.selection
-      return (sel === 'hetero' || sel === 'water' || sel === 'saccharide')
+      if (sel === 'hetero' || sel === 'water' || sel === 'saccharide') return true
+      if (sel === 'all' &&
+        this.$store.state.mol.chains.length === 1 &&
+        this.$store.state.mol.chains[0].sequence.length === 1
+      ) return true
+      return false
     },
     noSStruc: function () {
       return (this.$store.state.selection !== 'protein' || (this.$store.state.display !== 'cartoon' && this.$store.state.display !== 'backbone'))

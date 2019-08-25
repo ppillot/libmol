@@ -1,6 +1,9 @@
 <template>
-  <div class="tooltip" :style="tooltipStyles" v-show="isTooltipVisible" :class="{'contact': content==='contact'}">
-    <template v-if="content === 'atom'">
+  <div class="tooltip"
+    :style="style"
+    v-show="tooltip.visible"
+    :class="{'contact': tooltip.content==='contact'}">
+    <template v-if="tooltip.content === 'atom'">
       {{ this.$t('tooltips.atom') }}: {{ this.$t('biochem.el_name.' + atomDescription.symbol) }}
       {{ atomDescription.atomname }}
       <br>
@@ -10,7 +13,7 @@
       {{ this.$t('tooltips.chain') }}: {{ atomDescription.chainname }}
       {{ atomDescription.entity }}
     </template>
-    <template v-else-if="content === 'contact'">
+    <template v-else-if="tooltip.content === 'contact'">
       {{ contactDescription.contactName }}
       <table>
         <tr>
@@ -58,46 +61,53 @@ const residueTypes = [
 
 export default {
   name: 'Tooltip',
-  data () {
-    return {
-      tooltipStyles: {
-        top: '0px',
-        left: '0px'
-      },
-      atomDescription: {
-        symbol: 'C',
-        atomname: 'CA',
-        resname: 'VAL',
-        resno: '120',
-        chainname: 'A',
-        entity: 'HEMOGLOBIN ALPHA',
-        moleculeType: 3,
-        restype: 'protein'
-      },
-      contactDescription: {
-      },
-      content: ''
-    }
-  },
   computed: {
-    isTooltipVisible: function () {
+    atomDescription: function () {
+      return this.tooltip.atomDescription
+    },
+    contactDescription: function () {
+      return this.tooltip.contactDescription
+    },
+    style: function () {
+      const pos = (this.tooltip.pos) ? this.tooltip.pos : { x: 0, y: 0 }
+      return {
+        bottom: Math.floor(pos.y) + 10 + 'px',
+        left: Math.floor(pos.x) - 12 + 'px'
+      }
+    },
+    tooltip: function () {
       if (this.$store.state.isAtomHovered) {
-        // we need to copy by value to prevent side effects
         let atomHovered = this.$store.state.atomHovered
-        Object.assign(this.atomDescription, atomHovered)
-        this.atomDescription.residueTypeName = residueTypes[atomHovered.resType]
-        this.tooltipStyles = this.getTooltipStyles(atomHovered.pos)
-        this.content = 'atom'
+        return {
+          visible: true,
+          atomDescription: {
+            ...atomHovered,
+            residueTypeName: residueTypes[atomHovered.resType]
+          },
+          pos: atomHovered.pos,
+          content: 'atom'
+        }
       } else if (this.$store.state.isContactHovered) {
         const contactHovered = this.$store.state.contactHovered
         const key = contactTypesMap.get(contactHovered.contactType)
-        const contactNameTranslation = (key === undefined) ? contactHovered.contactType : this.$t('ui.contacts.' + key)
-        // console.log(key, contactNameTranslation)
-        Object.assign(this.contactDescription, contactHovered, { 'contactName': contactNameTranslation, 'contactClass': key })
-        this.tooltipStyles = this.getTooltipStyles(contactHovered.pos)
-        this.content = 'contact'
+        const contactNameTranslation = (key === undefined)
+          ? contactHovered.contactType
+          : this.$t('ui.contacts.' + key)
+
+        return {
+          visible: true,
+          contactDescription: {
+            ...contactHovered,
+            contactName: contactNameTranslation,
+            contactClass: key
+          },
+          pos: contactHovered.pos,
+          content: 'contact'
+        }
       }
-      return this.$store.state.isAtomHovered || this.$store.state.isContactHovered
+      return {
+        visible: false
+      }
     }
   },
   methods: {

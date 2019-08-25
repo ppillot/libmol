@@ -1152,6 +1152,7 @@ var vuex = new Vuex.Store({
       }
 
       context.commit('contextMenuAnchor', anchor)
+      context.dispatch('hideTooltip')
       // highlightRes(item)
     },
     sequenceHovered (context, item) {

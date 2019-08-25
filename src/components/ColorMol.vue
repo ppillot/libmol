@@ -4,7 +4,7 @@
       ref="palette"
       placement="right"
       trigger="click">
-      <palette v-model="colors" @color="pickColor"></palette>
+      <palette :value="colors" @color="pickColor"></palette>
     </el-popover>
     <button-group :active-value="colored" @change="changeColor" @hover="hover">
         <radio-button :disabled="none" value="element">{{ $t('ui.commands.color.cpk') }}</radio-button>

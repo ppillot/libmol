@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showContextMenu" class="context-menu-backdrop" @click.self="hideContextMenu">
+    <div v-if="showContextMenu" class="context-menu-backdrop" @click="hideContextMenu">
         <div class="context-menu" :style="contextMenuStyles">
         <template v-if="ctxMProp.type==='chain'">
             <div>{{ $t('tooltips.chain') }} {{ ctxMProp.chain }}</div>

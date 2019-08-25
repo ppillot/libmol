@@ -114,6 +114,9 @@ export default {
   .active .split--button-trigger {
     color: white;
   }
+  .disabled .split--button-trigger {
+    color: #d1dbe5;
+  }
   .radio-button:hover {
     border-color: #20a0ff;
     z-index: 1;

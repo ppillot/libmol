@@ -312,7 +312,6 @@ function consolidateDB (auth) {
 var download = function (url, dest, cb) {
   var file = fs.createWriteStream(dest)
   https.get(url, function (response) {
-
     if (response.statusCode !== 200) {
       console.log(chalk.red(`Upstream file ${url} not found`))
       fs.unlink(dest) // Delete the file async. (But we don't check the result)
@@ -366,7 +365,14 @@ function cleanFiles (fileList) {
     files.forEach(file => {
       if (file[0] === '.') return
       if (file.indexOf('.') === -1) return // might be a folder
-      if (fileList.indexOf(path + file) === -1) {
+      let fn = path + file
+
+      // special case: cif, sdf & pdb file also exist in non gz version
+      // for automoatic brotli compression by OVH servers
+      const txtExtPos = fn.lastIndexOf('.txt')
+      if (txtExtPos > -1) fn = fn.substring(0, txtExtPos - 1)
+
+      if (fileList.indexOf(fn) === -1) {
         console.log(file + ' should be removed')
         fs.unlink(path + file, (err) => {
           if (err) throw err

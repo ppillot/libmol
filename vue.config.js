@@ -89,7 +89,7 @@ module.exports = {
   devServer: {
     proxy: {
       '^/api': {
-        target: 'http://localhost:8888/libmol3/src/api',
+        target: 'http://localhost:8888/libmol/src/api',
         ws: false,
         changeOrigin: true,
         pathRewrite: {

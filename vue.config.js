@@ -8,7 +8,7 @@ module.exports = {
     i18n: {
       locale: 'en',
       fallbackLocale: 'en',
-      localeDir: 'locales',
+      localeDir: 'locales/bundles',
       enableInSFC: false
     },
     electronBuilder: {

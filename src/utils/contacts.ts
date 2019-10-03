@@ -180,32 +180,40 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
     }
     Object.assign(contactReprParam, defaultDisplayedContacts)
 
+    // @ts-ignore
     const c = comp.addRepresentation('contact', contactReprParam)
 
     let contactsArray = getContactsArray(c)
 
     const vicinity = comp.addRepresentation('licorice', {
-      multipleBond: true,
+      multipleBond: 'symmetric',
       sele: cE.vicinitySeleString,
       aspectRatio: 1.5,
       radiusScale: 1,
+      // @ts-ignore
       diffuseInterior: true,
+      // @ts-ignore
       useInteriorColor: false,
+      // @ts-ignore
       interiorDarkening: 0.3
     })
 
     const targetSele = cE.targetCloseToContact
     const target = comp.addRepresentation('ball+stick', {
       sele: cE.targetCloseToContact,
-      multipleBond: true,
+      multipleBond: 'symmetric',
       aspectRatio: 1.5,
       radiusScale: 1,
+      // @ts-ignore
       diffuseInterior: true,
+      // @ts-ignore
       useInteriorColor: false,
+      // @ts-ignore
       interiorDarkening: 0.3
     })
 
     const label = comp.addRepresentation('label', {
+      // @ts-ignore
       labelType: 'format',
       labelFormat: '[%(resname)s]%(resno)s',
       // labelText: resnameList,

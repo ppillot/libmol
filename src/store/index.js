@@ -1219,10 +1219,10 @@ var vuex = new Vuex.Store({
       ssbridges.enable(enableSSBridges)
       commit('setSSBridgesDisplayed', enableSSBridges)
     },
-    sequenceSelected (context, tabSelectedResidues) {
+    sequenceSelected (context, param) {
       // has the selection started by a selected residue ?
-      let isToBeSelected = (context.state.selected[tabSelectedResidues[0]] === false)
-      context.dispatch('residuesSelected', { tabSelectedResidues, isToBeSelected })
+      let isToBeSelected = param.forceSelect || (context.state.selected[param.selection[0]] === false)
+      context.dispatch('residuesSelected', { tabSelectedResidues: param.selection, isToBeSelected })
     },
     chainSelected (context, chainId) {
       // if the chain is entirely selected, we then deselect it

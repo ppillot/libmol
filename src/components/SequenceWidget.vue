@@ -125,6 +125,7 @@ export default {
       headerStyle: 'margin-left: 0',
       nbElementsToDisplay: 20,
       userSelection: [],
+      userSelectionStart: NaN,
       targetTYpe: 'res'
     }
   },
@@ -324,12 +325,25 @@ export default {
       if (event.button > 1) return
 
       let startResId = getResIndexFromNode(event.target)
+
       // console.log('start:', startResId, 'chain:', chainByResidueList[startResId])
       if (isNaN(startResId)) { // could not get the starting point
         // console.log(event.target)
+        this.userSelectionStart = NaN
         return
       }
-      this.userSelection = [startResId]
+
+      // special case: user is using shift key to extend previously started selection
+      if (event.shiftKey) {
+        // check that previous start and new end belong to same chain
+        if (chainByResidueList[this.userSelectionStart] === chainByResidueList[startResId]) {
+          this.userSelection =
+            fillArrayTo.call(this, this.userSelectionStart, startResId)
+        }
+      } else {
+        this.userSelectionStart = startResId
+        this.userSelection = [startResId]
+      }
       // isSelectionInProcess = true
       document.getElementById('table-seq').addEventListener('mouseover', this.currentSelection)
       document.getElementById('table-seq').addEventListener('mouseleave', this.cancelSelection)
@@ -365,7 +379,11 @@ export default {
 
       // let's commit the new selection if the event happened in the same chain
       if (!isNaN(endResId) && (chainByResidueList[this.userSelection[0]] === chainByResidueList[endResId])) {
-        this.$store.dispatch('sequenceSelected', this.userSelection.slice(0))
+        // shift key forces to select
+        this.$store.dispatch('sequenceSelected', {
+          selection: this.userSelection.slice(0),
+          forceSelect: event.shiftKey
+        })
       }
 
       this.userSelection = []

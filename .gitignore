@@ -28,3 +28,6 @@ yarn-error.log*
 
 # credential files
 client_secret.json
+tocken.json
+credentials.json
+build/token.json

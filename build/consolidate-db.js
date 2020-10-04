@@ -1,11 +1,10 @@
 const fs = require('fs')
 const readline = require('readline')
 const { google } = require('googleapis')
-// const googleAuth = require('google-auth-library')
-const escapeQuotes = require('escape-quotes')
 const https = require('https')
 const sqlite3 = require('sqlite3').verbose()
 const chalk = require('chalk')
+const zopfli = require('node-zopfli')
 
 const removeAccents = require('remove-accents-diacritics')
 const Entities = require('html-entities').AllHtmlEntities
@@ -123,7 +122,7 @@ function getFileProperties (file, type, idsource) {
     case 'cid sdf':
       fileName = `${idsource}-${file}.sdf.gz`
       destPath = 'public/static/mol/'
-      source = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${idsource}/record/SDF/?record_type=3d&response_type=save&response_basename=Structure3D_CID_${idsource}`
+      source = `https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${idsource}/record/SDF/?record_type=3d&response_type=save&response_basename=Conformer3D_CID_${idsource}`
       dest = destPath + fileName
       break
     default:
@@ -140,7 +139,7 @@ function getFileProperties (file, type, idsource) {
 }
 
 /**
- * Print the names and majors of students in a sample spreadsheet:
+ * Open the mol spreadsheet, extract its data, compare to data in local db:
  * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
  */
 function consolidateDB (auth) {
@@ -319,7 +318,16 @@ var download = function (url, dest, cb) {
       return
     }
 
-    response.pipe(file)
+    response
+      .pipe(zopfli.createGzip({
+        verbose: false,
+        verbose_more: false,
+        numiterations: 15,
+        blocksplitting: true,
+        blocksplittinglast: false,
+        blocksplittingmax: 15
+      }))
+      .pipe(file)
     file.on('finish', function () {
       file.close(cb) // close() is async, call cb after close completes.
     })
@@ -368,7 +376,7 @@ function cleanFiles (fileList) {
       let fn = path + file
 
       // special case: cif, sdf & pdb file also exist in non gz version
-      // for automoatic brotli compression by OVH servers
+      // for automatic brotli compression by OVH servers
       const txtExtPos = fn.lastIndexOf('.txt')
       if (txtExtPos > -1) fn = fn.substring(0, txtExtPos - 1)
 

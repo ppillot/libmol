@@ -8,7 +8,7 @@ As láminas beta (láminas β) son sucesións lineares de aminoácidos combinada
 * [cóbados](lexicon-turn),  
 Os cóbados son bruscos cambios de dirección na orientación dunha cadea de aminoácidos.
 * [hélices alfa](lexicon-helix),  
-Unha hélice alfa (α helix) aparece cando a cadea de aminoácidos se enrola ao longo dun eixo. Unha hélice alfa contén unha media de 3,6 aminoácidos por volta.
+Unha hélice alfa (hélice α) aparece cando a cadea de aminoácidos se enrola ao longo dun eixo. Unha hélice alfa contén unha media de 3,6 aminoácidos por volta.
 * [hélices 3-10](lexicon-helix).  
 Unha hélice 3-10 é un motivo curto comparado coa hélice alfa xa que ten só 3 aminoácidos por volta.
 

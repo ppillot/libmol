@@ -1,18 +1,18 @@
-# Colour by secondary structure
+# Colorear segundo a estrutura secundaria
 
-This color scheme reveals specific motifs of amino acids disposition favored in proteic chains, known as **secondary structures**. This option is only available when proteins are selected and displayed with a simplified representation ([backbone](display-backbone) or [cartoon](display-cartoon)).
+Este esquema de coloración revela motivos específicos da disposición dos aminoácidos nas cadeas proteicas coñecidos como **estruturas secundarias**. Esta opción está dispoñible só cando as proteínas se seleccionan e se mostran nunha representación simplificada ([backbone](display-backbone) or [cartoon](display-cartoon)).
 
-Secondary structures recognized are:
-* [beta strands](lexicon-strand),  
-Beta strands (β strands) are linear successions of amino acids generally combined to make planar or cylindrical associations in the protein structure.
-* [turns](lexicon-turn),  
-Turns are brutal change of direction in the orientation of an amino acids chain.
-* [alpha helices](lexicon-helix),  
-Alpha helix (α helix) appears when the amino acid chain coils along an axis. Alpha helix contains an average of 3.6 amino acids per helical turn.
+As estruturas secundarias recoñecidas son:
+* [láminas beta](lexicon-strand),  
+As láminas beta (láminas β) son sucesións lineares de aminoácidos combinadas xeralmente para formar asociacións planas ou cilíndricas na estrutura da proteína.
+* [cóbados](lexicon-turn),  
+Os cóbados son bruscos cambios de dirección na orientación dunha cadea de aminoácidos.
+* [hélices alfa](lexicon-helix),  
+Unha hélice alfa (α helix) aparece cando a cadea de aminoácidos se enrola ao longo dun eixo. Unha hélice alfa contén unha media de 3,6 aminoácidos por volta.
 * [3-10 helices](lexicon-helix).  
 3-10 helix is a shorter motif compared to alpha helix, having only 3 amino-acids per helical turn.
 
-These motifs are stabilized through hydrogen bonding between amino acids.
+Estes motivos son estabilizados mediante enlaces de hidróxeno entre os aminoácidos.
 
-Labels in the status bar beneath the visualization frame list each secondary structure with its corresponding color.  
-Secondary structures assignment to specific portions of the amino acid chain is provided by the molecular file. If this information is not available, a computation is performed using fast Zhang & Skolnick TM-align method, which may lead to discrepant results.
+As etiquetas da barra de estado, debaixo do marco de visualización, listan cada estrutura secundaria coa súa correspondente cor.  
+A asignación de estruturas secundarias a porcións específicaas da cadea de aminoácidos é proporcionada polo ficheiro molecular. Se está información non estiver dispoñible realizaríase un cálculo usando o método rápido de aliñamento Zhang & Skolnick TM, que podería dar resultados discrepantes.

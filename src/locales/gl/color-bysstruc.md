@@ -15,4 +15,4 @@ Unha hélice 3-10 é un motivo curto comparado coa hélice alfa xa que ten só 3
 Estes motivos son estabilizados mediante enlaces de hidróxeno entre os aminoácidos.
 
 As etiquetas da barra de estado, debaixo do marco de visualización, listan cada estrutura secundaria coa súa correspondente cor.  
-A asignación de estruturas secundarias a porcións específicaas da cadea de aminoácidos é proporcionada polo ficheiro molecular. Se está información non estiver dispoñible realizaríase un cálculo usando o método rápido de aliñamento Zhang & Skolnick TM, que podería dar resultados discrepantes.
+A asignación de estruturas secundarias a porcións específicas da cadea de aminoácidos é proporcionada polo ficheiro molecular. Se está información non estiver dispoñible realizaríase un cálculo usando o método rápido de aliñamento Zhang & Skolnick TM, que podería dar resultados discrepantes.

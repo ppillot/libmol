@@ -1,6 +1,6 @@
 # Colorear segundo a estrutura secundaria
 
-Este esquema de coloración revela motivos específicos da disposición dos aminoácidos nas cadeas proteicas coñecidos como **estruturas secundarias**. Esta opción está dispoñible só cando as proteínas se seleccionan e se mostran nunha representación simplificada ([backbone](display-backbone) or [cartoon](display-cartoon)).
+Este esquema de coloración revela motivos específicos da disposición dos aminoácidos nas cadeas proteicas coñecidos como **estruturas secundarias**. Esta opción está dispoñible só cando as proteínas se seleccionan e se mostran nunha representación simplificada ([esqueleto](display-backbone) ou [cartoon](display-cartoon)).
 
 As estruturas secundarias recoñecidas son:
 * [láminas beta](lexicon-strand),  
@@ -9,8 +9,8 @@ As láminas beta (láminas β) son sucesións lineares de aminoácidos combinada
 Os cóbados son bruscos cambios de dirección na orientación dunha cadea de aminoácidos.
 * [hélices alfa](lexicon-helix),  
 Unha hélice alfa (α helix) aparece cando a cadea de aminoácidos se enrola ao longo dun eixo. Unha hélice alfa contén unha media de 3,6 aminoácidos por volta.
-* [3-10 helices](lexicon-helix).  
-3-10 helix is a shorter motif compared to alpha helix, having only 3 amino-acids per helical turn.
+* [hélices 3-10](lexicon-helix).  
+Unha hélice 3-10 é un motivo curto comparado coa hélice alfa xa que ten só 3 aminoácidos por volta.
 
 Estes motivos son estabilizados mediante enlaces de hidróxeno entre os aminoácidos.
 

@@ -1,17 +1,17 @@
-# Colour by biochemical nature
-This color scheme colors atoms accordingly with the biochemical nature of the compound they are in.  
+# Colorear segundo a natureza química
+Este esquema de coloración colorea os átomos de acordo coa natureza química do composto ao que pertencen  
 
-Main compounds identified are:
-* proteins,
-* nucleic acids (DNA and RNA),
-* saccharides,
-* water,
-* ions,
-* [hetero atoms](lexicon-hetero).  
+Os principais compostos identificados son:
+* proteínas,
+* ácidos nucleicos (ADN e ARN),
+* glícidos,
+* auga,
+* ións,
+* [hetero átomos](lexicon-hetero).  
 
-**Example molecular model with varied biochemical compounds:**  
-![biochemical nature coloration](static/img/colonat.png)   
+**Exemplo de modelo molecular con compostos bioquímicos variados:**  
+![coloración segundo a natureza bioquímica](static/img/colonat.png)   
 
-Every atom that is not part of a defined set is classified as hetero. This group is subsequently very diverse.  
+Calquera átomo que non pertenza a unha categoría definida clasifícase como hetero. Este grupo é por tanto moi diverso.  
 
-Labels in the status bar beneath the visualization frame, specify every biochemical nature present in the model and its corresponding color.
+As etiquetas da barra de estado, debaixo do marco de visualización, especifican calquera natureza química presente no modelo e a súa cor correspondente.

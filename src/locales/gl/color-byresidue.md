@@ -1,12 +1,12 @@
-# Colour by residue
-A residue regroups atoms that make a subunit of a chain (or polymer) in a molecular model. Each residue (or group of residues chemically akin to each other) has a specific color.
+# Colorear segundo o resíduo
+Un resíduo agrupa átomos que constitúen unha subunidade dunha cadea (ou polímero) nun modelo molecular. Cada resíduo (ou grupo de resíduos que se parezan químicamente) ten unha cor específica.
 
-There are several types of residues depending on the biochemical nature of the chain.  
-Main groups are:
-* [amino acids](lexicon-aminoacid), that make proteins,
-* [nucleotides](lexicon-nucleotide), that make [nucleic acids](lexicon-nucleic) (DNA or RNA).
+Existen distintos tipos de resíduos dependendo na natureza bioquímica da cadea.  
+Os principais grupos son:
+* [aminoácidos](lexicon-aminoacid), que forman parte das proteínas,
+* [nucleótidos](lexicon-nucleotide), que forman parte dos [ácidos nucleicos](lexicon-nucleic) (ADN or ARN).
 
-Other kinds of residues, such as [ligands](lexicon-ligand) (saccharides, prosthetic groups, ions, etc...) and solvents (water) may also be part of molecular models.
+Outros tipos de resíduos, como os [ligandos](lexicon-ligand) (glícidos, grupos prostéticos, ións, etc) e solventes (auga) tamén poden formar parte dos modelos moleculares.
 
-Labels in the status bar beneath the visualization frame, specify every residue present in the model by its ID and its corresponding color.  
-**Tip**: Hovering over a residue's ID triggers a tooltip with its extended name (if this information is available from the model file).
+As etiquetas da barra de estado, debaixo da barra de visualización,especifican todos os resíduos presentes no modelo polos seus ID e as súas correspondentes cores.  
+**Consello**: Manter o indicador sobre o ID dun resíduo mostra o seu nome estendido (se está información está presente no ficheiro do modelo).

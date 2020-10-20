@@ -1,6 +1,6 @@
-# π-π and cation-π Interactions
-Aromatic amino acids (phenylalanine, tyrosine, tryptophan, histidine) or nucleobases from nucleic acids may interact with neighboring aromatic ring bearing compounds (π-stacking) or with cations (cation-π interactions).  
+# Interaccións π-π e cation-π-catión
+Os aminoácidos aromáticos (fenilalanina, tirosina, triptófano, histidina) ou as bases dos ácidos nucleicos poden interactuar con compostos próximos portadores de aneis aromáticos (amoreamento π) ou con catións (interaccións π-catión).  
 
-Aromatic rings stacking between nucleotides from the same chain is one of the main interactions in nucleic acid structures. Binding of several small ligands with their respective receptor (for example between acetylcholine and the nicotinic receptors) relies on interactions between cations from the ligands and aromatic amino acids from the receptor.
+Os aneis aromáticos amoreándose entre nucleótidos da mesma cadea constitúen unha das principais interaccións nas estruturas dos ácidos nucleicos. A unión de varios ligandos pequenos cos seus respectivos receptores (por exemplo entre a acetilcolina e os receptores nicotínicos) baséase nas interaccións entre os catións dos ligandos e os aminoácidos aromáticos do receptor.
 
-These interactions originate from the spatial distribution of electronic densities around aromatic rings (due to π orbitals). For example, aromatic rings centers have a lower electronic density and can interact with higher electronic density harboring rings borders.
+Estas interaccións orixínanse na distribución espacial das densidades electrónicas arredor dos aneis aromáticos (debidas a orbitais π). Por exempo, os centros dos aneis aromáticos teñen unha desnsidae electrónica menor e poden interactuar con bordos de aneis con densidae electrónica alta.

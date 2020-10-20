@@ -1,7 +1,8 @@
-# Hydrophobic interactions
-In an hydrated environment, water molecules are organized in clusters behaving as cages around hydrophobic side chains. When two such hydrophobic side chains come close to each other, the water clusters merge resulting in a more stable association.
+# Interaccións hidrofóbicas
+Nun ambiente hidratado as moléculas de auga organízanse en grupos que se comportan como gaiolas arredor das cadeas hidrofóbicas. Cando dúas destas cadeas hidrofóbicas se achegan, os grupos de moléculas de auga mestúranse e forman unha asociación máis estable.
 
-A survey of the molecular complexes between protein and ligands in the Protein Databank has revealed that hydrophobic interactions are the main type of non covalent interactions binding ligands to proteins.
+Un estudo dos complexos moleculares entre proteínas e ligandos do Protein Data Bank revelou que as interaccións hidrofóbicas son o principal tipo de interaccións non covalentes nas unións entre ligandos e proteínas.
 
-Hydrophobic interactions are instrumental to certain functions. For example, they occur in the binding of ligands to hydrophobic pockets (heme in hemoglobin, steroid receptor ligand binding domain), they anchor membrane proteins to the lipid bilayer, they are part of the gating mechanism in ion channels. 
+As interaccións hidrofóbicas son determinantes para certas funcións. Por exemplo, aparecen na unión de ligandos a compartimentos hidrofóbicos (hemo na hemoglobina, dominio de unión a ligando do receptor esteriodeo), fixan proteínas de membrana á bicamada lipídica ou forman parte do mecanismo de apertura dos canais para ións.
+ 
  

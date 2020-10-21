@@ -4,7 +4,7 @@ Esta lapela é o lugar para controlar e recibir información acerca das interacc
 * [Enlaces iónicos](contacts-saltbridge)
 * [Coordinación metálica](contacts-metal)
 * [Interaccións hidrofóbicas](contacts-hydrophobic)
-* [Amoreamento-π e interaccións cation-π](contacts-pi)
+* [Amoreamento-π e interaccións catión-π](contacts-pi)
 
 ## Definicións
 Unha **interacción covalente** une dous átomos da mesma molécula compartindo un par de **electróns**. As interaccións non covalentes poden ocorrer entre átomos da mesma molécula ou entre dúas moléculas diferentes (como entre unha proteína e un ligando). A enerxía de enlace dunha única interacción non covalente é xeralmente máis feble ca a dun enlace covalente. Estas interaccións son fundamentais para moitos procesos biolóxicos como o contacto entre moléculas, a conformación espacial ou as reaccións bioquímicas.

@@ -1,7 +1,7 @@
 # Interaccións non covalentes
 Esta lapela é o lugar para controlar e recibir información acerca das interaccións covalentes:
 * [Enlaces de hidróxeno](contacts-hbond)
-* [Enlaces de hidróxeno](contacts-saltbridge)
+* [Enlaces iónicos](contacts-saltbridge)
 * [Coordinación metálica](contacts-metal)
 * [Interaccións hidrofóbicas](contacts-hydrophobic)
 * [amoreamento-π e interaccións cation-π](contacts-pi)

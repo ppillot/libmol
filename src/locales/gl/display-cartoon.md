@@ -1,13 +1,13 @@
-# Cartoon representation
-This representation provides a simplified view of **proteins** and **nucleic acids** (DNA or RNA). The cartoon only passes through the atoms that are part of the molecule backbone hiding the diverse side chains or nucleic bases.  
-![Ruban](static/img/ruban2.png) 
+# Representación de fitas
+Esta representación proporciona unha vista simplificada de **proteínas** e **ácidos nucleicos** (ADN ou ARN). A fita pasa só a través dos átomos que forman parte do esqueleto da molécula ocultando as cadeas laterais e as bases (nos ácidos nucleicos).  
+![Fita](static/img/ruban2.png) 
 
-In **proteins**:  
-![Protein cartoon representation](static/img/rubanp.png)  
-The cartoon passes through the peptidic bonds planes between successive amino acids. Cartoon width varies to emphasize noticeable secondary structures (beta strands, helices,...).
+En **proteínas**:  
+![Representación de fitas en proteínas](static/img/rubanp.png)  
+A fita pasa polos planos dos enlaces peptídicos entre os aminoácidos da cadea. O largo da fita varía a fin de enfatizar estruturas secundarias notorias (follas dobradas, hélices alfa...).
 
-In **nucleic acids**:  
-![DNA cartoon representation](static/img/rubann.png)  
-The cartoon trace passes through successives riboses from each nucleotide. Nucleic bases are represented as sticks emerging from the cartoon. 
+En **ácidos nucleicos**:  
+![Representación de fitas no DNA](static/img/rubann.png)  
+As bases nitroxenadas son representadas como barras que emerxen da fita.rough successives riboses from each nucleotide. Nucleic bases are represented as sticks emerging from the cartoon. 
 
-Due to computation limitations, this representation doesn't apply to chains shorter than 3 residues.
+Debido ás limitacións de cálculo esta representación non é aplicable a cadeas cunha lonxitude menor de 3 residuos.

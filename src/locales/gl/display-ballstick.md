@@ -1,10 +1,10 @@
-# Balls and sticks representation
-![Balls and sticks](static/img/bs1.png)  
+# Representación de bólas e barras
+![Bólas e barras](static/img/bs1.png)  
 
-This representation displays :
-* **(1)** atoms as spheres, **the balls**, 
-* **(2)** covalent bonds as segments, **the sticks**.   
+Esta representación mostra :
+* **(1)** os átomos como esfereas, **ás bólas**, 
+* **(2)** os enlaces covalentes como segmentos, **as barras**.   
 
-It is used to visualized all atoms that are part of a molecules and the covalent connexions between them.  
-Due to [hydrogen coordinates determination limitations](lexicon-techniques), water molecules usually appear as single oxygen atoms spheres with this representation. 
-Bond assignement is infered from the amino acid or nucleotide name in polymers, and should be provided in the coordinate file for every other compound. If not present, a bonding computation is performed and might lead to discrepant results.
+É usada para visualizar todos os átomos que forman parte dunha molécula e as conexións covalentes entre elas.  
+Debido ás [limitacións na determinación das coordenadas dos hidróxenos](lexicon-techniques), as moléculas de auga aparecen habitualmente como átomos de oxíxeno individuais nesta representación. 
+Os enlaces asígnanse tendo en conta os nomes do aminoácido ou nucleótido nas cadeas e deberían ser proporcionados polo ficheiro de coordenadas de cada composto. Se non estivese presente esta información levaríase a cabo un cálculo, que pode dar resultados discrepantes.

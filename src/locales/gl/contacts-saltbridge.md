@@ -1,5 +1,5 @@
-# Salt bridge
-In an aqueous phase, depending on the pH, some amino acids may bear a positive or a negative charge. For example, amino acids with an acidic side chain such as glutamate or aspartate have a negative charge at pH7. [Nucleic acids](lexicon-nucleic) also bear negative charges on their phosphate group at this pH.
+# Enlace iónico
+En fase acuosa, dependendo do pH, algúns aminoácidos poden ter unha carga positiva ou negativa. Por exemplo, os aminoácidos cunha cadea lateral ácida  como o glutamato ou o aspartato teñen carga negativa a pH 7. [Ácidos nucleicos](lexicon-nucleic) tamén teñen cargas negativas nos seus grupos fosfato a pH 7.
 
-Two molecules having opposite charges exert a mutual attraction. If they are close enough, they can make an ionic bond also called salt bridge.
+Dúas moléculas con cargas opostas exercen unha atracción mutua. En caso de estaren suficientemente próximas poden formar un enlace iónico.
 

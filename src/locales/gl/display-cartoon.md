@@ -7,7 +7,7 @@ En **proteínas**:
 A fita pasa polos planos dos enlaces peptídicos entre os aminoácidos da cadea. O largo da fita varía a fin de enfatizar estruturas secundarias notorias (follas dobradas, hélices alfa...).
 
 En **ácidos nucleicos**:  
-![Representación de fitas no DNA](static/img/rubann.png)  
+![Representación de fitas no ADN](static/img/rubann.png)  
 A a traxectoria da fita pasa polas ribosas de cada nucleótido da cadea. As bases nitroxenadas son representadas como barras que emerxen da fita. 
 
 Debido ás limitacións de cálculo esta representación non é aplicable a cadeas cunha lonxitude menor de 3 residuos.

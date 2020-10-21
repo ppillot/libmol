@@ -1,7 +1,9 @@
 # Representación de esqueleto
 Esta representación é unha vista simplificada só aplicable a proteínas e ácidos nucleicos (ADN e ARN).
 
-![Esqueleto](static/img/squ2.png)  O esqueleto é unha liña quebrada que pasa por un átomo representativo en cada residuo do polímero:
+![Esqueleto](static/img/squ2.png)
+
+O esqueleto é unha liña quebrada que pasa por un átomo representativo en cada residuo do polímero:
 
 * en proteínas, estes son os **carbonos alfa** (carbonos-α) de cada aminoácido. Os carbonos alfa articulan os enlaces peptídicos coas cadeas laterais dos aminoácidos.
 

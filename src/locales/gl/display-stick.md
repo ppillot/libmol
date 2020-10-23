@@ -1,10 +1,10 @@
-# Licorice representation (sticks)
-![Licorice](static/img/st1.png)   
+# Representación de barras
+![Barras](static/img/st1.png)   
 
-This representation use only segments between atoms (**the sticks**) to display the molecule.     
-These segments provide informations regarding:
-* **(1)** **atoms**, located at the ends of the segments generally marked by angles, 
-* **(2)** **covalent bonds**, connecting two atoms.  
+Esta representación usa só segmentos entre os átomos (**as barras**) para mostar a molécula.     
+Estes segmentos proporcionan información acerca de:
+* **(1)** **átomos**, situados nos extremos dos segmentos, marcados xeralmente por ángulos, 
+* **(2)** **enlaces covalentes**, que conectan dous átomos.  
 
-It is used to clearly visualize the covalent bonds between the atoms of a molecule.
-It also provides a light outline of a molecule or part of it.
+Úsase para visualizar claramente os enlaces covalentes entre os átomos da molécula.
+Tamén mostra unha silueta clara da molécula ou parte dela.

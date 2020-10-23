@@ -1,14 +1,14 @@
-# CPK coloring
-The CPK coloring code (Corey, Pauling and Koltun) is the conventional coloring of atoms used in chemistry. It identifies atomic elements in molecular models.
-This code was defined by the chemists R. Corey and L. Pauling and then improved by W. Koltun. Currently molecular visualization tools use variations of this initial code.
+# Coloración CPK
+O código de coloración CPK (Corey, Pauling and Koltun) é a coloración convencional dos elementos adoptada en química. Identifica os elemento químicos nun modelo molecular.
+Este código foi definido polos químicos R. Corey and L. Pauling e mellorado despois por by W. Koltun. As actuais ferramentas de visualización de moléculas  use variacións deste código.
 
-The code of the main atoms in organic molecules is:
+O código dos principais elementos nas moléculas orgánicas é o seguinte:
 
-Symbol | Coloring code | Element
+Símbolo | Código de coloración | Elemento
 ------------ | ------------- | -------------
-**C** | ![Carbon](static/img/c.png)| **Carbon**
-**H** | ![Hydrogen](static/img/h.png) | **Hydrogen**
-**O** | ![Oxygen](static/img/o.png) | **Oxygen** 
-**N** | ![Nitrogen](static/img/n.png) | **Nitrogen**
-**S** | ![Sulfur](static/img/s.png) | **Sulfur** 
-**P** | ![Phosphorus](static/img/p.png) | **Phosphorus** 
+**C** | ![Carbono](static/img/c.png)| **Carbono**
+**H** | ![Hidróxeno](static/img/h.png) | **Hidróxeno**
+**O** | ![Oxíxeno](static/img/o.png) | **Oxíxeno** 
+**N** | ![Nitróxeno](static/img/n.png) | **Nitróxeno**
+**S** | ![Xofre](static/img/s.png) | **Xofre** 
+**P** | ![Fósforo](static/img/p.png) | **Fósforo** 

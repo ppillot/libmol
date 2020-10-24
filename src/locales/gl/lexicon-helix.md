@@ -1,4 +1,4 @@
-# Helices
-Helices are among the main patterns taken by [amino acids](lexicon-aminoacid) chains in a [protein](lexicon-protein) (also known as secondary structures).  
-In a helix, the amino acid chain is wound around an axis. The side chains of the amino acids point towards the outside of the helix axis. The amino acids in a helix establish hydrogen bonds, with the neighbouring amino acids of the next helical turn and of the previous one.
-Depending on the **pitch** of the helix (number of amino acids per helical turn), different categories of helices are defined (helix α, helix 3-10, helix π having respectively 3.6, 3 and 5 amino acids per helical turn).
+# Hélices
+As hélices están entre os principais patróns que adoptan a cadeas dos [aminoácidos](lexicon-aminoacid) dunha [proteína](lexicon-protein) (coñecidos tamén como estrutura secundaria).  
+Nunha hélice a cadea de aminoácidos enrólase arredor dun eixe. As cadeas laterais dos aminoácidos apuntan para o exterior do eixe da hélice. Os aminoácidos dunha hélice establecen enlaces de hidróxeno con aminácidos da seguinte volta e da anterior.
+Dependendo do **paso** da hélice (número de aminoácidos por volta) defínense distintas categorías (hélice α, hélice 3-10 e hélice π, que teñen respectivamente 3,6, 3 e 5 aminoácidos por volta).

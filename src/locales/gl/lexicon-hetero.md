@@ -1,4 +1,4 @@
-# Hetero atoms
-This class of chemical compounds is diverse. It includes all the molecules not belonging to the groups of [proteins](lexicon-protein), [nucleic acids](lexicon-nucleic), water molecules nor carbohydrates.  
-It contains [ligands](lexicon-ligand) in association with proteins such as heme groups in globins, certain vitamins acting as cofactors, ions involved in catalysis, etc...  
-These also include lipids surrounding some membrane proteins or other substances used as solvents during the experimental determination.
+# Heteroátomos
+Esta clase de compostos é diversa. Inclúe todas as moléculas que non pertencen aos seguintes grupos: [proteínas](lexicon-protein), [ácidos nucleicos](lexicon-nucleic), moléculas de auga ou carbohidratos.  
+Contén [ligandos](lexicon-ligand) asociados a proteínas como o grupo hemo nas globinas, certas vitaminas que son cofactores, ións implicados na catálise, etc.  
+Tamén inclúe os lípidos que rodean algunhas proteínas de membrana ou outras substancias usadas como solventes durante a determinación experimental.

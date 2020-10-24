@@ -1,6 +1,6 @@
-# Nucleotides
-Nucleotides are the building blocks of [nucleic acids](lexicon-nucleic) such as __DNA__ or __RNA__. 
-A nucleotide is made of three parts:
-* the __Nucleobase__, or __nitrogenous base__. They exist in 5 different main types (__Adenine__, __Guanine__, __Thymine__, __Cytosine__, __Uracile__) which can undergo chemical modifications (particularly in RNAs)
-* the __Carbohydrate__ which can either be a __ribose__ (in RNA), or a __deoxyribose__ (in DNA)
-* the __Phosphate__ group
+# Nucleotidos
+Os nucleótidos son os monómeros dos [ácidos nucleicos](lexicon-nucleic) como __ADN__ ou __ARN__. 
+Un nucleótido está formado por tres partes:
+* a __Nucleobase__, ou __base nitroxenada__. Hai cinco tipos diferentes (__Adenina__, __Guanina__, __Timina__, __Citosina__ e __Uracilo__) que poden sufrir modificacións (particlarmente nas moléculas de ARN)
+* o __Monosacárido__ que pode ser __ribosa__ (in ARN), ou __desoxiribosa__ (no ADN)
+* o grupo __Fosfato__

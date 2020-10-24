@@ -1,6 +1,5 @@
-# Ligands
-**Ligands** are small molecules linked to the studied macromolecules (proteins and nucleic acids). The ligands may be involved in the molecule function.
-The chemical nature of the ligands can be either organic or mineral.
-Organic ligands may be carbohydrates, lipids, hemes or any other organic molecules.
-Inorganic ligands may be ions, metal atoms or other inorganic molecules.
-The ligands attach to the macromolecules by covalent or non-covalent bonds (ionic, hydrogen bonds, Van der Waals interactions). 
+# Ligandos
+Os **ligandos** son moléculas pequenas que están unidas ás macromoléculas estudiadas (proteínas e ácidos nucleicos). Os ligandos poden estar implicados na función da molécula.
+A natureza química dos ligandos pode ser orgánica ou inorgánica.
+Os ligandos orgánicos poden ser carbohidratos, lípidos, hemos, ou calquera outra molécula orgánica.
+Os ligandos únense ás macromoléculas mediante enlaces covalentes ou non covalentes (iónicos, de hidróxeno, forzas de Van der Waals). 

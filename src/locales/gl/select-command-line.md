@@ -1,10 +1,10 @@
 # Selecionar mediante Comandos de selección
 Esta caixa de texto permite introducir un comando de selección para realizar seleccións máis complexas ou máis axiña que a través do modo secuencia.
-Os átomos que teñan as característcas indicadas polas palabras chave serán seleccionados.
+Os átomos que teñan as características indicadas polas palabras chave serán seleccionados.
 
 Despois de introducir un comando correcto realice a selección premendo a tecla Intro ou facendo click no botón de validación.
 
-A previsualización da selección móstrase mentres se pasa o rato por riba dos átomos seleccionados e permite verificar a calidade da selección. A barra de selección mostrará o número de átomos seleccionados. Se non fose posible procesar a selección o texto aparecerá en vermello.
+A previsualización da selección móstrase mentres se pasa o rato por riba da molécula e permite verificar a calidade da selección. A barra de selección mostrará o número de átomos seleccionados. Se non fose posible procesar a selección o texto aparecerá en vermello.
 
 ## Exemplos de comandos de selección
 | Comandos | Seleccións asignadas |

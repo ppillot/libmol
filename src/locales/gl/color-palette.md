@@ -1,4 +1,4 @@
-# Paleta de color
+# Cor de paleta
 É unha coloración definida polo usuario. A cor seleccionada aplícase a todos os átomos da selección actual.  
 O seu uso principal é para destacar unha parte específica do modelo molecular.
 

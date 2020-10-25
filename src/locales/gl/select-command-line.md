@@ -40,7 +40,7 @@ Ver máis palabras chave na [Documentation NGL](http://arose.github.io/ngl/api/t
 ## Sintaxe
 | Expresión | Significacdo
 | --------------- | ---------------
-| `1,2,3` | | Selección de residuos polo seu número
+| `1,2,3` | Selección de residuos polo seu número
 | `1-10` | Selección dunha secuencia de residuos (aquí, do 1 ao 10)
 | `:A` | Seleccionar unha cadea polo seu identificador
 | `#H,#C,#O` | Selección de átomos polo seu símbolo

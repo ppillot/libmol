@@ -1,6 +1,6 @@
 # Colorear segundo a estrutura secundaria
 
-Este esquema de coloración revela motivos específicos da disposición dos aminoácidos nas cadeas proteicas coñecidos como **estruturas secundarias**. Esta opción está dispoñible só cando as proteínas se seleccionan e se mostran nunha representación simplificada ([esqueleto](display-backbone) ou [cartoon](display-cartoon)).
+Este esquema de coloración revela motivos específicos da disposición dos aminoácidos nas cadeas proteicas coñecidos como **estruturas secundarias**. Esta opción está dispoñible só cando as proteínas se seleccionan e se mostran nunha representación simplificada ([esqueleto](display-backbone) ou [fita](display-cartoon)).
 
 As estruturas secundarias recoñecidas son:
 * [láminas beta](lexicon-strand),  

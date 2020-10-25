@@ -1,5 +1,5 @@
 # Interaccións non covalentes
-Esta lapela é o lugar para controlar e recibir información acerca das interaccións covalentes:
+Esta lapela é o lugar para controlar e recibir información acerca das interaccións non covalentes:
 * [Enlaces de hidróxeno](contacts-hbond)
 * [Enlaces iónicos](contacts-saltbridge)
 * [Coordinación metálica](contacts-metal)

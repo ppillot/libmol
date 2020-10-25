@@ -1,5 +1,5 @@
 LibMol é un programa educativo de código aberto para o ensino da bioloxía estrutural.  
-Pódese usar LibMol como un [programa en liña](https://libmol.org) (accesible sen instalación, mediante un navegador) ou un [programa executable mediante descarga](https://libmol.org/downloads).
+Pódese usar LibMol como un [programa en liña](https://libmol.org) (accesible sen instalación, mediante un navegador) ou como un [programa executable mediante descarga](https://libmol.org/downloads).
 
 ## Autor
 [Paul Pillot](mailto:paul.pillot@libmol.org) - Profesor de Ciencias da Vida no Collège International Marie de France (Montreal - Canada)

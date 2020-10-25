@@ -1,7 +1,6 @@
-# Select carbohydrates
-This control selects **carbohydrates** (or **saccharides**) present in the molecular model. All saccharides are selected with this command indistinctively of their respective chemical nature.   
+# Seleccionar carbohidratos
+Este control selecciona os **carbohidratos** (ou **glícidos**) presentes no modelo molecular. Este comando selecciona calquera glícido independentemente da súa natureza química.   
 
-After selecting, it's possible to act (represent, color,...) upon these selected atoms without affecting the rest of the molecular model.   
-
-![Select saccharides](static/img/selectglu.png)  
-The pre-visualization of the selection is transiently displayed when the mouse hovers and makes it possible to check the quality of the selection made.
+Despois de seleccionar pódese operar (representar, colorear...) sobre os átomos seleccionados sen afectar o resto do modelo molecular. 
+![Seleccinoar glícidos](static/img/selectglu.png)  
+Móstrase unha previsualización da selección mentres o rato se move sobre a molécula, que permite verificar a calidade da selección.

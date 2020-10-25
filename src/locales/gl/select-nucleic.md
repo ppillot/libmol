@@ -1,7 +1,7 @@
-# Select nucleic acids (DNA or RNA)
-This control selects **[nucleic acids](lexicon-nucleic)** present in the molecular model. Every nucleic chains or individual nucleotides are selected with this command.   
+# Seleccionar ácidos nucleicos (ADN or ARN)
+Este control selecciona **[ácidos nucleicos](lexicon-nucleic)** presentes no modelo molecular. Este comando selecciona todas as cadeas de ácido nucleico ou nucleótidos individuais.   
  
-After selecting, it's possible to act (represent, color,...) upon these selected atoms without affecting the rest of the molecular model.
+Despois de seleccionar é posible operar (representar, colorear ...) sobre os átomos seleccionados sen afectar o resto do modelo.
 
-![Select nucleic](static/img/selectnuc.png)  
-The pre-visualization of the selection is transiently displayed when the mouse hovers and makes it possible to check the quality of the selection made.
+![Seleccionar ácidos nucleicos](static/img/selectnuc.png)  
+Móstrase unha previsualización da selección mentres o rato se move sobre a molécula que permite verificar a calidade da selección.

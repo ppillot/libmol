@@ -1,4 +1,4 @@
-# Seleccionar ácidos nucleicos (ADN or ARN)
+# Seleccionar ácidos nucleicos (ADN ou ARN)
 Este control selecciona os **[ácidos nucleicos](lexicon-nucleic)** presentes no modelo molecular. Este comando selecciona todas as cadeas de ácido nucleico ou os nucleótidos individuais.   
  
 Despois de seleccionar é posible operar (representar, colorear ...) sobre os átomos seleccionados sen afectar o resto do modelo.

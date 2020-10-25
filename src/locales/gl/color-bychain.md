@@ -1,4 +1,4 @@
-# Coloreado por cadea
+# Colorear segundo a cadea
 Este esquema de cor usa unha cor diferente para cada cadea presente no modelo molecular.
 
 Os principais compoñentes de cadeas son:

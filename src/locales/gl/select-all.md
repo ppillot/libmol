@@ -1,4 +1,4 @@
-# Select all atoms
-This control selects the **whole set of atoms** present in the molecular model independently of the chemical nature of the compounds they are a part of, nor of the chain to which they belong.
-![Selection](static/img/select.png)
-The pre-visualization of the selection is transiently displayed when the mouse hovers and makes it possible to check the quality of the selection made.
+# Seleccionar todos os átomos
+Este control selecciona o **conxunto completo de átomos** presente no modelo molecular, independentemente da natureza química dos compostos a que pertenzan e da cadea na que estean.
+![Selección](static/img/select.png)
+Móstrase unha previsualización da selección mentres o rato se move sobre a molécula que fai posible a verificación da calidade da selección.

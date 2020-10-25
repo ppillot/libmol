@@ -1,4 +1,4 @@
-# Color CPK (por elemento)
+# Coloreado CPK (por elemento)
 Cada átomo coloréase de acordo co esquema convencional de coloración en química ([Coloración CPK](lexicon-cpk)). Este esquema distingue os diferentes elementos químicos que forman a molécula.
 
 Símbolo | Código de cor | Elemento

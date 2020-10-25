@@ -1,3 +1,3 @@
 # Beta strands
-β-strands are among the main patterns taken by [amino acids](lexicon-aminoacid) chains in a [protein](lexicon-protein) (also known as secondary structures).  
-β-strands have a planar conformation. Amino acids side chains generally point perpendicularly to the strand's plane. Amino acids bind to neighbouring strands through hydrogen bonding. Adjoining β-strands may form larger scale structures such as barrels.
+As láminas dobradas ou láminas β están entre os patróns principais que adoptan as cadeas de [aminoácidos](lexicon-aminoacid) nunha [proteína](lexicon-protein) (coñecidas tamén como estruturas secundarias).  
+As láminas dobradas ou láminas β teñen unha conformación plana. As cadeas laterais dos aminoácidos apuntan xeralmente de xeito perpendicular ao plano da lámina. Os aminoácidos únense ás láminas próximas mediante enlaces de hidróxeno. As láminas contiguas poden formar motivos como os barrís β.

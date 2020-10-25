@@ -1,52 +1,51 @@
-# Select by Selection Command
-This text box allows you to enter a selection command to make more complex selections or faster than through the sequence mode.
-Atoms whose characteristics match the keywords are selected.
+# Selecionar mediante Comandos de selección
+Esta caixa de texto permite introducir un comando de selección para realizar seleccións máis complexas ou máis axiña que a través do modo secuencia.
+Os átomos que teñan as característcas indicadas polas palabras chave serán seleccionados.
 
-Once the command is correct, enable the selection by pressing the Enter key or clicking on the validation button.
+Despois de introducir un comando correcto realice a selección premendo a tecla Intro ou facendo click no botón de validación.
 
-The pre-visualization of the selection is transiently displayed on mouseover and allows to check the quality of the selection made. The number of atoms included is dislayed in the selection bar. If the selection can not be processed, the text appears in red.
+A previsualización da selección móstrase mentres se pasa o rato por riba dos átomos seleccionados e permite verificar a calidade da selección. A barra de selección mostrará o número de átomos seleccionados. Se non fose posible procesar a selección o texto aparecerá en vermello.
 
-## Examples of select commands
-| Commands | Related Selections |
+## Exemplos de comandos de selección
+| Comandos | Seleccións asignadas |
 | ---------- | -------------------------- |
-| `val` | All the valines |
-| `val and 10` | All valines in position 10 in the chains
-| `:B` | Chain B **(case sensitive)**
-| `10:B` | The amino acid (or nucleotide) at position 10 in the B chain
-| `_C` | All carbon atoms
-| `ala and .ca and not 10` | All alpha carbons of alanines except in the amino acid at position 10
-| `protein and not (:C,:B)` | All atoms belonging to proteins but not to chains C nor B
+| `val` | Todas as valinas |
+| `val and 10` | Todas as valinas en posición 10 nas cadeas
+| `:B` | Cadea B **(distingue maiúsculas e minúsculas)**
+| `10:B` | O aminoácido (ou nucleótido) en posición 10 na cadea B
+| `_C` | Todos os átomos de carbono
+| `ala and .ca and not 10` | Todos os carbonos alfa das alaninas excepto o aminoácido en posición 10
+| `protein and not (:C,:B)` | Todos os átomos pertencentes a proteínas pero non ás cadeas C nin B
 
-## Keywords
-| Keyword | Meaning
+## Palabras chave
+| Palabra chave | Significado
 | ----------- | ------
-| `all` | All atoms
-| `protein` | Proteins and amino acids
-| `nucleic` | DNA, RNA and nucleotides
-| `dna` | DNA
-| `rna` | RNA
+| `all` | Todos os átomos
+| `protein` | Proteínas e aminoácidos
+| `nucleic` | ADN, ARN e nucleótidos
+| `dna` | ADN
+| `rna` | ARN
 | `hetero` | hetero
-| `saccharide` | Carbohydrates
-| `ion` | Ions
-| `water` | Water
-| `polymer` | Protein, DNA or RNA
-| `backbone` | Skeleton of a Protein or a Nucleic Acid
-| `sidechain` | Side chain (amino acid) or nucleic base
-| `helix` | Helices
-| `sheet` | Beta sheets
-| `turn` | Secondary structure neither in helices nor in sheets
-See more keywords in the [NGL documentation](http://arose.github.io/ngl/api/tutorial-selection-language.html)
+| `saccharide` | Carbohidratos
+| `ion` | Ións
+| `water` | Auga
+| `polymer` | Proteína, ADN or ARN
+| `backbone` | Esqueleto dunha proteína ou ácido nucleico
+| `sidechain` | Cadea lateral dun aminoácido ou base nitroxenada
+| `helix` | Hélices
+| `sheet` | Follas dobradas
+| `turn` | Estrutura secundaria sen hélices nin follas dobradas
+Ver máis palabras chave na [Documentation NGL](http://arose.github.io/ngl/api/tutorial-selection-language.html)
 
-## Syntax
-| Expression | Meaning
+## Sintaxe
+| Expresión | Significacdo
 | --------------- | ---------------
-| `1,2,3` | | Selection of residues by their number
-| `1-10` | Selection of a sequence of residues (here, from 1 to 10)
-| `:A` | Selecting a string from its identifier
-| `#H,#C,#O` | Selection of atoms by their chemical symbol
-| `.CA,.N3` | Selection of atoms by name in the PDB file
-| `ALA,HEM` | Selection of residues by their names
-| `[032],[CT1]` | Selection of residues whose names contain digits
-Refer to [NGL documentation](http://arose.github.io/ngl/api/tutorial-selection-language.html) for more advanced examples
-
-Expressions and keywords can be combined using logical operators (`AND`,` OR`, `NOT`). Parentheses can be used to group expressions and set priorities between combinations.
+| `1,2,3` | | Selección de residuos polo seu número
+| `1-10` | Selección dunha secuencia de residuos (aquí, do 1 ao 10)
+| `:A` | Seleccionar unha cadea polo seu identificador
+| `#H,#C,#O` | Selección de átomos polo seu símbolo
+| `.CA,.N3` | Selección de átomos polo seu nome no ficheiro PDB
+| `ALA,HEM` | Selección de residuos polo seus nomes
+| `[032],[CT1]` | Selección de residuos cuxos nomes conteñen díxitos
+Busque na [Documentation NGL](http://arose.github.io/ngl/api/tutorial-selection-language.html) exemplos máis avanzados
+As expresións e palabras chave poden ser combinadas usando operadores lóxicos (`AND`,` OR`, `NOT`). Pódense usar parénteses para agrupar expresións e establecer prioridades entre as combinacións.

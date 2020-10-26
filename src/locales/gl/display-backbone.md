@@ -13,4 +13,4 @@ O esqueleto é unha liña quebrada que pasa por un átomo representativo en cada
 
 ![Esqueleto nucleico](static/img/sqeun.png)
 
-O esqueleto mostra a base estututal do polímero arredor da cal se organizan os demais compostos (cadeas laterais dos aminoácidos e bases dos ácidos nucleicos) e proporciona ás moléculas as súas propiedades.
+O esqueleto mostra a base estutural do polímero arredor da cal se organizan os demais compostos (cadeas laterais dos aminoácidos e bases dos ácidos nucleicos) e proporciona ás moléculas as súas propiedades.

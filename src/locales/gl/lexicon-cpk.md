@@ -1,5 +1,5 @@
 # Coloración CPK
-O código de coloración CPK (Corey, Pauling and Koltun) é a coloración convencional dos elementos adoptada en química. Identifica os elemento químicos nun modelo molecular.
+O código de coloración CPK (Corey, Pauling and Koltun) é a coloración convencional dos elementos adoptada en química. Identifica os elementos químicos nun modelo molecular.
 Este código foi definido polos químicos R. Corey and L. Pauling e mellorado despois por by W. Koltun. As actuais ferramentas de visualización de moléculas usan variacións deste código.
 
 O código dos principais elementos nas moléculas orgánicas é o seguinte:

@@ -25,7 +25,7 @@ A previsualización da selección móstrase mentres se pasa o rato por riba da m
 | `nucleic` | ADN, ARN e nucleótidos
 | `dna` | ADN
 | `rna` | ARN
-| `hetero` | hetero
+| `hetero` | Heteroátomos
 | `saccharide` | Carbohidratos
 | `ion` | Ións
 | `water` | Auga

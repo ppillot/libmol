@@ -4,7 +4,7 @@ Esta representación proporciona unha vista simplificada de **proteínas** e **�
 
 En **proteínas**:  
 ![Representación de fitas en proteínas](static/img/rubanp.png)  
-A fita pasa polos planos dos enlaces peptídicos entre os aminoácidos da cadea. O largo da fita varía a fin de enfatizar estruturas secundarias notorias (follas dobradas, hélices alfa...).
+A fita pasa polos planos dos enlaces peptídicos entre os aminoácidos da cadea. O largo da fita varía a fin de resaltar estruturas secundarias notorias (follas dobradas, hélices alfa...).
 
 En **ácidos nucleicos**:  
 ![Representación de fitas no ADN](static/img/rubann.png)  

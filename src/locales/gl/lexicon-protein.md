@@ -1,9 +1,9 @@
-# Proteins
-Proteins are large-scale and complex organic molecules made of at least one chain of [amino acids](lexicon-aminoacid).
-Amino acid composition (governed by cell's genetic information) is the main responsible for protein properties such as its shape and function.  
-Proteins undertake different roles inside and outside of cells:
-* Communication (peptidic messengers, receptors)
-* Structure (as components of the cytoskeleton, the extracellular matrix, the chromatin and chromosomes ...)
-* Chemical reactions (enzymes)
-* Defense and attack (peptidic toxins, antibodies, receptors of the immune system)
-* Etc...
+# Proteínas
+As proteínas son macromoléculas orgánicas complexas formadas como mínimo por unha cadea de [aminoácidos](lexicon-aminoacid).
+A composición aminoacídica (que depende da información xenética) é a principal responsable da forma e función das proteínas.  
+As proteínas desempeñan moitas funcións diferentes no interior e exterior das células:
+* Comunicación (mensaxeiros peptídicos, receptores)
+* Estrutura (compoñentes do citosqueleto, a matriz extracelular, a cromatina e os cromosomas ...)
+* Reaccións químicas (enzimas)
+* Defensa e ataque (toxinas peptídicas, anticorpos, receptores do sistema inmunitario)
+* Etc

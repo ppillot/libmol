@@ -1,13 +1,13 @@
-# Colour by chain
-This color scheme makes use of a different color for each chain present in the molecular model.
+# Colorear segundo a cadea
+Este esquema de cor usa unha cor diferente para cada cadea presente no modelo molecular.
 
-Prominent chains constituents are:
-* [proteins](lexicon-protein), made of one or more amino acid chain
-* [nucleic acids](lexicon-nucleic) (DNA or RNA), made of nucleotide chains
+Os principais compoñentes de cadeas son:
+* [proteínas](lexicon-protein), formadas por unha ou máis cadeas de aminoácidos
+* [ácidos nucleicos](lexicon-nucleic) (ADN or ARN), formados por cadeas de nucleótidos
 
-[Ligands](lexicon-ligand) (water, ions, hemes,...) in association with a biological polymer (protein or nucleic acid) are also considered as part of the chain and are colored like the rest of it.  
+[Ligandos](lexicon-ligand) (auga, ións, grupos hemo...) asociados cun biopolímero (proteína ou ácido nucleico), son considerados parte da cadea e son coloreados da mesma maneira ca esta.  
 
-**Example: protein made of 4 chains:**  
-![Hemoglobin colored by chains](static/img/colochain.png)    
-The labels in the status bar beneath the visualization frame, list the different chains by their IDs and their respective colors.  
-**Tip**: Hovering over the chains name displays a tooltip with the chain's extensive and relevant biological name (if provided in the molecular file)
+**Exemplo: proteína formada por 4 cadeas:**  
+![Hemoglobina coloreada por cadeas](static/img/colochain.png)    
+As estiquetas da barra de estado, debaixo do marco de visualiación, listan as distintas cadeas polos seus IDs e as súas respectivas cores.  
+**Consello**: Manter o indicador sobre o nome das cadeas para mostrar o nome biolóxico completo e relevante da cadea (se é proporcionado polo ficheiro molecular)

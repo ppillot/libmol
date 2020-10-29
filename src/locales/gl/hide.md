@@ -1,5 +1,5 @@
-# Hide / Display
-This control alternatively hides or displays the current selection.  
-This is convenient to focus on a portion of the molecular model while retaining the representations of the rest.
+# Ocultar / Mostar
+Este control oculta e mostra a selección en curso.  
+É axeitado para pór o foco nunha porción do modelo molecular mentres se manteñen as representacións do resto.
 
-**Beware** that when a selection or part of it is hidden, no action performed on it will be visible until the Display control is triggered on it.
+**Teña en conta** que cando unha selección ou parte dela se oculta, non se poderá visualizar ningunha acción realizada sobre ela ata que o control Mostar se accione.

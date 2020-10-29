@@ -1,4 +1,4 @@
-# Select other atoms
-This control selects atoms that are not part of any of the other atom sets (same as not protein, not nucleic, not saccharide, not water). It's a very diverse group, including ligands, ions, membrane lipids, etc...  
-![Select](static/img/select.png)   
-The pre-visualization of the selection is transiently displayed when the mouse hovers and makes it possible to check the quality of the selection made.
+# Seleccionar outros átomos
+Este control selecciona os átomos que non forman parte de ningún dos conxuntos de átomos definidos (é o mesmo que especificar que non se trata de proteínas, nin ácidos nucleicos, nin carbohidratos, nin agua). É un grupo moi diverso que inclúe ligandos, ións, lípidos de membrana, etc...  
+![Seleccionar](static/img/select.png)   
+Móstrase unha previsualización da selección mentres o rato se move sobre a molécula, que permite verificar a calidade da selección.

@@ -1,9 +1,9 @@
-# Color palette
-This is a user defined color. The color picked is assigned to every atom in the current selection set.  
-Its main use is to highlight a specific portion of the molecular model.
+# Cor de paleta
+É unha coloración definida polo usuario. A cor seleccionada aplícase a todos os átomos da selección actual.  
+O seu uso principal é para destacar unha parte específica do modelo molecular.
 
-To use it:
-* first, select the part you want to highlight
-* then color it by picking a relevant color from the palette 
+Para usalo:
+* primeiro, selecione a parte que quere resaltar
+* despois coloréea seleccionando unha cor da paleta 
 
-The chosen color is also displayed as a label in the status bar.
+A cor escollida móstrase tamén como unha etiqueta na barra de estado.

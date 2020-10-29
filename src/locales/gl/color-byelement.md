@@ -1,16 +1,16 @@
-# Color CPK (by element)
-Each atom is colored accordingly with chemestry's conventional coloring scheme ([CPK Coloration](lexicon-cpk)). This scheme informs on the different chemical elements that are part of a molecule.
+# Coloreado CPK (por elemento)
+Cada átomo coloréase de acordo co esquema convencional de coloración en química ([Coloración CPK](lexicon-cpk)). Este esquema distingue os diferentes elementos químicos que forman a molécula.
 
-Symbol | Color code | Element
+Símbolo | Código de cor | Elemento
 ------------ | ------------- | -------------
-**C** | ![Carbon](static/img/c.png)| **Carbon**
-**H** | ![Hydrogen](static/img/h.png) | **Hydrogen**
-**O** | ![Oxygen](static/img/o.png) | **Oxygen** 
-**N** | ![Nitrogen](static/img/n.png) | **Nitrogen**
-**S** | ![Sulfur](static/img/s.png) | **Sulfur** 
-**P** | ![Phosphorus](static/img/p.png) | **Phosphorus** 
+**C** | ![Carbono](static/img/c.png)| **Carbono**
+**H** | ![Hidróxeno](static/img/h.png) | **Hidróxeno**
+**O** | ![Oxíxeno](static/img/o.png) | **Oxíxeno** 
+**N** | ![Nitróxeno](static/img/n.png) | **Nitróxeno**
+**S** | ![Xofre](static/img/s.png) | **Xofre** 
+**P** | ![Fósforo](static/img/p.png) | **Fósforo** 
 
-**Beware**, most macromolecular models don't include **hydrogens**, despite those being present in reality. [Structures determination techniques](lexicon-technique) generally can't resolve hydrogen atoms coordinates.  
+**Coidado**, a maioría dos modelos macromoleculares non incúen **hidróxenos**, aínda que están presentes na molécula. As [Técnicas de determinación de estruturas](lexicon-technique) non poden, en xeral, resolver as coordenadas dos átomos de hidróxeno.  
 
-The labels in the status bar beneath the visualization frame, list the different atomic elements by their symbols and their respective colors.  
-**Tip**: Hovering over the elements symbols reveals a tooltip with the complete atom name.
+As etiquetas da barra de estado, debaixo do marco de visualización, listan os distintos elementos químicos polos seus símbolos e cores.  
+**Consello**: Mater o indicador sobre os símbolos dos elementos para mostar o nome completo do átomo.

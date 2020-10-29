@@ -1,3 +1,3 @@
-# Amino acids
-Amino acids are biological compounds composing the protein chains. Amino acids have two functionnal groups (amine and carboxyl) that interacts between each other to form peptidic bonds.  
-Each amino acid has a specific sidechain confering its chemical properties. 
+# Aminoácidos
+Os aminoácidos son as moléculas que forman as cadeas das proteínas. Teñen dous grupos funcionais (amino e carboxilo) que interactúan entre eles para formaren os enlaces peptídicos.  
+Cada aminoácido ten unha cadea lateral específica que lle confire as súas propiedades químicas. 

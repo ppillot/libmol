@@ -1,10 +1,16 @@
-# Backbone representation
-This representation is a simplified display only applying to proteins and nucleic acids (DNA or RNA).  
-![Backbone](static/img/squ2.png)  
-The backbone is a broken line passing by one representative atom in each residue of the polymer: 
-* in proteins, these are the **alpha-carbons** (α-carbons) of each amino-acid. Alpha-carbons join the pepdidic bonds with the amino-acid distinctive sidechains.
-![Peptidic backbone](static/img/squ1.png)  
-* in nucleic acids, these are the **C3'-carbons** in the nucleotides (deoxy)riboses.  
-![Nucleic backbone](static/img/sqeun.png)   
+# Representación de esqueleto
+Esta representación é unha vista simplificada só aplicable a proteínas e ácidos nucleicos (ADN e ARN).
 
-The backbone reflects the structural basis of the polymer, around which the other functionally diverse compounds (amino acids side chains and nucleic bases) are organized and provide to the molecules their biological properties.
+![Esqueleto](static/img/squ2.png)
+
+O esqueleto é unha liña quebrada que pasa por un átomo representativo en cada residuo do polímero:
+
+* en proteínas, estes son os **carbonos alfa** (carbonos-α) de cada aminoácido. Os carbonos alfa articulan os enlaces peptídicos coas cadeas laterais dos aminoácidos.
+
+![Esqueleto peptídico](static/img/squ1.png)  
+
+* en ácidos nucleicos, estes son os **carbonos C3'** das (desoxi)ribosas dos nucleótidos.  
+
+![Esqueleto nucleico](static/img/sqeun.png)
+
+O esqueleto mostra a base estutural do polímero arredor da cal se organizan os demais compostos (cadeas laterais dos aminoácidos e bases dos ácidos nucleicos) e proporciona ás moléculas as súas propiedades.

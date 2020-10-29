@@ -1,7 +1,7 @@
-# Select proteins
-This control selects **[proteins](lexicon-protein)** present in the molecular model. Every peptidic chains or individual amino acids are selected with this command.  
+# Seleccionar proteína
+Este control selecciona as **[proteínas](lexicon-protein)** presentes no modelo molecular. O comando selecciona todas as cadeas peptídicas ou aminoácidos individuais.  
 
-After selecting, it's possible to act (represent, color,...) upon these selected atoms without affecting the rest of the molecular model.
+Despois de seleccionar pódese operar (representar, colorear...) sobre os átomos seleccionados sen afectar o resto do modelo molecular.
 
-![Select protein](static/img/selectpro.png)   
-The pre-visualization of the selection is transiently displayed when the mouse hovers and makes it possible to check the quality of the selection made.
+![Seleccionar proteína](static/img/selectpro.png)   
+Móstrase unha previsualización da selección mentres o rato se move sobre a molécula, que permite verificar a calidade da selección.

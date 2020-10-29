@@ -1,8 +1,8 @@
-# Nucleic acids (DNA - RNA)
-Nucleic acids are large-scale organic molecules whose main role is to store and transmit genetic information.  
-They are made of a succession of building units: the [nucleotides](lexicon-nucleotide).  
-Nucleic acids derive their name from the facts that they were identified first in the nucleus and that the nucleotides contain a **nucleobase** and a **phosphoric acid** part.  
-DNA and RNA difference is based on the type of carbohydrate present in each nucleotide, respectively **deoxyribose** for DNA and **ribose** for RNA.  
-Nucleotides bond with their neighbors on the same chain by a covalent bond between the phosphate group and the (deoxy) ribose group.  
-Typically DNA contains two nucleotidic chains, maintained by hydrogen bonds between the nitrogenous bases. RNA is often made of a single chain, which can be folded back on itself, thus forming secondary structures maintained by bonds between bases (loops, pins, etc.).  
-In Libmol, one can distinguish between the two types of nucleic acids using [color by biochemical nature](color-bynature) coloring pattern. They can be selected distinctively with the DNA or RNA  keyword in the [selection command line](select-command-line).  
+# Ácidos nucleicos (ADN - ARN)
+Os ácidos nucleicos son moléculas orgánicas de tamaño grande cuxa función principal é almacenar e transmitir información xenética.  
+Están formados por unha sucesión de unidades construtivas: os [nucleótidos](lexicon-nucleotide).  
+O seu nome deriva do feito de teren sido identificados por primeira vez no núcleo e de os nucleótidos conteren una **base nitroxenada** e unha molécula de  **ácido fosfórico**.  
+A diferenza entre o ADN e o ARN é o tipo de monosacárido presente nos seus nucleótidos, **desoxirribosa** para o ADN e **ribosa** para o ARN.  
+Os nucleótidos únense cos seus veciños da mesma cadea por un enlace covalente entre o grupo fosfato e a (desoxi)ribosa.  
+O ADN contén tipicamente dúas cadeas nucleotídicas unidas por enlaces de hidróxeno entre as bases nitroxenadas. O ARN adoita estar formado por unha soa cadea, que se pode dobrar sobre si mesma formando estruturas secundarias estabilizadas por enlaces entre as bases (bucles, forcas, etc.).  
+En Libmol, pódense distinguir os dous tipos de ácidos nucleicos utilizando o patrón de coloración [coloración por naturaleza bioquímica](color-bynature). Pódense seleccionar de forma diferenciada coa palabra chave ADN ou ARN na [liña de comandos de selección](select-command-line).  

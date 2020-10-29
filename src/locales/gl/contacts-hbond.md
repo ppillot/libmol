@@ -1,10 +1,9 @@
-# Hydrogen bonds
-Electronegative atoms (such as nitrogen, oxygen, etc.) covalently bound to a hydrogen atom tend to attract electrons towards them, at the expense of the hydrogen atom. The hydrogen atom then gets a positive partial charge, while the "donor" atom gains a negative partial charge. The hydrogen atom may therefore be attracted to another electronegative atom (named "acceptor" atom) and form a hydrogen bond.
+# Enlaes de hidróxeno
+Os átomos electronegativos (como o nitróxeno, o oxíxeno, etc) unidos covalentemente a un átomo de hidróxeno tenden a atraer os electróns para si, a expensas do átomo de hidróxeno. En consecuencia, o átomo de hidróxeno adquire unha carga parcial positiva mentres que o átomo "dador" gaña unha carga parcial negativa. Como resultado, o átomo de hidróxeno pode ser atraído por outro átomo electronegativo (denominado "aceptor") e formar un enlace de hidróxeno.
 
-The hydrogen bond energy is low (&#8776 30kJ/mol, compared to 400kJ/mol for a covalent bond) and it engages atoms separated by short distances (0.2nm in water for example).
-
-The Libmol software (based on the NGL library) distinguishes 4 categories of hydrogen bonds:
-* **Backbone H bond**: these are the bonds between the nitrogen and the oxygen from the backbone of the neighboring amino acids in a polypeptidic chain. These are responsible for secondary structures ([helices](lexicon-helice) and [strands](lexicon-feuillet))
-* **Water H bonds**: these hydrogen bonds are sometimes involved in the active sites of certain enzymes (such as hydrolases)
-* **Weak H bonds**: these hydrogen bonds involve weakly electronegative atoms (such as carbon)
-* **Other H bonds**: these bonds explain most of the interactions between different molecules or between the different structures of a protein.
+A enerxía do enlace de hidróxeno é baixa (arredor de 30 kJ/mol, comparada cos 400 kJ/mol dun enlace covalente) e afecta a átomos separados por distancias curtas (0,2 nm na auga, por examplo).
+O software Libmol (baseado na biblioteca NGL) distingue 4 categorías de enlaces de hidróxeno:
+* **Enlaces de hidróxeno do esqueleto**: son os enlaces entre os nitróxenos e oxíxenos do esqueleto dos aminoácidos próximos nunha cadea polipeptídica. Son os responsables da estrutura secundaria ([hélices](lexicon-helice) e [follas dobradas](lexicon-feuillet))
+* **Enlaces de hidróxeno da auga**: estes enlaces de hidróxeno están, ás veces, implicados nos centros activos de certos enzimas (como as hidrolases)
+* **Enlaces de hidróxeno débiles**: estes enlaces de hidróxeno implican átomos pouco electronegativos (como o carbono)
+* **Outros enlaces de hidróxeno**: estes enlaces explican a maioría das interaccións entre diferentes moléculas ou entre distintas estruturas da proteína.

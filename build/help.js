@@ -11,7 +11,7 @@ var writeHelpJson = function (locale, json) {
       console.log(locale + ' written')
     })
 }
-var locales = ['en', 'fr']
+var locales = ['en', 'fr', 'gl']
 var path = './src/locales/'
 
 locales.forEach(function (locale) {

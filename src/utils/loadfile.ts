@@ -1,9 +1,10 @@
+/* eslint-disable prefer-promise-reject-errors */
 import { ColormakerRegistry, Selection } from 'ngl'
 import { ActionContext } from 'vuex'
 import axios from 'axios'
-import StructureComponent from 'ngl/declarations/component/structure-component';
+import StructureComponent from 'ngl/declarations/component/structure-component'
 import Stage, { StageLoadFileParams } from 'ngl/declarations/stage/stage'
-import { Structure } from 'ngl/declarations/ngl';
+import { Structure } from 'ngl/declarations/ngl'
 
 interface SequenceElement {
   resname: string,
@@ -62,7 +63,7 @@ function optimizeSeqOrder (chains: ChainProperties[], structure: Structure) {
   const ch = chains.filter((chain) => chain.hasDNA)
 
   // Take NFA if only 1 DNA chain or less
-  if (ch.length < 2) return;
+  if (ch.length < 2) return
 
   // find sections of the sequence containing dna residues
   const dnaSeq = ch.map((c) => {
@@ -79,13 +80,13 @@ function optimizeSeqOrder (chains: ChainProperties[], structure: Structure) {
   const adjChn: Set<number>[] = []
   dnaSeq.forEach((seq, i) => {
     const mid = (seq.length === 1) ? 0 : seq.length >> 1
-    const midRes = seq[mid];
-    const selToken = midRes.resno + ':' + ch[i].name + ' and (.N1 or .N3)';
+    const midRes = seq[mid]
+    const selToken = midRes.resno + ':' + ch[i].name + ' and (.N1 or .N3)'
     const sel = new Selection(selToken)
     const aSetWithin = structure.getAtomSetWithinSelection(sel, 4.5)
     const chnSet: Set<number> = new Set()
     aSetWithin.forEach(ix => {
-      const atom = structure.getAtomProxy(ix);
+      const atom = structure.getAtomProxy(ix)
       // add to the set of adjacent chains, only the ones that are different
       // from current chain and only if they are dna
       if (atom.chainname !== ch[i].name && atom.isDna()) {
@@ -133,15 +134,14 @@ function optimizeSeqOrder (chains: ChainProperties[], structure: Structure) {
       ch[i].isInReverse = true
     }
   })
-
 }
 
 export function reverseSequence (seq: SequenceElement[]) {
   // determine lower and upper bounds of the nucleic sequence
   let lowB = -1
   let upB = -1
-  let i = 0, imax = seq.length
-  for (; i<imax; i++) {
+  let i = 0; let imax = seq.length
+  for (; i < imax; i++) {
     const mT = seq[i].moleculeType
     // lower bound is first dna residue
     if (lowB === -1 && mT === MolType.dna) {
@@ -173,21 +173,20 @@ function areSimilar (seqA: string, seqB: string) {
   if (seqA.length <= KLENGTH) return seqB.indexOf(seqA) > -1
 
   // special case seqA is k-mer length + 1
-  KLENGTH --
+  KLENGTH--
 
   // common k-mer counting
   let nbCommon = 0
   for (let i = 0; i <= seqA.length - KLENGTH; i++) {
     const kmer = seqA.substring(i, KLENGTH - 1)
-    if (seqB.indexOf(kmer) > -1) nbCommon ++
+    if (seqB.indexOf(kmer) > -1) nbCommon++
   }
 
   // allow a 1 nucleotide difference
   if (nbCommon >= seqA.length - KLENGTH) return true
   // allow a likely 10 % difference
-  if ((seqA.length - nbCommon)/KLENGTH > seqA.length / 10) return true
+  if ((seqA.length - nbCommon) / KLENGTH > seqA.length / 10) return true
   return false
-
 }
 
 function reverseOneInPair (idA: number, idB: number, chnSenseMap: Map<number, boolean>) {
@@ -203,26 +202,26 @@ function reverseOneInPair (idA: number, idB: number, chnSenseMap: Map<number, bo
 
 function getReverseComplement (seq: string) {
   let rev = ''
-  for (let i = seq.length - 1; i >=0 ; i--){
+  for (let i = seq.length - 1; i >= 0; i--) {
     switch (seq[i]) {
       case 'A':
-        rev += 'T';
-        break;
+        rev += 'T'
+        break
       case 'U':
       case 'T':
-        rev += 'A';
-        break;
+        rev += 'A'
+        break
       case 'C':
-        rev += 'G';
-        break;
+        rev += 'G'
+        break
       case 'G':
-        rev += 'C';
-        break;
+        rev += 'C'
+        break
       default:
-        rev += 'X';
+        rev += 'X'
     }
   }
-  return rev;
+  return rev
 }
 
 function getChainColors (chains: ChainProperties[], structure: Structure) {
@@ -257,7 +256,16 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
         if (structure.atomMap.list[0].element.match(/\d/gi) !== null) {
           return Promise.reject({ err: 'old', molId: structure.id })
         }
-        let molTypesSet: Set<MolType>  = new Set()
+
+        // Make a permalink
+        if (newFile.source !== '') {
+          let lURL = location.href
+          lURL = lURL.substring(0, lURL.includes('?') ? lURL.indexOf('?') : undefined)
+          history.replaceState('', '', lURL + '?' + newFile.source +
+            '=' + newFile.molId)
+        }
+
+        let molTypesSet: Set<MolType> = new Set()
         let chainMap: Map<string, number> = new Map()
         let chains: ChainProperties[] = []
         let atoms = Object.keys(structure.atomMap.dict).map(val => { return val.substring(0, val.indexOf('|')) })
@@ -282,6 +290,8 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
             getNameFromPubchem(newFile, context)
           } else newFile.value = structure.title
         }
+
+        // This value is displayed in the badge preceding the title
         if (structure.id !== '') {
           newFile.molCode = structure.id.trim()
         }
@@ -349,7 +359,7 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
           water: molTypesSet.has(MolType.water),
           saccharide: molTypesSet.has(MolType.saccharide),
           hetero: molTypesSet.has(MolType.unknown) || molTypesSet.has(MolType.ion), // 0: Unknown; 2: Ions
-          ion: molTypesSet.has(MolType.ion),
+          ion: molTypesSet.has(MolType.ion)
         }
 
         const noSequence = (structure.residueStore.count / structure.modelStore.count <= 1)

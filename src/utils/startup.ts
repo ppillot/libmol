@@ -11,7 +11,8 @@ interface StartupParameters {
   ext?: string,
   pdb?: string,
   pubchem?: string,
-  libmol?: string
+  libmol?: string,
+  href?: string,
   embedded?: boolean
 }
 
@@ -101,6 +102,18 @@ function getSearchParameters () {
         }
         return Promise.reject(error)
       })
+  }
+
+  // Arbitrary URL. To circumvent issues with unset CORS policies, we use a CORS
+  // proxy.
+  // See this blogpost for reference: https://nordicapis.com/10-free-to-use-cors-proxies/
+  if (params.hasOwnProperty('href')) {
+    const CORS_PROXY = 'https://libmol-cors-proxy.libmol.workers.dev?href='
+    params.file = CORS_PROXY + params.href
+    params.value = ''
+    params.source = 'href'
+    params.molId = params.href
+    params.ext = params.href.indexOf('.pdb') > -1 ? 'pdb' : undefined
   }
   // console.dir(params)
   return params

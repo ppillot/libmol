@@ -692,13 +692,27 @@ var vuex = new Vuex.Store({
       }
       loadNewFile(newFile).then(
         ({ molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component, hetero }) => {
+          // Make a permalink
+          if (newFile.source !== '') {
+            let lLibmolURL = location.href
+            lLibmolURL = lLibmolURL.substring(0, lLibmolURL.includes('?') ? lLibmolURL.indexOf('?') : undefined)
+
+            let lMolRef = newFile.source === 'href' ? fileObject.href : newFile.molId
+            history.replaceState('', '', lLibmolURL + '?' + newFile.source +
+              '=' + lMolRef)
+          }
+
           structure = component.structure
           if (debug) window.structure = structure
 
+          // Update state values
           context.commit('setMolTypes', { molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, hetero })
 
+          // Reset color sheme
           tabColorScheme = [['element', 'all']]
           updateGlobalColorScheme()
+
+          // Reset representations list
           representationsList = [{
             display: 'ball+stick',
             color: 'element',
@@ -709,11 +723,14 @@ var vuex = new Vuex.Store({
             repr: component.reprList[0],
             overlay: false
           }]
+
+          // Reset selections
           currentSelectionAtomSet = structure.getAtomSet().clone()
           currentlyDisplayedAtomSet = representationsList[0].displayedAtomSet.clone()
           wholeAtomSet = structure.getAtomSet().clone()
           tabColorAtomSet = [structure.getAtomSet().clone()]
 
+          // Init closures
           predefined = getPredefined(structure, chains)
           highlight = highlightRes(component)
           if (context.state.isMeasuringDistances || context.state.isMeasuringAngles) context.dispatch('setMouseMode', 'default')

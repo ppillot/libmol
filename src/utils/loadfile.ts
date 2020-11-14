@@ -257,14 +257,6 @@ function loadFile (stage: Stage, context: ActionContext<any, any>) {
           return Promise.reject({ err: 'old', molId: structure.id })
         }
 
-        // Make a permalink
-        if (newFile.source !== '') {
-          let lURL = location.href
-          lURL = lURL.substring(0, lURL.includes('?') ? lURL.indexOf('?') : undefined)
-          history.replaceState('', '', lURL + '?' + newFile.source +
-            '=' + newFile.molId)
-        }
-
         let molTypesSet: Set<MolType> = new Set()
         let chainMap: Map<string, number> = new Map()
         let chains: ChainProperties[] = []

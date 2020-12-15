@@ -212,11 +212,24 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
       interiorDarkening: 0.3
     })
 
+    const resnameList = []
+    const lAtomSet = comp.structure.getAtomSet(new Selection(cE.vicinitySeleString))
+
+    let lAp = comp.structure.getAtomProxy()
+    let lRes = ''
+    lAtomSet.forEach(idx => {
+      lAp.index = idx
+      lRes = `[${lAp.resname}]${lAp.resno}`
+      resnameList[idx] = lRes
+    })
+
     const label = comp.addRepresentation('label', {
       // @ts-ignore
-      labelType: 'format',
-      labelFormat: '[%(resname)s]%(resno)s',
-      // labelText: resnameList,
+      labelType: 'text',
+      // bug here due to wrong version of sprintf-js library in NGL
+      // labelFormat: '[%(resname)s]%(resno)s',
+      // @ts-ignore
+      labelText: resnameList,
       labelGrouping: 'residue',
       attachment: 'top-center',
       radiusType: 'size',

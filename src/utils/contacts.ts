@@ -39,7 +39,7 @@ interface ContactObject {
     },
     label: {
       visible: boolean,
-      size: 3
+      size: number
     },
     target: {
       color: string,
@@ -171,7 +171,6 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
       isBackboneExcluded: true,
       radius: 4.5
     })
-    // console.log(cE)
 
     let contactReprParam = {
       flatShaded: true,
@@ -233,7 +232,7 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
       labelGrouping: 'residue',
       attachment: 'top-center',
       radiusType: 'size',
-      radiusSize: 3,
+      radiusSize: 2 * devicePixelRatio,
       zOffset: 2,
       backgroundOpacity: 0.8,
       color: 0x1f2d3d,
@@ -265,7 +264,7 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
         },
         label: {
           visible: true,
-          size: 3
+          size: 2
         },
         target: {
           color: 'element',
@@ -487,7 +486,7 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
         contact.repr.contact.contactsTypes = getArray(cT)
       } else if (properties.param.hasOwnProperty('size')) {
         repr.setParameters({
-          radiusSize: properties.param.size
+          radiusSize: properties.param.size * devicePixelRatio
         })
         contact.repr.label.size = properties.param.size
       }

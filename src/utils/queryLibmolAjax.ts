@@ -35,7 +35,7 @@ function query (queryString: string): Promise<LibmolResponse[]> {
 
         // In electron app, data files are gzipped. On line to allow
         // compression via CDN, filenames are appended a .txt extension
-        const extPostfix = (process.env.IS_ELECTRON) ? '.gz' : '.txt'
+        const extPostfix = '.gz'
 
         return { value: item.label,
           file: (filename.indexOf('.mmtf') > -1)

@@ -698,7 +698,8 @@ var vuex = new Vuex.Store({
             lLibmolURL = lLibmolURL.substring(0, lLibmolURL.includes('?') ? lLibmolURL.indexOf('?') : undefined)
 
             let lMolRef = newFile.source === 'href' ? fileObject.href : newFile.molId
-            history.replaceState('', '', lLibmolURL + '?' + newFile.source +
+            let lMolSrc = newFile.source.split(' ')[0] // handle 'pdb ligand'
+            history.replaceState('', '', lLibmolURL + '?' + lMolSrc +
               '=' + lMolRef)
           }
 

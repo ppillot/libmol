@@ -155,16 +155,21 @@ function consolidateDB (auth) {
 
     var rows = response.data.values
     console.log(process.cwd())
-    var db = new sqlite3.Database('src/api/libmol.sqlite')
+
     if (!rows.length) {
       console.log('No data found.')
-    } else {
-      let tabFiles = []
+      return
+    }
 
+    var db = new sqlite3.Database('src/api/libmol.sqlite')
+    let tabFiles = []
+    getIdsInDB(db).then((dbIdSet) => {
       // loop through google spreadsheet rows
       rows.forEach((row, index) => {
-        if (index === 0) return // columns names
+        if (index === 0) return // header row, columns names
         if (row[0] !== '') {
+          dbIdSet.delete(parseInt(row[0]))
+
           // get record from sqlite and compare
           db.get('SELECT * FROM molecule WHERE id = ?', [row[0]],
             (err, record) => {
@@ -303,8 +308,23 @@ function consolidateDB (auth) {
           }
         }
       })
-      // db.close()
-    }
+
+      // Remove from db records that have been deleted from source
+      if (dbIdSet.size > 0) {
+        console.log('Cleaning ' + dbIdSet.size + ' records that have been removed from the molecule table')
+        dbIdSet.forEach(id => {
+          db.run(`DELETE FROM molecule WHERE ID = $id`, { $id: id })
+        }, (err) => {
+          if (err) {
+            console.log('Problem occured at ', id, '\n', err)
+          } else {
+            console.log('Succesfully deleted: #' + id)
+          }
+        })
+      }
+    })
+
+    // db.close()
   })
 }
 
@@ -334,6 +354,32 @@ var download = function (url, dest, cb) {
   }).on('error', function (err) { // Handle errors
     fs.unlink(dest) // Delete the file async. (But we don't check the result)
     if (cb) cb(err.message)
+  })
+}
+
+/**
+ * Get the list of ids currently in the sqlite DB
+ * @param {sqlite3.Database} db
+ * @returns {Set<string>}
+ */
+function getIdsInDB (db) {
+  return new Promise((resolve, reject) => {
+    const dbIdSet = new Set()
+    db.each('SELECT id FROM molecule', (err, record) => {
+      if (err) {
+        console.log(err)
+      } else {
+        dbIdSet.add(parseInt(record.ID))
+      }
+    }, (err, count) => {
+      if (err) {
+        console.log(err)
+        reject(err)
+      } else {
+        console.log(dbIdSet.size)
+        resolve(dbIdSet)
+      }
+    })
   })
 }
 

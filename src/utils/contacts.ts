@@ -228,7 +228,7 @@ function contact (comp: StructureComponent, context: ActionContext<any, any>) {
       // bug here due to wrong version of sprintf-js library in NGL
       // labelFormat: '[%(resname)s]%(resno)s',
       // @ts-ignore
-      labelText: resnameList,
+      labelText: resnameList as unknown as string,
       labelGrouping: 'residue',
       attachment: 'top-center',
       radiusType: 'size',

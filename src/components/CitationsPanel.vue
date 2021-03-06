@@ -51,8 +51,8 @@
         <span v-if="meta.source==='pdb'">
           PDB ID: {{ meta.structureId }},
         </span>
-        {{ meta.citation_authors }} ({{ meta.year }})
-        "<i>{{ meta.articleTitle }}</i>", {{ meta.journal }} {{ meta.volume }}: {{ meta.pages }}
+        {{ meta.citation_authors }} <span v-if="meta.year !== ''">({{ meta.year }})
+        "<i>{{ meta.articleTitle }}</i>", {{ meta.journal }} {{ meta.volume }}: {{ meta.pages }}</span>
         <a
           :href="`http://dx.doi.org/${ meta.doi }`"
           target="_blank"
@@ -237,23 +237,21 @@ export default {
     },
     getMetaFromPDB (pdbCode) {
       console.log(pdbCode)
-      axios.get('https://www.rcsb.org/pdb/rest/describePDB', {
-        params: {
-          structureId: pdbCode
-        }
-      }).then(function ({ data }) {
+      axios.get(`https://data.rcsb.org/rest/v1/core/entry/${pdbCode}`).then(function ({ data }) {
         this.init()
-        /* global DOMParser */
-        const parser = new DOMParser()
-        const xmlDocument = parser.parseFromString(data, 'application/xml')
-        const pdbNode = xmlDocument.getElementsByTagName('PDB')[0]
 
         this.meta.source = 'pdb'
-        this.meta.structureId = pdbNode.getAttribute('structureId')
-        this.meta.title = pdbNode.getAttribute('title')
-        this.meta.pubmedId = pdbNode.getAttribute('pubmedId')
-        this.meta.structure_authors = pdbNode.getAttribute('structure_authors')
-        this.meta.citation_authors = pdbNode.getAttribute('citation_authors')
+        this.meta.structureId = data.entry.id
+        this.meta.title = data.struct.title
+        if (data.rcsb_primary_citation) {
+          let lCit = data.rcsb_primary_citation
+          this.meta.pubmedId = lCit.pdbx_database_id_pub_med || ''
+          this.meta.structure_authors = this.meta.citation_authors = lCit.rcsb_authors.join(', ')
+        } else {
+          this.meta.pubmedId = ''
+          this.meta.structure_authors = data.citation[0].rcsb_authors.join(', ')
+          this.meta.citation_authors = ''
+        }
 
         if (this.meta.pubmedId !== '') {
           this.getMetaFromPubmed(this.meta.pubmedId)

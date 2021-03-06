@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueI18n from 'vue-i18n'
@@ -693,7 +694,9 @@ var vuex = new Vuex.Store({
       loadNewFile(newFile).then(
         ({ molTypes, chains, atoms, elements, residues, sstruc, selected, noSequence, component, hetero }) => {
           // Make a permalink
-          if (newFile.source !== '') {
+          if (newFile.source !== ''
+            && newFile.molId !== '63' // default. TODO: use constant
+          ) {
             let lLibmolURL = location.href
             lLibmolURL = lLibmolURL.substring(0, lLibmolURL.includes('?') ? lLibmolURL.indexOf('?') : undefined)
 

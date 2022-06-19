@@ -14,6 +14,10 @@
 <script>
 import FormItem from './FormItem'
 
+function prevDef (ev) {
+  ev.preventDefault()
+}
+
 export default {
   name: 'LoadFile',
   components: {
@@ -49,18 +53,14 @@ export default {
     }
   },
   mounted () {
-    window.addEventListener('dragenter', ev => {
-      ev.preventDefault()
-    })
-    window.addEventListener('dragover', ev => {
-      ev.preventDefault()
-    })
+    window.addEventListener('dragenter', prevDef)
+    window.addEventListener('dragover', prevDef)
     window.addEventListener('drop', this.dropFile.bind(this))
   },
   beforeDestroy () {
-    window.removeEventListener('dragenter')
-    window.removeEventListener('dragover')
-    window.removeEventListener('drop')
+    window.removeEventListener('dragenter', prevDef)
+    window.removeEventListener('dragover', prevDef)
+    window.removeEventListener('drop', this.dropFile)
   }
 }
 </script>

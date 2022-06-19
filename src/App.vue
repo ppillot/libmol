@@ -5,7 +5,9 @@
     </div>
     <div class="full-height viewer" id="view">
       <the-toolbar/>
-      <ngl/>
+      <div style="height: 100%; display: flex; flex-direction: row;">
+        <ngl/><molstar/>
+      </div>
       <the-statusbar/>
     </div>
     <alert/>
@@ -15,6 +17,7 @@
 <script>
 import TheSidebar from './components/TheSidebar'
 import ngl from './components/NGLViewport'
+import molstar from './components/MolstarViewport'
 import TheToolbar from './components/TheToolbar'
 import TheStatusbar from './components/TheStatusbar'
 import Alert from './components/Alert'
@@ -25,6 +28,7 @@ export default {
   components: {
     TheSidebar,
     ngl,
+    molstar,
     TheToolbar,
     TheStatusbar,
     Alert

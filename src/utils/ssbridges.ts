@@ -1,9 +1,9 @@
 import { Selection, Shape, Structure } from 'ngl'
-import BitArray from 'ngl/declarations/utils/bitarray'
-import AtomProxy from 'ngl/declarations/proxy/atom-proxy'
-import StructureComponent from 'ngl/declarations/component/structure-component'
-import RepresentationElement from 'ngl/declarations/component/representation-element'
-import Representation from 'ngl/declarations/representation/representation'
+import BitArray from 'ngl/dist/declarations/utils/bitarray'
+import AtomProxy from 'ngl/dist/declarations/proxy/atom-proxy'
+import StructureComponent from 'ngl/dist/declarations/component/structure-component'
+import RepresentationElement from 'ngl/dist/declarations/component/representation-element'
+import Representation from 'ngl/dist/declarations/representation/representation'
 
 function getDiSulfideBridges (structure: Structure) {
   const sulfursInCysteins = structure.getAtomSet(new Selection('cys and _S'))

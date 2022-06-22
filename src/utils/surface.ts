@@ -1,8 +1,8 @@
 import { StlWriter } from 'ngl'
-import StructureComponent from 'ngl/declarations/component/structure-component'
+import StructureComponent from 'ngl/dist/declarations/component/structure-component'
 import { ActionContext } from 'vuex'
-import RepresentationElement from 'ngl/declarations/component/representation-element'
-import BitArray from 'ngl/declarations/utils/bitarray'
+import RepresentationElement from 'ngl/dist/declarations/component/representation-element'
+import BitArray from 'ngl/dist/declarations/utils/bitarray'
 
 interface SurfaceElement {
   repr: RepresentationElement,

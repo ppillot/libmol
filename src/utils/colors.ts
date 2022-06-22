@@ -1,5 +1,5 @@
 import { ColormakerRegistry, Colormaker } from 'ngl'
-import AtomProxy from 'ngl/declarations/proxy/atom-proxy'
+import AtomProxy from 'ngl/dist/declarations/proxy/atom-proxy'
 
 var ElementColors: {[k:string]: number} = {
   'H': 0xFFFFFF,

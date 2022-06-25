@@ -1,6 +1,8 @@
 <template>
     <div class="side-bar full-height">
-        <h1 @click="dialogVisible = true">LibMol<span> {{ $t('ui.about.title') }}...</span></h1>
+        <h1>LibMol</h1>
+        <h4  @click="dialogVisible = true">{{ $t('ui.about.title') }}</h4>
+        <h4>Conditions générales</h4>
 
         <about-panel :visible="dialogVisible" @close="dialogVisible = false"/>
 

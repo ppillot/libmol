@@ -13,15 +13,15 @@
 import ajax, { LibmolQueryResponse } from '../utils/queryLibmolAjax'
 import { debounce } from 'throttle-debounce'
 import BaseSearchDatabase from './BaseSearchDatabase.vue'
-import { LibmolResponse } from '../utils/queryLibmolElectron'
+import { LibmolResponse } from '../utils/queryLibmolAjax'
 
 // this replaces the webapp ajax call by a DB query in electron app
 let query = ajax
-if (process.env.IS_ELECTRON) {
-  import('../utils/queryLibmolElectron').then(mod => {
-    query = mod.default
-  })
-}
+// if (process.env.IS_ELECTRON) {
+//   import('../utils/queryLibmolElectron').then(mod => {
+//     query = mod.default
+//   })
+// }
 
 export default {
   name: 'SearchLibmol',

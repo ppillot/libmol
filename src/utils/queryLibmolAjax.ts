@@ -1,9 +1,15 @@
 import axios, { CancelTokenSource, AxiosResponse } from 'axios'
-import { LibmolResponse } from './queryLibmolElectron'
+
 export interface LibmolQueryResponse {
     molId: string,
     label: string,
     file: string
+}
+export interface LibmolResponse {
+  value: string,
+  file: string,
+  molId: string,
+  source: 'libmol'
 }
 const CancelToken = axios.CancelToken
 let source: CancelTokenSource

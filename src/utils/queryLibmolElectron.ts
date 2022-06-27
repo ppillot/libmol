@@ -1,19 +1,14 @@
 import Datastore from 'nedb'
 import path from 'path'
 import fs from 'fs'
-
+import { LibmolResponse } from './queryLibmolAjax'
 declare const __static: string;
 interface LibmolNeDBDoc {
     TITRE: string
     FICHIER: string
     ID: string
 }
-export interface LibmolResponse {
-    value: string,
-    file: string,
-    molId: string,
-    source: 'libmol'
-}
+
 
 const molecules = new Datastore({
     inMemoryOnly: true

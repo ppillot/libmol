@@ -1,8 +1,11 @@
 <template>
     <div class="side-bar full-height">
         <h1>LibMol</h1>
-        <h4  @click="dialogVisible = true">{{ $t('ui.about.title') }}</h4>
-        <h4>Conditions générales</h4>
+        <div class="info-links">
+            <a href="#"  @click="dialogVisible = true">{{ $t('ui.about.title') }}</a>
+            -
+            <a href="#"  @click="dialogVisible = true">Conditions générales</a>
+        </div>
 
         <about-panel :visible="dialogVisible" @close="dialogVisible = false"/>
 
@@ -82,33 +85,35 @@ export default {
     }
 
     h1 {
-        cursor: help;
-    }
-
-    h1:hover {
-        color: #1D8CE0;
-        transition: color 0.5s ease-in-out 0.2s;
-    }
-
-    h1 span {
-        opacity: 0;
-        font-size: 0.5em;
-    }
-
-    h1:hover span {
-        opacity: 1;
-        transition: opacity 1s ease-in-out 0.2s;
+        margin-bottom: -5px;
+        margin-top: 0.8rem;
     }
 
     .tab-card {
-        width: 100%;
-        height: calc(100% - 6em);
+        flex: 1 1 auto;
+        margin-bottom: 5px;
         display: flex;
         flex-direction: column;
     }
 
     .side-bar {
-        margin: 0 5px 5px 5px
+        margin: 0 5px 5px 5px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info-links {
+        margin-bottom: 5px;
+        color: #87a9d4;
+    }
+    .info-links a {
+        color: #87a9d4;
+        text-decoration: none;
+        font-size: 0.8rem;
+    }
+
+    .info-links a:hover {
+        color: #1D8CE0;
     }
 
 </style>

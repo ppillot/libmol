@@ -2,9 +2,9 @@
 import { ColormakerRegistry, Selection } from 'ngl'
 import { ActionContext } from 'vuex'
 import axios from 'axios'
-import StructureComponent from 'ngl/declarations/component/structure-component'
-import Stage, { StageLoadFileParams } from 'ngl/declarations/stage/stage'
-import { Structure } from 'ngl/declarations/ngl'
+import StructureComponent from 'ngl/dist/declarations/component/structure-component'
+import Stage, { StageLoadFileParams } from 'ngl/dist/declarations/stage/stage'
+import { Structure } from 'ngl/dist/declarations/ngl'
 
 interface SequenceElement {
   resname: string,

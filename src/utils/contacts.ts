@@ -1,12 +1,12 @@
 import { Selection, ColormakerRegistry } from 'ngl'
 import { byres } from './colors'
 import ContactEntities from './contactEntities'
-import AtomProxy from 'ngl/declarations/proxy/atom-proxy'
+import AtomProxy from 'ngl/dist/declarations/proxy/atom-proxy'
 import { ActionContext } from 'vuex'
-import StructureComponent from 'ngl/declarations/component/structure-component'
-import RepresentationElement from 'ngl/declarations/component/representation-element'
-import { ContactPicker } from 'ngl/declarations/utils/picker'
-import BitArray from 'ngl/declarations/utils/bitarray'
+import StructureComponent from 'ngl/dist/declarations/component/structure-component'
+import RepresentationElement from 'ngl/dist/declarations/component/representation-element'
+import { ContactPicker } from 'ngl/dist/declarations/utils/picker'
+import BitArray from 'ngl/dist/declarations/utils/bitarray'
 
 interface ContactRepr {
   contact: RepresentationElement,

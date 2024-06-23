@@ -1,5 +1,5 @@
 import { getAtomProperties } from './atoms'
-import PickingProxy from 'ngl/declarations/controls/picking-proxy'
+import PickingProxy from 'ngl/dist/declarations/controls/picking-proxy'
 import { ActionContext } from 'vuex'
 import { Vector2, Vector3 } from 'three'
 

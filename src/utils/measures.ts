@@ -1,8 +1,8 @@
 import { getAtomProperties, AtomProperties } from './atoms'
-import AtomProxy from 'ngl/declarations/proxy/atom-proxy'
-import StructureComponent from 'ngl/declarations/component/structure-component'
-import RepresentationElement from 'ngl/declarations/component/representation-element'
-import PickingProxy from 'ngl/declarations/controls/picking-proxy'
+import AtomProxy from 'ngl/dist/declarations/proxy/atom-proxy'
+import StructureComponent from 'ngl/dist/declarations/component/structure-component'
+import RepresentationElement from 'ngl/dist/declarations/component/representation-element'
+import PickingProxy from 'ngl/dist/declarations/controls/picking-proxy'
 import { Vector3 } from 'ngl'
 import { ActionContext } from 'vuex'
 

@@ -1,4 +1,4 @@
-import AtomProxy from 'ngl/declarations/proxy/atom-proxy'
+import AtomProxy from 'ngl/dist/declarations/proxy/atom-proxy'
 
 export interface AtomProperties {
   index: number,

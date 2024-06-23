@@ -56,18 +56,13 @@ export default {
         this.suggestions.splice(0)
         return
       }
-      const xml = `<orgPdbQuery>
-        <queryType>org.pdb.query.simple.AdvancedKeywordQuery</queryType>
-        <description>Text Search</description>
-        <keywords>${queryString}</keywords>
-      </orgPdbQuery>`
       source = CancelToken.source()
-      axios.post('https://search.rcsb.org/rcsbsearch/v1/query/',
+      axios.post('https://search.rcsb.org/rcsbsearch/v2/query',
         {
           return_type: 'entry',
           query: {
             type: 'terminal',
-            service: 'text',
+            service: 'full_text',
             parameters: {
               value: queryString
             }
